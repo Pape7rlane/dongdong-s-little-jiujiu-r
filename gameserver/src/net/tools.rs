@@ -93,9 +93,9 @@ impl AvatarJson {
                 .map(|v| v.to_battle_relic_proto())
                 .collect::<Vec<_>>(),
             world_level: 6,
-            sp: Some(AmountInfo {
-                cur_amount: self.sp_value.unwrap_or(10_000),
-                max_amount: self.sp_max.unwrap_or(10_000),
+            sp_bar: Some(SpBarInfo {
+                cur_sp: self.sp_value.unwrap_or(10_000),
+                max_sp: self.sp_max.unwrap_or(10_000),
             }),
             ..Default::default()
         };
@@ -104,7 +104,7 @@ impl AvatarJson {
         for buff_id in &self.techniques {
             battle_buff.push(BattleBuff {
                 wave_flag: 0xffffffff,
-                owner_index: index,
+                owner_id: index,
                 level: 1,
                 id: *buff_id,
                 dynamic_values: HashMap::from([(String::from("SkillIndex"), 2.0)]),
@@ -121,9 +121,9 @@ impl AvatarJson {
             hp: 10_000,
             satiety: 100,
             avatar_type: AvatarType::AvatarFormalType.into(),
-            sp: Some(AmountInfo {
-                cur_amount: self.sp_value.unwrap_or(10_000),
-                max_amount: self.sp_max.unwrap_or(10_000),
+            sp_bar: Some(SpBarInfo {
+                cur_sp: self.sp_value.unwrap_or(10_000),
+                max_sp: self.sp_max.unwrap_or(10_000),
             }),
             slot,
         }
@@ -155,7 +155,7 @@ impl AvatarJson {
             extra_lineup_type: ExtraLineupType::LineupNone.into(),
             name: "Squad 1".to_string(),
             mp: 5,
-            mp_max: 5,
+            max_mp: 5,
             ..Default::default()
         };
 
@@ -168,9 +168,9 @@ impl AvatarJson {
                 hp: 10_000,
                 satiety: 100,
                 avatar_type: AvatarType::AvatarFormalType.into(),
-                sp: Some(AmountInfo {
-                    cur_amount: 10_000,
-                    max_amount: 10_000,
+                sp_bar: Some(SpBarInfo {
+                    cur_sp: 10_000,
+                    max_sp: 10_000,
                 }),
                 slot: lineup_info.avatar_list.len() as u32,
             });
@@ -197,8 +197,7 @@ pub struct Lightcone {
 impl Lightcone {
     pub fn to_equipment_proto(&self) -> Equipment {
         Equipment {
-            base_avatar_id: self.equip_avatar,
-            cmmegdchmlb: self.equip_avatar,
+            equip_avatar_id: self.equip_avatar,
             exp: 0,
             is_protected: false,
             level: self.level,
@@ -249,8 +248,7 @@ pub struct SubAffix {
 impl Relic {
     pub fn to_relic_proto(&self) -> proto::Relic {
         proto::Relic {
-            base_avatar_id: self.equip_avatar,
-            cmmegdchmlb: self.equip_avatar,
+            equip_avatar_id: self.equip_avatar,
             exp: 0,
             is_protected: false,
             level: self.level,
@@ -292,9 +290,9 @@ impl Relic {
 
     pub fn to_equipment_relic_proto(&self) -> EquipRelic {
         EquipRelic {
-            iaglgkpdloe: self.relic_id % 10,
+            slot: self.relic_id % 10,
             // ?
-            ekjochfepap: 1 + self.internal_uid,
+            relic_unique_id: 1 + self.internal_uid,
         }
     }
 }
@@ -310,11 +308,11 @@ pub struct Monster {
 }
 
 impl Monster {
-    fn to_scene_monster_info(&self) -> SceneMonsterData {
-        SceneMonsterData {
+    fn to_scene_monster_info(&self) -> SceneMonster {
+        SceneMonster {
             monster_id: self.monster_id,
             max_hp: self.max_hp,
-            jjhfeikbakk: self.max_hp,
+            cur_hp: self.max_hp,
         }
     }
 
@@ -325,9 +323,9 @@ impl Monster {
         }
 
         SceneMonsterWave {
-            imapolkmefn: wave_index, // wave indexx??
+            wave_id: wave_index, // wave indexx??
 
-            acpannfhach: Some(Kjfnknacfin {
+            wave_param: Some(SceneMonsterWaveParam {
                 // monster param
                 level: monsters.iter().map(|v| v.level).max().unwrap_or(95),
                 ..Default::default()
@@ -418,7 +416,7 @@ impl BattleBuffJson {
             id: self.id,
             level: self.level,
             wave_flag: 0xffffffff,
-            owner_index: 0xffffffff,
+            owner_id: 0xffffffff,
             dynamic_values: if let Some(dyn_key) = &self.dynamic_key {
                 HashMap::from([(dyn_key.key.clone(), dyn_key.value as f32)])
             } else {
@@ -560,14 +558,14 @@ impl MainCharacter {
         }
     }
 
-    pub fn get_type(&self) -> HeroBasicType {
+    pub fn get_type(&self) -> MultiPathAvatarType {
         match *self {
-            Self::MalePyhsical => HeroBasicType::BoyWarrior,
-            Self::FemalePhysical => HeroBasicType::GirlWarrior,
-            Self::MalePreservation => HeroBasicType::BoyKnight,
-            Self::FemalePreservation => HeroBasicType::GirlKnight,
-            Self::MaleHarmony => HeroBasicType::BoyShaman,
-            Self::FemaleHarmony => HeroBasicType::GirlShaman,
+            Self::MalePyhsical => MultiPathAvatarType::BoyWarriorType,
+            Self::FemalePhysical => MultiPathAvatarType::GirlWarriorType,
+            Self::MalePreservation => MultiPathAvatarType::BoyKnightType,
+            Self::FemalePreservation => MultiPathAvatarType::GirlKnightType,
+            Self::MaleHarmony => MultiPathAvatarType::BoyShamanType,
+            Self::FemaleHarmony => MultiPathAvatarType::GirlShamanType,
         }
     }
 }

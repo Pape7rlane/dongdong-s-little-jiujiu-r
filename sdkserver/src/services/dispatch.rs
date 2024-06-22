@@ -1,7 +1,7 @@
 use crate::config::versions;
 use axum::extract::Query;
 use prost::Message;
-use proto::{Gateserver, GlobalDispatchData, ServerData};
+use proto::{DispatchRegionData, Gateserver, RegionEntry};
 use serde::Deserialize;
 
 pub const QUERY_DISPATCH_ENDPOINT: &str = "/query_dispatch";
@@ -9,9 +9,9 @@ pub const QUERY_GATEWAY_ENDPOINT: &str = "/query_gateway";
 
 #[tracing::instrument]
 pub async fn query_dispatch() -> String {
-    let rsp = GlobalDispatchData {
+    let rsp = DispatchRegionData {
         retcode: 0,
-        server_list: vec![ServerData {
+        region_list: vec![RegionEntry {
             name: String::from("RobinSR"),
             title: String::from("RobinSR"),
             env_type: String::from("11"),
@@ -42,15 +42,23 @@ pub async fn query_gateway(parameters: Query<QueryGatewayParameters>) -> String 
             asset_bundle_url: config.asset_bundle_url.clone(),
             ex_resource_url: config.ex_resource_url.clone(),
             lua_url: config.lua_url.clone(),
-            lua_version: config.lua_version.clone(),
+            // lua_version: config.lua_version.clone(),
             ifix_version: String::from("0"),
-            pdpbjhfgnjk: true,
-            bipcmeeljhj: true,
-            hecpclndaac: true,
-            nlfkefmfige: true,
-            oigmgpfnloj: true,
-            pnnionnkbnn: true,
-            use_tcp: true,
+            unk1: true,
+            unk2: true,
+            unk3: true,
+            unk4: true,
+            unk5: true,
+            unk6: true,
+            unk7: true,
+            aoekikfkmga: true,
+            cdhoiaaonhd: true,
+            egnmpipogli: true,
+            fkfkcdjnhfl: true,
+            gebnkmipomm: true,
+            gnfpfkjhidj: true,
+            goelmbpgofc: true,
+            mfenphleghj: true,
             ..Default::default()
         }
     } else {

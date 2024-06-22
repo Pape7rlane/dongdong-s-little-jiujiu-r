@@ -1,5 +1,6 @@
 use lazy_static::lazy_static;
 use prost::Message;
+use scene_entity_info::Entity;
 use tokio::sync::Mutex;
 
 use crate::{
@@ -7,7 +8,7 @@ use crate::{
         tools::{AvatarJson, JsonData, Position},
         tools_res::{PropState, GAME_RESOURCES},
     },
-    util,
+    util::{self, cur_timestamp_ms},
 };
 
 use super::*;
@@ -74,7 +75,7 @@ pub async fn on_enter_scene_cs_req(
         &mut player,
         request.entry_id,
         true,
-        Some(request.dehbihbbbgo),
+        Some(request.teleport_id),
     )
     .await?;
 
@@ -86,22 +87,22 @@ pub async fn on_get_scene_map_info_cs_req(
     sesison: &mut PlayerSession,
     request: &GetSceneMapInfoCsReq,
 ) -> Result<()> {
-    let mut map_infos = Vec::<SceneMapInfo>::new();
+    let mut map_infos = Vec::<MazeMapData>::new();
 
     for entry_id in &request.entry_id_list {
-        let mut map_info = SceneMapInfo {
+        let mut map_info = MazeMapData {
             retcode: 0,
-            chest_info_list: vec![
-                ChestInfo {
-                    fmangokfagc: MapInfoChestType::Normal.into(),
+            unlocked_chest_list: vec![
+                MazeChest {
+                    map_info_chest_type: MapInfoChestType::Normal.into(),
                     ..Default::default()
                 },
-                ChestInfo {
-                    fmangokfagc: MapInfoChestType::Puzzle.into(),
+                MazeChest {
+                    map_info_chest_type: MapInfoChestType::Puzzle.into(),
                     ..Default::default()
                 },
-                ChestInfo {
-                    fmangokfagc: MapInfoChestType::Challenge.into(),
+                MazeChest {
+                    map_info_chest_type: MapInfoChestType::Challenge.into(),
                     ..Default::default()
                 },
             ],
@@ -121,7 +122,7 @@ pub async fn on_get_scene_map_info_cs_req(
         if let Some(level) = group_config {
             // add teleports
             for teleport in &level.teleports {
-                map_info.unlock_teleport_list.push(*teleport.0)
+                map_info.unlocked_teleport_list.push(*teleport.0)
             }
 
             for (group_id, group) in &level.group_items {
@@ -132,7 +133,7 @@ pub async fn on_get_scene_map_info_cs_req(
 
                 // prop
                 for prop in &group.props {
-                    map_info.maze_prop_list.push(MazePropState {
+                    map_info.maze_prop_list.push(MazeProp {
                         group_id: prop.group_id,
                         state: if prop.prop_state_list.contains(&PropState::CheckPointEnable) {
                             PropState::CheckPointEnable as u32
@@ -153,7 +154,7 @@ pub async fn on_get_scene_map_info_cs_req(
             CMD_GET_SCENE_MAP_INFO_SC_RSP,
             GetSceneMapInfoScRsp {
                 retcode: 0,
-                map_info_list: map_infos,
+                map_list: map_infos,
                 ..Default::default()
             },
         )
@@ -216,7 +217,7 @@ pub async fn on_get_entered_scene_cs_req(
         .filter(|(_, v)| {
             !v.finish_main_mission_list.is_empty() || !v.finish_sub_mission_list.is_empty()
         })
-        .map(|(_, v)| Hhglkmjngeg {
+        .map(|(_, v)| EnteredSceneInfo {
             floor_id: v.floor_id,
             plane_id: v.plane_id,
         })
@@ -225,8 +226,8 @@ pub async fn on_get_entered_scene_cs_req(
     session
         .send(
             CMD_GET_ENTERED_SCENE_SC_RSP,
-            Fchnfpafjce {
-                npbjclegekf: scenes,
+            GetEnteredSceneScRsp {
+                entered_scene_info: scenes,
                 retcode: 0,
             },
         )
@@ -276,8 +277,7 @@ async fn load_scene(
         plane_id: enterance.plane_id,
         entry_id,
         game_mode_type: plane.plane_type as u32,
-        nnfgkelcban: 1,
-        lgflfajffjl: 1,
+        leader_entity_id: 1,
         world_id: plane.world_id,
         ..Default::default()
     };
@@ -304,7 +304,7 @@ async fn load_scene(
     let mut monster_entity_id = 30_000;
 
     for (group_id, group) in &group_config.group_items {
-        let mut group_info = SceneGroupInfo {
+        let mut group_info = SceneEntityGroupInfo {
             state: 0,
             group_id: *group_id,
             ..Default::default()
@@ -331,11 +331,11 @@ async fn load_scene(
                 inst_id: prop.id,
                 group_id: prop.group_id,
                 motion: Some(prop_position.to_motion()),
-                prop: Some(ScenePropInfo {
-                    prop_id: prop.prop_id,
-                    prop_state: prop_state as u32,
+                entity: Some(Entity::Prop(ScenePropInfo {
+                    prop_state: prop.prop_id,
+                    prop_id: prop_state as u32,
                     ..Default::default()
-                }),
+                })),
                 entity_id: prop_entity_id,
                 ..Default::default()
             };
@@ -363,10 +363,10 @@ async fn load_scene(
                 group_id: npc.group_id,
                 entity_id: npc_entity_id,
                 motion: Some(npc_position.to_motion()),
-                npc: Some(SceneNpcInfo {
+                entity: Some(Entity::Npc(SceneNpcInfo {
                     npc_id: npc.npcid,
                     ..Default::default()
-                }),
+                })),
                 ..Default::default()
             };
 
@@ -395,18 +395,18 @@ async fn load_scene(
                 group_id: monster.group_id,
                 entity_id: monster_entity_id,
                 motion: Some(monster_position.to_motion()),
-                npc_monster: Some(npc_monster),
+                entity: Some(Entity::NpcMonster(npc_monster)),
                 ..Default::default()
             };
 
             group_info.entity_list.push(info);
         }
 
-        scene_info.scene_group_list.push(group_info);
+        scene_info.entity_group_list.push(group_info);
     }
 
     // load player entity
-    let mut player_group = SceneGroupInfo {
+    let mut player_group = SceneEntityGroupInfo {
         state: 0,
         group_id: 0,
         ..Default::default()
@@ -429,16 +429,16 @@ async fn load_scene(
                     z: 0,
                 }),
             }),
-            actor: Some(SceneActorInfo {
+            entity: Some(Entity::Actor(SceneActorInfo {
                 avatar_type: AvatarType::AvatarFormalType.into(),
                 base_avatar_id: *avatar_id,
                 map_layer: 0,
                 uid: 0,
-            }),
+            })),
             ..Default::default()
         })
     }
-    scene_info.scene_group_list.push(player_group);
+    scene_info.entity_group_list.push(player_group);
 
     if _save {
         session

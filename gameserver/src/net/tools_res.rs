@@ -190,13 +190,9 @@ impl Default for LoadSide {
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct LevelFloor {
-    #[serde(rename = "FloorID")]
     pub floor_id: u32,
-    #[serde(rename = "FloorName")]
     pub floor_name: String,
-    #[serde(rename = "StartGroupID")]
-    pub start_group_id: u32,
-    #[serde(rename = "StartAnchorID")]
+    pub start_group_index: u32,
     pub start_anchor_id: u32,
 }
 
@@ -332,7 +328,6 @@ pub struct GameResources {
     pub level_group: StringMap<SimpleLevelGroup>,
     pub maze_prop: IntMap<MazeProp>,
     pub maze_plane: IntMap<MazePlane>,
-    pub level_floor: StringMap<LevelFloor>,
 }
 
 impl GameResources {

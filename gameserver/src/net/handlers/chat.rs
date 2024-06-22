@@ -1,38 +1,38 @@
 use crate::{
-    net::{
-        tools::{JsonData, MainCharacter},
-        PlayerSession,
-    },
+    net::{tools::JsonData, PlayerSession},
     util::cur_timestamp_ms,
 };
 
 use super::*;
 
-pub async fn on_jhfffmnkcbf(session: &mut PlayerSession, _: &Jhfffmnkcbf) -> Result<()> {
+pub async fn on_get_friend_list_info_cs_req(
+    session: &mut PlayerSession,
+    _: &GetFriendListInfoCsReq,
+) -> Result<()> {
     session
         .send(
             CMD_GET_FRIEND_LIST_INFO_SC_RSP,
-            Fmonbbgkfpp {
-                nffnphfnbph: vec![Pbbkojapeaj {
-                    jkmlmffobmi: PlayingState::None.into(),
-                    eejlmfccjnm: Some(Bhkoekppbaf::default()),
-                    ddnklblgmaa: String::from("RobinSR"),
-                    mkabddponma: Some(Mionicmdpaa {
+            GetFriendListInfoScRsp {
+                friend_list: vec![FriendListInfo {
+                    playing_state: PlayingState::None.into(),
+                    efhdeanophb: Some(Oohgaobiikp::default()),
+                    kkmacpkifkp: String::from("RobinSR"),
+                    simple_info: Some(SimpleInfo {
                         uid: 727,
-                        platform: 3,
-                        mjbmlkimpnn: 1,
-                        dgojjmfnomj: 201008,
-                        kpiphlhfiib: 220005,
+                        platform_type: 3,
+                        online_status: 1,
+                        head_icon: 201008,
+                        chat_bubble_id: 220005,
                         level: 70,
                         nickname: String::from("Server"),
-                        oemkmkkhkde: vec![AssistSimpleInfo {
+                        assist_simple_info: vec![AssistSimpleInfo {
                             avatar_id: 1008,
                             level: 70,
                             ..Default::default()
                         }],
                         ..Default::default()
                     }),
-                    niekopdjolm: true,
+                    is_marked: true,
                 }],
                 ..Default::default()
             },
@@ -40,108 +40,110 @@ pub async fn on_jhfffmnkcbf(session: &mut PlayerSession, _: &Jhfffmnkcbf) -> Res
         .await
 }
 
-pub async fn on_pignjacjgdl(session: &mut PlayerSession, _: &Pignjacjgdl) -> Result<()> {
+pub async fn on_get_private_chat_history_cs_req(
+    session: &mut PlayerSession,
+    _: &GetPrivateChatHistoryCsReq,
+) -> Result<()> {
     session
         .send(
             CMD_GET_PRIVATE_CHAT_HISTORY_SC_RSP,
-            Hachagdjilp {
-                fepangjbmpa: vec![
-                    Gnbekokccfc {
-                        mgmicgabebd: MsgType::CustomText.into(),
-                        hkkkjdbgiao: cur_timestamp_ms(),
-                        anjfbjikchf: "'sync'".to_string(),
-                        befmkobhohp: 727,
+            GetPrivateChatHistoryScRsp {
+                chat_list: vec![
+                    Chat {
+                        msg_type: MsgType::CustomText.into(),
+                        sent_time: cur_timestamp_ms(),
+                        text: "'sync'".to_string(),
+                        sender_uid: 727,
                         ..Default::default()
                     },
-                    Gnbekokccfc {
-                        mgmicgabebd: MsgType::CustomText.into(),
-                        hkkkjdbgiao: cur_timestamp_ms(),
-                        anjfbjikchf: "'mc {mc_id}' mc_id can be set from 8001 to 8006".to_string(),
-                        befmkobhohp: 727,
+                    Chat {
+                        msg_type: MsgType::CustomText.into(),
+                        sent_time: cur_timestamp_ms(),
+                        text: "'mc {mc_id}' mc_id can be set from 8001 to 8006".to_string(),
+                        sender_uid: 727,
                         ..Default::default()
                     },
-                    Gnbekokccfc {
-                        mgmicgabebd: MsgType::CustomText.into(),
-                        hkkkjdbgiao: cur_timestamp_ms(),
-                        anjfbjikchf: "available command:".to_string(),
-                        befmkobhohp: 727,
+                    Chat {
+                        msg_type: MsgType::CustomText.into(),
+                        sent_time: cur_timestamp_ms(),
+                        text: "available command:".to_string(),
+                        sender_uid: 727,
                         ..Default::default()
                     },
                 ],
-                cibgdjekbja: 727,  // from
-                ienomggikon: 1337, // to
+                sender_id: 727, // from
+                to_uid: 1337,   // to
                 ..Default::default()
             },
         )
         .await
 }
 
-// RecvMsgCsReq
-pub async fn on_dgaiigecbee(session: &mut PlayerSession, body: &Dgaiigecbee) -> Result<()> {
-    let mut json = JsonData::load().await;
+pub async fn on_send_msg_cs_req(session: &mut PlayerSession, body: &SendMsgCsReq) -> Result<()> {
+    let json = JsonData::load().await;
 
-    if let Some((cmd, args)) = parse_command(&body.ajlhdpcjand) {
+    if let Some((cmd, _args)) = parse_command(&body.text) {
         match cmd {
             "sync" => {
                 sync_player(session, json).await?;
                 session
                     .send(
                         CMD_REVC_MSG_SC_NOTIFY,
-                        Klonpheafip {
-                            ggadmjhlomj: body.ggadmjhlomj.clone(),
-                            kokadficdfb: body.kokadficdfb,
-                            ajlhdpcjand: String::from("Inventory Synced"),
-                            mgmicgabebd: body.mgmicgabebd,
-                            ghojifhngmc: 727,  // from
-                            cmmildghfnl: 1337, // to
-                            nmfepfoojic: body.nmfepfoojic,
+                        RevcMsgScNotify {
+                            enlmbccjfbg: body.enlmbccjfbg.clone(),
+                            msg_type: body.msg_type,
+                            text: String::from("Inventory Synced"),
+                            emote: body.emote,
+                            from_uid: 727, // from
+                            to_uid: 1337,  // to
+                            chat_type: body.chat_type,
                         },
                     )
                     .await?;
             }
             "mc" => {
-                let mc = MainCharacter::from(
-                    args.first()
-                        .unwrap_or(&"")
-                        .parse::<u32>()
-                        .unwrap_or(json.main_character as u32),
-                );
+                // let mc = MainCharacter::from(
+                //     args.first()
+                //         .unwrap_or(&"")
+                //         .parse::<u32>()
+                //         .unwrap_or(json.main_character as u32),
+                // );
 
-                json.main_character = mc;
-                json.save().await;
+                // json.main_character = mc;
+                // json.save().await;
 
-                session
-                    .send(
-                        CMD_GET_HERO_BASIC_TYPE_INFO_SC_RSP,
-                        GetHeroBasicTypeInfoScRsp {
-                            retcode: 0,
-                            gender: mc.get_gender().into(),
-                            cur_basic_type: mc.get_type().into(),
-                            basic_type_info_list: vec![HeroBasicTypeInfo {
-                                basic_type: mc.get_type().into(),
-                                ..Default::default()
-                            }],
-                            ..Default::default()
-                        },
-                    )
-                    .await?;
+                // session
+                //     .send(
+                //         CMD_GET_HERO_BASIC_TYPE_INFO_SC_RSP,
+                //         GetHeroBasicTypeInfoScRsp {
+                //             retcode: 0,
+                //             gender: mc.get_gender().into(),
+                //             cur_basic_type: mc.get_type().into(),
+                //             basic_type_info_list: vec![HeroBasicTypeInfo {
+                //                 basic_type: mc.get_type().into(),
+                //                 ..Default::default()
+                //             }],
+                //             ..Default::default()
+                //         },
+                //     )
+                //     .await?;
 
-                sync_player(session, json).await?;
+                // sync_player(session, json).await?;
 
-                session
-                    .send(
-                        CMD_REVC_MSG_SC_NOTIFY,
-                        Klonpheafip {
-                            ggadmjhlomj: body.ggadmjhlomj.clone(),
-                            kokadficdfb: body.kokadficdfb,
-                            ajlhdpcjand: format!("Set MC to: {mc:#?}"),
-                            mgmicgabebd: body.mgmicgabebd,
-                            ghojifhngmc: 727,
-                            cmmildghfnl: 1337,
-                            nmfepfoojic: body.nmfepfoojic,
-                        },
-                    )
-                    .await?;
+                // session
+                //     .send(
+                //         CMD_REVC_MSG_SC_NOTIFY,
+                //         Klonpheafip {
+                //             ggadmjhlomj: body.ggadmjhlomj.clone(),
+                //             kokadficdfb: body.kokadficdfb,
+                //             ajlhdpcjand: format!("Set MC to: {mc:#?}"),
+                //             mgmicgabebd: body.mgmicgabebd,
+                //             ghojifhngmc: 727,
+                //             cmmildghfnl: 1337,
+                //             nmfepfoojic: body.nmfepfoojic,
+                //         },
+                //     )
+                //     .await?;
             }
             _ => {}
         }
@@ -150,7 +152,7 @@ pub async fn on_dgaiigecbee(session: &mut PlayerSession, body: &Dgaiigecbee) -> 
     session
         .send(
             CMD_SEND_MSG_SC_RSP,
-            Ckcjblcacof {
+            SendMsgScRsp {
                 retcode: 0,
                 end_time: 0,
             },
@@ -172,9 +174,9 @@ async fn sync_player(session: &mut PlayerSession, json: JsonData) -> Result<()> 
     session
         .send(
             CMD_PLAYER_SYNC_SC_NOTIFY,
-            Pkbehgpoein {
-                ipnkigfoikl: (2000..3500).collect(),
-                idgakomjiio: (1..2000).collect(),
+            PlayerSyncScNotify {
+                del_equipment_list: (2000..3500).collect(),
+                del_relic_list: (1..2000).collect(),
                 ..Default::default()
             },
         )
@@ -183,8 +185,8 @@ async fn sync_player(session: &mut PlayerSession, json: JsonData) -> Result<()> 
     session
         .send(
             CMD_PLAYER_SYNC_SC_NOTIFY,
-            Pkbehgpoein {
-                enfnppagfpp: Some(Gkjoiapbbne {
+            PlayerSyncScNotify {
+                avatar_sync: Some(AvatarSync {
                     avatar_list: json
                         .avatars
                         .values()
@@ -199,7 +201,7 @@ async fn sync_player(session: &mut PlayerSession, json: JsonData) -> Result<()> 
     session
         .send(
             CMD_PLAYER_SYNC_SC_NOTIFY,
-            Pkbehgpoein {
+            PlayerSyncScNotify {
                 relic_list: json.relics.iter().map(|v| v.to_relic_proto()).collect(),
                 equipment_list: json
                     .lightcones
@@ -214,8 +216,8 @@ async fn sync_player(session: &mut PlayerSession, json: JsonData) -> Result<()> 
     session
         .send(
             CMD_PLAYER_SYNC_SC_NOTIFY,
-            Pkbehgpoein {
-                enfnppagfpp: Some(Gkjoiapbbne {
+            PlayerSyncScNotify {
+                avatar_sync: Some(AvatarSync {
                     avatar_list: json
                         .avatars
                         .values()

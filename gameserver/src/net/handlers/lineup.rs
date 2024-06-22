@@ -1,3 +1,6 @@
+use scene_entity_info::Entity;
+use scene_entity_refresh_info::RefreshType;
+
 use crate::net::tools::{self, AvatarJson, JsonData};
 
 use super::*;
@@ -11,7 +14,7 @@ pub async fn on_get_all_lineup_data_cs_req(
         extra_lineup_type: ExtraLineupType::LineupNone.into(),
         name: "Squad 1".to_string(),
         mp: 5,
-        mp_max: 5,
+        max_mp: 5,
         avatar_list: AvatarJson::to_lineup_avatars(&player),
         ..Default::default()
     };
@@ -36,8 +39,17 @@ pub async fn on_get_cur_lineup_data_cs_req(
         extra_lineup_type: ExtraLineupType::LineupNone.into(),
         name: "Squad 1".to_string(),
         mp: 5,
-        mp_max: 5,
-        ..Default::default()
+        max_mp: 5,
+        avatar_list: AvatarJson::to_lineup_avatars(&player),
+        abollmbdfjp: vec![],
+        boceahmenhd: 0,
+        idfbpedneca: vec![],
+        index: 0,
+        is_virtual: false,
+        leader_slot: 0,
+        mphbmfkkaam: false,
+        nggphgpdmfd: vec![],
+        plane_id: 0,
     };
 
     let avatar_ids = player
@@ -112,7 +124,7 @@ pub async fn on_replace_lineup_cs_req(
 
         let lineups = &mut player.lineups;
         for (slot, avatar_id) in &mut *lineups {
-            if let Some(lineup) = req.replace_slot_list.get(*slot as usize) {
+            if let Some(lineup) = req.slots.get(*slot as usize) {
                 *avatar_id = if lineup.id > 8000 {
                     player.main_character as u32
                 } else {
@@ -150,36 +162,34 @@ async fn refresh_lineup(sess: &mut PlayerSession, player: &JsonData) -> Result<(
         extra_lineup_type: ExtraLineupType::LineupNone.into(),
         name: "Squad 1".to_string(),
         avatar_list: AvatarJson::to_lineup_avatars(player),
-        mp_max: 5,
+        max_mp: 5,
         mp: 5,
         ..Default::default()
     };
 
     sess.send(
         CMD_SCENE_GROUP_REFRESH_SC_NOTIFY,
-        Kecnjlcjefm {
-            kpjckjjpjhj: vec![Makfkmagkli {
+        SceneGroupRefreshScNotify {
+            group_refresh_info: vec![SceneGroupRefreshInfo {
                 group_id: 0,
                 state: 0,
-                kcbpdfengaa: 0,
-                hdaiklkffjh: player
+                group_refresh_type: 0,
+                refresh_entity: player
                     .lineups
                     .iter()
-                    .map(|(idx, v)| Kbikoelgpde {
-                        kjjeiknincl: 0,
-                        cojmgafmcjm: 0,
-                        gonncekbppg: Some(SceneEntityInfo {
-                            actor: Some(SceneActorInfo {
+                    .map(|(idx, v)| SceneEntityRefreshInfo {
+                        refresh_type: Some(RefreshType::AddEntity(SceneEntityInfo {
+                            entity: Some(Entity::Actor(SceneActorInfo {
                                 avatar_type: AvatarType::AvatarFormalType.into(),
                                 base_avatar_id: *v,
                                 map_layer: 0,
                                 uid: 1337,
-                            }),
+                            })),
                             entity_id: idx + 1,
                             group_id: 0,
                             inst_id: 0,
                             ..Default::default()
-                        }),
+                        })),
                     })
                     .collect(),
             }],

@@ -3,8 +3,6 @@ use proto::*;
 
 use crate::net::{tools::JsonData, PlayerSession};
 
-use super::Dummy;
-
 pub async fn on_get_bag_cs_req(session: &mut PlayerSession, _: &GetBagCsReq) -> Result<()> {
     let player = JsonData::load().await;
 
@@ -18,13 +16,13 @@ pub async fn on_get_bag_cs_req(session: &mut PlayerSession, _: &GetBagCsReq) -> 
                     .map(|v| v.to_equipment_proto())
                     .collect(),
                 relic_list: player.relics.iter().map(|v| v.to_relic_proto()).collect(),
-                macfjibhfad: vec![
-                    Efdnhdlcegi {
+                material_list: vec![
+                    Material {
                         tid: 101, // Normal Pass
                         num: 999999,
                         ..Default::default()
                     },
-                    Efdnhdlcegi {
+                    Material {
                         tid: 102, // Special Pass
                         num: 999999,
                         ..Default::default()
@@ -44,24 +42,33 @@ pub async fn on_get_archive_data_cs_req(
         .send(
             CMD_GET_ARCHIVE_DATA_SC_RSP,
             GetArchiveDataScRsp {
-                bkcflgbcjmi: Some(ArchiveData::default()),
+                archive_data: Some(ArchiveData::default()),
                 retcode: 0,
             },
         )
         .await
 }
 
-pub async fn on_gfmigicacfn(session: &mut PlayerSession, _: &Gfmigicacfn) -> Result<()> {
+pub async fn on_dress_relic_avatar_cs_req(
+    session: &mut PlayerSession,
+    _: &DressRelicAvatarCsReq,
+) -> Result<()> {
     // ?
     session
-        .send(CMD_DRESS_RELIC_AVATAR_SC_RSP, Dummy::default())
+        .send(
+            CMD_DRESS_RELIC_AVATAR_SC_RSP,
+            DressRelicAvatarScRsp::default(),
+        )
         .await
 }
 
-pub async fn on_nbmofdgfejk(session: &mut PlayerSession, _: &Nbmofdgfejk) -> Result<()> {
+pub async fn on_take_off_relic_cs_req(
+    session: &mut PlayerSession,
+    _: &TakeOffRelicCsReq,
+) -> Result<()> {
     // ?
     session
-        .send(CMD_TAKE_OFF_RELIC_SC_RSP, Dummy::default())
+        .send(CMD_TAKE_OFF_RELIC_SC_RSP, TakeOffRelicScRsp::default())
         .await
 }
 
@@ -71,7 +78,7 @@ pub async fn on_dress_avatar_cs_req(
 ) -> Result<()> {
     // ?
     session
-        .send(CMD_DRESS_AVATAR_SC_RSP, Dummy::default())
+        .send(CMD_DRESS_AVATAR_SC_RSP, DressAvatarScRsp::default())
         .await
 }
 
@@ -81,6 +88,9 @@ pub async fn on_take_off_equipment_cs_req(
 ) -> Result<()> {
     // ?
     session
-        .send(CMD_TAKE_OFF_EQUIPMENT_SC_RSP, Dummy::default())
+        .send(
+            CMD_TAKE_OFF_EQUIPMENT_SC_RSP,
+            TakeOffEquipmentScRsp::default(),
+        )
         .await
 }
