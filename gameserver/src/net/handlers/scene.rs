@@ -8,7 +8,7 @@ use crate::{
         tools::{AvatarJson, JsonData, Position},
         tools_res::{PropState, GAME_RESOURCES},
     },
-    util::{self, cur_timestamp_ms},
+    util::{self},
 };
 
 use super::*;
@@ -337,7 +337,6 @@ async fn load_scene(
                     ..Default::default()
                 })),
                 entity_id: prop_entity_id,
-                ..Default::default()
             };
 
             group_info.entity_list.push(entity_info);
@@ -367,7 +366,6 @@ async fn load_scene(
                     npc_id: npc.npcid,
                     ..Default::default()
                 })),
-                ..Default::default()
             };
 
             group_info.entity_list.push(info);
@@ -396,7 +394,6 @@ async fn load_scene(
                 entity_id: monster_entity_id,
                 motion: Some(monster_position.to_motion()),
                 entity: Some(Entity::NpcMonster(npc_monster)),
-                ..Default::default()
             };
 
             group_info.entity_list.push(info);

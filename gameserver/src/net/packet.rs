@@ -125,7 +125,7 @@ trait_handler! {
     TakeOffRelicCsReq 362;
 
     // // Chat (dummy!)
-    // SendMsgCsReq 3918;
+    SendMsgCsReq 3918;
     GetPrivateChatHistoryCsReq 3958;
     GetFriendListInfoCsReq 2918;
 
@@ -146,9 +146,9 @@ trait_handler! {
     EnterSceneCsReq 1425;
 
     // // Optional
-    // GetMailCsReq 861;
-    // GetGachaInfoCsReq 1961;
-    // DoGachaCsReq 1991;
+    GetMailCsReq 861;
+    GetGachaInfoCsReq 1961;
+    DoGachaCsReq 1991;
     // GetQuestDataCsReq 961;
     PlayerLoginFinishCsReq 76;
 }
