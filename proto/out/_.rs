@@ -3647,7 +3647,7 @@ pub struct GetChallengeScRsp {
     #[prost(message, repeated, tag = "9")]
     pub challenge_list: ::prost::alloc::vec::Vec<Challenge>,
     #[prost(uint32, tag = "8")]
-    pub score_two: u32,
+    pub okgcobhliim: u32,
     #[prost(message, repeated, tag = "2")]
     pub bcgcoghphpp: ::prost::alloc::vec::Vec<Nmhnanjainm>,
     #[prost(uint32, tag = "14")]
@@ -3736,9 +3736,9 @@ pub struct StartChallengeScRsp {
 /// CsReq
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Dnagciganak {
+pub struct StartPartialChallengeCsReq {
     #[prost(bool, tag = "5")]
-    pub amajngobnkj: bool,
+    pub is_first_half: bool,
     #[prost(uint32, tag = "10")]
     pub challenge_id: u32,
     #[prost(uint32, tag = "9")]
@@ -3748,7 +3748,7 @@ pub struct Dnagciganak {
 /// ScRsp
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Dpkllcgoabd {
+pub struct StartPartialChallengeScRsp {
     #[prost(uint32, tag = "7")]
     pub retcode: u32,
     #[prost(message, optional, tag = "1")]
@@ -3779,10 +3779,10 @@ pub struct ChallengeSettleNotify {
     #[prost(uint32, tag = "10")]
     pub challenge_score: u32,
     #[prost(uint32, tag = "3")]
-    pub score_two: u32,
+    pub okgcobhliim: u32,
     /// Obf: LAKPOEKFOFH, not all renamed
     #[prost(uint32, tag = "1")]
-    pub phase: u32,
+    pub score_two: u32,
     #[prost(bool, tag = "5")]
     pub is_win: bool,
     #[prost(uint32, repeated, tag = "6")]
@@ -7822,7 +7822,7 @@ pub struct Jdggjaknbaa {
     #[prost(uint32, repeated, tag = "11")]
     pub item_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, tag = "6")]
-    pub ihkpkpjkkbi: u32,
+    pub difficulty: u32,
 }
 /// 6(CmdFightActivityType)
 /// ScRsp
@@ -7836,7 +7836,7 @@ pub struct Libkkfphape {
     #[prost(uint32, tag = "12")]
     pub retcode: u32,
     #[prost(uint32, tag = "2")]
-    pub ihkpkpjkkbi: u32,
+    pub difficulty: u32,
 }
 /// 7(CmdFightActivityType)
 /// CsReq
@@ -7844,7 +7844,7 @@ pub struct Libkkfphape {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Ihpiecgoeei {
     #[prost(uint32, tag = "8")]
-    pub ihkpkpjkkbi: u32,
+    pub difficulty: u32,
     #[prost(uint32, tag = "7")]
     pub group_id: u32,
 }
@@ -7854,7 +7854,7 @@ pub struct Ihpiecgoeei {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Megfbegdecd {
     #[prost(uint32, tag = "9")]
-    pub ihkpkpjkkbi: u32,
+    pub difficulty: u32,
     #[prost(message, optional, tag = "7")]
     pub reward: ::core::option::Option<ItemList>,
     #[prost(uint32, tag = "2")]
@@ -12204,7 +12204,7 @@ pub struct Pdebgnnllmj {
 /// CsReq
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Kgodcpnbpkm {}
+pub struct GetMissionDataCsReq {}
 /// 4(CmdMissionType)
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -12241,14 +12241,14 @@ pub struct Diaamfmfbbe {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Geijamkjfef {
     #[prost(message, repeated, tag = "15")]
-    pub fmdhmhbppeo: ::prost::alloc::vec::Vec<Diaamfmfbbe>,
+    pub custom_value_list: ::prost::alloc::vec::Vec<Diaamfmfbbe>,
 }
 /// 8(CmdMissionType)
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Looocbgenke {
+pub struct MissionData {
     #[prost(message, repeated, tag = "9")]
-    pub fmdhmhbppeo: ::prost::alloc::vec::Vec<Diaamfmfbbe>,
+    pub custom_value_list: ::prost::alloc::vec::Vec<Diaamfmfbbe>,
     #[prost(enumeration = "MissionStatus", tag = "15")]
     pub status: i32,
     #[prost(uint32, tag = "12")]
@@ -12261,7 +12261,7 @@ pub struct Dopekijoffe {
     #[prost(uint32, tag = "1")]
     pub id: u32,
     #[prost(message, optional, tag = "1080")]
-    pub fmdhmhbppeo: ::core::option::Option<Geijamkjfef>,
+    pub custom_value_list: ::core::option::Option<Geijamkjfef>,
 }
 /// OneOf Type From: DOPEKIJOFFE.DCCPHEMDPHI
 /// 10(CmdMissionType)
@@ -12270,22 +12270,22 @@ pub struct Dopekijoffe {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Dccphemdphi {
     #[prost(int32, tag = "1080")]
-    pub fmdhmhbppeo: i32,
+    pub custom_value_list: i32,
 }
 /// 11(CmdMissionType)
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Pacccgpfmof {
     #[prost(message, optional, tag = "6")]
-    pub fmdhmhbppeo: ::core::option::Option<Geijamkjfef>,
+    pub custom_value_list: ::core::option::Option<Geijamkjfef>,
     #[prost(uint32, tag = "10")]
-    pub melnhglidkj: u32,
+    pub main_mission_id: u32,
 }
 /// 12(CmdMissionType)
 /// ScRsp
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Anegbgjoccd {
+pub struct GetMissionDataScRsp {
     #[prost(uint32, tag = "1")]
     pub retcode: u32,
     #[prost(bool, tag = "2")]
@@ -12293,7 +12293,7 @@ pub struct Anegbgjoccd {
     #[prost(message, repeated, tag = "11")]
     pub mission_list: ::prost::alloc::vec::Vec<Mission>,
     #[prost(message, repeated, tag = "9")]
-    pub mdpfogjcpeg: ::prost::alloc::vec::Vec<Looocbgenke>,
+    pub mission_data_list: ::prost::alloc::vec::Vec<MissionData>,
     #[prost(uint32, tag = "5")]
     pub dpbaofomnge: u32,
 }
@@ -12301,19 +12301,19 @@ pub struct Anegbgjoccd {
 /// CsReq
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Miooamnpmeb {
+pub struct AcceptMainMissionCsReq {
     #[prost(uint32, tag = "4")]
-    pub melnhglidkj: u32,
+    pub main_mission_id: u32,
 }
 /// 14(CmdMissionType)
 /// ScRsp
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Dapecehplnm {
+pub struct AcceptMainMissionScRsp {
     #[prost(uint32, tag = "9")]
     pub retcode: u32,
     #[prost(uint32, tag = "1")]
-    pub melnhglidkj: u32,
+    pub main_mission_id: u32,
 }
 /// 15(CmdMissionType)
 /// CsReq
@@ -12323,7 +12323,7 @@ pub struct Ijcpfmbenfe {
     #[prost(uint32, tag = "15")]
     pub kmeakpnglmn: u32,
     #[prost(message, repeated, tag = "9")]
-    pub fmdhmhbppeo: ::prost::alloc::vec::Vec<Diaamfmfbbe>,
+    pub custom_value_list: ::prost::alloc::vec::Vec<Diaamfmfbbe>,
     #[prost(string, tag = "1")]
     pub afgggpnkgfo: ::prost::alloc::string::String,
 }
@@ -12333,7 +12333,7 @@ pub struct Ijcpfmbenfe {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Jkdbmpfdjfm {
     #[prost(message, repeated, tag = "12")]
-    pub fmdhmhbppeo: ::prost::alloc::vec::Vec<Diaamfmfbbe>,
+    pub custom_value_list: ::prost::alloc::vec::Vec<Diaamfmfbbe>,
     #[prost(uint32, tag = "1")]
     pub retcode: u32,
     #[prost(uint32, tag = "13")]
@@ -12347,7 +12347,7 @@ pub struct Jkdbmpfdjfm {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Eaphkmihdbp {
     #[prost(uint32, tag = "14")]
-    pub melnhglidkj: u32,
+    pub main_mission_id: u32,
     #[prost(message, optional, tag = "5")]
     pub reward: ::core::option::Option<ItemList>,
     #[prost(uint32, tag = "8")]
@@ -12386,7 +12386,7 @@ pub struct Doffhfjdmdn {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Pklgjhmomlh {
     #[prost(uint32, tag = "1")]
-    pub melnhglidkj: u32,
+    pub main_mission_id: u32,
     #[prost(bool, tag = "6")]
     pub fhmgjhnhafm: bool,
 }
@@ -12572,7 +12572,7 @@ pub struct Fjpnndbafbb {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Phnndhndhom {
     #[prost(uint32, tag = "13")]
-    pub melnhglidkj: u32,
+    pub main_mission_id: u32,
 }
 /// 41(CmdMissionType)
 /// CsReq
@@ -12588,7 +12588,7 @@ pub struct GetMainMissionCustomValueCsReq {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetMainMissionCustomValueScRsp {
     #[prost(message, repeated, tag = "4")]
-    pub mdpfogjcpeg: ::prost::alloc::vec::Vec<Looocbgenke>,
+    pub mission_data_list: ::prost::alloc::vec::Vec<MissionData>,
     #[prost(uint32, tag = "5")]
     pub retcode: u32,
 }
@@ -14764,7 +14764,7 @@ pub struct Pcmdahbmdch {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Cnakekjogjm {
     #[prost(uint32, tag = "6")]
-    pub melnhglidkj: u32,
+    pub main_mission_id: u32,
 }
 /// 1(CmdPamMissionType)
 /// ScRsp
@@ -14772,7 +14772,7 @@ pub struct Cnakekjogjm {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Oiolppklhom {
     #[prost(uint32, tag = "6")]
-    pub melnhglidkj: u32,
+    pub main_mission_id: u32,
     #[prost(uint32, tag = "13")]
     pub retcode: u32,
 }
@@ -14782,7 +14782,7 @@ pub struct Oiolppklhom {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Ehimklfglnf {
     #[prost(uint32, tag = "8")]
-    pub melnhglidkj: u32,
+    pub main_mission_id: u32,
     #[prost(uint64, tag = "13")]
     pub iinihakipae: u64,
 }
@@ -18013,11 +18013,11 @@ pub struct Omdnmghekdk {
 /// ScNotify
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Mfppijmeomb {
+pub struct SyncRogueMapRoomScNotify {
     #[prost(uint32, tag = "6")]
     pub map_id: u32,
     #[prost(message, optional, tag = "8")]
-    pub gfemnhlieib: ::core::option::Option<RogueRoom>,
+    pub cur_room: ::core::option::Option<RogueRoom>,
 }
 /// 76(CmdRogueType)
 /// CsReq
@@ -22598,13 +22598,13 @@ pub struct SceneCastSkillCsReq {
     #[prost(message, optional, tag = "12")]
     pub target_motion: ::core::option::Option<MotionInfo>,
     #[prost(uint32, repeated, tag = "8")]
-    pub hit_target_entity_id_list: ::prost::alloc::vec::Vec<u32>,
+    pub assist_monster_entity_id_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, tag = "13")]
     pub caster_id: u32,
     #[prost(enumeration = "SceneCastSkill", repeated, tag = "5")]
     pub jejalngchig: ::prost::alloc::vec::Vec<i32>,
     #[prost(uint32, repeated, tag = "2")]
-    pub assist_monster_entity_id_list: ::prost::alloc::vec::Vec<u32>,
+    pub hit_target_entity_id_list: ::prost::alloc::vec::Vec<u32>,
 }
 /// 53(CmdSceneType)
 /// ScRsp
@@ -24069,7 +24069,7 @@ pub struct Ohdgmdlcnll {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Ljnlhmbampj {
     #[prost(uint32, tag = "11")]
-    pub ihkpkpjkkbi: u32,
+    pub difficulty: u32,
     #[prost(uint32, tag = "7")]
     pub group_id: u32,
     #[prost(message, repeated, tag = "5")]
@@ -24083,7 +24083,7 @@ pub struct Jlpldbohnok {
     #[prost(uint32, tag = "15")]
     pub retcode: u32,
     #[prost(uint32, tag = "7")]
-    pub ihkpkpjkkbi: u32,
+    pub difficulty: u32,
     #[prost(uint32, tag = "14")]
     pub group_id: u32,
     #[prost(message, optional, tag = "6")]
@@ -24256,33 +24256,33 @@ pub struct Clooadflaio {
 /// 0(CmdSummonActivityType)
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Lkifeciinfp {
+pub struct SummonActivityData {
     #[prost(uint32, tag = "1")]
     pub phase: u32,
     #[prost(uint32, tag = "7")]
     pub group_id: u32,
     #[prost(uint32, tag = "15")]
-    pub ihkpkpjkkbi: u32,
+    pub difficulty: u32,
 }
 /// 1(CmdSummonActivityType)
 /// CsReq
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Fdimlagncki {}
+pub struct GetSummonActivityDataCsReq {}
 /// 2(CmdSummonActivityType)
 /// ScRsp
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Ehkckpbgjcc {
+pub struct GetSummonActivityDataScRsp {
     #[prost(message, repeated, tag = "10")]
-    pub adneocnpoli: ::prost::alloc::vec::Vec<Lkifeciinfp>,
+    pub summon_activity_data: ::prost::alloc::vec::Vec<SummonActivityData>,
     #[prost(uint32, tag = "13")]
     pub retcode: u32,
 }
 /// 3(CmdSummonActivityType)
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Dldfnpejfhk {
+pub struct SummonActivityAvatar {
     #[prost(enumeration = "AvatarType", tag = "14")]
     pub avatar_type: i32,
     #[prost(uint32, tag = "7")]
@@ -24292,21 +24292,21 @@ pub struct Dldfnpejfhk {
 /// CsReq
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Lalfldbjecg {
+pub struct EnterSummonActivityStageCsReq {
     #[prost(message, repeated, tag = "5")]
-    pub avatar_list: ::prost::alloc::vec::Vec<Dldfnpejfhk>,
+    pub avatar_list: ::prost::alloc::vec::Vec<SummonActivityAvatar>,
     #[prost(uint32, tag = "2")]
     pub group_id: u32,
     #[prost(message, optional, tag = "15")]
-    pub ngmjlmpbibk: ::core::option::Option<Dldfnpejfhk>,
+    pub ngmjlmpbibk: ::core::option::Option<SummonActivityAvatar>,
     #[prost(uint32, tag = "10")]
-    pub ihkpkpjkkbi: u32,
+    pub difficulty: u32,
 }
 /// 5(CmdSummonActivityType)
 /// ScRsp
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Plnbfpkjfji {
+pub struct EnterSummonActivityStageScRsp {
     #[prost(message, optional, tag = "8")]
     pub battle_info: ::core::option::Option<SceneBattleInfo>,
     #[prost(uint32, tag = "6")]
@@ -24314,19 +24314,19 @@ pub struct Plnbfpkjfji {
     #[prost(uint32, tag = "13")]
     pub retcode: u32,
     #[prost(uint32, tag = "11")]
-    pub ihkpkpjkkbi: u32,
+    pub difficulty: u32,
 }
 /// 6(CmdSummonActivityType)
 /// ScNotify
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Iogobckpiac {
+pub struct SummonActivityBattleEndScNotify {
     #[prost(uint32, tag = "1")]
     pub phase: u32,
     #[prost(uint32, tag = "2")]
     pub eecdakbhkmk: u32,
     #[prost(uint32, tag = "7")]
-    pub ihkpkpjkkbi: u32,
+    pub difficulty: u32,
     #[prost(uint32, tag = "11")]
     pub group_id: u32,
 }
