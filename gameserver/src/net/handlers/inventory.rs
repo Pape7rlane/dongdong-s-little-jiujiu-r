@@ -1,10 +1,10 @@
 use anyhow::Result;
 use proto::*;
 
-use crate::net::{tools::JsonData, PlayerSession};
+use crate::net::{tools::FreesrData, PlayerSession};
 
 pub async fn on_get_bag_cs_req(session: &mut PlayerSession, _: &GetBagCsReq) -> Result<()> {
-    let player = JsonData::load().await;
+    let player = FreesrData::load().await;
 
     session
         .send(

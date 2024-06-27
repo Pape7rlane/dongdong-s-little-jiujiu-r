@@ -129,7 +129,7 @@ impl AvatarJson {
         }
     }
 
-    pub fn to_lineup_avatars(player: &JsonData) -> Vec<LineupAvatar> {
+    pub fn to_lineup_avatars(player: &FreesrData) -> Vec<LineupAvatar> {
         let avatar_ids = player
             .avatars
             .values()
@@ -479,7 +479,7 @@ impl Position {
 
 // FREESR-DATA.json
 #[derive(Debug, Serialize, Deserialize)]
-pub struct JsonData {
+pub struct FreesrData {
     pub lightcones: Vec<Lightcone>,
     pub relics: Vec<Relic>,
     pub avatars: BTreeMap<u32, AvatarJson>,
@@ -493,11 +493,13 @@ pub struct JsonData {
     #[serde(default)]
     pub scene: Scene,
     #[serde(default)]
-    pub main_character: MainCharacter,
+    pub main_character: MultiPathAvatar,
+    #[serde(default)]
+    pub march_type: MultiPathAvatar,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct JsonData2 {
+pub struct Persistent {
     #[serde(default)]
     pub lineups: BTreeMap<u32, u32>,
     #[serde(default)]
@@ -505,10 +507,12 @@ pub struct JsonData2 {
     #[serde(default)]
     pub scene: Scene,
     #[serde(default)]
-    pub main_character: MainCharacter,
+    pub main_character: MultiPathAvatar,
+    #[serde(default)]
+    pub march_type: MultiPathAvatar,
 }
 
-impl Default for JsonData2 {
+impl Default for Persistent {
     fn default() -> Self {
         let mut lineups = BTreeMap::<u32, u32>::new();
         lineups.insert(0, 8006);
@@ -521,21 +525,24 @@ impl Default for JsonData2 {
             position: Default::default(),
             main_character: Default::default(),
             scene: Default::default(),
+            march_type: MultiPathAvatar::MarchHunt,
         }
     }
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, Copy)]
-pub enum MainCharacter {
+pub enum MultiPathAvatar {
     MalePyhsical = 8001,
     FemalePhysical = 8002,
     MalePreservation = 8003,
     FemalePreservation = 8004,
     MaleHarmony = 8005,
     FemaleHarmony = 8006,
+    MarchHunt = 1224,
+    MarchPreservation = 1001,
 }
 
-impl From<u32> for MainCharacter {
+impl From<u32> for MultiPathAvatar {
     fn from(value: u32) -> Self {
         match value {
             8001 => Self::MalePyhsical,
@@ -544,14 +551,18 @@ impl From<u32> for MainCharacter {
             8004 => Self::FemalePreservation,
             8005 => Self::MaleHarmony,
             8006 => Self::FemaleHarmony,
+            1224 => Self::MarchHunt,
+            1001 => Self::MarchPreservation,
             _ => Self::FemaleHarmony,
         }
     }
 }
 
-impl MainCharacter {
+impl MultiPathAvatar {
     pub fn get_gender(&self) -> Gender {
-        if *self as u32 % 2 == 1 {
+        if (*self as u32) < 8000 {
+            Gender::None
+        } else if *self as u32 % 2 == 1 {
             Gender::Man
         } else {
             Gender::Woman
@@ -560,33 +571,35 @@ impl MainCharacter {
 
     pub fn get_type(&self) -> MultiPathAvatarType {
         match *self {
-            Self::MalePyhsical => MultiPathAvatarType::BoyWarriorType,
-            Self::FemalePhysical => MultiPathAvatarType::GirlWarriorType,
-            Self::MalePreservation => MultiPathAvatarType::BoyKnightType,
-            Self::FemalePreservation => MultiPathAvatarType::GirlKnightType,
-            Self::MaleHarmony => MultiPathAvatarType::BoyShamanType,
-            Self::FemaleHarmony => MultiPathAvatarType::GirlShamanType,
+            MultiPathAvatar::MalePyhsical => MultiPathAvatarType::BoyWarriorType,
+            MultiPathAvatar::FemalePhysical => MultiPathAvatarType::GirlWarriorType,
+            MultiPathAvatar::MalePreservation => MultiPathAvatarType::BoyKnightType,
+            MultiPathAvatar::FemalePreservation => MultiPathAvatarType::GirlKnightType,
+            MultiPathAvatar::MaleHarmony => MultiPathAvatarType::BoyShamanType,
+            MultiPathAvatar::FemaleHarmony => MultiPathAvatarType::GirlShamanType,
+            MultiPathAvatar::MarchHunt => MultiPathAvatarType::Mar7thRogueType,
+            MultiPathAvatar::MarchPreservation => MultiPathAvatarType::Mar7thKnightType,
         }
     }
 }
 
-impl Default for MainCharacter {
+impl Default for MultiPathAvatar {
     fn default() -> Self {
         Self::FemaleHarmony
     }
 }
 
-impl JsonData {
+impl FreesrData {
     pub async fn load() -> Self {
-        let mut json: JsonData = tokio::fs::read_to_string("freesr-data.json")
+        let mut json: FreesrData = tokio::fs::read_to_string("freesr-data.json")
             .await
             .map(|v| {
-                serde_json::from_str::<JsonData>(&v)
+                serde_json::from_str::<FreesrData>(&v)
                     .expect("freesr-data.json is broken, pls redownload")
             })
             .expect("failed to read freesr-data.json");
 
-        let json2: JsonData2 = serde_json::from_str(
+        let json2: Persistent = serde_json::from_str(
             &tokio::fs::read_to_string("persistent")
                 .await
                 .unwrap_or_default(),
@@ -599,6 +612,10 @@ impl JsonData {
         json.main_character = json2.main_character;
 
         json.verify_lineup().await;
+
+        if json.march_type as u32 > 8000 {
+            json.march_type = MultiPathAvatar::MarchHunt;
+        }
 
         json
     }
@@ -623,11 +640,12 @@ impl JsonData {
         let _ = tokio::fs::write("freesr-data.json", json.as_bytes()).await;
         let _ = tokio::fs::write(
             "persistent",
-            serde_json::to_string_pretty(&JsonData2 {
+            serde_json::to_string_pretty(&Persistent {
                 lineups: self.lineups.clone(),
                 main_character: self.main_character,
                 position: self.position.clone(),
                 scene: self.scene.clone(),
+                march_type: self.march_type,
             })
             .unwrap()
             .as_bytes(),

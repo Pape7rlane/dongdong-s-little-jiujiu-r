@@ -5,7 +5,7 @@ use tokio::sync::Mutex;
 
 use crate::{
     net::{
-        tools::{AvatarJson, JsonData, Position},
+        tools::{AvatarJson, FreesrData, Position},
         tools_res::{PropState, GAME_RESOURCES},
     },
     util::{self},
@@ -20,7 +20,7 @@ pub async fn on_get_cur_scene_info_cs_req(
     session: &mut PlayerSession,
     _body: &GetCurSceneInfoCsReq,
 ) -> Result<()> {
-    let mut player = JsonData::load().await;
+    let mut player = FreesrData::load().await;
     let entry = player.scene.entry_id;
 
     let scene = load_scene(session, &mut player, entry, false, Option::<u32>::None).await;
@@ -63,7 +63,7 @@ pub async fn on_enter_scene_cs_req(
     session: &mut PlayerSession,
     request: &EnterSceneCsReq,
 ) -> Result<()> {
-    let mut player = JsonData::load().await;
+    let mut player = FreesrData::load().await;
 
     // send packet first
     session
@@ -169,7 +169,7 @@ pub async fn on_scene_entity_move_cs_req(
     session: &mut PlayerSession,
     request: &SceneEntityMoveCsReq,
 ) -> Result<()> {
-    let mut player = JsonData::load().await;
+    let mut player = FreesrData::load().await;
     let mut timestamp = NEXT_SCENE_SAVE.lock().await;
 
     if util::cur_timestamp_ms() <= *timestamp {
@@ -236,7 +236,7 @@ pub async fn on_get_entered_scene_cs_req(
 
 async fn load_scene(
     session: &mut PlayerSession,
-    json: &mut JsonData,
+    json: &mut FreesrData,
     entry_id: u32,
     _save: bool,
     teleport_id: Option<u32>,

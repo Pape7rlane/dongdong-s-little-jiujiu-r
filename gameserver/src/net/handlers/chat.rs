@@ -1,5 +1,8 @@
 use crate::{
-    net::{tools::JsonData, PlayerSession},
+    net::{
+        tools::{FreesrData, MultiPathAvatar},
+        PlayerSession,
+    },
     util::cur_timestamp_ms,
 };
 
@@ -66,6 +69,13 @@ pub async fn on_get_private_chat_history_cs_req(
                     Chat {
                         msg_type: MsgType::CustomText.into(),
                         sent_time: cur_timestamp_ms(),
+                        text: "'march {march_id}' march_id can be set 1001 or 1224".to_string(),
+                        sender_uid: 727,
+                        ..Default::default()
+                    },
+                    Chat {
+                        msg_type: MsgType::CustomText.into(),
+                        sent_time: cur_timestamp_ms(),
                         text: "available command:".to_string(),
                         sender_uid: 727,
                         ..Default::default()
@@ -80,9 +90,9 @@ pub async fn on_get_private_chat_history_cs_req(
 }
 
 pub async fn on_send_msg_cs_req(session: &mut PlayerSession, body: &SendMsgCsReq) -> Result<()> {
-    let json = JsonData::load().await;
+    let mut json = FreesrData::load().await;
 
-    if let Some((cmd, _args)) = parse_command(&body.text) {
+    if let Some((cmd, args)) = parse_command(&body.text) {
         match cmd {
             "sync" => {
                 sync_player(session, json).await?;
@@ -102,48 +112,76 @@ pub async fn on_send_msg_cs_req(session: &mut PlayerSession, body: &SendMsgCsReq
                     .await?;
             }
             "mc" => {
-                // let mc = MainCharacter::from(
-                //     args.first()
-                //         .unwrap_or(&"")
-                //         .parse::<u32>()
-                //         .unwrap_or(json.main_character as u32),
-                // );
+                let mc = MultiPathAvatar::from(
+                    args.first()
+                        .unwrap_or(&"")
+                        .parse::<u32>()
+                        .unwrap_or(json.main_character as u32),
+                );
 
-                // json.main_character = mc;
-                // json.save().await;
+                json.main_character = mc;
+                json.save().await;
 
-                // session
-                //     .send(
-                //         CMD_GET_HERO_BASIC_TYPE_INFO_SC_RSP,
-                //         GetHeroBasicTypeInfoScRsp {
-                //             retcode: 0,
-                //             gender: mc.get_gender().into(),
-                //             cur_basic_type: mc.get_type().into(),
-                //             basic_type_info_list: vec![HeroBasicTypeInfo {
-                //                 basic_type: mc.get_type().into(),
-                //                 ..Default::default()
-                //             }],
-                //             ..Default::default()
-                //         },
-                //     )
-                //     .await?;
+                session
+                    .send(
+                        CMD_AVATAR_PATH_CHANGED_NOTIFY,
+                        AvatarPathChangedNotify {
+                            base_avatar_id: 8001,
+                            cur_multi_path_avatar_type: mc as i32,
+                        },
+                    )
+                    .await?;
 
-                // sync_player(session, json).await?;
+                session
+                    .send(
+                        CMD_REVC_MSG_SC_NOTIFY,
+                        RevcMsgScNotify {
+                            enlmbccjfbg: body.enlmbccjfbg.clone(),
+                            msg_type: body.msg_type,
+                            text: format!("Success change mc to {:#?}", mc),
+                            emote: body.emote,
+                            from_uid: 727, // from
+                            to_uid: 1337,  // to
+                            chat_type: body.chat_type,
+                        },
+                    )
+                    .await?;
+            }
+            "march" => {
+                let march_type = MultiPathAvatar::from(
+                    args.first()
+                        .unwrap_or(&"")
+                        .parse::<u32>()
+                        .unwrap_or(json.march_type as u32),
+                );
 
-                // session
-                //     .send(
-                //         CMD_REVC_MSG_SC_NOTIFY,
-                //         Klonpheafip {
-                //             ggadmjhlomj: body.ggadmjhlomj.clone(),
-                //             kokadficdfb: body.kokadficdfb,
-                //             ajlhdpcjand: format!("Set MC to: {mc:#?}"),
-                //             mgmicgabebd: body.mgmicgabebd,
-                //             ghojifhngmc: 727,
-                //             cmmildghfnl: 1337,
-                //             nmfepfoojic: body.nmfepfoojic,
-                //         },
-                //     )
-                //     .await?;
+                json.march_type = march_type;
+                json.save().await;
+
+                session
+                    .send(
+                        CMD_AVATAR_PATH_CHANGED_NOTIFY,
+                        AvatarPathChangedNotify {
+                            base_avatar_id: 1001,
+                            cur_multi_path_avatar_type: march_type as i32,
+                        },
+                    )
+                    .await?;
+
+                session
+                    .send(
+                        CMD_REVC_MSG_SC_NOTIFY,
+                        RevcMsgScNotify {
+                            enlmbccjfbg: body.enlmbccjfbg.clone(),
+                            msg_type: body.msg_type,
+                            text: format!("Success change march to {:#?}", march_type),
+                            emote: body.emote,
+                            from_uid: 727, // from
+                            to_uid: 1337,  // to
+                            chat_type: body.chat_type,
+                        },
+                    )
+                    .await?;
             }
             _ => {}
         }
@@ -170,7 +208,7 @@ fn parse_command(command: &str) -> Option<(&str, Vec<&str>)> {
     Some((parts[0], parts[1..].to_vec()))
 }
 
-async fn sync_player(session: &mut PlayerSession, json: JsonData) -> Result<()> {
+async fn sync_player(session: &mut PlayerSession, json: FreesrData) -> Result<()> {
     session
         .send(
             CMD_PLAYER_SYNC_SC_NOTIFY,

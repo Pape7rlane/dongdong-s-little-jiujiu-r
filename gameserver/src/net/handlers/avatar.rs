@@ -1,4 +1,4 @@
-use crate::net::tools::JsonData;
+use crate::net::tools::FreesrData;
 
 use super::*;
 
@@ -13,7 +13,7 @@ pub async fn on_get_avatar_data_cs_req(
     session: &mut PlayerSession,
     body: &GetAvatarDataCsReq,
 ) -> Result<()> {
-    let json = JsonData::load().await;
+    let json = FreesrData::load().await;
     session
         .send(
             CMD_GET_AVATAR_DATA_SC_RSP,

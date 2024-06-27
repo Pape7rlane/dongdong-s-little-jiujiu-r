@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::util::{self};
+use crate::{net::tools::FreesrData, util};
 
 use super::*;
 
@@ -50,12 +50,7 @@ pub async fn on_player_login_finish_cs_req(
     session
         .send(CMD_PLAYER_LOGIN_FINISH_SC_RSP, Dummy {})
         .await?;
-    session
-        .send(CMD_CONTENT_PACKAGE_UNLOCK_SC_RSP, Dummy {})
-        .await?;
-    session
-        .send(CMD_CONTENT_PACKAGE_GET_DATA_SC_RSP, Dummy {})
-        .await?;
+
     session
         .send(
             CMD_CONTENT_PACKAGE_SYNC_DATA_SC_NOTIFY,
@@ -96,6 +91,8 @@ pub async fn on_get_multi_path_avatar_info_cs_req(
     session: &mut PlayerSession,
     _: &GetMultiPathAvatarInfoCsReq,
 ) -> Result<()> {
+    let json = FreesrData::load().await;
+
     session
         .send(
             CMD_GET_MULTI_PATH_AVATAR_INFO_SC_RSP,
@@ -103,70 +100,58 @@ pub async fn on_get_multi_path_avatar_info_cs_req(
                 retcode: 0,
                 multi_path_avatar_type_info_list: vec![
                     MultiPathAvatarTypeInfo {
-                        multi_path_avatar_type: MultiPathAvatarType::GirlShamanType.into(),
+                        multi_path_avatar_type: json.main_character as i32,
                         rank: 6,
-                        equip_relic_list: vec![],
-                        skilltree_list: vec![
-                            AvatarSkillTree {
+                        equip_relic_list: json
+                            .relics
+                            .iter()
+                            .filter(|v| v.equip_avatar == json.main_character as u32)
+                            .map(|v| v.to_equipment_relic_proto())
+                            .collect(),
+                        skilltree_list: (1..=4)
+                            .map(|v| AvatarSkillTree {
                                 level: 1,
-                                point_id: 8006001,
-                            },
-                            AvatarSkillTree {
-                                level: 1,
-                                point_id: 8006002,
-                            },
-                            AvatarSkillTree {
-                                level: 1,
-                                point_id: 8006003,
-                            },
-                            AvatarSkillTree {
-                                level: 1,
-                                point_id: 8006004,
-                            },
-                            AvatarSkillTree {
-                                level: 1,
-                                point_id: 8006001,
-                            },
-                        ],
+                                point_id: (json.main_character as u32) * 1000 + v,
+                            })
+                            .collect(),
                         all_path_special_skilltree_list: vec![],
-                        path_equipment_id: 0,
+                        path_equipment_id: json
+                            .lightcones
+                            .iter()
+                            .find(|v| v.equip_avatar == json.main_character as u32)
+                            .map(|v| v.internal_uid)
+                            .unwrap_or_default(),
                         all_path_unlocked_special_point_id_list: vec![],
                     },
                     MultiPathAvatarTypeInfo {
-                        multi_path_avatar_type: MultiPathAvatarType::Mar7thKnightType.into(),
+                        multi_path_avatar_type: json.march_type as i32,
                         rank: 6,
-                        equip_relic_list: vec![],
-                        skilltree_list: vec![
-                            AvatarSkillTree {
+                        equip_relic_list: json
+                            .relics
+                            .iter()
+                            .filter(|v| v.equip_avatar == json.march_type as u32)
+                            .map(|v| v.to_equipment_relic_proto())
+                            .collect(),
+                        skilltree_list: (1..=4)
+                            .map(|v| AvatarSkillTree {
                                 level: 1,
-                                point_id: 1224001,
-                            },
-                            AvatarSkillTree {
-                                level: 1,
-                                point_id: 1224002,
-                            },
-                            AvatarSkillTree {
-                                level: 1,
-                                point_id: 1224003,
-                            },
-                            AvatarSkillTree {
-                                level: 1,
-                                point_id: 1224004,
-                            },
-                            AvatarSkillTree {
-                                level: 1,
-                                point_id: 1224005,
-                            },
-                        ],
+                                point_id: (json.march_type as u32) * 1000 + v,
+                            })
+                            .collect(),
                         all_path_special_skilltree_list: vec![],
-                        path_equipment_id: 1224,
+                        path_equipment_id: json
+                            .lightcones
+                            .iter()
+                            .find(|v| v.equip_avatar == json.march_type as u32)
+                            .map(|v| v.internal_uid)
+                            .unwrap_or_default(),
                         all_path_unlocked_special_point_id_list: vec![],
                     },
                 ],
                 gmhdhimdkfi: vec![],
                 current_multi_path_avatar_id: HashMap::from([
-                    (8001, MultiPathAvatarType::GirlShamanType.into()),
-                    (1001, MultiPathAvatarType::Mar7thRogueType.into()),
+                    (8001, json.main_character.get_type().into()),
+                    (1001, json.march_type.get_type().into()),
                 ]),
             },
         )

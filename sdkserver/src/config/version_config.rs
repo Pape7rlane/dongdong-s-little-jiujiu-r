@@ -11,7 +11,7 @@ pub struct VersionConfig {
     pub asset_bundle_url: String,
     pub ex_resource_url: String,
     pub lua_url: String,
-    pub lua_version: String,
+    // pub lua_version: String,
 }
 
 lazy_static! {

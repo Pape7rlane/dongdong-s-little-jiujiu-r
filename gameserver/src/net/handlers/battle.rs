@@ -67,14 +67,13 @@ pub async fn on_scene_cast_skill_cs_req(
 }
 
 async fn create_battle_info() -> SceneBattleInfo {
-    let player = tools::JsonData::load().await;
+    let player = tools::FreesrData::load().await;
 
     let mut battle_info = SceneBattleInfo {
         stage_id: player.battle_config.stage_id,
         logic_random_seed: rand::thread_rng().gen::<u32>(),
         battle_id: 1,
-        // cleheggdkal: player.battle_config.cycle_count, // wave
-        rounds_limit: player.battle_config.cycle_count, // wave
+        rounds_limit: player.battle_config.cycle_count,
         ..Default::default()
     };
 

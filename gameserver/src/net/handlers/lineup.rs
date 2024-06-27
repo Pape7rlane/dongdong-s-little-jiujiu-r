@@ -1,7 +1,7 @@
 use scene_entity_info::Entity;
 use scene_entity_refresh_info::RefreshType;
 
-use crate::net::tools::{self, AvatarJson, JsonData};
+use crate::net::tools::{self, AvatarJson, FreesrData};
 
 use super::*;
 
@@ -9,7 +9,7 @@ pub async fn on_get_all_lineup_data_cs_req(
     session: &mut PlayerSession,
     _body: &GetAllLineupDataCsReq,
 ) -> Result<()> {
-    let player = tools::JsonData::load().await;
+    let player = tools::FreesrData::load().await;
     let lineup = LineupInfo {
         extra_lineup_type: ExtraLineupType::LineupNone.into(),
         name: "Squad 1".to_string(),
@@ -34,7 +34,7 @@ pub async fn on_get_cur_lineup_data_cs_req(
     session: &mut PlayerSession,
     _body: &GetCurLineupDataCsReq,
 ) -> Result<()> {
-    let player = tools::JsonData::load().await;
+    let player = tools::FreesrData::load().await;
     let mut lineup = LineupInfo {
         extra_lineup_type: ExtraLineupType::LineupNone.into(),
         name: "Squad 1".to_string(),
@@ -91,12 +91,14 @@ pub async fn on_join_lineup_cs_req(
     // update lineups
     // TODO: FIX THESE SHIT
     {
-        let mut player = tools::JsonData::load().await;
+        let mut player = tools::FreesrData::load().await;
         let lineups = &mut player.lineups;
         lineups.insert(
             body.slot,
-            if body.base_avatar_id > 8000 {
+            if body.base_avatar_id == 8001 {
                 player.main_character as u32
+            } else if body.base_avatar_id == 1001 {
+                player.march_type as u32
             } else {
                 body.base_avatar_id
             },
@@ -105,7 +107,7 @@ pub async fn on_join_lineup_cs_req(
     }
 
     {
-        let player = tools::JsonData::load().await;
+        let player = tools::FreesrData::load().await;
 
         refresh_lineup(session, &player).await?;
     }
@@ -120,13 +122,15 @@ pub async fn on_replace_lineup_cs_req(
     req: &ReplaceLineupCsReq,
 ) -> Result<()> {
     {
-        let mut player = tools::JsonData::load().await;
+        let mut player = tools::FreesrData::load().await;
 
         let lineups = &mut player.lineups;
         for (slot, avatar_id) in &mut *lineups {
             if let Some(lineup) = req.slots.get(*slot as usize) {
-                *avatar_id = if lineup.id > 8000 {
+                *avatar_id = if lineup.id == 8001 {
                     player.main_character as u32
+                } else if lineup.id == 1001 {
+                    player.march_type as u32
                 } else {
                     lineup.id
                 };
@@ -138,7 +142,7 @@ pub async fn on_replace_lineup_cs_req(
     }
 
     {
-        let player = tools::JsonData::load().await;
+        let player = tools::FreesrData::load().await;
 
         refresh_lineup(_session, &player).await?;
     }
@@ -157,7 +161,7 @@ pub async fn on_quit_lineup_cs_req(
         .await
 }
 
-async fn refresh_lineup(sess: &mut PlayerSession, player: &JsonData) -> Result<()> {
+async fn refresh_lineup(sess: &mut PlayerSession, player: &FreesrData) -> Result<()> {
     let lineup = LineupInfo {
         extra_lineup_type: ExtraLineupType::LineupNone.into(),
         name: "Squad 1".to_string(),
