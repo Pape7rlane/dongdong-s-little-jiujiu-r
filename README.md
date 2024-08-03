@@ -1,4 +1,4 @@
-# Supported Version: 2.3.51 2.3.52
+# Supported Version: 2.4.51
 Run the game by clicking run.bat file.
 
 Tool website: [https://srtools.pages.dev](https://srtools.pages.dev)

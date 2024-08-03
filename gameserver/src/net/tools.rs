@@ -401,6 +401,8 @@ pub struct BattleBuffJson {
     pub level: u32,
     pub id: u32,
     pub dynamic_key: Option<DynamicKey>,
+    #[serde(default)]
+    pub dynamic_values: Vec<DynamicKey>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, Default)]

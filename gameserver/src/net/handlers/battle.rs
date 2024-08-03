@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use rand::Rng;
 
 use crate::net::tools::{self, BattleType, Monster};
@@ -47,7 +49,6 @@ pub async fn on_scene_cast_skill_cs_req(
     let mut resp = SceneCastSkillScRsp {
         attacked_group_id: request.attacked_group_id,
         retcode: 0,
-        obofjbeeoma: vec![],
         ..Default::default()
     };
 
@@ -100,6 +101,23 @@ async fn create_battle_info() -> SceneBattleInfo {
                 battle_info.buff_list.push(tech);
             }
             battle_info.battle_avatar_list.push(battle_avatar);
+
+            // hardcoded march
+            if avatar.avatar_id == 1224 {
+                let buffs = BattleBuff {
+                    id: 122401,
+                    level: 3,
+                    wave_flag: 0xffffffff,
+                    owner_id: i,
+                    dynamic_values: HashMap::from([
+                        (String::from("#ADF_1"), 3f32),
+                        (String::from("#ADF_2"), 3f32),
+                    ]),
+                    target_index_list: vec![0],
+                };
+
+                battle_info.buff_list.push(buffs);
+            }
         };
     }
 
@@ -140,29 +158,44 @@ async fn create_battle_info() -> SceneBattleInfo {
             owner_id: 0xffffffff,
             ..Default::default()
         };
-        if let Some(dynamic_key) = &blessing.dynamic_key {
+
+        if let Some(dynamic_value) = &blessing.dynamic_key {
             buffs
                 .dynamic_values
-                .insert(dynamic_key.key.clone(), dynamic_key.value as f32);
+                .insert(dynamic_value.key.clone(), dynamic_value.value as f32);
         };
+
+        for dynamic_value in &blessing.dynamic_values {
+            if buffs.dynamic_values.contains_key(&dynamic_value.key) {
+                continue;
+            };
+            buffs
+                .dynamic_values
+                .insert(dynamic_value.key.clone(), dynamic_value.value as f32);
+        }
+
         battle_info.buff_list.push(buffs);
     }
 
     // pf score object
     if player.battle_config.battle_type == BattleType::PF {
-        let mut battle_target = BattleTargetList::default();
-        battle_target.battle_target_list.push(BattleTarget {
-            id: 10001,
-            progress: 0,
-            ..Default::default()
-        });
+        battle_info.battle_target_info.insert(
+            1,
+            BattleTargetList {
+                battle_target_list: vec![BattleTarget {
+                    id: 10001,
+                    progress: 0,
+                    ..Default::default()
+                }],
+            },
+        );
 
-        battle_info.battle_target_info.insert(1, battle_target);
         for i in 2..=4 {
             battle_info
                 .battle_target_info
                 .insert(i, BattleTargetList::default());
         }
+
         battle_info.battle_target_info.insert(
             5,
             BattleTargetList {
@@ -184,14 +217,16 @@ async fn create_battle_info() -> SceneBattleInfo {
 
     // Apocalyptic Shadow
     if player.battle_config.battle_type == BattleType::AS {
-        let battle_target = BattleTargetList {
-            battle_target_list: vec![BattleTarget {
-                id: 90005,
-                progress: 0,
-                ..Default::default()
-            }],
-        };
-        battle_info.battle_target_info.insert(1, battle_target);
+        battle_info.battle_target_info.insert(
+            1,
+            BattleTargetList {
+                battle_target_list: vec![BattleTarget {
+                    id: 90005,
+                    progress: 0,
+                    ..Default::default()
+                }],
+            },
+        );
     }
 
     //  SU
@@ -206,7 +241,6 @@ async fn create_battle_info() -> SceneBattleInfo {
                         max_sp: 10_000,
                     }),
                 }),
-                ..Default::default()
             })
     }
 

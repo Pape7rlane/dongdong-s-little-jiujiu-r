@@ -1,14 +1,14 @@
 {
   "lineups": {
-    "0": 1310,
-    "1": 1308,
-    "2": 1314,
+    "0": 1222,
+    "1": 1223,
+    "2": 1220,
     "3": 1308
   },
   "position": {
-    "x": -3588,
+    "x": -3722,
     "y": 56256,
-    "z": -87629,
+    "z": -87464,
     "rot_y": 318488
   },
   "scene": {
@@ -16,5 +16,6 @@
     "floor_id": 20321001,
     "entry_id": 2032101
   },
-  "main_character": "FemaleHarmony"
+  "main_character": "FemaleHarmony",
+  "march_type": "MarchHunt"
 }

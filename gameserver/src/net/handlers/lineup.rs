@@ -41,15 +41,9 @@ pub async fn on_get_cur_lineup_data_cs_req(
         mp: 5,
         max_mp: 5,
         avatar_list: AvatarJson::to_lineup_avatars(&player),
-        abollmbdfjp: vec![],
-        boceahmenhd: 0,
-        idfbpedneca: vec![],
-        index: 0,
         is_virtual: false,
-        leader_slot: 0,
-        mphbmfkkaam: false,
-        nggphgpdmfd: vec![],
         plane_id: 0,
+        ..Default::default()
     };
 
     let avatar_ids = player
@@ -187,7 +181,7 @@ async fn refresh_lineup(sess: &mut PlayerSession, player: &FreesrData) -> Result
                                 avatar_type: AvatarType::AvatarFormalType.into(),
                                 base_avatar_id: *v,
                                 map_layer: 0,
-                                uid: 1337,
+                                uid: 25,
                             })),
                             entity_id: idx + 1,
                             group_id: 0,

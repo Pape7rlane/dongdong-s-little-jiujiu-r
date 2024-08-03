@@ -14,6 +14,8 @@ pub async fn on_get_basic_info_cs_req(
             GetBasicInfoScRsp {
                 retcode: 0,
                 player_setting_info: Some(PlayerSettingInfo::default()),
+                gender: Gender::Woman as u32,
+                is_gender_set: true,
                 ..Default::default()
             },
         )
@@ -34,7 +36,7 @@ pub async fn on_player_heart_beat_cs_req(
                 download_data: Some(ClientDownloadData {
                     version: 51,
                     time: util::cur_timestamp_ms() as i64,
-                    data: rbase64::decode("G0x1YVMBGZMNChoKBAQICHhWAAAAAAAAAAAAAAAod0ABKEBDOlxVc2Vyc1x4ZW9uZGV2XERvd25sb2Fkc1xyYWJzdHZvLmx1YQAAAAAAAAAAAAEEEAAAACQAQAApQEAAKYBAACnAQABWAAEALIAAAR1AQQCkgEEA5ABAAOnAwQHpAMIB6UDCAawAAAEsgAAAH8BChRkAgAAMAAAABANDUwQMVW5pdHlFbmdpbmUEC0dhbWVPYmplY3QEBUZpbmQEKVVJUm9vdC9BYm92ZURpYWxvZy9CZXRhSGludERpYWxvZyhDbG9uZSkEF0dldENvbXBvbmVudEluQ2hpbGRyZW4EB3R5cGVvZgQEUlBHBAdDbGllbnQEDkxvY2FsaXplZFRleHQEBXRleHQURVJvYmluU1IgaXMgYSBmcmVlIGFuZCBvcGVuIHNvdXJjZSBzb2Z0d2FyZS4gZGlzY29yZC5nZy9yZXZlcnNlZHJvb21zAQAAAAEAAAAAABAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAAAAAAEAAAAFX0VOVg==").unwrap()
+                    data: rbase64::decode("bG9jYWwgZnVuY3Rpb24gYmV0YV90ZXh0KG9iaikKICAgIGxvY2FsIGdhbWVPYmplY3QgPSBDUy5Vbml0eUVuZ2luZS5HYW1lT2JqZWN0LkZpbmQoIlVJUm9vdC9BYm92ZURpYWxvZy9CZXRhSGludERpYWxvZyhDbG9uZSkiKQoKICAgIGlmIGdhbWVPYmplY3QgdGhlbgogICAgICAgIGxvY2FsIHRleHRDb21wb25lbnQgPSBnYW1lT2JqZWN0OkdldENvbXBvbmVudEluQ2hpbGRyZW4odHlwZW9mKENTLlJQRy5DbGllbnQuTG9jYWxpemVkVGV4dCkpCgogICAgICAgIGlmIHRleHRDb21wb25lbnQgdGhlbgogICAgICAgICAgICB0ZXh0Q29tcG9uZW50LnRleHQgPSAiUm9iaW5TUiBpcyBhIGZyZWUgYW5kIG9wZW4gc291cmNlIHNvZnR3YXJlLiBkaXNjb3JkLmdnL3JldmVyc2Vkcm9vbXMiCiAgICAgICAgZW5kCiAgICBlbHNlCiAgICBlbmQKZW5kCgpiZXRhX3RleHQoKQ==").unwrap()
                 }),
             },
         )
@@ -48,7 +50,7 @@ pub async fn on_player_login_finish_cs_req(
     _: &PlayerLoginFinishCsReq,
 ) -> Result<()> {
     session
-        .send(CMD_PLAYER_LOGIN_FINISH_SC_RSP, Dummy {})
+        .send(CMD_PLAYER_LOGIN_FINISH_SC_RSP, Dummy::default())
         .await?;
 
     session
@@ -78,7 +80,7 @@ pub async fn on_player_login_finish_cs_req(
                             content_id: 150015,
                         },
                     ],
-                    fnmhgeaflmn: 0,
+                    ..Default::default()
                 }),
             },
         )
@@ -100,7 +102,7 @@ pub async fn on_get_multi_path_avatar_info_cs_req(
                 retcode: 0,
                 multi_path_avatar_type_info_list: vec![
                     MultiPathAvatarTypeInfo {
-                        multi_path_avatar_type: json.main_character as i32,
+                        avatar_id: json.main_character as i32,
                         rank: 6,
                         equip_relic_list: json
                             .relics
@@ -114,17 +116,15 @@ pub async fn on_get_multi_path_avatar_info_cs_req(
                                 point_id: (json.main_character as u32) * 1000 + v,
                             })
                             .collect(),
-                        all_path_special_skilltree_list: vec![],
                         path_equipment_id: json
                             .lightcones
                             .iter()
                             .find(|v| v.equip_avatar == json.main_character as u32)
                             .map(|v| v.internal_uid)
                             .unwrap_or_default(),
-                        all_path_unlocked_special_point_id_list: vec![],
                     },
                     MultiPathAvatarTypeInfo {
-                        multi_path_avatar_type: json.march_type as i32,
+                        avatar_id: json.march_type as i32,
                         rank: 6,
                         equip_relic_list: json
                             .relics
@@ -138,21 +138,19 @@ pub async fn on_get_multi_path_avatar_info_cs_req(
                                 point_id: (json.march_type as u32) * 1000 + v,
                             })
                             .collect(),
-                        all_path_special_skilltree_list: vec![],
                         path_equipment_id: json
                             .lightcones
                             .iter()
                             .find(|v| v.equip_avatar == json.march_type as u32)
                             .map(|v| v.internal_uid)
                             .unwrap_or_default(),
-                        all_path_unlocked_special_point_id_list: vec![],
                     },
                 ],
-                gmhdhimdkfi: vec![],
                 current_multi_path_avatar_id: HashMap::from([
                     (8001, json.main_character.get_type().into()),
                     (1001, json.march_type.get_type().into()),
                 ]),
+                ..Default::default()
             },
         )
         .await

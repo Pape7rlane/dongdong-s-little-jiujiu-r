@@ -51,14 +51,14 @@ pub async fn query_gateway(parameters: Query<QueryGatewayParameters>) -> String 
             unk5: true,
             unk6: true,
             unk7: true,
-            aoekikfkmga: true,
-            cdhoiaaonhd: true,
-            egnmpipogli: true,
-            fkfkcdjnhfl: true,
-            gebnkmipomm: true,
-            gnfpfkjhidj: true,
-            goelmbpgofc: true,
-            mfenphleghj: true,
+            mmcachlfjaa: true,
+            ncikdciigof: true,
+            efknbdlnakj: true,
+            gpjcfcjdmol: true,
+            jidbdekohdh: true,
+            pphbpgbnoem: true,
+            dhppkkgjldl: true,
+            jipjkleanbd: true,
             ..Default::default()
         }
     } else {

@@ -96,17 +96,16 @@ macro_rules! trait_handler {
 }
 
 trait_handler! {
-    PlayerGetTokenCsReq 58;         // PlayerGetTokenScRsp
-    PlayerLoginCsReq 18;            // PlayerLoginScRsp, PlayerBasicInfo
-    GetMissionStatusCsReq 1248;     // GetMissionStatusScRsp, Mission
-    GetBasicInfoCsReq 42;           // GetBasicInfoScRsp, PlayerSettingInfo
-    // GetHeroBasicTypeInfoCsReq 68;   // GetHeroBasicTypeInfoScRsp, HeroBasicTypeInfo
-    GetMultiPathAvatarInfoCsReq 69;
-    GetAvatarDataCsReq 318;         // GetAvatarDataScRsp, Avatar
-    GetAllLineupDataCsReq 748;      // GetAllLineupDataScRsp, LineupInfo, ExtraLineupType, LineupAvatar, AmountInfo
-    GetCurLineupDataCsReq 729;      // GetCurLineupDataScRsp
-    GetCurSceneInfoCsReq 1428;      // GetCurSceneInfoScRsp, SceneInfo
-    PlayerHeartBeatCsReq 33;        // PlayerHeartBeatScRsp
+    PlayerGetTokenCsReq 56;         // PlayerGetTokenScRsp
+    PlayerLoginCsReq 68;            // PlayerLoginScRsp, PlayerBasicInfo
+    GetMissionStatusCsReq 1224;     // GetMissionStatusScRsp, Mission
+    GetBasicInfoCsReq 40;           // GetBasicInfoScRsp, PlayerSettingInfo
+    GetMultiPathAvatarInfoCsReq 27;
+    GetAvatarDataCsReq 368;         // GetAvatarDataScRsp, Avatar
+    GetAllLineupDataCsReq 724;      // GetAllLineupDataScRsp, LineupInfo, ExtraLineupType, LineupAvatar, AmountInfo
+    GetCurLineupDataCsReq 711;      // GetCurLineupDataScRsp
+    GetCurSceneInfoCsReq 1439;      // GetCurSceneInfoScRsp, SceneInfo
+    PlayerHeartBeatCsReq 31;        // PlayerHeartBeatScRsp
 
     // // Tutorial (dummy!)
     // GetTutorialGuideCsReq 1691;
@@ -114,41 +113,42 @@ trait_handler! {
     // GetTutorialCsReq 1661;
 
     // Entity move (dummy!)
-    SceneEntityMoveCsReq 1418;
+    SceneEntityMoveCsReq 1468;
 
-    // // Inventory (dummy!)
-    GetBagCsReq 518;
-    GetArchiveDataCsReq 2318;
-    DressAvatarCsReq 319;
-    TakeOffEquipmentCsReq 389;
-    DressRelicAvatarCsReq 322;
-    TakeOffRelicCsReq 362;
+    // Inventory (dummy!)
+    GetBagCsReq 568;
+    GetArchiveDataCsReq 2368;
+    DressAvatarCsReq 351;
+    TakeOffEquipmentCsReq 399;
+    DressRelicAvatarCsReq 334;
+    TakeOffRelicCsReq 398;
 
-    // // Chat (dummy!)
-    SendMsgCsReq 3918;
-    GetPrivateChatHistoryCsReq 3958;
-    GetFriendListInfoCsReq 2918;
+    // Chat (dummy!)
+    SendMsgCsReq 3968;
+    GetPrivateChatHistoryCsReq 3956;
+    GetFriendListInfoCsReq 2968;
+    GetFriendLoginInfoCsReq 2969;
 
-    // // In-game lineup
-    JoinLineupCsReq 758;
-    ChangeLineupLeaderCsReq 798;
-    ReplaceLineupCsReq 711;
-    QuitLineupCsReq 728;
+    // In-game lineup
+    JoinLineupCsReq 756;
+    ChangeLineupLeaderCsReq 748;
+    ReplaceLineupCsReq 790;
+    QuitLineupCsReq 739;
 
-    // // Battle
-    StartCocoonStageCsReq 1456;
-    PveBattleResultCsReq 118;
-    SceneCastSkillCsReq 1458;
+    // Battle
+    StartCocoonStageCsReq 1445;
+    PveBattleResultCsReq 168;
+    SceneCastSkillCsReq 1456;
 
-    // // Teleport
-    GetEnteredSceneCsReq 1469;
-    GetSceneMapInfoCsReq 1451;
-    EnterSceneCsReq 1425;
+    // Teleport
+    GetEnteredSceneCsReq 1427;
+    GetSceneMapInfoCsReq 1436;
+    EnterSceneCsReq 1486;
 
-    // // Optional
-    GetMailCsReq 861;
-    GetGachaInfoCsReq 1961;
-    DoGachaCsReq 1991;
+    // Optional
+    GetMailCsReq 868;
+    GetGachaInfoCsReq 1968;
+    DoGachaCsReq 1911;
     // GetQuestDataCsReq 961;
-    PlayerLoginFinishCsReq 76;
+    PlayerLoginFinishCsReq 73;
 }

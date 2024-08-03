@@ -206,7 +206,6 @@ pub async fn on_scene_entity_move_cs_req(
         .await
 }
 
-pub type GetEnteredSceneCsReq = Dummy;
 pub async fn on_get_entered_scene_cs_req(
     session: &mut PlayerSession,
     _: &GetEnteredSceneCsReq,
@@ -332,8 +331,8 @@ async fn load_scene(
                 group_id: prop.group_id,
                 motion: Some(prop_position.to_motion()),
                 entity: Some(Entity::Prop(ScenePropInfo {
-                    prop_state: prop.prop_id,
-                    prop_id: prop_state as u32,
+                    prop_state: prop_state as u32,
+                    prop_id:  prop.prop_id,
                     ..Default::default()
                 })),
                 entity_id: prop_entity_id,
@@ -430,7 +429,7 @@ async fn load_scene(
                 avatar_type: AvatarType::AvatarFormalType.into(),
                 base_avatar_id: *avatar_id,
                 map_layer: 0,
-                uid: 0,
+                uid: 25,
             })),
             ..Default::default()
         })

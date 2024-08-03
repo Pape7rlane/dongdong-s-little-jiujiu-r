@@ -8,6 +8,21 @@ use crate::{
 
 use super::*;
 
+pub async fn on_get_friend_login_info_cs_req(
+    session: &mut PlayerSession,
+    _: &GetFriendLoginInfoCsReq,
+) -> Result<()> {
+    session
+        .send(
+            CMD_GET_FRIEND_LOGIN_INFO_SC_RSP,
+            GetFriendLoginInfoScRsp {
+                mnacbpjeche: vec![727],
+                ..Default::default()
+            },
+        )
+        .await
+}
+
 pub async fn on_get_friend_list_info_cs_req(
     session: &mut PlayerSession,
     _: &GetFriendListInfoCsReq,
@@ -17,9 +32,7 @@ pub async fn on_get_friend_list_info_cs_req(
             CMD_GET_FRIEND_LIST_INFO_SC_RSP,
             GetFriendListInfoScRsp {
                 friend_list: vec![FriendListInfo {
-                    playing_state: PlayingState::None.into(),
-                    efhdeanophb: Some(Oohgaobiikp::default()),
-                    kkmacpkifkp: String::from("RobinSR"),
+                    friend_name: String::from("RobinSR"),
                     simple_info: Some(SimpleInfo {
                         uid: 727,
                         platform_type: 3,
@@ -28,14 +41,12 @@ pub async fn on_get_friend_list_info_cs_req(
                         chat_bubble_id: 220005,
                         level: 70,
                         nickname: String::from("Server"),
-                        assist_simple_info: vec![AssistSimpleInfo {
-                            avatar_id: 1008,
-                            level: 70,
-                            ..Default::default()
-                        }],
+                        signature: String::from("omg"),
                         ..Default::default()
                     }),
                     is_marked: true,
+                    sent_time: 0,
+                    ..Default::default()
                 }],
                 ..Default::default()
             },
@@ -45,7 +56,7 @@ pub async fn on_get_friend_list_info_cs_req(
 
 pub async fn on_get_private_chat_history_cs_req(
     session: &mut PlayerSession,
-    _: &GetPrivateChatHistoryCsReq,
+    req: &GetPrivateChatHistoryCsReq,
 ) -> Result<()> {
     session
         .send(
@@ -81,8 +92,8 @@ pub async fn on_get_private_chat_history_cs_req(
                         ..Default::default()
                     },
                 ],
-                sender_id: 727, // from
-                to_uid: 1337,   // to
+                sender_id: 0,       // from
+                to_uid: req.to_uid, // to
                 ..Default::default()
             },
         )
@@ -100,12 +111,11 @@ pub async fn on_send_msg_cs_req(session: &mut PlayerSession, body: &SendMsgCsReq
                     .send(
                         CMD_REVC_MSG_SC_NOTIFY,
                         RevcMsgScNotify {
-                            enlmbccjfbg: body.enlmbccjfbg.clone(),
                             msg_type: body.msg_type,
                             text: String::from("Inventory Synced"),
                             emote: body.emote,
                             from_uid: 727, // from
-                            to_uid: 1337,  // to
+                            to_uid: 25,    // to
                             chat_type: body.chat_type,
                         },
                     )
@@ -136,12 +146,11 @@ pub async fn on_send_msg_cs_req(session: &mut PlayerSession, body: &SendMsgCsReq
                     .send(
                         CMD_REVC_MSG_SC_NOTIFY,
                         RevcMsgScNotify {
-                            enlmbccjfbg: body.enlmbccjfbg.clone(),
                             msg_type: body.msg_type,
                             text: format!("Success change mc to {:#?}", mc),
                             emote: body.emote,
                             from_uid: 727, // from
-                            to_uid: 1337,  // to
+                            to_uid: 25,    // to
                             chat_type: body.chat_type,
                         },
                     )
@@ -172,12 +181,11 @@ pub async fn on_send_msg_cs_req(session: &mut PlayerSession, body: &SendMsgCsReq
                     .send(
                         CMD_REVC_MSG_SC_NOTIFY,
                         RevcMsgScNotify {
-                            enlmbccjfbg: body.enlmbccjfbg.clone(),
                             msg_type: body.msg_type,
                             text: format!("Success change march to {:#?}", march_type),
                             emote: body.emote,
                             from_uid: 727, // from
-                            to_uid: 1337,  // to
+                            to_uid: 25,    // to
                             chat_type: body.chat_type,
                         },
                     )
