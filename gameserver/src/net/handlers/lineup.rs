@@ -35,7 +35,7 @@ pub async fn on_get_cur_lineup_data_cs_req(
     _body: &GetCurLineupDataCsReq,
 ) -> Result<()> {
     let player = tools::FreesrData::load().await;
-    let mut lineup = LineupInfo {
+    let lineup = LineupInfo {
         extra_lineup_type: ExtraLineupType::LineupNone.into(),
         name: "Squad 1".to_string(),
         mp: 5,
@@ -45,27 +45,6 @@ pub async fn on_get_cur_lineup_data_cs_req(
         plane_id: 0,
         ..Default::default()
     };
-
-    let avatar_ids = player
-        .avatars
-        .values()
-        .map(|v| v.avatar_id)
-        .collect::<Vec<_>>();
-
-    let mut avatars = player
-        .lineups
-        .iter()
-        .filter(|(_slot, v)| v > &&0 && avatar_ids.contains(v))
-        .map(|(slot, avatar_id)| {
-            player
-                .avatars
-                .get(avatar_id)
-                .unwrap()
-                .to_lineup_avatar_proto(*slot)
-        })
-        .collect::<Vec<LineupAvatar>>();
-
-    lineup.avatar_list.append(&mut avatars);
 
     session
         .send(

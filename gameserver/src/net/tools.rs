@@ -139,7 +139,7 @@ impl AvatarJson {
         player
             .lineups
             .iter()
-            .filter(|(_slot, v)| v > &&0 && avatar_ids.contains(v))
+            .filter(|(slot, v)| **slot < 4 && v > &&0 && avatar_ids.contains(v))
             .map(|(slot, avatar_id)| {
                 player
                     .avatars

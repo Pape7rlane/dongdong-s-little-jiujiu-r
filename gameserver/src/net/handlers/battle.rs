@@ -79,14 +79,10 @@ async fn create_battle_info() -> SceneBattleInfo {
     };
 
     // avatars
-    for i in 0..4 {
-        let avatar_id = &player.lineups.get(&i).unwrap_or(&0);
-        if **avatar_id == 0 {
-            continue;
-        }
+    for (i, avatar_id) in player.lineups.iter() {
         if let Some(avatar) = player.avatars.get(avatar_id) {
             let (battle_avatar, techs) = avatar.to_battle_avatar_proto(
-                i,
+                *i,
                 player
                     .lightcones
                     .iter()
@@ -108,7 +104,7 @@ async fn create_battle_info() -> SceneBattleInfo {
                     id: 122401,
                     level: 3,
                     wave_flag: 0xffffffff,
-                    owner_id: i,
+                    owner_id: *i,
                     dynamic_values: HashMap::from([
                         (String::from("#ADF_1"), 3f32),
                         (String::from("#ADF_2"), 3f32),
