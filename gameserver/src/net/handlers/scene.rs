@@ -1,95 +1,65 @@
 use lazy_static::lazy_static;
-use prost::Message;
 use scene_entity_info::Entity;
 use tokio::sync::Mutex;
 
 use crate::{
-    net::{
-        tools::{AvatarJson, FreesrData, Position},
-        tools_res::{PropState, GAME_RESOURCES},
-    },
+    net::tools::{AvatarJson, FreesrData, Position},
+    tools::resources::GAME_RES,
     util::{self},
 };
 
 use super::*;
 
-#[derive(Message)]
-pub struct Dummy {}
-
 pub async fn on_get_cur_scene_info_cs_req(
     session: &mut PlayerSession,
     _body: &GetCurSceneInfoCsReq,
-) -> Result<()> {
+    res: &mut GetCurSceneInfoScRsp,
+) {
     let mut player = FreesrData::load().await;
     let entry = player.scene.entry_id;
 
     let scene = load_scene(session, &mut player, entry, false, Option::<u32>::None).await;
 
-    let resp = GetCurSceneInfoScRsp {
-        retcode: 0,
-        scene: if let Ok(scene) = scene {
-            Some(scene)
-        } else {
-            Some(SceneInfo {
-                game_mode_type: 1,
-                entry_id: player.scene.entry_id,
-                plane_id: player.scene.plane_id,
-                floor_id: player.scene.floor_id,
-                ..Default::default()
-            })
-        },
+    res.scene = if let Ok(scene) = scene {
+        Some(scene)
+    } else {
+        Some(SceneInfo {
+            game_mode_type: 3,
+            entry_id: player.scene.entry_id,
+            plane_id: player.scene.plane_id,
+            floor_id: player.scene.floor_id,
+            ..Default::default()
+        })
     };
-
-    session.send(CMD_GET_CUR_SCENE_INFO_SC_RSP, resp).await?;
-    if !player.position.is_empty() {
-        session
-            .send(
-                CMD_SCENE_ENTITY_MOVE_SC_NOTIFY,
-                SceneEntityMoveScNotify {
-                    entity_id: 0,
-                    entry_id: player.scene.entry_id,
-                    motion: Some(player.position.to_motion()),
-                    ..Default::default()
-                },
-            )
-            .await?;
-    };
-
-    Ok(())
 }
 
-// enterscene
 pub async fn on_enter_scene_cs_req(
     session: &mut PlayerSession,
-    request: &EnterSceneCsReq,
-) -> Result<()> {
+    req: &EnterSceneCsReq,
+    res: &mut EnterSceneScRsp,
+) {
     let mut player = FreesrData::load().await;
 
-    // send packet first
-    session
-        .send(CMD_ENTER_SCENE_SC_RSP, Dummy::default())
-        .await?;
-
-    load_scene(
+    if load_scene(
         session,
         &mut player,
-        request.entry_id,
+        req.entry_id,
         true,
-        Some(request.teleport_id),
+        Some(req.teleport_id),
     )
-    .await?;
-
-    Ok(())
+    .await
+    .is_err()
+    {
+        res.retcode = Nbbhhpnhond::RetSceneEntryIdNotMatch as u32;
+    };
 }
 
-// getscenemapinfocsreq
 pub async fn on_get_scene_map_info_cs_req(
-    sesison: &mut PlayerSession,
-    request: &GetSceneMapInfoCsReq,
-) -> Result<()> {
-    let mut map_infos = Vec::<MazeMapData>::new();
-
-    for entry_id in &request.entry_id_list {
+    _sesison: &mut PlayerSession,
+    req: &GetSceneMapInfoCsReq,
+    res: &mut GetSceneMapInfoScRsp,
+) {
+    for entry_id in &req.entry_id_list {
         let mut map_info = MazeMapData {
             retcode: 0,
             unlocked_chest_list: vec![
@@ -114,51 +84,37 @@ pub async fn on_get_scene_map_info_cs_req(
             map_info.lighten_section_list.push(i)
         }
 
-        let group_config = GAME_RESOURCES.map_entrance.get(entry_id).and_then(|v| {
-            GAME_RESOURCES
-                .level_group
-                .get(&format!("P{}_F{}", v.plane_id, v.floor_id))
-        });
-        if let Some(level) = group_config {
-            // add teleports
-            for teleport in &level.teleports {
-                map_info.unlocked_teleport_list.push(*teleport.0)
-            }
+        let group_config = GAME_RES
+            .level_output_configs
+            .get(&entry_id)
+            .and_then(|v| v.iter().next());
 
-            for (group_id, group) in &level.group_items {
+        if let Some((_, group_config)) = group_config {
+            for (_, (group_id, group)) in group_config.scenes.iter().enumerate() {
                 map_info.maze_group_list.push(MazeGroup {
                     group_id: *group_id,
                     ..Default::default()
                 });
 
-                // prop
+                for (teleport, _) in &group.teleports {
+                    map_info.unlocked_teleport_list.push(*teleport)
+                }
+
                 for prop in &group.props {
+                    if prop.prop_state != 8 {
+                        continue;
+                    }
                     map_info.maze_prop_list.push(MazeProp {
                         group_id: prop.group_id,
-                        state: if prop.prop_state_list.contains(&PropState::CheckPointEnable) {
-                            PropState::CheckPointEnable as u32
-                        } else {
-                            prop.state.clone() as u32
-                        },
-                        config_id: prop.id,
+                        state: prop.prop_state,
+                        config_id: prop.inst_id,
                     });
                 }
             }
         }
 
-        map_infos.push(map_info)
+        res.map_list.push(map_info)
     }
-
-    sesison
-        .send(
-            CMD_GET_SCENE_MAP_INFO_SC_RSP,
-            GetSceneMapInfoScRsp {
-                retcode: 0,
-                map_list: map_infos,
-                ..Default::default()
-            },
-        )
-        .await
 }
 
 lazy_static! {
@@ -166,24 +122,21 @@ lazy_static! {
 }
 
 pub async fn on_scene_entity_move_cs_req(
-    session: &mut PlayerSession,
-    request: &SceneEntityMoveCsReq,
-) -> Result<()> {
+    _session: &mut PlayerSession,
+    req: &SceneEntityMoveCsReq,
+    _res: &mut SceneEntityMoveScRsp,
+) {
     let mut player = FreesrData::load().await;
     let mut timestamp = NEXT_SCENE_SAVE.lock().await;
 
     if util::cur_timestamp_ms() <= *timestamp {
-        session
-            .send(CMD_SCENE_ENTITY_MOVE_SC_RSP, Dummy::default())
-            .await?;
-
-        return Ok(());
+        return;
     }
 
     // save every 5 sec
     *timestamp = util::cur_timestamp_ms() + (5 * 1000);
 
-    for entity in &request.entity_motion_list {
+    for entity in &req.entity_motion_list {
         if entity.entity_id != 0 {
             continue;
         }
@@ -201,99 +154,101 @@ pub async fn on_scene_entity_move_cs_req(
     }
 
     player.save().await;
-    session
-        .send(CMD_SCENE_ENTITY_MOVE_SC_RSP, Dummy::default())
-        .await
 }
 
 pub async fn on_get_entered_scene_cs_req(
-    session: &mut PlayerSession,
-    _: &GetEnteredSceneCsReq,
-) -> Result<()> {
-    let scenes = GAME_RESOURCES
-        .map_entrance
+    _session: &mut PlayerSession,
+    _req: &GetEnteredSceneCsReq,
+    res: &mut GetEnteredSceneScRsp,
+) {
+    res.entered_scene_info = GAME_RES
+        .level_output_configs
         .iter()
-        .filter(|(_, v)| {
-            !v.finish_main_mission_list.is_empty() || !v.finish_sub_mission_list.is_empty()
+        .map(|(_, v)| {
+            v.iter()
+                .filter(|(_, v)| v.is_entered_scene_info)
+                .map(|(k, _)| {
+                    let split: Vec<_> = k.split("_").collect();
+                    let plane_id = &split[0][1..];
+                    let floor_id = &split[1][1..];
+                    EnteredSceneInfo {
+                        floor_id: floor_id.parse().unwrap(),
+                        plane_id: plane_id.parse().unwrap(),
+                    }
+                })
+                .collect::<Vec<_>>()
         })
-        .map(|(_, v)| EnteredSceneInfo {
-            floor_id: v.floor_id,
-            plane_id: v.plane_id,
-        })
+        .flatten()
         .collect::<Vec<_>>();
-
-    session
-        .send(
-            CMD_GET_ENTERED_SCENE_SC_RSP,
-            GetEnteredSceneScRsp {
-                entered_scene_info: scenes,
-                retcode: 0,
-            },
-        )
-        .await
 }
 
 async fn load_scene(
     session: &mut PlayerSession,
     json: &mut FreesrData,
     entry_id: u32,
-    _save: bool,
+    save_scene: bool,
     teleport_id: Option<u32>,
 ) -> Result<SceneInfo> {
-    let enterance = GAME_RESOURCES
-        .map_entrance
+    let (name, scene) = GAME_RES
+        .level_output_configs
         .get(&entry_id)
-        .ok_or_else(|| anyhow::format_err!("Map Entrance Not Found"))?;
+        .map(|v| v.iter().next())
+        .flatten()
+        .ok_or_else(|| {
+            tracing::error!("Map Entrance Not Found {}", entry_id);
+            anyhow::format_err!("Map Entrance Not Found {}", entry_id)
+        })?;
 
-    let plane = GAME_RESOURCES
-        .maze_plane
-        .get(&enterance.plane_id)
-        .ok_or_else(|| anyhow::format_err!("Map Plane Not Found"))?;
+    let split: Vec<_> = name.split("_").collect();
+    let plane_id = *&split[0][1..].parse::<u32>()?;
+    let floor_id = *&split[1][1..].parse::<u32>()?;
 
-    let group_config = GAME_RESOURCES
-        .level_group
-        .get(&format!("P{}_F{}", enterance.plane_id, enterance.floor_id))
-        .ok_or_else(|| anyhow::format_err!("Group Config Not Found"))?;
-
-    let mut position = json.position.clone();
+    let mut json_pos = json.position.clone();
     if let Some(teleport_id) = teleport_id {
-        if let Some(teleport) = group_config.teleports.get(&teleport_id) {
-            let anchor = group_config
-                .group_items
-                .get(&teleport.anchor_group_id.unwrap_or_default())
-                .and_then(|v| v.anchors.get(&teleport.anchor_id.unwrap_or_default()));
-            if let Some(anchor) = anchor {
-                position.x = (anchor.pos_x * 1000f64) as i32;
-                position.y = (anchor.pos_y * 1000f64) as i32;
-                position.z = (anchor.pos_z * 1000f64) as i32;
-                position.rot_y = (anchor.rot_y * 1000f64) as i32;
+        if let Some(teleport) = scene
+            .scenes
+            .iter()
+            .find_map(|(_, v)| v.teleports.get(&teleport_id))
+        {
+            json_pos.x = teleport.pos.x;
+            json_pos.y = teleport.pos.y;
+            json_pos.z = teleport.pos.z;
+            json_pos.rot_y = teleport.rot.y;
+        } else {
+            if let Some((_, teleport)) = scene
+                .scenes
+                .iter()
+                .find_map(|v| v.1.teleports.iter().next())
+            {
+                json_pos.x = teleport.pos.x;
+                json_pos.y = teleport.pos.y;
+                json_pos.z = teleport.pos.z;
+                json_pos.rot_y = teleport.rot.y;
             }
         }
     }
 
     let mut scene_info = SceneInfo {
-        floor_id: enterance.floor_id,
-        plane_id: enterance.plane_id,
+        floor_id,
+        plane_id,
         entry_id,
-        game_mode_type: plane.plane_type as u32,
+        game_mode_type: *(&scene.plane_type) as u32,
         leader_entity_id: 1,
-        world_id: plane.world_id,
+        world_id: scene.world_id,
         ..Default::default()
     };
 
     let lineup_info = AvatarJson::to_lineup_info(&json.lineups);
     let player_pos = MotionInfo {
-        // rot
         rot: Some(Vector {
             x: 0,
-            y: position.rot_y,
+            y: json_pos.rot_y,
             z: 0,
         }),
-        // pos
         pos: Some(Vector {
-            x: position.x,
-            y: position.y,
-            z: position.z,
+            x: json_pos.x,
+            y: json_pos.y,
+            z: json_pos.z,
         }),
     };
 
@@ -302,37 +257,30 @@ async fn load_scene(
     let mut npc_entity_id = 20_000;
     let mut monster_entity_id = 30_000;
 
-    for (group_id, group) in &group_config.group_items {
+    for (group_id, group) in &scene.scenes {
         let mut group_info = SceneEntityGroupInfo {
-            state: 0,
             group_id: *group_id,
             ..Default::default()
         };
 
         // Load Props
         for prop in &group.props {
-            let prop_state = if prop.prop_state_list.contains(&PropState::CheckPointEnable) {
-                PropState::CheckPointEnable
-            } else {
-                prop.state.clone()
-            };
-
             prop_entity_id += 1;
 
             let prop_position = Position {
-                x: (prop.pos_x * 1000f64) as i32,
-                y: (prop.pos_y * 1000f64) as i32,
-                z: (prop.pos_z * 1000f64) as i32,
-                rot_y: (prop.rot_y * 1000f64) as i32,
+                x: (prop.pos.x),
+                y: (prop.pos.y),
+                z: (prop.pos.z),
+                rot_y: (prop.rot.y),
             };
 
             let entity_info = SceneEntityInfo {
-                inst_id: prop.id,
+                inst_id: prop.inst_id,
                 group_id: prop.group_id,
                 motion: Some(prop_position.to_motion()),
                 entity: Some(Entity::Prop(ScenePropInfo {
-                    prop_state: prop_state as u32,
-                    prop_id:  prop.prop_id,
+                    prop_state: prop.prop_state,
+                    prop_id: prop.prop_id,
                     ..Default::default()
                 })),
                 entity_id: prop_entity_id,
@@ -343,26 +291,26 @@ async fn load_scene(
 
         // Load NPCs
         for npc in &group.npcs {
-            if loaded_npc.contains(&(npc.npcid)) || json.avatars.contains_key(&(npc.npcid)) {
+            if loaded_npc.contains(&(npc.npc_id)) || json.avatars.contains_key(&(npc.npc_id)) {
                 continue;
             }
             npc_entity_id += 1;
-            loaded_npc.push(npc.npcid);
+            loaded_npc.push(npc.npc_id);
 
             let npc_position = Position {
-                x: (npc.pos_x * 1000f64) as i32,
-                y: (npc.pos_y * 1000f64) as i32,
-                z: (npc.pos_z * 1000f64) as i32,
-                rot_y: (npc.rot_y * 1000f64) as i32,
+                x: (npc.pos.x) as i32,
+                y: (npc.pos.y) as i32,
+                z: (npc.pos.z) as i32,
+                rot_y: (npc.rot.y) as i32,
             };
 
             let info = SceneEntityInfo {
-                inst_id: npc.id,
+                inst_id: npc.inst_id,
                 group_id: npc.group_id,
                 entity_id: npc_entity_id,
                 motion: Some(npc_position.to_motion()),
                 entity: Some(Entity::Npc(SceneNpcInfo {
-                    npc_id: npc.npcid,
+                    npc_id: npc.npc_id,
                     ..Default::default()
                 })),
             };
@@ -374,21 +322,21 @@ async fn load_scene(
         for monster in &group.monsters {
             monster_entity_id += 1;
             let monster_position = Position {
-                x: (monster.pos_x * 1000f64) as i32,
-                y: (monster.pos_y * 1000f64) as i32,
-                z: (monster.pos_z * 1000f64) as i32,
-                rot_y: (monster.rot_y * 1000f64) as i32,
+                x: (monster.pos.x) as i32,
+                y: (monster.pos.y) as i32,
+                z: (monster.pos.z) as i32,
+                rot_y: (monster.rot.y) as i32,
             };
 
             let npc_monster = SceneNpcMonsterInfo {
-                monster_id: monster.npcmonster_id,
+                monster_id: monster.monster_id,
                 event_id: monster.event_id,
                 world_level: 6,
                 ..Default::default()
             };
 
             let info = SceneEntityInfo {
-                inst_id: monster.id,
+                inst_id: monster.inst_id,
                 group_id: monster.group_id,
                 entity_id: monster_entity_id,
                 motion: Some(monster_position.to_motion()),
@@ -398,7 +346,20 @@ async fn load_scene(
             group_info.entity_list.push(info);
         }
 
+        // TODO: for now don't load group that have nothing in it
+        if group.props.is_empty() && group.npcs.is_empty() && group.monsters.is_empty() {
+            continue;
+        }
+
         scene_info.entity_group_list.push(group_info);
+
+        scene_info.group_id_list.push(*group_id);
+
+        scene_info.group_state_list.push(SceneGroupState {
+            group_id: *group_id,
+            is_default: true,
+            state: 0,
+        });
     }
 
     // load player entity
@@ -411,20 +372,7 @@ async fn load_scene(
         player_group.entity_list.push(SceneEntityInfo {
             inst_id: 0,
             entity_id: (*slot) + 1,
-            motion: Some(MotionInfo {
-                // pos
-                pos: Some(Vector {
-                    x: json.position.x,
-                    y: json.position.y,
-                    z: json.position.z,
-                }),
-                // rot
-                rot: Some(Vector {
-                    x: 0,
-                    y: json.position.rot_y,
-                    z: 0,
-                }),
-            }),
+            motion: Some(player_pos.clone()),
             entity: Some(Entity::Actor(SceneActorInfo {
                 avatar_type: AvatarType::AvatarFormalType.into(),
                 base_avatar_id: *avatar_id,
@@ -436,37 +384,22 @@ async fn load_scene(
     }
     scene_info.entity_group_list.push(player_group);
 
-    if _save {
+    if save_scene {
         session
-            .send(
-                CMD_ENTER_SCENE_BY_SERVER_SC_NOTIFY,
-                EnterSceneByServerScNotify {
-                    scene: Some(scene_info.clone()),
-                    lineup: Some(lineup_info),
-                    ..Default::default()
-                },
-            )
-            .await?;
-
-        session
-            .send(
-                CMD_SCENE_ENTITY_MOVE_SC_NOTIFY,
-                SceneEntityMoveScNotify {
-                    entity_id: 0,
-                    motion: Some(player_pos),
-                    entry_id,
-                    ..Default::default()
-                },
-            )
+            .send(EnterSceneByServerScNotify {
+                scene: Some(scene_info.clone()),
+                lineup: Some(lineup_info),
+                ..Default::default()
+            })
             .await?;
 
         json.scene.entry_id = entry_id;
-        json.scene.floor_id = enterance.floor_id;
-        json.scene.plane_id = enterance.plane_id;
-        json.position.x = position.x;
-        json.position.y = position.y;
-        json.position.z = position.z;
-        json.position.rot_y = position.rot_y;
+        json.scene.floor_id = floor_id;
+        json.scene.plane_id = plane_id;
+        json.position.x = json_pos.x;
+        json.position.y = json_pos.y;
+        json.position.z = json_pos.z;
+        json.position.rot_y = json_pos.rot_y;
         json.save().await;
     }
 

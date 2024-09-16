@@ -1,5 +1,6 @@
 use anyhow::Result;
 use prost::Message;
+use proto::CmdID;
 use tokio::{io::AsyncWriteExt, net::TcpStream};
 
 use super::{packet::CommandHandler, NetPacket};
@@ -20,12 +21,12 @@ impl PlayerSession {
         }
     }
 
-    pub async fn send(&mut self, cmd_type: u16, body: impl Message) -> Result<()> {
+    pub async fn send(&mut self, body: impl Message + CmdID) -> Result<()> {
         let mut buf = Vec::new();
         body.encode(&mut buf)?;
 
         let payload: Vec<u8> = NetPacket {
-            cmd_type,
+            cmd_type: body.get_cmd_id(),
             head: Vec::new(),
             body: buf,
         }

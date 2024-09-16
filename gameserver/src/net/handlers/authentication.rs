@@ -1,45 +1,29 @@
-use anyhow::Result;
 use proto::*;
 
 use crate::{net::PlayerSession, util};
 
 pub async fn on_player_get_token_cs_req(
-    session: &mut PlayerSession,
+    _session: &mut PlayerSession,
     _body: &PlayerGetTokenCsReq,
-) -> Result<()> {
-    session
-        .send(
-            CMD_PLAYER_GET_TOKEN_SC_RSP,
-            PlayerGetTokenScRsp {
-                retcode: 0,
-                msg: String::from("OK"),
-                uid: 25,
-                ..Default::default()
-            },
-        )
-        .await
+    res: &mut PlayerGetTokenScRsp,
+) {
+    res.msg = String::from("OK");
+    res.uid = 25;
 }
 
 pub async fn on_player_login_cs_req(
-    session: &mut PlayerSession,
+    _session: &mut PlayerSession,
     body: &PlayerLoginCsReq,
-) -> Result<()> {
-    session
-        .send(
-            CMD_PLAYER_LOGIN_SC_RSP,
-            PlayerLoginScRsp {
-                login_random: body.login_random,
-                server_timestamp_ms: util::cur_timestamp_ms(),
-                stamina: 240,
-                basic_info: Some(PlayerBasicInfo {
-                    nickname: String::from("RobinSR"),
-                    level: 70,
-                    world_level: 6,
-                    stamina: 240,
-                    ..Default::default()
-                }),
-                ..Default::default()
-            },
-        )
-        .await
+    res: &mut PlayerLoginScRsp,
+) {
+    res.login_random = body.login_random;
+    res.server_timestamp_ms = util::cur_timestamp_ms();
+    res.stamina = 240;
+    res.basic_info = Some(PlayerBasicInfo {
+        nickname: String::from("RobinSR"),
+        level: 70,
+        world_level: 6,
+        stamina: 240,
+        ..Default::default()
+    });
 }

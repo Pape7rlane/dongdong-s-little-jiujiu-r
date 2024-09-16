@@ -2,6 +2,7 @@ use anyhow::Result;
 
 mod logging;
 mod net;
+mod tools;
 mod util;
 
 use logging::init_tracing;

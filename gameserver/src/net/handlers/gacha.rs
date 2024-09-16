@@ -1,10 +1,11 @@
 pub use super::*;
 
 pub async fn on_get_gacha_info_cs_req(
-    session: &mut PlayerSession,
-    _: &GetGachaInfoCsReq,
-) -> anyhow::Result<()> {
-    let gacha = GachaInfo {
+    _session: &mut PlayerSession,
+    _req: &GetGachaInfoCsReq,
+    res: &mut GetGachaInfoScRsp,
+) {
+    res.gacha_info_list = vec![GachaInfo {
         end_time: 1924992000,
         begin_time: 0,
         gacha_ceiling: Some(GachaCeiling::default()),
@@ -17,47 +18,31 @@ pub async fn on_get_gacha_info_cs_req(
         ],
         gacha_id: 1001,
         ..Default::default()
-    };
-    session
-        .send(
-            CMD_GET_GACHA_INFO_SC_RSP,
-            GetGachaInfoScRsp {
-                gacha_info_list: vec![gacha],
-                ..Default::default()
-            },
-        )
-        .await
+    }];
 }
 
 pub async fn on_do_gacha_cs_req(
-    session: &mut PlayerSession,
+    _session: &mut PlayerSession,
     req: &DoGachaCsReq,
-) -> anyhow::Result<()> {
-    session
-        .send(
-            CMD_DO_GACHA_SC_RSP,
-            DoGachaScRsp {
-                gacha_id: req.gacha_id,
-                gacha_num: req.gacha_num,
-                gacha_item_list: (0..req.gacha_num)
-                    .map(|v| GachaItem {
-                        is_new: false,
-                        gacha_item: Some(Item {
-                            item_id: if v % 2 == 0 { 1310 } else { 1314 },
-                            ..Default::default()
-                        }),
-                        token_item: Some(ItemList {
-                            item_list: vec![Item {
-                                item_id: 251,
-                                num: 100,
-                                ..Default::default()
-                            }],
-                        }),
-                        transfer_item_list: Some(ItemList { item_list: vec![] }),
-                    })
-                    .collect(),
+    res: &mut DoGachaScRsp,
+) {
+    res.gacha_id = req.gacha_id;
+    res.gacha_num = req.gacha_num;
+    res.gacha_item_list = (0..req.gacha_num)
+        .map(|v| GachaItem {
+            is_new: false,
+            gacha_item: Some(Item {
+                item_id: if v % 2 == 0 { 1310 } else { 1314 },
                 ..Default::default()
-            },
-        )
-        .await
+            }),
+            token_item: Some(ItemList {
+                item_list: vec![Item {
+                    item_id: 251,
+                    num: 100,
+                    ..Default::default()
+                }],
+            }),
+            transfer_item_list: Some(ItemList { item_list: vec![] }),
+        })
+        .collect();
 }

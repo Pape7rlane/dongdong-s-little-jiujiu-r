@@ -42,7 +42,6 @@ pub async fn query_gateway(parameters: Query<QueryGatewayParameters>) -> String 
             asset_bundle_url: config.asset_bundle_url.clone(),
             ex_resource_url: config.ex_resource_url.clone(),
             lua_url: config.lua_url.clone(),
-            // lua_version: config.lua_version.clone(),
             ifix_version: String::from("0"),
             unk1: true,
             unk2: true,
@@ -51,14 +50,8 @@ pub async fn query_gateway(parameters: Query<QueryGatewayParameters>) -> String 
             unk5: true,
             unk6: true,
             unk7: true,
-            mmcachlfjaa: true,
-            ncikdciigof: true,
-            efknbdlnakj: true,
-            gpjcfcjdmol: true,
-            jidbdekohdh: true,
-            pphbpgbnoem: true,
-            dhppkkgjldl: true,
-            jipjkleanbd: true,
+            jgciiljehhe: true,
+
             ..Default::default()
         }
     } else {

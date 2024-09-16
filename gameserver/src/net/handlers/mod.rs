@@ -9,7 +9,6 @@ mod mail;
 mod mission;
 mod player;
 mod scene;
-mod tutorial;
 
 use anyhow::Result;
 use paste::paste;
@@ -30,7 +29,6 @@ pub use mail::*;
 pub use mission::*;
 pub use player::*;
 pub use scene::*;
-// pub use tutorial::*;
 
 #[allow(unused_imports)]
 use proto::{

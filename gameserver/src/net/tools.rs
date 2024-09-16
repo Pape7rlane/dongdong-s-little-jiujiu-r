@@ -12,7 +12,6 @@ pub struct AvatarJson {
     pub data: AvatarData,
     pub level: u32,
     pub promotion: u32,
-    // pub rank: u32,
     #[serde(alias = "use_technique")]
     #[serde(alias = "useTechnique")]
     pub techniques: Vec<u32>,
@@ -32,7 +31,6 @@ impl AvatarJson {
     pub fn to_avatar_proto(&self, lightcone: Option<&Lightcone>, relics: Vec<&Relic>) -> Avatar {
         Avatar {
             base_avatar_id: self.avatar_id,
-            exp: 0,
             level: self.level,
             promotion: self.promotion,
             rank: self.data.rank,
@@ -68,7 +66,7 @@ impl AvatarJson {
     ) -> (BattleAvatar, Vec<BattleBuff>) {
         let battle_avatar = BattleAvatar {
             index,
-            avatar_type: AvatarType::AvatarFormalType.into(),
+            avatar_type: AvatarType::AvatarUpgradeAvailableType.into(),
             id: self.avatar_id,
             level: self.level,
             rank: self.data.rank,
@@ -358,6 +356,8 @@ pub struct BattleConfig {
     pub cycle_count: u32,
     pub path_resonance_id: u32,
     pub custom_stats: Vec<SubAffix>,
+    #[serde(default)]
+    pub scepters: Vec<RogueMagicScepter>,
 }
 
 impl Default for BattleConfig {
@@ -374,6 +374,7 @@ impl Default for BattleConfig {
             cycle_count: Default::default(),
             path_resonance_id: Default::default(),
             custom_stats: Default::default(),
+            scepters: Default::default(),
         }
     }
 }
@@ -429,6 +430,29 @@ impl BattleBuffJson {
     }
 }
 
+#[derive(Debug, Serialize, Deserialize, Clone, Eq, PartialEq, Default)]
+#[repr(u32)]
+pub enum RogueMagicComponentType {
+    Passive = 3,
+    #[default]
+    Active = 4,
+    Attach = 5,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, Default)]
+pub struct RogueMagicScepter {
+    pub level: u32,
+    pub id: u32,
+    pub components: Vec<RogueMagicComponent>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, Default)]
+pub struct RogueMagicComponent {
+    pub id: u32,
+    pub level: u32,
+    pub component_type: RogueMagicComponentType,
+}
+
 // SCENE
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Scene {
@@ -463,13 +487,11 @@ impl Position {
 
     pub fn to_motion(&self) -> MotionInfo {
         MotionInfo {
-            // rot
             rot: Some(Vector {
                 x: 0,
                 y: self.rot_y,
                 z: 0,
             }),
-            // pos
             pos: Some(Vector {
                 x: self.x,
                 y: self.y,
@@ -488,15 +510,15 @@ pub struct FreesrData {
     #[serde(default)]
     pub battle_config: BattleConfig,
 
-    #[serde(default)]
+    #[serde(default, skip_serializing)]
     pub lineups: BTreeMap<u32, u32>,
-    #[serde(default)]
+    #[serde(default, skip_serializing)]
     pub position: Position,
-    #[serde(default)]
+    #[serde(default, skip_serializing)]
     pub scene: Scene,
-    #[serde(default)]
+    #[serde(default, skip_serializing)]
     pub main_character: MultiPathAvatar,
-    #[serde(default)]
+    #[serde(default, skip_serializing)]
     pub march_type: MultiPathAvatar,
 }
 
@@ -517,7 +539,7 @@ pub struct Persistent {
 impl Default for Persistent {
     fn default() -> Self {
         let mut lineups = BTreeMap::<u32, u32>::new();
-        lineups.insert(0, 8006);
+        lineups.insert(0, 8001);
         lineups.insert(1, 0);
         lineups.insert(2, 0);
         lineups.insert(3, 0);
@@ -624,7 +646,7 @@ impl FreesrData {
 
     async fn verify_lineup(&mut self) {
         if self.lineups.is_empty() {
-            self.lineups = BTreeMap::<u32, u32>::from([(0, 8006), (1, 0), (2, 0), (3, 0)])
+            self.lineups = BTreeMap::<u32, u32>::from([(0, 8001), (1, 0), (2, 0), (3, 0)])
         } else if self.lineups.len() < 4 {
             for i in self.lineups.len()..4 {
                 self.lineups.insert(i as u32, 0);

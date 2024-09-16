@@ -5,6 +5,28 @@ use tokio::net::TcpStream;
 use tracing::Instrument;
 
 use proto::*;
+#[allow(unused_imports)]
+use proto::{
+    CmdActivityType::*, CmdAdventureType::*, CmdAetherDivideType::*, CmdAlleyType::*,
+    CmdArchiveType::*, CmdAvatarType::*, CmdBattleCollegeType::*, CmdBattlePassType::*,
+    CmdBattleType::*, CmdBoxingClubType::*, CmdChallengeType::*, CmdChatType::*,
+    CmdChessRogueType::*, CmdClockParkType::*, CmdContentPackageType::*, CmdDailyActiveType::*,
+    CmdDrinkMakerType::*, CmdExpeditionType::*, CmdFantasticStoryActivityType::*,
+    CmdFeverTimeActivityType::*, CmdFightActivityType::*, CmdFightMathc3Type::*, CmdFightType::*,
+    CmdFriendType::*, CmdGachaType::*, CmdHeartdialType::*, CmdHeliobusType::*, CmdItemType::*,
+    CmdJukeboxType::*, CmdLineupType::*, CmdLobbyType::*, CmdMailType::*, CmdMapRotationType::*,
+    CmdMatchThreeModuleType::*, CmdMatchType::*, CmdMessageType::*, CmdMiscModuleType::*,
+    CmdMissionType::*, CmdMonopolyType::*, CmdMultiplayerType::*, CmdMultipleDropType::*,
+    CmdMuseumType::*, CmdOfferingType::*, CmdPamMissionType::*, CmdPhoneType::*,
+    CmdPlayerBoardType::*, CmdPlayerReturnType::*, CmdPlayerSync::*, CmdPlayerType::*,
+    CmdPlotType::*, CmdPunkLordType::*, CmdQuestType::*, CmdRaidCollectionType::*, CmdRaidType::*,
+    CmdRedDotType::*, CmdReplayType::*, CmdRndOptionType::*, CmdRogueCommonType::*,
+    CmdRogueEndless::*, CmdRogueModifierType::*, CmdRogueTournType::*, CmdRogueType::*,
+    CmdRollShopType::*, CmdSceneType::*, CmdServerPrefsType::*, CmdShopType::*, CmdSpaceZooType::*,
+    CmdStarFightType::*, CmdStoryLineType::*, CmdStrongChallengeActivityType::*,
+    CmdTalkRewardType::*, CmdTelevisionActivityType::*, CmdTextJoinType::*, CmdTrainVisitorType::*,
+    CmdTreasureDungeonType::*, CmdTutorialType::*, CmdWaypointType::*, CmdWolfBroType::*,
+};
 
 use super::handlers::*;
 use super::PlayerSession;
@@ -58,12 +80,16 @@ impl NetPacket {
 }
 
 macro_rules! trait_handler {
-    ($($name:ident $cmd_type:expr;)*) => {
+    ($($name:tt;)*) => {
         pub trait CommandHandler {
             $(
                 paste! {
-                    async fn [<on_$name:snake>](session: &mut PlayerSession, body: &$name) -> Result<()> {
-                        [<on_$name:snake>](session, body).await
+                    async fn [<on_$name:snake _cs_req>](session: &mut PlayerSession, request: &[<$name CsReq>]) -> Result<()> {
+                        let mut response = proto::[<$name ScRsp>]::default();
+                        let _ = [<on_$name:snake _cs_req>](session, request, &mut response).await;
+                        session.send(response).await?;
+
+                        Ok(())
                     }
                 }
             )*
@@ -74,12 +100,14 @@ macro_rules! trait_handler {
                     session.send_dummy_response(cmd_type).await?;
                     return Ok(());
                 }
+
+
                 match cmd_type {
                     $(
-                        $cmd_type => {
-                            let body = $name::decode(&mut &payload[..])?;
+                        cmd_type if cmd_type == paste! { [<Cmd$name CsReq>] as u16 }  => {
+                            let body = paste! { proto::[<$name CsReq>]::decode(&mut &payload[..])? };
                             paste! {
-                                Self::[<on_$name:snake>](session, &body)
+                                Self::[<on_$name:snake _cs_req>](session, &body)
                                     .instrument(tracing::info_span!(stringify!([<on_$name:snake>]), cmd_type = cmd_type))
                                     .await
                             }
@@ -96,59 +124,54 @@ macro_rules! trait_handler {
 }
 
 trait_handler! {
-    PlayerGetTokenCsReq 56;         // PlayerGetTokenScRsp
-    PlayerLoginCsReq 68;            // PlayerLoginScRsp, PlayerBasicInfo
-    GetMissionStatusCsReq 1224;     // GetMissionStatusScRsp, Mission
-    GetBasicInfoCsReq 40;           // GetBasicInfoScRsp, PlayerSettingInfo
-    GetMultiPathAvatarInfoCsReq 27;
-    GetAvatarDataCsReq 368;         // GetAvatarDataScRsp, Avatar
-    GetAllLineupDataCsReq 724;      // GetAllLineupDataScRsp, LineupInfo, ExtraLineupType, LineupAvatar, AmountInfo
-    GetCurLineupDataCsReq 711;      // GetCurLineupDataScRsp
-    GetCurSceneInfoCsReq 1439;      // GetCurSceneInfoScRsp, SceneInfo
-    PlayerHeartBeatCsReq 31;        // PlayerHeartBeatScRsp
+    PlayerGetToken;
+    PlayerLogin;
+    GetMissionStatus;
+    GetBasicInfo;
+    GetMultiPathAvatarInfo;
+    GetAvatarData;
+    GetAllLineupData;
+    GetCurLineupData;
+    GetCurSceneInfo;
+    PlayerHeartBeat;
 
-    // // Tutorial (dummy!)
-    // GetTutorialGuideCsReq 1691;
-    // UnlockTutorialGuideCsReq 1630;
-    // GetTutorialCsReq 1661;
 
     // Entity move (dummy!)
-    SceneEntityMoveCsReq 1468;
+    SceneEntityMove;
 
     // Inventory (dummy!)
-    GetBagCsReq 568;
-    GetArchiveDataCsReq 2368;
-    DressAvatarCsReq 351;
-    TakeOffEquipmentCsReq 399;
-    DressRelicAvatarCsReq 334;
-    TakeOffRelicCsReq 398;
+    GetBag;
+    GetArchiveData;
+    DressAvatar;
+    TakeOffEquipment;
+    DressRelicAvatar;
+    TakeOffRelic;
 
     // Chat (dummy!)
-    SendMsgCsReq 3968;
-    GetPrivateChatHistoryCsReq 3956;
-    GetFriendListInfoCsReq 2968;
-    GetFriendLoginInfoCsReq 2969;
+    SendMsg;
+    GetPrivateChatHistory;
+    GetFriendListInfo;
+    GetFriendLoginInfo;
 
     // In-game lineup
-    JoinLineupCsReq 756;
-    ChangeLineupLeaderCsReq 748;
-    ReplaceLineupCsReq 790;
-    QuitLineupCsReq 739;
+    JoinLineup;
+    ChangeLineupLeader;
+    ReplaceLineup;
+    QuitLineup;
 
     // Battle
-    StartCocoonStageCsReq 1445;
-    PveBattleResultCsReq 168;
-    SceneCastSkillCsReq 1456;
+    StartCocoonStage;
+    PveBattleResult;
+    SceneCastSkill;
 
     // Teleport
-    GetEnteredSceneCsReq 1427;
-    GetSceneMapInfoCsReq 1436;
-    EnterSceneCsReq 1486;
+    GetEnteredScene;
+    GetSceneMapInfo;
+    EnterScene;
 
     // Optional
-    GetMailCsReq 868;
-    GetGachaInfoCsReq 1968;
-    DoGachaCsReq 1911;
-    // GetQuestDataCsReq 961;
-    PlayerLoginFinishCsReq 73;
+    GetMail;
+    GetGachaInfo;
+    DoGacha;
+    PlayerLoginFinish;
 }

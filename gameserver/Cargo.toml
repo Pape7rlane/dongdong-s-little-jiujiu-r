@@ -28,5 +28,6 @@ tracing-bunyan-formatter.workspace = true
 
 prost.workspace = true
 proto.workspace = true
+proto-derive.workspace = true
 
 rand.workspace = true

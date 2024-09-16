@@ -6,34 +6,26 @@ use crate::net::tools::{self, AvatarJson, FreesrData};
 use super::*;
 
 pub async fn on_get_all_lineup_data_cs_req(
-    session: &mut PlayerSession,
+    _session: &mut PlayerSession,
     _body: &GetAllLineupDataCsReq,
-) -> Result<()> {
+    res: &mut GetAllLineupDataScRsp,
+) {
     let player = tools::FreesrData::load().await;
-    let lineup = LineupInfo {
+    res.lineup_list = vec![LineupInfo {
         extra_lineup_type: ExtraLineupType::LineupNone.into(),
         name: "Squad 1".to_string(),
         mp: 5,
         max_mp: 5,
         avatar_list: AvatarJson::to_lineup_avatars(&player),
         ..Default::default()
-    };
-
-    session
-        .send(
-            CMD_GET_ALL_LINEUP_DATA_SC_RSP,
-            GetAllLineupDataScRsp {
-                lineup_list: vec![lineup],
-                ..Default::default()
-            },
-        )
-        .await
+    }];
 }
 
 pub async fn on_get_cur_lineup_data_cs_req(
-    session: &mut PlayerSession,
+    _session: &mut PlayerSession,
     _body: &GetCurLineupDataCsReq,
-) -> Result<()> {
+    res: &mut GetCurLineupDataScRsp,
+) {
     let player = tools::FreesrData::load().await;
     let lineup = LineupInfo {
         extra_lineup_type: ExtraLineupType::LineupNone.into(),
@@ -46,95 +38,63 @@ pub async fn on_get_cur_lineup_data_cs_req(
         ..Default::default()
     };
 
-    session
-        .send(
-            CMD_GET_CUR_LINEUP_DATA_SC_RSP,
-            GetCurLineupDataScRsp {
-                lineup: Some(lineup),
-                ..Default::default()
-            },
-        )
-        .await
+    res.lineup = Some(lineup)
 }
 
 pub async fn on_join_lineup_cs_req(
     session: &mut PlayerSession,
     body: &JoinLineupCsReq,
-) -> Result<()> {
-    // update lineups
-    // TODO: FIX THESE SHIT
-    {
-        let mut player = tools::FreesrData::load().await;
-        let lineups = &mut player.lineups;
-        lineups.insert(
-            body.slot,
-            if body.base_avatar_id == 8001 {
-                player.main_character as u32
-            } else if body.base_avatar_id == 1001 {
-                player.march_type as u32
-            } else {
-                body.base_avatar_id
-            },
-        );
-        player.save_lineup().await;
-    }
-
-    {
-        let player = tools::FreesrData::load().await;
-
-        refresh_lineup(session, &player).await?;
-    }
-
-    session
-        .send(CMD_JOIN_LINEUP_SC_RSP, JoinLineupScRsp::default())
-        .await
+    _res: &mut JoinLineupScRsp,
+) {
+    let mut player = tools::FreesrData::load().await;
+    let lineups = &mut player.lineups;
+    lineups.insert(
+        body.slot,
+        if body.base_avatar_id == 8001 {
+            player.main_character as u32
+        } else if body.base_avatar_id == 1001 {
+            player.march_type as u32
+        } else {
+            body.base_avatar_id
+        },
+    );
+    player.save_lineup().await;
+    refresh_lineup(session, &player).await;
 }
 
 pub async fn on_replace_lineup_cs_req(
     _session: &mut PlayerSession,
     req: &ReplaceLineupCsReq,
-) -> Result<()> {
-    {
-        let mut player = tools::FreesrData::load().await;
+    _res: &mut ReplaceLineupScRsp,
+) {
+    let mut player = tools::FreesrData::load().await;
 
-        let lineups = &mut player.lineups;
-        for (slot, avatar_id) in &mut *lineups {
-            if let Some(lineup) = req.slots.get(*slot as usize) {
-                *avatar_id = if lineup.id == 8001 {
-                    player.main_character as u32
-                } else if lineup.id == 1001 {
-                    player.march_type as u32
-                } else {
-                    lineup.id
-                };
+    let lineups = &mut player.lineups;
+    for (slot, avatar_id) in &mut *lineups {
+        if let Some(lineup) = req.slots.get(*slot as usize) {
+            *avatar_id = if lineup.id == 8001 {
+                player.main_character as u32
+            } else if lineup.id == 1001 {
+                player.march_type as u32
             } else {
-                *avatar_id = 0;
-            }
+                lineup.id
+            };
+        } else {
+            *avatar_id = 0;
         }
-        player.save_lineup().await;
     }
-
-    {
-        let player = tools::FreesrData::load().await;
-
-        refresh_lineup(_session, &player).await?;
-    }
-
-    _session
-        .send(CMD_JOIN_LINEUP_SC_RSP, JoinLineupScRsp::default())
-        .await
+    player.save_lineup().await;
+    refresh_lineup(_session, &player).await;
 }
 
 pub async fn on_quit_lineup_cs_req(
     _session: &mut PlayerSession,
     _: &QuitLineupCsReq,
-) -> Result<()> {
-    _session
-        .send(CMD_JOIN_LINEUP_SC_RSP, JoinLineupScRsp::default())
-        .await
+    _res: &mut QuitLineupScRsp,
+) {
 }
 
-async fn refresh_lineup(sess: &mut PlayerSession, player: &FreesrData) -> Result<()> {
+async fn refresh_lineup(session: &mut PlayerSession, player: &FreesrData) {
     let lineup = LineupInfo {
         extra_lineup_type: ExtraLineupType::LineupNone.into(),
         name: "Squad 1".to_string(),
@@ -144,9 +104,8 @@ async fn refresh_lineup(sess: &mut PlayerSession, player: &FreesrData) -> Result
         ..Default::default()
     };
 
-    sess.send(
-        CMD_SCENE_GROUP_REFRESH_SC_NOTIFY,
-        SceneGroupRefreshScNotify {
+    session
+        .send(SceneGroupRefreshScNotify {
             group_refresh_info: vec![SceneGroupRefreshInfo {
                 group_id: 0,
                 state: 0,
@@ -170,31 +129,23 @@ async fn refresh_lineup(sess: &mut PlayerSession, player: &FreesrData) -> Result
                     })
                     .collect(),
             }],
-        },
-    )
-    .await?;
+        })
+        .await
+        .unwrap();
 
-    sess.send(
-        CMD_SYNC_LINEUP_NOTIFY,
-        SyncLineupNotify {
+    session
+        .send(SyncLineupNotify {
             lineup: Some(lineup),
             reason_list: vec![],
-        },
-    )
-    .await
+        })
+        .await
+        .unwrap();
 }
 
 pub async fn on_change_lineup_leader_cs_req(
-    session: &mut PlayerSession,
+    _session: &mut PlayerSession,
     body: &ChangeLineupLeaderCsReq,
-) -> Result<()> {
-    session
-        .send(
-            CMD_CHANGE_LINEUP_LEADER_SC_RSP,
-            ChangeLineupLeaderScRsp {
-                slot: body.slot,
-                retcode: 0,
-            },
-        )
-        .await
+    res: &mut ChangeLineupLeaderScRsp,
+) {
+    res.slot = body.slot;
 }

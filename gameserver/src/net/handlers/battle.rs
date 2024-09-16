@@ -1,70 +1,53 @@
 use std::collections::HashMap;
 
 use rand::Rng;
+use rogue_magic_battle_unit_info::Item;
 
 use crate::net::tools::{self, BattleType, Monster};
 
 use super::*;
 
 pub async fn on_start_cocoon_stage_cs_req(
-    session: &mut PlayerSession,
+    _session: &mut PlayerSession,
     body: &StartCocoonStageCsReq,
-) -> Result<()> {
+    res: &mut StartCocoonStageScRsp,
+) {
     let battle_info = create_battle_info().await;
 
-    let rsp = StartCocoonStageScRsp {
-        retcode: 0,
-        prop_entity_id: body.prop_entity_id,
-        cocoon_id: body.cocoon_id,
-        wave: body.wave,
-        battle_info: Some(battle_info),
-    };
-
-    session.send(CMD_START_COCOON_STAGE_SC_RSP, rsp).await
+    res.prop_entity_id = body.prop_entity_id;
+    res.cocoon_id = body.cocoon_id;
+    res.wave = body.wave;
+    res.battle_info = Some(battle_info);
 }
 
 pub async fn on_pve_battle_result_cs_req(
-    session: &mut PlayerSession,
+    _session: &mut PlayerSession,
     body: &PveBattleResultCsReq,
-) -> Result<()> {
-    session
-        .send(
-            CMD_PVE_BATTLE_RESULT_SC_RSP,
-            PveBattleResultScRsp {
-                retcode: 0,
-                end_status: body.end_status,
-                battle_id: body.battle_id,
-                ..Default::default()
-            },
-        )
-        .await
+    res: &mut PveBattleResultScRsp,
+) {
+    res.end_status = body.end_status;
+    res.battle_id = body.battle_id;
 }
 
 pub async fn on_scene_cast_skill_cs_req(
-    session: &mut PlayerSession,
+    _session: &mut PlayerSession,
     request: &SceneCastSkillCsReq,
-) -> Result<()> {
+    res: &mut SceneCastSkillScRsp,
+) {
+    res.attacked_group_id = request.attacked_group_id;
+
     let battle_info = create_battle_info().await;
-
-    let mut resp = SceneCastSkillScRsp {
-        attacked_group_id: request.attacked_group_id,
-        retcode: 0,
-        ..Default::default()
-    };
-
     let targets = request
-        .assist_monster_entity_id_list
+        .hit_target_entity_id_list
         .iter()
         .filter(|id| **id > 30_000 || **id < 1_000)
         .collect::<Vec<_>>();
 
     if targets.is_empty() {
-        return session.send(CMD_SCENE_CAST_SKILL_SC_RSP, resp).await;
+        return;
     }
 
-    resp.battle_info = Some(battle_info);
-
-    session.send(CMD_SCENE_CAST_SKILL_SC_RSP, resp).await
+    res.battle_info = Some(battle_info);
 }
 
 async fn create_battle_info() -> SceneBattleInfo {
@@ -237,11 +220,62 @@ async fn create_battle_info() -> SceneBattleInfo {
                         max_sp: 10_000,
                     }),
                 }),
+                skill_info: vec![],
             })
     }
 
     // monsters
     battle_info.monster_wave_list = Monster::to_scene_monster_waves(&player.battle_config.monsters);
+
+    if !player.battle_config.scepters.is_empty() {
+        battle_info.rogue_magic_battle_info = Some(RogueMagicBattleInfo {
+            player_detail_info: Some(RogueMagicBattleUnitInfo {
+                item: Some(Item::BattleRogueMagicData(BattleRogueMagicData {
+                    round_cnt: Some(BattleRogueMagicRoundCount {
+                        hhfjaibgama: 3,
+                        mmkolnbikjh: 0,
+                    }),
+                    battle_scepter_list: player
+                        .battle_config
+                        .scepters
+                        .iter()
+                        .map(|scepter| {
+                            let mut battle_scepter = BattleRogueMagicScepter {
+                                level: scepter.level,
+                                scepter_id: scepter.id,
+                                magic_unit_list: Vec::new(),
+                                slot_count_map: HashMap::from([(3, 0), (4, 0), (5, 0)]),
+                            };
+
+                            let mut index = [0u32; 3];
+
+                            for component in &scepter.components {
+                                let (slot_type, locked) = match component.component_type {
+                                    tools::RogueMagicComponentType::Passive => (3u32, false),
+                                    tools::RogueMagicComponentType::Active => (4, true),
+                                    tools::RogueMagicComponentType::Attach => (5, false),
+                                };
+
+                                let slot_index = &mut index[slot_type as usize - 3];
+                                battle_scepter.magic_unit_list.push(BattleRogueMagicUnit {
+                                    level: component.level,
+                                    unit_id: component.id,
+                                    slot_id: *slot_index,
+                                    locked,
+                                    counter_map: Default::default(),
+                                });
+                                *slot_index += 1;
+                                *battle_scepter.slot_count_map.get_mut(&slot_type).unwrap() += 1;
+                            }
+
+                            battle_scepter
+                        })
+                        .collect(),
+                })),
+            }),
+            scepter: Some(Igefngnckog { ojibobnaikh: 5 }),
+        });
+    }
 
     battle_info
 }

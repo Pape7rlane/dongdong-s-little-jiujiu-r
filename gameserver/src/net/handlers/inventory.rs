@@ -1,96 +1,66 @@
-use anyhow::Result;
 use proto::*;
 
 use crate::net::{tools::FreesrData, PlayerSession};
 
-pub async fn on_get_bag_cs_req(session: &mut PlayerSession, _: &GetBagCsReq) -> Result<()> {
+pub async fn on_get_bag_cs_req(
+    _session: &mut PlayerSession,
+    _req: &GetBagCsReq,
+    res: &mut GetBagScRsp,
+) {
     let player = FreesrData::load().await;
 
-    session
-        .send(
-            CMD_GET_BAG_SC_RSP,
-            GetBagScRsp {
-                equipment_list: player
-                    .lightcones
-                    .iter()
-                    .map(|v| v.to_equipment_proto())
-                    .collect(),
-                relic_list: player.relics.iter().map(|v| v.to_relic_proto()).collect(),
-                material_list: vec![
-                    Material {
-                        tid: 101, // Normal Pass
-                        num: 999999,
-                        ..Default::default()
-                    },
-                    Material {
-                        tid: 102, // Special Pass
-                        num: 999999,
-                        ..Default::default()
-                    },
-                ],
-                ..Default::default()
-            },
-        )
-        .await
+    res.equipment_list = player
+        .lightcones
+        .iter()
+        .map(|v| v.to_equipment_proto())
+        .collect();
+    res.relic_list = player.relics.iter().map(|v| v.to_relic_proto()).collect();
+    res.material_list = vec![
+        Material {
+            tid: 101, // Normal Pass
+            num: 999999,
+            ..Default::default()
+        },
+        Material {
+            tid: 102, // Special Pass
+            num: 999999,
+            ..Default::default()
+        },
+    ];
 }
 
 pub async fn on_get_archive_data_cs_req(
-    session: &mut PlayerSession,
+    _session: &mut PlayerSession,
     _: &GetArchiveDataCsReq,
-) -> Result<()> {
-    session
-        .send(
-            CMD_GET_ARCHIVE_DATA_SC_RSP,
-            GetArchiveDataScRsp {
-                archive_data: Some(ArchiveData::default()),
-                retcode: 0,
-            },
-        )
-        .await
+    res: &mut GetArchiveDataScRsp,
+) {
+    res.archive_data = Some(ArchiveData::default());
 }
 
 pub async fn on_dress_relic_avatar_cs_req(
-    session: &mut PlayerSession,
-    _: &DressRelicAvatarCsReq,
-) -> Result<()> {
-    // ?
-    session
-        .send(
-            CMD_DRESS_RELIC_AVATAR_SC_RSP,
-            DressRelicAvatarScRsp::default(),
-        )
-        .await
+    _session: &mut PlayerSession,
+    _req: &DressRelicAvatarCsReq,
+    _res: &mut DressRelicAvatarScRsp,
+) {
 }
 
 pub async fn on_take_off_relic_cs_req(
-    session: &mut PlayerSession,
-    _: &TakeOffRelicCsReq,
-) -> Result<()> {
-    // ?
-    session
-        .send(CMD_TAKE_OFF_RELIC_SC_RSP, TakeOffRelicScRsp::default())
-        .await
+    _session: &mut PlayerSession,
+    _req: &TakeOffRelicCsReq,
+    _res: &mut TakeOffRelicScRsp,
+) {
 }
 
 pub async fn on_dress_avatar_cs_req(
-    session: &mut PlayerSession,
-    _: &DressAvatarCsReq,
-) -> Result<()> {
-    // ?
-    session
-        .send(CMD_DRESS_AVATAR_SC_RSP, DressAvatarScRsp::default())
-        .await
+    _session: &mut PlayerSession,
+    _req: &DressAvatarCsReq,
+    _res: &mut DressAvatarScRsp,
+) {
 }
 
 pub async fn on_take_off_equipment_cs_req(
-    session: &mut PlayerSession,
-    _: &TakeOffEquipmentCsReq,
-) -> Result<()> {
-    // ?
-    session
-        .send(
-            CMD_TAKE_OFF_EQUIPMENT_SC_RSP,
-            TakeOffEquipmentScRsp::default(),
-        )
-        .await
+    _session: &mut PlayerSession,
+    _req: &TakeOffEquipmentCsReq,
+    _res: &mut TakeOffEquipmentScRsp,
+) {
 }
