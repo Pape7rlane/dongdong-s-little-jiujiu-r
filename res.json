@@ -10624,141 +10624,6 @@
             ],
             "teleports": {}
           },
-          "269": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 269,
-                "instId": 300006,
-                "propState": 0,
-                "pos": {
-                  "x": -51041,
-                  "y": 4994,
-                  "z": -18956
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300007,
-                "propState": 0,
-                "pos": {
-                  "x": -59088,
-                  "y": -1032,
-                  "z": -45017
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300008,
-                "propState": 0,
-                "pos": {
-                  "x": -56220,
-                  "y": -884,
-                  "z": -60810
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102008
-              },
-              {
-                "groupId": 269,
-                "instId": 300010,
-                "propState": 0,
-                "pos": {
-                  "x": -63384,
-                  "y": -1032,
-                  "z": -69969
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102008
-              },
-              {
-                "groupId": 269,
-                "instId": 300011,
-                "propState": 0,
-                "pos": {
-                  "x": -21402,
-                  "y": -928,
-                  "z": -80152
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300034,
-                "propState": 0,
-                "pos": {
-                  "x": -37547,
-                  "y": 4994,
-                  "z": -15987
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 54058,
-                  "z": 0
-                },
-                "propId": 102006
-              },
-              {
-                "groupId": 269,
-                "instId": 300035,
-                "propState": 0,
-                "pos": {
-                  "x": -53481,
-                  "y": -1032,
-                  "z": -46193
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 278428,
-                  "z": 0
-                },
-                "propId": 102006
-              },
-              {
-                "groupId": 269,
-                "instId": 300036,
-                "propState": 0,
-                "pos": {
-                  "x": -54540,
-                  "y": -1027,
-                  "z": -73961
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 248125,
-                  "z": 0
-                },
-                "propId": 102006
-              }
-            ],
-            "teleports": {}
-          },
           "280": {
             "monsters": [],
             "npcs": [],
@@ -13081,167 +12946,6 @@
               }
             ],
             "props": [],
-            "teleports": {}
-          },
-          "328": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 328,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "329": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 329,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "330": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 330,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "331": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 331,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "332": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 332,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "333": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 333,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "334": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 334,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
             "teleports": {}
           }
         },
@@ -89971,7 +89675,7 @@
               {
                 "groupId": 51,
                 "instId": 300001,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -45550,
                   "y": 182859,
@@ -89987,7 +89691,7 @@
               {
                 "groupId": 51,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 34205,
                   "y": 172241,
@@ -90003,7 +89707,7 @@
               {
                 "groupId": 51,
                 "instId": 300003,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -5492,
                   "y": 172245,
@@ -90051,7 +89755,7 @@
               {
                 "groupId": 51,
                 "instId": 300006,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -47126,
                   "y": 182937,
@@ -90067,7 +89771,7 @@
               {
                 "groupId": 51,
                 "instId": 300007,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 29865,
                   "y": 172315,
@@ -90099,7 +89803,7 @@
               {
                 "groupId": 51,
                 "instId": 300009,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 86620,
                   "y": 411956,
@@ -90404,7 +90108,7 @@
               {
                 "groupId": 97,
                 "instId": 300005,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 75259,
                   "y": 172424,
@@ -90436,7 +90140,7 @@
               {
                 "groupId": 97,
                 "instId": 300007,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 13963,
                   "y": 172245,
@@ -103783,7 +103487,7 @@
               {
                 "groupId": 61,
                 "instId": 300003,
-                "propState": 0,
+                "propState": 1,
                 "pos": {
                   "x": -1943,
                   "y": -8477,
@@ -103889,164 +103593,6 @@
                   "z": 0
                 },
                 "propId": 103219
-              }
-            ],
-            "teleports": {}
-          },
-          "66": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 66,
-                "instId": 300001,
-                "propState": 0,
-                "pos": {
-                  "x": -1975,
-                  "y": 0,
-                  "z": -40475
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 103096
-              },
-              {
-                "groupId": 66,
-                "instId": 300002,
-                "propState": 0,
-                "pos": {
-                  "x": -1802,
-                  "y": 6095,
-                  "z": -33467
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103096
-              },
-              {
-                "groupId": 66,
-                "instId": 300003,
-                "propState": 0,
-                "pos": {
-                  "x": -1943,
-                  "y": -8477,
-                  "z": -24725
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103096
-              }
-            ],
-            "teleports": {}
-          },
-          "70": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 70,
-                "instId": 300003,
-                "propState": 0,
-                "pos": {
-                  "x": -20190,
-                  "y": 0,
-                  "z": -40220
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 319852,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300004,
-                "propState": 0,
-                "pos": {
-                  "x": -17320,
-                  "y": 0,
-                  "z": -37800
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 319852,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300005,
-                "propState": 0,
-                "pos": {
-                  "x": -14456,
-                  "y": 0,
-                  "z": -35383
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 319852,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300006,
-                "propState": 0,
-                "pos": {
-                  "x": 20190,
-                  "y": 0,
-                  "z": -40220
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 40149,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300007,
-                "propState": 0,
-                "pos": {
-                  "x": 17320,
-                  "y": 0,
-                  "z": -37800
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 40149,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300008,
-                "propState": 0,
-                "pos": {
-                  "x": 14456,
-                  "y": 0,
-                  "z": -35383
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 40149,
-                  "z": 0
-                },
-                "propId": 103145
               }
             ],
             "teleports": {}
@@ -104670,45 +104216,6 @@
                   "z": 0
                 },
                 "propId": 914
-              }
-            ],
-            "teleports": {}
-          },
-          "193": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 193,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": -1975,
-                  "y": 0,
-                  "z": -40475
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 103096
-              },
-              {
-                "groupId": 193,
-                "instId": 300003,
-                "propState": 1,
-                "pos": {
-                  "x": -1943,
-                  "y": -8477,
-                  "z": -24725
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103096
               }
             ],
             "teleports": {}
@@ -107004,7 +106511,7 @@
               {
                 "groupId": 61,
                 "instId": 300003,
-                "propState": 0,
+                "propState": 1,
                 "pos": {
                   "x": -1943,
                   "y": -8477,
@@ -107110,164 +106617,6 @@
                   "z": 0
                 },
                 "propId": 103219
-              }
-            ],
-            "teleports": {}
-          },
-          "66": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 66,
-                "instId": 300001,
-                "propState": 0,
-                "pos": {
-                  "x": -1975,
-                  "y": 0,
-                  "z": -40475
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 103096
-              },
-              {
-                "groupId": 66,
-                "instId": 300002,
-                "propState": 0,
-                "pos": {
-                  "x": -1802,
-                  "y": 6095,
-                  "z": -33467
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103096
-              },
-              {
-                "groupId": 66,
-                "instId": 300003,
-                "propState": 0,
-                "pos": {
-                  "x": -1943,
-                  "y": -8477,
-                  "z": -24725
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103096
-              }
-            ],
-            "teleports": {}
-          },
-          "70": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 70,
-                "instId": 300003,
-                "propState": 0,
-                "pos": {
-                  "x": -20190,
-                  "y": 0,
-                  "z": -40220
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 319852,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300004,
-                "propState": 0,
-                "pos": {
-                  "x": -17320,
-                  "y": 0,
-                  "z": -37800
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 319852,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300005,
-                "propState": 0,
-                "pos": {
-                  "x": -14456,
-                  "y": 0,
-                  "z": -35383
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 319852,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300006,
-                "propState": 0,
-                "pos": {
-                  "x": 20190,
-                  "y": 0,
-                  "z": -40220
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 40149,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300007,
-                "propState": 0,
-                "pos": {
-                  "x": 17320,
-                  "y": 0,
-                  "z": -37800
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 40149,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300008,
-                "propState": 0,
-                "pos": {
-                  "x": 14456,
-                  "y": 0,
-                  "z": -35383
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 40149,
-                  "z": 0
-                },
-                "propId": 103145
               }
             ],
             "teleports": {}
@@ -107891,45 +107240,6 @@
                   "z": 0
                 },
                 "propId": 914
-              }
-            ],
-            "teleports": {}
-          },
-          "193": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 193,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": -1975,
-                  "y": 0,
-                  "z": -40475
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 103096
-              },
-              {
-                "groupId": 193,
-                "instId": 300003,
-                "propState": 1,
-                "pos": {
-                  "x": -1943,
-                  "y": -8477,
-                  "z": -24725
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103096
               }
             ],
             "teleports": {}
@@ -110227,7 +109537,7 @@
               {
                 "groupId": 61,
                 "instId": 300003,
-                "propState": 0,
+                "propState": 1,
                 "pos": {
                   "x": -1943,
                   "y": -8477,
@@ -110333,164 +109643,6 @@
                   "z": 0
                 },
                 "propId": 103219
-              }
-            ],
-            "teleports": {}
-          },
-          "66": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 66,
-                "instId": 300001,
-                "propState": 0,
-                "pos": {
-                  "x": -1975,
-                  "y": 0,
-                  "z": -40475
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 103096
-              },
-              {
-                "groupId": 66,
-                "instId": 300002,
-                "propState": 0,
-                "pos": {
-                  "x": -1802,
-                  "y": 6095,
-                  "z": -33467
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103096
-              },
-              {
-                "groupId": 66,
-                "instId": 300003,
-                "propState": 0,
-                "pos": {
-                  "x": -1943,
-                  "y": -8477,
-                  "z": -24725
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103096
-              }
-            ],
-            "teleports": {}
-          },
-          "70": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 70,
-                "instId": 300003,
-                "propState": 0,
-                "pos": {
-                  "x": -20190,
-                  "y": 0,
-                  "z": -40220
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 319852,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300004,
-                "propState": 0,
-                "pos": {
-                  "x": -17320,
-                  "y": 0,
-                  "z": -37800
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 319852,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300005,
-                "propState": 0,
-                "pos": {
-                  "x": -14456,
-                  "y": 0,
-                  "z": -35383
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 319852,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300006,
-                "propState": 0,
-                "pos": {
-                  "x": 20190,
-                  "y": 0,
-                  "z": -40220
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 40149,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300007,
-                "propState": 0,
-                "pos": {
-                  "x": 17320,
-                  "y": 0,
-                  "z": -37800
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 40149,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300008,
-                "propState": 0,
-                "pos": {
-                  "x": 14456,
-                  "y": 0,
-                  "z": -35383
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 40149,
-                  "z": 0
-                },
-                "propId": 103145
               }
             ],
             "teleports": {}
@@ -111114,45 +110266,6 @@
                   "z": 0
                 },
                 "propId": 914
-              }
-            ],
-            "teleports": {}
-          },
-          "193": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 193,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": -1975,
-                  "y": 0,
-                  "z": -40475
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 103096
-              },
-              {
-                "groupId": 193,
-                "instId": 300003,
-                "propState": 1,
-                "pos": {
-                  "x": -1943,
-                  "y": -8477,
-                  "z": -24725
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103096
               }
             ],
             "teleports": {}
@@ -113450,7 +112563,7 @@
               {
                 "groupId": 61,
                 "instId": 300003,
-                "propState": 0,
+                "propState": 1,
                 "pos": {
                   "x": -1943,
                   "y": -8477,
@@ -113556,164 +112669,6 @@
                   "z": 0
                 },
                 "propId": 103219
-              }
-            ],
-            "teleports": {}
-          },
-          "66": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 66,
-                "instId": 300001,
-                "propState": 0,
-                "pos": {
-                  "x": -1975,
-                  "y": 0,
-                  "z": -40475
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 103096
-              },
-              {
-                "groupId": 66,
-                "instId": 300002,
-                "propState": 0,
-                "pos": {
-                  "x": -1802,
-                  "y": 6095,
-                  "z": -33467
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103096
-              },
-              {
-                "groupId": 66,
-                "instId": 300003,
-                "propState": 0,
-                "pos": {
-                  "x": -1943,
-                  "y": -8477,
-                  "z": -24725
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103096
-              }
-            ],
-            "teleports": {}
-          },
-          "70": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 70,
-                "instId": 300003,
-                "propState": 0,
-                "pos": {
-                  "x": -20190,
-                  "y": 0,
-                  "z": -40220
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 319852,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300004,
-                "propState": 0,
-                "pos": {
-                  "x": -17320,
-                  "y": 0,
-                  "z": -37800
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 319852,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300005,
-                "propState": 0,
-                "pos": {
-                  "x": -14456,
-                  "y": 0,
-                  "z": -35383
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 319852,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300006,
-                "propState": 0,
-                "pos": {
-                  "x": 20190,
-                  "y": 0,
-                  "z": -40220
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 40149,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300007,
-                "propState": 0,
-                "pos": {
-                  "x": 17320,
-                  "y": 0,
-                  "z": -37800
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 40149,
-                  "z": 0
-                },
-                "propId": 103145
-              },
-              {
-                "groupId": 70,
-                "instId": 300008,
-                "propState": 0,
-                "pos": {
-                  "x": 14456,
-                  "y": 0,
-                  "z": -35383
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 40149,
-                  "z": 0
-                },
-                "propId": 103145
               }
             ],
             "teleports": {}
@@ -114337,45 +113292,6 @@
                   "z": 0
                 },
                 "propId": 914
-              }
-            ],
-            "teleports": {}
-          },
-          "193": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 193,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": -1975,
-                  "y": 0,
-                  "z": -40475
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 103096
-              },
-              {
-                "groupId": 193,
-                "instId": 300003,
-                "propState": 1,
-                "pos": {
-                  "x": -1943,
-                  "y": -8477,
-                  "z": -24725
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103096
               }
             ],
             "teleports": {}
@@ -115480,7 +114396,7 @@
               {
                 "groupId": 5,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 3210,
                   "y": 148,
@@ -115512,7 +114428,7 @@
               {
                 "groupId": 5,
                 "instId": 300004,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 1850,
                   "y": 123,
@@ -115560,7 +114476,7 @@
               {
                 "groupId": 5,
                 "instId": 300006,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -10200,
                   "y": 167,
@@ -115640,7 +114556,7 @@
               {
                 "groupId": 5,
                 "instId": 300011,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 13400,
                   "y": 167,
@@ -115704,7 +114620,7 @@
               {
                 "groupId": 5,
                 "instId": 300029,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -21660,
                   "y": 147,
@@ -115816,7 +114732,7 @@
               {
                 "groupId": 5,
                 "instId": 300016,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 26810,
                   "y": 147,
@@ -124399,7 +123315,7 @@
               {
                 "groupId": 51,
                 "instId": 300001,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -45550,
                   "y": 182859,
@@ -124415,7 +123331,7 @@
               {
                 "groupId": 51,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 34205,
                   "y": 172241,
@@ -124431,7 +123347,7 @@
               {
                 "groupId": 51,
                 "instId": 300003,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -5492,
                   "y": 172245,
@@ -124479,7 +123395,7 @@
               {
                 "groupId": 51,
                 "instId": 300006,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -47126,
                   "y": 182937,
@@ -124495,7 +123411,7 @@
               {
                 "groupId": 51,
                 "instId": 300007,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 29865,
                   "y": 172315,
@@ -124527,7 +123443,7 @@
               {
                 "groupId": 51,
                 "instId": 300009,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 86620,
                   "y": 411956,
@@ -124832,7 +123748,7 @@
               {
                 "groupId": 97,
                 "instId": 300005,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 75259,
                   "y": 172424,
@@ -124864,7 +123780,7 @@
               {
                 "groupId": 97,
                 "instId": 300007,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 13963,
                   "y": 172245,
@@ -145081,29 +143997,6 @@
             ],
             "teleports": {}
           },
-          "225": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 225,
-                "instId": 300001,
-                "propState": 0,
-                "pos": {
-                  "x": 0,
-                  "y": 1000,
-                  "z": 9046
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 100
-              }
-            ],
-            "teleports": {}
-          },
           "234": {
             "monsters": [],
             "npcs": [],
@@ -145943,7 +144836,7 @@
               {
                 "groupId": 40,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 22798,
                   "y": -31159,
@@ -146204,7 +145097,7 @@
               {
                 "groupId": 45,
                 "instId": 300006,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 26760,
                   "y": -31213,
@@ -146220,7 +145113,7 @@
               {
                 "groupId": 45,
                 "instId": 300008,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 69120,
                   "y": -34241,
@@ -146236,7 +145129,7 @@
               {
                 "groupId": 45,
                 "instId": 300009,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -10332,
                   "y": -31159,
@@ -146252,7 +145145,7 @@
               {
                 "groupId": 45,
                 "instId": 300010,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 68340,
                   "y": -31263,
@@ -146855,7 +145748,7 @@
               {
                 "groupId": 92,
                 "instId": 300001,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 59120,
                   "y": -34241,
@@ -148661,7 +147554,7 @@
               {
                 "groupId": 2,
                 "instId": 300006,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -20370,
                   "y": 6100,
@@ -148693,7 +147586,7 @@
               {
                 "groupId": 2,
                 "instId": 300008,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -33392,
                   "y": -910,
@@ -148725,7 +147618,7 @@
               {
                 "groupId": 2,
                 "instId": 300010,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -20350,
                   "y": 6040,
@@ -148757,7 +147650,7 @@
               {
                 "groupId": 2,
                 "instId": 300012,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -34174,
                   "y": -890,
@@ -148853,7 +147746,7 @@
               {
                 "groupId": 2,
                 "instId": 300018,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 43433,
                   "y": -2694,
@@ -148885,7 +147778,7 @@
               {
                 "groupId": 2,
                 "instId": 300020,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 15342,
                   "y": -2694,
@@ -148901,7 +147794,7 @@
               {
                 "groupId": 2,
                 "instId": 300021,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -20379,
                   "y": 6064,
@@ -148917,7 +147810,7 @@
               {
                 "groupId": 2,
                 "instId": 300022,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -33467,
                   "y": -910,
@@ -148933,7 +147826,7 @@
               {
                 "groupId": 2,
                 "instId": 300023,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -20360,
                   "y": 6040,
@@ -148949,7 +147842,7 @@
               {
                 "groupId": 2,
                 "instId": 300024,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -34184,
                   "y": -860,
@@ -148965,7 +147858,7 @@
               {
                 "groupId": 2,
                 "instId": 300025,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 43433,
                   "y": -2694,
@@ -148981,7 +147874,7 @@
               {
                 "groupId": 2,
                 "instId": 300026,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 15350,
                   "y": -2694,
@@ -149152,7 +148045,7 @@
               {
                 "groupId": 6,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -4495,
                   "y": 12905,
@@ -149184,7 +148077,7 @@
               {
                 "groupId": 6,
                 "instId": 300005,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 101170,
                   "y": 733,
@@ -149248,7 +148141,7 @@
               {
                 "groupId": 6,
                 "instId": 300015,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 71591,
                   "y": 652,
@@ -149280,7 +148173,7 @@
               {
                 "groupId": 6,
                 "instId": 300017,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 66582,
                   "y": 653,
@@ -149312,7 +148205,7 @@
               {
                 "groupId": 6,
                 "instId": 300019,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -33792,
                   "y": -1086,
@@ -149344,7 +148237,7 @@
               {
                 "groupId": 6,
                 "instId": 300025,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -30468,
                   "y": -1086,
@@ -151737,7 +150630,7 @@
               {
                 "groupId": 97,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -31865,
                   "y": 8233,
@@ -151753,7 +150646,7 @@
               {
                 "groupId": 97,
                 "instId": 300003,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -31865,
                   "y": 8233,
@@ -151785,7 +150678,7 @@
               {
                 "groupId": 97,
                 "instId": 300005,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -31865,
                   "y": 8233,
@@ -153711,7 +152604,7 @@
               {
                 "groupId": 5,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -30740,
                   "y": 49742,
@@ -153807,7 +152700,7 @@
               {
                 "groupId": 5,
                 "instId": 300008,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 12556,
                   "y": 42916,
@@ -153839,7 +152732,7 @@
               {
                 "groupId": 5,
                 "instId": 300010,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 30620,
                   "y": 48070,
@@ -153871,7 +152764,7 @@
               {
                 "groupId": 5,
                 "instId": 300012,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -34817,
                   "y": 53990,
@@ -153903,7 +152796,7 @@
               {
                 "groupId": 5,
                 "instId": 300014,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 26527,
                   "y": 46835,
@@ -153935,7 +152828,7 @@
               {
                 "groupId": 5,
                 "instId": 300016,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -8960,
                   "y": 46190,
@@ -153967,7 +152860,7 @@
               {
                 "groupId": 5,
                 "instId": 300018,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -40186,
                   "y": 49858,
@@ -153999,7 +152892,7 @@
               {
                 "groupId": 5,
                 "instId": 300020,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -27069,
                   "y": 52902,
@@ -154031,7 +152924,7 @@
               {
                 "groupId": 5,
                 "instId": 300022,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 30606,
                   "y": 43466,
@@ -154047,7 +152940,7 @@
               {
                 "groupId": 5,
                 "instId": 300023,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -27076,
                   "y": 53191,
@@ -154063,7 +152956,7 @@
               {
                 "groupId": 5,
                 "instId": 300024,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 30626,
                   "y": 43758,
@@ -154157,7 +153050,7 @@
               {
                 "groupId": 10,
                 "instId": 300004,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -67500,
                   "y": 53260,
@@ -154189,7 +153082,7 @@
               {
                 "groupId": 10,
                 "instId": 300006,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 34430,
                   "y": 47263,
@@ -154205,7 +153098,7 @@
               {
                 "groupId": 10,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 34430,
                   "y": 47263,
@@ -154237,7 +153130,7 @@
               {
                 "groupId": 10,
                 "instId": 300008,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 33200,
                   "y": 47010,
@@ -154285,7 +153178,7 @@
               {
                 "groupId": 10,
                 "instId": 300011,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 49080,
                   "y": 43700,
@@ -154317,7 +153210,7 @@
               {
                 "groupId": 10,
                 "instId": 300013,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -62560,
                   "y": 53250,
@@ -154365,7 +153258,7 @@
               {
                 "groupId": 10,
                 "instId": 300016,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -60720,
                   "y": 53090,
@@ -154381,7 +153274,7 @@
               {
                 "groupId": 10,
                 "instId": 300017,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 34430,
                   "y": 47263,
@@ -156642,7 +155535,7 @@
               {
                 "groupId": 122,
                 "instId": 300001,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -27069,
                   "y": 54243,
@@ -156658,7 +155551,7 @@
               {
                 "groupId": 122,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -27069,
                   "y": 54243,
@@ -156674,7 +155567,7 @@
               {
                 "groupId": 122,
                 "instId": 300003,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 30674,
                   "y": 43783,
@@ -156690,7 +155583,7 @@
               {
                 "groupId": 122,
                 "instId": 300004,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 30674,
                   "y": 43783,
@@ -157089,52 +155982,6 @@
                 }
               }
             }
-          },
-          "211": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 211,
-                "instId": 300001,
-                "propState": 0,
-                "pos": {
-                  "x": 64490,
-                  "y": 60510,
-                  "z": 40220
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 276063,
-                  "z": 0
-                },
-                "propId": 102078
-              }
-            ],
-            "teleports": {}
-          },
-          "212": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 212,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300002
-              }
-            ],
-            "teleports": {}
           }
         },
         "isEnteredSceneInfo": false,
@@ -160256,7 +159103,7 @@
               {
                 "groupId": 30,
                 "instId": 300001,
-                "propState": 15,
+                "propState": 2,
                 "pos": {
                   "x": 10966,
                   "y": 36279,
@@ -160343,7 +159190,7 @@
               {
                 "groupId": 31,
                 "instId": 300001,
-                "propState": 15,
+                "propState": 2,
                 "pos": {
                   "x": 11570,
                   "y": 42010,
@@ -161712,7 +160559,7 @@
               {
                 "groupId": 54,
                 "instId": 300001,
-                "propState": 2,
+                "propState": 1,
                 "pos": {
                   "x": -30220,
                   "y": 13900,
@@ -161728,7 +160575,7 @@
               {
                 "groupId": 54,
                 "instId": 300002,
-                "propState": 2,
+                "propState": 0,
                 "pos": {
                   "x": -62844,
                   "y": 13900,
@@ -161744,7 +160591,7 @@
               {
                 "groupId": 54,
                 "instId": 300003,
-                "propState": 2,
+                "propState": 1,
                 "pos": {
                   "x": -76357,
                   "y": 13900,
@@ -161760,7 +160607,7 @@
               {
                 "groupId": 54,
                 "instId": 300004,
-                "propState": 0,
+                "propState": 1,
                 "pos": {
                   "x": -30000,
                   "y": 10040,
@@ -163076,29 +161923,6 @@
                   "z": 0
                 },
                 "propId": 102012
-              }
-            ],
-            "teleports": {}
-          },
-          "189": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 189,
-                "instId": 300001,
-                "propState": 0,
-                "pos": {
-                  "x": -30220,
-                  "y": 13751,
-                  "z": 122228
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 114
               }
             ],
             "teleports": {}
@@ -169520,7 +168344,7 @@
               {
                 "groupId": 71,
                 "instId": 300001,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 49055,
                   "y": -97240,
@@ -169536,7 +168360,7 @@
               {
                 "groupId": 71,
                 "instId": 300002,
-                "propState": 0,
+                "propState": 1,
                 "pos": {
                   "x": 92380,
                   "y": -104900,
@@ -169568,7 +168392,7 @@
               {
                 "groupId": 71,
                 "instId": 300004,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 42932,
                   "y": -96607,
@@ -169584,7 +168408,7 @@
               {
                 "groupId": 71,
                 "instId": 300005,
-                "propState": 0,
+                "propState": 1,
                 "pos": {
                   "x": 86430,
                   "y": -103876,
@@ -169616,7 +168440,7 @@
               {
                 "groupId": 71,
                 "instId": 300007,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 95960,
                   "y": -104900,
@@ -169632,7 +168456,7 @@
               {
                 "groupId": 71,
                 "instId": 300008,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 91750,
                   "y": -104900,
@@ -169648,7 +168472,7 @@
               {
                 "groupId": 71,
                 "instId": 300009,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 91784,
                   "y": -104900,
@@ -169664,7 +168488,7 @@
               {
                 "groupId": 71,
                 "instId": 300010,
-                "propState": 0,
+                "propState": 1,
                 "pos": {
                   "x": 92320,
                   "y": -104900,
@@ -169680,7 +168504,7 @@
               {
                 "groupId": 71,
                 "instId": 300011,
-                "propState": 0,
+                "propState": 1,
                 "pos": {
                   "x": 94790,
                   "y": -104900,
@@ -169696,7 +168520,7 @@
               {
                 "groupId": 71,
                 "instId": 300012,
-                "propState": 0,
+                "propState": 1,
                 "pos": {
                   "x": 92240,
                   "y": -104900,
@@ -169712,7 +168536,7 @@
               {
                 "groupId": 71,
                 "instId": 300013,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 73650,
                   "y": -103888,
@@ -178988,116 +177812,6 @@
                 "propId": 102006
               }
             ],
-            "teleports": {}
-          },
-          "179": {
-            "monsters": [
-              {
-                "groupId": 179,
-                "instId": 200001,
-                "eventId": 20242011,
-                "pos": {
-                  "x": 349,
-                  "y": -51864,
-                  "z": 101448
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 17765,
-                  "z": 0
-                },
-                "monsterId": 2032020
-              },
-              {
-                "groupId": 179,
-                "instId": 200002,
-                "eventId": 20242012,
-                "pos": {
-                  "x": 30829,
-                  "y": -44301,
-                  "z": 74777
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 5702,
-                  "z": 0
-                },
-                "monsterId": 2032020
-              },
-              {
-                "groupId": 179,
-                "instId": 200003,
-                "eventId": 20242013,
-                "pos": {
-                  "x": 2176,
-                  "y": -43640,
-                  "z": 59602
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 31891,
-                  "z": 0
-                },
-                "monsterId": 2032010
-              },
-              {
-                "groupId": 179,
-                "instId": 200004,
-                "eventId": 20242014,
-                "pos": {
-                  "x": -1961,
-                  "y": -43640,
-                  "z": 71132
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 126242,
-                  "z": 0
-                },
-                "monsterId": 2032020
-              }
-            ],
-            "npcs": [],
-            "props": [],
-            "teleports": {}
-          },
-          "180": {
-            "monsters": [
-              {
-                "groupId": 180,
-                "instId": 200001,
-                "eventId": 20242021,
-                "pos": {
-                  "x": -61149,
-                  "y": -47110,
-                  "z": 80430
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 242819,
-                  "z": 0
-                },
-                "monsterId": 2032020
-              },
-              {
-                "groupId": 180,
-                "instId": 200002,
-                "eventId": 20242022,
-                "pos": {
-                  "x": -63066,
-                  "y": -46437,
-                  "z": -13111
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 5702,
-                  "z": 0
-                },
-                "monsterId": 2032010
-              }
-            ],
-            "npcs": [],
-            "props": [],
             "teleports": {}
           },
           "182": {
@@ -228210,7 +226924,7 @@
               {
                 "groupId": 11,
                 "instId": 300003,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 226430,
                   "y": 130970,
@@ -228496,7 +227210,7 @@
               {
                 "groupId": 17,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 51200,
                   "y": 169900,
@@ -228663,7 +227377,7 @@
               {
                 "groupId": 18,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 66900,
                   "y": 166800,
@@ -231192,7 +229906,7 @@
               {
                 "groupId": 117,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 73557,
                   "y": 175216,
@@ -233064,7 +231778,7 @@
               {
                 "groupId": 187,
                 "instId": 300001,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 305887,
                   "y": 134908,
@@ -233215,7 +231929,7 @@
               {
                 "groupId": 188,
                 "instId": 300001,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 170902,
                   "y": 115536,
@@ -234740,7 +233454,7 @@
               {
                 "groupId": 11,
                 "instId": 300003,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 226430,
                   "y": 130970,
@@ -235026,7 +233740,7 @@
               {
                 "groupId": 17,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 51200,
                   "y": 169900,
@@ -235193,7 +233907,7 @@
               {
                 "groupId": 18,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 66900,
                   "y": 166800,
@@ -237722,7 +236436,7 @@
               {
                 "groupId": 117,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 73557,
                   "y": 175216,
@@ -239594,7 +238308,7 @@
               {
                 "groupId": 187,
                 "instId": 300001,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 305887,
                   "y": 134908,
@@ -239745,7 +238459,7 @@
               {
                 "groupId": 188,
                 "instId": 300001,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 170902,
                   "y": 115536,
@@ -241272,7 +239986,7 @@
               {
                 "groupId": 11,
                 "instId": 300003,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 226430,
                   "y": 130970,
@@ -241558,7 +240272,7 @@
               {
                 "groupId": 17,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 51200,
                   "y": 169900,
@@ -241725,7 +240439,7 @@
               {
                 "groupId": 18,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 66900,
                   "y": 166800,
@@ -244254,7 +242968,7 @@
               {
                 "groupId": 117,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 73557,
                   "y": 175216,
@@ -246126,7 +244840,7 @@
               {
                 "groupId": 187,
                 "instId": 300001,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 305887,
                   "y": 134908,
@@ -246277,7 +244991,7 @@
               {
                 "groupId": 188,
                 "instId": 300001,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 170902,
                   "y": 115536,
@@ -258606,109 +257320,6 @@
             ],
             "teleports": {}
           },
-          "188": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 188,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": -1000,
-                  "y": 95000,
-                  "z": -9013
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103031
-              },
-              {
-                "groupId": 188,
-                "instId": 300002,
-                "propState": 1,
-                "pos": {
-                  "x": -1112,
-                  "y": 98000,
-                  "z": 56939
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103031
-              },
-              {
-                "groupId": 188,
-                "instId": 300003,
-                "propState": 1,
-                "pos": {
-                  "x": -908,
-                  "y": 89798,
-                  "z": 112009
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103031
-              },
-              {
-                "groupId": 188,
-                "instId": 300004,
-                "propState": 1,
-                "pos": {
-                  "x": -835,
-                  "y": 95820,
-                  "z": 142306
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103031
-              },
-              {
-                "groupId": 188,
-                "instId": 300005,
-                "propState": 1,
-                "pos": {
-                  "x": 39519,
-                  "y": 88400,
-                  "z": 103220
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 90000,
-                  "z": 0
-                },
-                "propId": 103031
-              },
-              {
-                "groupId": 188,
-                "instId": 300006,
-                "propState": 1,
-                "pos": {
-                  "x": 48558,
-                  "y": 84400,
-                  "z": 82242
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103031
-              }
-            ],
-            "teleports": {}
-          },
           "194": {
             "monsters": [],
             "npcs": [],
@@ -258744,93 +257355,6 @@
                   "z": 0
                 },
                 "propId": 103188
-              }
-            ],
-            "teleports": {}
-          },
-          "197": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 197,
-                "instId": 300001,
-                "propState": 2,
-                "pos": {
-                  "x": -61900,
-                  "y": -225944,
-                  "z": -31900
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 184624,
-                  "z": 0
-                },
-                "propId": 103012
-              },
-              {
-                "groupId": 197,
-                "instId": 300002,
-                "propState": 9,
-                "pos": {
-                  "x": -91120,
-                  "y": -224905,
-                  "z": -147400
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103109
-              },
-              {
-                "groupId": 197,
-                "instId": 300003,
-                "propState": 9,
-                "pos": {
-                  "x": -119492,
-                  "y": -225833,
-                  "z": -74589
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103109
-              },
-              {
-                "groupId": 197,
-                "instId": 300004,
-                "propState": 9,
-                "pos": {
-                  "x": -131140,
-                  "y": -201689,
-                  "z": -17860
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103109
-              },
-              {
-                "groupId": 197,
-                "instId": 300007,
-                "propState": 0,
-                "pos": {
-                  "x": -62230,
-                  "y": -225944,
-                  "z": -29810
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 100
               }
             ],
             "teleports": {}
@@ -259861,61 +258385,6 @@
                   "z": 0
                 },
                 "propId": 211
-              }
-            ],
-            "teleports": {}
-          },
-          "249": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 249,
-                "instId": 300003,
-                "propState": 0,
-                "pos": {
-                  "x": -1035,
-                  "y": 89723,
-                  "z": 78485
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 103154
-              },
-              {
-                "groupId": 249,
-                "instId": 300004,
-                "propState": 1,
-                "pos": {
-                  "x": -32950,
-                  "y": -232940,
-                  "z": -204900
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 103154
-              },
-              {
-                "groupId": 249,
-                "instId": 300005,
-                "propState": 1,
-                "pos": {
-                  "x": -172890,
-                  "y": -227800,
-                  "z": -115270
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 90000,
-                  "z": 0
-                },
-                "propId": 103154
               }
             ],
             "teleports": {}
@@ -261015,210 +259484,6 @@
                   "z": 0
                 },
                 "propId": 103038
-              }
-            ],
-            "teleports": {}
-          },
-          "335": {
-            "monsters": [
-              {
-                "groupId": 335,
-                "instId": 200001,
-                "eventId": 20322051,
-                "pos": {
-                  "x": -3490,
-                  "y": 95010,
-                  "z": 34320
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 330000,
-                  "z": 0
-                },
-                "monsterId": 3011010
-              },
-              {
-                "groupId": 335,
-                "instId": 200002,
-                "eventId": 20322052,
-                "pos": {
-                  "x": -2570,
-                  "y": 95000,
-                  "z": 36535
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 270000,
-                  "z": 0
-                },
-                "monsterId": 3012020
-              }
-            ],
-            "npcs": [],
-            "props": [],
-            "teleports": {}
-          },
-          "336": {
-            "monsters": [
-              {
-                "groupId": 336,
-                "instId": 200003,
-                "eventId": 20322053,
-                "pos": {
-                  "x": 15711,
-                  "y": 98000,
-                  "z": 103788
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 219646,
-                  "z": 0
-                },
-                "monsterId": 3012010
-              },
-              {
-                "groupId": 336,
-                "instId": 200004,
-                "eventId": 20322054,
-                "pos": {
-                  "x": 13648,
-                  "y": 98000,
-                  "z": 100110
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "monsterId": 3012010
-              },
-              {
-                "groupId": 336,
-                "instId": 200005,
-                "eventId": 20322055,
-                "pos": {
-                  "x": 18340,
-                  "y": 89000,
-                  "z": 103029
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 90000,
-                  "z": 0
-                },
-                "monsterId": 3012020
-              },
-              {
-                "groupId": 336,
-                "instId": 200006,
-                "eventId": 20322056,
-                "pos": {
-                  "x": 15390,
-                  "y": 98000,
-                  "z": 97670
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 350440,
-                  "z": 0
-                },
-                "monsterId": 3011010
-              }
-            ],
-            "npcs": [],
-            "props": [],
-            "teleports": {}
-          },
-          "337": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 337,
-                "instId": 300002,
-                "propState": 0,
-                "pos": {
-                  "x": 988,
-                  "y": 95000,
-                  "z": 29308
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 90000,
-                  "z": 0
-                },
-                "propId": 103015
-              },
-              {
-                "groupId": 337,
-                "instId": 300001,
-                "propState": 0,
-                "pos": {
-                  "x": 1620,
-                  "y": 95000,
-                  "z": 28530
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 103015
-              }
-            ],
-            "teleports": {}
-          },
-          "338": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 338,
-                "instId": 300002,
-                "propState": 0,
-                "pos": {
-                  "x": 20301,
-                  "y": 98000,
-                  "z": 86801
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 270000,
-                  "z": 0
-                },
-                "propId": 103015
-              },
-              {
-                "groupId": 338,
-                "instId": 300001,
-                "propState": 0,
-                "pos": {
-                  "x": 16530,
-                  "y": 98010,
-                  "z": 84970
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 135000,
-                  "z": 0
-                },
-                "propId": 103015
-              },
-              {
-                "groupId": 338,
-                "instId": 300003,
-                "propState": 0,
-                "pos": {
-                  "x": 10739,
-                  "y": 93500,
-                  "z": 123311
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 135000,
-                  "z": 0
-                },
-                "propId": 103015
               }
             ],
             "teleports": {}
@@ -576543,141 +574808,6 @@
             ],
             "teleports": {}
           },
-          "269": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 269,
-                "instId": 300006,
-                "propState": 0,
-                "pos": {
-                  "x": -51041,
-                  "y": 4994,
-                  "z": -18956
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300007,
-                "propState": 0,
-                "pos": {
-                  "x": -59088,
-                  "y": -1032,
-                  "z": -45017
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300008,
-                "propState": 0,
-                "pos": {
-                  "x": -56220,
-                  "y": -884,
-                  "z": -60810
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102008
-              },
-              {
-                "groupId": 269,
-                "instId": 300010,
-                "propState": 0,
-                "pos": {
-                  "x": -63384,
-                  "y": -1032,
-                  "z": -69969
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102008
-              },
-              {
-                "groupId": 269,
-                "instId": 300011,
-                "propState": 0,
-                "pos": {
-                  "x": -21402,
-                  "y": -928,
-                  "z": -80152
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300034,
-                "propState": 0,
-                "pos": {
-                  "x": -37547,
-                  "y": 4994,
-                  "z": -15987
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 54058,
-                  "z": 0
-                },
-                "propId": 102006
-              },
-              {
-                "groupId": 269,
-                "instId": 300035,
-                "propState": 0,
-                "pos": {
-                  "x": -53481,
-                  "y": -1032,
-                  "z": -46193
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 278428,
-                  "z": 0
-                },
-                "propId": 102006
-              },
-              {
-                "groupId": 269,
-                "instId": 300036,
-                "propState": 0,
-                "pos": {
-                  "x": -54540,
-                  "y": -1027,
-                  "z": -73961
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 248125,
-                  "z": 0
-                },
-                "propId": 102006
-              }
-            ],
-            "teleports": {}
-          },
           "280": {
             "monsters": [],
             "npcs": [],
@@ -578471,141 +576601,6 @@
                   "z": 0
                 },
                 "propId": 102011
-              }
-            ],
-            "teleports": {}
-          },
-          "269": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 269,
-                "instId": 300006,
-                "propState": 0,
-                "pos": {
-                  "x": -51041,
-                  "y": 4994,
-                  "z": -18956
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300007,
-                "propState": 0,
-                "pos": {
-                  "x": -59088,
-                  "y": -1032,
-                  "z": -45017
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300008,
-                "propState": 0,
-                "pos": {
-                  "x": -56220,
-                  "y": -884,
-                  "z": -60810
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102008
-              },
-              {
-                "groupId": 269,
-                "instId": 300010,
-                "propState": 0,
-                "pos": {
-                  "x": -63384,
-                  "y": -1032,
-                  "z": -69969
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102008
-              },
-              {
-                "groupId": 269,
-                "instId": 300011,
-                "propState": 0,
-                "pos": {
-                  "x": -21402,
-                  "y": -928,
-                  "z": -80152
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300034,
-                "propState": 0,
-                "pos": {
-                  "x": -37547,
-                  "y": 4994,
-                  "z": -15987
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 54058,
-                  "z": 0
-                },
-                "propId": 102006
-              },
-              {
-                "groupId": 269,
-                "instId": 300035,
-                "propState": 0,
-                "pos": {
-                  "x": -53481,
-                  "y": -1032,
-                  "z": -46193
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 278428,
-                  "z": 0
-                },
-                "propId": 102006
-              },
-              {
-                "groupId": 269,
-                "instId": 300036,
-                "propState": 0,
-                "pos": {
-                  "x": -54540,
-                  "y": -1027,
-                  "z": -73961
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 248125,
-                  "z": 0
-                },
-                "propId": 102006
               }
             ],
             "teleports": {}
@@ -580407,141 +578402,6 @@
             ],
             "teleports": {}
           },
-          "269": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 269,
-                "instId": 300006,
-                "propState": 0,
-                "pos": {
-                  "x": -51041,
-                  "y": 4994,
-                  "z": -18956
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300007,
-                "propState": 0,
-                "pos": {
-                  "x": -59088,
-                  "y": -1032,
-                  "z": -45017
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300008,
-                "propState": 0,
-                "pos": {
-                  "x": -56220,
-                  "y": -884,
-                  "z": -60810
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102008
-              },
-              {
-                "groupId": 269,
-                "instId": 300010,
-                "propState": 0,
-                "pos": {
-                  "x": -63384,
-                  "y": -1032,
-                  "z": -69969
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102008
-              },
-              {
-                "groupId": 269,
-                "instId": 300011,
-                "propState": 0,
-                "pos": {
-                  "x": -21402,
-                  "y": -928,
-                  "z": -80152
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300034,
-                "propState": 0,
-                "pos": {
-                  "x": -37547,
-                  "y": 4994,
-                  "z": -15987
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 54058,
-                  "z": 0
-                },
-                "propId": 102006
-              },
-              {
-                "groupId": 269,
-                "instId": 300035,
-                "propState": 0,
-                "pos": {
-                  "x": -53481,
-                  "y": -1032,
-                  "z": -46193
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 278428,
-                  "z": 0
-                },
-                "propId": 102006
-              },
-              {
-                "groupId": 269,
-                "instId": 300036,
-                "propState": 0,
-                "pos": {
-                  "x": -54540,
-                  "y": -1027,
-                  "z": -73961
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 248125,
-                  "z": 0
-                },
-                "propId": 102006
-              }
-            ],
-            "teleports": {}
-          },
           "280": {
             "monsters": [],
             "npcs": [],
@@ -582339,141 +580199,6 @@
             ],
             "teleports": {}
           },
-          "269": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 269,
-                "instId": 300006,
-                "propState": 0,
-                "pos": {
-                  "x": -51041,
-                  "y": 4994,
-                  "z": -18956
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300007,
-                "propState": 0,
-                "pos": {
-                  "x": -59088,
-                  "y": -1032,
-                  "z": -45017
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300008,
-                "propState": 0,
-                "pos": {
-                  "x": -56220,
-                  "y": -884,
-                  "z": -60810
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102008
-              },
-              {
-                "groupId": 269,
-                "instId": 300010,
-                "propState": 0,
-                "pos": {
-                  "x": -63384,
-                  "y": -1032,
-                  "z": -69969
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102008
-              },
-              {
-                "groupId": 269,
-                "instId": 300011,
-                "propState": 0,
-                "pos": {
-                  "x": -21402,
-                  "y": -928,
-                  "z": -80152
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300034,
-                "propState": 0,
-                "pos": {
-                  "x": -37547,
-                  "y": 4994,
-                  "z": -15987
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 54058,
-                  "z": 0
-                },
-                "propId": 102006
-              },
-              {
-                "groupId": 269,
-                "instId": 300035,
-                "propState": 0,
-                "pos": {
-                  "x": -53481,
-                  "y": -1032,
-                  "z": -46193
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 278428,
-                  "z": 0
-                },
-                "propId": 102006
-              },
-              {
-                "groupId": 269,
-                "instId": 300036,
-                "propState": 0,
-                "pos": {
-                  "x": -54540,
-                  "y": -1027,
-                  "z": -73961
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 248125,
-                  "z": 0
-                },
-                "propId": 102006
-              }
-            ],
-            "teleports": {}
-          },
           "280": {
             "monsters": [],
             "npcs": [],
@@ -584267,141 +581992,6 @@
                   "z": 0
                 },
                 "propId": 102011
-              }
-            ],
-            "teleports": {}
-          },
-          "269": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 269,
-                "instId": 300006,
-                "propState": 0,
-                "pos": {
-                  "x": -51041,
-                  "y": 4994,
-                  "z": -18956
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300007,
-                "propState": 0,
-                "pos": {
-                  "x": -59088,
-                  "y": -1032,
-                  "z": -45017
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300008,
-                "propState": 0,
-                "pos": {
-                  "x": -56220,
-                  "y": -884,
-                  "z": -60810
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102008
-              },
-              {
-                "groupId": 269,
-                "instId": 300010,
-                "propState": 0,
-                "pos": {
-                  "x": -63384,
-                  "y": -1032,
-                  "z": -69969
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102008
-              },
-              {
-                "groupId": 269,
-                "instId": 300011,
-                "propState": 0,
-                "pos": {
-                  "x": -21402,
-                  "y": -928,
-                  "z": -80152
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 102007
-              },
-              {
-                "groupId": 269,
-                "instId": 300034,
-                "propState": 0,
-                "pos": {
-                  "x": -37547,
-                  "y": 4994,
-                  "z": -15987
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 54058,
-                  "z": 0
-                },
-                "propId": 102006
-              },
-              {
-                "groupId": 269,
-                "instId": 300035,
-                "propState": 0,
-                "pos": {
-                  "x": -53481,
-                  "y": -1032,
-                  "z": -46193
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 278428,
-                  "z": 0
-                },
-                "propId": 102006
-              },
-              {
-                "groupId": 269,
-                "instId": 300036,
-                "propState": 0,
-                "pos": {
-                  "x": -54540,
-                  "y": -1027,
-                  "z": -73961
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 248125,
-                  "z": 0
-                },
-                "propId": 102006
               }
             ],
             "teleports": {}
@@ -589764,167 +587354,6 @@
             ],
             "props": [],
             "teleports": {}
-          },
-          "328": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 328,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "329": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 329,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "330": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 330,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "331": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 331,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "332": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 332,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "333": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 333,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "334": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 334,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
           }
         },
         "isEnteredSceneInfo": true,
@@ -590785,167 +588214,6 @@
               }
             ],
             "props": [],
-            "teleports": {}
-          },
-          "328": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 328,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "329": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 329,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "330": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 330,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "331": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 331,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "332": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 332,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "333": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 333,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "334": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 334,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
             "teleports": {}
           }
         },
@@ -591808,167 +589076,6 @@
             ],
             "props": [],
             "teleports": {}
-          },
-          "328": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 328,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "329": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 329,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "330": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 330,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "331": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 331,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "332": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 332,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "333": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 333,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
-          },
-          "334": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 334,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300007
-              }
-            ],
-            "teleports": {}
           }
         },
         "isEnteredSceneInfo": true,
@@ -592033,7 +589140,7 @@
               {
                 "groupId": 5,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 3210,
                   "y": 148,
@@ -592065,7 +589172,7 @@
               {
                 "groupId": 5,
                 "instId": 300004,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 1850,
                   "y": 123,
@@ -592113,7 +589220,7 @@
               {
                 "groupId": 5,
                 "instId": 300006,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -10200,
                   "y": 167,
@@ -592193,7 +589300,7 @@
               {
                 "groupId": 5,
                 "instId": 300011,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 13400,
                   "y": 167,
@@ -592257,7 +589364,7 @@
               {
                 "groupId": 5,
                 "instId": 300029,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -21660,
                   "y": 147,
@@ -592369,7 +589476,7 @@
               {
                 "groupId": 5,
                 "instId": 300016,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 26810,
                   "y": 147,
@@ -593382,7 +590489,7 @@
               {
                 "groupId": 5,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 3210,
                   "y": 148,
@@ -593414,7 +590521,7 @@
               {
                 "groupId": 5,
                 "instId": 300004,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 1850,
                   "y": 123,
@@ -593462,7 +590569,7 @@
               {
                 "groupId": 5,
                 "instId": 300006,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -10200,
                   "y": 167,
@@ -593542,7 +590649,7 @@
               {
                 "groupId": 5,
                 "instId": 300011,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 13400,
                   "y": 167,
@@ -593606,7 +590713,7 @@
               {
                 "groupId": 5,
                 "instId": 300029,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -21660,
                   "y": 147,
@@ -593718,7 +590825,7 @@
               {
                 "groupId": 5,
                 "instId": 300016,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 26810,
                   "y": 147,
@@ -594731,7 +591838,7 @@
               {
                 "groupId": 5,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 3210,
                   "y": 148,
@@ -594763,7 +591870,7 @@
               {
                 "groupId": 5,
                 "instId": 300004,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 1850,
                   "y": 123,
@@ -594811,7 +591918,7 @@
               {
                 "groupId": 5,
                 "instId": 300006,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -10200,
                   "y": 167,
@@ -594891,7 +591998,7 @@
               {
                 "groupId": 5,
                 "instId": 300011,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 13400,
                   "y": 167,
@@ -594955,7 +592062,7 @@
               {
                 "groupId": 5,
                 "instId": 300029,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -21660,
                   "y": 147,
@@ -595067,7 +592174,7 @@
               {
                 "groupId": 5,
                 "instId": 300016,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 26810,
                   "y": 147,
@@ -604750,7 +601857,7 @@
               {
                 "groupId": 51,
                 "instId": 300001,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -45550,
                   "y": 182859,
@@ -604766,7 +601873,7 @@
               {
                 "groupId": 51,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 34205,
                   "y": 172241,
@@ -604782,7 +601889,7 @@
               {
                 "groupId": 51,
                 "instId": 300003,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -5492,
                   "y": 172245,
@@ -604830,7 +601937,7 @@
               {
                 "groupId": 51,
                 "instId": 300006,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -47126,
                   "y": 182937,
@@ -604846,7 +601953,7 @@
               {
                 "groupId": 51,
                 "instId": 300007,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 29865,
                   "y": 172315,
@@ -604878,7 +601985,7 @@
               {
                 "groupId": 51,
                 "instId": 300009,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 86620,
                   "y": 411956,
@@ -605183,7 +602290,7 @@
               {
                 "groupId": 97,
                 "instId": 300005,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 75259,
                   "y": 172424,
@@ -605215,7 +602322,7 @@
               {
                 "groupId": 97,
                 "instId": 300007,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 13963,
                   "y": 172245,
@@ -624954,29 +622061,6 @@
             ],
             "teleports": {}
           },
-          "225": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 225,
-                "instId": 300001,
-                "propState": 0,
-                "pos": {
-                  "x": 0,
-                  "y": 1000,
-                  "z": 9046
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 100
-              }
-            ],
-            "teleports": {}
-          },
           "234": {
             "monsters": [],
             "npcs": [],
@@ -625114,7 +622198,7 @@
               {
                 "groupId": 2,
                 "instId": 300006,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -20370,
                   "y": 6100,
@@ -625146,7 +622230,7 @@
               {
                 "groupId": 2,
                 "instId": 300008,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -33392,
                   "y": -910,
@@ -625178,7 +622262,7 @@
               {
                 "groupId": 2,
                 "instId": 300010,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -20350,
                   "y": 6040,
@@ -625210,7 +622294,7 @@
               {
                 "groupId": 2,
                 "instId": 300012,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -34174,
                   "y": -890,
@@ -625306,7 +622390,7 @@
               {
                 "groupId": 2,
                 "instId": 300018,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 43433,
                   "y": -2694,
@@ -625338,7 +622422,7 @@
               {
                 "groupId": 2,
                 "instId": 300020,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 15342,
                   "y": -2694,
@@ -625354,7 +622438,7 @@
               {
                 "groupId": 2,
                 "instId": 300021,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -20379,
                   "y": 6064,
@@ -625370,7 +622454,7 @@
               {
                 "groupId": 2,
                 "instId": 300022,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -33467,
                   "y": -910,
@@ -625386,7 +622470,7 @@
               {
                 "groupId": 2,
                 "instId": 300023,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -20360,
                   "y": 6040,
@@ -625402,7 +622486,7 @@
               {
                 "groupId": 2,
                 "instId": 300024,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -34184,
                   "y": -860,
@@ -625418,7 +622502,7 @@
               {
                 "groupId": 2,
                 "instId": 300025,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 43433,
                   "y": -2694,
@@ -625434,7 +622518,7 @@
               {
                 "groupId": 2,
                 "instId": 300026,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 15350,
                   "y": -2694,
@@ -625605,7 +622689,7 @@
               {
                 "groupId": 6,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -4495,
                   "y": 12905,
@@ -625637,7 +622721,7 @@
               {
                 "groupId": 6,
                 "instId": 300005,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 101170,
                   "y": 733,
@@ -625701,7 +622785,7 @@
               {
                 "groupId": 6,
                 "instId": 300015,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 71591,
                   "y": 652,
@@ -625733,7 +622817,7 @@
               {
                 "groupId": 6,
                 "instId": 300017,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 66582,
                   "y": 653,
@@ -625765,7 +622849,7 @@
               {
                 "groupId": 6,
                 "instId": 300019,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -33792,
                   "y": -1086,
@@ -625797,7 +622881,7 @@
               {
                 "groupId": 6,
                 "instId": 300025,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -30468,
                   "y": -1086,
@@ -628190,7 +625274,7 @@
               {
                 "groupId": 97,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -31865,
                   "y": 8233,
@@ -628206,7 +625290,7 @@
               {
                 "groupId": 97,
                 "instId": 300003,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -31865,
                   "y": 8233,
@@ -628238,7 +625322,7 @@
               {
                 "groupId": 97,
                 "instId": 300005,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -31865,
                   "y": 8233,
@@ -630096,7 +627180,7 @@
               {
                 "groupId": 2,
                 "instId": 300006,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -20370,
                   "y": 6100,
@@ -630128,7 +627212,7 @@
               {
                 "groupId": 2,
                 "instId": 300008,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -33392,
                   "y": -910,
@@ -630160,7 +627244,7 @@
               {
                 "groupId": 2,
                 "instId": 300010,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -20350,
                   "y": 6040,
@@ -630192,7 +627276,7 @@
               {
                 "groupId": 2,
                 "instId": 300012,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -34174,
                   "y": -890,
@@ -630288,7 +627372,7 @@
               {
                 "groupId": 2,
                 "instId": 300018,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 43433,
                   "y": -2694,
@@ -630320,7 +627404,7 @@
               {
                 "groupId": 2,
                 "instId": 300020,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 15342,
                   "y": -2694,
@@ -630336,7 +627420,7 @@
               {
                 "groupId": 2,
                 "instId": 300021,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -20379,
                   "y": 6064,
@@ -630352,7 +627436,7 @@
               {
                 "groupId": 2,
                 "instId": 300022,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -33467,
                   "y": -910,
@@ -630368,7 +627452,7 @@
               {
                 "groupId": 2,
                 "instId": 300023,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -20360,
                   "y": 6040,
@@ -630384,7 +627468,7 @@
               {
                 "groupId": 2,
                 "instId": 300024,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -34184,
                   "y": -860,
@@ -630400,7 +627484,7 @@
               {
                 "groupId": 2,
                 "instId": 300025,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 43433,
                   "y": -2694,
@@ -630416,7 +627500,7 @@
               {
                 "groupId": 2,
                 "instId": 300026,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 15350,
                   "y": -2694,
@@ -630587,7 +627671,7 @@
               {
                 "groupId": 6,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -4495,
                   "y": 12905,
@@ -630619,7 +627703,7 @@
               {
                 "groupId": 6,
                 "instId": 300005,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 101170,
                   "y": 733,
@@ -630683,7 +627767,7 @@
               {
                 "groupId": 6,
                 "instId": 300015,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 71591,
                   "y": 652,
@@ -630715,7 +627799,7 @@
               {
                 "groupId": 6,
                 "instId": 300017,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 66582,
                   "y": 653,
@@ -630747,7 +627831,7 @@
               {
                 "groupId": 6,
                 "instId": 300019,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -33792,
                   "y": -1086,
@@ -630779,7 +627863,7 @@
               {
                 "groupId": 6,
                 "instId": 300025,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -30468,
                   "y": -1086,
@@ -633172,7 +630256,7 @@
               {
                 "groupId": 97,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -31865,
                   "y": 8233,
@@ -633188,7 +630272,7 @@
               {
                 "groupId": 97,
                 "instId": 300003,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -31865,
                   "y": 8233,
@@ -633220,7 +630304,7 @@
               {
                 "groupId": 97,
                 "instId": 300005,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -31865,
                   "y": 8233,
@@ -635148,7 +632232,7 @@
               {
                 "groupId": 5,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -30740,
                   "y": 49742,
@@ -635244,7 +632328,7 @@
               {
                 "groupId": 5,
                 "instId": 300008,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 12556,
                   "y": 42916,
@@ -635276,7 +632360,7 @@
               {
                 "groupId": 5,
                 "instId": 300010,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 30620,
                   "y": 48070,
@@ -635308,7 +632392,7 @@
               {
                 "groupId": 5,
                 "instId": 300012,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -34817,
                   "y": 53990,
@@ -635340,7 +632424,7 @@
               {
                 "groupId": 5,
                 "instId": 300014,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 26527,
                   "y": 46835,
@@ -635372,7 +632456,7 @@
               {
                 "groupId": 5,
                 "instId": 300016,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -8960,
                   "y": 46190,
@@ -635404,7 +632488,7 @@
               {
                 "groupId": 5,
                 "instId": 300018,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -40186,
                   "y": 49858,
@@ -635436,7 +632520,7 @@
               {
                 "groupId": 5,
                 "instId": 300020,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -27069,
                   "y": 52902,
@@ -635468,7 +632552,7 @@
               {
                 "groupId": 5,
                 "instId": 300022,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 30606,
                   "y": 43466,
@@ -635484,7 +632568,7 @@
               {
                 "groupId": 5,
                 "instId": 300023,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -27076,
                   "y": 53191,
@@ -635500,7 +632584,7 @@
               {
                 "groupId": 5,
                 "instId": 300024,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 30626,
                   "y": 43758,
@@ -635594,7 +632678,7 @@
               {
                 "groupId": 10,
                 "instId": 300004,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -67500,
                   "y": 53260,
@@ -635626,7 +632710,7 @@
               {
                 "groupId": 10,
                 "instId": 300006,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 34430,
                   "y": 47263,
@@ -635642,7 +632726,7 @@
               {
                 "groupId": 10,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 34430,
                   "y": 47263,
@@ -635674,7 +632758,7 @@
               {
                 "groupId": 10,
                 "instId": 300008,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 33200,
                   "y": 47010,
@@ -635722,7 +632806,7 @@
               {
                 "groupId": 10,
                 "instId": 300011,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 49080,
                   "y": 43700,
@@ -635754,7 +632838,7 @@
               {
                 "groupId": 10,
                 "instId": 300013,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -62560,
                   "y": 53250,
@@ -635802,7 +632886,7 @@
               {
                 "groupId": 10,
                 "instId": 300016,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -60720,
                   "y": 53090,
@@ -635818,7 +632902,7 @@
               {
                 "groupId": 10,
                 "instId": 300017,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 34430,
                   "y": 47263,
@@ -638079,7 +635163,7 @@
               {
                 "groupId": 122,
                 "instId": 300001,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -27069,
                   "y": 54243,
@@ -638095,7 +635179,7 @@
               {
                 "groupId": 122,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -27069,
                   "y": 54243,
@@ -638111,7 +635195,7 @@
               {
                 "groupId": 122,
                 "instId": 300003,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 30674,
                   "y": 43783,
@@ -638127,7 +635211,7 @@
               {
                 "groupId": 122,
                 "instId": 300004,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 30674,
                   "y": 43783,
@@ -638526,52 +635610,6 @@
                 }
               }
             }
-          },
-          "211": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 211,
-                "instId": 300001,
-                "propState": 0,
-                "pos": {
-                  "x": 64490,
-                  "y": 60510,
-                  "z": 40220
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 276063,
-                  "z": 0
-                },
-                "propId": 102078
-              }
-            ],
-            "teleports": {}
-          },
-          "212": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 212,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300002
-              }
-            ],
-            "teleports": {}
           }
         },
         "isEnteredSceneInfo": true,
@@ -638737,7 +635775,7 @@
               {
                 "groupId": 5,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -30740,
                   "y": 49742,
@@ -638833,7 +635871,7 @@
               {
                 "groupId": 5,
                 "instId": 300008,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 12556,
                   "y": 42916,
@@ -638865,7 +635903,7 @@
               {
                 "groupId": 5,
                 "instId": 300010,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 30620,
                   "y": 48070,
@@ -638897,7 +635935,7 @@
               {
                 "groupId": 5,
                 "instId": 300012,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -34817,
                   "y": 53990,
@@ -638929,7 +635967,7 @@
               {
                 "groupId": 5,
                 "instId": 300014,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 26527,
                   "y": 46835,
@@ -638961,7 +635999,7 @@
               {
                 "groupId": 5,
                 "instId": 300016,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -8960,
                   "y": 46190,
@@ -638993,7 +636031,7 @@
               {
                 "groupId": 5,
                 "instId": 300018,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -40186,
                   "y": 49858,
@@ -639025,7 +636063,7 @@
               {
                 "groupId": 5,
                 "instId": 300020,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -27069,
                   "y": 52902,
@@ -639057,7 +636095,7 @@
               {
                 "groupId": 5,
                 "instId": 300022,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 30606,
                   "y": 43466,
@@ -639073,7 +636111,7 @@
               {
                 "groupId": 5,
                 "instId": 300023,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -27076,
                   "y": 53191,
@@ -639089,7 +636127,7 @@
               {
                 "groupId": 5,
                 "instId": 300024,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 30626,
                   "y": 43758,
@@ -639183,7 +636221,7 @@
               {
                 "groupId": 10,
                 "instId": 300004,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -67500,
                   "y": 53260,
@@ -639215,7 +636253,7 @@
               {
                 "groupId": 10,
                 "instId": 300006,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": 34430,
                   "y": 47263,
@@ -639231,7 +636269,7 @@
               {
                 "groupId": 10,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 34430,
                   "y": 47263,
@@ -639263,7 +636301,7 @@
               {
                 "groupId": 10,
                 "instId": 300008,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 33200,
                   "y": 47010,
@@ -639311,7 +636349,7 @@
               {
                 "groupId": 10,
                 "instId": 300011,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 49080,
                   "y": 43700,
@@ -639343,7 +636381,7 @@
               {
                 "groupId": 10,
                 "instId": 300013,
-                "propState": 1,
+                "propState": 2,
                 "pos": {
                   "x": -62560,
                   "y": 53250,
@@ -639391,7 +636429,7 @@
               {
                 "groupId": 10,
                 "instId": 300016,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -60720,
                   "y": 53090,
@@ -639407,7 +636445,7 @@
               {
                 "groupId": 10,
                 "instId": 300017,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 34430,
                   "y": 47263,
@@ -641668,7 +638706,7 @@
               {
                 "groupId": 122,
                 "instId": 300001,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -27069,
                   "y": 54243,
@@ -641684,7 +638722,7 @@
               {
                 "groupId": 122,
                 "instId": 300002,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": -27069,
                   "y": 54243,
@@ -641700,7 +638738,7 @@
               {
                 "groupId": 122,
                 "instId": 300003,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 30674,
                   "y": 43783,
@@ -641716,7 +638754,7 @@
               {
                 "groupId": 122,
                 "instId": 300004,
-                "propState": 1,
+                "propState": 0,
                 "pos": {
                   "x": 30674,
                   "y": 43783,
@@ -642115,52 +639153,6 @@
                 }
               }
             }
-          },
-          "211": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 211,
-                "instId": 300001,
-                "propState": 0,
-                "pos": {
-                  "x": 64490,
-                  "y": 60510,
-                  "z": 40220
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 276063,
-                  "z": 0
-                },
-                "propId": 102078
-              }
-            ],
-            "teleports": {}
-          },
-          "212": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 212,
-                "instId": 300001,
-                "propState": 1,
-                "pos": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "propId": 300002
-              }
-            ],
-            "teleports": {}
           }
         },
         "isEnteredSceneInfo": true,
@@ -643070,7 +640062,7 @@
               {
                 "groupId": 30,
                 "instId": 300001,
-                "propState": 15,
+                "propState": 2,
                 "pos": {
                   "x": 10966,
                   "y": 36279,
@@ -643157,7 +640149,7 @@
               {
                 "groupId": 31,
                 "instId": 300001,
-                "propState": 15,
+                "propState": 2,
                 "pos": {
                   "x": 11570,
                   "y": 42010,
@@ -644526,7 +641518,7 @@
               {
                 "groupId": 54,
                 "instId": 300001,
-                "propState": 2,
+                "propState": 1,
                 "pos": {
                   "x": -30220,
                   "y": 13900,
@@ -644542,7 +641534,7 @@
               {
                 "groupId": 54,
                 "instId": 300002,
-                "propState": 2,
+                "propState": 0,
                 "pos": {
                   "x": -62844,
                   "y": 13900,
@@ -644558,7 +641550,7 @@
               {
                 "groupId": 54,
                 "instId": 300003,
-                "propState": 2,
+                "propState": 1,
                 "pos": {
                   "x": -76357,
                   "y": 13900,
@@ -644574,7 +641566,7 @@
               {
                 "groupId": 54,
                 "instId": 300004,
-                "propState": 0,
+                "propState": 1,
                 "pos": {
                   "x": -30000,
                   "y": 10040,
@@ -645890,29 +642882,6 @@
                   "z": 0
                 },
                 "propId": 102012
-              }
-            ],
-            "teleports": {}
-          },
-          "189": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 189,
-                "instId": 300001,
-                "propState": 0,
-                "pos": {
-                  "x": -30220,
-                  "y": 13751,
-                  "z": 122228
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 114
               }
             ],
             "teleports": {}
@@ -646106,7 +643075,7 @@
               {
                 "groupId": 30,
                 "instId": 300001,
-                "propState": 15,
+                "propState": 2,
                 "pos": {
                   "x": 10966,
                   "y": 36279,
@@ -646193,7 +643162,7 @@
               {
                 "groupId": 31,
                 "instId": 300001,
-                "propState": 15,
+                "propState": 2,
                 "pos": {
                   "x": 11570,
                   "y": 42010,
@@ -647562,7 +644531,7 @@
               {
                 "groupId": 54,
                 "instId": 300001,
-                "propState": 2,
+                "propState": 1,
                 "pos": {
                   "x": -30220,
                   "y": 13900,
@@ -647578,7 +644547,7 @@
               {
                 "groupId": 54,
                 "instId": 300002,
-                "propState": 2,
+                "propState": 0,
                 "pos": {
                   "x": -62844,
                   "y": 13900,
@@ -647594,7 +644563,7 @@
               {
                 "groupId": 54,
                 "instId": 300003,
-                "propState": 2,
+                "propState": 1,
                 "pos": {
                   "x": -76357,
                   "y": 13900,
@@ -647610,7 +644579,7 @@
               {
                 "groupId": 54,
                 "instId": 300004,
-                "propState": 0,
+                "propState": 1,
                 "pos": {
                   "x": -30000,
                   "y": 10040,
@@ -648926,29 +645895,6 @@
                   "z": 0
                 },
                 "propId": 102012
-              }
-            ],
-            "teleports": {}
-          },
-          "189": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 189,
-                "instId": 300001,
-                "propState": 0,
-                "pos": {
-                  "x": -30220,
-                  "y": 13751,
-                  "z": 122228
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 114
               }
             ],
             "teleports": {}
@@ -649142,7 +646088,7 @@
               {
                 "groupId": 30,
                 "instId": 300001,
-                "propState": 15,
+                "propState": 2,
                 "pos": {
                   "x": 10966,
                   "y": 36279,
@@ -649229,7 +646175,7 @@
               {
                 "groupId": 31,
                 "instId": 300001,
-                "propState": 15,
+                "propState": 2,
                 "pos": {
                   "x": 11570,
                   "y": 42010,
@@ -650598,7 +647544,7 @@
               {
                 "groupId": 54,
                 "instId": 300001,
-                "propState": 2,
+                "propState": 1,
                 "pos": {
                   "x": -30220,
                   "y": 13900,
@@ -650614,7 +647560,7 @@
               {
                 "groupId": 54,
                 "instId": 300002,
-                "propState": 2,
+                "propState": 0,
                 "pos": {
                   "x": -62844,
                   "y": 13900,
@@ -650630,7 +647576,7 @@
               {
                 "groupId": 54,
                 "instId": 300003,
-                "propState": 2,
+                "propState": 1,
                 "pos": {
                   "x": -76357,
                   "y": 13900,
@@ -650646,7 +647592,7 @@
               {
                 "groupId": 54,
                 "instId": 300004,
-                "propState": 0,
+                "propState": 1,
                 "pos": {
                   "x": -30000,
                   "y": 10040,
@@ -651962,29 +648908,6 @@
                   "z": 0
                 },
                 "propId": 102012
-              }
-            ],
-            "teleports": {}
-          },
-          "189": {
-            "monsters": [],
-            "npcs": [],
-            "props": [
-              {
-                "groupId": 189,
-                "instId": 300001,
-                "propState": 0,
-                "pos": {
-                  "x": -30220,
-                  "y": 13751,
-                  "z": 122228
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 180000,
-                  "z": 0
-                },
-                "propId": 114
               }
             ],
             "teleports": {}
@@ -656021,116 +652944,6 @@
             ],
             "teleports": {}
           },
-          "179": {
-            "monsters": [
-              {
-                "groupId": 179,
-                "instId": 200001,
-                "eventId": 20242011,
-                "pos": {
-                  "x": 349,
-                  "y": -51864,
-                  "z": 101448
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 17765,
-                  "z": 0
-                },
-                "monsterId": 2032020
-              },
-              {
-                "groupId": 179,
-                "instId": 200002,
-                "eventId": 20242012,
-                "pos": {
-                  "x": 30829,
-                  "y": -44301,
-                  "z": 74777
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 5702,
-                  "z": 0
-                },
-                "monsterId": 2032020
-              },
-              {
-                "groupId": 179,
-                "instId": 200003,
-                "eventId": 20242013,
-                "pos": {
-                  "x": 2176,
-                  "y": -43640,
-                  "z": 59602
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 31891,
-                  "z": 0
-                },
-                "monsterId": 2032010
-              },
-              {
-                "groupId": 179,
-                "instId": 200004,
-                "eventId": 20242014,
-                "pos": {
-                  "x": -1961,
-                  "y": -43640,
-                  "z": 71132
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 126242,
-                  "z": 0
-                },
-                "monsterId": 2032020
-              }
-            ],
-            "npcs": [],
-            "props": [],
-            "teleports": {}
-          },
-          "180": {
-            "monsters": [
-              {
-                "groupId": 180,
-                "instId": 200001,
-                "eventId": 20242021,
-                "pos": {
-                  "x": -61149,
-                  "y": -47110,
-                  "z": 80430
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 242819,
-                  "z": 0
-                },
-                "monsterId": 2032020
-              },
-              {
-                "groupId": 180,
-                "instId": 200002,
-                "eventId": 20242022,
-                "pos": {
-                  "x": -63066,
-                  "y": -46437,
-                  "z": -13111
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 5702,
-                  "z": 0
-                },
-                "monsterId": 2032010
-              }
-            ],
-            "npcs": [],
-            "props": [],
-            "teleports": {}
-          },
           "182": {
             "monsters": [],
             "npcs": [],
@@ -659913,116 +656726,6 @@
                 "propId": 102006
               }
             ],
-            "teleports": {}
-          },
-          "179": {
-            "monsters": [
-              {
-                "groupId": 179,
-                "instId": 200001,
-                "eventId": 20242011,
-                "pos": {
-                  "x": 349,
-                  "y": -51864,
-                  "z": 101448
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 17765,
-                  "z": 0
-                },
-                "monsterId": 2032020
-              },
-              {
-                "groupId": 179,
-                "instId": 200002,
-                "eventId": 20242012,
-                "pos": {
-                  "x": 30829,
-                  "y": -44301,
-                  "z": 74777
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 5702,
-                  "z": 0
-                },
-                "monsterId": 2032020
-              },
-              {
-                "groupId": 179,
-                "instId": 200003,
-                "eventId": 20242013,
-                "pos": {
-                  "x": 2176,
-                  "y": -43640,
-                  "z": 59602
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 31891,
-                  "z": 0
-                },
-                "monsterId": 2032010
-              },
-              {
-                "groupId": 179,
-                "instId": 200004,
-                "eventId": 20242014,
-                "pos": {
-                  "x": -1961,
-                  "y": -43640,
-                  "z": 71132
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 126242,
-                  "z": 0
-                },
-                "monsterId": 2032020
-              }
-            ],
-            "npcs": [],
-            "props": [],
-            "teleports": {}
-          },
-          "180": {
-            "monsters": [
-              {
-                "groupId": 180,
-                "instId": 200001,
-                "eventId": 20242021,
-                "pos": {
-                  "x": -61149,
-                  "y": -47110,
-                  "z": 80430
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 242819,
-                  "z": 0
-                },
-                "monsterId": 2032020
-              },
-              {
-                "groupId": 180,
-                "instId": 200002,
-                "eventId": 20242022,
-                "pos": {
-                  "x": -63066,
-                  "y": -46437,
-                  "z": -13111
-                },
-                "rot": {
-                  "x": 0,
-                  "y": 5702,
-                  "z": 0
-                },
-                "monsterId": 2032010
-              }
-            ],
-            "npcs": [],
-            "props": [],
             "teleports": {}
           },
           "182": {

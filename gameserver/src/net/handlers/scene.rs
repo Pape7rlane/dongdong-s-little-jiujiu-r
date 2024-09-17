@@ -52,6 +52,9 @@ pub async fn on_enter_scene_cs_req(
     {
         res.retcode = Nbbhhpnhond::RetSceneEntryIdNotMatch as u32;
     };
+
+    res.alckpiobhlb = req.alckpiobhlb;
+    res.gpjeedfjhaj = player.scene.entry_id != req.entry_id;
 }
 
 pub async fn on_get_scene_map_info_cs_req(
@@ -86,24 +89,21 @@ pub async fn on_get_scene_map_info_cs_req(
 
         let group_config = GAME_RES
             .level_output_configs
-            .get(&entry_id)
+            .get(entry_id)
             .and_then(|v| v.iter().next());
 
         if let Some((_, group_config)) = group_config {
-            for (_, (group_id, group)) in group_config.scenes.iter().enumerate() {
+            for (group_id, group) in group_config.scenes.iter() {
                 map_info.maze_group_list.push(MazeGroup {
                     group_id: *group_id,
                     ..Default::default()
                 });
 
-                for (teleport, _) in &group.teleports {
+                for teleport in group.teleports.keys() {
                     map_info.unlocked_teleport_list.push(*teleport)
                 }
 
                 for prop in &group.props {
-                    if prop.prop_state != 8 {
-                        continue;
-                    }
                     map_info.maze_prop_list.push(MazeProp {
                         group_id: prop.group_id,
                         state: prop.prop_state,
@@ -164,7 +164,7 @@ pub async fn on_get_entered_scene_cs_req(
     res.entered_scene_info = GAME_RES
         .level_output_configs
         .iter()
-        .map(|(_, v)| {
+        .flat_map(|(_, v)| {
             v.iter()
                 .filter(|(_, v)| v.is_entered_scene_info)
                 .map(|(k, _)| {
@@ -178,7 +178,6 @@ pub async fn on_get_entered_scene_cs_req(
                 })
                 .collect::<Vec<_>>()
         })
-        .flatten()
         .collect::<Vec<_>>();
 }
 
@@ -192,16 +191,15 @@ async fn load_scene(
     let (name, scene) = GAME_RES
         .level_output_configs
         .get(&entry_id)
-        .map(|v| v.iter().next())
-        .flatten()
+        .and_then(|v| v.iter().next())
         .ok_or_else(|| {
             tracing::error!("Map Entrance Not Found {}", entry_id);
             anyhow::format_err!("Map Entrance Not Found {}", entry_id)
         })?;
 
     let split: Vec<_> = name.split("_").collect();
-    let plane_id = *&split[0][1..].parse::<u32>()?;
-    let floor_id = *&split[1][1..].parse::<u32>()?;
+    let plane_id = split[0][1..].parse::<u32>()?;
+    let floor_id = split[1][1..].parse::<u32>()?;
 
     let mut json_pos = json.position.clone();
     if let Some(teleport_id) = teleport_id {
@@ -214,17 +212,15 @@ async fn load_scene(
             json_pos.y = teleport.pos.y;
             json_pos.z = teleport.pos.z;
             json_pos.rot_y = teleport.rot.y;
-        } else {
-            if let Some((_, teleport)) = scene
-                .scenes
-                .iter()
-                .find_map(|v| v.1.teleports.iter().next())
-            {
-                json_pos.x = teleport.pos.x;
-                json_pos.y = teleport.pos.y;
-                json_pos.z = teleport.pos.z;
-                json_pos.rot_y = teleport.rot.y;
-            }
+        } else if let Some((_, teleport)) = scene
+            .scenes
+            .iter()
+            .find_map(|v| v.1.teleports.iter().next())
+        {
+            json_pos.x = teleport.pos.x;
+            json_pos.y = teleport.pos.y;
+            json_pos.z = teleport.pos.z;
+            json_pos.rot_y = teleport.rot.y;
         }
     }
 
@@ -232,7 +228,7 @@ async fn load_scene(
         floor_id,
         plane_id,
         entry_id,
-        game_mode_type: *(&scene.plane_type) as u32,
+        game_mode_type: scene.plane_type,
         leader_entity_id: 1,
         world_id: scene.world_id,
         ..Default::default()
@@ -298,10 +294,10 @@ async fn load_scene(
             loaded_npc.push(npc.npc_id);
 
             let npc_position = Position {
-                x: (npc.pos.x) as i32,
-                y: (npc.pos.y) as i32,
-                z: (npc.pos.z) as i32,
-                rot_y: (npc.rot.y) as i32,
+                x: npc.pos.x,
+                y: npc.pos.y,
+                z: npc.pos.z,
+                rot_y: npc.rot.y,
             };
 
             let info = SceneEntityInfo {
@@ -322,10 +318,10 @@ async fn load_scene(
         for monster in &group.monsters {
             monster_entity_id += 1;
             let monster_position = Position {
-                x: (monster.pos.x) as i32,
-                y: (monster.pos.y) as i32,
-                z: (monster.pos.z) as i32,
-                rot_y: (monster.rot.y) as i32,
+                x: monster.pos.x,
+                y: monster.pos.y,
+                z: monster.pos.z,
+                rot_y: monster.rot.y,
             };
 
             let npc_monster = SceneNpcMonsterInfo {
