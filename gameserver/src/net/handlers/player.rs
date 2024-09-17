@@ -36,7 +36,7 @@ pub async fn on_player_login_finish_cs_req(
     session
         .send(ContentPackageSyncDataScNotify {
             data: Some(PackageData {
-                info_list: vec![
+                info_list: [
                     200001, 200002, 200003, 200004, 150017, 150015, 150021, 150018, 130011, 130012,
                     130013,
                 ]

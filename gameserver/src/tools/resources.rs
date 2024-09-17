@@ -102,9 +102,9 @@ pub struct ScenePropInfo {
 pub struct TeleportInfo {
     pub pos: Vector,
     pub rot: Vector,
-    pub group_id: u32,
-    pub inst_id: u32,
-    pub anchor_id: u32,
+    // pub group_id: u32,
+    // pub inst_id: u32,
+    // pub anchor_id: u32,
 }
 
 #[derive(Deserialize)]
@@ -128,8 +128,8 @@ pub struct LevelOutputConfig {
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AvatarConfig {
-    pub weakness_buff_id: u32,
-    pub technique_buff_ids: Vec<u32>,
+    // pub weakness_buff_id: u32,
+    // pub technique_buff_ids: Vec<u32>,
 }
 
 #[derive(Deserialize, Default)]
@@ -137,7 +137,7 @@ pub struct AvatarConfig {
 pub struct JsonConfig {
     /// `entryid` -> `P[planeId]_F[floorId]` -> `groupId`
     pub level_output_configs: HashMap<u32, HashMap<String, LevelOutputConfig>>,
-    pub avatar_configs: HashMap<u32, AvatarConfig>,
+    // pub avatar_configs: HashMap<u32, AvatarConfig>,
 }
 
 pub static GAME_RES: LazyLock<JsonConfig> = LazyLock::new(|| {

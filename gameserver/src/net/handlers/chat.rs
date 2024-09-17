@@ -89,7 +89,6 @@ pub async fn on_send_msg_cs_req(
                         from_uid: SERVER_UID, // from
                         to_uid: 25,           // to
                         chat_type: body.chat_type,
-                        ..Default::default()
                     })
                     .await
                     .unwrap();
@@ -121,7 +120,6 @@ pub async fn on_send_msg_cs_req(
                         from_uid: SERVER_UID, // from
                         to_uid: 25,           // to
                         chat_type: body.chat_type,
-                        ..Default::default()
                     })
                     .await
                     .unwrap();
@@ -153,7 +151,6 @@ pub async fn on_send_msg_cs_req(
                         from_uid: SERVER_UID, // from
                         to_uid: 25,           // to
                         chat_type: body.chat_type,
-                        ..Default::default()
                     })
                     .await
                     .unwrap();
