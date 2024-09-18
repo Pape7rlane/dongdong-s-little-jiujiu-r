@@ -48,16 +48,7 @@ pub async fn on_join_lineup_cs_req(
 ) {
     let mut player = tools::FreesrData::load().await;
     let lineups = &mut player.lineups;
-    lineups.insert(
-        body.slot,
-        if body.base_avatar_id == 8001 {
-            player.main_character as u32
-        } else if body.base_avatar_id == 1001 {
-            player.march_type as u32
-        } else {
-            body.base_avatar_id
-        },
-    );
+    lineups.insert(body.slot, body.base_avatar_id);
     player.save_lineup().await;
     refresh_lineup(session, &player).await;
 }
@@ -72,13 +63,7 @@ pub async fn on_replace_lineup_cs_req(
     let lineups = &mut player.lineups;
     for (slot, avatar_id) in &mut *lineups {
         if let Some(lineup) = req.slots.get(*slot as usize) {
-            *avatar_id = if lineup.id == 8001 {
-                player.main_character as u32
-            } else if lineup.id == 1001 {
-                player.march_type as u32
-            } else {
-                lineup.id
-            };
+            *avatar_id = lineup.id;
         } else {
             *avatar_id = 0;
         }

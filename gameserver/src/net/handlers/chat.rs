@@ -86,8 +86,8 @@ pub async fn on_send_msg_cs_req(
                         msg_type: body.msg_type,
                         text: String::from("Inventory Synced"),
                         emote: body.emote,
-                        from_uid: SERVER_UID, // from
-                        to_uid: 25,           // to
+                        from_uid: SERVER_UID,
+                        to_uid: 25,
                         chat_type: body.chat_type,
                     })
                     .await
@@ -117,8 +117,8 @@ pub async fn on_send_msg_cs_req(
                         msg_type: body.msg_type,
                         text: format!("Success change mc to {:#?}", mc),
                         emote: body.emote,
-                        from_uid: SERVER_UID, // from
-                        to_uid: 25,           // to
+                        from_uid: SERVER_UID,
+                        to_uid: 25,
                         chat_type: body.chat_type,
                     })
                     .await
@@ -148,8 +148,8 @@ pub async fn on_send_msg_cs_req(
                         msg_type: body.msg_type,
                         text: format!("Success change march to {:#?}", march_type),
                         emote: body.emote,
-                        from_uid: SERVER_UID, // from
-                        to_uid: 25,           // to
+                        from_uid: SERVER_UID,
+                        to_uid: 25,
                         chat_type: body.chat_type,
                     })
                     .await

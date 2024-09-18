@@ -24,7 +24,7 @@ pub struct AvatarJson {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct AvatarData {
     pub rank: u32,
-    pub skills: BTreeMap<u32, u32>,
+    pub skills: HashMap<u32, u32>,
 }
 
 impl AvatarJson {
@@ -506,7 +506,7 @@ impl Position {
 pub struct FreesrData {
     pub lightcones: Vec<Lightcone>,
     pub relics: Vec<Relic>,
-    pub avatars: BTreeMap<u32, AvatarJson>,
+    pub avatars: HashMap<u32, AvatarJson>,
     #[serde(default)]
     pub battle_config: BattleConfig,
 
@@ -554,16 +554,18 @@ impl Default for Persistent {
     }
 }
 
-#[derive(Serialize, Deserialize, Clone, Debug, Copy)]
+#[derive(Serialize, Deserialize, Clone, Debug, Copy, Default, PartialEq, Eq)]
 pub enum MultiPathAvatar {
     MalePyhsical = 8001,
     FemalePhysical = 8002,
     MalePreservation = 8003,
     FemalePreservation = 8004,
     MaleHarmony = 8005,
+    #[default]
     FemaleHarmony = 8006,
     MarchHunt = 1224,
     MarchPreservation = 1001,
+    Unk = 0,
 }
 
 impl From<u32> for MultiPathAvatar {
@@ -577,7 +579,7 @@ impl From<u32> for MultiPathAvatar {
             8006 => Self::FemaleHarmony,
             1224 => Self::MarchHunt,
             1001 => Self::MarchPreservation,
-            _ => Self::FemaleHarmony,
+            _ => Self::Unk,
         }
     }
 }
@@ -603,13 +605,21 @@ impl MultiPathAvatar {
             MultiPathAvatar::FemaleHarmony => MultiPathAvatarType::GirlShamanType,
             MultiPathAvatar::MarchHunt => MultiPathAvatarType::Mar7thRogueType,
             MultiPathAvatar::MarchPreservation => MultiPathAvatarType::Mar7thKnightType,
+            MultiPathAvatar::Unk => MultiPathAvatarType::None,
         }
     }
-}
 
-impl Default for MultiPathAvatar {
-    fn default() -> Self {
-        Self::FemaleHarmony
+    pub fn to_vec() -> Vec<MultiPathAvatar> {
+        vec![
+            Self::MalePyhsical,
+            Self::FemalePhysical,
+            Self::MalePreservation,
+            Self::FemalePreservation,
+            Self::MaleHarmony,
+            Self::FemaleHarmony,
+            Self::MarchHunt,
+            Self::MarchPreservation,
+        ]
     }
 }
 

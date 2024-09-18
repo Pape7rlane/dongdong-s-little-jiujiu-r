@@ -45,12 +45,13 @@ use proto::{
     CmdMuseumType::*, CmdOfferingType::*, CmdPamMissionType::*, CmdPhoneType::*,
     CmdPlayerBoardType::*, CmdPlayerReturnType::*, CmdPlayerSync::*, CmdPlayerType::*,
     CmdPlotType::*, CmdPunkLordType::*, CmdQuestType::*, CmdRaidCollectionType::*, CmdRaidType::*,
-    CmdRedDotType::*, CmdReplayType::*, CmdRndOptionType::*, CmdRogueCommonType::*,
-    CmdRogueEndless::*, CmdRogueModifierType::*, CmdRogueTournType::*, CmdRogueType::*,
-    CmdRollShopType::*, CmdSceneType::*, CmdServerPrefsType::*, CmdShopType::*, CmdSpaceZooType::*,
-    CmdStarFightType::*, CmdStoryLineType::*, CmdStrongChallengeActivityType::*,
-    CmdTalkRewardType::*, CmdTelevisionActivityType::*, CmdTextJoinType::*, CmdTrainVisitorType::*,
-    CmdTreasureDungeonType::*, CmdTutorialType::*, CmdWaypointType::*, CmdWolfBroType::*,
+    CmdRecommendType::*, CmdRedDotType::*, CmdReplayType::*, CmdRndOptionType::*,
+    CmdRogueCommonType::*, CmdRogueEndless::*, CmdRogueModifierType::*, CmdRogueTournType::*,
+    CmdRogueType::*, CmdRollShopType::*, CmdSceneType::*, CmdServerPrefsType::*, CmdShopType::*,
+    CmdSpaceZooType::*, CmdStarFightType::*, CmdStoryLineType::*,
+    CmdStrongChallengeActivityType::*, CmdTalkRewardType::*, CmdTelevisionActivityType::*,
+    CmdTextJoinType::*, CmdTrainVisitorType::*, CmdTreasureDungeonType::*, CmdTutorialType::*,
+    CmdWaypointType::*, CmdWolfBroType::*,
 };
 
 macro_rules! dummy {
@@ -137,5 +138,6 @@ dummy! {
     GetPhoneData,
     // PlayerLoginFinish,
     InteractProp,
-    FinishTalkMission
+    FinishTalkMission,
+    RelicRecommend
 }

@@ -3,7 +3,10 @@ use std::collections::HashMap;
 use rand::Rng;
 use rogue_magic_battle_unit_info::Item;
 
-use crate::net::tools::{self, BattleType, Monster};
+use crate::{
+    net::tools::{self, BattleType, Monster},
+    tools::resources::GAME_RES,
+};
 
 use super::*;
 
@@ -12,7 +15,7 @@ pub async fn on_start_cocoon_stage_cs_req(
     body: &StartCocoonStageCsReq,
     res: &mut StartCocoonStageScRsp,
 ) {
-    let battle_info = create_battle_info().await;
+    let battle_info = create_battle_info(0, 0).await;
 
     res.prop_entity_id = body.prop_entity_id;
     res.cocoon_id = body.cocoon_id;
@@ -31,13 +34,12 @@ pub async fn on_pve_battle_result_cs_req(
 
 pub async fn on_scene_cast_skill_cs_req(
     _session: &mut PlayerSession,
-    request: &SceneCastSkillCsReq,
+    req: &SceneCastSkillCsReq,
     res: &mut SceneCastSkillScRsp,
 ) {
-    res.attacked_group_id = request.attacked_group_id;
+    res.attacked_group_id = req.attacked_group_id;
 
-    let battle_info = create_battle_info().await;
-    let targets = request
+    let targets = req
         .hit_target_entity_id_list
         .iter()
         .filter(|id| **id > 30_000 || **id < 1_000)
@@ -47,10 +49,12 @@ pub async fn on_scene_cast_skill_cs_req(
         return;
     }
 
+    let battle_info = create_battle_info(req.caster_id, req.skill_index).await;
+
     res.battle_info = Some(battle_info);
 }
 
-async fn create_battle_info() -> SceneBattleInfo {
+async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo {
     let player = tools::FreesrData::load().await;
 
     let mut battle_info = SceneBattleInfo {
@@ -62,10 +66,10 @@ async fn create_battle_info() -> SceneBattleInfo {
     };
 
     // avatars
-    for (i, avatar_id) in player.lineups.iter() {
+    for (avatar_index, avatar_id) in player.lineups.iter() {
         if let Some(avatar) = player.avatars.get(avatar_id) {
             let (battle_avatar, techs) = avatar.to_battle_avatar_proto(
-                *i,
+                *avatar_index,
                 player
                     .lightcones
                     .iter()
@@ -79,6 +83,34 @@ async fn create_battle_info() -> SceneBattleInfo {
             for tech in techs {
                 battle_info.buff_list.push(tech);
             }
+
+            if caster_id > 0 && *avatar_index == (caster_id - 1) {
+                let is_trailblazer = *avatar_id == 8001;
+                let is_march = *avatar_id == 1001;
+
+                let avatar_id = if is_trailblazer {
+                    player.main_character as u32
+                } else if is_march {
+                    player.march_type as u32
+                } else {
+                    *avatar_id
+                };
+
+                if let Some(avatar_config) = GAME_RES.avatar_configs.get(&avatar_id) {
+                    battle_info.buff_list.push(BattleBuff {
+                        id: avatar_config.weakness_buff_id,
+                        level: 1,
+                        owner_id: *avatar_index,
+                        wave_flag: 0xffffffff,
+                        dynamic_values: HashMap::from([(
+                            String::from("SkillIndex"),
+                            skill_index as f32,
+                        )]),
+                        ..Default::default()
+                    });
+                }
+            }
+
             battle_info.battle_avatar_list.push(battle_avatar);
 
             // hardcoded march
@@ -87,7 +119,7 @@ async fn create_battle_info() -> SceneBattleInfo {
                     id: 122401,
                     level: 3,
                     wave_flag: 0xffffffff,
-                    owner_id: *i,
+                    owner_id: *avatar_index,
                     dynamic_values: HashMap::from([
                         (String::from("#ADF_1"), 3f32),
                         (String::from("#ADF_2"), 3f32),
@@ -224,9 +256,10 @@ async fn create_battle_info() -> SceneBattleInfo {
             })
     }
 
-    // monsters
+    // Monsters
     battle_info.monster_wave_list = Monster::to_scene_monster_waves(&player.battle_config.monsters);
 
+    // Rogue Magic
     if !player.battle_config.scepters.is_empty() {
         battle_info.rogue_magic_battle_info = Some(RogueMagicBattleInfo {
             player_detail_info: Some(RogueMagicBattleUnitInfo {

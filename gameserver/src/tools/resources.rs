@@ -128,7 +128,7 @@ pub struct LevelOutputConfig {
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AvatarConfig {
-    // pub weakness_buff_id: u32,
+    pub weakness_buff_id: u32,
     // pub technique_buff_ids: Vec<u32>,
 }
 
@@ -137,7 +137,7 @@ pub struct AvatarConfig {
 pub struct JsonConfig {
     /// `entryid` -> `P[planeId]_F[floorId]` -> `groupId`
     pub level_output_configs: HashMap<u32, HashMap<String, LevelOutputConfig>>,
-    // pub avatar_configs: HashMap<u32, AvatarConfig>,
+    pub avatar_configs: HashMap<u32, AvatarConfig>,
 }
 
 pub static GAME_RES: LazyLock<JsonConfig> = LazyLock::new(|| {

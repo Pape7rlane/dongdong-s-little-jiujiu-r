@@ -51,6 +51,7 @@ pub async fn on_enter_scene_cs_req(
     .is_err()
     {
         res.retcode = Nbbhhpnhond::RetSceneEntryIdNotMatch as u32;
+        return;
     };
 
     res.alckpiobhlb = req.alckpiobhlb;
@@ -185,7 +186,7 @@ async fn load_scene(
     session: &mut PlayerSession,
     json: &mut FreesrData,
     entry_id: u32,
-    save_scene: bool,
+    is_enter_scene: bool,
     teleport_id: Option<u32>,
 ) -> Result<SceneInfo> {
     let (name, scene) = GAME_RES
@@ -359,28 +360,28 @@ async fn load_scene(
     }
 
     // load player entity
-    let mut player_group = SceneEntityGroupInfo {
+    scene_info.entity_group_list.push(SceneEntityGroupInfo {
         state: 0,
         group_id: 0,
-        ..Default::default()
-    };
-    for (slot, avatar_id) in &json.lineups {
-        player_group.entity_list.push(SceneEntityInfo {
-            inst_id: 0,
-            entity_id: (*slot) + 1,
-            motion: Some(player_pos.clone()),
-            entity: Some(Entity::Actor(SceneActorInfo {
-                avatar_type: AvatarType::AvatarFormalType.into(),
-                base_avatar_id: *avatar_id,
-                map_layer: 0,
-                uid: 25,
-            })),
-            ..Default::default()
-        })
-    }
-    scene_info.entity_group_list.push(player_group);
+        entity_list: json
+            .lineups
+            .iter()
+            .map(|(slot, avatar_id)| SceneEntityInfo {
+                inst_id: 0,
+                entity_id: (*slot) + 1,
+                motion: Some(player_pos.clone()),
+                entity: Some(Entity::Actor(SceneActorInfo {
+                    avatar_type: AvatarType::AvatarFormalType.into(),
+                    base_avatar_id: *avatar_id,
+                    map_layer: 0,
+                    uid: 25,
+                })),
+                ..Default::default()
+            })
+            .collect(),
+    });
 
-    if save_scene {
+    if is_enter_scene {
         session
             .send(EnterSceneByServerScNotify {
                 scene: Some(scene_info.clone()),
