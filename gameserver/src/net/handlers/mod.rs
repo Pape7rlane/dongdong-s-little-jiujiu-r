@@ -13,7 +13,6 @@ mod scene;
 use anyhow::Result;
 use paste::paste;
 use proto::*;
-use tokio::io::AsyncWriteExt;
 
 use super::PlayerSession;
 use crate::net::NetPacket;
@@ -75,14 +74,11 @@ macro_rules! dummy {
                         _ => return Err(anyhow::anyhow!("Invalid request id {req_id:?}")),
                     };
 
-                    let payload: Vec<u8> = NetPacket {
+                    self.send_raw(NetPacket {
                         cmd_type,
                         head: Vec::new(),
                         body: Vec::new(),
-                    }
-                    .into();
-
-                    self.client_socket.write_all(&payload).await?;
+                    }).await?;
 
                     Ok(())
                 }

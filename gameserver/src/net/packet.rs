@@ -1,7 +1,5 @@
 use anyhow::Result;
 use paste::paste;
-use tokio::io::AsyncReadExt;
-use tokio::net::TcpStream;
 use tracing::Instrument;
 
 use proto::*;
@@ -34,6 +32,16 @@ use super::PlayerSession;
 const HEAD_MAGIC: u32 = 0x9D74C714;
 const TAIL_MAGIC: u32 = 0xD7A152C8;
 
+#[derive(Debug)]
+pub struct NetOperation {
+    pub head: u32,
+    pub param1: u32,
+    pub param2: u32,
+    pub data: u32,
+    pub tail: u32,
+}
+
+#[derive(Debug)]
 pub struct NetPacket {
     pub cmd_type: u16,
     pub head: Vec<u8>,
@@ -55,27 +63,62 @@ impl From<NetPacket> for Vec<u8> {
     }
 }
 
-impl NetPacket {
-    pub async fn read(stream: &mut TcpStream) -> std::io::Result<Self> {
-        assert_eq!(stream.read_u32().await?, HEAD_MAGIC);
-        let cmd_type = stream.read_u16().await?;
+impl From<&[u8]> for NetPacket {
+    fn from(value: &[u8]) -> Self {
+        assert_eq!(
+            u32::from_be_bytes(value[0..4].try_into().unwrap()),
+            HEAD_MAGIC
+        );
 
-        let head_length = stream.read_u16().await? as usize;
-        let body_length = stream.read_u32().await? as usize;
+        let cmd_type = u16::from_be_bytes(value[4..6].try_into().unwrap());
 
-        let mut head = vec![0; head_length];
-        stream.read_exact(&mut head).await?;
+        let head_length = usize::from(u16::from_be_bytes(value[6..8].try_into().unwrap()));
 
-        let mut body = vec![0; body_length];
-        stream.read_exact(&mut body).await?;
+        let body_length = u32::from_be_bytes(value[8..12].try_into().unwrap()) as usize;
 
-        assert_eq!(stream.read_u32().await?, TAIL_MAGIC);
+        let head_start = 12;
+        let head_end = head_start + head_length;
+        let head = value[head_start..head_end].to_vec();
 
-        Ok(Self {
+        let body_start = head_end;
+        let body_end = body_start + body_length;
+        let body = value[body_start..body_end].to_vec();
+
+        assert_eq!(
+            u32::from_be_bytes(value[body_end..body_end + 4].try_into().unwrap()),
+            TAIL_MAGIC
+        );
+
+        Self {
             cmd_type,
             head,
             body,
-        })
+        }
+    }
+}
+
+impl From<&[u8]> for NetOperation {
+    fn from(value: &[u8]) -> Self {
+        Self {
+            head: u32::from_be_bytes(value[..4].try_into().unwrap()),
+            param1: u32::from_be_bytes(value[4..8].try_into().unwrap()),
+            param2: u32::from_be_bytes(value[8..12].try_into().unwrap()),
+            data: u32::from_be_bytes(value[12..16].try_into().unwrap()),
+            tail: u32::from_be_bytes(value[16..20].try_into().unwrap()),
+        }
+    }
+}
+
+impl From<NetOperation> for Vec<u8> {
+    fn from(value: NetOperation) -> Self {
+        let mut buf = Self::with_capacity(20);
+        buf.extend(value.head.to_be_bytes());
+        buf.extend(value.param1.to_be_bytes());
+        buf.extend(value.param2.to_be_bytes());
+        buf.extend(value.data.to_be_bytes());
+        buf.extend(value.tail.to_be_bytes());
+
+        buf
     }
 }
 

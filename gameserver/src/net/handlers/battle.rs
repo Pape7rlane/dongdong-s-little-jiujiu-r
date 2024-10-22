@@ -67,7 +67,18 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
 
     // avatars
     for (avatar_index, avatar_id) in player.lineups.iter() {
-        if let Some(avatar) = player.avatars.get(avatar_id) {
+        let is_trailblazer = *avatar_id == 8001;
+        let is_march = *avatar_id == 1001;
+
+        let avatar_id = if is_trailblazer {
+            player.main_character as u32
+        } else if is_march {
+            player.march_type as u32
+        } else {
+            *avatar_id
+        };
+
+        if let Some(avatar) = player.avatars.get(&avatar_id) {
             let (battle_avatar, techs) = avatar.to_battle_avatar_proto(
                 *avatar_index,
                 player
@@ -84,31 +95,22 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
                 battle_info.buff_list.push(tech);
             }
 
-            if caster_id > 0 && *avatar_index == (caster_id - 1) {
-                let is_trailblazer = *avatar_id == 8001;
-                let is_march = *avatar_id == 1001;
-
-                let avatar_id = if is_trailblazer {
-                    player.main_character as u32
-                } else if is_march {
-                    player.march_type as u32
-                } else {
-                    *avatar_id
-                };
-
-                if let Some(avatar_config) = GAME_RES.avatar_configs.get(&avatar_id) {
-                    battle_info.buff_list.push(BattleBuff {
-                        id: avatar_config.weakness_buff_id,
-                        level: 1,
-                        owner_id: *avatar_index,
-                        wave_flag: 0xffffffff,
-                        dynamic_values: HashMap::from([(
-                            String::from("SkillIndex"),
-                            skill_index as f32,
-                        )]),
-                        ..Default::default()
-                    });
-                }
+            if caster_id > 0
+                && *avatar_index == (caster_id - 1)
+                && let Some(avatar_config) = GAME_RES.avatar_configs.get(&avatar_id)
+                && !avatar.techniques.contains(&1000119)
+            {
+                battle_info.buff_list.push(BattleBuff {
+                    id: avatar_config.weakness_buff_id,
+                    level: 1,
+                    owner_id: *avatar_index,
+                    wave_flag: 0xffffffff,
+                    dynamic_values: HashMap::from([(
+                        String::from("SkillIndex"),
+                        skill_index as f32,
+                    )]),
+                    ..Default::default()
+                });
             }
 
             battle_info.battle_avatar_list.push(battle_avatar);

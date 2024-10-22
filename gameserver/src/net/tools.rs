@@ -481,6 +481,7 @@ pub struct Position {
 }
 
 impl Position {
+    #[allow(unused)]
     pub fn is_empty(&self) -> bool {
         self.x == 0 && self.y == 0 && self.z == 0
     }
@@ -585,6 +586,7 @@ impl From<u32> for MultiPathAvatar {
 }
 
 impl MultiPathAvatar {
+    #[allow(unused)]
     pub fn get_gender(&self) -> Gender {
         if (*self as u32) < 8000 {
             Gender::None

@@ -31,3 +31,4 @@ proto.workspace = true
 proto-derive.workspace = true
 
 rand.workspace = true
+mhy-kcp.workspace = true
