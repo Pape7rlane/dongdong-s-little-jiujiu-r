@@ -254,7 +254,7 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
                         max_sp: 10_000,
                     }),
                 }),
-                skill_info: vec![],
+                // skill_info: vec![],
             })
     }
 
@@ -267,8 +267,8 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
             player_detail_info: Some(RogueMagicBattleUnitInfo {
                 item: Some(Item::BattleRogueMagicData(BattleRogueMagicData {
                     round_cnt: Some(BattleRogueMagicRoundCount {
-                        hhfjaibgama: 3,
-                        mmkolnbikjh: 0,
+                        eiganlcjpoi: 3,
+                        kdjdjompbbh: 0,
                     }),
                     battle_scepter_list: player
                         .battle_config
@@ -278,8 +278,8 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
                             let mut battle_scepter = BattleRogueMagicScepter {
                                 level: scepter.level,
                                 scepter_id: scepter.id,
-                                magic_unit_list: Vec::new(),
-                                slot_count_map: HashMap::from([(3, 0), (4, 0), (5, 0)]),
+                                magic_list: Vec::new(),
+                                trench_count: HashMap::from([(3, 0), (4, 0), (5, 0)]),
                             };
 
                             let mut index = [0u32; 3];
@@ -292,7 +292,7 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
                                 };
 
                                 let slot_index = &mut index[slot_type as usize - 3];
-                                battle_scepter.magic_unit_list.push(BattleRogueMagicUnit {
+                                battle_scepter.magic_list.push(BattleRogueMagicUnit {
                                     level: component.level,
                                     unit_id: component.id,
                                     slot_id: *slot_index,
@@ -300,7 +300,7 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
                                     counter_map: Default::default(),
                                 });
                                 *slot_index += 1;
-                                *battle_scepter.slot_count_map.get_mut(&slot_type).unwrap() += 1;
+                                *battle_scepter.trench_count.get_mut(&slot_type).unwrap() += 1;
                             }
 
                             battle_scepter
@@ -308,7 +308,7 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
                         .collect(),
                 })),
             }),
-            scepter: Some(Igefngnckog { ojibobnaikh: 5 }),
+            scepter: Some(Cijjendfjlo { kklaobblgce: 5 }),
         });
     }
 

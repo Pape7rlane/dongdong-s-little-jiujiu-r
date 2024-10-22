@@ -50,7 +50,6 @@ pub async fn query_gateway(parameters: Query<QueryGatewayParameters>) -> String 
             unk5: true,
             unk6: true,
             unk7: true,
-            jgciiljehhe: true,
 
             ..Default::default()
         }

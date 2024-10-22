@@ -55,6 +55,7 @@ tracing-bunyan-formatter = "0.3.9"
 
 proto = { path = "proto/" }
 proto-derive = { path = "proto/proto-derive" }
+mhy-kcp = { path = "kcp/", features = ["tokio"] }
 
 
 [profile.release]

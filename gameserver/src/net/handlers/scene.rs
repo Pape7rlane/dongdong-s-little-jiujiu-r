@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use lazy_static::lazy_static;
 use scene_entity_info::Entity;
 use tokio::sync::Mutex;
@@ -50,12 +52,12 @@ pub async fn on_enter_scene_cs_req(
     .await
     .is_err()
     {
-        res.retcode = Nbbhhpnhond::RetSceneEntryIdNotMatch as u32;
+        res.retcode = Retcode::RetSceneEntryIdNotMatch as u32;
         return;
     };
 
-    res.alckpiobhlb = req.alckpiobhlb;
-    res.gpjeedfjhaj = player.scene.entry_id != req.entry_id;
+    res.gfkihhopjdg = req.gfkihhopjdg;
+    res.ihoaaecihik = player.scene.entry_id != req.entry_id;
 }
 
 pub async fn on_get_scene_map_info_cs_req(
@@ -350,8 +352,6 @@ async fn load_scene(
 
         scene_info.entity_group_list.push(group_info);
 
-        scene_info.group_id_list.push(*group_id);
-
         scene_info.group_state_list.push(SceneGroupState {
             group_id: *group_id,
             is_default: true,
@@ -363,6 +363,7 @@ async fn load_scene(
     scene_info.entity_group_list.push(SceneEntityGroupInfo {
         state: 0,
         group_id: 0,
+        fjhodibbaan: HashMap::new(),
         entity_list: json
             .lineups
             .iter()
