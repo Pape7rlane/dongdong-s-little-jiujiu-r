@@ -196,7 +196,7 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
             1,
             BattleTargetList {
                 battle_target_list: vec![BattleTarget {
-                    id: 10001,
+                    id: 10002,
                     progress: 0,
                     ..Default::default()
                 }],
