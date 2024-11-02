@@ -190,13 +190,49 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
         battle_info.buff_list.push(buffs);
     }
 
-    // pf score object
-    if player.battle_config.battle_type == BattleType::PF {
+       // pf score object
+    if player.battle_config.battle_type == BattleType::PF && battle_info.stage_id < 30309041 {
         battle_info.battle_target_info.insert(
             1,
             BattleTargetList {
-                battle_target_list: vec![BattleTarget {
+                battle_target_list: vec![BattleTarget { 
                     id: 10002,
+                    progress: 0,
+                    ..Default::default()
+                }],
+            },
+        );
+
+        for i in 2..=4 {
+            battle_info
+                .battle_target_info
+                .insert(i, BattleTargetList::default());
+        }
+
+        battle_info.battle_target_info.insert(
+            5,
+            BattleTargetList {
+                battle_target_list: vec![
+                    BattleTarget {
+                        id: 2001,
+                        progress: 0,
+                        ..Default::default()
+                    },
+                    BattleTarget {
+                        id: 2002,
+                        progress: 0,
+                        ..Default::default()
+                    },
+                ],
+            },
+        );
+    }
+    else  {player.battle_config.battle_type == BattleType::PF && battle_info.stage_id >= 30309041; // idk wtf im doing, someone pls optimal it, but atleast it work
+        battle_info.battle_target_info.insert(
+            1,
+            BattleTargetList {
+                battle_target_list: vec![BattleTarget { 
+                    id: 10003,
                     progress: 0,
                     ..Default::default()
                 }],
