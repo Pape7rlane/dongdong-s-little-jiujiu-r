@@ -1,4 +1,4 @@
-# Supported Version: 2.4.51
+# Supported Version: 2.6.5x
 Run the game by clicking run.bat file.
 
 Tool website: [https://srtools.pages.dev](https://srtools.pages.dev)
@@ -31,3 +31,5 @@ rustup default nightly
 ## Usage
 
 To begin using the server, you need to run both the SDK server and the game server. Just run the `run.bat` file.
+
+# Special thanks for keiracoder for updating the repo 🔥
