@@ -221,7 +221,7 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
                 .battle_target_info
                 .insert(i, BattleTargetList::default());
         }
-
+if player.battle_config.battle_type == BattleType::PF {
         battle_info.battle_target_info.insert(
             5,
             BattleTargetList {
@@ -239,7 +239,7 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
                 ],
             },
         );
-
+        }
     // Apocalyptic Shadow
     if player.battle_config.battle_type == BattleType::AS {
         battle_info.battle_target_info.insert(
