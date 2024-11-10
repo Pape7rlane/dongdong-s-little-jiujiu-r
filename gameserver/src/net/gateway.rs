@@ -71,8 +71,8 @@ impl Gateway {
     }
 
     async fn establish_kcp_session(&mut self, data: u32, addr: SocketAddr) -> Result<()> {
-        tracing::info!("New connection from {addr}");
         let (conv_id, session_token) = self.next_conv_pair();
+        tracing::info!("New connection from addr: {addr} with conv_id: {conv_id}");
 
         self.sessions.lock().await.insert(
             conv_id,
@@ -126,6 +126,13 @@ impl Gateway {
             tracing::warn!("Session with conv_id {conv_id} not found!");
             return;
         };
+
+        // TODO: Temporary fix
+        if session.read().await.is_destroyed {
+            drop(session);
+            self.sessions.lock().await.remove(&conv_id);
+            return;
+        }
 
         tokio::spawn(async move {
             if let Err(err) = Box::pin(session.write().await.consume(&data)).await {

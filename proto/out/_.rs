@@ -2897,6 +2897,15 @@ pub struct Cijjendfjlo {
     #[prost(uint32, tag = "1")]
     pub kklaobblgce: u32,
 }
+/// Obf: CIJNHLEPACK
+#[derive(proto_derive::CmdID)]
+#[cmdid(15)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ClientDownloadDataScNotify {
+    #[prost(message, optional, tag = "2")]
+    pub download_data: ::core::option::Option<ClientDownloadData>,
+}
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]

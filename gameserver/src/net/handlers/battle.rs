@@ -190,38 +190,38 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
         battle_info.buff_list.push(buffs);
     }
 
-       // pf score object
-    if player.battle_config.battle_type == BattleType::PF && battle_info.stage_id < 30309041 {
-        battle_info.battle_target_info.insert(
-            1,
-            BattleTargetList {
-                battle_target_list: vec![BattleTarget { 
-                    id: 10002,
-                    progress: 0,
-                    ..Default::default()
-                }],
-            },
-        );
+    // pf score object
+    if player.battle_config.battle_type == BattleType::PF {
+        if battle_info.stage_id >= 30309011 {
+            battle_info.battle_target_info.insert(
+                1,
+                BattleTargetList {
+                    battle_target_list: vec![BattleTarget {
+                        id: 10003,
+                        progress: 0,
+                        ..Default::default()
+                    }],
+                },
+            );
+        } else {
+            battle_info.battle_target_info.insert(
+                1,
+                BattleTargetList {
+                    battle_target_list: vec![BattleTarget {
+                        id: 10002,
+                        progress: 0,
+                        ..Default::default()
+                    }],
+                },
+            );
+        }
 
-         }
-    else  { // idk wtf im doing, someone pls optimal it, but atleast it work
-        battle_info.battle_target_info.insert(
-            1,
-            BattleTargetList {
-                battle_target_list: vec![BattleTarget { 
-                    id: 10003,
-                    progress: 0,
-                    ..Default::default()
-                }],
-            },
-        );
-    }
         for i in 2..=4 {
             battle_info
                 .battle_target_info
                 .insert(i, BattleTargetList::default());
         }
-if player.battle_config.battle_type == BattleType::PF {
+
         battle_info.battle_target_info.insert(
             5,
             BattleTargetList {
@@ -239,7 +239,8 @@ if player.battle_config.battle_type == BattleType::PF {
                 ],
             },
         );
-        }
+    }
+
     // Apocalyptic Shadow
     if player.battle_config.battle_type == BattleType::AS {
         battle_info.battle_target_info.insert(

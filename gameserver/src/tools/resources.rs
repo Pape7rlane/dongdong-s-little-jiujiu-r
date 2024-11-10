@@ -4,7 +4,7 @@ use std::{collections::HashMap, fs, sync::LazyLock};
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Vector {
-    pub x: i32, // or f32 depending on your needs
+    pub x: i32,
     pub y: i32,
     pub z: i32,
 }

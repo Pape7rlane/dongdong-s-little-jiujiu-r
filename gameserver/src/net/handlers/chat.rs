@@ -1,3 +1,5 @@
+use std::sync::atomic::Ordering;
+
 use crate::{
     net::{
         tools::{FreesrData, MultiPathAvatar},
@@ -11,7 +13,8 @@ use super::*;
 const SERVER_UID: u32 = 727;
 const SERVER_HEAD_ICON: u32 = 201008;
 const SERVER_CHAT_BUBBLE_ID: u32 = 220005;
-const SERVER_CHAT_HISTORY: [&str; 4] = [
+const SERVER_CHAT_HISTORY: [&str; 5] = [
+    "'dvd' render a dvd bouncing effect. you need to put the image into your game folder, with name \"image.png\"",
     "'sync'",
     "'mc {mc_id}' mc_id can be set from 8001 to 8006",
     "'march {march_id}' march_id can be set 1001 or 1224",
@@ -147,6 +150,23 @@ pub async fn on_send_msg_cs_req(
                     .send(RevcMsgScNotify {
                         msg_type: body.msg_type,
                         text: format!("Success change march to {:#?}", march_type),
+                        emote: body.emote,
+                        from_uid: SERVER_UID,
+                        to_uid: 25,
+                        chat_type: body.chat_type,
+                    })
+                    .await
+                    .unwrap();
+            }
+            "dvd" => {
+                session.toggle_dvd().await;
+                session
+                    .send(RevcMsgScNotify {
+                        msg_type: body.msg_type,
+                        text: format!(
+                            "DVD toggled to {}",
+                            session.dvd_running.load(Ordering::SeqCst)
+                        ),
                         emote: body.emote,
                         from_uid: SERVER_UID,
                         to_uid: 25,
