@@ -138,6 +138,7 @@ pub struct JsonConfig {
     /// `entryid` -> `P[planeId]_F[floorId]` -> `groupId`
     pub level_output_configs: HashMap<u32, HashMap<String, LevelOutputConfig>>,
     pub avatar_configs: HashMap<u32, AvatarConfig>,
+    pub map_default_entrance_map: HashMap<u32, u32>
 }
 
 pub static GAME_RES: LazyLock<JsonConfig> = LazyLock::new(|| {

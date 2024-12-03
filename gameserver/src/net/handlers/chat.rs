@@ -1,5 +1,3 @@
-use std::sync::atomic::Ordering;
-
 use crate::{
     net::{
         tools::{FreesrData, MultiPathAvatar},
@@ -150,23 +148,6 @@ pub async fn on_send_msg_cs_req(
                     .send(RevcMsgScNotify {
                         msg_type: body.msg_type,
                         text: format!("Success change march to {:#?}", march_type),
-                        emote: body.emote,
-                        from_uid: SERVER_UID,
-                        to_uid: 25,
-                        chat_type: body.chat_type,
-                    })
-                    .await
-                    .unwrap();
-            }
-            "dvd" => {
-                session.toggle_dvd().await;
-                session
-                    .send(RevcMsgScNotify {
-                        msg_type: body.msg_type,
-                        text: format!(
-                            "DVD toggled to {}",
-                            session.dvd_running.load(Ordering::SeqCst)
-                        ),
                         emote: body.emote,
                         from_uid: SERVER_UID,
                         to_uid: 25,

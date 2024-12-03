@@ -280,8 +280,8 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
             player_detail_info: Some(RogueMagicBattleUnitInfo {
                 item: Some(Item::BattleRogueMagicData(BattleRogueMagicData {
                     round_cnt: Some(BattleRogueMagicRoundCount {
-                        eiganlcjpoi: 3,
-                        kdjdjompbbh: 0,
+                        jnejloobmad: 3,
+                        jfaidmkbmof: 0,
                     }),
                     battle_scepter_list: player
                         .battle_config
@@ -321,7 +321,7 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
                         .collect(),
                 })),
             }),
-            scepter: Some(Cijjendfjlo { kklaobblgce: 5 }),
+            scepter: Some(Hnpkkiadpid { mokbhfdehnf: 5 }),
         });
     }
 

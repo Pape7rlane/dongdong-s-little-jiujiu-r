@@ -2,6 +2,15 @@
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EquipRelic {
+    #[prost(uint32, tag = "9")]
+    pub slot: u32,
+    #[prost(uint32, tag = "2")]
+    pub relic_unique_id: u32,
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AvatarSkillTree {
     #[prost(uint32, tag = "1")]
     pub point_id: u32,
@@ -11,46 +20,37 @@ pub struct AvatarSkillTree {
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EquipRelic {
-    #[prost(uint32, tag = "9")]
-    pub relic_unique_id: u32,
-    #[prost(uint32, tag = "5")]
-    pub slot: u32,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Avatar {
-    #[prost(uint32, tag = "12")]
-    pub promotion: u32,
-    #[prost(uint32, tag = "13")]
-    pub rank: u32,
-    #[prost(uint32, tag = "7")]
-    pub dressed_skin_id: u32,
-    #[prost(uint32, tag = "1")]
-    pub equipment_unique_id: u32,
-    #[prost(uint32, tag = "11")]
-    pub exp: u32,
-    #[prost(uint64, tag = "15")]
+    #[prost(uint64, tag = "7")]
     pub first_met_timestamp: u64,
-    #[prost(message, repeated, tag = "14")]
+    #[prost(message, repeated, tag = "8")]
+    pub equip_relic_list: ::prost::alloc::vec::Vec<EquipRelic>,
+    #[prost(uint32, tag = "1")]
+    pub exp: u32,
+    #[prost(uint32, tag = "12")]
+    pub equipment_unique_id: u32,
+    #[prost(uint32, tag = "15")]
+    pub rank: u32,
+    #[prost(uint32, tag = "2")]
+    pub level: u32,
+    #[prost(message, repeated, tag = "4")]
     pub skilltree_list: ::prost::alloc::vec::Vec<AvatarSkillTree>,
-    #[prost(uint32, tag = "8")]
-    pub base_avatar_id: u32,
     #[prost(bool, tag = "5")]
     pub is_marked: bool,
-    #[prost(uint32, repeated, tag = "2")]
+    #[prost(uint32, repeated, tag = "11")]
     pub taken_rewards: ::prost::alloc::vec::Vec<u32>,
-    #[prost(uint32, tag = "4")]
-    pub level: u32,
-    #[prost(message, repeated, tag = "10")]
-    pub equip_relic_list: ::prost::alloc::vec::Vec<EquipRelic>,
+    #[prost(uint32, tag = "13")]
+    pub dressed_skin_id: u32,
+    #[prost(uint32, tag = "14")]
+    pub promotion: u32,
+    #[prost(uint32, tag = "9")]
+    pub base_avatar_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AvatarSync {
-    #[prost(message, repeated, tag = "10")]
+    #[prost(message, repeated, tag = "1")]
     pub avatar_list: ::prost::alloc::vec::Vec<Avatar>,
 }
 #[derive(proto_derive::CmdID)]
@@ -96,7 +96,7 @@ pub struct BattleRelic {
     #[prost(uint32, tag = "7")]
     pub slot: u32,
     #[prost(uint32, tag = "8")]
-    pub ljadcdpaaec: u32,
+    pub bipohelabke: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -134,11 +134,11 @@ pub struct BattleAvatar {
     #[prost(uint32, tag = "12")]
     pub world_level: u32,
     #[prost(uint32, tag = "13")]
-    pub aegldoejdbl: u32,
+    pub jbedlbfpgbd: u32,
     #[prost(message, optional, tag = "16")]
     pub sp_bar: ::core::option::Option<SpBarInfo>,
     #[prost(uint32, tag = "17")]
-    pub bfodmckimlf: u32,
+    pub pgijnibedfo: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -179,74 +179,74 @@ pub struct BattleTargetList {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HeadIcon {
-    #[prost(uint32, tag = "7")]
+    #[prost(uint32, tag = "13")]
     pub id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BoardDataSync {
-    #[prost(bool, tag = "12")]
-    pub midbcdihnkm: bool,
-    #[prost(message, repeated, tag = "15")]
-    pub unlocked_head_icon_list: ::prost::alloc::vec::Vec<HeadIcon>,
     #[prost(string, tag = "2")]
     pub signature: ::prost::alloc::string::String,
+    #[prost(bool, tag = "7")]
+    pub bholgefccmd: bool,
+    #[prost(message, repeated, tag = "11")]
+    pub unlocked_head_icon_list: ::prost::alloc::vec::Vec<HeadIcon>,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BuffInfo {
-    #[prost(map = "string, float", tag = "6")]
-    pub dynamic_values: ::std::collections::HashMap<::prost::alloc::string::String, f32>,
-    #[prost(float, tag = "15")]
-    pub life_time: f32,
-    #[prost(uint64, tag = "1")]
-    pub add_time_ms: u64,
-    #[prost(uint32, tag = "12")]
-    pub daibnmlnbhn: u32,
-    #[prost(uint32, tag = "10")]
-    pub count: u32,
-    #[prost(uint32, tag = "7")]
-    pub base_avatar_id: u32,
-    #[prost(uint32, tag = "8")]
+    #[prost(uint32, tag = "14")]
     pub buff_id: u32,
+    #[prost(uint64, tag = "10")]
+    pub add_time_ms: u64,
+    #[prost(uint32, tag = "8")]
+    pub base_avatar_id: u32,
+    #[prost(uint32, tag = "1")]
+    pub count: u32,
+    #[prost(float, tag = "6")]
+    pub life_time: f32,
+    #[prost(map = "string, float", tag = "15")]
+    pub dynamic_values: ::std::collections::HashMap<::prost::alloc::string::String, f32>,
+    #[prost(uint32, tag = "11")]
+    pub ahoahogjbhb: u32,
     #[prost(uint32, tag = "3")]
     pub level: u32,
 }
-/// Obf: DFOABLGPKBG
+/// Obf: OEOOFOHAABK
 #[derive(proto_derive::CmdID)]
-#[cmdid(775)]
+#[cmdid(725)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChangeLineupLeaderCsReq {
-    #[prost(uint32, tag = "3")]
+    #[prost(uint32, tag = "2")]
     pub slot: u32,
 }
-/// Obf: IIAGLEJJDCN
+/// Obf: KGALGPILNAC
 #[derive(proto_derive::CmdID)]
-#[cmdid(748)]
+#[cmdid(796)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChangeLineupLeaderScRsp {
-    #[prost(uint32, tag = "13")]
+    #[prost(uint32, tag = "6")]
     pub slot: u32,
-    #[prost(uint32, tag = "1")]
+    #[prost(uint32, tag = "2")]
     pub retcode: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Chat {
-    #[prost(uint32, tag = "14")]
-    pub emote: u32,
+    #[prost(string, tag = "15")]
+    pub text: ::prost::alloc::string::String,
     #[prost(enumeration = "MsgType", tag = "10")]
     pub msg_type: i32,
-    #[prost(string, tag = "1")]
-    pub text: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "8")]
+    #[prost(uint32, tag = "14")]
+    pub emote: u32,
+    #[prost(uint32, tag = "13")]
     pub sender_uid: u32,
-    #[prost(uint64, tag = "5")]
+    #[prost(uint64, tag = "6")]
     pub sent_time: u64,
 }
 #[derive(proto_derive::CmdID)]
@@ -260,29 +260,29 @@ pub struct ClientDownloadData {
     #[prost(bytes = "vec", tag = "3")]
     pub data: ::prost::alloc::vec::Vec<u8>,
     #[prost(uint32, tag = "4")]
-    pub njddjhapnbo: u32,
+    pub ghkpbpdfijh: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContentInfo {
-    #[prost(enumeration = "ContentPackageStatus", tag = "11")]
-    pub status: i32,
-    #[prost(uint32, tag = "10")]
+    #[prost(uint32, tag = "15")]
     pub content_id: u32,
+    #[prost(enumeration = "ContentPackageStatus", tag = "1")]
+    pub status: i32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PackageData {
-    #[prost(uint32, tag = "6")]
-    pub mcnapkpejii: u32,
-    #[prost(message, repeated, tag = "4")]
+    #[prost(uint32, tag = "1")]
+    pub fahjkdkgjop: u32,
+    #[prost(message, repeated, tag = "11")]
     pub info_list: ::prost::alloc::vec::Vec<ContentInfo>,
 }
-/// Obf: LELEPNPDPLB
+/// Obf: JAMCGCANOAH
 #[derive(proto_derive::CmdID)]
-#[cmdid(7512)]
+#[cmdid(7530)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContentPackageSyncDataScNotify {
@@ -293,120 +293,122 @@ pub struct ContentPackageSyncDataScNotify {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DisplayRecordType {}
-/// Obf: FBDGKJNJGDK
+/// Obf: CKBNGMMBBCN
 #[derive(proto_derive::CmdID)]
-#[cmdid(380)]
+#[cmdid(324)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DressAvatarCsReq {
-    #[prost(uint32, tag = "9")]
-    pub equipment_unique_id: u32,
-    #[prost(uint32, tag = "10")]
+    #[prost(uint32, tag = "1")]
     pub avatar_id: u32,
+    #[prost(uint32, tag = "3")]
+    pub equipment_unique_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RelicParam {
-    #[prost(uint32, tag = "13")]
+    #[prost(uint32, tag = "11")]
     pub slot: u32,
-    #[prost(uint32, tag = "10")]
+    #[prost(uint32, tag = "9")]
     pub relic_unique_id: u32,
 }
-/// Obf: DJBADLJLLPA
+/// Obf: LOKAPJMDGOG
 #[derive(proto_derive::CmdID)]
-#[cmdid(390)]
+#[cmdid(305)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DressRelicAvatarCsReq {
-    #[prost(uint32, tag = "9")]
+    #[prost(uint32, tag = "2")]
     pub avatar_id: u32,
-    #[prost(message, repeated, tag = "14")]
+    #[prost(message, repeated, tag = "5")]
     pub param_list: ::prost::alloc::vec::Vec<RelicParam>,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CustomSaveData {
-    #[prost(string, tag = "8")]
-    pub save_data: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "7")]
-    pub group_id: u32,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Vector {
-    #[prost(sint32, tag = "1")]
-    pub x: i32,
-    #[prost(sint32, tag = "9")]
+    #[prost(sint32, tag = "7")]
     pub y: i32,
-    #[prost(sint32, tag = "4")]
+    #[prost(sint32, tag = "3")]
     pub z: i32,
+    #[prost(sint32, tag = "6")]
+    pub x: i32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MotionInfo {
-    #[prost(message, optional, tag = "10")]
-    pub pos: ::core::option::Option<Vector>,
-    #[prost(message, optional, tag = "7")]
+    #[prost(message, optional, tag = "11")]
     pub rot: ::core::option::Option<Vector>,
+    #[prost(message, optional, tag = "12")]
+    pub pos: ::core::option::Option<Vector>,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneActorInfo {
-    #[prost(enumeration = "AvatarType", tag = "7")]
-    pub avatar_type: i32,
-    #[prost(uint32, tag = "3")]
-    pub base_avatar_id: u32,
-    #[prost(uint32, tag = "5")]
-    pub uid: u32,
     #[prost(uint32, tag = "2")]
     pub map_layer: u32,
+    #[prost(uint32, tag = "14")]
+    pub uid: u32,
+    #[prost(enumeration = "AvatarType", tag = "5")]
+    pub avatar_type: i32,
+    #[prost(uint32, tag = "8")]
+    pub base_avatar_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneNpcMonsterInfo {
-    #[prost(bool, tag = "8")]
-    pub khpagnjlpkf: bool,
-    #[prost(bool, tag = "12")]
-    pub dlbbekjcgfg: bool,
-    #[prost(uint32, tag = "4")]
+    #[prost(bool, tag = "1")]
+    pub khjonojkhoi: bool,
+    #[prost(uint32, tag = "7")]
     pub monster_id: u32,
-    #[prost(uint32, tag = "11")]
-    pub world_level: u32,
-    #[prost(uint32, tag = "13")]
+    #[prost(uint32, tag = "8")]
     pub event_id: u32,
+    #[prost(uint32, tag = "10")]
+    pub world_level: u32,
+    #[prost(bool, tag = "11")]
+    pub olmmbfofgef: bool,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct NpcRogueInfo {
-    #[prost(bool, tag = "2")]
-    pub mcbmjhnofno: bool,
-    #[prost(uint32, tag = "12")]
-    pub nglokpibfpn: u32,
-    #[prost(uint32, tag = "14")]
-    pub mfpdbllkbcg: u32,
+pub struct NpcDialogueEventParam {
     #[prost(uint32, tag = "8")]
-    pub oejingdknnd: u32,
+    pub rogue_dialogue_event_id: u32,
+    #[prost(uint32, tag = "12")]
+    pub arg_id: u32,
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct NpcRogueGameInfo {
+    #[prost(bool, tag = "6")]
+    pub cpjgdeldggb: bool,
+    #[prost(uint32, tag = "8")]
+    pub mdobiphnabd: u32,
     #[prost(bool, tag = "11")]
-    pub adgbecnjiib: bool,
+    pub mkaflmlnebj: bool,
+    #[prost(uint32, tag = "2")]
+    pub event_unique_id: u32,
+    #[prost(uint32, tag = "5")]
+    pub gfakeaajgbl: u32,
+    #[prost(uint32, tag = "4")]
+    pub fhgajgfkakj: u32,
     #[prost(map = "uint32, uint32", tag = "1")]
-    pub midpepggjel: ::std::collections::HashMap<u32, u32>,
-    #[prost(bool, tag = "10")]
-    pub fbchhjjamlh: bool,
-    #[prost(uint32, tag = "13")]
-    pub kohlpiklaba: u32,
+    pub oamjlnboleg: ::std::collections::HashMap<u32, u32>,
+    #[prost(message, repeated, tag = "7")]
+    pub dialogue_event_param_list: ::prost::alloc::vec::Vec<NpcDialogueEventParam>,
+    #[prost(bool, tag = "12")]
+    pub jagdlhmdnpp: bool,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NpcExtraInfo {
-    #[prost(oneof = "npc_extra_info::Buff", tags = "9")]
+    #[prost(oneof = "npc_extra_info::Buff", tags = "2")]
     pub buff: ::core::option::Option<npc_extra_info::Buff>,
 }
 /// Nested message and enum types in `NpcExtraInfo`.
@@ -415,48 +417,48 @@ pub mod npc_extra_info {
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Buff {
-        #[prost(message, tag = "9")]
-        RogueInfo(super::NpcRogueInfo),
+        #[prost(message, tag = "2")]
+        RogueInfo(super::NpcRogueGameInfo),
     }
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneNpcInfo {
-    #[prost(uint32, tag = "7")]
+    #[prost(uint32, tag = "8")]
     pub npc_id: u32,
-    #[prost(message, optional, tag = "10")]
+    #[prost(message, optional, tag = "9")]
     pub extra_info: ::core::option::Option<NpcExtraInfo>,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PropRogueInfo {
-    #[prost(uint32, tag = "12")]
-    pub fpbhhlbjogi: u32,
-    #[prost(uint32, tag = "9")]
-    pub coaofgpmpeh: u32,
+    #[prost(uint32, tag = "2")]
+    pub site_id: u32,
     #[prost(uint32, tag = "14")]
-    pub hgmfeggjefb: u32,
-    #[prost(uint32, tag = "6")]
-    pub ojapcibmgpc: u32,
+    pub knnjkoimaic: u32,
+    #[prost(uint32, tag = "10")]
+    pub gabnjbchhpe: u32,
+    #[prost(uint32, tag = "4")]
+    pub room_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PropAeonInfo {
-    #[prost(uint32, tag = "7")]
-    pub dialogue_group_id: u32,
-    #[prost(uint32, tag = "13")]
+    #[prost(uint32, tag = "1")]
     pub add_exp: u32,
-    #[prost(uint32, tag = "10")]
+    #[prost(uint32, tag = "2")]
     pub aeon_id: u32,
+    #[prost(uint32, tag = "11")]
+    pub dialogue_group_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PropExtraInfo {
-    #[prost(oneof = "prop_extra_info::InfoCase", tags = "1, 2")]
+    #[prost(oneof = "prop_extra_info::InfoCase", tags = "15, 8")]
     pub info_case: ::core::option::Option<prop_extra_info::InfoCase>,
 }
 /// Nested message and enum types in `PropExtraInfo`.
@@ -465,9 +467,9 @@ pub mod prop_extra_info {
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum InfoCase {
-        #[prost(message, tag = "1")]
+        #[prost(message, tag = "15")]
         RogueInfo(super::PropRogueInfo),
-        #[prost(message, tag = "2")]
+        #[prost(message, tag = "8")]
         AeonInfo(super::PropAeonInfo),
     }
 }
@@ -475,49 +477,49 @@ pub mod prop_extra_info {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScenePropInfo {
-    #[prost(uint32, tag = "15")]
-    pub prop_state: u32,
-    #[prost(uint32, tag = "1")]
-    pub prop_id: u32,
-    #[prost(uint32, tag = "9")]
-    pub life_time_ms: u32,
-    #[prost(uint64, tag = "13")]
-    pub create_time_ms: u64,
-    #[prost(string, repeated, tag = "12")]
-    pub trigger_name_list: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
+    #[prost(message, optional, tag = "10")]
     pub extra_info: ::core::option::Option<PropExtraInfo>,
+    #[prost(uint32, tag = "11")]
+    pub prop_state: u32,
+    #[prost(uint32, tag = "3")]
+    pub prop_id: u32,
+    #[prost(uint32, tag = "2")]
+    pub life_time_ms: u32,
+    #[prost(uint64, tag = "9")]
+    pub create_time_ms: u64,
+    #[prost(string, repeated, tag = "4")]
+    pub trigger_name_list: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneSummonUnitInfo {
-    #[prost(int32, tag = "7")]
-    pub life_time_ms: i32,
-    #[prost(uint32, tag = "13")]
-    pub caster_entity_id: u32,
-    #[prost(string, repeated, tag = "12")]
-    pub trigger_name_list: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(uint32, tag = "3")]
-    pub summon_unit_id: u32,
     #[prost(uint32, tag = "4")]
     pub attach_entity_id: u32,
-    #[prost(uint64, tag = "15")]
+    #[prost(int32, tag = "6")]
+    pub life_time_ms: i32,
+    #[prost(uint64, tag = "10")]
     pub create_time_ms: u64,
+    #[prost(uint32, tag = "13")]
+    pub caster_entity_id: u32,
+    #[prost(string, repeated, tag = "14")]
+    pub trigger_name_list: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(uint32, tag = "5")]
+    pub summon_unit_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneEntityInfo {
-    #[prost(uint32, tag = "4")]
-    pub inst_id: u32,
-    #[prost(uint32, tag = "12")]
-    pub group_id: u32,
-    #[prost(uint32, tag = "11")]
+    #[prost(uint32, tag = "2")]
     pub entity_id: u32,
-    #[prost(message, optional, tag = "14")]
+    #[prost(uint32, tag = "14")]
+    pub group_id: u32,
+    #[prost(uint32, tag = "6")]
+    pub inst_id: u32,
+    #[prost(message, optional, tag = "10")]
     pub motion: ::core::option::Option<MotionInfo>,
-    #[prost(oneof = "scene_entity_info::Entity", tags = "9, 13, 5, 7, 3")]
+    #[prost(oneof = "scene_entity_info::Entity", tags = "11, 9, 13, 7, 4")]
     pub entity: ::core::option::Option<scene_entity_info::Entity>,
 }
 /// Nested message and enum types in `SceneEntityInfo`.
@@ -526,247 +528,260 @@ pub mod scene_entity_info {
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Entity {
-        #[prost(message, tag = "9")]
+        #[prost(message, tag = "11")]
         Actor(super::SceneActorInfo),
-        #[prost(message, tag = "13")]
+        #[prost(message, tag = "9")]
         NpcMonster(super::SceneNpcMonsterInfo),
-        #[prost(message, tag = "5")]
+        #[prost(message, tag = "13")]
         Npc(super::SceneNpcInfo),
         #[prost(message, tag = "7")]
         Prop(super::ScenePropInfo),
-        #[prost(message, tag = "3")]
+        #[prost(message, tag = "4")]
         SummonUnit(super::SceneSummonUnitInfo),
     }
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Mission {
-    #[prost(enumeration = "MissionStatus", tag = "6")]
-    pub status: i32,
+pub struct SceneEntityGroupInfo {
+    #[prost(map = "string, int32", tag = "9")]
+    pub gbnnlkibhon: ::std::collections::HashMap<::prost::alloc::string::String, i32>,
     #[prost(uint32, tag = "13")]
-    pub id: u32,
-    #[prost(uint32, tag = "5")]
-    pub progress: u32,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MissionStatusBySceneInfo {
-    #[prost(uint32, repeated, tag = "11")]
-    pub kaidmegmcda: ::prost::alloc::vec::Vec<u32>,
-    #[prost(uint32, repeated, tag = "1")]
-    pub pfdbleonmlm: ::prost::alloc::vec::Vec<u32>,
-    #[prost(message, repeated, tag = "5")]
-    pub ngohfjkldab: ::prost::alloc::vec::Vec<Mission>,
-    #[prost(uint32, repeated, tag = "14")]
-    pub hdoegckjehp: ::prost::alloc::vec::Vec<u32>,
+    pub group_id: u32,
+    #[prost(message, repeated, tag = "10")]
+    pub entity_list: ::prost::alloc::vec::Vec<SceneEntityInfo>,
+    #[prost(uint32, tag = "8")]
+    pub state: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EntityBuffInfo {
-    #[prost(message, repeated, tag = "5")]
-    pub buff_list: ::prost::alloc::vec::Vec<BuffInfo>,
-    #[prost(uint32, tag = "9")]
+    #[prost(uint32, tag = "14")]
     pub entity_id: u32,
+    #[prost(message, repeated, tag = "9")]
+    pub buff_list: ::prost::alloc::vec::Vec<BuffInfo>,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SceneEntityGroupInfo {
-    #[prost(message, repeated, tag = "6")]
-    pub entity_list: ::prost::alloc::vec::Vec<SceneEntityInfo>,
-    #[prost(map = "string, int32", tag = "15")]
-    pub fjhodibbaan: ::std::collections::HashMap<::prost::alloc::string::String, i32>,
-    #[prost(uint32, tag = "11")]
-    pub state: u32,
-    #[prost(uint32, tag = "9")]
+pub struct CustomSaveData {
+    #[prost(string, tag = "10")]
+    pub save_data: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "14")]
     pub group_id: u32,
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Mission {
+    #[prost(uint32, tag = "13")]
+    pub id: u32,
+    #[prost(uint32, tag = "4")]
+    pub progress: u32,
+    #[prost(enumeration = "MissionStatus", tag = "5")]
+    pub status: i32,
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MissionStatusBySceneInfo {
+    #[prost(uint32, repeated, tag = "1")]
+    pub kckknnnlpdd: ::prost::alloc::vec::Vec<u32>,
+    #[prost(message, repeated, tag = "14")]
+    pub hmikdjelopg: ::prost::alloc::vec::Vec<Mission>,
+    #[prost(uint32, repeated, tag = "4")]
+    pub finished_mission_id: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, repeated, tag = "10")]
+    pub aoeodfgekko: ::prost::alloc::vec::Vec<u32>,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneGroupState {
-    #[prost(uint32, tag = "14")]
+    #[prost(uint32, tag = "10")]
     pub group_id: u32,
-    #[prost(bool, tag = "8")]
+    #[prost(bool, tag = "9")]
     pub is_default: bool,
-    #[prost(uint32, tag = "7")]
+    #[prost(uint32, tag = "12")]
     pub state: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneInfo {
-    #[prost(uint32, tag = "1788")]
-    pub gfkihhopjdg: u32,
-    #[prost(uint32, tag = "8")]
-    pub floor_id: u32,
-    #[prost(uint32, tag = "2")]
-    pub game_mode_type: u32,
-    #[prost(message, repeated, tag = "3")]
-    pub save_data_list: ::prost::alloc::vec::Vec<CustomSaveData>,
-    #[prost(message, repeated, tag = "5")]
-    pub sync_buff_info: ::prost::alloc::vec::Vec<BuffInfo>,
-    #[prost(message, repeated, tag = "9")]
-    pub entity_list: ::prost::alloc::vec::Vec<SceneEntityInfo>,
-    #[prost(uint32, tag = "4")]
-    pub world_id: u32,
-    #[prost(uint32, tag = "202")]
-    pub content_id: u32,
-    #[prost(uint32, tag = "7")]
+    #[prost(uint32, tag = "5")]
     pub leader_entity_id: u32,
-    #[prost(uint32, repeated, tag = "1")]
-    pub lighten_section_list: ::prost::alloc::vec::Vec<u32>,
-    #[prost(map = "string, int32", tag = "687")]
+    #[prost(message, repeated, tag = "1301")]
+    pub entity_group_list: ::prost::alloc::vec::Vec<SceneEntityGroupInfo>,
+    #[prost(uint32, tag = "27")]
+    pub cccedbigcdg: u32,
+    #[prost(uint32, tag = "14")]
+    pub entry_id: u32,
+    #[prost(message, repeated, tag = "8")]
+    pub djblnjdmlbl: ::prost::alloc::vec::Vec<EntityBuffInfo>,
+    #[prost(message, repeated, tag = "4")]
+    pub entity_list: ::prost::alloc::vec::Vec<SceneEntityInfo>,
+    #[prost(uint32, tag = "11")]
+    pub world_id: u32,
+    #[prost(uint32, tag = "10")]
+    pub plane_id: u32,
+    #[prost(message, repeated, tag = "13")]
+    pub lblnfddbncm: ::prost::alloc::vec::Vec<CustomSaveData>,
+    #[prost(message, repeated, tag = "2")]
+    pub mgapdcenglp: ::prost::alloc::vec::Vec<BuffInfo>,
+    #[prost(message, optional, tag = "1039")]
+    pub scene_mission_info: ::core::option::Option<MissionStatusBySceneInfo>,
+    #[prost(uint32, tag = "1348")]
+    pub content_id: u32,
+    #[prost(uint32, tag = "1130")]
+    pub olgcjikgffc: u32,
+    #[prost(map = "string, int32", tag = "1313")]
     pub floor_saved_data: ::std::collections::HashMap<
         ::prost::alloc::string::String,
         i32,
     >,
-    #[prost(uint32, tag = "14")]
+    #[prost(uint32, tag = "9")]
+    pub game_mode_type: u32,
+    #[prost(uint32, repeated, tag = "1")]
+    pub lighten_section_list: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, tag = "6")]
     pub client_pos_version: u32,
-    #[prost(message, optional, tag = "808")]
-    pub scene_mission_info: ::core::option::Option<MissionStatusBySceneInfo>,
-    #[prost(message, repeated, tag = "13")]
-    pub mpiapmbcmff: ::prost::alloc::vec::Vec<EntityBuffInfo>,
-    #[prost(uint32, tag = "12")]
-    pub entry_id: u32,
-    #[prost(uint32, tag = "1777")]
-    pub pmcijkiinjl: u32,
-    #[prost(uint32, tag = "15")]
-    pub plane_id: u32,
-    #[prost(message, repeated, tag = "148")]
-    pub entity_group_list: ::prost::alloc::vec::Vec<SceneEntityGroupInfo>,
-    #[prost(message, repeated, tag = "536")]
+    #[prost(uint32, tag = "7")]
+    pub floor_id: u32,
+    #[prost(message, repeated, tag = "1512")]
     pub group_state_list: ::prost::alloc::vec::Vec<SceneGroupState>,
+    #[prost(uint32, repeated, tag = "1064")]
+    pub mglhebhjabe: ::prost::alloc::vec::Vec<u32>,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LineupAvatar {
-    #[prost(uint32, tag = "10")]
-    pub slot: u32,
-    #[prost(uint32, tag = "4")]
+    #[prost(uint32, tag = "3")]
     pub id: u32,
-    #[prost(uint32, tag = "15")]
-    pub satiety: u32,
-    #[prost(message, optional, tag = "14")]
-    pub sp_bar: ::core::option::Option<SpBarInfo>,
-    #[prost(enumeration = "AvatarType", tag = "7")]
-    pub avatar_type: i32,
-    #[prost(uint32, tag = "12")]
+    #[prost(uint32, tag = "4")]
+    pub slot: u32,
+    #[prost(uint32, tag = "14")]
     pub hp: u32,
+    #[prost(message, optional, tag = "10")]
+    pub sp_bar: ::core::option::Option<SpBarInfo>,
+    #[prost(uint32, tag = "6")]
+    pub satiety: u32,
+    #[prost(enumeration = "AvatarType", tag = "8")]
+    pub avatar_type: i32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LineupInfo {
+    #[prost(bool, tag = "6")]
+    pub pjbjnfnbjon: bool,
     #[prost(uint32, repeated, tag = "10")]
-    pub ogeeeoegmpg: ::prost::alloc::vec::Vec<u32>,
-    #[prost(message, repeated, tag = "15")]
-    pub avatar_list: ::prost::alloc::vec::Vec<LineupAvatar>,
-    #[prost(uint32, tag = "13")]
-    pub gfkihhopjdg: u32,
-    #[prost(uint32, tag = "3")]
-    pub max_mp: u32,
-    #[prost(uint32, tag = "2")]
-    pub plane_id: u32,
-    #[prost(uint32, tag = "12")]
-    pub index: u32,
-    #[prost(bool, tag = "4")]
-    pub is_virtual: bool,
-    #[prost(string, tag = "7")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "14")]
-    pub ikncadidjma: bool,
-    #[prost(uint32, tag = "6")]
-    pub leader_slot: u32,
+    pub jnmdgcjhcjj: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, repeated, tag = "8")]
-    pub kacbngfcaog: ::prost::alloc::vec::Vec<u32>,
-    #[prost(uint32, repeated, tag = "9")]
-    pub pkllkanfmja: ::prost::alloc::vec::Vec<u32>,
-    #[prost(uint32, tag = "1")]
-    pub mp: u32,
-    #[prost(enumeration = "ExtraLineupType", tag = "5")]
+    pub iddndgkoilc: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, tag = "5")]
+    pub index: u32,
+    #[prost(uint32, tag = "7")]
+    pub plane_id: u32,
+    #[prost(uint32, tag = "13")]
+    pub cccedbigcdg: u32,
+    #[prost(uint32, repeated, tag = "11")]
+    pub omagmokjhnm: ::prost::alloc::vec::Vec<u32>,
+    #[prost(bool, tag = "1")]
+    pub is_virtual: bool,
+    #[prost(enumeration = "ExtraLineupType", tag = "14")]
     pub extra_lineup_type: i32,
+    #[prost(uint32, tag = "12")]
+    pub leader_slot: u32,
+    #[prost(uint32, tag = "3")]
+    pub mp: u32,
+    #[prost(string, tag = "15")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "9")]
+    pub max_mp: u32,
+    #[prost(message, repeated, tag = "4")]
+    pub avatar_list: ::prost::alloc::vec::Vec<LineupAvatar>,
 }
-/// Obf: DNNLMHPKMOC
+/// Obf: LMPNHAHFEKA
 #[derive(proto_derive::CmdID)]
-#[cmdid(1435)]
+#[cmdid(1447)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnterSceneByServerScNotify {
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag = "5")]
     pub scene: ::core::option::Option<SceneInfo>,
-    #[prost(message, optional, tag = "9")]
-    pub lineup: ::core::option::Option<LineupInfo>,
-    #[prost(enumeration = "EnterSceneReason", tag = "10")]
+    #[prost(enumeration = "EnterSceneReason", tag = "4")]
     pub reason: i32,
+    #[prost(message, optional, tag = "14")]
+    pub lineup: ::core::option::Option<LineupInfo>,
 }
-/// Obf: JPONIJPDIIJ
+/// Obf: PEGJEKJGBCD
 #[derive(proto_derive::CmdID)]
-#[cmdid(1406)]
+#[cmdid(1457)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnterSceneCsReq {
-    #[prost(uint32, tag = "7")]
+    #[prost(uint32, tag = "4")]
     pub content_id: u32,
-    #[prost(uint32, tag = "1")]
-    pub entry_id: u32,
-    #[prost(bool, tag = "4")]
-    pub khggdihphpa: bool,
-    #[prost(uint32, tag = "12")]
-    pub gfkihhopjdg: u32,
-    #[prost(uint32, tag = "6")]
+    #[prost(uint32, tag = "9")]
     pub teleport_id: u32,
+    #[prost(uint32, tag = "13")]
+    pub entry_id: u32,
+    #[prost(uint32, tag = "15")]
+    pub cccedbigcdg: u32,
+    #[prost(bool, tag = "6")]
+    pub alggcgibmmh: bool,
 }
-/// Obf: JNLMMPMFONI
+/// Obf: GJFPGKODLGO
 #[derive(proto_derive::CmdID)]
-#[cmdid(1422)]
+#[cmdid(1416)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnterSceneScRsp {
-    #[prost(uint32, tag = "15")]
-    pub gfkihhopjdg: u32,
-    #[prost(bool, tag = "2")]
-    pub khggdihphpa: bool,
-    #[prost(bool, tag = "1")]
-    pub ihoaaecihik: bool,
-    #[prost(uint32, tag = "3")]
-    pub content_id: u32,
-    #[prost(uint32, tag = "12")]
+    #[prost(uint32, tag = "8")]
     pub retcode: u32,
+    #[prost(uint32, tag = "1")]
+    pub cccedbigcdg: u32,
+    #[prost(bool, tag = "12")]
+    pub alggcgibmmh: bool,
+    #[prost(bool, tag = "13")]
+    pub abnfeadenmg: bool,
+    #[prost(uint32, tag = "5")]
+    pub content_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnteredSceneInfo {
-    #[prost(uint32, tag = "7")]
+    #[prost(uint32, tag = "12")]
     pub floor_id: u32,
-    #[prost(uint32, tag = "10")]
+    #[prost(uint32, tag = "3")]
     pub plane_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EntityBuffChangeInfo {
-    #[prost(uint32, tag = "3")]
+    #[prost(uint32, tag = "11")]
     pub entity_id: u32,
-    #[prost(enumeration = "EntityBuffChangeType", tag = "12")]
+    #[prost(uint32, tag = "7")]
+    pub attacked_group_id: u32,
+    #[prost(enumeration = "EntityBuffChangeType", tag = "10")]
     pub reason: i32,
-    #[prost(oneof = "entity_buff_change_info::Change", tags = "4, 11")]
-    pub change: ::core::option::Option<entity_buff_change_info::Change>,
+    #[prost(oneof = "entity_buff_change_info::Buff", tags = "15, 5")]
+    pub buff: ::core::option::Option<entity_buff_change_info::Buff>,
 }
 /// Nested message and enum types in `EntityBuffChangeInfo`.
 pub mod entity_buff_change_info {
     #[derive(proto_derive::CmdID)]
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Change {
-        #[prost(message, tag = "4")]
+    pub enum Buff {
+        #[prost(message, tag = "15")]
         AddBuffInfo(super::BuffInfo),
-        #[prost(uint32, tag = "11")]
+        #[prost(uint32, tag = "5")]
         RemoveBuffId(u32),
     }
 }
@@ -774,358 +789,364 @@ pub mod entity_buff_change_info {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Equipment {
-    #[prost(uint32, tag = "7")]
-    pub rank: u32,
-    #[prost(uint32, tag = "5")]
-    pub promotion: u32,
-    #[prost(uint32, tag = "1")]
+    #[prost(uint32, tag = "9")]
     pub level: u32,
-    #[prost(uint32, tag = "8")]
-    pub tid: u32,
-    #[prost(uint32, tag = "12")]
-    pub exp: u32,
-    #[prost(bool, tag = "14")]
-    pub is_protected: bool,
-    #[prost(uint32, tag = "2")]
+    #[prost(uint32, tag = "10")]
     pub equip_avatar_id: u32,
-    #[prost(uint32, tag = "3")]
+    #[prost(uint32, tag = "6")]
+    pub tid: u32,
+    #[prost(uint32, tag = "4")]
+    pub exp: u32,
+    #[prost(uint32, tag = "2")]
+    pub promotion: u32,
+    #[prost(uint32, tag = "12")]
+    pub rank: u32,
+    #[prost(uint32, tag = "1")]
     pub unique_id: u32,
+    #[prost(bool, tag = "3")]
+    pub is_protected: bool,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssistSimpleInfo {
-    #[prost(uint32, tag = "3")]
+    #[prost(uint32, tag = "14")]
     pub pos: u32,
-    #[prost(uint32, tag = "11")]
-    pub dressed_skin_id: u32,
-    #[prost(uint32, tag = "9")]
-    pub avatar_id: u32,
-    #[prost(uint32, tag = "10")]
+    #[prost(uint32, tag = "7")]
     pub level: u32,
+    #[prost(uint32, tag = "5")]
+    pub avatar_id: u32,
+    #[prost(uint32, tag = "8")]
+    pub dressed_skin_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SimpleInfo {
-    #[prost(bool, tag = "13")]
-    pub loedaffifdh: bool,
-    #[prost(enumeration = "PlatformType", tag = "7")]
-    pub platform_type: i32,
-    #[prost(string, tag = "11")]
-    pub cpemmcojkdg: ::prost::alloc::string::String,
-    #[prost(string, tag = "10")]
-    pub poojfebmgkf: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "6")]
-    pub chat_bubble_id: u32,
-    #[prost(int64, tag = "5")]
+    #[prost(int64, tag = "1")]
     pub last_active_time: i64,
-    #[prost(uint32, tag = "12")]
-    pub head_icon: u32,
-    #[prost(string, tag = "2")]
+    #[prost(string, tag = "12")]
     pub nickname: ::prost::alloc::string::String,
+    #[prost(string, tag = "15")]
+    pub aeohjingifk: ::prost::alloc::string::String,
+    #[prost(enumeration = "PlatformType", tag = "13")]
+    pub platform_type: i32,
     #[prost(uint32, tag = "4")]
-    pub uid: u32,
-    #[prost(message, repeated, tag = "15")]
-    pub assist_simple_info: ::prost::alloc::vec::Vec<AssistSimpleInfo>,
-    #[prost(uint32, tag = "3")]
     pub level: u32,
-    #[prost(string, tag = "9")]
+    #[prost(bool, tag = "5")]
+    pub lhcinmibdio: bool,
+    #[prost(uint32, tag = "14")]
+    pub chat_bubble_id: u32,
+    #[prost(string, tag = "8")]
     pub signature: ::prost::alloc::string::String,
-    #[prost(enumeration = "FriendOnlineStatus", tag = "14")]
+    #[prost(string, tag = "6")]
+    pub pdciladmjij: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "7")]
+    pub assist_simple_info: ::prost::alloc::vec::Vec<AssistSimpleInfo>,
+    #[prost(uint32, tag = "11")]
+    pub head_icon: u32,
+    #[prost(enumeration = "FriendOnlineStatus", tag = "2")]
     pub online_status: i32,
+    #[prost(uint32, tag = "10")]
+    pub uid: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FriendListInfo {
-    #[prost(enumeration = "PlayingState", tag = "8")]
+    #[prost(enumeration = "PlayingState", tag = "15")]
     pub playing_state: i32,
-    #[prost(int64, tag = "5")]
-    pub sent_time: i64,
-    #[prost(bool, tag = "7")]
+    #[prost(bool, tag = "2")]
     pub is_marked: bool,
-    #[prost(string, tag = "9")]
-    pub friend_name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag = "10")]
     pub simple_info: ::core::option::Option<SimpleInfo>,
+    #[prost(int64, tag = "11")]
+    pub sent_time: i64,
+    #[prost(string, tag = "12")]
+    pub friend_name: ::prost::alloc::string::String,
 }
-/// Obf: DNFBOEDDNHG
+/// Obf: CEBOPGNBEIJ
 #[derive(proto_derive::CmdID)]
-#[cmdid(729)]
+#[cmdid(753)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAllLineupDataScRsp {
+    #[prost(uint32, tag = "12")]
+    pub retcode: u32,
+    #[prost(uint32, tag = "1")]
+    pub cur_index: u32,
     #[prost(message, repeated, tag = "8")]
     pub lineup_list: ::prost::alloc::vec::Vec<LineupInfo>,
-    #[prost(uint32, tag = "15")]
-    pub cur_index: u32,
-    #[prost(uint32, tag = "1")]
-    pub retcode: u32,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RelicArchive {
-    #[prost(uint32, tag = "11")]
-    pub slot: u32,
-    #[prost(uint32, tag = "13")]
-    pub relic_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MonsterArchive {
-    #[prost(uint32, tag = "4")]
-    pub num: u32,
-    #[prost(uint32, tag = "5")]
+    #[prost(uint32, tag = "9")]
     pub monster_id: u32,
+    #[prost(uint32, tag = "15")]
+    pub num: u32,
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RelicArchive {
+    #[prost(uint32, tag = "15")]
+    pub relic_id: u32,
+    #[prost(uint32, tag = "8")]
+    pub slot: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ArchiveData {
-    #[prost(uint32, repeated, tag = "12")]
-    pub archive_missing_equipment_id_list: ::prost::alloc::vec::Vec<u32>,
-    #[prost(message, repeated, tag = "5")]
-    pub relic_list: ::prost::alloc::vec::Vec<RelicArchive>,
-    #[prost(message, repeated, tag = "15")]
-    pub archive_monster_id_list: ::prost::alloc::vec::Vec<MonsterArchive>,
-    #[prost(uint32, repeated, tag = "13")]
-    pub archive_equipment_id_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, repeated, tag = "14")]
+    pub archive_missing_equipment_id_list: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, repeated, tag = "1")]
+    pub archive_equipment_id_list: ::prost::alloc::vec::Vec<u32>,
+    #[prost(message, repeated, tag = "6")]
+    pub archive_monster_id_list: ::prost::alloc::vec::Vec<MonsterArchive>,
+    #[prost(message, repeated, tag = "12")]
+    pub relic_list: ::prost::alloc::vec::Vec<RelicArchive>,
+    #[prost(uint32, repeated, tag = "13")]
     pub archive_missing_avatar_id_list: ::prost::alloc::vec::Vec<u32>,
 }
-/// Obf: CFGKDHPIGJO
+/// Obf: IGKGJMKOHAE
 #[derive(proto_derive::CmdID)]
-#[cmdid(2320)]
+#[cmdid(2395)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetArchiveDataScRsp {
-    #[prost(message, optional, tag = "11")]
+    #[prost(message, optional, tag = "6")]
     pub archive_data: ::core::option::Option<ArchiveData>,
-    #[prost(uint32, tag = "5")]
+    #[prost(uint32, tag = "7")]
     pub retcode: u32,
 }
-/// Obf: ICFFKKAKHAD
+/// Obf: EGAFMMCGFMA
 #[derive(proto_derive::CmdID)]
-#[cmdid(359)]
+#[cmdid(336)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAvatarDataCsReq {
-    #[prost(uint32, repeated, tag = "8")]
+    #[prost(uint32, repeated, tag = "4")]
     pub avatar_id_list: ::prost::alloc::vec::Vec<u32>,
-    #[prost(bool, tag = "2")]
+    #[prost(bool, tag = "3")]
     pub is_get_all: bool,
 }
-/// Obf: GGDJEMLHCMO
+/// Obf: FNBHODIONNN
 #[derive(proto_derive::CmdID)]
-#[cmdid(320)]
+#[cmdid(395)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAvatarDataScRsp {
-    #[prost(bool, tag = "12")]
+    #[prost(uint32, tag = "15")]
+    pub pkmghnblipb: u32,
+    #[prost(bool, tag = "5")]
     pub is_get_all: bool,
-    #[prost(message, repeated, tag = "3")]
-    pub avatar_list: ::prost::alloc::vec::Vec<Avatar>,
-    #[prost(uint32, tag = "11")]
+    #[prost(uint32, tag = "6")]
     pub retcode: u32,
-    #[prost(uint32, repeated, tag = "15")]
-    pub dleghahmnad: ::prost::alloc::vec::Vec<u32>,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct WaitDelResource {
-    #[prost(uint32, tag = "9")]
-    pub tid: u32,
-    #[prost(uint32, tag = "14")]
-    pub num: u32,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Material0 {
-    #[prost(uint32, tag = "9")]
-    pub num: u32,
-    #[prost(uint64, tag = "14")]
-    pub expire_time: u64,
-    #[prost(uint32, tag = "3")]
-    pub tid: u32,
+    #[prost(uint32, repeated, tag = "10")]
+    pub oicjbbphanb: ::prost::alloc::vec::Vec<u32>,
+    #[prost(message, repeated, tag = "4")]
+    pub avatar_list: ::prost::alloc::vec::Vec<Avatar>,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PileItem {
     #[prost(uint32, tag = "15")]
-    pub item_id: u32,
-    #[prost(uint32, tag = "11")]
     pub item_num: u32,
+    #[prost(uint32, tag = "12")]
+    pub item_id: u32,
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Material0 {
+    #[prost(uint64, tag = "9")]
+    pub expire_time: u64,
+    #[prost(uint32, tag = "14")]
+    pub num: u32,
+    #[prost(uint32, tag = "10")]
+    pub tid: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Material {
-    #[prost(uint32, tag = "1")]
-    pub tid: u32,
-    #[prost(uint64, tag = "15")]
+    #[prost(uint64, tag = "7")]
     pub expire_time: u64,
-    #[prost(uint32, tag = "12")]
+    #[prost(uint32, tag = "14")]
+    pub tid: u32,
+    #[prost(uint32, tag = "6")]
     pub num: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Relic {
-    #[prost(uint32, tag = "4")]
-    pub exp: u32,
-    #[prost(uint32, tag = "2")]
-    pub tid: u32,
+    #[prost(bool, tag = "10")]
+    pub is_protected: bool,
+    #[prost(message, repeated, tag = "9")]
+    pub sub_affix_list: ::prost::alloc::vec::Vec<RelicAffix>,
     #[prost(uint32, tag = "7")]
     pub unique_id: u32,
-    #[prost(uint32, tag = "11")]
-    pub equip_avatar_id: u32,
-    #[prost(uint32, tag = "14")]
-    pub main_affix_id: u32,
-    #[prost(uint32, tag = "12")]
+    #[prost(message, repeated, tag = "15")]
+    pub fnnglgifbbe: ::prost::alloc::vec::Vec<RelicAffix>,
+    #[prost(uint32, tag = "4")]
     pub level: u32,
-    #[prost(message, repeated, tag = "13")]
-    pub sub_affix_list: ::prost::alloc::vec::Vec<RelicAffix>,
-    #[prost(bool, tag = "9")]
+    #[prost(bool, tag = "6")]
     pub is_discarded: bool,
-    #[prost(bool, tag = "8")]
-    pub is_protected: bool,
+    #[prost(uint32, tag = "11")]
+    pub exp: u32,
+    #[prost(uint32, tag = "13")]
+    pub tid: u32,
+    #[prost(uint32, tag = "12")]
+    pub main_affix_id: u32,
+    #[prost(uint32, tag = "1")]
+    pub equip_avatar_id: u32,
 }
-/// Obf: BBHOAMMMONF
 #[derive(proto_derive::CmdID)]
-#[cmdid(520)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct WaitDelResource {
+    #[prost(uint32, tag = "8")]
+    pub num: u32,
+    #[prost(uint32, tag = "3")]
+    pub tid: u32,
+}
+/// Obf: LLDLOPGPNKL
+#[derive(proto_derive::CmdID)]
+#[cmdid(595)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBagScRsp {
-    #[prost(message, repeated, tag = "7")]
-    pub bekcmllfpfg: ::prost::alloc::vec::Vec<WaitDelResource>,
-    #[prost(message, repeated, tag = "12")]
+    #[prost(message, repeated, tag = "14")]
+    pub mdcccjhgfkp: ::prost::alloc::vec::Vec<PileItem>,
+    #[prost(message, repeated, tag = "2")]
     pub equipment_list: ::prost::alloc::vec::Vec<Equipment>,
-    #[prost(message, repeated, tag = "1")]
-    pub llmkcdedifp: ::prost::alloc::vec::Vec<Material0>,
-    #[prost(uint32, repeated, tag = "4")]
-    pub djkhjfikmdp: ::prost::alloc::vec::Vec<u32>,
-    #[prost(uint32, tag = "3")]
+    #[prost(uint32, tag = "9")]
     pub retcode: u32,
     #[prost(message, repeated, tag = "11")]
-    pub dnmefonjhkk: ::prost::alloc::vec::Vec<Material0>,
-    #[prost(uint32, tag = "15")]
-    pub kcflkfdonpb: u32,
-    #[prost(message, repeated, tag = "9")]
-    pub leofoejmbgh: ::prost::alloc::vec::Vec<PileItem>,
-    #[prost(uint32, repeated, tag = "13")]
-    pub odeebijlnbk: ::prost::alloc::vec::Vec<u32>,
-    #[prost(message, repeated, tag = "8")]
+    pub bplaencojnn: ::prost::alloc::vec::Vec<Material0>,
+    #[prost(message, repeated, tag = "10")]
+    pub gamealbkaad: ::prost::alloc::vec::Vec<Material>,
+    #[prost(message, repeated, tag = "4")]
     pub material_list: ::prost::alloc::vec::Vec<Material>,
-    #[prost(uint32, repeated, tag = "10")]
-    pub onomlhnjcfn: ::prost::alloc::vec::Vec<u32>,
-    #[prost(message, repeated, tag = "14")]
-    pub phpmpkoonjd: ::prost::alloc::vec::Vec<Material>,
-    #[prost(enumeration = "TurnFoodSwitch", repeated, tag = "6")]
-    pub turn_food_switch: ::prost::alloc::vec::Vec<i32>,
-    #[prost(message, repeated, tag = "2")]
+    #[prost(message, repeated, tag = "3")]
     pub relic_list: ::prost::alloc::vec::Vec<Relic>,
+    #[prost(message, repeated, tag = "13")]
+    pub mokcdmcaknl: ::prost::alloc::vec::Vec<Material0>,
+    #[prost(uint32, repeated, tag = "8")]
+    pub dooakaaicfp: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, tag = "5")]
+    pub facgjdachom: u32,
+    #[prost(message, repeated, tag = "15")]
+    pub jbcheacijfd: ::prost::alloc::vec::Vec<WaitDelResource>,
+    #[prost(uint32, repeated, tag = "1")]
+    pub bblohhgadgd: ::prost::alloc::vec::Vec<u32>,
+    #[prost(enumeration = "TurnFoodSwitch", repeated, tag = "12")]
+    pub turn_food_switch: ::prost::alloc::vec::Vec<i32>,
+    #[prost(uint32, repeated, tag = "6")]
+    pub jldgljdhecb: ::prost::alloc::vec::Vec<u32>,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlayerSettingInfo {
-    #[prost(bool, tag = "2")]
-    pub aafjgnnapfc: bool,
-    #[prost(bool, tag = "9")]
-    pub jlippmhelff: bool,
-    #[prost(bool, tag = "8")]
-    pub lealopkfppe: bool,
-    #[prost(bool, tag = "12")]
-    pub momaekcodkg: bool,
-    #[prost(bool, tag = "15")]
-    pub afdcjbkgnpj: bool,
     #[prost(bool, tag = "14")]
-    pub bjadaljfkab: bool,
-    #[prost(bool, tag = "3")]
-    pub odbldnfkiaf: bool,
-    #[prost(bool, tag = "11")]
-    pub gigfgkbknjd: bool,
+    pub ebephgldcnh: bool,
+    #[prost(bool, tag = "13")]
+    pub kmcckimhbbj: bool,
+    #[prost(bool, tag = "15")]
+    pub oigipmeoekb: bool,
     #[prost(bool, tag = "4")]
-    pub demobhbjndi: bool,
+    pub kofdeoaglgk: bool,
+    #[prost(bool, tag = "5")]
+    pub kkhhcopengm: bool,
+    #[prost(bool, tag = "6")]
+    pub khkaapacgjf: bool,
+    #[prost(bool, tag = "1")]
+    pub efccddmnmlp: bool,
+    #[prost(bool, tag = "8")]
+    pub kmacdmafffn: bool,
+    #[prost(bool, tag = "10")]
+    pub meffkcapbfj: bool,
+    #[prost(bool, tag = "12")]
+    pub denfljkhnfo: bool,
 }
 /// Obf: GetBasicInfoScRsp
 #[derive(proto_derive::CmdID)]
-#[cmdid(66)]
+#[cmdid(100)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBasicInfoScRsp {
-    #[prost(uint32, tag = "5")]
-    pub cur_day: u32,
-    #[prost(uint32, tag = "14")]
+    #[prost(uint32, tag = "10")]
     pub week_cocoon_finished_count: u32,
+    #[prost(uint32, tag = "14")]
+    pub gender: u32,
+    #[prost(int64, tag = "6")]
+    pub last_set_nickname_time: i64,
+    #[prost(uint32, tag = "4")]
+    pub cur_day: u32,
+    #[prost(message, optional, tag = "15")]
+    pub player_setting_info: ::core::option::Option<PlayerSettingInfo>,
+    #[prost(int64, tag = "3")]
+    pub next_recover_time: i64,
+    #[prost(bool, tag = "8")]
+    pub is_gender_set: bool,
+    #[prost(uint32, tag = "5")]
+    pub gameplay_birthday: u32,
+    #[prost(uint32, tag = "2")]
+    pub retcode: u32,
     #[prost(uint32, tag = "1")]
     pub exchange_times: u32,
-    #[prost(uint32, tag = "3")]
-    pub retcode: u32,
-    #[prost(int64, tag = "12")]
-    pub next_recover_time: i64,
-    #[prost(message, optional, tag = "9")]
-    pub player_setting_info: ::core::option::Option<PlayerSettingInfo>,
-    #[prost(uint32, tag = "4")]
-    pub gameplay_birthday: u32,
-    #[prost(bool, tag = "2")]
-    pub is_gender_set: bool,
-    #[prost(int64, tag = "8")]
-    pub last_set_nickname_time: i64,
-    #[prost(uint32, tag = "10")]
-    pub gender: u32,
 }
-/// Obf: LJOBGOPPEED
+/// Obf: IKJMEIJPDEB
 #[derive(proto_derive::CmdID)]
-#[cmdid(746)]
+#[cmdid(727)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCurLineupDataScRsp {
-    #[prost(message, optional, tag = "14")]
+    #[prost(message, optional, tag = "3")]
     pub lineup: ::core::option::Option<LineupInfo>,
-    #[prost(uint32, tag = "12")]
+    #[prost(uint32, tag = "7")]
     pub retcode: u32,
 }
-/// Obf: PFAEMOFFAKL
+/// Obf: LFIBPOJKAAF
 #[derive(proto_derive::CmdID)]
-#[cmdid(1437)]
+#[cmdid(1474)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCurSceneInfoScRsp {
-    #[prost(message, optional, tag = "3")]
+    #[prost(message, optional, tag = "1")]
     pub scene: ::core::option::Option<SceneInfo>,
-    #[prost(uint32, tag = "13")]
+    #[prost(uint32, tag = "11")]
     pub retcode: u32,
 }
-/// Obf: ABEBOMAJMBL
+/// Obf: AALOOODHCLC
 #[derive(proto_derive::CmdID)]
-#[cmdid(1487)]
+#[cmdid(1463)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetEnteredSceneScRsp {
-    #[prost(uint32, tag = "14")]
+    #[prost(uint32, tag = "2")]
     pub retcode: u32,
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag = "14")]
     pub entered_scene_info: ::prost::alloc::vec::Vec<EnteredSceneInfo>,
 }
-/// Obf: CGFOLDKABAK
+/// Obf: PEBDAPGHFFP
 #[derive(proto_derive::CmdID)]
-#[cmdid(2920)]
+#[cmdid(2995)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetFriendListInfoScRsp {
-    #[prost(uint32, tag = "3")]
+    #[prost(uint32, tag = "7")]
     pub retcode: u32,
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag = "5")]
+    pub llblphlohpg: ::prost::alloc::vec::Vec<SimpleInfo>,
+    #[prost(message, repeated, tag = "13")]
     pub friend_list: ::prost::alloc::vec::Vec<FriendListInfo>,
-    #[prost(message, repeated, tag = "2")]
-    pub icbablegnki: ::prost::alloc::vec::Vec<SimpleInfo>,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1133,214 +1154,220 @@ pub struct GetFriendListInfoScRsp {
 pub struct MissionData {
     #[prost(uint32, tag = "11")]
     pub id: u32,
-    #[prost(enumeration = "MissionStatus", tag = "6")]
+    #[prost(enumeration = "MissionStatus", tag = "2")]
     pub status: i32,
 }
-/// Obf: BPHHIKAHCKO
+/// Obf: KLEMDDAOLPF
 #[derive(proto_derive::CmdID)]
-#[cmdid(1220)]
+#[cmdid(1295)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetMissionDataScRsp {
     #[prost(message, repeated, tag = "5")]
-    pub mission_list: ::prost::alloc::vec::Vec<Mission>,
-    #[prost(uint32, repeated, tag = "12")]
-    pub nknpekobhei: ::prost::alloc::vec::Vec<u32>,
-    #[prost(uint32, tag = "9")]
-    pub phjfnnjnadl: u32,
-    #[prost(uint32, tag = "4")]
-    pub retcode: u32,
-    #[prost(message, repeated, tag = "8")]
     pub mission_data_list: ::prost::alloc::vec::Vec<MissionData>,
+    #[prost(message, repeated, tag = "4")]
+    pub mission_list: ::prost::alloc::vec::Vec<Mission>,
+    #[prost(uint32, tag = "10")]
+    pub retcode: u32,
+    #[prost(uint32, repeated, tag = "14")]
+    pub kfoglkhpahg: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, tag = "13")]
+    pub ecclgigaaoo: u32,
 }
-/// Obf: CIFGOEADAPJ
+/// Obf: HFBHMCCHOIO
 #[derive(proto_derive::CmdID)]
-#[cmdid(1225)]
+#[cmdid(1207)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetMissionStatusCsReq {
-    #[prost(uint32, repeated, tag = "5")]
+    #[prost(uint32, repeated, tag = "7")]
     pub mission_event_id_list: ::prost::alloc::vec::Vec<u32>,
-    #[prost(uint32, repeated, tag = "15")]
-    pub sub_mission_id_list: ::prost::alloc::vec::Vec<u32>,
-    #[prost(uint32, repeated, tag = "12")]
+    #[prost(uint32, repeated, tag = "8")]
     pub main_mission_id_list: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, repeated, tag = "3")]
+    pub sub_mission_id_list: ::prost::alloc::vec::Vec<u32>,
 }
 /// Obf: GetMissionStatusScRsp
 #[derive(proto_derive::CmdID)]
-#[cmdid(1229)]
+#[cmdid(1253)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetMissionStatusScRsp {
-    #[prost(uint32, repeated, tag = "2")]
-    pub finished_main_mission_id_list: ::prost::alloc::vec::Vec<u32>,
-    #[prost(uint32, tag = "5")]
-    pub retcode: u32,
-    #[prost(message, repeated, tag = "11")]
-    pub sub_mission_status_list: ::prost::alloc::vec::Vec<Mission>,
-    #[prost(message, repeated, tag = "4")]
-    pub mission_event_status_list: ::prost::alloc::vec::Vec<Mission>,
-    #[prost(uint32, repeated, tag = "9")]
-    pub unfinished_main_mission_id_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, repeated, tag = "7")]
     pub disabled_main_mission_id_list: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, tag = "6")]
+    pub retcode: u32,
+    #[prost(uint32, repeated, tag = "3")]
+    pub unfinished_main_mission_id_list: ::prost::alloc::vec::Vec<u32>,
+    #[prost(message, repeated, tag = "1")]
+    pub mission_event_status_list: ::prost::alloc::vec::Vec<Mission>,
+    #[prost(uint32, repeated, tag = "13")]
+    pub finished_main_mission_id_list: ::prost::alloc::vec::Vec<u32>,
+    #[prost(message, repeated, tag = "9")]
+    pub sub_mission_status_list: ::prost::alloc::vec::Vec<Mission>,
+    #[prost(uint32, repeated, tag = "15")]
+    pub curversion_finished_main_mission_id_list: ::prost::alloc::vec::Vec<u32>,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MultiPathAvatarTypeInfo {
-    #[prost(message, repeated, tag = "6")]
-    pub equip_relic_list: ::prost::alloc::vec::Vec<EquipRelic>,
-    #[prost(uint32, tag = "4")]
+    #[prost(uint32, tag = "5")]
     pub rank: u32,
-    #[prost(uint32, tag = "1")]
-    pub path_equipment_id: u32,
-    #[prost(message, repeated, tag = "15")]
-    pub skilltree_list: ::prost::alloc::vec::Vec<AvatarSkillTree>,
-    #[prost(enumeration = "MultiPathAvatarType", tag = "2")]
+    #[prost(enumeration = "MultiPathAvatarType", tag = "3")]
     pub avatar_id: i32,
+    #[prost(uint32, tag = "6")]
+    pub path_equipment_id: u32,
+    #[prost(message, repeated, tag = "13")]
+    pub skilltree_list: ::prost::alloc::vec::Vec<AvatarSkillTree>,
+    #[prost(message, repeated, tag = "9")]
+    pub equip_relic_list: ::prost::alloc::vec::Vec<EquipRelic>,
 }
-/// Obf: BBDKIDILNKF
+/// Obf: LEOIAFIDEMP
 #[derive(proto_derive::CmdID)]
-#[cmdid(87)]
+#[cmdid(63)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetMultiPathAvatarInfoScRsp {
-    #[prost(uint32, repeated, tag = "1")]
-    pub gjbabbmidpl: ::prost::alloc::vec::Vec<u32>,
-    #[prost(message, repeated, tag = "4")]
+    #[prost(uint32, tag = "9")]
+    pub retcode: u32,
+    #[prost(map = "uint32, enumeration(MultiPathAvatarType)", tag = "1")]
+    pub current_multi_path_avatar_id: ::std::collections::HashMap<u32, i32>,
+    #[prost(uint32, repeated, tag = "12")]
+    pub eihomlofejd: ::prost::alloc::vec::Vec<u32>,
+    #[prost(message, repeated, tag = "14")]
     pub multi_path_avatar_type_info_list: ::prost::alloc::vec::Vec<
         MultiPathAvatarTypeInfo,
     >,
-    #[prost(uint32, tag = "8")]
-    pub retcode: u32,
-    #[prost(map = "uint32, enumeration(MultiPathAvatarType)", tag = "13")]
-    pub current_multi_path_avatar_id: ::std::collections::HashMap<u32, i32>,
 }
-/// Obf: DOPLABGMDMF
+/// Obf: HBFFEIHAHGC
 #[derive(proto_derive::CmdID)]
-#[cmdid(3939)]
+#[cmdid(3967)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPrivateChatHistoryCsReq {
-    #[prost(uint32, tag = "4")]
-    pub from_uid: u32,
-    #[prost(uint32, tag = "5")]
+    #[prost(uint32, tag = "2")]
     pub to_uid: u32,
+    #[prost(uint32, tag = "9")]
+    pub from_uid: u32,
 }
-/// Obf: GINHEBANEME
+/// Obf: GGHCHPAIEPC
 #[derive(proto_derive::CmdID)]
-#[cmdid(3953)]
+#[cmdid(3928)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPrivateChatHistoryScRsp {
-    #[prost(message, repeated, tag = "4")]
-    pub chat_list: ::prost::alloc::vec::Vec<Chat>,
-    #[prost(uint32, tag = "6")]
-    pub retcode: u32,
-    #[prost(uint32, tag = "7")]
-    pub from_uid: u32,
-    #[prost(uint32, tag = "2")]
+    #[prost(uint32, tag = "9")]
     pub to_uid: u32,
+    #[prost(uint32, tag = "12")]
+    pub retcode: u32,
+    #[prost(message, repeated, tag = "10")]
+    pub chat_list: ::prost::alloc::vec::Vec<Chat>,
+    #[prost(uint32, tag = "2")]
+    pub from_uid: u32,
 }
-/// Obf: HCGEPJKFDDG
+/// Obf: AKOMBKODCKB
 #[derive(proto_derive::CmdID)]
-#[cmdid(1418)]
+#[cmdid(1470)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSceneMapInfoCsReq {
-    #[prost(bool, tag = "8")]
-    pub flepbomhcne: bool,
-    #[prost(uint32, tag = "6")]
-    pub content_id: u32,
-    #[prost(uint32, repeated, tag = "10")]
-    pub entry_id_list: ::prost::alloc::vec::Vec<u32>,
-    #[prost(uint32, tag = "11")]
+    #[prost(uint32, repeated, tag = "13")]
+    pub floor_id_list: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, tag = "12")]
     pub cur_map_entry_id: u32,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MazeChest {
-    #[prost(enumeration = "MapInfoChestType", tag = "5")]
-    pub map_info_chest_type: i32,
-    #[prost(uint32, tag = "1")]
-    pub unlocked_amount_list: u32,
-    #[prost(uint32, tag = "7")]
-    pub total_amount_list: u32,
+    #[prost(bool, tag = "8")]
+    pub pnbfdkenojp: bool,
+    #[prost(uint32, repeated, tag = "5")]
+    pub entry_id_list: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, tag = "9")]
+    pub content_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MazeProp {
-    #[prost(uint32, tag = "13")]
+    #[prost(uint32, tag = "5")]
     pub config_id: u32,
-    #[prost(uint32, tag = "6")]
-    pub group_id: u32,
-    #[prost(uint32, tag = "15")]
+    #[prost(uint32, tag = "10")]
     pub state: u32,
+    #[prost(uint32, tag = "8")]
+    pub group_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MazeGroup {
-    #[prost(uint32, repeated, tag = "10")]
-    pub gflmkighmde: ::prost::alloc::vec::Vec<u32>,
-    #[prost(bool, tag = "6")]
-    pub jjanemogdjf: bool,
-    #[prost(uint32, tag = "15")]
+    #[prost(uint32, repeated, tag = "9")]
+    pub lfnjkjeeljg: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, tag = "6")]
     pub group_id: u32,
-    #[prost(int64, tag = "7")]
+    #[prost(bool, tag = "13")]
+    pub idmjikenlbk: bool,
+    #[prost(int64, tag = "15")]
     pub modify_time: i64,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MazeChest {
+    #[prost(uint32, tag = "12")]
+    pub unlocked_amount_list: u32,
+    #[prost(enumeration = "MapInfoChestType", tag = "10")]
+    pub map_info_chest_type: i32,
+    #[prost(uint32, tag = "14")]
+    pub total_amount_list: u32,
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MazeMapData {
-    #[prost(message, repeated, tag = "6")]
-    pub unlocked_chest_list: ::prost::alloc::vec::Vec<MazeChest>,
-    #[prost(uint32, repeated, tag = "14")]
-    pub unlocked_teleport_list: ::prost::alloc::vec::Vec<u32>,
-    #[prost(message, repeated, tag = "2")]
+    #[prost(uint32, tag = "9")]
+    pub bdjdbijadmn: u32,
+    #[prost(message, repeated, tag = "12")]
     pub maze_prop_list: ::prost::alloc::vec::Vec<MazeProp>,
-    #[prost(uint32, tag = "5")]
-    pub pmcijkiinjl: u32,
-    #[prost(message, repeated, tag = "11")]
-    pub maze_group_list: ::prost::alloc::vec::Vec<MazeGroup>,
-    #[prost(uint32, tag = "8")]
-    pub cur_map_entry_id: u32,
-    #[prost(uint32, tag = "7")]
+    #[prost(uint32, tag = "13")]
     pub content_id: u32,
+    #[prost(uint32, repeated, tag = "8")]
+    pub unlocked_teleport_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, tag = "10")]
-    pub cmjmgmefapo: u32,
-    #[prost(uint32, repeated, tag = "1")]
-    pub lighten_section_list: ::prost::alloc::vec::Vec<u32>,
-    #[prost(uint32, tag = "4")]
-    pub retcode: u32,
-    #[prost(map = "string, int32", tag = "12")]
+    pub cur_map_entry_id: u32,
+    #[prost(message, repeated, tag = "5")]
+    pub maze_group_list: ::prost::alloc::vec::Vec<MazeGroup>,
+    #[prost(uint32, tag = "14")]
+    pub floor_id: u32,
+    #[prost(map = "string, int32", tag = "6")]
     pub floor_saved_data: ::std::collections::HashMap<
         ::prost::alloc::string::String,
         i32,
     >,
-    #[prost(uint32, tag = "13")]
+    #[prost(uint32, tag = "15")]
+    pub olgcjikgffc: u32,
+    #[prost(uint32, repeated, tag = "4")]
+    pub lighten_section_list: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, tag = "1")]
+    pub retcode: u32,
+    #[prost(uint32, tag = "7")]
     pub entry_id: u32,
+    #[prost(message, repeated, tag = "3")]
+    pub unlocked_chest_list: ::prost::alloc::vec::Vec<MazeChest>,
 }
-/// Obf: FLLFLOHGLCN
+/// Obf: HEPLOMJCIOA
 #[derive(proto_derive::CmdID)]
-#[cmdid(1481)]
+#[cmdid(1498)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSceneMapInfoScRsp {
-    #[prost(bool, tag = "15")]
-    pub flepbomhcne: bool,
-    #[prost(uint32, tag = "3")]
-    pub retcode: u32,
-    #[prost(message, repeated, tag = "5")]
+    #[prost(message, repeated, tag = "3")]
     pub map_list: ::prost::alloc::vec::Vec<MazeMapData>,
+    #[prost(bool, tag = "13")]
+    pub pnbfdkenojp: bool,
+    #[prost(uint32, tag = "9")]
+    pub retcode: u32,
 }
-/// Obf: HNNLEBHBOGP
+/// Obf: KNNHECKKOPF
 #[derive(proto_derive::CmdID)]
-#[cmdid(1403)]
+#[cmdid(1484)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InteractPropCsReq {
@@ -1353,26 +1380,26 @@ pub struct InteractPropCsReq {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Item {
-    #[prost(uint32, tag = "5")]
-    pub main_affix_id: u32,
-    #[prost(uint32, tag = "4")]
-    pub level: u32,
-    #[prost(uint32, tag = "10")]
-    pub rank: u32,
-    #[prost(uint32, tag = "6")]
-    pub promotion: u32,
-    #[prost(uint32, tag = "12")]
-    pub item_id: u32,
     #[prost(uint32, tag = "14")]
+    pub main_affix_id: u32,
+    #[prost(uint32, tag = "7")]
+    pub promotion: u32,
+    #[prost(uint32, tag = "13")]
     pub unique_id: u32,
     #[prost(uint32, tag = "8")]
+    pub level: u32,
+    #[prost(uint32, tag = "9")]
+    pub item_id: u32,
+    #[prost(uint32, tag = "15")]
     pub num: u32,
+    #[prost(uint32, tag = "2")]
+    pub rank: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ItemCost {
-    #[prost(oneof = "item_cost::ItemCase", tags = "8, 7, 12")]
+    #[prost(oneof = "item_cost::ItemCase", tags = "10, 5, 4")]
     pub item_case: ::core::option::Option<item_cost::ItemCase>,
 }
 /// Nested message and enum types in `ItemCost`.
@@ -1381,11 +1408,11 @@ pub mod item_cost {
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ItemCase {
-        #[prost(message, tag = "8")]
+        #[prost(message, tag = "10")]
         PileItem(super::PileItem),
-        #[prost(uint32, tag = "7")]
+        #[prost(uint32, tag = "5")]
         EquipmentUniqueId(u32),
-        #[prost(uint32, tag = "12")]
+        #[prost(uint32, tag = "4")]
         RelicUniqueId(u32),
     }
 }
@@ -1419,227 +1446,229 @@ pub struct BlackInfo {
     #[prost(int64, tag = "2")]
     pub end_time: i64,
     #[prost(uint32, tag = "3")]
-    pub dhkehgeedle: u32,
+    pub jgbdmkohgif: u32,
     #[prost(uint32, tag = "4")]
-    pub fnbaoajkmja: u32,
+    pub infkffofcoi: u32,
 }
-/// Obf: JMLHBGPACOH
+/// Obf: GNBHOKMKINC
 #[derive(proto_derive::CmdID)]
-#[cmdid(53)]
+#[cmdid(28)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlayerGetTokenScRsp {
-    #[prost(string, tag = "10")]
-    pub msg: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "13")]
-    pub retcode: u32,
     #[prost(uint64, tag = "9")]
     pub secret_key_seed: u64,
-    #[prost(message, optional, tag = "7")]
+    #[prost(message, optional, tag = "1")]
     pub black_info: ::core::option::Option<BlackInfo>,
-    #[prost(uint32, tag = "11")]
+    #[prost(uint32, tag = "15")]
     pub uid: u32,
+    #[prost(string, tag = "14")]
+    pub msg: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "11")]
+    pub retcode: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClientUploadData {
     #[prost(string, tag = "1")]
-    pub pohddldnjde: ::prost::alloc::string::String,
+    pub goancopmjil: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
-    pub odpkjejkoih: ::prost::alloc::string::String,
+    pub cpphdjhhggn: ::prost::alloc::string::String,
 }
-/// Obf: KJBPCPFKGMJ
+/// Obf: HFLFKHPHNFI
 #[derive(proto_derive::CmdID)]
-#[cmdid(96)]
+#[cmdid(99)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlayerHeartBeatCsReq {
-    #[prost(uint64, tag = "15")]
+    #[prost(uint64, tag = "6")]
     pub client_time_ms: u64,
-    #[prost(message, optional, tag = "13")]
-    pub fahecjimign: ::core::option::Option<ClientUploadData>,
-    #[prost(uint32, tag = "11")]
-    pub iihmohbihkl: u32,
+    #[prost(message, optional, tag = "14")]
+    pub dopanlaafjf: ::core::option::Option<ClientUploadData>,
+    #[prost(uint32, tag = "1")]
+    pub bccloioaphm: u32,
 }
-/// Obf: BNFMHEKOJLH
+/// Obf: DFCFNJFOENL
 #[derive(proto_derive::CmdID)]
-#[cmdid(31)]
+#[cmdid(3)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlayerHeartBeatScRsp {
-    #[prost(uint64, tag = "12")]
+    #[prost(uint64, tag = "1")]
     pub server_time_ms: u64,
-    #[prost(uint64, tag = "10")]
+    #[prost(uint64, tag = "8")]
     pub client_time_ms: u64,
-    #[prost(message, optional, tag = "15")]
-    pub download_data: ::core::option::Option<ClientDownloadData>,
-    #[prost(uint32, tag = "5")]
+    #[prost(uint32, tag = "15")]
     pub retcode: u32,
+    #[prost(message, optional, tag = "12")]
+    pub download_data: ::core::option::Option<ClientDownloadData>,
 }
-/// Obf: AMKHNPHMLKD
+/// Obf: DBGKGGCEELN
 #[derive(proto_derive::CmdID)]
-#[cmdid(59)]
+#[cmdid(36)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlayerLoginCsReq {
-    #[prost(string, tag = "8")]
-    pub gdilgfjnkpi: ::prost::alloc::string::String,
-    #[prost(string, tag = "1")]
-    pub koniihcaepm: ::prost::alloc::string::String,
-    #[prost(string, tag = "523")]
-    pub baojgaijaan: ::prost::alloc::string::String,
-    #[prost(string, tag = "10")]
-    pub hcimlmckapf: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub fkmhmgoabbo: ::prost::alloc::string::String,
-    #[prost(string, tag = "1487")]
-    pub ikbnjjmacmj: ::prost::alloc::string::String,
-    #[prost(bool, tag = "268")]
-    pub nmcmpeejbkc: bool,
-    #[prost(uint64, tag = "14")]
-    pub login_random: u64,
-    #[prost(string, tag = "2")]
-    pub bocgepcddgf: ::prost::alloc::string::String,
+    #[prost(string, tag = "1040")]
+    pub apejgcgcdnk: ::prost::alloc::string::String,
     #[prost(string, tag = "4")]
-    pub signature: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "13")]
-    pub ldpnkabedmh: u32,
-    #[prost(string, tag = "1717")]
-    pub mcjndnlmdof: ::prost::alloc::string::String,
-    #[prost(string, tag = "1861")]
-    pub poojfebmgkf: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "1313")]
-    pub njddjhapnbo: u32,
-    #[prost(string, tag = "6")]
-    pub ppaeocbachn: ::prost::alloc::string::String,
-    #[prost(string, tag = "542")]
-    pub cpemmcojkdg: ::prost::alloc::string::String,
-    #[prost(string, tag = "733")]
-    pub iodimanhnlk: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "5")]
-    pub client_res_version: u32,
-    #[prost(string, tag = "11")]
-    pub hlcohdckajo: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "821")]
-    pub nimoocecnkb: u32,
-    #[prost(enumeration = "PlatformType", tag = "15")]
-    pub platform_type: i32,
-    #[prost(string, tag = "3")]
     pub cost_time: ::prost::alloc::string::String,
-    #[prost(bool, tag = "905")]
-    pub jndhainpmof: bool,
-    #[prost(string, tag = "9")]
-    pub jlghkbedehg: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub gehpjdmaeeo: ::prost::alloc::string::String,
+    #[prost(string, tag = "13")]
+    pub eaoiadcplni: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "6")]
+    pub ejpgnpnmnme: u32,
+    #[prost(string, tag = "450")]
+    pub keckllnpnmc: ::prost::alloc::string::String,
+    #[prost(string, tag = "10")]
+    pub pggemchdkgm: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub pgfnmaoehho: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "1261")]
+    pub ghkpbpdfijh: u32,
+    #[prost(string, tag = "15")]
+    pub dmbaimcnhkk: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "5")]
+    pub login_random: u64,
+    #[prost(string, tag = "12")]
+    pub mjbmnloijan: ::prost::alloc::string::String,
+    #[prost(string, tag = "1933")]
+    pub pdciladmjij: ::prost::alloc::string::String,
+    #[prost(string, tag = "867")]
+    pub aeohjingifk: ::prost::alloc::string::String,
+    #[prost(string, tag = "1291")]
+    pub bokafhimcen: ::prost::alloc::string::String,
+    #[prost(string, tag = "11")]
+    pub aalpfdjnhme: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "9")]
+    pub client_res_version: u32,
+    #[prost(string, tag = "1")]
+    pub iacjlnhkfjl: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "1090")]
+    pub mplbcokaihj: u32,
+    #[prost(enumeration = "PlatformType", tag = "2")]
+    pub platform_type: i32,
+    #[prost(uint32, tag = "1000")]
+    pub edibgljnojg: u32,
+    #[prost(bool, tag = "170")]
+    pub ncolnocggph: bool,
+    #[prost(string, tag = "1640")]
+    pub oohnmkaogcl: ::prost::alloc::string::String,
+    #[prost(string, tag = "14")]
+    pub signature: ::prost::alloc::string::String,
+    #[prost(bool, tag = "304")]
+    pub lnpeccbkbeb: bool,
 }
-/// Obf: LFHPJNLFCJB
+/// Obf: KICGDEGKJIN
 #[derive(proto_derive::CmdID)]
-#[cmdid(20)]
+#[cmdid(95)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlayerLoginScRsp {
-    #[prost(message, optional, tag = "9")]
-    pub basic_info: ::core::option::Option<PlayerBasicInfo>,
-    #[prost(uint64, tag = "8")]
+    #[prost(uint64, tag = "7")]
     pub server_timestamp_ms: u64,
-    #[prost(uint32, tag = "7")]
-    pub retcode: u32,
     #[prost(bool, tag = "2")]
-    pub khmgodejbih: bool,
-    #[prost(uint32, tag = "11")]
-    pub stamina: u32,
-    #[prost(string, tag = "4")]
-    pub ccilgmgjoba: ::prost::alloc::string::String,
-    #[prost(int32, tag = "12")]
-    pub cur_timezone: i32,
-    #[prost(bool, tag = "15")]
-    pub dapcakalmjb: bool,
-    #[prost(string, tag = "1")]
-    pub cilibnppfmk: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "3")]
+    pub jddcochbnpg: bool,
+    #[prost(bool, tag = "11")]
+    pub goepmaljcmi: bool,
+    #[prost(uint64, tag = "1")]
     pub login_random: u64,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Quest {
-    #[prost(enumeration = "QuestStatus", tag = "4")]
-    pub status: i32,
-    #[prost(int64, tag = "11")]
-    pub finish_time: i64,
-    #[prost(uint32, repeated, tag = "5")]
-    pub fffehljfofn: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, tag = "6")]
-    pub progress: u32,
-    #[prost(uint32, tag = "2")]
-    pub id: u32,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ItemList {
-    #[prost(message, repeated, tag = "3")]
-    pub item_list: ::prost::alloc::vec::Vec<Item>,
+    pub stamina: u32,
+    #[prost(string, tag = "5")]
+    pub lbfcfnidiae: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "13")]
+    pub retcode: u32,
+    #[prost(string, tag = "14")]
+    pub gepmpieohim: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "10")]
+    pub basic_info: ::core::option::Option<PlayerBasicInfo>,
+    #[prost(int32, tag = "8")]
+    pub cur_timezone: i32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MissionSync {
-    #[prost(uint32, repeated, tag = "8")]
-    pub bdbhdacgoak: ::prost::alloc::vec::Vec<u32>,
-    #[prost(uint32, repeated, tag = "4")]
-    pub cjalfgaepkk: ::prost::alloc::vec::Vec<u32>,
-    #[prost(message, repeated, tag = "9")]
+    #[prost(message, repeated, tag = "2")]
     pub mission_list: ::prost::alloc::vec::Vec<Mission>,
-    #[prost(uint32, repeated, tag = "12")]
-    pub plfojedcepf: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, repeated, tag = "6")]
+    pub pbcognhgnof: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, repeated, tag = "15")]
+    pub ibmmiglmagc: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, repeated, tag = "9")]
+    pub ahklpjbhpei: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, repeated, tag = "13")]
-    pub kaidmegmcda: ::prost::alloc::vec::Vec<u32>,
+    pub finished_mission_id: ::prost::alloc::vec::Vec<u32>,
 }
-/// Obf: PODIGCNLNIJ
 #[derive(proto_derive::CmdID)]
-#[cmdid(659)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Quest {
+    #[prost(uint32, tag = "14")]
+    pub progress: u32,
+    #[prost(int64, tag = "8")]
+    pub finish_time: i64,
+    #[prost(uint32, tag = "6")]
+    pub id: u32,
+    #[prost(enumeration = "QuestStatus", tag = "2")]
+    pub status: i32,
+    #[prost(uint32, repeated, tag = "4")]
+    pub obojidjldef: ::prost::alloc::vec::Vec<u32>,
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ItemList {
+    #[prost(message, repeated, tag = "4")]
+    pub item_list: ::prost::alloc::vec::Vec<Item>,
+}
+/// Obf: EMMGLJEHEFA
+#[derive(proto_derive::CmdID)]
+#[cmdid(636)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlayerSyncScNotify {
-    #[prost(message, repeated, tag = "2")]
-    pub material_list: ::prost::alloc::vec::Vec<Material>,
-    #[prost(message, repeated, tag = "15")]
-    pub quest_list: ::prost::alloc::vec::Vec<Quest>,
-    #[prost(uint32, repeated, tag = "13")]
-    pub del_relic_list: ::prost::alloc::vec::Vec<u32>,
-    #[prost(uint32, tag = "751")]
+    #[prost(uint32, tag = "1884")]
     pub total_achievement_exp: u32,
-    #[prost(message, repeated, tag = "986")]
-    pub llmkcdedifp: ::prost::alloc::vec::Vec<Material>,
-    #[prost(message, optional, tag = "10")]
-    pub basic_info: ::core::option::Option<PlayerBasicInfo>,
-    #[prost(message, repeated, tag = "8")]
-    pub bekcmllfpfg: ::prost::alloc::vec::Vec<WaitDelResource>,
-    #[prost(uint32, repeated, tag = "867")]
-    pub unk: ::prost::alloc::vec::Vec<u32>,
-    #[prost(message, optional, tag = "1134")]
-    pub ohlfbilhpcc: ::core::option::Option<ItemList>,
-    #[prost(message, repeated, tag = "5")]
-    pub equipment_list: ::prost::alloc::vec::Vec<Equipment>,
-    #[prost(message, optional, tag = "4")]
-    pub avatar_sync: ::core::option::Option<AvatarSync>,
-    #[prost(message, optional, tag = "7")]
-    pub edfcaflflfh: ::core::option::Option<MissionSync>,
-    #[prost(message, optional, tag = "1972")]
+    #[prost(message, optional, tag = "1345")]
     pub board_data_sync: ::core::option::Option<BoardDataSync>,
-    #[prost(uint32, repeated, tag = "9")]
-    pub del_equipment_list: ::prost::alloc::vec::Vec<u32>,
-    #[prost(message, repeated, tag = "11")]
+    #[prost(message, repeated, tag = "1")]
+    pub jbcheacijfd: ::prost::alloc::vec::Vec<WaitDelResource>,
+    #[prost(message, optional, tag = "15")]
+    pub nggecjbkaka: ::core::option::Option<MissionSync>,
+    #[prost(message, repeated, tag = "2")]
+    pub quest_list: ::prost::alloc::vec::Vec<Quest>,
+    #[prost(message, repeated, tag = "8")]
     pub relic_list: ::prost::alloc::vec::Vec<Relic>,
-    #[prost(message, repeated, tag = "1501")]
+    #[prost(message, repeated, tag = "6")]
+    pub material_list: ::prost::alloc::vec::Vec<Material>,
+    #[prost(uint32, repeated, tag = "964")]
+    pub nigger: ::prost::alloc::vec::Vec<u32>,
+    #[prost(message, repeated, tag = "276")]
+    pub bplaencojnn: ::prost::alloc::vec::Vec<Material>,
+    #[prost(message, optional, tag = "13")]
+    pub basic_info: ::core::option::Option<PlayerBasicInfo>,
+    #[prost(message, optional, tag = "14")]
+    pub avatar_sync: ::core::option::Option<AvatarSync>,
+    #[prost(uint32, repeated, tag = "5")]
+    pub del_equipment_list: ::prost::alloc::vec::Vec<u32>,
+    #[prost(message, repeated, tag = "1403")]
     pub multi_path_avatar_type_info_list: ::prost::alloc::vec::Vec<
         MultiPathAvatarTypeInfo,
     >,
+    #[prost(message, optional, tag = "370")]
+    pub pijojmkggfm: ::core::option::Option<ItemList>,
+    #[prost(uint32, repeated, tag = "7")]
+    pub del_relic_list: ::prost::alloc::vec::Vec<u32>,
+    #[prost(message, repeated, tag = "10")]
+    pub equipment_list: ::prost::alloc::vec::Vec<Equipment>,
 }
-/// Obf: GMHHJEKCJEJ
+/// Obf: AJNADODJJGO
 #[derive(proto_derive::CmdID)]
-#[cmdid(2415)]
+#[cmdid(2412)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RelicRecommendCsReq {
@@ -1650,148 +1679,76 @@ pub struct RelicRecommendCsReq {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LineupSlotData {
-    #[prost(enumeration = "AvatarType", tag = "6")]
-    pub avatar_type: i32,
-    #[prost(uint32, tag = "14")]
-    pub id: u32,
     #[prost(uint32, tag = "3")]
+    pub id: u32,
+    #[prost(uint32, tag = "4")]
     pub slot: u32,
+    #[prost(enumeration = "AvatarType", tag = "14")]
+    pub avatar_type: i32,
 }
-/// Obf: KMPCNKNPMEF
+/// Obf: CNHBCLCAFEE
 #[derive(proto_derive::CmdID)]
-#[cmdid(751)]
+#[cmdid(759)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReplaceLineupCsReq {
+    #[prost(uint32, tag = "7")]
+    pub cccedbigcdg: u32,
+    #[prost(uint32, tag = "14")]
+    pub index: u32,
     #[prost(uint32, tag = "11")]
     pub leader_slot: u32,
-    #[prost(uint32, tag = "9")]
-    pub index: u32,
-    #[prost(message, repeated, tag = "6")]
+    #[prost(message, repeated, tag = "5")]
     pub slots: ::prost::alloc::vec::Vec<LineupSlotData>,
-    #[prost(enumeration = "ExtraLineupType", tag = "14")]
-    pub extra_lineup_type: i32,
-    #[prost(uint32, tag = "3")]
-    pub gfkihhopjdg: u32,
-    #[prost(bool, tag = "10")]
+    #[prost(bool, tag = "15")]
     pub is_virtual: bool,
-    #[prost(uint32, tag = "4")]
+    #[prost(enumeration = "ExtraLineupType", tag = "4")]
+    pub extra_lineup_type: i32,
+    #[prost(uint32, tag = "8")]
     pub plane_id: u32,
 }
-/// Obf: LFDJPJPOINL
+/// Obf: IJENHEDMOFD
 #[derive(proto_derive::CmdID)]
-#[cmdid(773)]
+#[cmdid(712)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReplaceLineupScRsp {
-    #[prost(uint32, tag = "5")]
+    #[prost(uint32, tag = "10")]
     pub retcode: u32,
 }
-/// Obf: FOHMPNOPCDF
+/// Obf: CJOECAIOMPF
 #[derive(proto_derive::CmdID)]
-#[cmdid(55)]
+#[cmdid(68)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlayerLoginFinishCsReq {}
-/// Obf: FCALEIMCBBJ
+/// Obf: HPOMCFLPOKB
 #[derive(proto_derive::CmdID)]
-#[cmdid(6)]
+#[cmdid(57)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlayerLoginFinishScRsp {
-    #[prost(uint32, tag = "5")]
+    #[prost(uint32, tag = "14")]
     pub retcode: u32,
 }
-/// Obf: HAKBLMLPKLI
+/// Obf: DIFKGIOIJFF
 #[derive(proto_derive::CmdID)]
-#[cmdid(3903)]
+#[cmdid(3984)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RevcMsgScNotify {
-    #[prost(enumeration = "MsgType", tag = "3")]
-    pub msg_type: i32,
-    #[prost(string, tag = "4")]
-    pub text: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "2")]
-    pub emote: u32,
     #[prost(uint32, tag = "12")]
     pub from_uid: u32,
-    #[prost(uint32, tag = "9")]
-    pub to_uid: u32,
-    #[prost(enumeration = "ChatType", tag = "5")]
+    #[prost(uint32, tag = "15")]
+    pub emote: u32,
+    #[prost(enumeration = "MsgType", tag = "8")]
+    pub msg_type: i32,
+    #[prost(enumeration = "ChatType", tag = "2")]
     pub chat_type: i32,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BattleRogueMagicRoundCount {
-    #[prost(uint32, tag = "1")]
-    pub eiganlcjpoi: u32,
-    #[prost(uint32, tag = "2")]
-    pub kdjdjompbbh: u32,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BattleRogueMagicUnit {
-    #[prost(uint32, tag = "1")]
-    pub unit_id: u32,
-    #[prost(uint32, tag = "2")]
-    pub level: u32,
-    #[prost(bool, tag = "3")]
-    pub locked: bool,
-    #[prost(uint32, tag = "4")]
-    pub slot_id: u32,
-    #[prost(map = "uint32, uint32", tag = "5")]
-    pub counter_map: ::std::collections::HashMap<u32, u32>,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BattleRogueMagicScepter {
-    #[prost(uint32, tag = "1")]
-    pub scepter_id: u32,
-    #[prost(message, repeated, tag = "2")]
-    pub magic_list: ::prost::alloc::vec::Vec<BattleRogueMagicUnit>,
-    #[prost(uint32, tag = "3")]
-    pub level: u32,
-    #[prost(map = "uint32, uint32", tag = "4")]
-    pub trench_count: ::std::collections::HashMap<u32, u32>,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BattleRogueMagicData {
-    #[prost(message, optional, tag = "1")]
-    pub round_cnt: ::core::option::Option<BattleRogueMagicRoundCount>,
-    #[prost(message, repeated, tag = "2")]
-    pub battle_scepter_list: ::prost::alloc::vec::Vec<BattleRogueMagicScepter>,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RogueMagicBattleUnitInfo {
-    #[prost(oneof = "rogue_magic_battle_unit_info::Item", tags = "1")]
-    pub item: ::core::option::Option<rogue_magic_battle_unit_info::Item>,
-}
-/// Nested message and enum types in `RogueMagicBattleUnitInfo`.
-pub mod rogue_magic_battle_unit_info {
-    #[derive(proto_derive::CmdID)]
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Item {
-        #[prost(message, tag = "1")]
-        BattleRogueMagicData(super::BattleRogueMagicData),
-    }
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RogueMagicBattleInfo {
-    #[prost(message, optional, tag = "1")]
-    pub scepter: ::core::option::Option<Cijjendfjlo>,
-    #[prost(message, optional, tag = "2")]
-    pub player_detail_info: ::core::option::Option<RogueMagicBattleUnitInfo>,
+    #[prost(string, tag = "6")]
+    pub text: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "10")]
+    pub to_uid: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1806,7 +1763,6 @@ pub struct BattleEventInitedData {
 pub struct BattleEventBattleInfo {
     #[prost(uint32, tag = "1")]
     pub battle_event_id: u32,
-    /// repeated KMADMFOAJDL skill_info = 3;
     #[prost(message, optional, tag = "2")]
     pub status: ::core::option::Option<BattleEventInitedData>,
 }
@@ -1866,178 +1822,257 @@ pub struct EvolveBuildBattleInfo {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneMonster {
+    #[prost(uint32, tag = "13")]
+    pub cur_hp: u32,
     #[prost(uint32, tag = "14")]
     pub max_hp: u32,
-    #[prost(uint32, tag = "8")]
-    pub cur_hp: u32,
-    #[prost(uint32, tag = "9")]
+    #[prost(uint32, tag = "15")]
     pub monster_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneMonsterWaveParam {
-    #[prost(uint32, tag = "5")]
-    pub phlbeclkbhh: u32,
-    #[prost(uint32, tag = "2")]
-    pub ailddaklbkk: u32,
-    #[prost(uint32, tag = "13")]
-    pub ochjfchenbe: u32,
-    #[prost(uint32, tag = "12")]
+    #[prost(uint32, tag = "10")]
     pub level: u32,
+    #[prost(uint32, tag = "2")]
+    pub enaeebepdfp: u32,
+    #[prost(uint32, tag = "5")]
+    pub cbiaoplipkj: u32,
+    #[prost(uint32, tag = "13")]
+    pub ihpfpjalamn: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneMonsterWave {
-    #[prost(message, repeated, tag = "6")]
-    pub monster_list: ::prost::alloc::vec::Vec<SceneMonster>,
-    #[prost(message, repeated, tag = "2")]
-    pub emamobcgbdd: ::prost::alloc::vec::Vec<ItemList>,
-    #[prost(uint32, tag = "12")]
+    #[prost(message, repeated, tag = "3")]
+    pub olfgemadaco: ::prost::alloc::vec::Vec<ItemList>,
+    #[prost(uint32, tag = "5")]
     pub wave_id: u32,
-    #[prost(message, optional, tag = "1")]
-    pub wave_param: ::core::option::Option<SceneMonsterWaveParam>,
-    #[prost(uint32, tag = "14")]
+    #[prost(message, repeated, tag = "1")]
+    pub monster_list: ::prost::alloc::vec::Vec<SceneMonster>,
+    #[prost(uint32, tag = "15")]
     pub stage_id: u32,
+    #[prost(message, optional, tag = "11")]
+    pub wave_param: ::core::option::Option<SceneMonsterWaveParam>,
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BattleRogueMagicRoundCount {
+    #[prost(uint32, tag = "1")]
+    pub jnejloobmad: u32,
+    #[prost(uint32, tag = "2")]
+    pub jfaidmkbmof: u32,
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BattleRogueMagicUnit {
+    #[prost(uint32, tag = "1")]
+    pub unit_id: u32,
+    #[prost(uint32, tag = "2")]
+    pub level: u32,
+    #[prost(bool, tag = "3")]
+    pub locked: bool,
+    #[prost(uint32, tag = "4")]
+    pub slot_id: u32,
+    #[prost(map = "uint32, uint32", tag = "5")]
+    pub counter_map: ::std::collections::HashMap<u32, u32>,
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BattleRogueMagicScepter {
+    #[prost(uint32, tag = "1")]
+    pub scepter_id: u32,
+    #[prost(message, repeated, tag = "2")]
+    pub magic_list: ::prost::alloc::vec::Vec<BattleRogueMagicUnit>,
+    #[prost(uint32, tag = "3")]
+    pub level: u32,
+    #[prost(map = "uint32, uint32", tag = "4")]
+    pub trench_count: ::std::collections::HashMap<u32, u32>,
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BattleRogueMagicData {
+    #[prost(message, optional, tag = "1")]
+    pub round_cnt: ::core::option::Option<BattleRogueMagicRoundCount>,
+    #[prost(message, repeated, tag = "2")]
+    pub battle_scepter_list: ::prost::alloc::vec::Vec<BattleRogueMagicScepter>,
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RogueMagicBattleUnitInfo {
+    #[prost(oneof = "rogue_magic_battle_unit_info::Item", tags = "1")]
+    pub item: ::core::option::Option<rogue_magic_battle_unit_info::Item>,
+}
+/// Nested message and enum types in `RogueMagicBattleUnitInfo`.
+pub mod rogue_magic_battle_unit_info {
+    #[derive(proto_derive::CmdID)]
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Item {
+        #[prost(message, tag = "1")]
+        BattleRogueMagicData(super::BattleRogueMagicData),
+    }
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Hnpkkiadpid {
+    #[prost(uint32, tag = "1")]
+    pub mokbhfdehnf: u32,
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RogueMagicBattleInfo {
+    #[prost(message, optional, tag = "1")]
+    pub scepter: ::core::option::Option<Hnpkkiadpid>,
+    #[prost(message, optional, tag = "2")]
+    pub player_detail_info: ::core::option::Option<RogueMagicBattleUnitInfo>,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneBattleInfo {
-    #[prost(message, repeated, tag = "14")]
-    pub buff_list: ::prost::alloc::vec::Vec<BattleBuff>,
-    #[prost(uint32, tag = "3")]
-    pub battle_id: u32,
-    #[prost(message, optional, tag = "1768")]
-    pub rogue_magic_battle_info: ::core::option::Option<RogueMagicBattleInfo>,
-    #[prost(uint32, tag = "11")]
-    pub stage_id: u32,
-    #[prost(map = "uint32, message", tag = "1560")]
-    pub battle_target_info: ::std::collections::HashMap<u32, BattleTargetList>,
-    #[prost(uint32, tag = "13")]
-    pub rounds_limit: u32,
-    #[prost(message, repeated, tag = "740")]
-    pub event_battle_info_list: ::prost::alloc::vec::Vec<BattleEventBattleInfo>,
-    #[prost(message, optional, tag = "715")]
-    pub kahoekaefhd: ::core::option::Option<EvolveBuildBattleInfo>,
-    #[prost(message, repeated, tag = "5")]
-    pub monster_wave_list: ::prost::alloc::vec::Vec<SceneMonsterWave>,
-    #[prost(uint32, tag = "9")]
-    pub wave_count: u32,
-    #[prost(uint32, tag = "10")]
-    pub logic_random_seed: u32,
-    #[prost(message, repeated, tag = "2")]
-    pub battle_avatar_list: ::prost::alloc::vec::Vec<BattleAvatar>,
-    #[prost(uint32, tag = "8")]
+    #[prost(uint32, tag = "1")]
     pub world_level: u32,
-    #[prost(bool, tag = "1")]
-    pub nlbjkfnnonh: bool,
+    #[prost(message, repeated, tag = "928")]
+    pub event_battle_info_list: ::prost::alloc::vec::Vec<BattleEventBattleInfo>,
+    #[prost(message, repeated, tag = "13")]
+    pub buff_list: ::prost::alloc::vec::Vec<BattleBuff>,
+    #[prost(message, optional, tag = "1079")]
+    pub adafaohflma: ::core::option::Option<EvolveBuildBattleInfo>,
+    #[prost(bool, tag = "3")]
+    pub nbgogjjojma: bool,
+    #[prost(uint32, tag = "9")]
+    pub battle_id: u32,
+    #[prost(uint32, tag = "15")]
+    pub stage_id: u32,
+    #[prost(uint32, tag = "14")]
+    pub rounds_limit: u32,
+    #[prost(message, repeated, tag = "4")]
+    pub monster_wave_list: ::prost::alloc::vec::Vec<SceneMonsterWave>,
+    #[prost(message, optional, tag = "1993")]
+    pub rogue_magic_battle_info: ::core::option::Option<RogueMagicBattleInfo>,
+    #[prost(message, repeated, tag = "10")]
+    pub battle_avatar_list: ::prost::alloc::vec::Vec<BattleAvatar>,
+    #[prost(map = "uint32, message", tag = "1840")]
+    pub battle_target_info: ::std::collections::HashMap<u32, BattleTargetList>,
+    #[prost(uint32, tag = "12")]
+    pub logic_random_seed: u32,
+    #[prost(uint32, tag = "5")]
+    pub wave_count: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssistMonsterWave {
-    #[prost(uint32, repeated, tag = "12")]
+    #[prost(uint32, repeated, tag = "8")]
     pub entity_id_list: ::prost::alloc::vec::Vec<u32>,
 }
-/// Obf: CPKONIDHILH
+/// Obf: IEDNBLPMKEC
 #[derive(proto_derive::CmdID)]
-#[cmdid(1439)]
+#[cmdid(1467)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneCastSkillCsReq {
-    #[prost(uint32, tag = "11")]
-    pub skill_index: u32,
-    #[prost(uint32, tag = "8")]
-    pub caster_id: u32,
     #[prost(uint32, tag = "13")]
     pub attacked_group_id: u32,
+    #[prost(uint32, tag = "3")]
+    pub caster_id: u32,
     #[prost(uint32, repeated, tag = "2")]
-    pub assist_monster_entity_id_list: ::prost::alloc::vec::Vec<u32>,
-    #[prost(uint32, repeated, tag = "7")]
     pub hit_target_entity_id_list: ::prost::alloc::vec::Vec<u32>,
-    #[prost(string, tag = "10")]
-    pub baeaoahcjle: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
+    #[prost(uint32, tag = "14")]
+    pub elooddmmnia: u32,
+    #[prost(uint32, tag = "11")]
+    pub skill_index: u32,
+    #[prost(string, tag = "7")]
+    pub oicibpoheal: ::prost::alloc::string::String,
+    #[prost(uint32, repeated, tag = "12")]
+    pub assist_monster_entity_id_list: ::prost::alloc::vec::Vec<u32>,
+    #[prost(message, repeated, tag = "4")]
     pub assist_monster_wave_list: ::prost::alloc::vec::Vec<AssistMonsterWave>,
-    #[prost(message, optional, tag = "14")]
+    #[prost(message, optional, tag = "9")]
     pub target_motion: ::core::option::Option<MotionInfo>,
-    #[prost(uint32, tag = "1")]
-    pub eefmbbckmnp: u32,
 }
-/// Obf: MOAIBHBGKOG
+/// Obf: BBBJBIIBOEO
 #[derive(proto_derive::CmdID)]
-#[cmdid(1453)]
+#[cmdid(1428)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneCastSkillScRsp {
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag = "5")]
     pub battle_info: ::core::option::Option<SceneBattleInfo>,
-    #[prost(uint32, tag = "7")]
+    #[prost(uint32, tag = "2")]
     pub attacked_group_id: u32,
-    #[prost(uint32, tag = "9")]
+    #[prost(uint32, tag = "12")]
     pub retcode: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EntityMotion {
-    #[prost(uint32, tag = "7")]
+    #[prost(bool, tag = "14")]
+    pub kkbdjdlhmkf: bool,
+    #[prost(uint32, tag = "4")]
     pub map_layer: u32,
-    #[prost(bool, tag = "4")]
-    pub nofpfoipofd: bool,
-    #[prost(message, optional, tag = "8")]
-    pub motion: ::core::option::Option<MotionInfo>,
-    #[prost(uint32, tag = "9")]
+    #[prost(uint32, tag = "2")]
     pub entity_id: u32,
+    #[prost(message, optional, tag = "11")]
+    pub motion: ::core::option::Option<MotionInfo>,
 }
-/// Obf: LGKKNJLMPGH
+/// Obf: NMMHHNOMDIE
 #[derive(proto_derive::CmdID)]
-#[cmdid(1459)]
+#[cmdid(1436)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneEntityMoveCsReq {
-    #[prost(uint32, tag = "1")]
+    #[prost(uint32, tag = "8")]
     pub entry_id: u32,
     #[prost(uint64, tag = "15")]
-    pub clenbgijacp: u64,
-    #[prost(message, repeated, tag = "14")]
+    pub dcmncgdjobj: u64,
+    #[prost(message, repeated, tag = "9")]
     pub entity_motion_list: ::prost::alloc::vec::Vec<EntityMotion>,
 }
-/// Obf: OIKMBKGHBJN
+/// Obf: IKLMJGAGBFL
 #[derive(proto_derive::CmdID)]
-#[cmdid(1420)]
+#[cmdid(1495)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneEntityMoveScRsp {
-    #[prost(message, repeated, tag = "2")]
+    #[prost(message, repeated, tag = "11")]
     pub entity_motion_list: ::prost::alloc::vec::Vec<EntityMotion>,
-    #[prost(uint32, tag = "14")]
-    pub retcode: u32,
-    #[prost(message, optional, tag = "10")]
+    #[prost(message, optional, tag = "7")]
     pub download_data: ::core::option::Option<ClientDownloadData>,
+    #[prost(uint32, tag = "8")]
+    pub retcode: u32,
 }
-/// Obf: LKCDPOKOEBM
+/// Obf: HFOENJFJIPC
 #[derive(proto_derive::CmdID)]
-#[cmdid(1447)]
+#[cmdid(1434)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneEntityMoveScNotify {
-    #[prost(uint32, tag = "13")]
+    #[prost(uint32, tag = "15")]
     pub client_pos_version: u32,
-    #[prost(uint32, tag = "1")]
-    pub entity_id: u32,
-    #[prost(uint32, tag = "14")]
+    #[prost(uint32, tag = "2")]
     pub entry_id: u32,
-    #[prost(message, optional, tag = "6")]
+    #[prost(uint32, tag = "4")]
+    pub entity_id: u32,
+    #[prost(message, optional, tag = "1")]
     pub motion: ::core::option::Option<MotionInfo>,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneEntityRefreshInfo {
-    #[prost(oneof = "scene_entity_refresh_info::RefreshType", tags = "8, 11, 4")]
+    #[prost(oneof = "scene_entity_refresh_info::RefreshType", tags = "8, 12, 13")]
     pub refresh_type: ::core::option::Option<scene_entity_refresh_info::RefreshType>,
 }
 /// Nested message and enum types in `SceneEntityRefreshInfo`.
@@ -2048,248 +2083,248 @@ pub mod scene_entity_refresh_info {
     pub enum RefreshType {
         #[prost(message, tag = "8")]
         AddEntity(super::SceneEntityInfo),
-        #[prost(uint32, tag = "11")]
+        #[prost(uint32, tag = "12")]
         DelEntity(u32),
-        #[prost(uint32, tag = "4")]
-        Nnendgjbgbe(u32),
+        #[prost(uint32, tag = "13")]
+        Melfhaojlel(u32),
     }
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneGroupRefreshInfo {
-    #[prost(enumeration = "SceneGroupRefreshType", tag = "12")]
-    pub group_refresh_type: i32,
-    #[prost(uint32, tag = "3")]
+    #[prost(uint32, tag = "15")]
     pub state: u32,
-    #[prost(message, repeated, tag = "15")]
+    #[prost(message, repeated, tag = "13")]
     pub refresh_entity: ::prost::alloc::vec::Vec<SceneEntityRefreshInfo>,
-    #[prost(uint32, tag = "10")]
+    #[prost(enumeration = "SceneGroupRefreshType", tag = "9")]
+    pub group_refresh_type: i32,
+    #[prost(uint32, tag = "14")]
     pub group_id: u32,
 }
-/// Obf: HKDFNBEGLAD
+/// Obf: CGLMDPBGHCA
 #[derive(proto_derive::CmdID)]
-#[cmdid(1452)]
+#[cmdid(1432)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneGroupRefreshScNotify {
-    #[prost(message, repeated, tag = "13")]
+    #[prost(message, repeated, tag = "2")]
     pub group_refresh_info: ::prost::alloc::vec::Vec<SceneGroupRefreshInfo>,
 }
-/// Obf: PLLNFKIGPIF
+/// Obf: JPHGMIGJGPO
 #[derive(proto_derive::CmdID)]
-#[cmdid(3959)]
+#[cmdid(3936)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SendMsgCsReq {
-    #[prost(uint32, tag = "11")]
-    pub emote: u32,
-    #[prost(string, tag = "8")]
-    pub text: ::prost::alloc::string::String,
-    #[prost(uint32, repeated, tag = "6")]
-    pub to_uid_list: ::prost::alloc::vec::Vec<u32>,
-    #[prost(enumeration = "ChatType", tag = "1")]
+    #[prost(enumeration = "ChatType", tag = "13")]
     pub chat_type: i32,
-    #[prost(enumeration = "MsgType", tag = "3")]
+    #[prost(enumeration = "MsgType", tag = "6")]
     pub msg_type: i32,
+    #[prost(uint32, tag = "10")]
+    pub emote: u32,
+    #[prost(uint32, repeated, tag = "8")]
+    pub to_uid_list: ::prost::alloc::vec::Vec<u32>,
+    #[prost(string, tag = "11")]
+    pub text: ::prost::alloc::string::String,
 }
-/// Obf: JKHNCDDOHGH
+/// Obf: IBGFGNACNCK
 #[derive(proto_derive::CmdID)]
-#[cmdid(790)]
+#[cmdid(705)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SwitchLineupIndexCsReq {
-    #[prost(uint32, tag = "4")]
+    #[prost(uint32, tag = "7")]
     pub index: u32,
 }
-/// Obf: LICJMCLMONC
+/// Obf: LIOHMBGBGMF
 #[derive(proto_derive::CmdID)]
-#[cmdid(779)]
+#[cmdid(775)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SwitchLineupIndexScRsp {
-    #[prost(uint32, tag = "14")]
+    #[prost(uint32, tag = "7")]
     pub index: u32,
-    #[prost(uint32, tag = "11")]
+    #[prost(uint32, tag = "15")]
     pub retcode: u32,
 }
-/// Obf: AAEEJHEMGPK
+/// Obf: COANODDGHHE
 #[derive(proto_derive::CmdID)]
-#[cmdid(1430)]
+#[cmdid(1446)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SyncEntityBuffChangeListScNotify {
-    #[prost(message, repeated, tag = "14")]
+    #[prost(message, repeated, tag = "7")]
     pub entity_buff_info_list: ::prost::alloc::vec::Vec<EntityBuffChangeInfo>,
 }
 /// Obf: SyncLineupNotify
 #[derive(proto_derive::CmdID)]
-#[cmdid(747)]
+#[cmdid(734)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SyncLineupNotify {
-    #[prost(message, optional, tag = "8")]
+    #[prost(message, optional, tag = "14")]
     pub lineup: ::core::option::Option<LineupInfo>,
     #[prost(enumeration = "SyncReason", repeated, tag = "12")]
     pub reason_list: ::prost::alloc::vec::Vec<i32>,
 }
-/// Obf: KAGGJBAFEIM
+/// Obf: IAFNPFJBKPJ
 #[derive(proto_derive::CmdID)]
-#[cmdid(347)]
+#[cmdid(334)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TakeOffEquipmentCsReq {
-    #[prost(uint32, tag = "4")]
+    #[prost(uint32, tag = "15")]
     pub avatar_id: u32,
 }
-/// Obf: POLCNCHDOBL
+/// Obf: OCOADIHLPIN
 #[derive(proto_derive::CmdID)]
 #[cmdid(319)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TakeOffRelicCsReq {
-    #[prost(uint32, tag = "1")]
+    #[prost(uint32, tag = "15")]
     pub avatar_id: u32,
-    #[prost(uint32, repeated, tag = "11")]
+    #[prost(uint32, repeated, tag = "4")]
     pub slot_list: ::prost::alloc::vec::Vec<u32>,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BattleOp {
-    #[prost(uint32, tag = "1")]
-    pub gdnmmkjajia: u32,
-    #[prost(uint32, tag = "2")]
-    pub state: u32,
-    #[prost(uint32, tag = "3")]
-    pub fcjobmbpmlk: u32,
-    #[prost(uint32, tag = "4")]
-    pub mimlpkfmngo: u32,
-    #[prost(uint32, tag = "5")]
-    pub nndejjdciak: u32,
-    #[prost(uint32, tag = "6")]
-    pub skill_index: u32,
-    #[prost(uint32, tag = "7")]
-    pub hpfeemffplb: u32,
-    #[prost(string, tag = "8")]
-    pub kkpmjejnlnb: ::prost::alloc::string::String,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BattleStatistics {
     #[prost(uint32, tag = "1")]
-    pub egdchjhbook: u32,
+    pub hilbbhbpbeb: u32,
     #[prost(uint32, tag = "2")]
-    pub bbmffdeamga: u32,
+    pub hoejkbnjhlj: u32,
     #[prost(uint32, repeated, tag = "3")]
     pub avatar_id_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, tag = "4")]
-    pub ncofbhldoge: u32,
+    pub liddcjjfpni: u32,
     #[prost(double, tag = "5")]
-    pub jdpjfhdfgjd: f64,
+    pub hggfblcdomn: f64,
     #[prost(double, tag = "6")]
-    pub pccpllhicjm: f64,
+    pub bpgapmpceif: f64,
     #[prost(uint32, tag = "9")]
-    pub egdadljaphf: u32,
+    pub ocgpicbedak: u32,
     #[prost(uint32, tag = "10")]
-    pub olbobjljopp: u32,
+    pub dfmbjopahoi: u32,
     #[prost(uint32, tag = "11")]
-    pub ajhiomahodb: u32,
+    pub dgfodekbpkk: u32,
     #[prost(uint32, tag = "12")]
-    pub elodbohcdpc: u32,
+    pub kfhibdocado: u32,
     #[prost(map = "string, float", tag = "13")]
-    pub kjeopdddfpk: ::std::collections::HashMap<::prost::alloc::string::String, f32>,
+    pub jjhjoombnhn: ::std::collections::HashMap<::prost::alloc::string::String, f32>,
     #[prost(uint32, tag = "14")]
-    pub ailmjjgaoga: u32,
+    pub npnnlbdbdne: u32,
     #[prost(message, repeated, tag = "16")]
-    pub focoblgnpmg: ::prost::alloc::vec::Vec<BattleEventBattleInfo>,
+    pub dolglijaigd: ::prost::alloc::vec::Vec<BattleEventBattleInfo>,
     #[prost(int32, repeated, tag = "22")]
-    pub hmpldbhpdll: ::prost::alloc::vec::Vec<i32>,
+    pub endmhkffphm: ::prost::alloc::vec::Vec<i32>,
     #[prost(map = "uint32, message", tag = "28")]
     pub battle_target_info: ::std::collections::HashMap<u32, BattleTargetList>,
     #[prost(message, optional, tag = "30")]
-    pub kahoekaefhd: ::core::option::Option<EvolveBuildBattleInfo>,
+    pub adafaohflma: ::core::option::Option<EvolveBuildBattleInfo>,
     #[prost(bool, tag = "32")]
-    pub kidhpnpjhjo: bool,
+    pub jhfcbeekkfe: bool,
     #[prost(uint32, tag = "35")]
-    pub kmchdapgoic: u32,
+    pub hjabngmolmh: u32,
 }
-/// Obf: MJAPDPCAHBH
 #[derive(proto_derive::CmdID)]
-#[cmdid(159)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BattleOp {
+    #[prost(uint32, tag = "1")]
+    pub akipomichln: u32,
+    #[prost(uint32, tag = "2")]
+    pub state: u32,
+    #[prost(uint32, tag = "3")]
+    pub ngdomfaniig: u32,
+    #[prost(uint32, tag = "4")]
+    pub maboadkjobn: u32,
+    #[prost(uint32, tag = "5")]
+    pub ilofggjmepe: u32,
+    #[prost(uint32, tag = "6")]
+    pub skill_index: u32,
+    #[prost(uint32, tag = "7")]
+    pub gblcinbpgnj: u32,
+    #[prost(string, tag = "8")]
+    pub ckkopnhbfom: ::prost::alloc::string::String,
+}
+/// Obf: DNKDEFFMJNL
+#[derive(proto_derive::CmdID)]
+#[cmdid(136)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PveBattleResultCsReq {
-    #[prost(enumeration = "BattleEndStatus", tag = "7")]
-    pub end_status: i32,
-    #[prost(uint32, tag = "5")]
-    pub battle_id: u32,
-    #[prost(string, tag = "9")]
-    pub dkmflegefdk: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "6")]
-    pub pccpllhicjm: u32,
-    #[prost(bool, tag = "15")]
-    pub jpahniiebbd: bool,
-    #[prost(uint32, tag = "2")]
-    pub stage_id: u32,
-    #[prost(message, repeated, tag = "3")]
-    pub op_list: ::prost::alloc::vec::Vec<BattleOp>,
-    #[prost(bool, tag = "8")]
-    pub ogpicfmnoed: bool,
-    #[prost(map = "string, uint32", tag = "14")]
-    pub bfaabmcloij: ::std::collections::HashMap<::prost::alloc::string::String, u32>,
-    #[prost(uint32, tag = "10")]
-    pub client_res_version: u32,
-    #[prost(message, optional, tag = "12")]
-    pub stt: ::core::option::Option<BattleStatistics>,
-    #[prost(uint32, tag = "11")]
-    pub cost_time: u32,
-    #[prost(bytes = "vec", tag = "4")]
-    pub turn_snapshot_hash: ::prost::alloc::vec::Vec<u8>,
     #[prost(bool, tag = "1")]
-    pub gfomlcjfbdk: bool,
-    #[prost(uint32, tag = "13")]
-    pub echfpfbkdeo: u32,
+    pub gdiknobmeam: bool,
+    #[prost(bool, tag = "11")]
+    pub hggiodcbeab: bool,
+    #[prost(uint32, tag = "5")]
+    pub bpgapmpceif: u32,
+    #[prost(uint32, tag = "3")]
+    pub client_res_version: u32,
+    #[prost(message, optional, tag = "14")]
+    pub stt: ::core::option::Option<BattleStatistics>,
+    #[prost(uint32, tag = "6")]
+    pub stage_id: u32,
+    #[prost(string, tag = "7")]
+    pub ioojbikelek: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "9")]
+    pub op_list: ::prost::alloc::vec::Vec<BattleOp>,
+    #[prost(map = "string, uint32", tag = "8")]
+    pub kbahkphagjo: ::std::collections::HashMap<::prost::alloc::string::String, u32>,
+    #[prost(uint32, tag = "4")]
+    pub cost_time: u32,
+    #[prost(uint32, tag = "10")]
+    pub dfembeanppf: u32,
+    #[prost(bytes = "vec", tag = "15")]
+    pub turn_snapshot_hash: ::prost::alloc::vec::Vec<u8>,
+    #[prost(uint32, tag = "2")]
+    pub battle_id: u32,
+    #[prost(enumeration = "BattleEndStatus", tag = "13")]
+    pub end_status: i32,
+    #[prost(bool, tag = "12")]
+    pub anpafoepahf: bool,
 }
-/// Obf: HJLHGBIBJOG
+/// Obf: MEGOKLANKFO
 #[derive(proto_derive::CmdID)]
-#[cmdid(120)]
+#[cmdid(195)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PveBattleResultScRsp {
-    #[prost(message, optional, tag = "8")]
-    pub pificpibgji: ::core::option::Option<ItemList>,
-    #[prost(uint32, tag = "7")]
-    pub event_id: u32,
-    #[prost(uint32, tag = "14")]
-    pub lifaaoccejd: u32,
-    #[prost(message, optional, tag = "772")]
-    pub drop_data: ::core::option::Option<ItemList>,
-    #[prost(uint32, tag = "1")]
-    pub jnomcfaejca: u32,
-    #[prost(uint32, tag = "2")]
-    pub stage_id: u32,
-    #[prost(message, optional, tag = "5")]
-    pub pfjllgdaabn: ::core::option::Option<ItemList>,
-    #[prost(bool, tag = "9")]
-    pub check_identical: bool,
-    #[prost(string, tag = "11")]
+    #[prost(string, tag = "15")]
     pub res_version: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "13")]
-    pub battle_avatar_list: ::prost::alloc::vec::Vec<BattleAvatar>,
-    #[prost(uint32, tag = "6")]
+    #[prost(uint32, tag = "14")]
     pub retcode: u32,
-    #[prost(message, optional, tag = "12")]
-    pub cihhffmdbdd: ::core::option::Option<ItemList>,
-    #[prost(uint32, tag = "3")]
-    pub battle_id: u32,
-    #[prost(string, tag = "10")]
-    pub bin_version: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "15")]
-    pub ncjmakdmafn: u32,
-    #[prost(enumeration = "BattleEndStatus", tag = "4")]
+    #[prost(enumeration = "BattleEndStatus", tag = "1")]
     pub end_status: i32,
+    #[prost(uint32, tag = "10")]
+    pub event_id: u32,
+    #[prost(bool, tag = "4")]
+    pub check_identical: bool,
+    #[prost(uint32, tag = "9")]
+    pub gcmfmldnldm: u32,
+    #[prost(uint32, tag = "3")]
+    pub dfmoofmjpke: u32,
+    #[prost(uint32, tag = "5")]
+    pub battle_id: u32,
+    #[prost(message, optional, tag = "8")]
+    pub drop_data: ::core::option::Option<ItemList>,
+    #[prost(uint32, tag = "6")]
+    pub stage_id: u32,
+    #[prost(message, repeated, tag = "7")]
+    pub battle_avatar_list: ::prost::alloc::vec::Vec<BattleAvatar>,
+    #[prost(string, tag = "12")]
+    pub bin_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1392")]
+    pub ifjljadpfdg: ::core::option::Option<ItemList>,
+    #[prost(uint32, tag = "13")]
+    pub njghcpijdgi: u32,
+    #[prost(message, optional, tag = "2")]
+    pub cllokodkpap: ::core::option::Option<ItemList>,
+    #[prost(message, optional, tag = "11")]
+    pub eebbmnlacmg: ::core::option::Option<ItemList>,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -2321,225 +2356,144 @@ pub struct DispatchRegionData {
     #[prost(message, repeated, tag = "4")]
     pub region_list: ::prost::alloc::vec::Vec<RegionEntry>,
     #[prost(string, tag = "5")]
-    pub clgiondngmp: ::prost::alloc::string::String,
+    pub chlpeekknke: ::prost::alloc::string::String,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Gateserver {
-    #[prost(bool, tag = "1257")]
-    pub unk5: bool,
-    #[prost(string, tag = "15")]
-    pub lua_url: ::prost::alloc::string::String,
-    #[prost(string, tag = "9")]
-    pub ex_resource_url: ::prost::alloc::string::String,
-    #[prost(bool, tag = "719")]
-    pub ejcaokobhbg: bool,
-    #[prost(bool, tag = "1700")]
-    pub unk7: bool,
-    #[prost(string, tag = "1821")]
-    pub hpckdeoeppj: ::prost::alloc::string::String,
-    #[prost(string, tag = "1809")]
-    pub mlminfbjajp: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub asset_bundle_url: ::prost::alloc::string::String,
-    #[prost(string, tag = "426")]
-    pub nnhemjjfdmg: ::prost::alloc::string::String,
-    #[prost(int64, tag = "7")]
-    pub cddddbfgkfk: i64,
-    #[prost(string, tag = "1455")]
-    pub olialajlflf: ::prost::alloc::string::String,
-    #[prost(string, tag = "645")]
-    pub kabhjahemcf: ::prost::alloc::string::String,
-    #[prost(string, tag = "149")]
-    pub mehkocgcbpo: ::prost::alloc::string::String,
-    #[prost(string, tag = "1521")]
-    pub hjioamiabgj: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "4")]
-    pub port: u32,
-    #[prost(string, tag = "1")]
+    #[prost(string, tag = "2")]
     pub ip: ::prost::alloc::string::String,
-    #[prost(int64, tag = "2")]
-    pub bifmnhddacc: i64,
-    #[prost(string, tag = "521")]
-    pub knimknialag: ::prost::alloc::string::String,
-    #[prost(string, tag = "1951")]
-    pub kjaogfkhbch: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "131")]
-    pub fbkdebbfemb: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(bool, tag = "207")]
-    pub unk3: bool,
+    #[prost(string, tag = "4")]
+    pub ex_resource_url: ::prost::alloc::string::String,
     #[prost(string, tag = "6")]
-    pub peeiacckake: ::prost::alloc::string::String,
-    #[prost(string, tag = "1766")]
-    pub ifix_url: ::prost::alloc::string::String,
-    #[prost(bool, tag = "642")]
-    pub unk4: bool,
-    #[prost(string, tag = "714")]
-    pub blllbehnefb: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
     pub region_name: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "1649")]
-    pub pifjhcbhdgi: u32,
-    #[prost(bool, tag = "920")]
-    pub depjhgibfie: bool,
-    #[prost(string, tag = "1882")]
-    pub bmnboffceeh: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "12")]
-    pub retcode: u32,
-    #[prost(string, tag = "1833")]
+    #[prost(string, tag = "7")]
+    pub lua_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "14")]
+    pub asset_bundle_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "181")]
+    pub msg: ::prost::alloc::string::String,
+    #[prost(string, tag = "505")]
+    pub mdk_res_version: ::prost::alloc::string::String,
+    #[prost(string, tag = "789")]
+    pub client_secret_key: ::prost::alloc::string::String,
+    #[prost(string, tag = "1859")]
+    pub ifix_url: ::prost::alloc::string::String,
+    /// TODO
+    #[prost(string, tag = "1965")]
     pub ifix_version: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "318")]
-    pub lpbkmdnpkem: u32,
-    #[prost(bool, tag = "1376")]
-    pub lkkckcceemj: bool,
+    #[prost(uint32, tag = "15")]
+    pub port: u32,
+    #[prost(uint32, tag = "1")]
+    pub retcode: u32,
     #[prost(bool, tag = "8")]
     pub unk1: bool,
-    #[prost(uint32, tag = "954")]
-    pub fjlphjmegbh: u32,
-    #[prost(string, tag = "1535")]
-    pub nfmplgbnfmg: ::prost::alloc::string::String,
-    #[prost(bool, tag = "329")]
-    pub nhehajgmjnj: bool,
-    #[prost(uint32, tag = "10")]
-    pub lddhimgonbl: u32,
-    #[prost(string, tag = "288")]
-    pub gfhnfbfhadd: ::prost::alloc::string::String,
-    #[prost(string, tag = "1840")]
-    pub fdeeafilkle: ::prost::alloc::string::String,
-    #[prost(string, tag = "1085")]
-    pub gidaleeppob: ::prost::alloc::string::String,
-    #[prost(string, tag = "1118")]
-    pub efoimfjkfcl: ::prost::alloc::string::String,
-    #[prost(string, tag = "594")]
-    pub dhelbbhopke: ::prost::alloc::string::String,
-    #[prost(string, tag = "979")]
-    pub pammhojpnel: ::prost::alloc::string::String,
-    #[prost(string, tag = "1579")]
-    pub odgeigfldim: ::prost::alloc::string::String,
-    #[prost(string, tag = "1176")]
-    pub ffkoakokdld: ::prost::alloc::string::String,
-    #[prost(bool, tag = "1497")]
-    pub unk6: bool,
-    #[prost(string, tag = "1456")]
-    pub lua_version: ::prost::alloc::string::String,
-    #[prost(string, tag = "409")]
-    pub client_secret_key: ::prost::alloc::string::String,
-    #[prost(string, tag = "2007")]
-    pub mcfpnchobad: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "13")]
-    pub lpfjaggamgg: u32,
-    #[prost(bool, tag = "298")]
-    pub goegnbpabkf: bool,
-    #[prost(string, tag = "11")]
-    pub msg: ::prost::alloc::string::String,
-    #[prost(bool, tag = "1892")]
-    pub bdkogpclhin: bool,
-    #[prost(string, tag = "266")]
-    pub aegnogfkfgm: ::prost::alloc::string::String,
-    #[prost(string, tag = "1209")]
-    pub iegppbpadge: ::prost::alloc::string::String,
-    #[prost(string, tag = "925")]
-    pub cklebohipla: ::prost::alloc::string::String,
-    #[prost(string, tag = "359")]
-    pub ppgicmiahec: ::prost::alloc::string::String,
-    #[prost(bool, tag = "1351")]
-    pub mkehgpiepgf: bool,
-    #[prost(bool, tag = "14")]
+    #[prost(bool, tag = "13")]
     pub unk2: bool,
-    #[prost(bool, tag = "177")]
-    pub iopmolbohkl: bool,
-    #[prost(string, tag = "474")]
-    pub dnlniffdcbn: ::prost::alloc::string::String,
-    #[prost(string, tag = "1676")]
-    pub jaigofbgamk: ::prost::alloc::string::String,
+    #[prost(bool, tag = "164")]
+    pub unk3: bool,
+    #[prost(bool, tag = "263")]
+    pub unk4: bool,
+    #[prost(bool, tag = "790")]
+    pub unk5: bool,
+    #[prost(bool, tag = "900")]
+    pub unk6: bool,
+    #[prost(bool, tag = "1033")]
+    pub unk7: bool,
+    #[prost(bool, tag = "1202")]
+    pub unk8: bool,
+    #[prost(bool, tag = "1368")]
+    pub unk9: bool,
+    #[prost(bool, tag = "1482")]
+    pub unk10: bool,
 }
-/// Obf: DHPHOLFCBMI
+/// Obf: BPDNOJJGKOP
 #[derive(proto_derive::CmdID)]
 #[cmdid(1413)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartCocoonStageCsReq {
-    #[prost(uint32, tag = "7")]
+    #[prost(uint32, tag = "13")]
     pub prop_entity_id: u32,
-    #[prost(uint32, tag = "2")]
+    #[prost(uint32, tag = "15")]
     pub world_level: u32,
-    #[prost(uint32, tag = "11")]
+    #[prost(uint32, tag = "1")]
     pub wave: u32,
-    #[prost(uint32, tag = "4")]
+    #[prost(uint32, tag = "9")]
     pub cocoon_id: u32,
 }
 /// Obf: StartCocoonStageScRsp
 #[derive(proto_derive::CmdID)]
-#[cmdid(1477)]
+#[cmdid(1421)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartCocoonStageScRsp {
-    #[prost(uint32, tag = "2")]
-    pub wave: u32,
-    #[prost(uint32, tag = "7")]
-    pub cocoon_id: u32,
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag = "2")]
     pub battle_info: ::core::option::Option<SceneBattleInfo>,
+    #[prost(uint32, tag = "5")]
+    pub cocoon_id: u32,
     #[prost(uint32, tag = "11")]
     pub prop_entity_id: u32,
-    #[prost(uint32, tag = "14")]
+    #[prost(uint32, tag = "10")]
+    pub wave: u32,
+    #[prost(uint32, tag = "6")]
     pub retcode: u32,
 }
-/// Obf: FGCGPAGBEPA
+/// Obf: OKBGMLBBIEE
 #[derive(proto_derive::CmdID)]
-#[cmdid(39)]
+#[cmdid(67)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlayerGetTokenCsReq {
     #[prost(uint32, tag = "3")]
-    pub unk2: u32,
+    pub fclcccnbdlb: u32,
+    #[prost(uint32, tag = "1")]
+    pub uid: u32,
+    #[prost(uint32, tag = "13")]
+    pub platform_type: u32,
+    #[prost(uint32, tag = "15")]
+    pub aodjndcpdid: u32,
     #[prost(string, tag = "2")]
     pub unk: ::prost::alloc::string::String,
     #[prost(uint32, tag = "9")]
-    pub ibmfpjbhjii: u32,
-    #[prost(uint32, tag = "7")]
-    pub uid: u32,
-    #[prost(string, tag = "11")]
-    pub token: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "6")]
-    pub platform_type: u32,
-    #[prost(uint32, tag = "13")]
-    pub gjbhjbflihf: u32,
+    pub account_uid: u32,
     #[prost(string, tag = "5")]
-    pub account_uid: ::prost::alloc::string::String,
+    pub mikgdeaecjn: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub token: ::prost::alloc::string::String,
 }
-/// Obf: NDLDCLHBMIK
+/// Obf: IGHJDDKFIOO
 #[derive(proto_derive::CmdID)]
-#[cmdid(2959)]
+#[cmdid(2936)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetFriendListInfoCsReq {}
-/// Obf: IIEAMMDONMN
+/// Obf: NDACKJBHBAB
 #[derive(proto_derive::CmdID)]
-#[cmdid(44)]
+#[cmdid(89)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AvatarPathChangedNotify {
-    #[prost(enumeration = "MultiPathAvatarType", tag = "12")]
-    pub cur_multi_path_avatar_type: i32,
-    #[prost(uint32, tag = "5")]
+    #[prost(uint32, tag = "12")]
     pub base_avatar_id: u32,
+    #[prost(enumeration = "MultiPathAvatarType", tag = "15")]
+    pub cur_multi_path_avatar_type: i32,
 }
-/// Obf: KPLAEIPJEII
+/// Obf: NFJBEBOKGLO
 #[derive(proto_derive::CmdID)]
-#[cmdid(3920)]
+#[cmdid(3995)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SendMsgScRsp {
-    #[prost(uint32, tag = "11")]
+    #[prost(uint32, tag = "2")]
     pub retcode: u32,
-    #[prost(uint64, tag = "8")]
+    #[prost(uint64, tag = "1")]
     pub end_time: u64,
 }
-/// Obf: OEAKGBJALKF
+/// Obf: CNIBIGEBOLI
 #[derive(proto_derive::CmdID)]
-#[cmdid(1959)]
+#[cmdid(1936)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetGachaInfoCsReq {}
@@ -2547,394 +2501,378 @@ pub struct GetGachaInfoCsReq {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GachaCeilingAvatar {
-    #[prost(uint32, tag = "2")]
-    pub avatar_id: u32,
-    #[prost(uint32, tag = "6")]
+    #[prost(uint32, tag = "9")]
     pub repeated_cnt: u32,
+    #[prost(uint32, tag = "12")]
+    pub avatar_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GachaCeiling {
-    #[prost(bool, tag = "1")]
+    #[prost(bool, tag = "14")]
     pub is_claimed: bool,
-    #[prost(uint32, tag = "15")]
-    pub ceiling_num: u32,
-    #[prost(message, repeated, tag = "14")]
+    #[prost(message, repeated, tag = "9")]
     pub avatar_list: ::prost::alloc::vec::Vec<GachaCeilingAvatar>,
+    #[prost(uint32, tag = "11")]
+    pub ceiling_num: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GachaInfo {
-    #[prost(int64, tag = "13")]
-    pub begin_time: i64,
-    #[prost(string, tag = "8")]
-    pub detail_url: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "6")]
-    pub gacha_id: u32,
-    #[prost(uint32, tag = "4")]
-    pub ackncehgnfi: u32,
-    #[prost(message, optional, tag = "15")]
-    pub gacha_ceiling: ::core::option::Option<GachaCeiling>,
-    #[prost(uint32, tag = "5")]
-    pub klkaidfhbag: u32,
-    #[prost(uint32, repeated, tag = "14")]
+    #[prost(uint32, tag = "14")]
+    pub hjjmaaffiko: u32,
+    #[prost(uint32, repeated, tag = "4")]
     pub featured: ::prost::alloc::vec::Vec<u32>,
-    #[prost(string, tag = "11")]
-    pub history_url: ::prost::alloc::string::String,
-    #[prost(uint32, repeated, tag = "10")]
-    pub up_info: ::prost::alloc::vec::Vec<u32>,
-    #[prost(int64, tag = "2")]
+    #[prost(int64, tag = "15")]
     pub end_time: i64,
+    #[prost(int64, tag = "8")]
+    pub begin_time: i64,
+    #[prost(message, optional, tag = "11")]
+    pub gacha_ceiling: ::core::option::Option<GachaCeiling>,
+    #[prost(uint32, tag = "1")]
+    pub einkplbkapk: u32,
+    #[prost(string, tag = "7")]
+    pub history_url: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "5")]
+    pub gacha_id: u32,
+    #[prost(uint32, repeated, tag = "3")]
+    pub up_info: ::prost::alloc::vec::Vec<u32>,
+    #[prost(string, tag = "13")]
+    pub detail_url: ::prost::alloc::string::String,
 }
-/// Obf: GHAODHDGEDP
+/// Obf: HENAADKJPHB
 #[derive(proto_derive::CmdID)]
-#[cmdid(1920)]
+#[cmdid(1995)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetGachaInfoScRsp {
-    #[prost(uint32, tag = "7")]
-    pub nbkopnkcfeb: u32,
-    #[prost(uint32, tag = "15")]
-    pub kpcbhcbggko: u32,
-    #[prost(uint32, tag = "13")]
-    pub retcode: u32,
-    #[prost(message, repeated, tag = "9")]
-    pub gacha_info_list: ::prost::alloc::vec::Vec<GachaInfo>,
-    #[prost(uint32, tag = "4")]
+    #[prost(uint32, tag = "11")]
     pub gacha_random: u32,
+    #[prost(message, repeated, tag = "8")]
+    pub gacha_info_list: ::prost::alloc::vec::Vec<GachaInfo>,
+    #[prost(uint32, tag = "13")]
+    pub ejoffjnomla: u32,
+    #[prost(uint32, tag = "3")]
+    pub ofdkdoidahb: u32,
     #[prost(uint32, tag = "5")]
-    pub lbgeogenkgg: u32,
+    pub ndjagnbnbgi: u32,
+    #[prost(uint32, tag = "6")]
+    pub retcode: u32,
 }
-/// Obf: CMLKJMEDGBL
+/// Obf: BLPEGGAIHGO
 #[derive(proto_derive::CmdID)]
-#[cmdid(1903)]
+#[cmdid(1984)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DoGachaCsReq {
-    #[prost(uint32, tag = "5")]
-    pub gacha_random: u32,
-    #[prost(uint32, tag = "1")]
-    pub gacha_id: u32,
     #[prost(uint32, tag = "6")]
+    pub gacha_id: u32,
+    #[prost(uint32, tag = "11")]
     pub simulate_magic: u32,
     #[prost(uint32, tag = "8")]
+    pub gacha_random: u32,
+    #[prost(uint32, tag = "7")]
     pub gacha_num: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GachaItem {
-    #[prost(message, optional, tag = "4")]
-    pub token_item: ::core::option::Option<ItemList>,
-    #[prost(message, optional, tag = "2")]
-    pub transfer_item_list: ::core::option::Option<ItemList>,
-    #[prost(bool, tag = "6")]
-    pub is_new: bool,
-    #[prost(message, optional, tag = "13")]
+    #[prost(message, optional, tag = "10")]
     pub gacha_item: ::core::option::Option<Item>,
+    #[prost(message, optional, tag = "3")]
+    pub transfer_item_list: ::core::option::Option<ItemList>,
+    #[prost(message, optional, tag = "15")]
+    pub token_item: ::core::option::Option<ItemList>,
+    #[prost(bool, tag = "8")]
+    pub is_new: bool,
 }
-/// Obf: EENMMFCLCIH
+/// Obf: AMLJPFJMDCI
 #[derive(proto_derive::CmdID)]
-#[cmdid(1946)]
+#[cmdid(1927)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DoGachaScRsp {
+    #[prost(uint32, tag = "12")]
+    pub ofdkdoidahb: u32,
+    #[prost(uint32, tag = "14")]
+    pub hjjmaaffiko: u32,
+    #[prost(uint32, tag = "6")]
+    pub retcode: u32,
+    #[prost(uint32, tag = "4")]
+    pub gacha_id: u32,
+    #[prost(uint32, tag = "5")]
+    pub dncjdoodmlg: u32,
     #[prost(message, repeated, tag = "7")]
     pub gacha_item_list: ::prost::alloc::vec::Vec<GachaItem>,
-    #[prost(uint32, tag = "15")]
-    pub klkaidfhbag: u32,
-    #[prost(uint32, tag = "4")]
-    pub retcode: u32,
-    #[prost(uint32, tag = "13")]
-    pub gmmlaimhmmb: u32,
-    #[prost(uint32, tag = "14")]
-    pub gacha_id: u32,
-    #[prost(uint32, tag = "2")]
-    pub ackncehgnfi: u32,
-    #[prost(uint32, tag = "5")]
-    pub gacha_num: u32,
-    #[prost(uint32, tag = "12")]
-    pub nbkopnkcfeb: u32,
-    #[prost(uint32, tag = "11")]
+    #[prost(uint32, tag = "1")]
     pub ceiling_num: u32,
+    #[prost(uint32, tag = "8")]
+    pub einkplbkapk: u32,
+    #[prost(uint32, tag = "11")]
+    pub gacha_num: u32,
 }
-/// Obf: ODDNDPAAPIF
+/// Obf: PBDHGADHIBI
 #[derive(proto_derive::CmdID)]
-#[cmdid(559)]
+#[cmdid(536)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBagCsReq {}
-/// Obf: AFMDDOHENOH
+/// Obf: JNDODDLGPIK
 #[derive(proto_derive::CmdID)]
-#[cmdid(2359)]
+#[cmdid(2336)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetArchiveDataCsReq {}
-/// Obf: HFPKIAGEDPO
+/// Obf: CBHEONAKPIM
 #[derive(proto_derive::CmdID)]
-#[cmdid(379)]
+#[cmdid(375)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DressRelicAvatarScRsp {
-    #[prost(uint32, tag = "15")]
+    #[prost(uint32, tag = "3")]
     pub retcode: u32,
 }
-/// Obf: LPECOLCNLED
+/// Obf: FGDDKIIDBMG
 #[derive(proto_derive::CmdID)]
-#[cmdid(361)]
+#[cmdid(326)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TakeOffRelicScRsp {
-    #[prost(uint32, tag = "6")]
+    #[prost(uint32, tag = "12")]
     pub retcode: u32,
 }
-/// Obf: DFJKBJKJHNO
+/// Obf: DEPKJLPDPHG
 #[derive(proto_derive::CmdID)]
-#[cmdid(316)]
+#[cmdid(393)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DressAvatarScRsp {
-    #[prost(uint32, tag = "14")]
+    #[prost(uint32, tag = "7")]
     pub retcode: u32,
 }
-/// Obf: DHAGAJLLEMJ
+/// Obf: DNCHKFKJGPM
 #[derive(proto_derive::CmdID)]
-#[cmdid(374)]
+#[cmdid(343)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TakeOffEquipmentScRsp {
-    #[prost(uint32, tag = "15")]
+    #[prost(uint32, tag = "5")]
     pub retcode: u32,
 }
-/// Obf: KCEEMDHJECB
+/// Obf: MLFOLKMJNCM
 #[derive(proto_derive::CmdID)]
-#[cmdid(725)]
+#[cmdid(707)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAllLineupDataCsReq {}
-/// Obf: EPMPODNINBG
+/// Obf: PHKDDBDJDLF
 #[derive(proto_derive::CmdID)]
-#[cmdid(703)]
+#[cmdid(784)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCurLineupDataCsReq {}
-/// Obf: IMANHMMLEFF
+/// Obf: EJNJNOOPBIL
 #[derive(proto_derive::CmdID)]
-#[cmdid(739)]
+#[cmdid(767)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JoinLineupCsReq {
-    #[prost(bool, tag = "5")]
-    pub is_virtual: bool,
-    #[prost(enumeration = "AvatarType", tag = "10")]
+    #[prost(uint32, tag = "5")]
+    pub index: u32,
+    #[prost(enumeration = "AvatarType", tag = "12")]
     pub avatar_type: i32,
+    #[prost(uint32, tag = "13")]
+    pub plane_id: u32,
+    #[prost(uint32, tag = "6")]
+    pub slot: u32,
+    #[prost(bool, tag = "10")]
+    pub is_virtual: bool,
+    #[prost(enumeration = "ExtraLineupType", tag = "14")]
+    pub extra_lineup_type: i32,
     #[prost(uint32, tag = "4")]
     pub base_avatar_id: u32,
-    #[prost(uint32, tag = "15")]
-    pub plane_id: u32,
-    #[prost(uint32, tag = "13")]
-    pub slot: u32,
-    #[prost(enumeration = "ExtraLineupType", tag = "9")]
-    pub extra_lineup_type: i32,
-    #[prost(uint32, tag = "1")]
-    pub index: u32,
 }
-/// Obf: HIOLACCOGHG
+/// Obf: HPHGFBOKADB
 #[derive(proto_derive::CmdID)]
-#[cmdid(753)]
+#[cmdid(728)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JoinLineupScRsp {
     #[prost(uint32, tag = "13")]
     pub retcode: u32,
 }
-/// Obf: OMOCAFMFDKE
+/// Obf: LDGJDICJNMP
 #[derive(proto_derive::CmdID)]
-#[cmdid(734)]
+#[cmdid(752)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QuitLineupCsReq {
-    #[prost(enumeration = "ExtraLineupType", tag = "6")]
-    pub extra_lineup_type: i32,
     #[prost(uint32, tag = "5")]
-    pub plane_id: u32,
-    #[prost(enumeration = "AvatarType", tag = "4")]
-    pub avatar_type: i32,
-    #[prost(uint32, tag = "12")]
     pub index: u32,
     #[prost(uint32, tag = "7")]
-    pub base_avatar_id: u32,
-    #[prost(bool, tag = "11")]
+    pub plane_id: u32,
+    #[prost(bool, tag = "12")]
     pub is_virtual: bool,
+    #[prost(enumeration = "AvatarType", tag = "1")]
+    pub avatar_type: i32,
+    #[prost(uint32, tag = "11")]
+    pub base_avatar_id: u32,
+    #[prost(enumeration = "ExtraLineupType", tag = "8")]
+    pub extra_lineup_type: i32,
 }
-/// Obf: FGIJKLMPDII
+/// Obf: IPCJBKOELAN
 #[derive(proto_derive::CmdID)]
-#[cmdid(737)]
+#[cmdid(774)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QuitLineupScRsp {
-    #[prost(bool, tag = "14")]
-    pub feccpmonpnf: bool,
-    #[prost(bool, tag = "2")]
-    pub is_virtual: bool,
-    #[prost(uint32, tag = "3")]
+    #[prost(bool, tag = "15")]
+    pub idocbbdgbdh: bool,
+    #[prost(uint32, tag = "4")]
     pub plane_id: u32,
-    #[prost(uint32, tag = "9")]
+    #[prost(uint32, tag = "2")]
     pub retcode: u32,
-    #[prost(uint32, tag = "8")]
+    #[prost(uint32, tag = "3")]
     pub base_avatar_id: u32,
+    #[prost(bool, tag = "9")]
+    pub is_virtual: bool,
 }
-/// Obf: GBJEACFDCOM
+/// Obf: PCMOHKLLFBO
 #[derive(proto_derive::CmdID)]
-#[cmdid(859)]
+#[cmdid(836)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetMailCsReq {
     #[prost(uint32, tag = "9")]
-    pub jflkbenigan: u32,
-    #[prost(uint32, tag = "12")]
-    pub fbfamhglmgc: u32,
+    pub alpabmakcfa: u32,
+    #[prost(uint32, tag = "5")]
+    pub lmngakgcgci: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClientMail {
-    #[prost(string, tag = "3")]
-    pub content: ::prost::alloc::string::String,
-    #[prost(int64, tag = "6")]
-    pub expire_time: i64,
-    #[prost(uint32, tag = "13")]
-    pub template_id: u32,
-    #[prost(string, tag = "8")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "9")]
-    pub attachment: ::core::option::Option<ItemList>,
-    #[prost(bool, tag = "15")]
-    pub is_read: bool,
-    #[prost(string, tag = "11")]
-    pub sender: ::prost::alloc::string::String,
-    #[prost(enumeration = "MailType", tag = "12")]
-    pub mail_type: i32,
-    #[prost(string, repeated, tag = "7")]
-    pub para_list: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(int64, tag = "10")]
+    #[prost(int64, tag = "8")]
     pub time: i64,
-    #[prost(uint32, tag = "4")]
+    #[prost(bool, tag = "7")]
+    pub is_read: bool,
+    #[prost(enumeration = "MailType", tag = "5")]
+    pub mail_type: i32,
+    #[prost(string, repeated, tag = "10")]
+    pub para_list: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(uint32, tag = "1")]
     pub id: u32,
+    #[prost(string, tag = "15")]
+    pub content: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub sender: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub title: ::prost::alloc::string::String,
+    #[prost(int64, tag = "12")]
+    pub expire_time: i64,
+    #[prost(uint32, tag = "11")]
+    pub template_id: u32,
+    #[prost(message, optional, tag = "2")]
+    pub attachment: ::core::option::Option<ItemList>,
 }
 /// Obf: GetMailScRsp
 #[derive(proto_derive::CmdID)]
-#[cmdid(820)]
+#[cmdid(895)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetMailScRsp {
-    #[prost(uint32, tag = "11")]
-    pub retcode: u32,
-    #[prost(uint32, tag = "8")]
-    pub total_num: u32,
-    #[prost(message, repeated, tag = "15")]
-    pub notice_mail_list: ::prost::alloc::vec::Vec<ClientMail>,
-    #[prost(bool, tag = "10")]
+    #[prost(bool, tag = "14")]
     pub is_end: bool,
-    #[prost(message, repeated, tag = "14")]
-    pub mail_list: ::prost::alloc::vec::Vec<ClientMail>,
-    #[prost(uint32, tag = "3")]
+    #[prost(uint32, tag = "1")]
     pub start: u32,
+    #[prost(message, repeated, tag = "10")]
+    pub notice_mail_list: ::prost::alloc::vec::Vec<ClientMail>,
+    #[prost(message, repeated, tag = "2")]
+    pub mail_list: ::prost::alloc::vec::Vec<ClientMail>,
+    #[prost(uint32, tag = "5")]
+    pub retcode: u32,
+    #[prost(uint32, tag = "9")]
+    pub total_num: u32,
 }
-/// Obf: DPMCNECFGEC
+/// Obf: CDBMFEFEOCB
 #[derive(proto_derive::CmdID)]
-#[cmdid(2)]
+#[cmdid(22)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBasicInfoCsReq {}
-/// Obf: DKDKPNAMHNE
+/// Obf: DPGOBDDNKNG
 #[derive(proto_derive::CmdID)]
-#[cmdid(58)]
+#[cmdid(66)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetMultiPathAvatarInfoCsReq {}
-/// Obf: LKDHBGJEMIK
+/// Obf: NFCMFPECEBG
 #[derive(proto_derive::CmdID)]
-#[cmdid(1458)]
+#[cmdid(1466)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetEnteredSceneCsReq {}
-/// Obf: CFKJLAGKKGL
+/// Obf: MLMJCNAOMAH
 #[derive(proto_derive::CmdID)]
-#[cmdid(1434)]
+#[cmdid(1452)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCurSceneInfoCsReq {}
-/// Obf: PIFMCFFDOFO
+/// Obf: FNCEMGKCPIM
 #[derive(proto_derive::CmdID)]
-#[cmdid(2914)]
+#[cmdid(2979)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetFriendLoginInfoCsReq {}
-/// Obf: MPBFILDAFFI
+/// Obf: KNNBINNNILF
 #[derive(proto_derive::CmdID)]
-#[cmdid(2923)]
+#[cmdid(2981)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetFriendLoginInfoScRsp {
-    #[prost(uint32, repeated, tag = "11")]
+    #[prost(uint32, repeated, tag = "7")]
     pub friend_uid_list: ::prost::alloc::vec::Vec<u32>,
-    #[prost(uint32, tag = "6")]
+    #[prost(bool, tag = "11")]
+    pub ocbkebjgcnh: bool,
+    #[prost(uint32, repeated, tag = "8")]
+    pub jbcncfacpoc: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, tag = "13")]
     pub retcode: u32,
-    #[prost(bool, tag = "8")]
-    pub fkgbnmfbhfl: bool,
-    #[prost(uint32, repeated, tag = "10")]
-    pub hdhhkkcgegm: ::prost::alloc::vec::Vec<u32>,
-    #[prost(bool, tag = "9")]
-    pub aecgglhngim: bool,
-}
-#[derive(proto_derive::CmdID)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Cijjendfjlo {
-    #[prost(uint32, tag = "1")]
-    pub kklaobblgce: u32,
-}
-/// Obf: CIJNHLEPACK
-#[derive(proto_derive::CmdID)]
-#[cmdid(15)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ClientDownloadDataScNotify {
-    #[prost(message, optional, tag = "2")]
-    pub download_data: ::core::option::Option<ClientDownloadData>,
+    #[prost(bool, tag = "15")]
+    pub diapipdfind: bool,
 }
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum CmdActivityType {
     None = 0,
-    CmdTakeLoginActivityRewardCsReq = 2603,
-    CmdEnterTrialActivityStageCsReq = 2612,
+    CmdStartTrialActivityCsReq = 2603,
+    CmdSubmitMaterialSubmitActivityMaterialScRsp = 2607,
     CmdGetMaterialSubmitActivityDataScRsp = 2619,
-    CmdGetLoginActivityScRsp = 2620,
-    CmdTrialActivityDataChangeScNotify = 2624,
-    CmdSubmitMaterialSubmitActivityMaterialScRsp = 2625,
-    CmdTakeMaterialSubmitActivityRewardCsReq = 2629,
-    CmdStartTrialActivityCsReq = 2631,
-    CmdTakeTrialActivityRewardCsReq = 2632,
-    CmdTakeMaterialSubmitActivityRewardScRsp = 2633,
-    CmdGetActivityScheduleConfigCsReq = 2639,
-    CmdTakeLoginActivityRewardScRsp = 2646,
-    CmdGetActivityScheduleConfigScRsp = 2653,
-    CmdGetLoginActivityCsReq = 2659,
-    CmdEnterTrialActivityStageScRsp = 2660,
-    CmdSubmitMaterialSubmitActivityMaterialCsReq = 2661,
-    CmdLeaveTrialActivityScRsp = 2662,
-    CmdStartTrialActivityScRsp = 2671,
-    CmdGetTrialActivityDataScRsp = 2672,
-    CmdGetTrialActivityDataCsReq = 2678,
-    CmdGetMaterialSubmitActivityDataCsReq = 2679,
-    CmdLeaveTrialActivityCsReq = 2682,
-    CmdCurTrialActivityScNotify = 2684,
-    CmdTakeTrialActivityRewardScRsp = 2696,
+    CmdSubmitMaterialSubmitActivityMaterialCsReq = 2626,
+    CmdTakeLoginActivityRewardScRsp = 2627,
+    CmdGetActivityScheduleConfigScRsp = 2628,
+    CmdLeaveTrialActivityScRsp = 2630,
+    CmdCurTrialActivityScNotify = 2633,
+    CmdGetLoginActivityCsReq = 2636,
+    CmdStartTrialActivityScRsp = 2640,
+    CmdEnterTrialActivityStageCsReq = 2645,
+    CmdTakeMaterialSubmitActivityRewardCsReq = 2653,
+    CmdTrialActivityDataChangeScNotify = 2660,
+    CmdLeaveTrialActivityCsReq = 2661,
+    CmdEnterTrialActivityStageScRsp = 2664,
+    CmdGetActivityScheduleConfigCsReq = 2667,
+    CmdTakeTrialActivityRewardCsReq = 2672,
+    CmdGetMaterialSubmitActivityDataCsReq = 2675,
+    CmdTakeLoginActivityRewardCsReq = 2684,
+    CmdTakeMaterialSubmitActivityRewardScRsp = 2690,
+    CmdGetTrialActivityDataScRsp = 2692,
+    CmdGetTrialActivityDataCsReq = 2694,
+    CmdGetLoginActivityScRsp = 2695,
+    CmdTakeTrialActivityRewardScRsp = 2699,
 }
 impl CmdActivityType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -2944,34 +2882,15 @@ impl CmdActivityType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdActivityType::None => "CmdActivityTypeNone",
-            CmdActivityType::CmdTakeLoginActivityRewardCsReq => {
-                "CmdTakeLoginActivityRewardCsReq"
-            }
-            CmdActivityType::CmdEnterTrialActivityStageCsReq => {
-                "CmdEnterTrialActivityStageCsReq"
+            CmdActivityType::CmdStartTrialActivityCsReq => "CmdStartTrialActivityCsReq",
+            CmdActivityType::CmdSubmitMaterialSubmitActivityMaterialScRsp => {
+                "CmdSubmitMaterialSubmitActivityMaterialScRsp"
             }
             CmdActivityType::CmdGetMaterialSubmitActivityDataScRsp => {
                 "CmdGetMaterialSubmitActivityDataScRsp"
             }
-            CmdActivityType::CmdGetLoginActivityScRsp => "CmdGetLoginActivityScRsp",
-            CmdActivityType::CmdTrialActivityDataChangeScNotify => {
-                "CmdTrialActivityDataChangeScNotify"
-            }
-            CmdActivityType::CmdSubmitMaterialSubmitActivityMaterialScRsp => {
-                "CmdSubmitMaterialSubmitActivityMaterialScRsp"
-            }
-            CmdActivityType::CmdTakeMaterialSubmitActivityRewardCsReq => {
-                "CmdTakeMaterialSubmitActivityRewardCsReq"
-            }
-            CmdActivityType::CmdStartTrialActivityCsReq => "CmdStartTrialActivityCsReq",
-            CmdActivityType::CmdTakeTrialActivityRewardCsReq => {
-                "CmdTakeTrialActivityRewardCsReq"
-            }
-            CmdActivityType::CmdTakeMaterialSubmitActivityRewardScRsp => {
-                "CmdTakeMaterialSubmitActivityRewardScRsp"
-            }
-            CmdActivityType::CmdGetActivityScheduleConfigCsReq => {
-                "CmdGetActivityScheduleConfigCsReq"
+            CmdActivityType::CmdSubmitMaterialSubmitActivityMaterialCsReq => {
+                "CmdSubmitMaterialSubmitActivityMaterialCsReq"
             }
             CmdActivityType::CmdTakeLoginActivityRewardScRsp => {
                 "CmdTakeLoginActivityRewardScRsp"
@@ -2979,26 +2898,45 @@ impl CmdActivityType {
             CmdActivityType::CmdGetActivityScheduleConfigScRsp => {
                 "CmdGetActivityScheduleConfigScRsp"
             }
+            CmdActivityType::CmdLeaveTrialActivityScRsp => "CmdLeaveTrialActivityScRsp",
+            CmdActivityType::CmdCurTrialActivityScNotify => "CmdCurTrialActivityScNotify",
             CmdActivityType::CmdGetLoginActivityCsReq => "CmdGetLoginActivityCsReq",
+            CmdActivityType::CmdStartTrialActivityScRsp => "CmdStartTrialActivityScRsp",
+            CmdActivityType::CmdEnterTrialActivityStageCsReq => {
+                "CmdEnterTrialActivityStageCsReq"
+            }
+            CmdActivityType::CmdTakeMaterialSubmitActivityRewardCsReq => {
+                "CmdTakeMaterialSubmitActivityRewardCsReq"
+            }
+            CmdActivityType::CmdTrialActivityDataChangeScNotify => {
+                "CmdTrialActivityDataChangeScNotify"
+            }
+            CmdActivityType::CmdLeaveTrialActivityCsReq => "CmdLeaveTrialActivityCsReq",
             CmdActivityType::CmdEnterTrialActivityStageScRsp => {
                 "CmdEnterTrialActivityStageScRsp"
             }
-            CmdActivityType::CmdSubmitMaterialSubmitActivityMaterialCsReq => {
-                "CmdSubmitMaterialSubmitActivityMaterialCsReq"
+            CmdActivityType::CmdGetActivityScheduleConfigCsReq => {
+                "CmdGetActivityScheduleConfigCsReq"
             }
-            CmdActivityType::CmdLeaveTrialActivityScRsp => "CmdLeaveTrialActivityScRsp",
-            CmdActivityType::CmdStartTrialActivityScRsp => "CmdStartTrialActivityScRsp",
+            CmdActivityType::CmdTakeTrialActivityRewardCsReq => {
+                "CmdTakeTrialActivityRewardCsReq"
+            }
+            CmdActivityType::CmdGetMaterialSubmitActivityDataCsReq => {
+                "CmdGetMaterialSubmitActivityDataCsReq"
+            }
+            CmdActivityType::CmdTakeLoginActivityRewardCsReq => {
+                "CmdTakeLoginActivityRewardCsReq"
+            }
+            CmdActivityType::CmdTakeMaterialSubmitActivityRewardScRsp => {
+                "CmdTakeMaterialSubmitActivityRewardScRsp"
+            }
             CmdActivityType::CmdGetTrialActivityDataScRsp => {
                 "CmdGetTrialActivityDataScRsp"
             }
             CmdActivityType::CmdGetTrialActivityDataCsReq => {
                 "CmdGetTrialActivityDataCsReq"
             }
-            CmdActivityType::CmdGetMaterialSubmitActivityDataCsReq => {
-                "CmdGetMaterialSubmitActivityDataCsReq"
-            }
-            CmdActivityType::CmdLeaveTrialActivityCsReq => "CmdLeaveTrialActivityCsReq",
-            CmdActivityType::CmdCurTrialActivityScNotify => "CmdCurTrialActivityScNotify",
+            CmdActivityType::CmdGetLoginActivityScRsp => "CmdGetLoginActivityScRsp",
             CmdActivityType::CmdTakeTrialActivityRewardScRsp => {
                 "CmdTakeTrialActivityRewardScRsp"
             }
@@ -3008,34 +2946,15 @@ impl CmdActivityType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdActivityTypeNone" => Some(Self::None),
-            "CmdTakeLoginActivityRewardCsReq" => {
-                Some(Self::CmdTakeLoginActivityRewardCsReq)
-            }
-            "CmdEnterTrialActivityStageCsReq" => {
-                Some(Self::CmdEnterTrialActivityStageCsReq)
+            "CmdStartTrialActivityCsReq" => Some(Self::CmdStartTrialActivityCsReq),
+            "CmdSubmitMaterialSubmitActivityMaterialScRsp" => {
+                Some(Self::CmdSubmitMaterialSubmitActivityMaterialScRsp)
             }
             "CmdGetMaterialSubmitActivityDataScRsp" => {
                 Some(Self::CmdGetMaterialSubmitActivityDataScRsp)
             }
-            "CmdGetLoginActivityScRsp" => Some(Self::CmdGetLoginActivityScRsp),
-            "CmdTrialActivityDataChangeScNotify" => {
-                Some(Self::CmdTrialActivityDataChangeScNotify)
-            }
-            "CmdSubmitMaterialSubmitActivityMaterialScRsp" => {
-                Some(Self::CmdSubmitMaterialSubmitActivityMaterialScRsp)
-            }
-            "CmdTakeMaterialSubmitActivityRewardCsReq" => {
-                Some(Self::CmdTakeMaterialSubmitActivityRewardCsReq)
-            }
-            "CmdStartTrialActivityCsReq" => Some(Self::CmdStartTrialActivityCsReq),
-            "CmdTakeTrialActivityRewardCsReq" => {
-                Some(Self::CmdTakeTrialActivityRewardCsReq)
-            }
-            "CmdTakeMaterialSubmitActivityRewardScRsp" => {
-                Some(Self::CmdTakeMaterialSubmitActivityRewardScRsp)
-            }
-            "CmdGetActivityScheduleConfigCsReq" => {
-                Some(Self::CmdGetActivityScheduleConfigCsReq)
+            "CmdSubmitMaterialSubmitActivityMaterialCsReq" => {
+                Some(Self::CmdSubmitMaterialSubmitActivityMaterialCsReq)
             }
             "CmdTakeLoginActivityRewardScRsp" => {
                 Some(Self::CmdTakeLoginActivityRewardScRsp)
@@ -3043,22 +2962,41 @@ impl CmdActivityType {
             "CmdGetActivityScheduleConfigScRsp" => {
                 Some(Self::CmdGetActivityScheduleConfigScRsp)
             }
+            "CmdLeaveTrialActivityScRsp" => Some(Self::CmdLeaveTrialActivityScRsp),
+            "CmdCurTrialActivityScNotify" => Some(Self::CmdCurTrialActivityScNotify),
             "CmdGetLoginActivityCsReq" => Some(Self::CmdGetLoginActivityCsReq),
+            "CmdStartTrialActivityScRsp" => Some(Self::CmdStartTrialActivityScRsp),
+            "CmdEnterTrialActivityStageCsReq" => {
+                Some(Self::CmdEnterTrialActivityStageCsReq)
+            }
+            "CmdTakeMaterialSubmitActivityRewardCsReq" => {
+                Some(Self::CmdTakeMaterialSubmitActivityRewardCsReq)
+            }
+            "CmdTrialActivityDataChangeScNotify" => {
+                Some(Self::CmdTrialActivityDataChangeScNotify)
+            }
+            "CmdLeaveTrialActivityCsReq" => Some(Self::CmdLeaveTrialActivityCsReq),
             "CmdEnterTrialActivityStageScRsp" => {
                 Some(Self::CmdEnterTrialActivityStageScRsp)
             }
-            "CmdSubmitMaterialSubmitActivityMaterialCsReq" => {
-                Some(Self::CmdSubmitMaterialSubmitActivityMaterialCsReq)
+            "CmdGetActivityScheduleConfigCsReq" => {
+                Some(Self::CmdGetActivityScheduleConfigCsReq)
             }
-            "CmdLeaveTrialActivityScRsp" => Some(Self::CmdLeaveTrialActivityScRsp),
-            "CmdStartTrialActivityScRsp" => Some(Self::CmdStartTrialActivityScRsp),
-            "CmdGetTrialActivityDataScRsp" => Some(Self::CmdGetTrialActivityDataScRsp),
-            "CmdGetTrialActivityDataCsReq" => Some(Self::CmdGetTrialActivityDataCsReq),
+            "CmdTakeTrialActivityRewardCsReq" => {
+                Some(Self::CmdTakeTrialActivityRewardCsReq)
+            }
             "CmdGetMaterialSubmitActivityDataCsReq" => {
                 Some(Self::CmdGetMaterialSubmitActivityDataCsReq)
             }
-            "CmdLeaveTrialActivityCsReq" => Some(Self::CmdLeaveTrialActivityCsReq),
-            "CmdCurTrialActivityScNotify" => Some(Self::CmdCurTrialActivityScNotify),
+            "CmdTakeLoginActivityRewardCsReq" => {
+                Some(Self::CmdTakeLoginActivityRewardCsReq)
+            }
+            "CmdTakeMaterialSubmitActivityRewardScRsp" => {
+                Some(Self::CmdTakeMaterialSubmitActivityRewardScRsp)
+            }
+            "CmdGetTrialActivityDataScRsp" => Some(Self::CmdGetTrialActivityDataScRsp),
+            "CmdGetTrialActivityDataCsReq" => Some(Self::CmdGetTrialActivityDataCsReq),
+            "CmdGetLoginActivityScRsp" => Some(Self::CmdGetLoginActivityScRsp),
             "CmdTakeTrialActivityRewardScRsp" => {
                 Some(Self::CmdTakeTrialActivityRewardScRsp)
             }
@@ -3071,10 +3009,14 @@ impl CmdActivityType {
 #[repr(i32)]
 pub enum CmdAdventureType {
     None = 0,
-    CmdGetFarmStageGachaInfoCsReq = 1303,
-    CmdEnterAdventureScRsp = 1320,
-    CmdGetFarmStageGachaInfoScRsp = 1346,
-    CmdEnterAdventureCsReq = 1359,
+    CmdGetFarmStageGachaInfoScRsp = 1327,
+    CmdQuickStartCocoonStageScRsp = 1328,
+    CmdEnterAdventureCsReq = 1336,
+    CmdQuickStartFarmElementCsReq = 1352,
+    CmdQuickStartCocoonStageCsReq = 1367,
+    CmdQuickStartFarmElementScRsp = 1374,
+    CmdGetFarmStageGachaInfoCsReq = 1384,
+    CmdEnterAdventureScRsp = 1395,
 }
 impl CmdAdventureType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -3084,24 +3026,40 @@ impl CmdAdventureType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdAdventureType::None => "CmdAdventureTypeNone",
+            CmdAdventureType::CmdGetFarmStageGachaInfoScRsp => {
+                "CmdGetFarmStageGachaInfoScRsp"
+            }
+            CmdAdventureType::CmdQuickStartCocoonStageScRsp => {
+                "CmdQuickStartCocoonStageScRsp"
+            }
+            CmdAdventureType::CmdEnterAdventureCsReq => "CmdEnterAdventureCsReq",
+            CmdAdventureType::CmdQuickStartFarmElementCsReq => {
+                "CmdQuickStartFarmElementCsReq"
+            }
+            CmdAdventureType::CmdQuickStartCocoonStageCsReq => {
+                "CmdQuickStartCocoonStageCsReq"
+            }
+            CmdAdventureType::CmdQuickStartFarmElementScRsp => {
+                "CmdQuickStartFarmElementScRsp"
+            }
             CmdAdventureType::CmdGetFarmStageGachaInfoCsReq => {
                 "CmdGetFarmStageGachaInfoCsReq"
             }
             CmdAdventureType::CmdEnterAdventureScRsp => "CmdEnterAdventureScRsp",
-            CmdAdventureType::CmdGetFarmStageGachaInfoScRsp => {
-                "CmdGetFarmStageGachaInfoScRsp"
-            }
-            CmdAdventureType::CmdEnterAdventureCsReq => "CmdEnterAdventureCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdAdventureTypeNone" => Some(Self::None),
+            "CmdGetFarmStageGachaInfoScRsp" => Some(Self::CmdGetFarmStageGachaInfoScRsp),
+            "CmdQuickStartCocoonStageScRsp" => Some(Self::CmdQuickStartCocoonStageScRsp),
+            "CmdEnterAdventureCsReq" => Some(Self::CmdEnterAdventureCsReq),
+            "CmdQuickStartFarmElementCsReq" => Some(Self::CmdQuickStartFarmElementCsReq),
+            "CmdQuickStartCocoonStageCsReq" => Some(Self::CmdQuickStartCocoonStageCsReq),
+            "CmdQuickStartFarmElementScRsp" => Some(Self::CmdQuickStartFarmElementScRsp),
             "CmdGetFarmStageGachaInfoCsReq" => Some(Self::CmdGetFarmStageGachaInfoCsReq),
             "CmdEnterAdventureScRsp" => Some(Self::CmdEnterAdventureScRsp),
-            "CmdGetFarmStageGachaInfoScRsp" => Some(Self::CmdGetFarmStageGachaInfoScRsp),
-            "CmdEnterAdventureCsReq" => Some(Self::CmdEnterAdventureCsReq),
             _ => None,
         }
     }
@@ -3111,40 +3069,40 @@ impl CmdAdventureType {
 #[repr(i32)]
 pub enum CmdAetherDivideType {
     None = 0,
-    CmdLeaveAetherDivideSceneCsReq = 4803,
-    CmdGetAetherDivideChallengeInfoScRsp = 4809,
+    CmdEquipAetherDividePassiveSkillScRsp = 4805,
+    CmdSwitchAetherDivideLineUpSlotScRsp = 4807,
+    CmdAetherDivideSpiritExpUpScRsp = 4812,
     CmdAetherDivideTakeChallengeRewardCsReq = 4813,
+    CmdAetherDivideRefreshEndlessScNotify = 4817,
     CmdClearAetherDividePassiveSkillScRsp = 4819,
-    CmdEnterAetherDivideSceneScRsp = 4820,
-    CmdSwitchAetherDivideLineUpSlotScRsp = 4825,
-    CmdAetherDivideRefreshEndlessScNotify = 4826,
-    CmdStartAetherDivideStageBattleCsReq = 4829,
-    CmdSetAetherDivideLineUpCsReq = 4830,
-    CmdStartAetherDivideStageBattleScRsp = 4833,
-    CmdStartAetherDivideChallengeBattleCsReq = 4834,
-    CmdAetherDivideRefreshEndlessCsReq = 4836,
-    CmdStartAetherDivideChallengeBattleScRsp = 4837,
-    CmdStartAetherDivideSceneBattleCsReq = 4839,
-    CmdLeaveAetherDivideSceneScRsp = 4846,
-    CmdGetAetherDivideInfoCsReq = 4847,
-    CmdEquipAetherDividePassiveSkillCsReq = 4848,
-    CmdAetherDivideSpiritExpUpCsReq = 4851,
-    CmdStartAetherDivideSceneBattleScRsp = 4853,
-    CmdEnterAetherDivideSceneCsReq = 4859,
-    CmdSwitchAetherDivideLineUpSlotCsReq = 4861,
-    CmdAetherDivideTainerInfoScNotify = 4864,
-    CmdAetherDivideRefreshEndlessScRsp = 4865,
-    CmdAetherDivideLineupScNotify = 4870,
-    CmdAetherDivideSpiritExpUpScRsp = 4873,
-    CmdGetAetherDivideInfoScRsp = 4874,
-    CmdSetAetherDivideLineUpScRsp = 4875,
-    CmdAetherDivideTakeChallengeRewardScRsp = 4877,
-    CmdClearAetherDividePassiveSkillCsReq = 4879,
-    CmdAetherDivideSpiritInfoScNotify = 4883,
-    CmdEquipAetherDividePassiveSkillScRsp = 4890,
-    CmdAetherDivideFinishChallengeScNotify = 4893,
-    CmdAetherDivideSkillItemScNotify = 4894,
-    CmdGetAetherDivideChallengeInfoCsReq = 4899,
+    CmdAetherDivideTakeChallengeRewardScRsp = 4821,
+    CmdSetAetherDivideLineUpScRsp = 4825,
+    CmdSwitchAetherDivideLineUpSlotCsReq = 4826,
+    CmdLeaveAetherDivideSceneScRsp = 4827,
+    CmdStartAetherDivideSceneBattleScRsp = 4828,
+    CmdGetAetherDivideChallengeInfoCsReq = 4829,
+    CmdGetAetherDivideInfoCsReq = 4834,
+    CmdAetherDivideRefreshEndlessCsReq = 4835,
+    CmdEnterAetherDivideSceneCsReq = 4836,
+    CmdGetAetherDivideInfoScRsp = 4843,
+    CmdSetAetherDivideLineUpCsReq = 4846,
+    CmdAetherDivideFinishChallengeScNotify = 4848,
+    CmdGetAetherDivideChallengeInfoScRsp = 4850,
+    CmdStartAetherDivideChallengeBattleCsReq = 4852,
+    CmdStartAetherDivideStageBattleCsReq = 4853,
+    CmdAetherDivideSkillItemScNotify = 4858,
+    CmdAetherDivideSpiritExpUpCsReq = 4859,
+    CmdStartAetherDivideSceneBattleCsReq = 4867,
+    CmdAetherDivideRefreshEndlessScRsp = 4873,
+    CmdStartAetherDivideChallengeBattleScRsp = 4874,
+    CmdClearAetherDividePassiveSkillCsReq = 4875,
+    CmdAetherDivideLineupScNotify = 4876,
+    CmdAetherDivideSpiritInfoScNotify = 4878,
+    CmdLeaveAetherDivideSceneCsReq = 4884,
+    CmdAetherDivideTainerInfoScNotify = 4888,
+    CmdStartAetherDivideStageBattleScRsp = 4890,
+    CmdEnterAetherDivideSceneScRsp = 4895,
+    CmdEquipAetherDividePassiveSkillCsReq = 4896,
 }
 impl CmdAetherDivideType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -3154,107 +3112,107 @@ impl CmdAetherDivideType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdAetherDivideType::None => "CmdAetherDivideTypeNone",
-            CmdAetherDivideType::CmdLeaveAetherDivideSceneCsReq => {
-                "CmdLeaveAetherDivideSceneCsReq"
-            }
-            CmdAetherDivideType::CmdGetAetherDivideChallengeInfoScRsp => {
-                "CmdGetAetherDivideChallengeInfoScRsp"
-            }
-            CmdAetherDivideType::CmdAetherDivideTakeChallengeRewardCsReq => {
-                "CmdAetherDivideTakeChallengeRewardCsReq"
-            }
-            CmdAetherDivideType::CmdClearAetherDividePassiveSkillScRsp => {
-                "CmdClearAetherDividePassiveSkillScRsp"
-            }
-            CmdAetherDivideType::CmdEnterAetherDivideSceneScRsp => {
-                "CmdEnterAetherDivideSceneScRsp"
+            CmdAetherDivideType::CmdEquipAetherDividePassiveSkillScRsp => {
+                "CmdEquipAetherDividePassiveSkillScRsp"
             }
             CmdAetherDivideType::CmdSwitchAetherDivideLineUpSlotScRsp => {
                 "CmdSwitchAetherDivideLineUpSlotScRsp"
             }
-            CmdAetherDivideType::CmdAetherDivideRefreshEndlessScNotify => {
-                "CmdAetherDivideRefreshEndlessScNotify"
-            }
-            CmdAetherDivideType::CmdStartAetherDivideStageBattleCsReq => {
-                "CmdStartAetherDivideStageBattleCsReq"
-            }
-            CmdAetherDivideType::CmdSetAetherDivideLineUpCsReq => {
-                "CmdSetAetherDivideLineUpCsReq"
-            }
-            CmdAetherDivideType::CmdStartAetherDivideStageBattleScRsp => {
-                "CmdStartAetherDivideStageBattleScRsp"
-            }
-            CmdAetherDivideType::CmdStartAetherDivideChallengeBattleCsReq => {
-                "CmdStartAetherDivideChallengeBattleCsReq"
-            }
-            CmdAetherDivideType::CmdAetherDivideRefreshEndlessCsReq => {
-                "CmdAetherDivideRefreshEndlessCsReq"
-            }
-            CmdAetherDivideType::CmdStartAetherDivideChallengeBattleScRsp => {
-                "CmdStartAetherDivideChallengeBattleScRsp"
-            }
-            CmdAetherDivideType::CmdStartAetherDivideSceneBattleCsReq => {
-                "CmdStartAetherDivideSceneBattleCsReq"
-            }
-            CmdAetherDivideType::CmdLeaveAetherDivideSceneScRsp => {
-                "CmdLeaveAetherDivideSceneScRsp"
-            }
-            CmdAetherDivideType::CmdGetAetherDivideInfoCsReq => {
-                "CmdGetAetherDivideInfoCsReq"
-            }
-            CmdAetherDivideType::CmdEquipAetherDividePassiveSkillCsReq => {
-                "CmdEquipAetherDividePassiveSkillCsReq"
-            }
-            CmdAetherDivideType::CmdAetherDivideSpiritExpUpCsReq => {
-                "CmdAetherDivideSpiritExpUpCsReq"
-            }
-            CmdAetherDivideType::CmdStartAetherDivideSceneBattleScRsp => {
-                "CmdStartAetherDivideSceneBattleScRsp"
-            }
-            CmdAetherDivideType::CmdEnterAetherDivideSceneCsReq => {
-                "CmdEnterAetherDivideSceneCsReq"
-            }
-            CmdAetherDivideType::CmdSwitchAetherDivideLineUpSlotCsReq => {
-                "CmdSwitchAetherDivideLineUpSlotCsReq"
-            }
-            CmdAetherDivideType::CmdAetherDivideTainerInfoScNotify => {
-                "CmdAetherDivideTainerInfoScNotify"
-            }
-            CmdAetherDivideType::CmdAetherDivideRefreshEndlessScRsp => {
-                "CmdAetherDivideRefreshEndlessScRsp"
-            }
-            CmdAetherDivideType::CmdAetherDivideLineupScNotify => {
-                "CmdAetherDivideLineupScNotify"
-            }
             CmdAetherDivideType::CmdAetherDivideSpiritExpUpScRsp => {
                 "CmdAetherDivideSpiritExpUpScRsp"
             }
-            CmdAetherDivideType::CmdGetAetherDivideInfoScRsp => {
-                "CmdGetAetherDivideInfoScRsp"
+            CmdAetherDivideType::CmdAetherDivideTakeChallengeRewardCsReq => {
+                "CmdAetherDivideTakeChallengeRewardCsReq"
             }
-            CmdAetherDivideType::CmdSetAetherDivideLineUpScRsp => {
-                "CmdSetAetherDivideLineUpScRsp"
+            CmdAetherDivideType::CmdAetherDivideRefreshEndlessScNotify => {
+                "CmdAetherDivideRefreshEndlessScNotify"
+            }
+            CmdAetherDivideType::CmdClearAetherDividePassiveSkillScRsp => {
+                "CmdClearAetherDividePassiveSkillScRsp"
             }
             CmdAetherDivideType::CmdAetherDivideTakeChallengeRewardScRsp => {
                 "CmdAetherDivideTakeChallengeRewardScRsp"
             }
-            CmdAetherDivideType::CmdClearAetherDividePassiveSkillCsReq => {
-                "CmdClearAetherDividePassiveSkillCsReq"
+            CmdAetherDivideType::CmdSetAetherDivideLineUpScRsp => {
+                "CmdSetAetherDivideLineUpScRsp"
             }
-            CmdAetherDivideType::CmdAetherDivideSpiritInfoScNotify => {
-                "CmdAetherDivideSpiritInfoScNotify"
+            CmdAetherDivideType::CmdSwitchAetherDivideLineUpSlotCsReq => {
+                "CmdSwitchAetherDivideLineUpSlotCsReq"
             }
-            CmdAetherDivideType::CmdEquipAetherDividePassiveSkillScRsp => {
-                "CmdEquipAetherDividePassiveSkillScRsp"
+            CmdAetherDivideType::CmdLeaveAetherDivideSceneScRsp => {
+                "CmdLeaveAetherDivideSceneScRsp"
+            }
+            CmdAetherDivideType::CmdStartAetherDivideSceneBattleScRsp => {
+                "CmdStartAetherDivideSceneBattleScRsp"
+            }
+            CmdAetherDivideType::CmdGetAetherDivideChallengeInfoCsReq => {
+                "CmdGetAetherDivideChallengeInfoCsReq"
+            }
+            CmdAetherDivideType::CmdGetAetherDivideInfoCsReq => {
+                "CmdGetAetherDivideInfoCsReq"
+            }
+            CmdAetherDivideType::CmdAetherDivideRefreshEndlessCsReq => {
+                "CmdAetherDivideRefreshEndlessCsReq"
+            }
+            CmdAetherDivideType::CmdEnterAetherDivideSceneCsReq => {
+                "CmdEnterAetherDivideSceneCsReq"
+            }
+            CmdAetherDivideType::CmdGetAetherDivideInfoScRsp => {
+                "CmdGetAetherDivideInfoScRsp"
+            }
+            CmdAetherDivideType::CmdSetAetherDivideLineUpCsReq => {
+                "CmdSetAetherDivideLineUpCsReq"
             }
             CmdAetherDivideType::CmdAetherDivideFinishChallengeScNotify => {
                 "CmdAetherDivideFinishChallengeScNotify"
             }
+            CmdAetherDivideType::CmdGetAetherDivideChallengeInfoScRsp => {
+                "CmdGetAetherDivideChallengeInfoScRsp"
+            }
+            CmdAetherDivideType::CmdStartAetherDivideChallengeBattleCsReq => {
+                "CmdStartAetherDivideChallengeBattleCsReq"
+            }
+            CmdAetherDivideType::CmdStartAetherDivideStageBattleCsReq => {
+                "CmdStartAetherDivideStageBattleCsReq"
+            }
             CmdAetherDivideType::CmdAetherDivideSkillItemScNotify => {
                 "CmdAetherDivideSkillItemScNotify"
             }
-            CmdAetherDivideType::CmdGetAetherDivideChallengeInfoCsReq => {
-                "CmdGetAetherDivideChallengeInfoCsReq"
+            CmdAetherDivideType::CmdAetherDivideSpiritExpUpCsReq => {
+                "CmdAetherDivideSpiritExpUpCsReq"
+            }
+            CmdAetherDivideType::CmdStartAetherDivideSceneBattleCsReq => {
+                "CmdStartAetherDivideSceneBattleCsReq"
+            }
+            CmdAetherDivideType::CmdAetherDivideRefreshEndlessScRsp => {
+                "CmdAetherDivideRefreshEndlessScRsp"
+            }
+            CmdAetherDivideType::CmdStartAetherDivideChallengeBattleScRsp => {
+                "CmdStartAetherDivideChallengeBattleScRsp"
+            }
+            CmdAetherDivideType::CmdClearAetherDividePassiveSkillCsReq => {
+                "CmdClearAetherDividePassiveSkillCsReq"
+            }
+            CmdAetherDivideType::CmdAetherDivideLineupScNotify => {
+                "CmdAetherDivideLineupScNotify"
+            }
+            CmdAetherDivideType::CmdAetherDivideSpiritInfoScNotify => {
+                "CmdAetherDivideSpiritInfoScNotify"
+            }
+            CmdAetherDivideType::CmdLeaveAetherDivideSceneCsReq => {
+                "CmdLeaveAetherDivideSceneCsReq"
+            }
+            CmdAetherDivideType::CmdAetherDivideTainerInfoScNotify => {
+                "CmdAetherDivideTainerInfoScNotify"
+            }
+            CmdAetherDivideType::CmdStartAetherDivideStageBattleScRsp => {
+                "CmdStartAetherDivideStageBattleScRsp"
+            }
+            CmdAetherDivideType::CmdEnterAetherDivideSceneScRsp => {
+                "CmdEnterAetherDivideSceneScRsp"
+            }
+            CmdAetherDivideType::CmdEquipAetherDividePassiveSkillCsReq => {
+                "CmdEquipAetherDividePassiveSkillCsReq"
             }
         }
     }
@@ -3262,97 +3220,97 @@ impl CmdAetherDivideType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdAetherDivideTypeNone" => Some(Self::None),
-            "CmdLeaveAetherDivideSceneCsReq" => {
-                Some(Self::CmdLeaveAetherDivideSceneCsReq)
-            }
-            "CmdGetAetherDivideChallengeInfoScRsp" => {
-                Some(Self::CmdGetAetherDivideChallengeInfoScRsp)
-            }
-            "CmdAetherDivideTakeChallengeRewardCsReq" => {
-                Some(Self::CmdAetherDivideTakeChallengeRewardCsReq)
-            }
-            "CmdClearAetherDividePassiveSkillScRsp" => {
-                Some(Self::CmdClearAetherDividePassiveSkillScRsp)
-            }
-            "CmdEnterAetherDivideSceneScRsp" => {
-                Some(Self::CmdEnterAetherDivideSceneScRsp)
+            "CmdEquipAetherDividePassiveSkillScRsp" => {
+                Some(Self::CmdEquipAetherDividePassiveSkillScRsp)
             }
             "CmdSwitchAetherDivideLineUpSlotScRsp" => {
                 Some(Self::CmdSwitchAetherDivideLineUpSlotScRsp)
             }
+            "CmdAetherDivideSpiritExpUpScRsp" => {
+                Some(Self::CmdAetherDivideSpiritExpUpScRsp)
+            }
+            "CmdAetherDivideTakeChallengeRewardCsReq" => {
+                Some(Self::CmdAetherDivideTakeChallengeRewardCsReq)
+            }
             "CmdAetherDivideRefreshEndlessScNotify" => {
                 Some(Self::CmdAetherDivideRefreshEndlessScNotify)
             }
-            "CmdStartAetherDivideStageBattleCsReq" => {
-                Some(Self::CmdStartAetherDivideStageBattleCsReq)
+            "CmdClearAetherDividePassiveSkillScRsp" => {
+                Some(Self::CmdClearAetherDividePassiveSkillScRsp)
             }
-            "CmdSetAetherDivideLineUpCsReq" => Some(Self::CmdSetAetherDivideLineUpCsReq),
-            "CmdStartAetherDivideStageBattleScRsp" => {
-                Some(Self::CmdStartAetherDivideStageBattleScRsp)
+            "CmdAetherDivideTakeChallengeRewardScRsp" => {
+                Some(Self::CmdAetherDivideTakeChallengeRewardScRsp)
             }
-            "CmdStartAetherDivideChallengeBattleCsReq" => {
-                Some(Self::CmdStartAetherDivideChallengeBattleCsReq)
-            }
-            "CmdAetherDivideRefreshEndlessCsReq" => {
-                Some(Self::CmdAetherDivideRefreshEndlessCsReq)
-            }
-            "CmdStartAetherDivideChallengeBattleScRsp" => {
-                Some(Self::CmdStartAetherDivideChallengeBattleScRsp)
-            }
-            "CmdStartAetherDivideSceneBattleCsReq" => {
-                Some(Self::CmdStartAetherDivideSceneBattleCsReq)
+            "CmdSetAetherDivideLineUpScRsp" => Some(Self::CmdSetAetherDivideLineUpScRsp),
+            "CmdSwitchAetherDivideLineUpSlotCsReq" => {
+                Some(Self::CmdSwitchAetherDivideLineUpSlotCsReq)
             }
             "CmdLeaveAetherDivideSceneScRsp" => {
                 Some(Self::CmdLeaveAetherDivideSceneScRsp)
             }
-            "CmdGetAetherDivideInfoCsReq" => Some(Self::CmdGetAetherDivideInfoCsReq),
-            "CmdEquipAetherDividePassiveSkillCsReq" => {
-                Some(Self::CmdEquipAetherDividePassiveSkillCsReq)
-            }
-            "CmdAetherDivideSpiritExpUpCsReq" => {
-                Some(Self::CmdAetherDivideSpiritExpUpCsReq)
-            }
             "CmdStartAetherDivideSceneBattleScRsp" => {
                 Some(Self::CmdStartAetherDivideSceneBattleScRsp)
+            }
+            "CmdGetAetherDivideChallengeInfoCsReq" => {
+                Some(Self::CmdGetAetherDivideChallengeInfoCsReq)
+            }
+            "CmdGetAetherDivideInfoCsReq" => Some(Self::CmdGetAetherDivideInfoCsReq),
+            "CmdAetherDivideRefreshEndlessCsReq" => {
+                Some(Self::CmdAetherDivideRefreshEndlessCsReq)
             }
             "CmdEnterAetherDivideSceneCsReq" => {
                 Some(Self::CmdEnterAetherDivideSceneCsReq)
             }
-            "CmdSwitchAetherDivideLineUpSlotCsReq" => {
-                Some(Self::CmdSwitchAetherDivideLineUpSlotCsReq)
-            }
-            "CmdAetherDivideTainerInfoScNotify" => {
-                Some(Self::CmdAetherDivideTainerInfoScNotify)
-            }
-            "CmdAetherDivideRefreshEndlessScRsp" => {
-                Some(Self::CmdAetherDivideRefreshEndlessScRsp)
-            }
-            "CmdAetherDivideLineupScNotify" => Some(Self::CmdAetherDivideLineupScNotify),
-            "CmdAetherDivideSpiritExpUpScRsp" => {
-                Some(Self::CmdAetherDivideSpiritExpUpScRsp)
-            }
             "CmdGetAetherDivideInfoScRsp" => Some(Self::CmdGetAetherDivideInfoScRsp),
-            "CmdSetAetherDivideLineUpScRsp" => Some(Self::CmdSetAetherDivideLineUpScRsp),
-            "CmdAetherDivideTakeChallengeRewardScRsp" => {
-                Some(Self::CmdAetherDivideTakeChallengeRewardScRsp)
-            }
-            "CmdClearAetherDividePassiveSkillCsReq" => {
-                Some(Self::CmdClearAetherDividePassiveSkillCsReq)
-            }
-            "CmdAetherDivideSpiritInfoScNotify" => {
-                Some(Self::CmdAetherDivideSpiritInfoScNotify)
-            }
-            "CmdEquipAetherDividePassiveSkillScRsp" => {
-                Some(Self::CmdEquipAetherDividePassiveSkillScRsp)
-            }
+            "CmdSetAetherDivideLineUpCsReq" => Some(Self::CmdSetAetherDivideLineUpCsReq),
             "CmdAetherDivideFinishChallengeScNotify" => {
                 Some(Self::CmdAetherDivideFinishChallengeScNotify)
+            }
+            "CmdGetAetherDivideChallengeInfoScRsp" => {
+                Some(Self::CmdGetAetherDivideChallengeInfoScRsp)
+            }
+            "CmdStartAetherDivideChallengeBattleCsReq" => {
+                Some(Self::CmdStartAetherDivideChallengeBattleCsReq)
+            }
+            "CmdStartAetherDivideStageBattleCsReq" => {
+                Some(Self::CmdStartAetherDivideStageBattleCsReq)
             }
             "CmdAetherDivideSkillItemScNotify" => {
                 Some(Self::CmdAetherDivideSkillItemScNotify)
             }
-            "CmdGetAetherDivideChallengeInfoCsReq" => {
-                Some(Self::CmdGetAetherDivideChallengeInfoCsReq)
+            "CmdAetherDivideSpiritExpUpCsReq" => {
+                Some(Self::CmdAetherDivideSpiritExpUpCsReq)
+            }
+            "CmdStartAetherDivideSceneBattleCsReq" => {
+                Some(Self::CmdStartAetherDivideSceneBattleCsReq)
+            }
+            "CmdAetherDivideRefreshEndlessScRsp" => {
+                Some(Self::CmdAetherDivideRefreshEndlessScRsp)
+            }
+            "CmdStartAetherDivideChallengeBattleScRsp" => {
+                Some(Self::CmdStartAetherDivideChallengeBattleScRsp)
+            }
+            "CmdClearAetherDividePassiveSkillCsReq" => {
+                Some(Self::CmdClearAetherDividePassiveSkillCsReq)
+            }
+            "CmdAetherDivideLineupScNotify" => Some(Self::CmdAetherDivideLineupScNotify),
+            "CmdAetherDivideSpiritInfoScNotify" => {
+                Some(Self::CmdAetherDivideSpiritInfoScNotify)
+            }
+            "CmdLeaveAetherDivideSceneCsReq" => {
+                Some(Self::CmdLeaveAetherDivideSceneCsReq)
+            }
+            "CmdAetherDivideTainerInfoScNotify" => {
+                Some(Self::CmdAetherDivideTainerInfoScNotify)
+            }
+            "CmdStartAetherDivideStageBattleScRsp" => {
+                Some(Self::CmdStartAetherDivideStageBattleScRsp)
+            }
+            "CmdEnterAetherDivideSceneScRsp" => {
+                Some(Self::CmdEnterAetherDivideSceneScRsp)
+            }
+            "CmdEquipAetherDividePassiveSkillCsReq" => {
+                Some(Self::CmdEquipAetherDividePassiveSkillCsReq)
             }
             _ => None,
         }
@@ -3363,42 +3321,42 @@ impl CmdAetherDivideType {
 #[repr(i32)]
 pub enum CmdAlleyType {
     None = 0,
-    CmdLogisticsGameCsReq = 4703,
-    CmdLogisticsScoreRewardSyncInfoScNotify = 4704,
-    CmdSaveLogisticsScRsp = 4709,
+    CmdLogisticsScoreRewardSyncInfoScNotify = 4708,
     CmdGetSaveLogisticsMapScRsp = 4710,
+    CmdAlleyShopLevelScNotify = 4712,
     CmdAlleyTakeEventRewardScRsp = 4713,
-    CmdAlleyEventEffectNotify = 4716,
+    CmdAlleyTakeEventRewardCsReq = 4717,
+    CmdActivityRaidPlacingGameCsReq = 4718,
     CmdRefreshAlleyOrderScRsp = 4719,
-    CmdGetAlleyInfoScRsp = 4720,
-    CmdAlleyTakeEventRewardCsReq = 4726,
-    CmdPrestigeLevelUpCsReq = 4729,
-    CmdAlleyPlacingGameCsReq = 4730,
-    CmdPrestigeLevelUpScRsp = 4733,
-    CmdStartAlleyEventCsReq = 4734,
-    CmdAlleyGuaranteedFundsCsReq = 4736,
-    CmdStartAlleyEventScRsp = 4737,
-    CmdActivityRaidPlacingGameScRsp = 4743,
-    CmdLogisticsGameScRsp = 4746,
-    CmdTakePrestigeRewardCsReq = 4747,
-    CmdAlleyFundsScNotify = 4751,
-    CmdGetAlleyInfoCsReq = 4759,
-    CmdAlleyOrderChangedScNotify = 4761,
-    CmdAlleyShipmentEventEffectsScNotify = 4764,
-    CmdAlleyGuaranteedFundsScRsp = 4765,
-    CmdAlleyShipUsedCountScNotify = 4770,
-    CmdAlleyShopLevelScNotify = 4773,
-    CmdTakePrestigeRewardScRsp = 4774,
-    CmdAlleyPlacingGameScRsp = 4775,
-    CmdLogisticsDetonateStarSkiffCsReq = 4777,
-    CmdRefreshAlleyOrderCsReq = 4779,
-    CmdAlleyEventChangeNotify = 4780,
-    CmdAlleyShipUnlockScNotify = 4783,
-    CmdActivityRaidPlacingGameCsReq = 4788,
-    CmdLogisticsDetonateStarSkiffScRsp = 4791,
-    CmdLogisticsInfoScNotify = 4793,
-    CmdGetSaveLogisticsMapCsReq = 4794,
-    CmdSaveLogisticsCsReq = 4799,
+    CmdLogisticsDetonateStarSkiffCsReq = 4721,
+    CmdAlleyEventChangeNotify = 4724,
+    CmdAlleyPlacingGameScRsp = 4725,
+    CmdAlleyOrderChangedScNotify = 4726,
+    CmdLogisticsGameScRsp = 4727,
+    CmdSaveLogisticsCsReq = 4729,
+    CmdTakePrestigeRewardCsReq = 4734,
+    CmdAlleyGuaranteedFundsCsReq = 4735,
+    CmdGetAlleyInfoCsReq = 4736,
+    CmdActivityRaidPlacingGameScRsp = 4737,
+    CmdTakePrestigeRewardScRsp = 4743,
+    CmdAlleyPlacingGameCsReq = 4746,
+    CmdLogisticsInfoScNotify = 4748,
+    CmdSaveLogisticsScRsp = 4750,
+    CmdStartAlleyEventCsReq = 4752,
+    CmdPrestigeLevelUpCsReq = 4753,
+    CmdGetSaveLogisticsMapCsReq = 4758,
+    CmdAlleyFundsScNotify = 4759,
+    CmdLogisticsDetonateStarSkiffScRsp = 4765,
+    CmdAlleyGuaranteedFundsScRsp = 4773,
+    CmdStartAlleyEventScRsp = 4774,
+    CmdRefreshAlleyOrderCsReq = 4775,
+    CmdAlleyShipUsedCountScNotify = 4776,
+    CmdAlleyShipUnlockScNotify = 4778,
+    CmdLogisticsGameCsReq = 4784,
+    CmdAlleyShipmentEventEffectsScNotify = 4788,
+    CmdPrestigeLevelUpScRsp = 4790,
+    CmdAlleyEventEffectNotify = 4793,
+    CmdGetAlleyInfoScRsp = 4795,
 }
 impl CmdAlleyType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -3408,110 +3366,110 @@ impl CmdAlleyType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdAlleyType::None => "CmdAlleyTypeNone",
-            CmdAlleyType::CmdLogisticsGameCsReq => "CmdLogisticsGameCsReq",
             CmdAlleyType::CmdLogisticsScoreRewardSyncInfoScNotify => {
                 "CmdLogisticsScoreRewardSyncInfoScNotify"
             }
-            CmdAlleyType::CmdSaveLogisticsScRsp => "CmdSaveLogisticsScRsp",
             CmdAlleyType::CmdGetSaveLogisticsMapScRsp => "CmdGetSaveLogisticsMapScRsp",
-            CmdAlleyType::CmdAlleyTakeEventRewardScRsp => "CmdAlleyTakeEventRewardScRsp",
-            CmdAlleyType::CmdAlleyEventEffectNotify => "CmdAlleyEventEffectNotify",
-            CmdAlleyType::CmdRefreshAlleyOrderScRsp => "CmdRefreshAlleyOrderScRsp",
-            CmdAlleyType::CmdGetAlleyInfoScRsp => "CmdGetAlleyInfoScRsp",
-            CmdAlleyType::CmdAlleyTakeEventRewardCsReq => "CmdAlleyTakeEventRewardCsReq",
-            CmdAlleyType::CmdPrestigeLevelUpCsReq => "CmdPrestigeLevelUpCsReq",
-            CmdAlleyType::CmdAlleyPlacingGameCsReq => "CmdAlleyPlacingGameCsReq",
-            CmdAlleyType::CmdPrestigeLevelUpScRsp => "CmdPrestigeLevelUpScRsp",
-            CmdAlleyType::CmdStartAlleyEventCsReq => "CmdStartAlleyEventCsReq",
-            CmdAlleyType::CmdAlleyGuaranteedFundsCsReq => "CmdAlleyGuaranteedFundsCsReq",
-            CmdAlleyType::CmdStartAlleyEventScRsp => "CmdStartAlleyEventScRsp",
-            CmdAlleyType::CmdActivityRaidPlacingGameScRsp => {
-                "CmdActivityRaidPlacingGameScRsp"
-            }
-            CmdAlleyType::CmdLogisticsGameScRsp => "CmdLogisticsGameScRsp",
-            CmdAlleyType::CmdTakePrestigeRewardCsReq => "CmdTakePrestigeRewardCsReq",
-            CmdAlleyType::CmdAlleyFundsScNotify => "CmdAlleyFundsScNotify",
-            CmdAlleyType::CmdGetAlleyInfoCsReq => "CmdGetAlleyInfoCsReq",
-            CmdAlleyType::CmdAlleyOrderChangedScNotify => "CmdAlleyOrderChangedScNotify",
-            CmdAlleyType::CmdAlleyShipmentEventEffectsScNotify => {
-                "CmdAlleyShipmentEventEffectsScNotify"
-            }
-            CmdAlleyType::CmdAlleyGuaranteedFundsScRsp => "CmdAlleyGuaranteedFundsScRsp",
-            CmdAlleyType::CmdAlleyShipUsedCountScNotify => {
-                "CmdAlleyShipUsedCountScNotify"
-            }
             CmdAlleyType::CmdAlleyShopLevelScNotify => "CmdAlleyShopLevelScNotify",
-            CmdAlleyType::CmdTakePrestigeRewardScRsp => "CmdTakePrestigeRewardScRsp",
-            CmdAlleyType::CmdAlleyPlacingGameScRsp => "CmdAlleyPlacingGameScRsp",
-            CmdAlleyType::CmdLogisticsDetonateStarSkiffCsReq => {
-                "CmdLogisticsDetonateStarSkiffCsReq"
-            }
-            CmdAlleyType::CmdRefreshAlleyOrderCsReq => "CmdRefreshAlleyOrderCsReq",
-            CmdAlleyType::CmdAlleyEventChangeNotify => "CmdAlleyEventChangeNotify",
-            CmdAlleyType::CmdAlleyShipUnlockScNotify => "CmdAlleyShipUnlockScNotify",
+            CmdAlleyType::CmdAlleyTakeEventRewardScRsp => "CmdAlleyTakeEventRewardScRsp",
+            CmdAlleyType::CmdAlleyTakeEventRewardCsReq => "CmdAlleyTakeEventRewardCsReq",
             CmdAlleyType::CmdActivityRaidPlacingGameCsReq => {
                 "CmdActivityRaidPlacingGameCsReq"
             }
+            CmdAlleyType::CmdRefreshAlleyOrderScRsp => "CmdRefreshAlleyOrderScRsp",
+            CmdAlleyType::CmdLogisticsDetonateStarSkiffCsReq => {
+                "CmdLogisticsDetonateStarSkiffCsReq"
+            }
+            CmdAlleyType::CmdAlleyEventChangeNotify => "CmdAlleyEventChangeNotify",
+            CmdAlleyType::CmdAlleyPlacingGameScRsp => "CmdAlleyPlacingGameScRsp",
+            CmdAlleyType::CmdAlleyOrderChangedScNotify => "CmdAlleyOrderChangedScNotify",
+            CmdAlleyType::CmdLogisticsGameScRsp => "CmdLogisticsGameScRsp",
+            CmdAlleyType::CmdSaveLogisticsCsReq => "CmdSaveLogisticsCsReq",
+            CmdAlleyType::CmdTakePrestigeRewardCsReq => "CmdTakePrestigeRewardCsReq",
+            CmdAlleyType::CmdAlleyGuaranteedFundsCsReq => "CmdAlleyGuaranteedFundsCsReq",
+            CmdAlleyType::CmdGetAlleyInfoCsReq => "CmdGetAlleyInfoCsReq",
+            CmdAlleyType::CmdActivityRaidPlacingGameScRsp => {
+                "CmdActivityRaidPlacingGameScRsp"
+            }
+            CmdAlleyType::CmdTakePrestigeRewardScRsp => "CmdTakePrestigeRewardScRsp",
+            CmdAlleyType::CmdAlleyPlacingGameCsReq => "CmdAlleyPlacingGameCsReq",
+            CmdAlleyType::CmdLogisticsInfoScNotify => "CmdLogisticsInfoScNotify",
+            CmdAlleyType::CmdSaveLogisticsScRsp => "CmdSaveLogisticsScRsp",
+            CmdAlleyType::CmdStartAlleyEventCsReq => "CmdStartAlleyEventCsReq",
+            CmdAlleyType::CmdPrestigeLevelUpCsReq => "CmdPrestigeLevelUpCsReq",
+            CmdAlleyType::CmdGetSaveLogisticsMapCsReq => "CmdGetSaveLogisticsMapCsReq",
+            CmdAlleyType::CmdAlleyFundsScNotify => "CmdAlleyFundsScNotify",
             CmdAlleyType::CmdLogisticsDetonateStarSkiffScRsp => {
                 "CmdLogisticsDetonateStarSkiffScRsp"
             }
-            CmdAlleyType::CmdLogisticsInfoScNotify => "CmdLogisticsInfoScNotify",
-            CmdAlleyType::CmdGetSaveLogisticsMapCsReq => "CmdGetSaveLogisticsMapCsReq",
-            CmdAlleyType::CmdSaveLogisticsCsReq => "CmdSaveLogisticsCsReq",
+            CmdAlleyType::CmdAlleyGuaranteedFundsScRsp => "CmdAlleyGuaranteedFundsScRsp",
+            CmdAlleyType::CmdStartAlleyEventScRsp => "CmdStartAlleyEventScRsp",
+            CmdAlleyType::CmdRefreshAlleyOrderCsReq => "CmdRefreshAlleyOrderCsReq",
+            CmdAlleyType::CmdAlleyShipUsedCountScNotify => {
+                "CmdAlleyShipUsedCountScNotify"
+            }
+            CmdAlleyType::CmdAlleyShipUnlockScNotify => "CmdAlleyShipUnlockScNotify",
+            CmdAlleyType::CmdLogisticsGameCsReq => "CmdLogisticsGameCsReq",
+            CmdAlleyType::CmdAlleyShipmentEventEffectsScNotify => {
+                "CmdAlleyShipmentEventEffectsScNotify"
+            }
+            CmdAlleyType::CmdPrestigeLevelUpScRsp => "CmdPrestigeLevelUpScRsp",
+            CmdAlleyType::CmdAlleyEventEffectNotify => "CmdAlleyEventEffectNotify",
+            CmdAlleyType::CmdGetAlleyInfoScRsp => "CmdGetAlleyInfoScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdAlleyTypeNone" => Some(Self::None),
-            "CmdLogisticsGameCsReq" => Some(Self::CmdLogisticsGameCsReq),
             "CmdLogisticsScoreRewardSyncInfoScNotify" => {
                 Some(Self::CmdLogisticsScoreRewardSyncInfoScNotify)
             }
-            "CmdSaveLogisticsScRsp" => Some(Self::CmdSaveLogisticsScRsp),
             "CmdGetSaveLogisticsMapScRsp" => Some(Self::CmdGetSaveLogisticsMapScRsp),
-            "CmdAlleyTakeEventRewardScRsp" => Some(Self::CmdAlleyTakeEventRewardScRsp),
-            "CmdAlleyEventEffectNotify" => Some(Self::CmdAlleyEventEffectNotify),
-            "CmdRefreshAlleyOrderScRsp" => Some(Self::CmdRefreshAlleyOrderScRsp),
-            "CmdGetAlleyInfoScRsp" => Some(Self::CmdGetAlleyInfoScRsp),
-            "CmdAlleyTakeEventRewardCsReq" => Some(Self::CmdAlleyTakeEventRewardCsReq),
-            "CmdPrestigeLevelUpCsReq" => Some(Self::CmdPrestigeLevelUpCsReq),
-            "CmdAlleyPlacingGameCsReq" => Some(Self::CmdAlleyPlacingGameCsReq),
-            "CmdPrestigeLevelUpScRsp" => Some(Self::CmdPrestigeLevelUpScRsp),
-            "CmdStartAlleyEventCsReq" => Some(Self::CmdStartAlleyEventCsReq),
-            "CmdAlleyGuaranteedFundsCsReq" => Some(Self::CmdAlleyGuaranteedFundsCsReq),
-            "CmdStartAlleyEventScRsp" => Some(Self::CmdStartAlleyEventScRsp),
-            "CmdActivityRaidPlacingGameScRsp" => {
-                Some(Self::CmdActivityRaidPlacingGameScRsp)
-            }
-            "CmdLogisticsGameScRsp" => Some(Self::CmdLogisticsGameScRsp),
-            "CmdTakePrestigeRewardCsReq" => Some(Self::CmdTakePrestigeRewardCsReq),
-            "CmdAlleyFundsScNotify" => Some(Self::CmdAlleyFundsScNotify),
-            "CmdGetAlleyInfoCsReq" => Some(Self::CmdGetAlleyInfoCsReq),
-            "CmdAlleyOrderChangedScNotify" => Some(Self::CmdAlleyOrderChangedScNotify),
-            "CmdAlleyShipmentEventEffectsScNotify" => {
-                Some(Self::CmdAlleyShipmentEventEffectsScNotify)
-            }
-            "CmdAlleyGuaranteedFundsScRsp" => Some(Self::CmdAlleyGuaranteedFundsScRsp),
-            "CmdAlleyShipUsedCountScNotify" => Some(Self::CmdAlleyShipUsedCountScNotify),
             "CmdAlleyShopLevelScNotify" => Some(Self::CmdAlleyShopLevelScNotify),
-            "CmdTakePrestigeRewardScRsp" => Some(Self::CmdTakePrestigeRewardScRsp),
-            "CmdAlleyPlacingGameScRsp" => Some(Self::CmdAlleyPlacingGameScRsp),
-            "CmdLogisticsDetonateStarSkiffCsReq" => {
-                Some(Self::CmdLogisticsDetonateStarSkiffCsReq)
-            }
-            "CmdRefreshAlleyOrderCsReq" => Some(Self::CmdRefreshAlleyOrderCsReq),
-            "CmdAlleyEventChangeNotify" => Some(Self::CmdAlleyEventChangeNotify),
-            "CmdAlleyShipUnlockScNotify" => Some(Self::CmdAlleyShipUnlockScNotify),
+            "CmdAlleyTakeEventRewardScRsp" => Some(Self::CmdAlleyTakeEventRewardScRsp),
+            "CmdAlleyTakeEventRewardCsReq" => Some(Self::CmdAlleyTakeEventRewardCsReq),
             "CmdActivityRaidPlacingGameCsReq" => {
                 Some(Self::CmdActivityRaidPlacingGameCsReq)
             }
+            "CmdRefreshAlleyOrderScRsp" => Some(Self::CmdRefreshAlleyOrderScRsp),
+            "CmdLogisticsDetonateStarSkiffCsReq" => {
+                Some(Self::CmdLogisticsDetonateStarSkiffCsReq)
+            }
+            "CmdAlleyEventChangeNotify" => Some(Self::CmdAlleyEventChangeNotify),
+            "CmdAlleyPlacingGameScRsp" => Some(Self::CmdAlleyPlacingGameScRsp),
+            "CmdAlleyOrderChangedScNotify" => Some(Self::CmdAlleyOrderChangedScNotify),
+            "CmdLogisticsGameScRsp" => Some(Self::CmdLogisticsGameScRsp),
+            "CmdSaveLogisticsCsReq" => Some(Self::CmdSaveLogisticsCsReq),
+            "CmdTakePrestigeRewardCsReq" => Some(Self::CmdTakePrestigeRewardCsReq),
+            "CmdAlleyGuaranteedFundsCsReq" => Some(Self::CmdAlleyGuaranteedFundsCsReq),
+            "CmdGetAlleyInfoCsReq" => Some(Self::CmdGetAlleyInfoCsReq),
+            "CmdActivityRaidPlacingGameScRsp" => {
+                Some(Self::CmdActivityRaidPlacingGameScRsp)
+            }
+            "CmdTakePrestigeRewardScRsp" => Some(Self::CmdTakePrestigeRewardScRsp),
+            "CmdAlleyPlacingGameCsReq" => Some(Self::CmdAlleyPlacingGameCsReq),
+            "CmdLogisticsInfoScNotify" => Some(Self::CmdLogisticsInfoScNotify),
+            "CmdSaveLogisticsScRsp" => Some(Self::CmdSaveLogisticsScRsp),
+            "CmdStartAlleyEventCsReq" => Some(Self::CmdStartAlleyEventCsReq),
+            "CmdPrestigeLevelUpCsReq" => Some(Self::CmdPrestigeLevelUpCsReq),
+            "CmdGetSaveLogisticsMapCsReq" => Some(Self::CmdGetSaveLogisticsMapCsReq),
+            "CmdAlleyFundsScNotify" => Some(Self::CmdAlleyFundsScNotify),
             "CmdLogisticsDetonateStarSkiffScRsp" => {
                 Some(Self::CmdLogisticsDetonateStarSkiffScRsp)
             }
-            "CmdLogisticsInfoScNotify" => Some(Self::CmdLogisticsInfoScNotify),
-            "CmdGetSaveLogisticsMapCsReq" => Some(Self::CmdGetSaveLogisticsMapCsReq),
-            "CmdSaveLogisticsCsReq" => Some(Self::CmdSaveLogisticsCsReq),
+            "CmdAlleyGuaranteedFundsScRsp" => Some(Self::CmdAlleyGuaranteedFundsScRsp),
+            "CmdStartAlleyEventScRsp" => Some(Self::CmdStartAlleyEventScRsp),
+            "CmdRefreshAlleyOrderCsReq" => Some(Self::CmdRefreshAlleyOrderCsReq),
+            "CmdAlleyShipUsedCountScNotify" => Some(Self::CmdAlleyShipUsedCountScNotify),
+            "CmdAlleyShipUnlockScNotify" => Some(Self::CmdAlleyShipUnlockScNotify),
+            "CmdLogisticsGameCsReq" => Some(Self::CmdLogisticsGameCsReq),
+            "CmdAlleyShipmentEventEffectsScNotify" => {
+                Some(Self::CmdAlleyShipmentEventEffectsScNotify)
+            }
+            "CmdPrestigeLevelUpScRsp" => Some(Self::CmdPrestigeLevelUpScRsp),
+            "CmdAlleyEventEffectNotify" => Some(Self::CmdAlleyEventEffectNotify),
+            "CmdGetAlleyInfoScRsp" => Some(Self::CmdGetAlleyInfoScRsp),
             _ => None,
         }
     }
@@ -3521,10 +3479,10 @@ impl CmdAlleyType {
 #[repr(i32)]
 pub enum CmdArchiveType {
     None = 0,
-    CmdGetUpdatedArchiveDataCsReq = 2303,
-    CmdGetArchiveDataScRsp = 2320,
-    CmdGetUpdatedArchiveDataScRsp = 2346,
-    CmdGetArchiveDataCsReq = 2359,
+    CmdGetUpdatedArchiveDataScRsp = 2327,
+    CmdGetArchiveDataCsReq = 2336,
+    CmdGetUpdatedArchiveDataCsReq = 2384,
+    CmdGetArchiveDataScRsp = 2395,
 }
 impl CmdArchiveType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -3534,24 +3492,24 @@ impl CmdArchiveType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdArchiveType::None => "CmdArchiveTypeNone",
-            CmdArchiveType::CmdGetUpdatedArchiveDataCsReq => {
-                "CmdGetUpdatedArchiveDataCsReq"
-            }
-            CmdArchiveType::CmdGetArchiveDataScRsp => "CmdGetArchiveDataScRsp",
             CmdArchiveType::CmdGetUpdatedArchiveDataScRsp => {
                 "CmdGetUpdatedArchiveDataScRsp"
             }
             CmdArchiveType::CmdGetArchiveDataCsReq => "CmdGetArchiveDataCsReq",
+            CmdArchiveType::CmdGetUpdatedArchiveDataCsReq => {
+                "CmdGetUpdatedArchiveDataCsReq"
+            }
+            CmdArchiveType::CmdGetArchiveDataScRsp => "CmdGetArchiveDataScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdArchiveTypeNone" => Some(Self::None),
-            "CmdGetUpdatedArchiveDataCsReq" => Some(Self::CmdGetUpdatedArchiveDataCsReq),
-            "CmdGetArchiveDataScRsp" => Some(Self::CmdGetArchiveDataScRsp),
             "CmdGetUpdatedArchiveDataScRsp" => Some(Self::CmdGetUpdatedArchiveDataScRsp),
             "CmdGetArchiveDataCsReq" => Some(Self::CmdGetArchiveDataCsReq),
+            "CmdGetUpdatedArchiveDataCsReq" => Some(Self::CmdGetUpdatedArchiveDataCsReq),
+            "CmdGetArchiveDataScRsp" => Some(Self::CmdGetArchiveDataScRsp),
             _ => None,
         }
     }
@@ -3561,34 +3519,38 @@ impl CmdArchiveType {
 #[repr(i32)]
 pub enum CmdAvatarType {
     None = 0,
-    CmdAvatarExpUpCsReq = 303,
-    CmdMarkAvatarCsReq = 309,
-    CmdDressAvatarScRsp = 316,
+    CmdDressRelicAvatarCsReq = 305,
+    CmdTakePromotionRewardCsReq = 307,
+    CmdSetGrowthTargetAvatarScRsp = 310,
+    CmdTakeOffAvatarSkinCsReq = 312,
     CmdTakeOffRelicCsReq = 319,
-    CmdGetAvatarDataScRsp = 320,
-    CmdTakePromotionRewardCsReq = 325,
-    CmdTakePromotionRewardScRsp = 329,
-    CmdAddAvatarScNotify = 330,
-    CmdDressAvatarSkinCsReq = 333,
-    CmdPromoteAvatarCsReq = 334,
-    CmdPromoteAvatarScRsp = 337,
-    CmdUnlockSkilltreeCsReq = 339,
-    CmdAvatarExpUpScRsp = 346,
-    CmdTakeOffEquipmentCsReq = 347,
-    CmdRankUpAvatarScRsp = 348,
-    CmdDressAvatarSkinScRsp = 351,
-    CmdUnlockSkilltreeScRsp = 353,
-    CmdGetAvatarDataCsReq = 359,
-    CmdTakeOffRelicScRsp = 361,
-    CmdTakeOffAvatarSkinCsReq = 373,
-    CmdTakeOffEquipmentScRsp = 374,
-    CmdRankUpAvatarCsReq = 375,
-    CmdDressRelicAvatarScRsp = 379,
-    CmdDressAvatarCsReq = 380,
-    CmdTakeOffAvatarSkinScRsp = 383,
-    CmdDressRelicAvatarCsReq = 390,
-    CmdMarkAvatarScRsp = 393,
-    CmdUnlockAvatarSkinScNotify = 399,
+    CmdDressAvatarCsReq = 324,
+    CmdRankUpAvatarCsReq = 325,
+    CmdTakeOffRelicScRsp = 326,
+    CmdAvatarExpUpScRsp = 327,
+    CmdUnlockSkilltreeScRsp = 328,
+    CmdUnlockAvatarSkinScNotify = 329,
+    CmdTakeOffEquipmentCsReq = 334,
+    CmdGetAvatarDataCsReq = 336,
+    CmdTakeOffEquipmentScRsp = 343,
+    CmdAddAvatarScNotify = 346,
+    CmdMarkAvatarScRsp = 348,
+    CmdMarkAvatarCsReq = 350,
+    CmdPromoteAvatarCsReq = 352,
+    CmdTakePromotionRewardScRsp = 353,
+    CmdSetGrowthTargetAvatarCsReq = 358,
+    CmdDressAvatarSkinScRsp = 359,
+    CmdUnlockSkilltreeCsReq = 367,
+    CmdPromoteAvatarScRsp = 374,
+    CmdDressRelicAvatarScRsp = 375,
+    CmdGrowthTargetAvatarChangedScNotify = 376,
+    CmdTakeOffAvatarSkinScRsp = 378,
+    CmdAvatarExpUpCsReq = 384,
+    CmdAddMultiPathAvatarScNotify = 388,
+    CmdDressAvatarSkinCsReq = 390,
+    CmdDressAvatarScRsp = 393,
+    CmdGetAvatarDataScRsp = 395,
+    CmdRankUpAvatarScRsp = 396,
 }
 impl CmdAvatarType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -3598,68 +3560,86 @@ impl CmdAvatarType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdAvatarType::None => "CmdAvatarTypeNone",
-            CmdAvatarType::CmdAvatarExpUpCsReq => "CmdAvatarExpUpCsReq",
-            CmdAvatarType::CmdMarkAvatarCsReq => "CmdMarkAvatarCsReq",
-            CmdAvatarType::CmdDressAvatarScRsp => "CmdDressAvatarScRsp",
-            CmdAvatarType::CmdTakeOffRelicCsReq => "CmdTakeOffRelicCsReq",
-            CmdAvatarType::CmdGetAvatarDataScRsp => "CmdGetAvatarDataScRsp",
-            CmdAvatarType::CmdTakePromotionRewardCsReq => "CmdTakePromotionRewardCsReq",
-            CmdAvatarType::CmdTakePromotionRewardScRsp => "CmdTakePromotionRewardScRsp",
-            CmdAvatarType::CmdAddAvatarScNotify => "CmdAddAvatarScNotify",
-            CmdAvatarType::CmdDressAvatarSkinCsReq => "CmdDressAvatarSkinCsReq",
-            CmdAvatarType::CmdPromoteAvatarCsReq => "CmdPromoteAvatarCsReq",
-            CmdAvatarType::CmdPromoteAvatarScRsp => "CmdPromoteAvatarScRsp",
-            CmdAvatarType::CmdUnlockSkilltreeCsReq => "CmdUnlockSkilltreeCsReq",
-            CmdAvatarType::CmdAvatarExpUpScRsp => "CmdAvatarExpUpScRsp",
-            CmdAvatarType::CmdTakeOffEquipmentCsReq => "CmdTakeOffEquipmentCsReq",
-            CmdAvatarType::CmdRankUpAvatarScRsp => "CmdRankUpAvatarScRsp",
-            CmdAvatarType::CmdDressAvatarSkinScRsp => "CmdDressAvatarSkinScRsp",
-            CmdAvatarType::CmdUnlockSkilltreeScRsp => "CmdUnlockSkilltreeScRsp",
-            CmdAvatarType::CmdGetAvatarDataCsReq => "CmdGetAvatarDataCsReq",
-            CmdAvatarType::CmdTakeOffRelicScRsp => "CmdTakeOffRelicScRsp",
-            CmdAvatarType::CmdTakeOffAvatarSkinCsReq => "CmdTakeOffAvatarSkinCsReq",
-            CmdAvatarType::CmdTakeOffEquipmentScRsp => "CmdTakeOffEquipmentScRsp",
-            CmdAvatarType::CmdRankUpAvatarCsReq => "CmdRankUpAvatarCsReq",
-            CmdAvatarType::CmdDressRelicAvatarScRsp => "CmdDressRelicAvatarScRsp",
-            CmdAvatarType::CmdDressAvatarCsReq => "CmdDressAvatarCsReq",
-            CmdAvatarType::CmdTakeOffAvatarSkinScRsp => "CmdTakeOffAvatarSkinScRsp",
             CmdAvatarType::CmdDressRelicAvatarCsReq => "CmdDressRelicAvatarCsReq",
-            CmdAvatarType::CmdMarkAvatarScRsp => "CmdMarkAvatarScRsp",
+            CmdAvatarType::CmdTakePromotionRewardCsReq => "CmdTakePromotionRewardCsReq",
+            CmdAvatarType::CmdSetGrowthTargetAvatarScRsp => {
+                "CmdSetGrowthTargetAvatarScRsp"
+            }
+            CmdAvatarType::CmdTakeOffAvatarSkinCsReq => "CmdTakeOffAvatarSkinCsReq",
+            CmdAvatarType::CmdTakeOffRelicCsReq => "CmdTakeOffRelicCsReq",
+            CmdAvatarType::CmdDressAvatarCsReq => "CmdDressAvatarCsReq",
+            CmdAvatarType::CmdRankUpAvatarCsReq => "CmdRankUpAvatarCsReq",
+            CmdAvatarType::CmdTakeOffRelicScRsp => "CmdTakeOffRelicScRsp",
+            CmdAvatarType::CmdAvatarExpUpScRsp => "CmdAvatarExpUpScRsp",
+            CmdAvatarType::CmdUnlockSkilltreeScRsp => "CmdUnlockSkilltreeScRsp",
             CmdAvatarType::CmdUnlockAvatarSkinScNotify => "CmdUnlockAvatarSkinScNotify",
+            CmdAvatarType::CmdTakeOffEquipmentCsReq => "CmdTakeOffEquipmentCsReq",
+            CmdAvatarType::CmdGetAvatarDataCsReq => "CmdGetAvatarDataCsReq",
+            CmdAvatarType::CmdTakeOffEquipmentScRsp => "CmdTakeOffEquipmentScRsp",
+            CmdAvatarType::CmdAddAvatarScNotify => "CmdAddAvatarScNotify",
+            CmdAvatarType::CmdMarkAvatarScRsp => "CmdMarkAvatarScRsp",
+            CmdAvatarType::CmdMarkAvatarCsReq => "CmdMarkAvatarCsReq",
+            CmdAvatarType::CmdPromoteAvatarCsReq => "CmdPromoteAvatarCsReq",
+            CmdAvatarType::CmdTakePromotionRewardScRsp => "CmdTakePromotionRewardScRsp",
+            CmdAvatarType::CmdSetGrowthTargetAvatarCsReq => {
+                "CmdSetGrowthTargetAvatarCsReq"
+            }
+            CmdAvatarType::CmdDressAvatarSkinScRsp => "CmdDressAvatarSkinScRsp",
+            CmdAvatarType::CmdUnlockSkilltreeCsReq => "CmdUnlockSkilltreeCsReq",
+            CmdAvatarType::CmdPromoteAvatarScRsp => "CmdPromoteAvatarScRsp",
+            CmdAvatarType::CmdDressRelicAvatarScRsp => "CmdDressRelicAvatarScRsp",
+            CmdAvatarType::CmdGrowthTargetAvatarChangedScNotify => {
+                "CmdGrowthTargetAvatarChangedScNotify"
+            }
+            CmdAvatarType::CmdTakeOffAvatarSkinScRsp => "CmdTakeOffAvatarSkinScRsp",
+            CmdAvatarType::CmdAvatarExpUpCsReq => "CmdAvatarExpUpCsReq",
+            CmdAvatarType::CmdAddMultiPathAvatarScNotify => {
+                "CmdAddMultiPathAvatarScNotify"
+            }
+            CmdAvatarType::CmdDressAvatarSkinCsReq => "CmdDressAvatarSkinCsReq",
+            CmdAvatarType::CmdDressAvatarScRsp => "CmdDressAvatarScRsp",
+            CmdAvatarType::CmdGetAvatarDataScRsp => "CmdGetAvatarDataScRsp",
+            CmdAvatarType::CmdRankUpAvatarScRsp => "CmdRankUpAvatarScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdAvatarTypeNone" => Some(Self::None),
-            "CmdAvatarExpUpCsReq" => Some(Self::CmdAvatarExpUpCsReq),
-            "CmdMarkAvatarCsReq" => Some(Self::CmdMarkAvatarCsReq),
-            "CmdDressAvatarScRsp" => Some(Self::CmdDressAvatarScRsp),
-            "CmdTakeOffRelicCsReq" => Some(Self::CmdTakeOffRelicCsReq),
-            "CmdGetAvatarDataScRsp" => Some(Self::CmdGetAvatarDataScRsp),
-            "CmdTakePromotionRewardCsReq" => Some(Self::CmdTakePromotionRewardCsReq),
-            "CmdTakePromotionRewardScRsp" => Some(Self::CmdTakePromotionRewardScRsp),
-            "CmdAddAvatarScNotify" => Some(Self::CmdAddAvatarScNotify),
-            "CmdDressAvatarSkinCsReq" => Some(Self::CmdDressAvatarSkinCsReq),
-            "CmdPromoteAvatarCsReq" => Some(Self::CmdPromoteAvatarCsReq),
-            "CmdPromoteAvatarScRsp" => Some(Self::CmdPromoteAvatarScRsp),
-            "CmdUnlockSkilltreeCsReq" => Some(Self::CmdUnlockSkilltreeCsReq),
-            "CmdAvatarExpUpScRsp" => Some(Self::CmdAvatarExpUpScRsp),
-            "CmdTakeOffEquipmentCsReq" => Some(Self::CmdTakeOffEquipmentCsReq),
-            "CmdRankUpAvatarScRsp" => Some(Self::CmdRankUpAvatarScRsp),
-            "CmdDressAvatarSkinScRsp" => Some(Self::CmdDressAvatarSkinScRsp),
-            "CmdUnlockSkilltreeScRsp" => Some(Self::CmdUnlockSkilltreeScRsp),
-            "CmdGetAvatarDataCsReq" => Some(Self::CmdGetAvatarDataCsReq),
-            "CmdTakeOffRelicScRsp" => Some(Self::CmdTakeOffRelicScRsp),
-            "CmdTakeOffAvatarSkinCsReq" => Some(Self::CmdTakeOffAvatarSkinCsReq),
-            "CmdTakeOffEquipmentScRsp" => Some(Self::CmdTakeOffEquipmentScRsp),
-            "CmdRankUpAvatarCsReq" => Some(Self::CmdRankUpAvatarCsReq),
-            "CmdDressRelicAvatarScRsp" => Some(Self::CmdDressRelicAvatarScRsp),
-            "CmdDressAvatarCsReq" => Some(Self::CmdDressAvatarCsReq),
-            "CmdTakeOffAvatarSkinScRsp" => Some(Self::CmdTakeOffAvatarSkinScRsp),
             "CmdDressRelicAvatarCsReq" => Some(Self::CmdDressRelicAvatarCsReq),
-            "CmdMarkAvatarScRsp" => Some(Self::CmdMarkAvatarScRsp),
+            "CmdTakePromotionRewardCsReq" => Some(Self::CmdTakePromotionRewardCsReq),
+            "CmdSetGrowthTargetAvatarScRsp" => Some(Self::CmdSetGrowthTargetAvatarScRsp),
+            "CmdTakeOffAvatarSkinCsReq" => Some(Self::CmdTakeOffAvatarSkinCsReq),
+            "CmdTakeOffRelicCsReq" => Some(Self::CmdTakeOffRelicCsReq),
+            "CmdDressAvatarCsReq" => Some(Self::CmdDressAvatarCsReq),
+            "CmdRankUpAvatarCsReq" => Some(Self::CmdRankUpAvatarCsReq),
+            "CmdTakeOffRelicScRsp" => Some(Self::CmdTakeOffRelicScRsp),
+            "CmdAvatarExpUpScRsp" => Some(Self::CmdAvatarExpUpScRsp),
+            "CmdUnlockSkilltreeScRsp" => Some(Self::CmdUnlockSkilltreeScRsp),
             "CmdUnlockAvatarSkinScNotify" => Some(Self::CmdUnlockAvatarSkinScNotify),
+            "CmdTakeOffEquipmentCsReq" => Some(Self::CmdTakeOffEquipmentCsReq),
+            "CmdGetAvatarDataCsReq" => Some(Self::CmdGetAvatarDataCsReq),
+            "CmdTakeOffEquipmentScRsp" => Some(Self::CmdTakeOffEquipmentScRsp),
+            "CmdAddAvatarScNotify" => Some(Self::CmdAddAvatarScNotify),
+            "CmdMarkAvatarScRsp" => Some(Self::CmdMarkAvatarScRsp),
+            "CmdMarkAvatarCsReq" => Some(Self::CmdMarkAvatarCsReq),
+            "CmdPromoteAvatarCsReq" => Some(Self::CmdPromoteAvatarCsReq),
+            "CmdTakePromotionRewardScRsp" => Some(Self::CmdTakePromotionRewardScRsp),
+            "CmdSetGrowthTargetAvatarCsReq" => Some(Self::CmdSetGrowthTargetAvatarCsReq),
+            "CmdDressAvatarSkinScRsp" => Some(Self::CmdDressAvatarSkinScRsp),
+            "CmdUnlockSkilltreeCsReq" => Some(Self::CmdUnlockSkilltreeCsReq),
+            "CmdPromoteAvatarScRsp" => Some(Self::CmdPromoteAvatarScRsp),
+            "CmdDressRelicAvatarScRsp" => Some(Self::CmdDressRelicAvatarScRsp),
+            "CmdGrowthTargetAvatarChangedScNotify" => {
+                Some(Self::CmdGrowthTargetAvatarChangedScNotify)
+            }
+            "CmdTakeOffAvatarSkinScRsp" => Some(Self::CmdTakeOffAvatarSkinScRsp),
+            "CmdAvatarExpUpCsReq" => Some(Self::CmdAvatarExpUpCsReq),
+            "CmdAddMultiPathAvatarScNotify" => Some(Self::CmdAddMultiPathAvatarScNotify),
+            "CmdDressAvatarSkinCsReq" => Some(Self::CmdDressAvatarSkinCsReq),
+            "CmdDressAvatarScRsp" => Some(Self::CmdDressAvatarScRsp),
+            "CmdGetAvatarDataScRsp" => Some(Self::CmdGetAvatarDataScRsp),
+            "CmdRankUpAvatarScRsp" => Some(Self::CmdRankUpAvatarScRsp),
             _ => None,
         }
     }
@@ -3669,20 +3649,20 @@ impl CmdAvatarType {
 #[repr(i32)]
 pub enum CmdBattleType {
     None = 0,
-    CmdQuitBattleCsReq = 103,
-    CmdBattleLogReportCsReq = 116,
-    CmdPveBattleResultScRsp = 120,
-    CmdReBattleAfterBattleLoseCsNotify = 130,
-    CmdSyncClientResVersionCsReq = 134,
-    CmdSyncClientResVersionScRsp = 137,
-    CmdGetCurBattleInfoCsReq = 139,
-    CmdQuitBattleScRsp = 146,
-    CmdBattleLogReportScRsp = 147,
-    CmdGetCurBattleInfoScRsp = 153,
-    CmdPveBattleResultCsReq = 159,
-    CmdServerSimulateBattleFinishScNotify = 174,
-    CmdRebattleByClientCsNotify = 175,
-    CmdQuitBattleScNotify = 180,
+    CmdQuitBattleScNotify = 124,
+    CmdRebattleByClientCsNotify = 125,
+    CmdQuitBattleScRsp = 127,
+    CmdGetCurBattleInfoScRsp = 128,
+    CmdBattleLogReportScRsp = 134,
+    CmdPveBattleResultCsReq = 136,
+    CmdServerSimulateBattleFinishScNotify = 143,
+    CmdReBattleAfterBattleLoseCsNotify = 146,
+    CmdSyncClientResVersionCsReq = 152,
+    CmdGetCurBattleInfoCsReq = 167,
+    CmdSyncClientResVersionScRsp = 174,
+    CmdQuitBattleCsReq = 184,
+    CmdBattleLogReportCsReq = 193,
+    CmdPveBattleResultScRsp = 195,
 }
 impl CmdBattleType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -3692,48 +3672,48 @@ impl CmdBattleType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdBattleType::None => "CmdBattleTypeNone",
-            CmdBattleType::CmdQuitBattleCsReq => "CmdQuitBattleCsReq",
-            CmdBattleType::CmdBattleLogReportCsReq => "CmdBattleLogReportCsReq",
-            CmdBattleType::CmdPveBattleResultScRsp => "CmdPVEBattleResultScRsp",
-            CmdBattleType::CmdReBattleAfterBattleLoseCsNotify => {
-                "CmdReBattleAfterBattleLoseCsNotify"
-            }
-            CmdBattleType::CmdSyncClientResVersionCsReq => "CmdSyncClientResVersionCsReq",
-            CmdBattleType::CmdSyncClientResVersionScRsp => "CmdSyncClientResVersionScRsp",
-            CmdBattleType::CmdGetCurBattleInfoCsReq => "CmdGetCurBattleInfoCsReq",
+            CmdBattleType::CmdQuitBattleScNotify => "CmdQuitBattleScNotify",
+            CmdBattleType::CmdRebattleByClientCsNotify => "CmdRebattleByClientCsNotify",
             CmdBattleType::CmdQuitBattleScRsp => "CmdQuitBattleScRsp",
-            CmdBattleType::CmdBattleLogReportScRsp => "CmdBattleLogReportScRsp",
             CmdBattleType::CmdGetCurBattleInfoScRsp => "CmdGetCurBattleInfoScRsp",
+            CmdBattleType::CmdBattleLogReportScRsp => "CmdBattleLogReportScRsp",
             CmdBattleType::CmdPveBattleResultCsReq => "CmdPVEBattleResultCsReq",
             CmdBattleType::CmdServerSimulateBattleFinishScNotify => {
                 "CmdServerSimulateBattleFinishScNotify"
             }
-            CmdBattleType::CmdRebattleByClientCsNotify => "CmdRebattleByClientCsNotify",
-            CmdBattleType::CmdQuitBattleScNotify => "CmdQuitBattleScNotify",
+            CmdBattleType::CmdReBattleAfterBattleLoseCsNotify => {
+                "CmdReBattleAfterBattleLoseCsNotify"
+            }
+            CmdBattleType::CmdSyncClientResVersionCsReq => "CmdSyncClientResVersionCsReq",
+            CmdBattleType::CmdGetCurBattleInfoCsReq => "CmdGetCurBattleInfoCsReq",
+            CmdBattleType::CmdSyncClientResVersionScRsp => "CmdSyncClientResVersionScRsp",
+            CmdBattleType::CmdQuitBattleCsReq => "CmdQuitBattleCsReq",
+            CmdBattleType::CmdBattleLogReportCsReq => "CmdBattleLogReportCsReq",
+            CmdBattleType::CmdPveBattleResultScRsp => "CmdPVEBattleResultScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdBattleTypeNone" => Some(Self::None),
-            "CmdQuitBattleCsReq" => Some(Self::CmdQuitBattleCsReq),
-            "CmdBattleLogReportCsReq" => Some(Self::CmdBattleLogReportCsReq),
-            "CmdPVEBattleResultScRsp" => Some(Self::CmdPveBattleResultScRsp),
-            "CmdReBattleAfterBattleLoseCsNotify" => {
-                Some(Self::CmdReBattleAfterBattleLoseCsNotify)
-            }
-            "CmdSyncClientResVersionCsReq" => Some(Self::CmdSyncClientResVersionCsReq),
-            "CmdSyncClientResVersionScRsp" => Some(Self::CmdSyncClientResVersionScRsp),
-            "CmdGetCurBattleInfoCsReq" => Some(Self::CmdGetCurBattleInfoCsReq),
+            "CmdQuitBattleScNotify" => Some(Self::CmdQuitBattleScNotify),
+            "CmdRebattleByClientCsNotify" => Some(Self::CmdRebattleByClientCsNotify),
             "CmdQuitBattleScRsp" => Some(Self::CmdQuitBattleScRsp),
-            "CmdBattleLogReportScRsp" => Some(Self::CmdBattleLogReportScRsp),
             "CmdGetCurBattleInfoScRsp" => Some(Self::CmdGetCurBattleInfoScRsp),
+            "CmdBattleLogReportScRsp" => Some(Self::CmdBattleLogReportScRsp),
             "CmdPVEBattleResultCsReq" => Some(Self::CmdPveBattleResultCsReq),
             "CmdServerSimulateBattleFinishScNotify" => {
                 Some(Self::CmdServerSimulateBattleFinishScNotify)
             }
-            "CmdRebattleByClientCsNotify" => Some(Self::CmdRebattleByClientCsNotify),
-            "CmdQuitBattleScNotify" => Some(Self::CmdQuitBattleScNotify),
+            "CmdReBattleAfterBattleLoseCsNotify" => {
+                Some(Self::CmdReBattleAfterBattleLoseCsNotify)
+            }
+            "CmdSyncClientResVersionCsReq" => Some(Self::CmdSyncClientResVersionCsReq),
+            "CmdGetCurBattleInfoCsReq" => Some(Self::CmdGetCurBattleInfoCsReq),
+            "CmdSyncClientResVersionScRsp" => Some(Self::CmdSyncClientResVersionScRsp),
+            "CmdQuitBattleCsReq" => Some(Self::CmdQuitBattleCsReq),
+            "CmdBattleLogReportCsReq" => Some(Self::CmdBattleLogReportCsReq),
+            "CmdPVEBattleResultScRsp" => Some(Self::CmdPveBattleResultScRsp),
             _ => None,
         }
     }
@@ -3743,11 +3723,11 @@ impl CmdBattleType {
 #[repr(i32)]
 pub enum CmdBattleCollegeType {
     None = 0,
-    CmdBattleCollegeDataChangeScNotify = 5703,
-    CmdGetBattleCollegeDataScRsp = 5720,
-    CmdStartBattleCollegeScRsp = 5739,
-    CmdStartBattleCollegeCsReq = 5746,
-    CmdGetBattleCollegeDataCsReq = 5759,
+    CmdStartBattleCollegeCsReq = 5727,
+    CmdGetBattleCollegeDataCsReq = 5736,
+    CmdStartBattleCollegeScRsp = 5767,
+    CmdBattleCollegeDataChangeScNotify = 5784,
+    CmdGetBattleCollegeDataScRsp = 5795,
 }
 impl CmdBattleCollegeType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -3757,20 +3737,20 @@ impl CmdBattleCollegeType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdBattleCollegeType::None => "CmdBattleCollegeTypeNone",
-            CmdBattleCollegeType::CmdBattleCollegeDataChangeScNotify => {
-                "CmdBattleCollegeDataChangeScNotify"
-            }
-            CmdBattleCollegeType::CmdGetBattleCollegeDataScRsp => {
-                "CmdGetBattleCollegeDataScRsp"
-            }
-            CmdBattleCollegeType::CmdStartBattleCollegeScRsp => {
-                "CmdStartBattleCollegeScRsp"
-            }
             CmdBattleCollegeType::CmdStartBattleCollegeCsReq => {
                 "CmdStartBattleCollegeCsReq"
             }
             CmdBattleCollegeType::CmdGetBattleCollegeDataCsReq => {
                 "CmdGetBattleCollegeDataCsReq"
+            }
+            CmdBattleCollegeType::CmdStartBattleCollegeScRsp => {
+                "CmdStartBattleCollegeScRsp"
+            }
+            CmdBattleCollegeType::CmdBattleCollegeDataChangeScNotify => {
+                "CmdBattleCollegeDataChangeScNotify"
+            }
+            CmdBattleCollegeType::CmdGetBattleCollegeDataScRsp => {
+                "CmdGetBattleCollegeDataScRsp"
             }
         }
     }
@@ -3778,13 +3758,13 @@ impl CmdBattleCollegeType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdBattleCollegeTypeNone" => Some(Self::None),
+            "CmdStartBattleCollegeCsReq" => Some(Self::CmdStartBattleCollegeCsReq),
+            "CmdGetBattleCollegeDataCsReq" => Some(Self::CmdGetBattleCollegeDataCsReq),
+            "CmdStartBattleCollegeScRsp" => Some(Self::CmdStartBattleCollegeScRsp),
             "CmdBattleCollegeDataChangeScNotify" => {
                 Some(Self::CmdBattleCollegeDataChangeScNotify)
             }
             "CmdGetBattleCollegeDataScRsp" => Some(Self::CmdGetBattleCollegeDataScRsp),
-            "CmdStartBattleCollegeScRsp" => Some(Self::CmdStartBattleCollegeScRsp),
-            "CmdStartBattleCollegeCsReq" => Some(Self::CmdStartBattleCollegeCsReq),
-            "CmdGetBattleCollegeDataCsReq" => Some(Self::CmdGetBattleCollegeDataCsReq),
             _ => None,
         }
     }
@@ -3794,13 +3774,13 @@ impl CmdBattleCollegeType {
 #[repr(i32)]
 pub enum CmdBattlePassType {
     None = 0,
-    CmdBuyBpLevelScRsp = 3034,
-    CmdTakeAllRewardCsReq = 3037,
-    CmdTakeBpRewardScRsp = 3039,
-    CmdTakeBpRewardCsReq = 3046,
-    CmdBuyBpLevelCsReq = 3053,
-    CmdBattlePassInfoNotify = 3059,
-    CmdTakeAllRewardScRsp = 3080,
+    CmdTakeAllRewardScRsp = 3024,
+    CmdTakeBpRewardCsReq = 3027,
+    CmdBuyBpLevelCsReq = 3028,
+    CmdBattlePassInfoNotify = 3036,
+    CmdBuyBpLevelScRsp = 3052,
+    CmdTakeBpRewardScRsp = 3067,
+    CmdTakeAllRewardCsReq = 3074,
 }
 impl CmdBattlePassType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -3810,26 +3790,26 @@ impl CmdBattlePassType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdBattlePassType::None => "CmdBattlePassTypeNone",
-            CmdBattlePassType::CmdBuyBpLevelScRsp => "CmdBuyBpLevelScRsp",
-            CmdBattlePassType::CmdTakeAllRewardCsReq => "CmdTakeAllRewardCsReq",
-            CmdBattlePassType::CmdTakeBpRewardScRsp => "CmdTakeBpRewardScRsp",
+            CmdBattlePassType::CmdTakeAllRewardScRsp => "CmdTakeAllRewardScRsp",
             CmdBattlePassType::CmdTakeBpRewardCsReq => "CmdTakeBpRewardCsReq",
             CmdBattlePassType::CmdBuyBpLevelCsReq => "CmdBuyBpLevelCsReq",
             CmdBattlePassType::CmdBattlePassInfoNotify => "CmdBattlePassInfoNotify",
-            CmdBattlePassType::CmdTakeAllRewardScRsp => "CmdTakeAllRewardScRsp",
+            CmdBattlePassType::CmdBuyBpLevelScRsp => "CmdBuyBpLevelScRsp",
+            CmdBattlePassType::CmdTakeBpRewardScRsp => "CmdTakeBpRewardScRsp",
+            CmdBattlePassType::CmdTakeAllRewardCsReq => "CmdTakeAllRewardCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdBattlePassTypeNone" => Some(Self::None),
-            "CmdBuyBpLevelScRsp" => Some(Self::CmdBuyBpLevelScRsp),
-            "CmdTakeAllRewardCsReq" => Some(Self::CmdTakeAllRewardCsReq),
-            "CmdTakeBpRewardScRsp" => Some(Self::CmdTakeBpRewardScRsp),
+            "CmdTakeAllRewardScRsp" => Some(Self::CmdTakeAllRewardScRsp),
             "CmdTakeBpRewardCsReq" => Some(Self::CmdTakeBpRewardCsReq),
             "CmdBuyBpLevelCsReq" => Some(Self::CmdBuyBpLevelCsReq),
             "CmdBattlePassInfoNotify" => Some(Self::CmdBattlePassInfoNotify),
-            "CmdTakeAllRewardScRsp" => Some(Self::CmdTakeAllRewardScRsp),
+            "CmdBuyBpLevelScRsp" => Some(Self::CmdBuyBpLevelScRsp),
+            "CmdTakeBpRewardScRsp" => Some(Self::CmdTakeBpRewardScRsp),
+            "CmdTakeAllRewardCsReq" => Some(Self::CmdTakeAllRewardCsReq),
             _ => None,
         }
     }
@@ -3839,22 +3819,22 @@ impl CmdBattlePassType {
 #[repr(i32)]
 pub enum CmdBoxingClubType {
     None = 0,
-    CmdMatchBoxingClubOpponentCsReq = 4203,
-    CmdBoxingClubChallengeUpdateScNotify = 4216,
-    CmdGetBoxingClubInfoScRsp = 4220,
-    CmdSetBoxingClubResonanceLineupCsReq = 4230,
-    CmdGiveUpBoxingClubChallengeCsReq = 4234,
-    CmdGiveUpBoxingClubChallengeScRsp = 4237,
-    CmdStartBoxingClubBattleCsReq = 4239,
-    CmdMatchBoxingClubOpponentScRsp = 4246,
-    CmdChooseBoxingClubResonanceCsReq = 4247,
-    CmdChooseBoxingClubStageOptionalBuffCsReq = 4248,
-    CmdStartBoxingClubBattleScRsp = 4253,
-    CmdGetBoxingClubInfoCsReq = 4259,
-    CmdChooseBoxingClubResonanceScRsp = 4274,
-    CmdSetBoxingClubResonanceLineupScRsp = 4275,
-    CmdBoxingClubRewardScNotify = 4280,
-    CmdChooseBoxingClubStageOptionalBuffScRsp = 4290,
+    CmdChooseBoxingClubStageOptionalBuffScRsp = 4205,
+    CmdBoxingClubRewardScNotify = 4224,
+    CmdSetBoxingClubResonanceLineupScRsp = 4225,
+    CmdMatchBoxingClubOpponentScRsp = 4227,
+    CmdStartBoxingClubBattleScRsp = 4228,
+    CmdChooseBoxingClubResonanceCsReq = 4234,
+    CmdGetBoxingClubInfoCsReq = 4236,
+    CmdChooseBoxingClubResonanceScRsp = 4243,
+    CmdSetBoxingClubResonanceLineupCsReq = 4246,
+    CmdGiveUpBoxingClubChallengeCsReq = 4252,
+    CmdStartBoxingClubBattleCsReq = 4267,
+    CmdGiveUpBoxingClubChallengeScRsp = 4274,
+    CmdMatchBoxingClubOpponentCsReq = 4284,
+    CmdBoxingClubChallengeUpdateScNotify = 4293,
+    CmdGetBoxingClubInfoScRsp = 4295,
+    CmdChooseBoxingClubStageOptionalBuffCsReq = 4296,
 }
 impl CmdBoxingClubType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -3864,6 +3844,40 @@ impl CmdBoxingClubType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdBoxingClubType::None => "CmdBoxingClubTypeNone",
+            CmdBoxingClubType::CmdChooseBoxingClubStageOptionalBuffScRsp => {
+                "CmdChooseBoxingClubStageOptionalBuffScRsp"
+            }
+            CmdBoxingClubType::CmdBoxingClubRewardScNotify => {
+                "CmdBoxingClubRewardScNotify"
+            }
+            CmdBoxingClubType::CmdSetBoxingClubResonanceLineupScRsp => {
+                "CmdSetBoxingClubResonanceLineupScRsp"
+            }
+            CmdBoxingClubType::CmdMatchBoxingClubOpponentScRsp => {
+                "CmdMatchBoxingClubOpponentScRsp"
+            }
+            CmdBoxingClubType::CmdStartBoxingClubBattleScRsp => {
+                "CmdStartBoxingClubBattleScRsp"
+            }
+            CmdBoxingClubType::CmdChooseBoxingClubResonanceCsReq => {
+                "CmdChooseBoxingClubResonanceCsReq"
+            }
+            CmdBoxingClubType::CmdGetBoxingClubInfoCsReq => "CmdGetBoxingClubInfoCsReq",
+            CmdBoxingClubType::CmdChooseBoxingClubResonanceScRsp => {
+                "CmdChooseBoxingClubResonanceScRsp"
+            }
+            CmdBoxingClubType::CmdSetBoxingClubResonanceLineupCsReq => {
+                "CmdSetBoxingClubResonanceLineupCsReq"
+            }
+            CmdBoxingClubType::CmdGiveUpBoxingClubChallengeCsReq => {
+                "CmdGiveUpBoxingClubChallengeCsReq"
+            }
+            CmdBoxingClubType::CmdStartBoxingClubBattleCsReq => {
+                "CmdStartBoxingClubBattleCsReq"
+            }
+            CmdBoxingClubType::CmdGiveUpBoxingClubChallengeScRsp => {
+                "CmdGiveUpBoxingClubChallengeScRsp"
+            }
             CmdBoxingClubType::CmdMatchBoxingClubOpponentCsReq => {
                 "CmdMatchBoxingClubOpponentCsReq"
             }
@@ -3871,42 +3885,8 @@ impl CmdBoxingClubType {
                 "CmdBoxingClubChallengeUpdateScNotify"
             }
             CmdBoxingClubType::CmdGetBoxingClubInfoScRsp => "CmdGetBoxingClubInfoScRsp",
-            CmdBoxingClubType::CmdSetBoxingClubResonanceLineupCsReq => {
-                "CmdSetBoxingClubResonanceLineupCsReq"
-            }
-            CmdBoxingClubType::CmdGiveUpBoxingClubChallengeCsReq => {
-                "CmdGiveUpBoxingClubChallengeCsReq"
-            }
-            CmdBoxingClubType::CmdGiveUpBoxingClubChallengeScRsp => {
-                "CmdGiveUpBoxingClubChallengeScRsp"
-            }
-            CmdBoxingClubType::CmdStartBoxingClubBattleCsReq => {
-                "CmdStartBoxingClubBattleCsReq"
-            }
-            CmdBoxingClubType::CmdMatchBoxingClubOpponentScRsp => {
-                "CmdMatchBoxingClubOpponentScRsp"
-            }
-            CmdBoxingClubType::CmdChooseBoxingClubResonanceCsReq => {
-                "CmdChooseBoxingClubResonanceCsReq"
-            }
             CmdBoxingClubType::CmdChooseBoxingClubStageOptionalBuffCsReq => {
                 "CmdChooseBoxingClubStageOptionalBuffCsReq"
-            }
-            CmdBoxingClubType::CmdStartBoxingClubBattleScRsp => {
-                "CmdStartBoxingClubBattleScRsp"
-            }
-            CmdBoxingClubType::CmdGetBoxingClubInfoCsReq => "CmdGetBoxingClubInfoCsReq",
-            CmdBoxingClubType::CmdChooseBoxingClubResonanceScRsp => {
-                "CmdChooseBoxingClubResonanceScRsp"
-            }
-            CmdBoxingClubType::CmdSetBoxingClubResonanceLineupScRsp => {
-                "CmdSetBoxingClubResonanceLineupScRsp"
-            }
-            CmdBoxingClubType::CmdBoxingClubRewardScNotify => {
-                "CmdBoxingClubRewardScNotify"
-            }
-            CmdBoxingClubType::CmdChooseBoxingClubStageOptionalBuffScRsp => {
-                "CmdChooseBoxingClubStageOptionalBuffScRsp"
             }
         }
     }
@@ -3914,6 +3894,34 @@ impl CmdBoxingClubType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdBoxingClubTypeNone" => Some(Self::None),
+            "CmdChooseBoxingClubStageOptionalBuffScRsp" => {
+                Some(Self::CmdChooseBoxingClubStageOptionalBuffScRsp)
+            }
+            "CmdBoxingClubRewardScNotify" => Some(Self::CmdBoxingClubRewardScNotify),
+            "CmdSetBoxingClubResonanceLineupScRsp" => {
+                Some(Self::CmdSetBoxingClubResonanceLineupScRsp)
+            }
+            "CmdMatchBoxingClubOpponentScRsp" => {
+                Some(Self::CmdMatchBoxingClubOpponentScRsp)
+            }
+            "CmdStartBoxingClubBattleScRsp" => Some(Self::CmdStartBoxingClubBattleScRsp),
+            "CmdChooseBoxingClubResonanceCsReq" => {
+                Some(Self::CmdChooseBoxingClubResonanceCsReq)
+            }
+            "CmdGetBoxingClubInfoCsReq" => Some(Self::CmdGetBoxingClubInfoCsReq),
+            "CmdChooseBoxingClubResonanceScRsp" => {
+                Some(Self::CmdChooseBoxingClubResonanceScRsp)
+            }
+            "CmdSetBoxingClubResonanceLineupCsReq" => {
+                Some(Self::CmdSetBoxingClubResonanceLineupCsReq)
+            }
+            "CmdGiveUpBoxingClubChallengeCsReq" => {
+                Some(Self::CmdGiveUpBoxingClubChallengeCsReq)
+            }
+            "CmdStartBoxingClubBattleCsReq" => Some(Self::CmdStartBoxingClubBattleCsReq),
+            "CmdGiveUpBoxingClubChallengeScRsp" => {
+                Some(Self::CmdGiveUpBoxingClubChallengeScRsp)
+            }
             "CmdMatchBoxingClubOpponentCsReq" => {
                 Some(Self::CmdMatchBoxingClubOpponentCsReq)
             }
@@ -3921,36 +3929,8 @@ impl CmdBoxingClubType {
                 Some(Self::CmdBoxingClubChallengeUpdateScNotify)
             }
             "CmdGetBoxingClubInfoScRsp" => Some(Self::CmdGetBoxingClubInfoScRsp),
-            "CmdSetBoxingClubResonanceLineupCsReq" => {
-                Some(Self::CmdSetBoxingClubResonanceLineupCsReq)
-            }
-            "CmdGiveUpBoxingClubChallengeCsReq" => {
-                Some(Self::CmdGiveUpBoxingClubChallengeCsReq)
-            }
-            "CmdGiveUpBoxingClubChallengeScRsp" => {
-                Some(Self::CmdGiveUpBoxingClubChallengeScRsp)
-            }
-            "CmdStartBoxingClubBattleCsReq" => Some(Self::CmdStartBoxingClubBattleCsReq),
-            "CmdMatchBoxingClubOpponentScRsp" => {
-                Some(Self::CmdMatchBoxingClubOpponentScRsp)
-            }
-            "CmdChooseBoxingClubResonanceCsReq" => {
-                Some(Self::CmdChooseBoxingClubResonanceCsReq)
-            }
             "CmdChooseBoxingClubStageOptionalBuffCsReq" => {
                 Some(Self::CmdChooseBoxingClubStageOptionalBuffCsReq)
-            }
-            "CmdStartBoxingClubBattleScRsp" => Some(Self::CmdStartBoxingClubBattleScRsp),
-            "CmdGetBoxingClubInfoCsReq" => Some(Self::CmdGetBoxingClubInfoCsReq),
-            "CmdChooseBoxingClubResonanceScRsp" => {
-                Some(Self::CmdChooseBoxingClubResonanceScRsp)
-            }
-            "CmdSetBoxingClubResonanceLineupScRsp" => {
-                Some(Self::CmdSetBoxingClubResonanceLineupScRsp)
-            }
-            "CmdBoxingClubRewardScNotify" => Some(Self::CmdBoxingClubRewardScNotify),
-            "CmdChooseBoxingClubStageOptionalBuffScRsp" => {
-                Some(Self::CmdChooseBoxingClubStageOptionalBuffScRsp)
             }
             _ => None,
         }
@@ -3961,27 +3941,27 @@ impl CmdBoxingClubType {
 #[repr(i32)]
 pub enum CmdChallengeType {
     None = 0,
-    CmdStartChallengeCsReq = 1703,
-    CmdGetCurChallengeCsReq = 1716,
+    CmdTakeChallengeRewardScRsp = 1705,
+    CmdStartPartialChallengeScRsp = 1707,
+    CmdEnterChallengeNextPhaseCsReq = 1712,
     CmdGetChallengeGroupStatisticsScRsp = 1719,
-    CmdGetChallengeScRsp = 1720,
-    CmdStartPartialChallengeScRsp = 1725,
-    CmdRestartChallengePhaseCsReq = 1733,
-    CmdChallengeSettleNotify = 1734,
-    CmdLeaveChallengeCsReq = 1739,
-    CmdStartChallengeScRsp = 1746,
-    CmdGetCurChallengeScRsp = 1747,
-    CmdTakeChallengeRewardCsReq = 1748,
-    CmdRestartChallengePhaseScRsp = 1751,
-    CmdLeaveChallengeScRsp = 1753,
-    CmdGetChallengeCsReq = 1759,
-    CmdStartPartialChallengeCsReq = 1761,
-    CmdEnterChallengeNextPhaseCsReq = 1773,
-    CmdChallengeLineupNotify = 1774,
-    CmdGetChallengeGroupStatisticsCsReq = 1779,
-    CmdEnterChallengeNextPhaseScRsp = 1783,
-    CmdTakeChallengeRewardScRsp = 1790,
-    CmdChallengeBossPhaseSettleNotify = 1799,
+    CmdStartPartialChallengeCsReq = 1726,
+    CmdStartChallengeScRsp = 1727,
+    CmdLeaveChallengeScRsp = 1728,
+    CmdChallengeBossPhaseSettleNotify = 1729,
+    CmdGetCurChallengeScRsp = 1734,
+    CmdGetChallengeCsReq = 1736,
+    CmdChallengeLineupNotify = 1743,
+    CmdChallengeSettleNotify = 1752,
+    CmdRestartChallengePhaseScRsp = 1759,
+    CmdLeaveChallengeCsReq = 1767,
+    CmdGetChallengeGroupStatisticsCsReq = 1775,
+    CmdEnterChallengeNextPhaseScRsp = 1778,
+    CmdStartChallengeCsReq = 1784,
+    CmdRestartChallengePhaseCsReq = 1790,
+    CmdGetCurChallengeCsReq = 1793,
+    CmdGetChallengeScRsp = 1795,
+    CmdTakeChallengeRewardCsReq = 1796,
 }
 impl CmdChallengeType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -3991,48 +3971,48 @@ impl CmdChallengeType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdChallengeType::None => "CmdChallengeTypeNone",
-            CmdChallengeType::CmdStartChallengeCsReq => "CmdStartChallengeCsReq",
-            CmdChallengeType::CmdGetCurChallengeCsReq => "CmdGetCurChallengeCsReq",
-            CmdChallengeType::CmdGetChallengeGroupStatisticsScRsp => {
-                "CmdGetChallengeGroupStatisticsScRsp"
+            CmdChallengeType::CmdTakeChallengeRewardScRsp => {
+                "CmdTakeChallengeRewardScRsp"
             }
-            CmdChallengeType::CmdGetChallengeScRsp => "CmdGetChallengeScRsp",
             CmdChallengeType::CmdStartPartialChallengeScRsp => {
                 "CmdStartPartialChallengeScRsp"
-            }
-            CmdChallengeType::CmdRestartChallengePhaseCsReq => {
-                "CmdRestartChallengePhaseCsReq"
-            }
-            CmdChallengeType::CmdChallengeSettleNotify => "CmdChallengeSettleNotify",
-            CmdChallengeType::CmdLeaveChallengeCsReq => "CmdLeaveChallengeCsReq",
-            CmdChallengeType::CmdStartChallengeScRsp => "CmdStartChallengeScRsp",
-            CmdChallengeType::CmdGetCurChallengeScRsp => "CmdGetCurChallengeScRsp",
-            CmdChallengeType::CmdTakeChallengeRewardCsReq => {
-                "CmdTakeChallengeRewardCsReq"
-            }
-            CmdChallengeType::CmdRestartChallengePhaseScRsp => {
-                "CmdRestartChallengePhaseScRsp"
-            }
-            CmdChallengeType::CmdLeaveChallengeScRsp => "CmdLeaveChallengeScRsp",
-            CmdChallengeType::CmdGetChallengeCsReq => "CmdGetChallengeCsReq",
-            CmdChallengeType::CmdStartPartialChallengeCsReq => {
-                "CmdStartPartialChallengeCsReq"
             }
             CmdChallengeType::CmdEnterChallengeNextPhaseCsReq => {
                 "CmdEnterChallengeNextPhaseCsReq"
             }
+            CmdChallengeType::CmdGetChallengeGroupStatisticsScRsp => {
+                "CmdGetChallengeGroupStatisticsScRsp"
+            }
+            CmdChallengeType::CmdStartPartialChallengeCsReq => {
+                "CmdStartPartialChallengeCsReq"
+            }
+            CmdChallengeType::CmdStartChallengeScRsp => "CmdStartChallengeScRsp",
+            CmdChallengeType::CmdLeaveChallengeScRsp => "CmdLeaveChallengeScRsp",
+            CmdChallengeType::CmdChallengeBossPhaseSettleNotify => {
+                "CmdChallengeBossPhaseSettleNotify"
+            }
+            CmdChallengeType::CmdGetCurChallengeScRsp => "CmdGetCurChallengeScRsp",
+            CmdChallengeType::CmdGetChallengeCsReq => "CmdGetChallengeCsReq",
             CmdChallengeType::CmdChallengeLineupNotify => "CmdChallengeLineupNotify",
+            CmdChallengeType::CmdChallengeSettleNotify => "CmdChallengeSettleNotify",
+            CmdChallengeType::CmdRestartChallengePhaseScRsp => {
+                "CmdRestartChallengePhaseScRsp"
+            }
+            CmdChallengeType::CmdLeaveChallengeCsReq => "CmdLeaveChallengeCsReq",
             CmdChallengeType::CmdGetChallengeGroupStatisticsCsReq => {
                 "CmdGetChallengeGroupStatisticsCsReq"
             }
             CmdChallengeType::CmdEnterChallengeNextPhaseScRsp => {
                 "CmdEnterChallengeNextPhaseScRsp"
             }
-            CmdChallengeType::CmdTakeChallengeRewardScRsp => {
-                "CmdTakeChallengeRewardScRsp"
+            CmdChallengeType::CmdStartChallengeCsReq => "CmdStartChallengeCsReq",
+            CmdChallengeType::CmdRestartChallengePhaseCsReq => {
+                "CmdRestartChallengePhaseCsReq"
             }
-            CmdChallengeType::CmdChallengeBossPhaseSettleNotify => {
-                "CmdChallengeBossPhaseSettleNotify"
+            CmdChallengeType::CmdGetCurChallengeCsReq => "CmdGetCurChallengeCsReq",
+            CmdChallengeType::CmdGetChallengeScRsp => "CmdGetChallengeScRsp",
+            CmdChallengeType::CmdTakeChallengeRewardCsReq => {
+                "CmdTakeChallengeRewardCsReq"
             }
         }
     }
@@ -4040,37 +4020,37 @@ impl CmdChallengeType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdChallengeTypeNone" => Some(Self::None),
-            "CmdStartChallengeCsReq" => Some(Self::CmdStartChallengeCsReq),
-            "CmdGetCurChallengeCsReq" => Some(Self::CmdGetCurChallengeCsReq),
-            "CmdGetChallengeGroupStatisticsScRsp" => {
-                Some(Self::CmdGetChallengeGroupStatisticsScRsp)
-            }
-            "CmdGetChallengeScRsp" => Some(Self::CmdGetChallengeScRsp),
+            "CmdTakeChallengeRewardScRsp" => Some(Self::CmdTakeChallengeRewardScRsp),
             "CmdStartPartialChallengeScRsp" => Some(Self::CmdStartPartialChallengeScRsp),
-            "CmdRestartChallengePhaseCsReq" => Some(Self::CmdRestartChallengePhaseCsReq),
-            "CmdChallengeSettleNotify" => Some(Self::CmdChallengeSettleNotify),
-            "CmdLeaveChallengeCsReq" => Some(Self::CmdLeaveChallengeCsReq),
-            "CmdStartChallengeScRsp" => Some(Self::CmdStartChallengeScRsp),
-            "CmdGetCurChallengeScRsp" => Some(Self::CmdGetCurChallengeScRsp),
-            "CmdTakeChallengeRewardCsReq" => Some(Self::CmdTakeChallengeRewardCsReq),
-            "CmdRestartChallengePhaseScRsp" => Some(Self::CmdRestartChallengePhaseScRsp),
-            "CmdLeaveChallengeScRsp" => Some(Self::CmdLeaveChallengeScRsp),
-            "CmdGetChallengeCsReq" => Some(Self::CmdGetChallengeCsReq),
-            "CmdStartPartialChallengeCsReq" => Some(Self::CmdStartPartialChallengeCsReq),
             "CmdEnterChallengeNextPhaseCsReq" => {
                 Some(Self::CmdEnterChallengeNextPhaseCsReq)
             }
+            "CmdGetChallengeGroupStatisticsScRsp" => {
+                Some(Self::CmdGetChallengeGroupStatisticsScRsp)
+            }
+            "CmdStartPartialChallengeCsReq" => Some(Self::CmdStartPartialChallengeCsReq),
+            "CmdStartChallengeScRsp" => Some(Self::CmdStartChallengeScRsp),
+            "CmdLeaveChallengeScRsp" => Some(Self::CmdLeaveChallengeScRsp),
+            "CmdChallengeBossPhaseSettleNotify" => {
+                Some(Self::CmdChallengeBossPhaseSettleNotify)
+            }
+            "CmdGetCurChallengeScRsp" => Some(Self::CmdGetCurChallengeScRsp),
+            "CmdGetChallengeCsReq" => Some(Self::CmdGetChallengeCsReq),
             "CmdChallengeLineupNotify" => Some(Self::CmdChallengeLineupNotify),
+            "CmdChallengeSettleNotify" => Some(Self::CmdChallengeSettleNotify),
+            "CmdRestartChallengePhaseScRsp" => Some(Self::CmdRestartChallengePhaseScRsp),
+            "CmdLeaveChallengeCsReq" => Some(Self::CmdLeaveChallengeCsReq),
             "CmdGetChallengeGroupStatisticsCsReq" => {
                 Some(Self::CmdGetChallengeGroupStatisticsCsReq)
             }
             "CmdEnterChallengeNextPhaseScRsp" => {
                 Some(Self::CmdEnterChallengeNextPhaseScRsp)
             }
-            "CmdTakeChallengeRewardScRsp" => Some(Self::CmdTakeChallengeRewardScRsp),
-            "CmdChallengeBossPhaseSettleNotify" => {
-                Some(Self::CmdChallengeBossPhaseSettleNotify)
-            }
+            "CmdStartChallengeCsReq" => Some(Self::CmdStartChallengeCsReq),
+            "CmdRestartChallengePhaseCsReq" => Some(Self::CmdRestartChallengePhaseCsReq),
+            "CmdGetCurChallengeCsReq" => Some(Self::CmdGetCurChallengeCsReq),
+            "CmdGetChallengeScRsp" => Some(Self::CmdGetChallengeScRsp),
+            "CmdTakeChallengeRewardCsReq" => Some(Self::CmdTakeChallengeRewardCsReq),
             _ => None,
         }
     }
@@ -4080,22 +4060,22 @@ impl CmdChallengeType {
 #[repr(i32)]
 pub enum CmdChatType {
     None = 0,
-    CmdRevcMsgScNotify = 3903,
-    CmdGetChatEmojiListScRsp = 3916,
-    CmdSendMsgScRsp = 3920,
-    CmdBatchMarkChatEmojiCsReq = 3930,
-    CmdGetChatFriendHistoryCsReq = 3934,
-    CmdGetChatFriendHistoryScRsp = 3937,
-    CmdGetPrivateChatHistoryCsReq = 3939,
-    CmdPrivateMsgOfflineUsersScNotify = 3946,
-    CmdMarkChatEmojiCsReq = 3947,
-    CmdGetLoginChatInfoCsReq = 3948,
-    CmdGetPrivateChatHistoryScRsp = 3953,
-    CmdSendMsgCsReq = 3959,
-    CmdMarkChatEmojiScRsp = 3974,
-    CmdBatchMarkChatEmojiScRsp = 3975,
-    CmdGetChatEmojiListCsReq = 3980,
-    CmdGetLoginChatInfoScRsp = 3990,
+    CmdGetLoginChatInfoScRsp = 3905,
+    CmdGetChatEmojiListCsReq = 3924,
+    CmdBatchMarkChatEmojiScRsp = 3925,
+    CmdPrivateMsgOfflineUsersScNotify = 3927,
+    CmdGetPrivateChatHistoryScRsp = 3928,
+    CmdMarkChatEmojiCsReq = 3934,
+    CmdSendMsgCsReq = 3936,
+    CmdMarkChatEmojiScRsp = 3943,
+    CmdBatchMarkChatEmojiCsReq = 3946,
+    CmdGetChatFriendHistoryCsReq = 3952,
+    CmdGetPrivateChatHistoryCsReq = 3967,
+    CmdGetChatFriendHistoryScRsp = 3974,
+    CmdRevcMsgScNotify = 3984,
+    CmdGetChatEmojiListScRsp = 3993,
+    CmdSendMsgScRsp = 3995,
+    CmdGetLoginChatInfoCsReq = 3996,
 }
 impl CmdChatType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -4105,48 +4085,48 @@ impl CmdChatType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdChatType::None => "CmdChatTypeNone",
-            CmdChatType::CmdRevcMsgScNotify => "CmdRevcMsgScNotify",
-            CmdChatType::CmdGetChatEmojiListScRsp => "CmdGetChatEmojiListScRsp",
-            CmdChatType::CmdSendMsgScRsp => "CmdSendMsgScRsp",
-            CmdChatType::CmdBatchMarkChatEmojiCsReq => "CmdBatchMarkChatEmojiCsReq",
-            CmdChatType::CmdGetChatFriendHistoryCsReq => "CmdGetChatFriendHistoryCsReq",
-            CmdChatType::CmdGetChatFriendHistoryScRsp => "CmdGetChatFriendHistoryScRsp",
-            CmdChatType::CmdGetPrivateChatHistoryCsReq => "CmdGetPrivateChatHistoryCsReq",
+            CmdChatType::CmdGetLoginChatInfoScRsp => "CmdGetLoginChatInfoScRsp",
+            CmdChatType::CmdGetChatEmojiListCsReq => "CmdGetChatEmojiListCsReq",
+            CmdChatType::CmdBatchMarkChatEmojiScRsp => "CmdBatchMarkChatEmojiScRsp",
             CmdChatType::CmdPrivateMsgOfflineUsersScNotify => {
                 "CmdPrivateMsgOfflineUsersScNotify"
             }
-            CmdChatType::CmdMarkChatEmojiCsReq => "CmdMarkChatEmojiCsReq",
-            CmdChatType::CmdGetLoginChatInfoCsReq => "CmdGetLoginChatInfoCsReq",
             CmdChatType::CmdGetPrivateChatHistoryScRsp => "CmdGetPrivateChatHistoryScRsp",
+            CmdChatType::CmdMarkChatEmojiCsReq => "CmdMarkChatEmojiCsReq",
             CmdChatType::CmdSendMsgCsReq => "CmdSendMsgCsReq",
             CmdChatType::CmdMarkChatEmojiScRsp => "CmdMarkChatEmojiScRsp",
-            CmdChatType::CmdBatchMarkChatEmojiScRsp => "CmdBatchMarkChatEmojiScRsp",
-            CmdChatType::CmdGetChatEmojiListCsReq => "CmdGetChatEmojiListCsReq",
-            CmdChatType::CmdGetLoginChatInfoScRsp => "CmdGetLoginChatInfoScRsp",
+            CmdChatType::CmdBatchMarkChatEmojiCsReq => "CmdBatchMarkChatEmojiCsReq",
+            CmdChatType::CmdGetChatFriendHistoryCsReq => "CmdGetChatFriendHistoryCsReq",
+            CmdChatType::CmdGetPrivateChatHistoryCsReq => "CmdGetPrivateChatHistoryCsReq",
+            CmdChatType::CmdGetChatFriendHistoryScRsp => "CmdGetChatFriendHistoryScRsp",
+            CmdChatType::CmdRevcMsgScNotify => "CmdRevcMsgScNotify",
+            CmdChatType::CmdGetChatEmojiListScRsp => "CmdGetChatEmojiListScRsp",
+            CmdChatType::CmdSendMsgScRsp => "CmdSendMsgScRsp",
+            CmdChatType::CmdGetLoginChatInfoCsReq => "CmdGetLoginChatInfoCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdChatTypeNone" => Some(Self::None),
-            "CmdRevcMsgScNotify" => Some(Self::CmdRevcMsgScNotify),
-            "CmdGetChatEmojiListScRsp" => Some(Self::CmdGetChatEmojiListScRsp),
-            "CmdSendMsgScRsp" => Some(Self::CmdSendMsgScRsp),
-            "CmdBatchMarkChatEmojiCsReq" => Some(Self::CmdBatchMarkChatEmojiCsReq),
-            "CmdGetChatFriendHistoryCsReq" => Some(Self::CmdGetChatFriendHistoryCsReq),
-            "CmdGetChatFriendHistoryScRsp" => Some(Self::CmdGetChatFriendHistoryScRsp),
-            "CmdGetPrivateChatHistoryCsReq" => Some(Self::CmdGetPrivateChatHistoryCsReq),
+            "CmdGetLoginChatInfoScRsp" => Some(Self::CmdGetLoginChatInfoScRsp),
+            "CmdGetChatEmojiListCsReq" => Some(Self::CmdGetChatEmojiListCsReq),
+            "CmdBatchMarkChatEmojiScRsp" => Some(Self::CmdBatchMarkChatEmojiScRsp),
             "CmdPrivateMsgOfflineUsersScNotify" => {
                 Some(Self::CmdPrivateMsgOfflineUsersScNotify)
             }
-            "CmdMarkChatEmojiCsReq" => Some(Self::CmdMarkChatEmojiCsReq),
-            "CmdGetLoginChatInfoCsReq" => Some(Self::CmdGetLoginChatInfoCsReq),
             "CmdGetPrivateChatHistoryScRsp" => Some(Self::CmdGetPrivateChatHistoryScRsp),
+            "CmdMarkChatEmojiCsReq" => Some(Self::CmdMarkChatEmojiCsReq),
             "CmdSendMsgCsReq" => Some(Self::CmdSendMsgCsReq),
             "CmdMarkChatEmojiScRsp" => Some(Self::CmdMarkChatEmojiScRsp),
-            "CmdBatchMarkChatEmojiScRsp" => Some(Self::CmdBatchMarkChatEmojiScRsp),
-            "CmdGetChatEmojiListCsReq" => Some(Self::CmdGetChatEmojiListCsReq),
-            "CmdGetLoginChatInfoScRsp" => Some(Self::CmdGetLoginChatInfoScRsp),
+            "CmdBatchMarkChatEmojiCsReq" => Some(Self::CmdBatchMarkChatEmojiCsReq),
+            "CmdGetChatFriendHistoryCsReq" => Some(Self::CmdGetChatFriendHistoryCsReq),
+            "CmdGetPrivateChatHistoryCsReq" => Some(Self::CmdGetPrivateChatHistoryCsReq),
+            "CmdGetChatFriendHistoryScRsp" => Some(Self::CmdGetChatFriendHistoryScRsp),
+            "CmdRevcMsgScNotify" => Some(Self::CmdRevcMsgScNotify),
+            "CmdGetChatEmojiListScRsp" => Some(Self::CmdGetChatEmojiListScRsp),
+            "CmdSendMsgScRsp" => Some(Self::CmdSendMsgScRsp),
+            "CmdGetLoginChatInfoCsReq" => Some(Self::CmdGetLoginChatInfoCsReq),
             _ => None,
         }
     }
@@ -4156,96 +4136,96 @@ impl CmdChatType {
 #[repr(i32)]
 pub enum CmdChessRogueType {
     None = 0,
-    CmdChessRogueLeaveCsReq = 5401,
-    CmdChessRogueEnterNextLayerScRsp = 5404,
-    CmdSyncChessRogueNousValueScNotify = 5405,
-    CmdChessRogueUpdateDicePassiveAccumulateValueScNotify = 5406,
-    CmdGetChessRogueStoryInfoScRsp = 5407,
-    CmdSyncChessRogueNousSubStoryScNotify = 5411,
-    CmdChessRogueRollDiceCsReq = 5414,
-    CmdChessRogueGoAheadScRsp = 5417,
-    CmdChessRogueQueryBpCsReq = 5420,
-    CmdChessRogueGiveUpRollCsReq = 5424,
-    CmdChessRoguePickAvatarScRsp = 5425,
-    CmdChessRogueEnterCellScRsp = 5431,
-    CmdChessRogueCellUpdateNotify = 5436,
-    CmdChessRogueUpdateDiceInfoScNotify = 5438,
-    CmdChessRogueQueryScRsp = 5443,
-    CmdChessRogueStartCsReq = 5446,
-    CmdFinishChessRogueNousSubStoryCsReq = 5447,
-    CmdChessRogueSelectBpCsReq = 5448,
-    CmdChessRogueConfirmRollScRsp = 5450,
-    CmdSelectChessRogueSubStoryScRsp = 5452,
-    CmdChessRogueNousEditDiceCsReq = 5453,
-    CmdEnhanceChessRogueBuffScRsp = 5457,
-    CmdChessRogueChangeyAeonDimensionNotify = 5458,
-    CmdChessRogueSkipTeachingLevelCsReq = 5459,
-    CmdChessRogueNousDiceSurfaceUnlockNotify = 5460,
-    CmdChessRogueGiveUpScRsp = 5461,
-    CmdChessRogueEnterCellCsReq = 5462,
-    CmdChessRogueUpdateAeonModifierValueScNotify = 5464,
-    CmdChessRogueLayerAccountInfoNotify = 5468,
-    CmdEnhanceChessRogueBuffCsReq = 5471,
-    CmdSelectChessRogueNousSubStoryCsReq = 5472,
-    CmdChessRogueQuitCsReq = 5473,
-    CmdChessRogueGiveUpCsReq = 5476,
-    CmdChessRogueUpdateMoneyInfoScNotify = 5477,
-    CmdChessRogueUpdateActionPointScNotify = 5481,
-    CmdChessRogueReviveAvatarScRsp = 5484,
-    CmdGetChessRogueNousStoryInfoCsReq = 5486,
-    CmdChessRogueFinishCurRoomNotify = 5489,
-    CmdChessRogueNousDiceUpdateNotify = 5490,
-    CmdChessRogueReRollDiceScRsp = 5494,
-    CmdSelectChessRogueNousSubStoryScRsp = 5496,
-    CmdSelectChessRogueSubStoryCsReq = 5500,
-    CmdChessRogueEnterCsReq = 5502,
-    CmdChessRogueNousGetRogueTalentInfoScRsp = 5505,
-    CmdChessRogueLeaveScRsp = 5506,
-    CmdGetChessRogueStoryInfoCsReq = 5509,
-    CmdChessRogueNousEnableRogueTalentScRsp = 5510,
-    CmdChessRogueQueryAeonDimensionsCsReq = 5512,
-    CmdChessRogueSelectCellScRsp = 5517,
-    CmdChessRogueUpdateReviveInfoScNotify = 5520,
-    CmdSyncChessRogueNousMainStoryScNotify = 5521,
-    CmdChessRogueGiveUpRollScRsp = 5522,
-    CmdChessRogueQuestFinishNotify = 5524,
-    CmdChessRogueUpdateLevelBaseInfoScNotify = 5531,
-    CmdChessRogueRollDiceScRsp = 5532,
-    CmdEnterChessRogueAeonRoomCsReq = 5533,
-    CmdChessRogueQueryBpScRsp = 5535,
-    CmdGetChessRogueNousStoryInfoScRsp = 5538,
-    CmdChessRogueGoAheadCsReq = 5539,
-    CmdGetChessRogueBuffEnhanceInfoScRsp = 5540,
-    CmdChessRogueSelectCellCsReq = 5542,
-    CmdChessRogueCheatRollCsReq = 5544,
-    CmdChessRogueMoveCellNotify = 5547,
-    CmdFinishChessRogueSubStoryCsReq = 5550,
-    CmdChessRogueUpdateBoardScNotify = 5553,
-    CmdGetChessRogueStoryAeonTalkInfoCsReq = 5556,
-    CmdChessRogueSkipTeachingLevelScRsp = 5557,
-    CmdChessRogueReRollDiceCsReq = 5558,
-    CmdChessRogueNousGetRogueTalentInfoCsReq = 5560,
-    CmdChessRogueSelectBpScRsp = 5561,
-    CmdGetChessRogueBuffEnhanceInfoCsReq = 5562,
-    CmdFinishChessRogueSubStoryScRsp = 5565,
-    CmdGetChessRogueStoryAeonTalkInfoScRsp = 5566,
-    CmdChessRogueStartScRsp = 5567,
-    CmdChessRogueEnterNextLayerCsReq = 5568,
-    CmdChessRogueCheatRollScRsp = 5573,
-    CmdChessRogueEnterScRsp = 5575,
-    CmdEnterChessRogueAeonRoomScRsp = 5576,
-    CmdChessRogueConfirmRollCsReq = 5580,
-    CmdChessRogueNousEnableRogueTalentCsReq = 5581,
-    CmdChessRoguePickAvatarCsReq = 5585,
-    CmdChessRogueQueryCsReq = 5587,
-    CmdFinishChessRogueNousSubStoryScRsp = 5591,
-    CmdChessRogueUpdateAllowedSelectCellScNotify = 5592,
-    CmdSyncChessRogueMainStoryFinishScNotify = 5593,
-    CmdChessRogueQueryAeonDimensionsScRsp = 5594,
-    CmdChessRogueQuitScRsp = 5595,
-    CmdChessRogueUpdateUnlockLevelScNotify = 5596,
-    CmdChessRogueReviveAvatarCsReq = 5597,
-    CmdChessRogueNousEditDiceScRsp = 5599,
+    CmdSelectChessRogueSubStoryScRsp = 5405,
+    CmdChessRoguePickAvatarScRsp = 5406,
+    CmdSelectChessRogueNousSubStoryCsReq = 5409,
+    CmdChessRogueCheatRollScRsp = 5411,
+    CmdGetChessRogueBuffEnhanceInfoScRsp = 5414,
+    CmdChessRogueSelectCellScRsp = 5419,
+    CmdGetChessRogueNousStoryInfoCsReq = 5422,
+    CmdChessRogueReRollDiceCsReq = 5423,
+    CmdChessRogueRollDiceScRsp = 5425,
+    CmdSyncChessRogueMainStoryFinishScNotify = 5429,
+    CmdChessRogueQueryBpScRsp = 5431,
+    CmdChessRogueNousGetRogueTalentInfoScRsp = 5432,
+    CmdChessRogueGiveUpScRsp = 5433,
+    CmdChessRogueReviveAvatarScRsp = 5434,
+    CmdChessRogueQuitScRsp = 5435,
+    CmdChessRogueChangeyAeonDimensionNotify = 5437,
+    CmdChessRogueUpdateAeonModifierValueScNotify = 5438,
+    CmdChessRogueEnterNextLayerCsReq = 5440,
+    CmdChessRogueEnterCsReq = 5441,
+    CmdChessRogueCellUpdateNotify = 5442,
+    CmdChessRogueNousEditDiceScRsp = 5443,
+    CmdChessRogueGiveUpRollCsReq = 5445,
+    CmdChessRogueStartCsReq = 5452,
+    CmdChessRogueUpdateDicePassiveAccumulateValueScNotify = 5454,
+    CmdChessRogueMoveCellNotify = 5456,
+    CmdGetChessRogueBuffEnhanceInfoCsReq = 5457,
+    CmdChessRogueGiveUpCsReq = 5460,
+    CmdChessRogueQueryAeonDimensionsScRsp = 5463,
+    CmdChessRogueSelectBpScRsp = 5465,
+    CmdChessRogueUpdateLevelBaseInfoScNotify = 5469,
+    CmdChessRogueNousEditDiceCsReq = 5472,
+    CmdChessRogueReviveAvatarCsReq = 5473,
+    CmdChessRogueReRollDiceScRsp = 5477,
+    CmdFinishChessRogueSubStoryScRsp = 5479,
+    CmdEnterChessRogueAeonRoomCsReq = 5482,
+    CmdGetChessRogueStoryAeonTalkInfoCsReq = 5483,
+    CmdChessRogueRollDiceCsReq = 5485,
+    CmdChessRogueUpdateBoardScNotify = 5490,
+    CmdChessRogueQueryCsReq = 5492,
+    CmdChessRogueNousEnableRogueTalentCsReq = 5493,
+    CmdSelectChessRogueSubStoryCsReq = 5496,
+    CmdSyncChessRogueNousMainStoryScNotify = 5497,
+    CmdSyncChessRogueNousSubStoryScNotify = 5498,
+    CmdChessRogueUpdateMoneyInfoScNotify = 5501,
+    CmdChessRogueSelectCellCsReq = 5506,
+    CmdChessRogueGiveUpRollScRsp = 5509,
+    CmdChessRogueEnterScRsp = 5510,
+    CmdChessRogueNousGetRogueTalentInfoCsReq = 5513,
+    CmdChessRogueConfirmRollScRsp = 5514,
+    CmdFinishChessRogueSubStoryCsReq = 5516,
+    CmdChessRogueQueryAeonDimensionsCsReq = 5518,
+    CmdFinishChessRogueNousSubStoryCsReq = 5519,
+    CmdChessRogueGoAheadCsReq = 5520,
+    CmdChessRogueUpdateAllowedSelectCellScNotify = 5521,
+    CmdChessRogueSkipTeachingLevelCsReq = 5528,
+    CmdSelectChessRogueNousSubStoryScRsp = 5529,
+    CmdGetChessRogueStoryInfoScRsp = 5530,
+    CmdChessRogueUpdateUnlockLevelScNotify = 5533,
+    CmdChessRogueUpdateDiceInfoScNotify = 5536,
+    CmdChessRogueQuestFinishNotify = 5539,
+    CmdEnhanceChessRogueBuffScRsp = 5541,
+    CmdChessRogueUpdateActionPointScNotify = 5543,
+    CmdChessRogueQueryBpCsReq = 5545,
+    CmdEnhanceChessRogueBuffCsReq = 5550,
+    CmdEnterChessRogueAeonRoomScRsp = 5552,
+    CmdGetChessRogueStoryAeonTalkInfoScRsp = 5553,
+    CmdChessRogueEnterCellScRsp = 5556,
+    CmdGetChessRogueStoryInfoCsReq = 5557,
+    CmdChessRogueLeaveCsReq = 5558,
+    CmdChessRogueLeaveScRsp = 5562,
+    CmdChessRogueQuitCsReq = 5563,
+    CmdChessRogueFinishCurRoomNotify = 5564,
+    CmdChessRogueQueryScRsp = 5565,
+    CmdGetChessRogueNousStoryInfoScRsp = 5567,
+    CmdChessRogueNousDiceSurfaceUnlockNotify = 5568,
+    CmdChessRogueSelectBpCsReq = 5572,
+    CmdChessRogueUpdateReviveInfoScNotify = 5576,
+    CmdChessRogueSkipTeachingLevelScRsp = 5577,
+    CmdChessRogueGoAheadScRsp = 5578,
+    CmdChessRoguePickAvatarCsReq = 5580,
+    CmdChessRogueEnterCellCsReq = 5581,
+    CmdChessRogueStartScRsp = 5582,
+    CmdChessRogueEnterNextLayerScRsp = 5583,
+    CmdFinishChessRogueNousSubStoryScRsp = 5584,
+    CmdChessRogueNousDiceUpdateNotify = 5585,
+    CmdChessRogueLayerAccountInfoNotify = 5586,
+    CmdSyncChessRogueNousValueScNotify = 5589,
+    CmdChessRogueConfirmRollCsReq = 5591,
+    CmdChessRogueCheatRollCsReq = 5595,
+    CmdChessRogueNousEnableRogueTalentScRsp = 5596,
 }
 impl CmdChessRogueType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -4255,235 +4235,235 @@ impl CmdChessRogueType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdChessRogueType::None => "CmdChessRogueTypeNone",
-            CmdChessRogueType::CmdChessRogueLeaveCsReq => "CmdChessRogueLeaveCsReq",
-            CmdChessRogueType::CmdChessRogueEnterNextLayerScRsp => {
-                "CmdChessRogueEnterNextLayerScRsp"
-            }
-            CmdChessRogueType::CmdSyncChessRogueNousValueScNotify => {
-                "CmdSyncChessRogueNousValueScNotify"
-            }
-            CmdChessRogueType::CmdChessRogueUpdateDicePassiveAccumulateValueScNotify => {
-                "CmdChessRogueUpdateDicePassiveAccumulateValueScNotify"
-            }
-            CmdChessRogueType::CmdGetChessRogueStoryInfoScRsp => {
-                "CmdGetChessRogueStoryInfoScRsp"
-            }
-            CmdChessRogueType::CmdSyncChessRogueNousSubStoryScNotify => {
-                "CmdSyncChessRogueNousSubStoryScNotify"
-            }
-            CmdChessRogueType::CmdChessRogueRollDiceCsReq => "CmdChessRogueRollDiceCsReq",
-            CmdChessRogueType::CmdChessRogueGoAheadScRsp => "CmdChessRogueGoAheadScRsp",
-            CmdChessRogueType::CmdChessRogueQueryBpCsReq => "CmdChessRogueQueryBpCsReq",
-            CmdChessRogueType::CmdChessRogueGiveUpRollCsReq => {
-                "CmdChessRogueGiveUpRollCsReq"
+            CmdChessRogueType::CmdSelectChessRogueSubStoryScRsp => {
+                "CmdSelectChessRogueSubStoryScRsp"
             }
             CmdChessRogueType::CmdChessRoguePickAvatarScRsp => {
                 "CmdChessRoguePickAvatarScRsp"
             }
-            CmdChessRogueType::CmdChessRogueEnterCellScRsp => {
-                "CmdChessRogueEnterCellScRsp"
-            }
-            CmdChessRogueType::CmdChessRogueCellUpdateNotify => {
-                "CmdChessRogueCellUpdateNotify"
-            }
-            CmdChessRogueType::CmdChessRogueUpdateDiceInfoScNotify => {
-                "CmdChessRogueUpdateDiceInfoScNotify"
-            }
-            CmdChessRogueType::CmdChessRogueQueryScRsp => "CmdChessRogueQueryScRsp",
-            CmdChessRogueType::CmdChessRogueStartCsReq => "CmdChessRogueStartCsReq",
-            CmdChessRogueType::CmdFinishChessRogueNousSubStoryCsReq => {
-                "CmdFinishChessRogueNousSubStoryCsReq"
-            }
-            CmdChessRogueType::CmdChessRogueSelectBpCsReq => "CmdChessRogueSelectBpCsReq",
-            CmdChessRogueType::CmdChessRogueConfirmRollScRsp => {
-                "CmdChessRogueConfirmRollScRsp"
-            }
-            CmdChessRogueType::CmdSelectChessRogueSubStoryScRsp => {
-                "CmdSelectChessRogueSubStoryScRsp"
-            }
-            CmdChessRogueType::CmdChessRogueNousEditDiceCsReq => {
-                "CmdChessRogueNousEditDiceCsReq"
-            }
-            CmdChessRogueType::CmdEnhanceChessRogueBuffScRsp => {
-                "CmdEnhanceChessRogueBuffScRsp"
-            }
-            CmdChessRogueType::CmdChessRogueChangeyAeonDimensionNotify => {
-                "CmdChessRogueChangeyAeonDimensionNotify"
-            }
-            CmdChessRogueType::CmdChessRogueSkipTeachingLevelCsReq => {
-                "CmdChessRogueSkipTeachingLevelCsReq"
-            }
-            CmdChessRogueType::CmdChessRogueNousDiceSurfaceUnlockNotify => {
-                "CmdChessRogueNousDiceSurfaceUnlockNotify"
-            }
-            CmdChessRogueType::CmdChessRogueGiveUpScRsp => "CmdChessRogueGiveUpScRsp",
-            CmdChessRogueType::CmdChessRogueEnterCellCsReq => {
-                "CmdChessRogueEnterCellCsReq"
-            }
-            CmdChessRogueType::CmdChessRogueUpdateAeonModifierValueScNotify => {
-                "CmdChessRogueUpdateAeonModifierValueScNotify"
-            }
-            CmdChessRogueType::CmdChessRogueLayerAccountInfoNotify => {
-                "CmdChessRogueLayerAccountInfoNotify"
-            }
-            CmdChessRogueType::CmdEnhanceChessRogueBuffCsReq => {
-                "CmdEnhanceChessRogueBuffCsReq"
-            }
             CmdChessRogueType::CmdSelectChessRogueNousSubStoryCsReq => {
                 "CmdSelectChessRogueNousSubStoryCsReq"
-            }
-            CmdChessRogueType::CmdChessRogueQuitCsReq => "CmdChessRogueQuitCsReq",
-            CmdChessRogueType::CmdChessRogueGiveUpCsReq => "CmdChessRogueGiveUpCsReq",
-            CmdChessRogueType::CmdChessRogueUpdateMoneyInfoScNotify => {
-                "CmdChessRogueUpdateMoneyInfoScNotify"
-            }
-            CmdChessRogueType::CmdChessRogueUpdateActionPointScNotify => {
-                "CmdChessRogueUpdateActionPointScNotify"
-            }
-            CmdChessRogueType::CmdChessRogueReviveAvatarScRsp => {
-                "CmdChessRogueReviveAvatarScRsp"
-            }
-            CmdChessRogueType::CmdGetChessRogueNousStoryInfoCsReq => {
-                "CmdGetChessRogueNousStoryInfoCsReq"
-            }
-            CmdChessRogueType::CmdChessRogueFinishCurRoomNotify => {
-                "CmdChessRogueFinishCurRoomNotify"
-            }
-            CmdChessRogueType::CmdChessRogueNousDiceUpdateNotify => {
-                "CmdChessRogueNousDiceUpdateNotify"
-            }
-            CmdChessRogueType::CmdChessRogueReRollDiceScRsp => {
-                "CmdChessRogueReRollDiceScRsp"
-            }
-            CmdChessRogueType::CmdSelectChessRogueNousSubStoryScRsp => {
-                "CmdSelectChessRogueNousSubStoryScRsp"
-            }
-            CmdChessRogueType::CmdSelectChessRogueSubStoryCsReq => {
-                "CmdSelectChessRogueSubStoryCsReq"
-            }
-            CmdChessRogueType::CmdChessRogueEnterCsReq => "CmdChessRogueEnterCsReq",
-            CmdChessRogueType::CmdChessRogueNousGetRogueTalentInfoScRsp => {
-                "CmdChessRogueNousGetRogueTalentInfoScRsp"
-            }
-            CmdChessRogueType::CmdChessRogueLeaveScRsp => "CmdChessRogueLeaveScRsp",
-            CmdChessRogueType::CmdGetChessRogueStoryInfoCsReq => {
-                "CmdGetChessRogueStoryInfoCsReq"
-            }
-            CmdChessRogueType::CmdChessRogueNousEnableRogueTalentScRsp => {
-                "CmdChessRogueNousEnableRogueTalentScRsp"
-            }
-            CmdChessRogueType::CmdChessRogueQueryAeonDimensionsCsReq => {
-                "CmdChessRogueQueryAeonDimensionsCsReq"
-            }
-            CmdChessRogueType::CmdChessRogueSelectCellScRsp => {
-                "CmdChessRogueSelectCellScRsp"
-            }
-            CmdChessRogueType::CmdChessRogueUpdateReviveInfoScNotify => {
-                "CmdChessRogueUpdateReviveInfoScNotify"
-            }
-            CmdChessRogueType::CmdSyncChessRogueNousMainStoryScNotify => {
-                "CmdSyncChessRogueNousMainStoryScNotify"
-            }
-            CmdChessRogueType::CmdChessRogueGiveUpRollScRsp => {
-                "CmdChessRogueGiveUpRollScRsp"
-            }
-            CmdChessRogueType::CmdChessRogueQuestFinishNotify => {
-                "CmdChessRogueQuestFinishNotify"
-            }
-            CmdChessRogueType::CmdChessRogueUpdateLevelBaseInfoScNotify => {
-                "CmdChessRogueUpdateLevelBaseInfoScNotify"
-            }
-            CmdChessRogueType::CmdChessRogueRollDiceScRsp => "CmdChessRogueRollDiceScRsp",
-            CmdChessRogueType::CmdEnterChessRogueAeonRoomCsReq => {
-                "CmdEnterChessRogueAeonRoomCsReq"
-            }
-            CmdChessRogueType::CmdChessRogueQueryBpScRsp => "CmdChessRogueQueryBpScRsp",
-            CmdChessRogueType::CmdGetChessRogueNousStoryInfoScRsp => {
-                "CmdGetChessRogueNousStoryInfoScRsp"
-            }
-            CmdChessRogueType::CmdChessRogueGoAheadCsReq => "CmdChessRogueGoAheadCsReq",
-            CmdChessRogueType::CmdGetChessRogueBuffEnhanceInfoScRsp => {
-                "CmdGetChessRogueBuffEnhanceInfoScRsp"
-            }
-            CmdChessRogueType::CmdChessRogueSelectCellCsReq => {
-                "CmdChessRogueSelectCellCsReq"
-            }
-            CmdChessRogueType::CmdChessRogueCheatRollCsReq => {
-                "CmdChessRogueCheatRollCsReq"
-            }
-            CmdChessRogueType::CmdChessRogueMoveCellNotify => {
-                "CmdChessRogueMoveCellNotify"
-            }
-            CmdChessRogueType::CmdFinishChessRogueSubStoryCsReq => {
-                "CmdFinishChessRogueSubStoryCsReq"
-            }
-            CmdChessRogueType::CmdChessRogueUpdateBoardScNotify => {
-                "CmdChessRogueUpdateBoardScNotify"
-            }
-            CmdChessRogueType::CmdGetChessRogueStoryAeonTalkInfoCsReq => {
-                "CmdGetChessRogueStoryAeonTalkInfoCsReq"
-            }
-            CmdChessRogueType::CmdChessRogueSkipTeachingLevelScRsp => {
-                "CmdChessRogueSkipTeachingLevelScRsp"
-            }
-            CmdChessRogueType::CmdChessRogueReRollDiceCsReq => {
-                "CmdChessRogueReRollDiceCsReq"
-            }
-            CmdChessRogueType::CmdChessRogueNousGetRogueTalentInfoCsReq => {
-                "CmdChessRogueNousGetRogueTalentInfoCsReq"
-            }
-            CmdChessRogueType::CmdChessRogueSelectBpScRsp => "CmdChessRogueSelectBpScRsp",
-            CmdChessRogueType::CmdGetChessRogueBuffEnhanceInfoCsReq => {
-                "CmdGetChessRogueBuffEnhanceInfoCsReq"
-            }
-            CmdChessRogueType::CmdFinishChessRogueSubStoryScRsp => {
-                "CmdFinishChessRogueSubStoryScRsp"
-            }
-            CmdChessRogueType::CmdGetChessRogueStoryAeonTalkInfoScRsp => {
-                "CmdGetChessRogueStoryAeonTalkInfoScRsp"
-            }
-            CmdChessRogueType::CmdChessRogueStartScRsp => "CmdChessRogueStartScRsp",
-            CmdChessRogueType::CmdChessRogueEnterNextLayerCsReq => {
-                "CmdChessRogueEnterNextLayerCsReq"
             }
             CmdChessRogueType::CmdChessRogueCheatRollScRsp => {
                 "CmdChessRogueCheatRollScRsp"
             }
-            CmdChessRogueType::CmdChessRogueEnterScRsp => "CmdChessRogueEnterScRsp",
-            CmdChessRogueType::CmdEnterChessRogueAeonRoomScRsp => {
-                "CmdEnterChessRogueAeonRoomScRsp"
+            CmdChessRogueType::CmdGetChessRogueBuffEnhanceInfoScRsp => {
+                "CmdGetChessRogueBuffEnhanceInfoScRsp"
             }
-            CmdChessRogueType::CmdChessRogueConfirmRollCsReq => {
-                "CmdChessRogueConfirmRollCsReq"
+            CmdChessRogueType::CmdChessRogueSelectCellScRsp => {
+                "CmdChessRogueSelectCellScRsp"
             }
-            CmdChessRogueType::CmdChessRogueNousEnableRogueTalentCsReq => {
-                "CmdChessRogueNousEnableRogueTalentCsReq"
+            CmdChessRogueType::CmdGetChessRogueNousStoryInfoCsReq => {
+                "CmdGetChessRogueNousStoryInfoCsReq"
             }
-            CmdChessRogueType::CmdChessRoguePickAvatarCsReq => {
-                "CmdChessRoguePickAvatarCsReq"
+            CmdChessRogueType::CmdChessRogueReRollDiceCsReq => {
+                "CmdChessRogueReRollDiceCsReq"
             }
-            CmdChessRogueType::CmdChessRogueQueryCsReq => "CmdChessRogueQueryCsReq",
-            CmdChessRogueType::CmdFinishChessRogueNousSubStoryScRsp => {
-                "CmdFinishChessRogueNousSubStoryScRsp"
-            }
-            CmdChessRogueType::CmdChessRogueUpdateAllowedSelectCellScNotify => {
-                "CmdChessRogueUpdateAllowedSelectCellScNotify"
-            }
+            CmdChessRogueType::CmdChessRogueRollDiceScRsp => "CmdChessRogueRollDiceScRsp",
             CmdChessRogueType::CmdSyncChessRogueMainStoryFinishScNotify => {
                 "CmdSyncChessRogueMainStoryFinishScNotify"
             }
+            CmdChessRogueType::CmdChessRogueQueryBpScRsp => "CmdChessRogueQueryBpScRsp",
+            CmdChessRogueType::CmdChessRogueNousGetRogueTalentInfoScRsp => {
+                "CmdChessRogueNousGetRogueTalentInfoScRsp"
+            }
+            CmdChessRogueType::CmdChessRogueGiveUpScRsp => "CmdChessRogueGiveUpScRsp",
+            CmdChessRogueType::CmdChessRogueReviveAvatarScRsp => {
+                "CmdChessRogueReviveAvatarScRsp"
+            }
+            CmdChessRogueType::CmdChessRogueQuitScRsp => "CmdChessRogueQuitScRsp",
+            CmdChessRogueType::CmdChessRogueChangeyAeonDimensionNotify => {
+                "CmdChessRogueChangeyAeonDimensionNotify"
+            }
+            CmdChessRogueType::CmdChessRogueUpdateAeonModifierValueScNotify => {
+                "CmdChessRogueUpdateAeonModifierValueScNotify"
+            }
+            CmdChessRogueType::CmdChessRogueEnterNextLayerCsReq => {
+                "CmdChessRogueEnterNextLayerCsReq"
+            }
+            CmdChessRogueType::CmdChessRogueEnterCsReq => "CmdChessRogueEnterCsReq",
+            CmdChessRogueType::CmdChessRogueCellUpdateNotify => {
+                "CmdChessRogueCellUpdateNotify"
+            }
+            CmdChessRogueType::CmdChessRogueNousEditDiceScRsp => {
+                "CmdChessRogueNousEditDiceScRsp"
+            }
+            CmdChessRogueType::CmdChessRogueGiveUpRollCsReq => {
+                "CmdChessRogueGiveUpRollCsReq"
+            }
+            CmdChessRogueType::CmdChessRogueStartCsReq => "CmdChessRogueStartCsReq",
+            CmdChessRogueType::CmdChessRogueUpdateDicePassiveAccumulateValueScNotify => {
+                "CmdChessRogueUpdateDicePassiveAccumulateValueScNotify"
+            }
+            CmdChessRogueType::CmdChessRogueMoveCellNotify => {
+                "CmdChessRogueMoveCellNotify"
+            }
+            CmdChessRogueType::CmdGetChessRogueBuffEnhanceInfoCsReq => {
+                "CmdGetChessRogueBuffEnhanceInfoCsReq"
+            }
+            CmdChessRogueType::CmdChessRogueGiveUpCsReq => "CmdChessRogueGiveUpCsReq",
             CmdChessRogueType::CmdChessRogueQueryAeonDimensionsScRsp => {
                 "CmdChessRogueQueryAeonDimensionsScRsp"
             }
-            CmdChessRogueType::CmdChessRogueQuitScRsp => "CmdChessRogueQuitScRsp",
-            CmdChessRogueType::CmdChessRogueUpdateUnlockLevelScNotify => {
-                "CmdChessRogueUpdateUnlockLevelScNotify"
+            CmdChessRogueType::CmdChessRogueSelectBpScRsp => "CmdChessRogueSelectBpScRsp",
+            CmdChessRogueType::CmdChessRogueUpdateLevelBaseInfoScNotify => {
+                "CmdChessRogueUpdateLevelBaseInfoScNotify"
+            }
+            CmdChessRogueType::CmdChessRogueNousEditDiceCsReq => {
+                "CmdChessRogueNousEditDiceCsReq"
             }
             CmdChessRogueType::CmdChessRogueReviveAvatarCsReq => {
                 "CmdChessRogueReviveAvatarCsReq"
             }
-            CmdChessRogueType::CmdChessRogueNousEditDiceScRsp => {
-                "CmdChessRogueNousEditDiceScRsp"
+            CmdChessRogueType::CmdChessRogueReRollDiceScRsp => {
+                "CmdChessRogueReRollDiceScRsp"
+            }
+            CmdChessRogueType::CmdFinishChessRogueSubStoryScRsp => {
+                "CmdFinishChessRogueSubStoryScRsp"
+            }
+            CmdChessRogueType::CmdEnterChessRogueAeonRoomCsReq => {
+                "CmdEnterChessRogueAeonRoomCsReq"
+            }
+            CmdChessRogueType::CmdGetChessRogueStoryAeonTalkInfoCsReq => {
+                "CmdGetChessRogueStoryAeonTalkInfoCsReq"
+            }
+            CmdChessRogueType::CmdChessRogueRollDiceCsReq => "CmdChessRogueRollDiceCsReq",
+            CmdChessRogueType::CmdChessRogueUpdateBoardScNotify => {
+                "CmdChessRogueUpdateBoardScNotify"
+            }
+            CmdChessRogueType::CmdChessRogueQueryCsReq => "CmdChessRogueQueryCsReq",
+            CmdChessRogueType::CmdChessRogueNousEnableRogueTalentCsReq => {
+                "CmdChessRogueNousEnableRogueTalentCsReq"
+            }
+            CmdChessRogueType::CmdSelectChessRogueSubStoryCsReq => {
+                "CmdSelectChessRogueSubStoryCsReq"
+            }
+            CmdChessRogueType::CmdSyncChessRogueNousMainStoryScNotify => {
+                "CmdSyncChessRogueNousMainStoryScNotify"
+            }
+            CmdChessRogueType::CmdSyncChessRogueNousSubStoryScNotify => {
+                "CmdSyncChessRogueNousSubStoryScNotify"
+            }
+            CmdChessRogueType::CmdChessRogueUpdateMoneyInfoScNotify => {
+                "CmdChessRogueUpdateMoneyInfoScNotify"
+            }
+            CmdChessRogueType::CmdChessRogueSelectCellCsReq => {
+                "CmdChessRogueSelectCellCsReq"
+            }
+            CmdChessRogueType::CmdChessRogueGiveUpRollScRsp => {
+                "CmdChessRogueGiveUpRollScRsp"
+            }
+            CmdChessRogueType::CmdChessRogueEnterScRsp => "CmdChessRogueEnterScRsp",
+            CmdChessRogueType::CmdChessRogueNousGetRogueTalentInfoCsReq => {
+                "CmdChessRogueNousGetRogueTalentInfoCsReq"
+            }
+            CmdChessRogueType::CmdChessRogueConfirmRollScRsp => {
+                "CmdChessRogueConfirmRollScRsp"
+            }
+            CmdChessRogueType::CmdFinishChessRogueSubStoryCsReq => {
+                "CmdFinishChessRogueSubStoryCsReq"
+            }
+            CmdChessRogueType::CmdChessRogueQueryAeonDimensionsCsReq => {
+                "CmdChessRogueQueryAeonDimensionsCsReq"
+            }
+            CmdChessRogueType::CmdFinishChessRogueNousSubStoryCsReq => {
+                "CmdFinishChessRogueNousSubStoryCsReq"
+            }
+            CmdChessRogueType::CmdChessRogueGoAheadCsReq => "CmdChessRogueGoAheadCsReq",
+            CmdChessRogueType::CmdChessRogueUpdateAllowedSelectCellScNotify => {
+                "CmdChessRogueUpdateAllowedSelectCellScNotify"
+            }
+            CmdChessRogueType::CmdChessRogueSkipTeachingLevelCsReq => {
+                "CmdChessRogueSkipTeachingLevelCsReq"
+            }
+            CmdChessRogueType::CmdSelectChessRogueNousSubStoryScRsp => {
+                "CmdSelectChessRogueNousSubStoryScRsp"
+            }
+            CmdChessRogueType::CmdGetChessRogueStoryInfoScRsp => {
+                "CmdGetChessRogueStoryInfoScRsp"
+            }
+            CmdChessRogueType::CmdChessRogueUpdateUnlockLevelScNotify => {
+                "CmdChessRogueUpdateUnlockLevelScNotify"
+            }
+            CmdChessRogueType::CmdChessRogueUpdateDiceInfoScNotify => {
+                "CmdChessRogueUpdateDiceInfoScNotify"
+            }
+            CmdChessRogueType::CmdChessRogueQuestFinishNotify => {
+                "CmdChessRogueQuestFinishNotify"
+            }
+            CmdChessRogueType::CmdEnhanceChessRogueBuffScRsp => {
+                "CmdEnhanceChessRogueBuffScRsp"
+            }
+            CmdChessRogueType::CmdChessRogueUpdateActionPointScNotify => {
+                "CmdChessRogueUpdateActionPointScNotify"
+            }
+            CmdChessRogueType::CmdChessRogueQueryBpCsReq => "CmdChessRogueQueryBpCsReq",
+            CmdChessRogueType::CmdEnhanceChessRogueBuffCsReq => {
+                "CmdEnhanceChessRogueBuffCsReq"
+            }
+            CmdChessRogueType::CmdEnterChessRogueAeonRoomScRsp => {
+                "CmdEnterChessRogueAeonRoomScRsp"
+            }
+            CmdChessRogueType::CmdGetChessRogueStoryAeonTalkInfoScRsp => {
+                "CmdGetChessRogueStoryAeonTalkInfoScRsp"
+            }
+            CmdChessRogueType::CmdChessRogueEnterCellScRsp => {
+                "CmdChessRogueEnterCellScRsp"
+            }
+            CmdChessRogueType::CmdGetChessRogueStoryInfoCsReq => {
+                "CmdGetChessRogueStoryInfoCsReq"
+            }
+            CmdChessRogueType::CmdChessRogueLeaveCsReq => "CmdChessRogueLeaveCsReq",
+            CmdChessRogueType::CmdChessRogueLeaveScRsp => "CmdChessRogueLeaveScRsp",
+            CmdChessRogueType::CmdChessRogueQuitCsReq => "CmdChessRogueQuitCsReq",
+            CmdChessRogueType::CmdChessRogueFinishCurRoomNotify => {
+                "CmdChessRogueFinishCurRoomNotify"
+            }
+            CmdChessRogueType::CmdChessRogueQueryScRsp => "CmdChessRogueQueryScRsp",
+            CmdChessRogueType::CmdGetChessRogueNousStoryInfoScRsp => {
+                "CmdGetChessRogueNousStoryInfoScRsp"
+            }
+            CmdChessRogueType::CmdChessRogueNousDiceSurfaceUnlockNotify => {
+                "CmdChessRogueNousDiceSurfaceUnlockNotify"
+            }
+            CmdChessRogueType::CmdChessRogueSelectBpCsReq => "CmdChessRogueSelectBpCsReq",
+            CmdChessRogueType::CmdChessRogueUpdateReviveInfoScNotify => {
+                "CmdChessRogueUpdateReviveInfoScNotify"
+            }
+            CmdChessRogueType::CmdChessRogueSkipTeachingLevelScRsp => {
+                "CmdChessRogueSkipTeachingLevelScRsp"
+            }
+            CmdChessRogueType::CmdChessRogueGoAheadScRsp => "CmdChessRogueGoAheadScRsp",
+            CmdChessRogueType::CmdChessRoguePickAvatarCsReq => {
+                "CmdChessRoguePickAvatarCsReq"
+            }
+            CmdChessRogueType::CmdChessRogueEnterCellCsReq => {
+                "CmdChessRogueEnterCellCsReq"
+            }
+            CmdChessRogueType::CmdChessRogueStartScRsp => "CmdChessRogueStartScRsp",
+            CmdChessRogueType::CmdChessRogueEnterNextLayerScRsp => {
+                "CmdChessRogueEnterNextLayerScRsp"
+            }
+            CmdChessRogueType::CmdFinishChessRogueNousSubStoryScRsp => {
+                "CmdFinishChessRogueNousSubStoryScRsp"
+            }
+            CmdChessRogueType::CmdChessRogueNousDiceUpdateNotify => {
+                "CmdChessRogueNousDiceUpdateNotify"
+            }
+            CmdChessRogueType::CmdChessRogueLayerAccountInfoNotify => {
+                "CmdChessRogueLayerAccountInfoNotify"
+            }
+            CmdChessRogueType::CmdSyncChessRogueNousValueScNotify => {
+                "CmdSyncChessRogueNousValueScNotify"
+            }
+            CmdChessRogueType::CmdChessRogueConfirmRollCsReq => {
+                "CmdChessRogueConfirmRollCsReq"
+            }
+            CmdChessRogueType::CmdChessRogueCheatRollCsReq => {
+                "CmdChessRogueCheatRollCsReq"
+            }
+            CmdChessRogueType::CmdChessRogueNousEnableRogueTalentScRsp => {
+                "CmdChessRogueNousEnableRogueTalentScRsp"
             }
         }
     }
@@ -4491,199 +4471,199 @@ impl CmdChessRogueType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdChessRogueTypeNone" => Some(Self::None),
-            "CmdChessRogueLeaveCsReq" => Some(Self::CmdChessRogueLeaveCsReq),
-            "CmdChessRogueEnterNextLayerScRsp" => {
-                Some(Self::CmdChessRogueEnterNextLayerScRsp)
+            "CmdSelectChessRogueSubStoryScRsp" => {
+                Some(Self::CmdSelectChessRogueSubStoryScRsp)
             }
-            "CmdSyncChessRogueNousValueScNotify" => {
-                Some(Self::CmdSyncChessRogueNousValueScNotify)
+            "CmdChessRoguePickAvatarScRsp" => Some(Self::CmdChessRoguePickAvatarScRsp),
+            "CmdSelectChessRogueNousSubStoryCsReq" => {
+                Some(Self::CmdSelectChessRogueNousSubStoryCsReq)
             }
+            "CmdChessRogueCheatRollScRsp" => Some(Self::CmdChessRogueCheatRollScRsp),
+            "CmdGetChessRogueBuffEnhanceInfoScRsp" => {
+                Some(Self::CmdGetChessRogueBuffEnhanceInfoScRsp)
+            }
+            "CmdChessRogueSelectCellScRsp" => Some(Self::CmdChessRogueSelectCellScRsp),
+            "CmdGetChessRogueNousStoryInfoCsReq" => {
+                Some(Self::CmdGetChessRogueNousStoryInfoCsReq)
+            }
+            "CmdChessRogueReRollDiceCsReq" => Some(Self::CmdChessRogueReRollDiceCsReq),
+            "CmdChessRogueRollDiceScRsp" => Some(Self::CmdChessRogueRollDiceScRsp),
+            "CmdSyncChessRogueMainStoryFinishScNotify" => {
+                Some(Self::CmdSyncChessRogueMainStoryFinishScNotify)
+            }
+            "CmdChessRogueQueryBpScRsp" => Some(Self::CmdChessRogueQueryBpScRsp),
+            "CmdChessRogueNousGetRogueTalentInfoScRsp" => {
+                Some(Self::CmdChessRogueNousGetRogueTalentInfoScRsp)
+            }
+            "CmdChessRogueGiveUpScRsp" => Some(Self::CmdChessRogueGiveUpScRsp),
+            "CmdChessRogueReviveAvatarScRsp" => {
+                Some(Self::CmdChessRogueReviveAvatarScRsp)
+            }
+            "CmdChessRogueQuitScRsp" => Some(Self::CmdChessRogueQuitScRsp),
+            "CmdChessRogueChangeyAeonDimensionNotify" => {
+                Some(Self::CmdChessRogueChangeyAeonDimensionNotify)
+            }
+            "CmdChessRogueUpdateAeonModifierValueScNotify" => {
+                Some(Self::CmdChessRogueUpdateAeonModifierValueScNotify)
+            }
+            "CmdChessRogueEnterNextLayerCsReq" => {
+                Some(Self::CmdChessRogueEnterNextLayerCsReq)
+            }
+            "CmdChessRogueEnterCsReq" => Some(Self::CmdChessRogueEnterCsReq),
+            "CmdChessRogueCellUpdateNotify" => Some(Self::CmdChessRogueCellUpdateNotify),
+            "CmdChessRogueNousEditDiceScRsp" => {
+                Some(Self::CmdChessRogueNousEditDiceScRsp)
+            }
+            "CmdChessRogueGiveUpRollCsReq" => Some(Self::CmdChessRogueGiveUpRollCsReq),
+            "CmdChessRogueStartCsReq" => Some(Self::CmdChessRogueStartCsReq),
             "CmdChessRogueUpdateDicePassiveAccumulateValueScNotify" => {
                 Some(Self::CmdChessRogueUpdateDicePassiveAccumulateValueScNotify)
             }
-            "CmdGetChessRogueStoryInfoScRsp" => {
-                Some(Self::CmdGetChessRogueStoryInfoScRsp)
+            "CmdChessRogueMoveCellNotify" => Some(Self::CmdChessRogueMoveCellNotify),
+            "CmdGetChessRogueBuffEnhanceInfoCsReq" => {
+                Some(Self::CmdGetChessRogueBuffEnhanceInfoCsReq)
             }
-            "CmdSyncChessRogueNousSubStoryScNotify" => {
-                Some(Self::CmdSyncChessRogueNousSubStoryScNotify)
+            "CmdChessRogueGiveUpCsReq" => Some(Self::CmdChessRogueGiveUpCsReq),
+            "CmdChessRogueQueryAeonDimensionsScRsp" => {
+                Some(Self::CmdChessRogueQueryAeonDimensionsScRsp)
             }
-            "CmdChessRogueRollDiceCsReq" => Some(Self::CmdChessRogueRollDiceCsReq),
-            "CmdChessRogueGoAheadScRsp" => Some(Self::CmdChessRogueGoAheadScRsp),
-            "CmdChessRogueQueryBpCsReq" => Some(Self::CmdChessRogueQueryBpCsReq),
-            "CmdChessRogueGiveUpRollCsReq" => Some(Self::CmdChessRogueGiveUpRollCsReq),
-            "CmdChessRoguePickAvatarScRsp" => Some(Self::CmdChessRoguePickAvatarScRsp),
-            "CmdChessRogueEnterCellScRsp" => Some(Self::CmdChessRogueEnterCellScRsp),
-            "CmdChessRogueCellUpdateNotify" => Some(Self::CmdChessRogueCellUpdateNotify),
-            "CmdChessRogueUpdateDiceInfoScNotify" => {
-                Some(Self::CmdChessRogueUpdateDiceInfoScNotify)
-            }
-            "CmdChessRogueQueryScRsp" => Some(Self::CmdChessRogueQueryScRsp),
-            "CmdChessRogueStartCsReq" => Some(Self::CmdChessRogueStartCsReq),
-            "CmdFinishChessRogueNousSubStoryCsReq" => {
-                Some(Self::CmdFinishChessRogueNousSubStoryCsReq)
-            }
-            "CmdChessRogueSelectBpCsReq" => Some(Self::CmdChessRogueSelectBpCsReq),
-            "CmdChessRogueConfirmRollScRsp" => Some(Self::CmdChessRogueConfirmRollScRsp),
-            "CmdSelectChessRogueSubStoryScRsp" => {
-                Some(Self::CmdSelectChessRogueSubStoryScRsp)
+            "CmdChessRogueSelectBpScRsp" => Some(Self::CmdChessRogueSelectBpScRsp),
+            "CmdChessRogueUpdateLevelBaseInfoScNotify" => {
+                Some(Self::CmdChessRogueUpdateLevelBaseInfoScNotify)
             }
             "CmdChessRogueNousEditDiceCsReq" => {
                 Some(Self::CmdChessRogueNousEditDiceCsReq)
             }
-            "CmdEnhanceChessRogueBuffScRsp" => Some(Self::CmdEnhanceChessRogueBuffScRsp),
-            "CmdChessRogueChangeyAeonDimensionNotify" => {
-                Some(Self::CmdChessRogueChangeyAeonDimensionNotify)
-            }
-            "CmdChessRogueSkipTeachingLevelCsReq" => {
-                Some(Self::CmdChessRogueSkipTeachingLevelCsReq)
-            }
-            "CmdChessRogueNousDiceSurfaceUnlockNotify" => {
-                Some(Self::CmdChessRogueNousDiceSurfaceUnlockNotify)
-            }
-            "CmdChessRogueGiveUpScRsp" => Some(Self::CmdChessRogueGiveUpScRsp),
-            "CmdChessRogueEnterCellCsReq" => Some(Self::CmdChessRogueEnterCellCsReq),
-            "CmdChessRogueUpdateAeonModifierValueScNotify" => {
-                Some(Self::CmdChessRogueUpdateAeonModifierValueScNotify)
-            }
-            "CmdChessRogueLayerAccountInfoNotify" => {
-                Some(Self::CmdChessRogueLayerAccountInfoNotify)
-            }
-            "CmdEnhanceChessRogueBuffCsReq" => Some(Self::CmdEnhanceChessRogueBuffCsReq),
-            "CmdSelectChessRogueNousSubStoryCsReq" => {
-                Some(Self::CmdSelectChessRogueNousSubStoryCsReq)
-            }
-            "CmdChessRogueQuitCsReq" => Some(Self::CmdChessRogueQuitCsReq),
-            "CmdChessRogueGiveUpCsReq" => Some(Self::CmdChessRogueGiveUpCsReq),
-            "CmdChessRogueUpdateMoneyInfoScNotify" => {
-                Some(Self::CmdChessRogueUpdateMoneyInfoScNotify)
-            }
-            "CmdChessRogueUpdateActionPointScNotify" => {
-                Some(Self::CmdChessRogueUpdateActionPointScNotify)
-            }
-            "CmdChessRogueReviveAvatarScRsp" => {
-                Some(Self::CmdChessRogueReviveAvatarScRsp)
-            }
-            "CmdGetChessRogueNousStoryInfoCsReq" => {
-                Some(Self::CmdGetChessRogueNousStoryInfoCsReq)
-            }
-            "CmdChessRogueFinishCurRoomNotify" => {
-                Some(Self::CmdChessRogueFinishCurRoomNotify)
-            }
-            "CmdChessRogueNousDiceUpdateNotify" => {
-                Some(Self::CmdChessRogueNousDiceUpdateNotify)
+            "CmdChessRogueReviveAvatarCsReq" => {
+                Some(Self::CmdChessRogueReviveAvatarCsReq)
             }
             "CmdChessRogueReRollDiceScRsp" => Some(Self::CmdChessRogueReRollDiceScRsp),
-            "CmdSelectChessRogueNousSubStoryScRsp" => {
-                Some(Self::CmdSelectChessRogueNousSubStoryScRsp)
+            "CmdFinishChessRogueSubStoryScRsp" => {
+                Some(Self::CmdFinishChessRogueSubStoryScRsp)
             }
-            "CmdSelectChessRogueSubStoryCsReq" => {
-                Some(Self::CmdSelectChessRogueSubStoryCsReq)
-            }
-            "CmdChessRogueEnterCsReq" => Some(Self::CmdChessRogueEnterCsReq),
-            "CmdChessRogueNousGetRogueTalentInfoScRsp" => {
-                Some(Self::CmdChessRogueNousGetRogueTalentInfoScRsp)
-            }
-            "CmdChessRogueLeaveScRsp" => Some(Self::CmdChessRogueLeaveScRsp),
-            "CmdGetChessRogueStoryInfoCsReq" => {
-                Some(Self::CmdGetChessRogueStoryInfoCsReq)
-            }
-            "CmdChessRogueNousEnableRogueTalentScRsp" => {
-                Some(Self::CmdChessRogueNousEnableRogueTalentScRsp)
-            }
-            "CmdChessRogueQueryAeonDimensionsCsReq" => {
-                Some(Self::CmdChessRogueQueryAeonDimensionsCsReq)
-            }
-            "CmdChessRogueSelectCellScRsp" => Some(Self::CmdChessRogueSelectCellScRsp),
-            "CmdChessRogueUpdateReviveInfoScNotify" => {
-                Some(Self::CmdChessRogueUpdateReviveInfoScNotify)
-            }
-            "CmdSyncChessRogueNousMainStoryScNotify" => {
-                Some(Self::CmdSyncChessRogueNousMainStoryScNotify)
-            }
-            "CmdChessRogueGiveUpRollScRsp" => Some(Self::CmdChessRogueGiveUpRollScRsp),
-            "CmdChessRogueQuestFinishNotify" => {
-                Some(Self::CmdChessRogueQuestFinishNotify)
-            }
-            "CmdChessRogueUpdateLevelBaseInfoScNotify" => {
-                Some(Self::CmdChessRogueUpdateLevelBaseInfoScNotify)
-            }
-            "CmdChessRogueRollDiceScRsp" => Some(Self::CmdChessRogueRollDiceScRsp),
             "CmdEnterChessRogueAeonRoomCsReq" => {
                 Some(Self::CmdEnterChessRogueAeonRoomCsReq)
-            }
-            "CmdChessRogueQueryBpScRsp" => Some(Self::CmdChessRogueQueryBpScRsp),
-            "CmdGetChessRogueNousStoryInfoScRsp" => {
-                Some(Self::CmdGetChessRogueNousStoryInfoScRsp)
-            }
-            "CmdChessRogueGoAheadCsReq" => Some(Self::CmdChessRogueGoAheadCsReq),
-            "CmdGetChessRogueBuffEnhanceInfoScRsp" => {
-                Some(Self::CmdGetChessRogueBuffEnhanceInfoScRsp)
-            }
-            "CmdChessRogueSelectCellCsReq" => Some(Self::CmdChessRogueSelectCellCsReq),
-            "CmdChessRogueCheatRollCsReq" => Some(Self::CmdChessRogueCheatRollCsReq),
-            "CmdChessRogueMoveCellNotify" => Some(Self::CmdChessRogueMoveCellNotify),
-            "CmdFinishChessRogueSubStoryCsReq" => {
-                Some(Self::CmdFinishChessRogueSubStoryCsReq)
-            }
-            "CmdChessRogueUpdateBoardScNotify" => {
-                Some(Self::CmdChessRogueUpdateBoardScNotify)
             }
             "CmdGetChessRogueStoryAeonTalkInfoCsReq" => {
                 Some(Self::CmdGetChessRogueStoryAeonTalkInfoCsReq)
             }
-            "CmdChessRogueSkipTeachingLevelScRsp" => {
-                Some(Self::CmdChessRogueSkipTeachingLevelScRsp)
+            "CmdChessRogueRollDiceCsReq" => Some(Self::CmdChessRogueRollDiceCsReq),
+            "CmdChessRogueUpdateBoardScNotify" => {
+                Some(Self::CmdChessRogueUpdateBoardScNotify)
             }
-            "CmdChessRogueReRollDiceCsReq" => Some(Self::CmdChessRogueReRollDiceCsReq),
+            "CmdChessRogueQueryCsReq" => Some(Self::CmdChessRogueQueryCsReq),
+            "CmdChessRogueNousEnableRogueTalentCsReq" => {
+                Some(Self::CmdChessRogueNousEnableRogueTalentCsReq)
+            }
+            "CmdSelectChessRogueSubStoryCsReq" => {
+                Some(Self::CmdSelectChessRogueSubStoryCsReq)
+            }
+            "CmdSyncChessRogueNousMainStoryScNotify" => {
+                Some(Self::CmdSyncChessRogueNousMainStoryScNotify)
+            }
+            "CmdSyncChessRogueNousSubStoryScNotify" => {
+                Some(Self::CmdSyncChessRogueNousSubStoryScNotify)
+            }
+            "CmdChessRogueUpdateMoneyInfoScNotify" => {
+                Some(Self::CmdChessRogueUpdateMoneyInfoScNotify)
+            }
+            "CmdChessRogueSelectCellCsReq" => Some(Self::CmdChessRogueSelectCellCsReq),
+            "CmdChessRogueGiveUpRollScRsp" => Some(Self::CmdChessRogueGiveUpRollScRsp),
+            "CmdChessRogueEnterScRsp" => Some(Self::CmdChessRogueEnterScRsp),
             "CmdChessRogueNousGetRogueTalentInfoCsReq" => {
                 Some(Self::CmdChessRogueNousGetRogueTalentInfoCsReq)
             }
-            "CmdChessRogueSelectBpScRsp" => Some(Self::CmdChessRogueSelectBpScRsp),
-            "CmdGetChessRogueBuffEnhanceInfoCsReq" => {
-                Some(Self::CmdGetChessRogueBuffEnhanceInfoCsReq)
+            "CmdChessRogueConfirmRollScRsp" => Some(Self::CmdChessRogueConfirmRollScRsp),
+            "CmdFinishChessRogueSubStoryCsReq" => {
+                Some(Self::CmdFinishChessRogueSubStoryCsReq)
             }
-            "CmdFinishChessRogueSubStoryScRsp" => {
-                Some(Self::CmdFinishChessRogueSubStoryScRsp)
+            "CmdChessRogueQueryAeonDimensionsCsReq" => {
+                Some(Self::CmdChessRogueQueryAeonDimensionsCsReq)
+            }
+            "CmdFinishChessRogueNousSubStoryCsReq" => {
+                Some(Self::CmdFinishChessRogueNousSubStoryCsReq)
+            }
+            "CmdChessRogueGoAheadCsReq" => Some(Self::CmdChessRogueGoAheadCsReq),
+            "CmdChessRogueUpdateAllowedSelectCellScNotify" => {
+                Some(Self::CmdChessRogueUpdateAllowedSelectCellScNotify)
+            }
+            "CmdChessRogueSkipTeachingLevelCsReq" => {
+                Some(Self::CmdChessRogueSkipTeachingLevelCsReq)
+            }
+            "CmdSelectChessRogueNousSubStoryScRsp" => {
+                Some(Self::CmdSelectChessRogueNousSubStoryScRsp)
+            }
+            "CmdGetChessRogueStoryInfoScRsp" => {
+                Some(Self::CmdGetChessRogueStoryInfoScRsp)
+            }
+            "CmdChessRogueUpdateUnlockLevelScNotify" => {
+                Some(Self::CmdChessRogueUpdateUnlockLevelScNotify)
+            }
+            "CmdChessRogueUpdateDiceInfoScNotify" => {
+                Some(Self::CmdChessRogueUpdateDiceInfoScNotify)
+            }
+            "CmdChessRogueQuestFinishNotify" => {
+                Some(Self::CmdChessRogueQuestFinishNotify)
+            }
+            "CmdEnhanceChessRogueBuffScRsp" => Some(Self::CmdEnhanceChessRogueBuffScRsp),
+            "CmdChessRogueUpdateActionPointScNotify" => {
+                Some(Self::CmdChessRogueUpdateActionPointScNotify)
+            }
+            "CmdChessRogueQueryBpCsReq" => Some(Self::CmdChessRogueQueryBpCsReq),
+            "CmdEnhanceChessRogueBuffCsReq" => Some(Self::CmdEnhanceChessRogueBuffCsReq),
+            "CmdEnterChessRogueAeonRoomScRsp" => {
+                Some(Self::CmdEnterChessRogueAeonRoomScRsp)
             }
             "CmdGetChessRogueStoryAeonTalkInfoScRsp" => {
                 Some(Self::CmdGetChessRogueStoryAeonTalkInfoScRsp)
             }
-            "CmdChessRogueStartScRsp" => Some(Self::CmdChessRogueStartScRsp),
-            "CmdChessRogueEnterNextLayerCsReq" => {
-                Some(Self::CmdChessRogueEnterNextLayerCsReq)
+            "CmdChessRogueEnterCellScRsp" => Some(Self::CmdChessRogueEnterCellScRsp),
+            "CmdGetChessRogueStoryInfoCsReq" => {
+                Some(Self::CmdGetChessRogueStoryInfoCsReq)
             }
-            "CmdChessRogueCheatRollScRsp" => Some(Self::CmdChessRogueCheatRollScRsp),
-            "CmdChessRogueEnterScRsp" => Some(Self::CmdChessRogueEnterScRsp),
-            "CmdEnterChessRogueAeonRoomScRsp" => {
-                Some(Self::CmdEnterChessRogueAeonRoomScRsp)
+            "CmdChessRogueLeaveCsReq" => Some(Self::CmdChessRogueLeaveCsReq),
+            "CmdChessRogueLeaveScRsp" => Some(Self::CmdChessRogueLeaveScRsp),
+            "CmdChessRogueQuitCsReq" => Some(Self::CmdChessRogueQuitCsReq),
+            "CmdChessRogueFinishCurRoomNotify" => {
+                Some(Self::CmdChessRogueFinishCurRoomNotify)
             }
-            "CmdChessRogueConfirmRollCsReq" => Some(Self::CmdChessRogueConfirmRollCsReq),
-            "CmdChessRogueNousEnableRogueTalentCsReq" => {
-                Some(Self::CmdChessRogueNousEnableRogueTalentCsReq)
+            "CmdChessRogueQueryScRsp" => Some(Self::CmdChessRogueQueryScRsp),
+            "CmdGetChessRogueNousStoryInfoScRsp" => {
+                Some(Self::CmdGetChessRogueNousStoryInfoScRsp)
             }
+            "CmdChessRogueNousDiceSurfaceUnlockNotify" => {
+                Some(Self::CmdChessRogueNousDiceSurfaceUnlockNotify)
+            }
+            "CmdChessRogueSelectBpCsReq" => Some(Self::CmdChessRogueSelectBpCsReq),
+            "CmdChessRogueUpdateReviveInfoScNotify" => {
+                Some(Self::CmdChessRogueUpdateReviveInfoScNotify)
+            }
+            "CmdChessRogueSkipTeachingLevelScRsp" => {
+                Some(Self::CmdChessRogueSkipTeachingLevelScRsp)
+            }
+            "CmdChessRogueGoAheadScRsp" => Some(Self::CmdChessRogueGoAheadScRsp),
             "CmdChessRoguePickAvatarCsReq" => Some(Self::CmdChessRoguePickAvatarCsReq),
-            "CmdChessRogueQueryCsReq" => Some(Self::CmdChessRogueQueryCsReq),
+            "CmdChessRogueEnterCellCsReq" => Some(Self::CmdChessRogueEnterCellCsReq),
+            "CmdChessRogueStartScRsp" => Some(Self::CmdChessRogueStartScRsp),
+            "CmdChessRogueEnterNextLayerScRsp" => {
+                Some(Self::CmdChessRogueEnterNextLayerScRsp)
+            }
             "CmdFinishChessRogueNousSubStoryScRsp" => {
                 Some(Self::CmdFinishChessRogueNousSubStoryScRsp)
             }
-            "CmdChessRogueUpdateAllowedSelectCellScNotify" => {
-                Some(Self::CmdChessRogueUpdateAllowedSelectCellScNotify)
+            "CmdChessRogueNousDiceUpdateNotify" => {
+                Some(Self::CmdChessRogueNousDiceUpdateNotify)
             }
-            "CmdSyncChessRogueMainStoryFinishScNotify" => {
-                Some(Self::CmdSyncChessRogueMainStoryFinishScNotify)
+            "CmdChessRogueLayerAccountInfoNotify" => {
+                Some(Self::CmdChessRogueLayerAccountInfoNotify)
             }
-            "CmdChessRogueQueryAeonDimensionsScRsp" => {
-                Some(Self::CmdChessRogueQueryAeonDimensionsScRsp)
+            "CmdSyncChessRogueNousValueScNotify" => {
+                Some(Self::CmdSyncChessRogueNousValueScNotify)
             }
-            "CmdChessRogueQuitScRsp" => Some(Self::CmdChessRogueQuitScRsp),
-            "CmdChessRogueUpdateUnlockLevelScNotify" => {
-                Some(Self::CmdChessRogueUpdateUnlockLevelScNotify)
-            }
-            "CmdChessRogueReviveAvatarCsReq" => {
-                Some(Self::CmdChessRogueReviveAvatarCsReq)
-            }
-            "CmdChessRogueNousEditDiceScRsp" => {
-                Some(Self::CmdChessRogueNousEditDiceScRsp)
+            "CmdChessRogueConfirmRollCsReq" => Some(Self::CmdChessRogueConfirmRollCsReq),
+            "CmdChessRogueCheatRollCsReq" => Some(Self::CmdChessRogueCheatRollCsReq),
+            "CmdChessRogueNousEnableRogueTalentScRsp" => {
+                Some(Self::CmdChessRogueNousEnableRogueTalentScRsp)
             }
             _ => None,
         }
@@ -4694,22 +4674,22 @@ impl CmdChessRogueType {
 #[repr(i32)]
 pub enum CmdClockParkType {
     None = 0,
-    CmdClockParkUseBuffScRsp = 7205,
-    CmdClockParkQuitScriptCsReq = 7207,
-    CmdClockParkGetOngoingScriptInfoCsReq = 7208,
-    CmdClockParkGetInfoCsReq = 7215,
-    CmdClockParkGetInfoScRsp = 7216,
-    CmdClockParkUseBuffCsReq = 7220,
-    CmdClockParkStartScriptScRsp = 7223,
+    CmdClockParkBattleEndScNotify = 7204,
+    CmdClockParkUseBuffScRsp = 7206,
+    CmdClockParkStartScriptCsReq = 7209,
+    CmdClockParkQuitScriptCsReq = 7210,
+    CmdClockParkUseBuffCsReq = 7211,
+    CmdClockParkGetInfoCsReq = 7212,
+    CmdClockParkUnlockTalentCsReq = 7215,
     CmdClockParkHandleWaitOperationScRsp = 7228,
-    CmdClockParkGetOngoingScriptInfoScRsp = 7230,
-    CmdClockParkFinishScriptScNotify = 7231,
-    CmdClockParkBattleEndScNotify = 7233,
-    CmdClockParkQuitScriptScRsp = 7234,
-    CmdClockParkHandleWaitOperationCsReq = 7235,
-    CmdClockParkUnlockTalentScRsp = 7237,
-    CmdClockParkStartScriptCsReq = 7240,
-    CmdClockParkUnlockTalentCsReq = 7242,
+    CmdClockParkFinishScriptScNotify = 7235,
+    CmdClockParkStartScriptScRsp = 7243,
+    CmdClockParkHandleWaitOperationCsReq = 7245,
+    CmdClockParkGetOngoingScriptInfoScRsp = 7246,
+    CmdClockParkGetOngoingScriptInfoCsReq = 7247,
+    CmdClockParkQuitScriptScRsp = 7248,
+    CmdClockParkUnlockTalentScRsp = 7249,
+    CmdClockParkGetInfoScRsp = 7250,
 }
 impl CmdClockParkType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -4719,78 +4699,78 @@ impl CmdClockParkType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdClockParkType::None => "CmdClockParkTypeNone",
+            CmdClockParkType::CmdClockParkBattleEndScNotify => {
+                "CmdClockParkBattleEndScNotify"
+            }
             CmdClockParkType::CmdClockParkUseBuffScRsp => "CmdClockParkUseBuffScRsp",
+            CmdClockParkType::CmdClockParkStartScriptCsReq => {
+                "CmdClockParkStartScriptCsReq"
+            }
             CmdClockParkType::CmdClockParkQuitScriptCsReq => {
                 "CmdClockParkQuitScriptCsReq"
             }
-            CmdClockParkType::CmdClockParkGetOngoingScriptInfoCsReq => {
-                "CmdClockParkGetOngoingScriptInfoCsReq"
-            }
-            CmdClockParkType::CmdClockParkGetInfoCsReq => "CmdClockParkGetInfoCsReq",
-            CmdClockParkType::CmdClockParkGetInfoScRsp => "CmdClockParkGetInfoScRsp",
             CmdClockParkType::CmdClockParkUseBuffCsReq => "CmdClockParkUseBuffCsReq",
-            CmdClockParkType::CmdClockParkStartScriptScRsp => {
-                "CmdClockParkStartScriptScRsp"
+            CmdClockParkType::CmdClockParkGetInfoCsReq => "CmdClockParkGetInfoCsReq",
+            CmdClockParkType::CmdClockParkUnlockTalentCsReq => {
+                "CmdClockParkUnlockTalentCsReq"
             }
             CmdClockParkType::CmdClockParkHandleWaitOperationScRsp => {
                 "CmdClockParkHandleWaitOperationScRsp"
             }
-            CmdClockParkType::CmdClockParkGetOngoingScriptInfoScRsp => {
-                "CmdClockParkGetOngoingScriptInfoScRsp"
-            }
             CmdClockParkType::CmdClockParkFinishScriptScNotify => {
                 "CmdClockParkFinishScriptScNotify"
             }
-            CmdClockParkType::CmdClockParkBattleEndScNotify => {
-                "CmdClockParkBattleEndScNotify"
-            }
-            CmdClockParkType::CmdClockParkQuitScriptScRsp => {
-                "CmdClockParkQuitScriptScRsp"
+            CmdClockParkType::CmdClockParkStartScriptScRsp => {
+                "CmdClockParkStartScriptScRsp"
             }
             CmdClockParkType::CmdClockParkHandleWaitOperationCsReq => {
                 "CmdClockParkHandleWaitOperationCsReq"
             }
+            CmdClockParkType::CmdClockParkGetOngoingScriptInfoScRsp => {
+                "CmdClockParkGetOngoingScriptInfoScRsp"
+            }
+            CmdClockParkType::CmdClockParkGetOngoingScriptInfoCsReq => {
+                "CmdClockParkGetOngoingScriptInfoCsReq"
+            }
+            CmdClockParkType::CmdClockParkQuitScriptScRsp => {
+                "CmdClockParkQuitScriptScRsp"
+            }
             CmdClockParkType::CmdClockParkUnlockTalentScRsp => {
                 "CmdClockParkUnlockTalentScRsp"
             }
-            CmdClockParkType::CmdClockParkStartScriptCsReq => {
-                "CmdClockParkStartScriptCsReq"
-            }
-            CmdClockParkType::CmdClockParkUnlockTalentCsReq => {
-                "CmdClockParkUnlockTalentCsReq"
-            }
+            CmdClockParkType::CmdClockParkGetInfoScRsp => "CmdClockParkGetInfoScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdClockParkTypeNone" => Some(Self::None),
+            "CmdClockParkBattleEndScNotify" => Some(Self::CmdClockParkBattleEndScNotify),
             "CmdClockParkUseBuffScRsp" => Some(Self::CmdClockParkUseBuffScRsp),
+            "CmdClockParkStartScriptCsReq" => Some(Self::CmdClockParkStartScriptCsReq),
             "CmdClockParkQuitScriptCsReq" => Some(Self::CmdClockParkQuitScriptCsReq),
-            "CmdClockParkGetOngoingScriptInfoCsReq" => {
-                Some(Self::CmdClockParkGetOngoingScriptInfoCsReq)
-            }
-            "CmdClockParkGetInfoCsReq" => Some(Self::CmdClockParkGetInfoCsReq),
-            "CmdClockParkGetInfoScRsp" => Some(Self::CmdClockParkGetInfoScRsp),
             "CmdClockParkUseBuffCsReq" => Some(Self::CmdClockParkUseBuffCsReq),
-            "CmdClockParkStartScriptScRsp" => Some(Self::CmdClockParkStartScriptScRsp),
+            "CmdClockParkGetInfoCsReq" => Some(Self::CmdClockParkGetInfoCsReq),
+            "CmdClockParkUnlockTalentCsReq" => Some(Self::CmdClockParkUnlockTalentCsReq),
             "CmdClockParkHandleWaitOperationScRsp" => {
                 Some(Self::CmdClockParkHandleWaitOperationScRsp)
-            }
-            "CmdClockParkGetOngoingScriptInfoScRsp" => {
-                Some(Self::CmdClockParkGetOngoingScriptInfoScRsp)
             }
             "CmdClockParkFinishScriptScNotify" => {
                 Some(Self::CmdClockParkFinishScriptScNotify)
             }
-            "CmdClockParkBattleEndScNotify" => Some(Self::CmdClockParkBattleEndScNotify),
-            "CmdClockParkQuitScriptScRsp" => Some(Self::CmdClockParkQuitScriptScRsp),
+            "CmdClockParkStartScriptScRsp" => Some(Self::CmdClockParkStartScriptScRsp),
             "CmdClockParkHandleWaitOperationCsReq" => {
                 Some(Self::CmdClockParkHandleWaitOperationCsReq)
             }
+            "CmdClockParkGetOngoingScriptInfoScRsp" => {
+                Some(Self::CmdClockParkGetOngoingScriptInfoScRsp)
+            }
+            "CmdClockParkGetOngoingScriptInfoCsReq" => {
+                Some(Self::CmdClockParkGetOngoingScriptInfoCsReq)
+            }
+            "CmdClockParkQuitScriptScRsp" => Some(Self::CmdClockParkQuitScriptScRsp),
             "CmdClockParkUnlockTalentScRsp" => Some(Self::CmdClockParkUnlockTalentScRsp),
-            "CmdClockParkStartScriptCsReq" => Some(Self::CmdClockParkStartScriptCsReq),
-            "CmdClockParkUnlockTalentCsReq" => Some(Self::CmdClockParkUnlockTalentCsReq),
+            "CmdClockParkGetInfoScRsp" => Some(Self::CmdClockParkGetInfoScRsp),
             _ => None,
         }
     }
@@ -4800,12 +4780,12 @@ impl CmdClockParkType {
 #[repr(i32)]
 pub enum CmdContentPackageType {
     None = 0,
-    CmdContentPackageSyncDataScNotify = 7512,
-    CmdContentPackageGetDataCsReq = 7515,
-    CmdContentPackageGetDataScRsp = 7516,
-    CmdContentPackageUnlockCsReq = 7524,
-    CmdContentPackageTransferScNotify = 7537,
-    CmdContentPackageUnlockScRsp = 7542,
+    CmdContentPackageGetDataCsReq = 7512,
+    CmdContentPackageUnlockScRsp = 7515,
+    CmdContentPackageUnlockCsReq = 7523,
+    CmdContentPackageSyncDataScNotify = 7530,
+    CmdContentPackageTransferScNotify = 7549,
+    CmdContentPackageGetDataScRsp = 7550,
 }
 impl CmdContentPackageType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -4815,23 +4795,23 @@ impl CmdContentPackageType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdContentPackageType::None => "CmdContentPackageTypeNone",
-            CmdContentPackageType::CmdContentPackageSyncDataScNotify => {
-                "CmdContentPackageSyncDataScNotify"
-            }
             CmdContentPackageType::CmdContentPackageGetDataCsReq => {
                 "CmdContentPackageGetDataCsReq"
             }
-            CmdContentPackageType::CmdContentPackageGetDataScRsp => {
-                "CmdContentPackageGetDataScRsp"
+            CmdContentPackageType::CmdContentPackageUnlockScRsp => {
+                "CmdContentPackageUnlockScRsp"
             }
             CmdContentPackageType::CmdContentPackageUnlockCsReq => {
                 "CmdContentPackageUnlockCsReq"
             }
+            CmdContentPackageType::CmdContentPackageSyncDataScNotify => {
+                "CmdContentPackageSyncDataScNotify"
+            }
             CmdContentPackageType::CmdContentPackageTransferScNotify => {
                 "CmdContentPackageTransferScNotify"
             }
-            CmdContentPackageType::CmdContentPackageUnlockScRsp => {
-                "CmdContentPackageUnlockScRsp"
+            CmdContentPackageType::CmdContentPackageGetDataScRsp => {
+                "CmdContentPackageGetDataScRsp"
             }
         }
     }
@@ -4839,16 +4819,16 @@ impl CmdContentPackageType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdContentPackageTypeNone" => Some(Self::None),
+            "CmdContentPackageGetDataCsReq" => Some(Self::CmdContentPackageGetDataCsReq),
+            "CmdContentPackageUnlockScRsp" => Some(Self::CmdContentPackageUnlockScRsp),
+            "CmdContentPackageUnlockCsReq" => Some(Self::CmdContentPackageUnlockCsReq),
             "CmdContentPackageSyncDataScNotify" => {
                 Some(Self::CmdContentPackageSyncDataScNotify)
             }
-            "CmdContentPackageGetDataCsReq" => Some(Self::CmdContentPackageGetDataCsReq),
-            "CmdContentPackageGetDataScRsp" => Some(Self::CmdContentPackageGetDataScRsp),
-            "CmdContentPackageUnlockCsReq" => Some(Self::CmdContentPackageUnlockCsReq),
             "CmdContentPackageTransferScNotify" => {
                 Some(Self::CmdContentPackageTransferScNotify)
             }
-            "CmdContentPackageUnlockScRsp" => Some(Self::CmdContentPackageUnlockScRsp),
+            "CmdContentPackageGetDataScRsp" => Some(Self::CmdContentPackageGetDataScRsp),
             _ => None,
         }
     }
@@ -4858,13 +4838,13 @@ impl CmdContentPackageType {
 #[repr(i32)]
 pub enum CmdDailyActiveType {
     None = 0,
-    CmdGetDailyActiveInfoCsReq = 3303,
-    CmdTakeApRewardScRsp = 3320,
-    CmdTakeAllApRewardScRsp = 3334,
-    CmdDailyActiveInfoNotify = 3339,
-    CmdGetDailyActiveInfoScRsp = 3346,
-    CmdTakeAllApRewardCsReq = 3353,
-    CmdTakeApRewardCsReq = 3359,
+    CmdGetDailyActiveInfoScRsp = 3327,
+    CmdTakeAllApRewardCsReq = 3328,
+    CmdTakeApRewardCsReq = 3336,
+    CmdTakeAllApRewardScRsp = 3352,
+    CmdDailyActiveInfoNotify = 3367,
+    CmdGetDailyActiveInfoCsReq = 3384,
+    CmdTakeApRewardScRsp = 3395,
 }
 impl CmdDailyActiveType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -4874,30 +4854,30 @@ impl CmdDailyActiveType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdDailyActiveType::None => "CmdDailyActiveTypeNone",
-            CmdDailyActiveType::CmdGetDailyActiveInfoCsReq => {
-                "CmdGetDailyActiveInfoCsReq"
-            }
-            CmdDailyActiveType::CmdTakeApRewardScRsp => "CmdTakeApRewardScRsp",
-            CmdDailyActiveType::CmdTakeAllApRewardScRsp => "CmdTakeAllApRewardScRsp",
-            CmdDailyActiveType::CmdDailyActiveInfoNotify => "CmdDailyActiveInfoNotify",
             CmdDailyActiveType::CmdGetDailyActiveInfoScRsp => {
                 "CmdGetDailyActiveInfoScRsp"
             }
             CmdDailyActiveType::CmdTakeAllApRewardCsReq => "CmdTakeAllApRewardCsReq",
             CmdDailyActiveType::CmdTakeApRewardCsReq => "CmdTakeApRewardCsReq",
+            CmdDailyActiveType::CmdTakeAllApRewardScRsp => "CmdTakeAllApRewardScRsp",
+            CmdDailyActiveType::CmdDailyActiveInfoNotify => "CmdDailyActiveInfoNotify",
+            CmdDailyActiveType::CmdGetDailyActiveInfoCsReq => {
+                "CmdGetDailyActiveInfoCsReq"
+            }
+            CmdDailyActiveType::CmdTakeApRewardScRsp => "CmdTakeApRewardScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdDailyActiveTypeNone" => Some(Self::None),
-            "CmdGetDailyActiveInfoCsReq" => Some(Self::CmdGetDailyActiveInfoCsReq),
-            "CmdTakeApRewardScRsp" => Some(Self::CmdTakeApRewardScRsp),
-            "CmdTakeAllApRewardScRsp" => Some(Self::CmdTakeAllApRewardScRsp),
-            "CmdDailyActiveInfoNotify" => Some(Self::CmdDailyActiveInfoNotify),
             "CmdGetDailyActiveInfoScRsp" => Some(Self::CmdGetDailyActiveInfoScRsp),
             "CmdTakeAllApRewardCsReq" => Some(Self::CmdTakeAllApRewardCsReq),
             "CmdTakeApRewardCsReq" => Some(Self::CmdTakeApRewardCsReq),
+            "CmdTakeAllApRewardScRsp" => Some(Self::CmdTakeAllApRewardScRsp),
+            "CmdDailyActiveInfoNotify" => Some(Self::CmdDailyActiveInfoNotify),
+            "CmdGetDailyActiveInfoCsReq" => Some(Self::CmdGetDailyActiveInfoCsReq),
+            "CmdTakeApRewardScRsp" => Some(Self::CmdTakeApRewardScRsp),
             _ => None,
         }
     }
@@ -4907,18 +4887,18 @@ impl CmdDailyActiveType {
 #[repr(i32)]
 pub enum CmdDrinkMakerType {
     None = 0,
-    CmdDrinkMakerChallengeCsReq = 6982,
-    CmdEndDrinkMakerSequenceScRsp = 6983,
-    CmdMakeMissionDrinkCsReq = 6984,
-    CmdGetDrinkMakerDataCsReq = 6985,
-    CmdGetDrinkMakerDataScRsp = 6988,
-    CmdMakeMissionDrinkScRsp = 6989,
-    CmdMakeDrinkScRsp = 6990,
-    CmdDrinkMakerUpdateTipsNotify = 6991,
-    CmdEndDrinkMakerSequenceCsReq = 6992,
-    CmdMakeDrinkCsReq = 6995,
-    CmdDrinkMakerDayEndScNotify = 6996,
-    CmdDrinkMakerChallengeScRsp = 6998,
+    CmdDrinkMakerDayEndScNotify = 6982,
+    CmdMakeDrinkScRsp = 6983,
+    CmdMakeMissionDrinkCsReq = 6985,
+    CmdEndDrinkMakerSequenceScRsp = 6986,
+    CmdMakeDrinkCsReq = 6987,
+    CmdDrinkMakerChallengeCsReq = 6988,
+    CmdMakeMissionDrinkScRsp = 6990,
+    CmdDrinkMakerChallengeScRsp = 6992,
+    CmdGetDrinkMakerDataScRsp = 6995,
+    CmdDrinkMakerUpdateTipsNotify = 6996,
+    CmdEndDrinkMakerSequenceCsReq = 6997,
+    CmdGetDrinkMakerDataCsReq = 7000,
 }
 impl CmdDrinkMakerType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -4928,48 +4908,115 @@ impl CmdDrinkMakerType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdDrinkMakerType::None => "CmdDrinkMakerTypeNone",
-            CmdDrinkMakerType::CmdDrinkMakerChallengeCsReq => {
-                "CmdDrinkMakerChallengeCsReq"
+            CmdDrinkMakerType::CmdDrinkMakerDayEndScNotify => {
+                "CmdDrinkMakerDayEndScNotify"
             }
+            CmdDrinkMakerType::CmdMakeDrinkScRsp => "CmdMakeDrinkScRsp",
+            CmdDrinkMakerType::CmdMakeMissionDrinkCsReq => "CmdMakeMissionDrinkCsReq",
             CmdDrinkMakerType::CmdEndDrinkMakerSequenceScRsp => {
                 "CmdEndDrinkMakerSequenceScRsp"
             }
-            CmdDrinkMakerType::CmdMakeMissionDrinkCsReq => "CmdMakeMissionDrinkCsReq",
-            CmdDrinkMakerType::CmdGetDrinkMakerDataCsReq => "CmdGetDrinkMakerDataCsReq",
-            CmdDrinkMakerType::CmdGetDrinkMakerDataScRsp => "CmdGetDrinkMakerDataScRsp",
+            CmdDrinkMakerType::CmdMakeDrinkCsReq => "CmdMakeDrinkCsReq",
+            CmdDrinkMakerType::CmdDrinkMakerChallengeCsReq => {
+                "CmdDrinkMakerChallengeCsReq"
+            }
             CmdDrinkMakerType::CmdMakeMissionDrinkScRsp => "CmdMakeMissionDrinkScRsp",
-            CmdDrinkMakerType::CmdMakeDrinkScRsp => "CmdMakeDrinkScRsp",
+            CmdDrinkMakerType::CmdDrinkMakerChallengeScRsp => {
+                "CmdDrinkMakerChallengeScRsp"
+            }
+            CmdDrinkMakerType::CmdGetDrinkMakerDataScRsp => "CmdGetDrinkMakerDataScRsp",
             CmdDrinkMakerType::CmdDrinkMakerUpdateTipsNotify => {
                 "CmdDrinkMakerUpdateTipsNotify"
             }
             CmdDrinkMakerType::CmdEndDrinkMakerSequenceCsReq => {
                 "CmdEndDrinkMakerSequenceCsReq"
             }
-            CmdDrinkMakerType::CmdMakeDrinkCsReq => "CmdMakeDrinkCsReq",
-            CmdDrinkMakerType::CmdDrinkMakerDayEndScNotify => {
-                "CmdDrinkMakerDayEndScNotify"
-            }
-            CmdDrinkMakerType::CmdDrinkMakerChallengeScRsp => {
-                "CmdDrinkMakerChallengeScRsp"
-            }
+            CmdDrinkMakerType::CmdGetDrinkMakerDataCsReq => "CmdGetDrinkMakerDataCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdDrinkMakerTypeNone" => Some(Self::None),
-            "CmdDrinkMakerChallengeCsReq" => Some(Self::CmdDrinkMakerChallengeCsReq),
-            "CmdEndDrinkMakerSequenceScRsp" => Some(Self::CmdEndDrinkMakerSequenceScRsp),
-            "CmdMakeMissionDrinkCsReq" => Some(Self::CmdMakeMissionDrinkCsReq),
-            "CmdGetDrinkMakerDataCsReq" => Some(Self::CmdGetDrinkMakerDataCsReq),
-            "CmdGetDrinkMakerDataScRsp" => Some(Self::CmdGetDrinkMakerDataScRsp),
-            "CmdMakeMissionDrinkScRsp" => Some(Self::CmdMakeMissionDrinkScRsp),
+            "CmdDrinkMakerDayEndScNotify" => Some(Self::CmdDrinkMakerDayEndScNotify),
             "CmdMakeDrinkScRsp" => Some(Self::CmdMakeDrinkScRsp),
+            "CmdMakeMissionDrinkCsReq" => Some(Self::CmdMakeMissionDrinkCsReq),
+            "CmdEndDrinkMakerSequenceScRsp" => Some(Self::CmdEndDrinkMakerSequenceScRsp),
+            "CmdMakeDrinkCsReq" => Some(Self::CmdMakeDrinkCsReq),
+            "CmdDrinkMakerChallengeCsReq" => Some(Self::CmdDrinkMakerChallengeCsReq),
+            "CmdMakeMissionDrinkScRsp" => Some(Self::CmdMakeMissionDrinkScRsp),
+            "CmdDrinkMakerChallengeScRsp" => Some(Self::CmdDrinkMakerChallengeScRsp),
+            "CmdGetDrinkMakerDataScRsp" => Some(Self::CmdGetDrinkMakerDataScRsp),
             "CmdDrinkMakerUpdateTipsNotify" => Some(Self::CmdDrinkMakerUpdateTipsNotify),
             "CmdEndDrinkMakerSequenceCsReq" => Some(Self::CmdEndDrinkMakerSequenceCsReq),
-            "CmdMakeDrinkCsReq" => Some(Self::CmdMakeDrinkCsReq),
-            "CmdDrinkMakerDayEndScNotify" => Some(Self::CmdDrinkMakerDayEndScNotify),
-            "CmdDrinkMakerChallengeScRsp" => Some(Self::CmdDrinkMakerChallengeScRsp),
+            "CmdGetDrinkMakerDataCsReq" => Some(Self::CmdGetDrinkMakerDataCsReq),
+            _ => None,
+        }
+    }
+}
+#[derive(proto_derive::CmdID)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CmdEraFlipperType {
+    None = 0,
+    CmdEnterEraFlipperRegionCsReq = 6559,
+    CmdGetEraFlipperDataCsReq = 6562,
+    CmdResetEraFlipperDataCsReq = 6565,
+    CmdChangeEraFlipperDataScRsp = 6573,
+    CmdChangeEraFlipperDataCsReq = 6580,
+    CmdEnterEraFlipperRegionScRsp = 6593,
+    CmdEraFlipperDataChangeScNotify = 6597,
+    CmdResetEraFlipperDataScRsp = 6599,
+    CmdGetEraFlipperDataScRsp = 6600,
+}
+impl CmdEraFlipperType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            CmdEraFlipperType::None => "CmdEraFlipperTypeNone",
+            CmdEraFlipperType::CmdEnterEraFlipperRegionCsReq => {
+                "CmdEnterEraFlipperRegionCsReq"
+            }
+            CmdEraFlipperType::CmdGetEraFlipperDataCsReq => "CmdGetEraFlipperDataCsReq",
+            CmdEraFlipperType::CmdResetEraFlipperDataCsReq => {
+                "CmdResetEraFlipperDataCsReq"
+            }
+            CmdEraFlipperType::CmdChangeEraFlipperDataScRsp => {
+                "CmdChangeEraFlipperDataScRsp"
+            }
+            CmdEraFlipperType::CmdChangeEraFlipperDataCsReq => {
+                "CmdChangeEraFlipperDataCsReq"
+            }
+            CmdEraFlipperType::CmdEnterEraFlipperRegionScRsp => {
+                "CmdEnterEraFlipperRegionScRsp"
+            }
+            CmdEraFlipperType::CmdEraFlipperDataChangeScNotify => {
+                "CmdEraFlipperDataChangeScNotify"
+            }
+            CmdEraFlipperType::CmdResetEraFlipperDataScRsp => {
+                "CmdResetEraFlipperDataScRsp"
+            }
+            CmdEraFlipperType::CmdGetEraFlipperDataScRsp => "CmdGetEraFlipperDataScRsp",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CmdEraFlipperTypeNone" => Some(Self::None),
+            "CmdEnterEraFlipperRegionCsReq" => Some(Self::CmdEnterEraFlipperRegionCsReq),
+            "CmdGetEraFlipperDataCsReq" => Some(Self::CmdGetEraFlipperDataCsReq),
+            "CmdResetEraFlipperDataCsReq" => Some(Self::CmdResetEraFlipperDataCsReq),
+            "CmdChangeEraFlipperDataScRsp" => Some(Self::CmdChangeEraFlipperDataScRsp),
+            "CmdChangeEraFlipperDataCsReq" => Some(Self::CmdChangeEraFlipperDataCsReq),
+            "CmdEnterEraFlipperRegionScRsp" => Some(Self::CmdEnterEraFlipperRegionScRsp),
+            "CmdEraFlipperDataChangeScNotify" => {
+                Some(Self::CmdEraFlipperDataChangeScNotify)
+            }
+            "CmdResetEraFlipperDataScRsp" => Some(Self::CmdResetEraFlipperDataScRsp),
+            "CmdGetEraFlipperDataScRsp" => Some(Self::CmdGetEraFlipperDataScRsp),
             _ => None,
         }
     }
@@ -4979,29 +5026,29 @@ impl CmdDrinkMakerType {
 #[repr(i32)]
 pub enum CmdEvolveBuild {
     None = 0,
-    TakeExpRewardCsReq = 7105,
-    ReRandomStageScRsp = 7107,
-    LeaveCsReq = 7108,
-    StartLevelCsReq = 7112,
-    QueryInfoCsReq = 7115,
-    QueryInfoScRsp = 7116,
+    ShopAbilityUpScRsp = 7104,
+    TakeExpRewardCsReq = 7106,
+    GiveupCsReq = 7109,
+    ReRandomStageScRsp = 7110,
+    ShopAbilityDownScRsp = 7111,
+    QueryInfoCsReq = 7112,
+    CoinNotify = 7114,
+    StartStageCsReq = 7115,
+    ShopAbilityUpCsReq = 7117,
     ShopAbilityResetCsReq = 7118,
-    CoinNotify = 7119,
-    ShopAbilityDownScRsp = 7120,
-    GiveupScRsp = 7123,
-    StartLevelScRsp = 7124,
-    UnlockInfoNotify = 7126,
+    ShopAbilityResetScRsp = 7122,
+    StartLevelScRsp = 7123,
     ReRandomStageCsReq = 7128,
-    LeaveScRsp = 7130,
-    TakeExpRewardScRsp = 7131,
-    ShopAbilityResetScRsp = 7132,
-    ShopAbilityUpScRsp = 7133,
-    FinishScNotify = 7135,
-    StartStageScRsp = 7137,
-    ShopAbilityUpCsReq = 7139,
-    GiveupCsReq = 7140,
-    StartStageCsReq = 7142,
-    ShopAbilityDownCsReq = 7144,
+    StartLevelCsReq = 7130,
+    TakeExpRewardScRsp = 7135,
+    ShopAbilityDownCsReq = 7140,
+    UnlockInfoNotify = 7142,
+    GiveupScRsp = 7143,
+    FinishScNotify = 7145,
+    LeaveScRsp = 7146,
+    LeaveCsReq = 7147,
+    StartStageScRsp = 7149,
+    QueryInfoScRsp = 7150,
 }
 impl CmdEvolveBuild {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -5011,62 +5058,62 @@ impl CmdEvolveBuild {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdEvolveBuild::None => "CmdEvolveBuildNone",
+            CmdEvolveBuild::ShopAbilityUpScRsp => "CmdEvolveBuildShopAbilityUpScRsp",
             CmdEvolveBuild::TakeExpRewardCsReq => "CmdEvolveBuildTakeExpRewardCsReq",
+            CmdEvolveBuild::GiveupCsReq => "CmdEvolveBuildGiveupCsReq",
             CmdEvolveBuild::ReRandomStageScRsp => "CmdEvolveBuildReRandomStageScRsp",
-            CmdEvolveBuild::LeaveCsReq => "CmdEvolveBuildLeaveCsReq",
-            CmdEvolveBuild::StartLevelCsReq => "CmdEvolveBuildStartLevelCsReq",
+            CmdEvolveBuild::ShopAbilityDownScRsp => "CmdEvolveBuildShopAbilityDownScRsp",
             CmdEvolveBuild::QueryInfoCsReq => "CmdEvolveBuildQueryInfoCsReq",
-            CmdEvolveBuild::QueryInfoScRsp => "CmdEvolveBuildQueryInfoScRsp",
+            CmdEvolveBuild::CoinNotify => "CmdEvolveBuildCoinNotify",
+            CmdEvolveBuild::StartStageCsReq => "CmdEvolveBuildStartStageCsReq",
+            CmdEvolveBuild::ShopAbilityUpCsReq => "CmdEvolveBuildShopAbilityUpCsReq",
             CmdEvolveBuild::ShopAbilityResetCsReq => {
                 "CmdEvolveBuildShopAbilityResetCsReq"
             }
-            CmdEvolveBuild::CoinNotify => "CmdEvolveBuildCoinNotify",
-            CmdEvolveBuild::ShopAbilityDownScRsp => "CmdEvolveBuildShopAbilityDownScRsp",
-            CmdEvolveBuild::GiveupScRsp => "CmdEvolveBuildGiveupScRsp",
-            CmdEvolveBuild::StartLevelScRsp => "CmdEvolveBuildStartLevelScRsp",
-            CmdEvolveBuild::UnlockInfoNotify => "CmdEvolveBuildUnlockInfoNotify",
-            CmdEvolveBuild::ReRandomStageCsReq => "CmdEvolveBuildReRandomStageCsReq",
-            CmdEvolveBuild::LeaveScRsp => "CmdEvolveBuildLeaveScRsp",
-            CmdEvolveBuild::TakeExpRewardScRsp => "CmdEvolveBuildTakeExpRewardScRsp",
             CmdEvolveBuild::ShopAbilityResetScRsp => {
                 "CmdEvolveBuildShopAbilityResetScRsp"
             }
-            CmdEvolveBuild::ShopAbilityUpScRsp => "CmdEvolveBuildShopAbilityUpScRsp",
-            CmdEvolveBuild::FinishScNotify => "CmdEvolveBuildFinishScNotify",
-            CmdEvolveBuild::StartStageScRsp => "CmdEvolveBuildStartStageScRsp",
-            CmdEvolveBuild::ShopAbilityUpCsReq => "CmdEvolveBuildShopAbilityUpCsReq",
-            CmdEvolveBuild::GiveupCsReq => "CmdEvolveBuildGiveupCsReq",
-            CmdEvolveBuild::StartStageCsReq => "CmdEvolveBuildStartStageCsReq",
+            CmdEvolveBuild::StartLevelScRsp => "CmdEvolveBuildStartLevelScRsp",
+            CmdEvolveBuild::ReRandomStageCsReq => "CmdEvolveBuildReRandomStageCsReq",
+            CmdEvolveBuild::StartLevelCsReq => "CmdEvolveBuildStartLevelCsReq",
+            CmdEvolveBuild::TakeExpRewardScRsp => "CmdEvolveBuildTakeExpRewardScRsp",
             CmdEvolveBuild::ShopAbilityDownCsReq => "CmdEvolveBuildShopAbilityDownCsReq",
+            CmdEvolveBuild::UnlockInfoNotify => "CmdEvolveBuildUnlockInfoNotify",
+            CmdEvolveBuild::GiveupScRsp => "CmdEvolveBuildGiveupScRsp",
+            CmdEvolveBuild::FinishScNotify => "CmdEvolveBuildFinishScNotify",
+            CmdEvolveBuild::LeaveScRsp => "CmdEvolveBuildLeaveScRsp",
+            CmdEvolveBuild::LeaveCsReq => "CmdEvolveBuildLeaveCsReq",
+            CmdEvolveBuild::StartStageScRsp => "CmdEvolveBuildStartStageScRsp",
+            CmdEvolveBuild::QueryInfoScRsp => "CmdEvolveBuildQueryInfoScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdEvolveBuildNone" => Some(Self::None),
-            "CmdEvolveBuildTakeExpRewardCsReq" => Some(Self::TakeExpRewardCsReq),
-            "CmdEvolveBuildReRandomStageScRsp" => Some(Self::ReRandomStageScRsp),
-            "CmdEvolveBuildLeaveCsReq" => Some(Self::LeaveCsReq),
-            "CmdEvolveBuildStartLevelCsReq" => Some(Self::StartLevelCsReq),
-            "CmdEvolveBuildQueryInfoCsReq" => Some(Self::QueryInfoCsReq),
-            "CmdEvolveBuildQueryInfoScRsp" => Some(Self::QueryInfoScRsp),
-            "CmdEvolveBuildShopAbilityResetCsReq" => Some(Self::ShopAbilityResetCsReq),
-            "CmdEvolveBuildCoinNotify" => Some(Self::CoinNotify),
-            "CmdEvolveBuildShopAbilityDownScRsp" => Some(Self::ShopAbilityDownScRsp),
-            "CmdEvolveBuildGiveupScRsp" => Some(Self::GiveupScRsp),
-            "CmdEvolveBuildStartLevelScRsp" => Some(Self::StartLevelScRsp),
-            "CmdEvolveBuildUnlockInfoNotify" => Some(Self::UnlockInfoNotify),
-            "CmdEvolveBuildReRandomStageCsReq" => Some(Self::ReRandomStageCsReq),
-            "CmdEvolveBuildLeaveScRsp" => Some(Self::LeaveScRsp),
-            "CmdEvolveBuildTakeExpRewardScRsp" => Some(Self::TakeExpRewardScRsp),
-            "CmdEvolveBuildShopAbilityResetScRsp" => Some(Self::ShopAbilityResetScRsp),
             "CmdEvolveBuildShopAbilityUpScRsp" => Some(Self::ShopAbilityUpScRsp),
-            "CmdEvolveBuildFinishScNotify" => Some(Self::FinishScNotify),
-            "CmdEvolveBuildStartStageScRsp" => Some(Self::StartStageScRsp),
-            "CmdEvolveBuildShopAbilityUpCsReq" => Some(Self::ShopAbilityUpCsReq),
+            "CmdEvolveBuildTakeExpRewardCsReq" => Some(Self::TakeExpRewardCsReq),
             "CmdEvolveBuildGiveupCsReq" => Some(Self::GiveupCsReq),
+            "CmdEvolveBuildReRandomStageScRsp" => Some(Self::ReRandomStageScRsp),
+            "CmdEvolveBuildShopAbilityDownScRsp" => Some(Self::ShopAbilityDownScRsp),
+            "CmdEvolveBuildQueryInfoCsReq" => Some(Self::QueryInfoCsReq),
+            "CmdEvolveBuildCoinNotify" => Some(Self::CoinNotify),
             "CmdEvolveBuildStartStageCsReq" => Some(Self::StartStageCsReq),
+            "CmdEvolveBuildShopAbilityUpCsReq" => Some(Self::ShopAbilityUpCsReq),
+            "CmdEvolveBuildShopAbilityResetCsReq" => Some(Self::ShopAbilityResetCsReq),
+            "CmdEvolveBuildShopAbilityResetScRsp" => Some(Self::ShopAbilityResetScRsp),
+            "CmdEvolveBuildStartLevelScRsp" => Some(Self::StartLevelScRsp),
+            "CmdEvolveBuildReRandomStageCsReq" => Some(Self::ReRandomStageCsReq),
+            "CmdEvolveBuildStartLevelCsReq" => Some(Self::StartLevelCsReq),
+            "CmdEvolveBuildTakeExpRewardScRsp" => Some(Self::TakeExpRewardScRsp),
             "CmdEvolveBuildShopAbilityDownCsReq" => Some(Self::ShopAbilityDownCsReq),
+            "CmdEvolveBuildUnlockInfoNotify" => Some(Self::UnlockInfoNotify),
+            "CmdEvolveBuildGiveupScRsp" => Some(Self::GiveupScRsp),
+            "CmdEvolveBuildFinishScNotify" => Some(Self::FinishScNotify),
+            "CmdEvolveBuildLeaveScRsp" => Some(Self::LeaveScRsp),
+            "CmdEvolveBuildLeaveCsReq" => Some(Self::LeaveCsReq),
+            "CmdEvolveBuildStartStageScRsp" => Some(Self::StartStageScRsp),
+            "CmdEvolveBuildQueryInfoScRsp" => Some(Self::QueryInfoScRsp),
             _ => None,
         }
     }
@@ -5076,27 +5123,27 @@ impl CmdEvolveBuild {
 #[repr(i32)]
 pub enum CmdExpeditionType {
     None = 0,
-    CmdAcceptExpeditionCsReq = 2503,
-    CmdAcceptActivityExpeditionCsReq = 2516,
+    CmdAcceptMultipleExpeditionCsReq = 2505,
+    CmdTakeMultipleActivityExpeditionRewardCsReq = 2507,
     CmdTakeMultipleExpeditionRewardCsReq = 2519,
-    CmdGetExpeditionDataScRsp = 2520,
-    CmdTakeMultipleActivityExpeditionRewardCsReq = 2525,
-    CmdTakeMultipleActivityExpeditionRewardScRsp = 2529,
-    CmdCancelActivityExpeditionScRsp = 2530,
-    CmdTakeExpeditionRewardCsReq = 2534,
-    CmdTakeExpeditionRewardScRsp = 2537,
-    CmdCancelExpeditionCsReq = 2539,
-    CmdAcceptExpeditionScRsp = 2546,
-    CmdAcceptActivityExpeditionScRsp = 2547,
-    CmdTakeActivityExpeditionRewardScRsp = 2548,
-    CmdCancelExpeditionScRsp = 2553,
-    CmdGetExpeditionDataCsReq = 2559,
-    CmdTakeMultipleExpeditionRewardScRsp = 2561,
-    CmdCancelActivityExpeditionCsReq = 2574,
-    CmdTakeActivityExpeditionRewardCsReq = 2575,
-    CmdAcceptMultipleExpeditionScRsp = 2579,
-    CmdExpeditionDataChangeScNotify = 2580,
-    CmdAcceptMultipleExpeditionCsReq = 2590,
+    CmdExpeditionDataChangeScNotify = 2524,
+    CmdTakeActivityExpeditionRewardCsReq = 2525,
+    CmdTakeMultipleExpeditionRewardScRsp = 2526,
+    CmdAcceptExpeditionScRsp = 2527,
+    CmdCancelExpeditionScRsp = 2528,
+    CmdAcceptActivityExpeditionScRsp = 2534,
+    CmdGetExpeditionDataCsReq = 2536,
+    CmdCancelActivityExpeditionCsReq = 2543,
+    CmdCancelActivityExpeditionScRsp = 2546,
+    CmdTakeExpeditionRewardCsReq = 2552,
+    CmdTakeMultipleActivityExpeditionRewardScRsp = 2553,
+    CmdCancelExpeditionCsReq = 2567,
+    CmdTakeExpeditionRewardScRsp = 2574,
+    CmdAcceptMultipleExpeditionScRsp = 2575,
+    CmdAcceptExpeditionCsReq = 2584,
+    CmdAcceptActivityExpeditionCsReq = 2593,
+    CmdGetExpeditionDataScRsp = 2595,
+    CmdTakeActivityExpeditionRewardScRsp = 2596,
 }
 impl CmdExpeditionType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -5106,19 +5153,32 @@ impl CmdExpeditionType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdExpeditionType::None => "CmdExpeditionTypeNone",
-            CmdExpeditionType::CmdAcceptExpeditionCsReq => "CmdAcceptExpeditionCsReq",
-            CmdExpeditionType::CmdAcceptActivityExpeditionCsReq => {
-                "CmdAcceptActivityExpeditionCsReq"
+            CmdExpeditionType::CmdAcceptMultipleExpeditionCsReq => {
+                "CmdAcceptMultipleExpeditionCsReq"
+            }
+            CmdExpeditionType::CmdTakeMultipleActivityExpeditionRewardCsReq => {
+                "CmdTakeMultipleActivityExpeditionRewardCsReq"
             }
             CmdExpeditionType::CmdTakeMultipleExpeditionRewardCsReq => {
                 "CmdTakeMultipleExpeditionRewardCsReq"
             }
-            CmdExpeditionType::CmdGetExpeditionDataScRsp => "CmdGetExpeditionDataScRsp",
-            CmdExpeditionType::CmdTakeMultipleActivityExpeditionRewardCsReq => {
-                "CmdTakeMultipleActivityExpeditionRewardCsReq"
+            CmdExpeditionType::CmdExpeditionDataChangeScNotify => {
+                "CmdExpeditionDataChangeScNotify"
             }
-            CmdExpeditionType::CmdTakeMultipleActivityExpeditionRewardScRsp => {
-                "CmdTakeMultipleActivityExpeditionRewardScRsp"
+            CmdExpeditionType::CmdTakeActivityExpeditionRewardCsReq => {
+                "CmdTakeActivityExpeditionRewardCsReq"
+            }
+            CmdExpeditionType::CmdTakeMultipleExpeditionRewardScRsp => {
+                "CmdTakeMultipleExpeditionRewardScRsp"
+            }
+            CmdExpeditionType::CmdAcceptExpeditionScRsp => "CmdAcceptExpeditionScRsp",
+            CmdExpeditionType::CmdCancelExpeditionScRsp => "CmdCancelExpeditionScRsp",
+            CmdExpeditionType::CmdAcceptActivityExpeditionScRsp => {
+                "CmdAcceptActivityExpeditionScRsp"
+            }
+            CmdExpeditionType::CmdGetExpeditionDataCsReq => "CmdGetExpeditionDataCsReq",
+            CmdExpeditionType::CmdCancelActivityExpeditionCsReq => {
+                "CmdCancelActivityExpeditionCsReq"
             }
             CmdExpeditionType::CmdCancelActivityExpeditionScRsp => {
                 "CmdCancelActivityExpeditionScRsp"
@@ -5126,36 +5186,23 @@ impl CmdExpeditionType {
             CmdExpeditionType::CmdTakeExpeditionRewardCsReq => {
                 "CmdTakeExpeditionRewardCsReq"
             }
-            CmdExpeditionType::CmdTakeExpeditionRewardScRsp => {
-                "CmdTakeExpeditionRewardScRsp"
+            CmdExpeditionType::CmdTakeMultipleActivityExpeditionRewardScRsp => {
+                "CmdTakeMultipleActivityExpeditionRewardScRsp"
             }
             CmdExpeditionType::CmdCancelExpeditionCsReq => "CmdCancelExpeditionCsReq",
-            CmdExpeditionType::CmdAcceptExpeditionScRsp => "CmdAcceptExpeditionScRsp",
-            CmdExpeditionType::CmdAcceptActivityExpeditionScRsp => {
-                "CmdAcceptActivityExpeditionScRsp"
-            }
-            CmdExpeditionType::CmdTakeActivityExpeditionRewardScRsp => {
-                "CmdTakeActivityExpeditionRewardScRsp"
-            }
-            CmdExpeditionType::CmdCancelExpeditionScRsp => "CmdCancelExpeditionScRsp",
-            CmdExpeditionType::CmdGetExpeditionDataCsReq => "CmdGetExpeditionDataCsReq",
-            CmdExpeditionType::CmdTakeMultipleExpeditionRewardScRsp => {
-                "CmdTakeMultipleExpeditionRewardScRsp"
-            }
-            CmdExpeditionType::CmdCancelActivityExpeditionCsReq => {
-                "CmdCancelActivityExpeditionCsReq"
-            }
-            CmdExpeditionType::CmdTakeActivityExpeditionRewardCsReq => {
-                "CmdTakeActivityExpeditionRewardCsReq"
+            CmdExpeditionType::CmdTakeExpeditionRewardScRsp => {
+                "CmdTakeExpeditionRewardScRsp"
             }
             CmdExpeditionType::CmdAcceptMultipleExpeditionScRsp => {
                 "CmdAcceptMultipleExpeditionScRsp"
             }
-            CmdExpeditionType::CmdExpeditionDataChangeScNotify => {
-                "CmdExpeditionDataChangeScNotify"
+            CmdExpeditionType::CmdAcceptExpeditionCsReq => "CmdAcceptExpeditionCsReq",
+            CmdExpeditionType::CmdAcceptActivityExpeditionCsReq => {
+                "CmdAcceptActivityExpeditionCsReq"
             }
-            CmdExpeditionType::CmdAcceptMultipleExpeditionCsReq => {
-                "CmdAcceptMultipleExpeditionCsReq"
+            CmdExpeditionType::CmdGetExpeditionDataScRsp => "CmdGetExpeditionDataScRsp",
+            CmdExpeditionType::CmdTakeActivityExpeditionRewardScRsp => {
+                "CmdTakeActivityExpeditionRewardScRsp"
             }
         }
     }
@@ -5163,52 +5210,52 @@ impl CmdExpeditionType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdExpeditionTypeNone" => Some(Self::None),
-            "CmdAcceptExpeditionCsReq" => Some(Self::CmdAcceptExpeditionCsReq),
-            "CmdAcceptActivityExpeditionCsReq" => {
-                Some(Self::CmdAcceptActivityExpeditionCsReq)
+            "CmdAcceptMultipleExpeditionCsReq" => {
+                Some(Self::CmdAcceptMultipleExpeditionCsReq)
+            }
+            "CmdTakeMultipleActivityExpeditionRewardCsReq" => {
+                Some(Self::CmdTakeMultipleActivityExpeditionRewardCsReq)
             }
             "CmdTakeMultipleExpeditionRewardCsReq" => {
                 Some(Self::CmdTakeMultipleExpeditionRewardCsReq)
             }
-            "CmdGetExpeditionDataScRsp" => Some(Self::CmdGetExpeditionDataScRsp),
-            "CmdTakeMultipleActivityExpeditionRewardCsReq" => {
-                Some(Self::CmdTakeMultipleActivityExpeditionRewardCsReq)
+            "CmdExpeditionDataChangeScNotify" => {
+                Some(Self::CmdExpeditionDataChangeScNotify)
             }
-            "CmdTakeMultipleActivityExpeditionRewardScRsp" => {
-                Some(Self::CmdTakeMultipleActivityExpeditionRewardScRsp)
+            "CmdTakeActivityExpeditionRewardCsReq" => {
+                Some(Self::CmdTakeActivityExpeditionRewardCsReq)
+            }
+            "CmdTakeMultipleExpeditionRewardScRsp" => {
+                Some(Self::CmdTakeMultipleExpeditionRewardScRsp)
+            }
+            "CmdAcceptExpeditionScRsp" => Some(Self::CmdAcceptExpeditionScRsp),
+            "CmdCancelExpeditionScRsp" => Some(Self::CmdCancelExpeditionScRsp),
+            "CmdAcceptActivityExpeditionScRsp" => {
+                Some(Self::CmdAcceptActivityExpeditionScRsp)
+            }
+            "CmdGetExpeditionDataCsReq" => Some(Self::CmdGetExpeditionDataCsReq),
+            "CmdCancelActivityExpeditionCsReq" => {
+                Some(Self::CmdCancelActivityExpeditionCsReq)
             }
             "CmdCancelActivityExpeditionScRsp" => {
                 Some(Self::CmdCancelActivityExpeditionScRsp)
             }
             "CmdTakeExpeditionRewardCsReq" => Some(Self::CmdTakeExpeditionRewardCsReq),
-            "CmdTakeExpeditionRewardScRsp" => Some(Self::CmdTakeExpeditionRewardScRsp),
+            "CmdTakeMultipleActivityExpeditionRewardScRsp" => {
+                Some(Self::CmdTakeMultipleActivityExpeditionRewardScRsp)
+            }
             "CmdCancelExpeditionCsReq" => Some(Self::CmdCancelExpeditionCsReq),
-            "CmdAcceptExpeditionScRsp" => Some(Self::CmdAcceptExpeditionScRsp),
-            "CmdAcceptActivityExpeditionScRsp" => {
-                Some(Self::CmdAcceptActivityExpeditionScRsp)
-            }
-            "CmdTakeActivityExpeditionRewardScRsp" => {
-                Some(Self::CmdTakeActivityExpeditionRewardScRsp)
-            }
-            "CmdCancelExpeditionScRsp" => Some(Self::CmdCancelExpeditionScRsp),
-            "CmdGetExpeditionDataCsReq" => Some(Self::CmdGetExpeditionDataCsReq),
-            "CmdTakeMultipleExpeditionRewardScRsp" => {
-                Some(Self::CmdTakeMultipleExpeditionRewardScRsp)
-            }
-            "CmdCancelActivityExpeditionCsReq" => {
-                Some(Self::CmdCancelActivityExpeditionCsReq)
-            }
-            "CmdTakeActivityExpeditionRewardCsReq" => {
-                Some(Self::CmdTakeActivityExpeditionRewardCsReq)
-            }
+            "CmdTakeExpeditionRewardScRsp" => Some(Self::CmdTakeExpeditionRewardScRsp),
             "CmdAcceptMultipleExpeditionScRsp" => {
                 Some(Self::CmdAcceptMultipleExpeditionScRsp)
             }
-            "CmdExpeditionDataChangeScNotify" => {
-                Some(Self::CmdExpeditionDataChangeScNotify)
+            "CmdAcceptExpeditionCsReq" => Some(Self::CmdAcceptExpeditionCsReq),
+            "CmdAcceptActivityExpeditionCsReq" => {
+                Some(Self::CmdAcceptActivityExpeditionCsReq)
             }
-            "CmdAcceptMultipleExpeditionCsReq" => {
-                Some(Self::CmdAcceptMultipleExpeditionCsReq)
+            "CmdGetExpeditionDataScRsp" => Some(Self::CmdGetExpeditionDataScRsp),
+            "CmdTakeActivityExpeditionRewardScRsp" => {
+                Some(Self::CmdTakeActivityExpeditionRewardScRsp)
             }
             _ => None,
         }
@@ -5219,12 +5266,12 @@ impl CmdExpeditionType {
 #[repr(i32)]
 pub enum CmdFantasticStoryActivityType {
     None = 0,
-    CmdFinishChapterScNotify = 4903,
-    CmdGetFantasticStoryActivityDataScRsp = 4920,
-    CmdEnterFantasticStoryActivityStageScRsp = 4939,
-    CmdEnterFantasticStoryActivityStageCsReq = 4946,
-    CmdFantasticStoryActivityBattleEndScNotify = 4953,
-    CmdGetFantasticStoryActivityDataCsReq = 4959,
+    CmdEnterFantasticStoryActivityStageCsReq = 4927,
+    CmdFantasticStoryActivityBattleEndScNotify = 4928,
+    CmdGetFantasticStoryActivityDataCsReq = 4936,
+    CmdEnterFantasticStoryActivityStageScRsp = 4967,
+    CmdFinishChapterScNotify = 4984,
+    CmdGetFantasticStoryActivityDataScRsp = 4995,
 }
 impl CmdFantasticStoryActivityType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -5234,15 +5281,6 @@ impl CmdFantasticStoryActivityType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdFantasticStoryActivityType::None => "CmdFantasticStoryActivityTypeNone",
-            CmdFantasticStoryActivityType::CmdFinishChapterScNotify => {
-                "CmdFinishChapterScNotify"
-            }
-            CmdFantasticStoryActivityType::CmdGetFantasticStoryActivityDataScRsp => {
-                "CmdGetFantasticStoryActivityDataScRsp"
-            }
-            CmdFantasticStoryActivityType::CmdEnterFantasticStoryActivityStageScRsp => {
-                "CmdEnterFantasticStoryActivityStageScRsp"
-            }
             CmdFantasticStoryActivityType::CmdEnterFantasticStoryActivityStageCsReq => {
                 "CmdEnterFantasticStoryActivityStageCsReq"
             }
@@ -5252,19 +5290,21 @@ impl CmdFantasticStoryActivityType {
             CmdFantasticStoryActivityType::CmdGetFantasticStoryActivityDataCsReq => {
                 "CmdGetFantasticStoryActivityDataCsReq"
             }
+            CmdFantasticStoryActivityType::CmdEnterFantasticStoryActivityStageScRsp => {
+                "CmdEnterFantasticStoryActivityStageScRsp"
+            }
+            CmdFantasticStoryActivityType::CmdFinishChapterScNotify => {
+                "CmdFinishChapterScNotify"
+            }
+            CmdFantasticStoryActivityType::CmdGetFantasticStoryActivityDataScRsp => {
+                "CmdGetFantasticStoryActivityDataScRsp"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdFantasticStoryActivityTypeNone" => Some(Self::None),
-            "CmdFinishChapterScNotify" => Some(Self::CmdFinishChapterScNotify),
-            "CmdGetFantasticStoryActivityDataScRsp" => {
-                Some(Self::CmdGetFantasticStoryActivityDataScRsp)
-            }
-            "CmdEnterFantasticStoryActivityStageScRsp" => {
-                Some(Self::CmdEnterFantasticStoryActivityStageScRsp)
-            }
             "CmdEnterFantasticStoryActivityStageCsReq" => {
                 Some(Self::CmdEnterFantasticStoryActivityStageCsReq)
             }
@@ -5273,6 +5313,13 @@ impl CmdFantasticStoryActivityType {
             }
             "CmdGetFantasticStoryActivityDataCsReq" => {
                 Some(Self::CmdGetFantasticStoryActivityDataCsReq)
+            }
+            "CmdEnterFantasticStoryActivityStageScRsp" => {
+                Some(Self::CmdEnterFantasticStoryActivityStageScRsp)
+            }
+            "CmdFinishChapterScNotify" => Some(Self::CmdFinishChapterScNotify),
+            "CmdGetFantasticStoryActivityDataScRsp" => {
+                Some(Self::CmdGetFantasticStoryActivityDataScRsp)
             }
             _ => None,
         }
@@ -5284,10 +5331,10 @@ impl CmdFantasticStoryActivityType {
 pub enum CmdFeverTimeActivityType {
     None = 0,
     CmdGetFeverTimeActivityDataScRsp = 7151,
-    CmdEnterFeverTimeActivityStageScRsp = 7155,
-    CmdEnterFeverTimeActivityStageCsReq = 7156,
+    CmdFeverTimeActivityBattleEndScNotify = 7153,
     CmdGetFeverTimeActivityDataCsReq = 7158,
-    CmdFeverTimeActivityBattleEndScNotify = 7159,
+    CmdEnterFeverTimeActivityStageCsReq = 7159,
+    CmdEnterFeverTimeActivityStageScRsp = 7160,
 }
 impl CmdFeverTimeActivityType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -5300,17 +5347,17 @@ impl CmdFeverTimeActivityType {
             CmdFeverTimeActivityType::CmdGetFeverTimeActivityDataScRsp => {
                 "CmdGetFeverTimeActivityDataScRsp"
             }
-            CmdFeverTimeActivityType::CmdEnterFeverTimeActivityStageScRsp => {
-                "CmdEnterFeverTimeActivityStageScRsp"
-            }
-            CmdFeverTimeActivityType::CmdEnterFeverTimeActivityStageCsReq => {
-                "CmdEnterFeverTimeActivityStageCsReq"
+            CmdFeverTimeActivityType::CmdFeverTimeActivityBattleEndScNotify => {
+                "CmdFeverTimeActivityBattleEndScNotify"
             }
             CmdFeverTimeActivityType::CmdGetFeverTimeActivityDataCsReq => {
                 "CmdGetFeverTimeActivityDataCsReq"
             }
-            CmdFeverTimeActivityType::CmdFeverTimeActivityBattleEndScNotify => {
-                "CmdFeverTimeActivityBattleEndScNotify"
+            CmdFeverTimeActivityType::CmdEnterFeverTimeActivityStageCsReq => {
+                "CmdEnterFeverTimeActivityStageCsReq"
+            }
+            CmdFeverTimeActivityType::CmdEnterFeverTimeActivityStageScRsp => {
+                "CmdEnterFeverTimeActivityStageScRsp"
             }
         }
     }
@@ -5321,17 +5368,17 @@ impl CmdFeverTimeActivityType {
             "CmdGetFeverTimeActivityDataScRsp" => {
                 Some(Self::CmdGetFeverTimeActivityDataScRsp)
             }
-            "CmdEnterFeverTimeActivityStageScRsp" => {
-                Some(Self::CmdEnterFeverTimeActivityStageScRsp)
-            }
-            "CmdEnterFeverTimeActivityStageCsReq" => {
-                Some(Self::CmdEnterFeverTimeActivityStageCsReq)
+            "CmdFeverTimeActivityBattleEndScNotify" => {
+                Some(Self::CmdFeverTimeActivityBattleEndScNotify)
             }
             "CmdGetFeverTimeActivityDataCsReq" => {
                 Some(Self::CmdGetFeverTimeActivityDataCsReq)
             }
-            "CmdFeverTimeActivityBattleEndScNotify" => {
-                Some(Self::CmdFeverTimeActivityBattleEndScNotify)
+            "CmdEnterFeverTimeActivityStageCsReq" => {
+                Some(Self::CmdEnterFeverTimeActivityStageCsReq)
+            }
+            "CmdEnterFeverTimeActivityStageScRsp" => {
+                Some(Self::CmdEnterFeverTimeActivityStageScRsp)
             }
             _ => None,
         }
@@ -5342,13 +5389,13 @@ impl CmdFeverTimeActivityType {
 #[repr(i32)]
 pub enum CmdFightType {
     None = 0,
-    CmdFightLeaveScNotify = 30003,
-    CmdFightEnterScRsp = 30020,
-    CmdFightSessionStopScNotify = 30034,
-    CmdFightHeartBeatCsReq = 30039,
-    CmdFightKickOutScNotify = 30046,
-    CmdFightHeartBeatScRsp = 30053,
-    CmdFightEnterCsReq = 30059,
+    CmdFightKickOutScNotify = 30027,
+    CmdFightHeartBeatScRsp = 30028,
+    CmdFightEnterCsReq = 30036,
+    CmdFightSessionStopScNotify = 30052,
+    CmdFightHeartBeatCsReq = 30067,
+    CmdFightLeaveScNotify = 30084,
+    CmdFightEnterScRsp = 30095,
 }
 impl CmdFightType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -5358,26 +5405,26 @@ impl CmdFightType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdFightType::None => "CmdFightTypeNone",
-            CmdFightType::CmdFightLeaveScNotify => "CmdFightLeaveScNotify",
-            CmdFightType::CmdFightEnterScRsp => "CmdFightEnterScRsp",
-            CmdFightType::CmdFightSessionStopScNotify => "CmdFightSessionStopScNotify",
-            CmdFightType::CmdFightHeartBeatCsReq => "CmdFightHeartBeatCsReq",
             CmdFightType::CmdFightKickOutScNotify => "CmdFightKickOutScNotify",
             CmdFightType::CmdFightHeartBeatScRsp => "CmdFightHeartBeatScRsp",
             CmdFightType::CmdFightEnterCsReq => "CmdFightEnterCsReq",
+            CmdFightType::CmdFightSessionStopScNotify => "CmdFightSessionStopScNotify",
+            CmdFightType::CmdFightHeartBeatCsReq => "CmdFightHeartBeatCsReq",
+            CmdFightType::CmdFightLeaveScNotify => "CmdFightLeaveScNotify",
+            CmdFightType::CmdFightEnterScRsp => "CmdFightEnterScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdFightTypeNone" => Some(Self::None),
-            "CmdFightLeaveScNotify" => Some(Self::CmdFightLeaveScNotify),
-            "CmdFightEnterScRsp" => Some(Self::CmdFightEnterScRsp),
-            "CmdFightSessionStopScNotify" => Some(Self::CmdFightSessionStopScNotify),
-            "CmdFightHeartBeatCsReq" => Some(Self::CmdFightHeartBeatCsReq),
             "CmdFightKickOutScNotify" => Some(Self::CmdFightKickOutScNotify),
             "CmdFightHeartBeatScRsp" => Some(Self::CmdFightHeartBeatScRsp),
             "CmdFightEnterCsReq" => Some(Self::CmdFightEnterCsReq),
+            "CmdFightSessionStopScNotify" => Some(Self::CmdFightSessionStopScNotify),
+            "CmdFightHeartBeatCsReq" => Some(Self::CmdFightHeartBeatCsReq),
+            "CmdFightLeaveScNotify" => Some(Self::CmdFightLeaveScNotify),
+            "CmdFightEnterScRsp" => Some(Self::CmdFightEnterScRsp),
             _ => None,
         }
     }
@@ -5387,13 +5434,13 @@ impl CmdFightType {
 #[repr(i32)]
 pub enum CmdFightActivityType {
     None = 0,
-    CmdFightActivityDataChangeScNotify = 3603,
-    CmdGetFightActivityDataScRsp = 3620,
-    CmdTakeFightActivityRewardScRsp = 3634,
-    CmdEnterFightActivityStageScRsp = 3639,
-    CmdEnterFightActivityStageCsReq = 3646,
-    CmdTakeFightActivityRewardCsReq = 3653,
-    CmdGetFightActivityDataCsReq = 3659,
+    CmdEnterFightActivityStageCsReq = 3627,
+    CmdTakeFightActivityRewardCsReq = 3628,
+    CmdGetFightActivityDataCsReq = 3636,
+    CmdTakeFightActivityRewardScRsp = 3652,
+    CmdEnterFightActivityStageScRsp = 3667,
+    CmdFightActivityDataChangeScNotify = 3684,
+    CmdGetFightActivityDataScRsp = 3695,
 }
 impl CmdFightActivityType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -5403,18 +5450,6 @@ impl CmdFightActivityType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdFightActivityType::None => "CmdFightActivityTypeNone",
-            CmdFightActivityType::CmdFightActivityDataChangeScNotify => {
-                "CmdFightActivityDataChangeScNotify"
-            }
-            CmdFightActivityType::CmdGetFightActivityDataScRsp => {
-                "CmdGetFightActivityDataScRsp"
-            }
-            CmdFightActivityType::CmdTakeFightActivityRewardScRsp => {
-                "CmdTakeFightActivityRewardScRsp"
-            }
-            CmdFightActivityType::CmdEnterFightActivityStageScRsp => {
-                "CmdEnterFightActivityStageScRsp"
-            }
             CmdFightActivityType::CmdEnterFightActivityStageCsReq => {
                 "CmdEnterFightActivityStageCsReq"
             }
@@ -5424,22 +5459,24 @@ impl CmdFightActivityType {
             CmdFightActivityType::CmdGetFightActivityDataCsReq => {
                 "CmdGetFightActivityDataCsReq"
             }
+            CmdFightActivityType::CmdTakeFightActivityRewardScRsp => {
+                "CmdTakeFightActivityRewardScRsp"
+            }
+            CmdFightActivityType::CmdEnterFightActivityStageScRsp => {
+                "CmdEnterFightActivityStageScRsp"
+            }
+            CmdFightActivityType::CmdFightActivityDataChangeScNotify => {
+                "CmdFightActivityDataChangeScNotify"
+            }
+            CmdFightActivityType::CmdGetFightActivityDataScRsp => {
+                "CmdGetFightActivityDataScRsp"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdFightActivityTypeNone" => Some(Self::None),
-            "CmdFightActivityDataChangeScNotify" => {
-                Some(Self::CmdFightActivityDataChangeScNotify)
-            }
-            "CmdGetFightActivityDataScRsp" => Some(Self::CmdGetFightActivityDataScRsp),
-            "CmdTakeFightActivityRewardScRsp" => {
-                Some(Self::CmdTakeFightActivityRewardScRsp)
-            }
-            "CmdEnterFightActivityStageScRsp" => {
-                Some(Self::CmdEnterFightActivityStageScRsp)
-            }
             "CmdEnterFightActivityStageCsReq" => {
                 Some(Self::CmdEnterFightActivityStageCsReq)
             }
@@ -5447,6 +5484,16 @@ impl CmdFightActivityType {
                 Some(Self::CmdTakeFightActivityRewardCsReq)
             }
             "CmdGetFightActivityDataCsReq" => Some(Self::CmdGetFightActivityDataCsReq),
+            "CmdTakeFightActivityRewardScRsp" => {
+                Some(Self::CmdTakeFightActivityRewardScRsp)
+            }
+            "CmdEnterFightActivityStageScRsp" => {
+                Some(Self::CmdEnterFightActivityStageScRsp)
+            }
+            "CmdFightActivityDataChangeScNotify" => {
+                Some(Self::CmdFightActivityDataChangeScNotify)
+            }
+            "CmdGetFightActivityDataScRsp" => Some(Self::CmdGetFightActivityDataScRsp),
             _ => None,
         }
     }
@@ -5456,14 +5503,14 @@ impl CmdFightActivityType {
 #[repr(i32)]
 pub enum CmdFightFestType {
     None = 0,
-    CmdStartFightFestCsReq = 7262,
-    CmdGetFightFestDataCsReq = 7265,
-    CmdGetFightFestDataScRsp = 7266,
-    CmdFightFestUpdateCoinNotify = 7273,
-    CmdStartFightFestScRsp = 7274,
-    CmdFightFestUnlockSkillNotify = 7287,
-    CmdFightFestUpdateChallengeRecordNotify = 7290,
-    CmdFightFestScoreUpdateNotify = 7292,
+    CmdFightFestUpdateChallengeRecordNotify = 7259,
+    CmdGetFightFestDataCsReq = 7262,
+    CmdFightFestScoreUpdateNotify = 7265,
+    CmdStartFightFestScRsp = 7273,
+    CmdStartFightFestCsReq = 7280,
+    CmdFightFestUpdateCoinNotify = 7293,
+    CmdFightFestUnlockSkillNotify = 7299,
+    CmdGetFightFestDataScRsp = 7300,
 }
 impl CmdFightFestType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -5473,38 +5520,38 @@ impl CmdFightFestType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdFightFestType::None => "CmdFightFestTypeNone",
-            CmdFightFestType::CmdStartFightFestCsReq => "CmdStartFightFestCsReq",
-            CmdFightFestType::CmdGetFightFestDataCsReq => "CmdGetFightFestDataCsReq",
-            CmdFightFestType::CmdGetFightFestDataScRsp => "CmdGetFightFestDataScRsp",
-            CmdFightFestType::CmdFightFestUpdateCoinNotify => {
-                "CmdFightFestUpdateCoinNotify"
-            }
-            CmdFightFestType::CmdStartFightFestScRsp => "CmdStartFightFestScRsp",
-            CmdFightFestType::CmdFightFestUnlockSkillNotify => {
-                "CmdFightFestUnlockSkillNotify"
-            }
             CmdFightFestType::CmdFightFestUpdateChallengeRecordNotify => {
                 "CmdFightFestUpdateChallengeRecordNotify"
             }
+            CmdFightFestType::CmdGetFightFestDataCsReq => "CmdGetFightFestDataCsReq",
             CmdFightFestType::CmdFightFestScoreUpdateNotify => {
                 "CmdFightFestScoreUpdateNotify"
             }
+            CmdFightFestType::CmdStartFightFestScRsp => "CmdStartFightFestScRsp",
+            CmdFightFestType::CmdStartFightFestCsReq => "CmdStartFightFestCsReq",
+            CmdFightFestType::CmdFightFestUpdateCoinNotify => {
+                "CmdFightFestUpdateCoinNotify"
+            }
+            CmdFightFestType::CmdFightFestUnlockSkillNotify => {
+                "CmdFightFestUnlockSkillNotify"
+            }
+            CmdFightFestType::CmdGetFightFestDataScRsp => "CmdGetFightFestDataScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdFightFestTypeNone" => Some(Self::None),
-            "CmdStartFightFestCsReq" => Some(Self::CmdStartFightFestCsReq),
-            "CmdGetFightFestDataCsReq" => Some(Self::CmdGetFightFestDataCsReq),
-            "CmdGetFightFestDataScRsp" => Some(Self::CmdGetFightFestDataScRsp),
-            "CmdFightFestUpdateCoinNotify" => Some(Self::CmdFightFestUpdateCoinNotify),
-            "CmdStartFightFestScRsp" => Some(Self::CmdStartFightFestScRsp),
-            "CmdFightFestUnlockSkillNotify" => Some(Self::CmdFightFestUnlockSkillNotify),
             "CmdFightFestUpdateChallengeRecordNotify" => {
                 Some(Self::CmdFightFestUpdateChallengeRecordNotify)
             }
+            "CmdGetFightFestDataCsReq" => Some(Self::CmdGetFightFestDataCsReq),
             "CmdFightFestScoreUpdateNotify" => Some(Self::CmdFightFestScoreUpdateNotify),
+            "CmdStartFightFestScRsp" => Some(Self::CmdStartFightFestScRsp),
+            "CmdStartFightFestCsReq" => Some(Self::CmdStartFightFestCsReq),
+            "CmdFightFestUpdateCoinNotify" => Some(Self::CmdFightFestUpdateCoinNotify),
+            "CmdFightFestUnlockSkillNotify" => Some(Self::CmdFightFestUnlockSkillNotify),
+            "CmdGetFightFestDataScRsp" => Some(Self::CmdGetFightFestDataScRsp),
             _ => None,
         }
     }
@@ -5514,18 +5561,18 @@ impl CmdFightFestType {
 #[repr(i32)]
 pub enum CmdFightMathc3Type {
     None = 0,
-    CmdFightMatch3StartCountDownScNotify = 30103,
-    CmdFightMatch3ChatScRsp = 30116,
-    CmdFightMatch3DataScRsp = 30120,
-    CmdFightMatch3SwapScRsp = 30134,
-    CmdFightMatch3OpponentDataScNotify = 30137,
-    CmdFightMatch3TurnEndScNotify = 30139,
-    CmdFightMatch3TurnStartScNotify = 30146,
-    CmdFightMatch3ChatScNotify = 30147,
-    CmdFightMatch3SwapCsReq = 30153,
-    CmdFightMatch3DataCsReq = 30159,
-    CmdFightMatch3ForceUpdateNotify = 30174,
-    CmdFightMatch3ChatCsReq = 30180,
+    CmdFightMatch3ChatCsReq = 30124,
+    CmdFightMatch3TurnStartScNotify = 30127,
+    CmdFightMatch3SwapCsReq = 30128,
+    CmdFightMatch3ChatScNotify = 30134,
+    CmdFightMatch3DataCsReq = 30136,
+    CmdFightMatch3ForceUpdateNotify = 30143,
+    CmdFightMatch3SwapScRsp = 30152,
+    CmdFightMatch3TurnEndScNotify = 30167,
+    CmdFightMatch3OpponentDataScNotify = 30174,
+    CmdFightMatch3StartCountDownScNotify = 30184,
+    CmdFightMatch3ChatScRsp = 30193,
+    CmdFightMatch3DataScRsp = 30195,
 }
 impl CmdFightMathc3Type {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -5535,56 +5582,56 @@ impl CmdFightMathc3Type {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdFightMathc3Type::None => "CmdFightMathc3TypeNone",
+            CmdFightMathc3Type::CmdFightMatch3ChatCsReq => "CmdFightMatch3ChatCsReq",
+            CmdFightMathc3Type::CmdFightMatch3TurnStartScNotify => {
+                "CmdFightMatch3TurnStartScNotify"
+            }
+            CmdFightMathc3Type::CmdFightMatch3SwapCsReq => "CmdFightMatch3SwapCsReq",
+            CmdFightMathc3Type::CmdFightMatch3ChatScNotify => {
+                "CmdFightMatch3ChatScNotify"
+            }
+            CmdFightMathc3Type::CmdFightMatch3DataCsReq => "CmdFightMatch3DataCsReq",
+            CmdFightMathc3Type::CmdFightMatch3ForceUpdateNotify => {
+                "CmdFightMatch3ForceUpdateNotify"
+            }
+            CmdFightMathc3Type::CmdFightMatch3SwapScRsp => "CmdFightMatch3SwapScRsp",
+            CmdFightMathc3Type::CmdFightMatch3TurnEndScNotify => {
+                "CmdFightMatch3TurnEndScNotify"
+            }
+            CmdFightMathc3Type::CmdFightMatch3OpponentDataScNotify => {
+                "CmdFightMatch3OpponentDataScNotify"
+            }
             CmdFightMathc3Type::CmdFightMatch3StartCountDownScNotify => {
                 "CmdFightMatch3StartCountDownScNotify"
             }
             CmdFightMathc3Type::CmdFightMatch3ChatScRsp => "CmdFightMatch3ChatScRsp",
             CmdFightMathc3Type::CmdFightMatch3DataScRsp => "CmdFightMatch3DataScRsp",
-            CmdFightMathc3Type::CmdFightMatch3SwapScRsp => "CmdFightMatch3SwapScRsp",
-            CmdFightMathc3Type::CmdFightMatch3OpponentDataScNotify => {
-                "CmdFightMatch3OpponentDataScNotify"
-            }
-            CmdFightMathc3Type::CmdFightMatch3TurnEndScNotify => {
-                "CmdFightMatch3TurnEndScNotify"
-            }
-            CmdFightMathc3Type::CmdFightMatch3TurnStartScNotify => {
-                "CmdFightMatch3TurnStartScNotify"
-            }
-            CmdFightMathc3Type::CmdFightMatch3ChatScNotify => {
-                "CmdFightMatch3ChatScNotify"
-            }
-            CmdFightMathc3Type::CmdFightMatch3SwapCsReq => "CmdFightMatch3SwapCsReq",
-            CmdFightMathc3Type::CmdFightMatch3DataCsReq => "CmdFightMatch3DataCsReq",
-            CmdFightMathc3Type::CmdFightMatch3ForceUpdateNotify => {
-                "CmdFightMatch3ForceUpdateNotify"
-            }
-            CmdFightMathc3Type::CmdFightMatch3ChatCsReq => "CmdFightMatch3ChatCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdFightMathc3TypeNone" => Some(Self::None),
+            "CmdFightMatch3ChatCsReq" => Some(Self::CmdFightMatch3ChatCsReq),
+            "CmdFightMatch3TurnStartScNotify" => {
+                Some(Self::CmdFightMatch3TurnStartScNotify)
+            }
+            "CmdFightMatch3SwapCsReq" => Some(Self::CmdFightMatch3SwapCsReq),
+            "CmdFightMatch3ChatScNotify" => Some(Self::CmdFightMatch3ChatScNotify),
+            "CmdFightMatch3DataCsReq" => Some(Self::CmdFightMatch3DataCsReq),
+            "CmdFightMatch3ForceUpdateNotify" => {
+                Some(Self::CmdFightMatch3ForceUpdateNotify)
+            }
+            "CmdFightMatch3SwapScRsp" => Some(Self::CmdFightMatch3SwapScRsp),
+            "CmdFightMatch3TurnEndScNotify" => Some(Self::CmdFightMatch3TurnEndScNotify),
+            "CmdFightMatch3OpponentDataScNotify" => {
+                Some(Self::CmdFightMatch3OpponentDataScNotify)
+            }
             "CmdFightMatch3StartCountDownScNotify" => {
                 Some(Self::CmdFightMatch3StartCountDownScNotify)
             }
             "CmdFightMatch3ChatScRsp" => Some(Self::CmdFightMatch3ChatScRsp),
             "CmdFightMatch3DataScRsp" => Some(Self::CmdFightMatch3DataScRsp),
-            "CmdFightMatch3SwapScRsp" => Some(Self::CmdFightMatch3SwapScRsp),
-            "CmdFightMatch3OpponentDataScNotify" => {
-                Some(Self::CmdFightMatch3OpponentDataScNotify)
-            }
-            "CmdFightMatch3TurnEndScNotify" => Some(Self::CmdFightMatch3TurnEndScNotify),
-            "CmdFightMatch3TurnStartScNotify" => {
-                Some(Self::CmdFightMatch3TurnStartScNotify)
-            }
-            "CmdFightMatch3ChatScNotify" => Some(Self::CmdFightMatch3ChatScNotify),
-            "CmdFightMatch3SwapCsReq" => Some(Self::CmdFightMatch3SwapCsReq),
-            "CmdFightMatch3DataCsReq" => Some(Self::CmdFightMatch3DataCsReq),
-            "CmdFightMatch3ForceUpdateNotify" => {
-                Some(Self::CmdFightMatch3ForceUpdateNotify)
-            }
-            "CmdFightMatch3ChatCsReq" => Some(Self::CmdFightMatch3ChatCsReq),
             _ => None,
         }
     }
@@ -5594,64 +5641,64 @@ impl CmdFightMathc3Type {
 #[repr(i32)]
 pub enum CmdFriendType {
     None = 0,
-    CmdSetFriendMarkCsReq = 2902,
-    CmdGetPlayerDetailInfoCsReq = 2903,
-    CmdTakeAssistRewardScRsp = 2904,
-    CmdSearchPlayerCsReq = 2909,
+    CmdGetFriendDevelopmentInfoCsReq = 2903,
+    CmdAddBlacklistCsReq = 2905,
+    CmdGetFriendRecommendListInfoScRsp = 2907,
+    CmdTakeAssistRewardScRsp = 2908,
     CmdSetAssistCsReq = 2910,
-    CmdGetFriendChallengeDetailCsReq = 2912,
+    CmdGetPlatformPlayerInfoScRsp = 2911,
+    CmdReportPlayerScRsp = 2912,
     CmdGetAssistHistoryScRsp = 2913,
-    CmdGetFriendLoginInfoCsReq = 2914,
-    CmdSetForbidOtherApplyFriendCsReq = 2915,
-    CmdHandleFriendCsReq = 2916,
+    CmdGetAssistHistoryCsReq = 2917,
+    CmdCurAssistChangedNotify = 2918,
     CmdSyncAddBlacklistScNotify = 2919,
-    CmdGetFriendListInfoScRsp = 2920,
-    CmdGetFriendLoginInfoScRsp = 2923,
-    CmdGetFriendChallengeLineupScRsp = 2924,
-    CmdGetFriendRecommendListInfoScRsp = 2925,
-    CmdGetAssistHistoryCsReq = 2926,
-    CmdSetFriendRemarkNameCsReq = 2929,
-    CmdDeleteFriendCsReq = 2930,
-    CmdGetFriendDevelopmentInfoCsReq = 2931,
-    CmdGetFriendBattleRecordDetailCsReq = 2932,
-    CmdSetFriendRemarkNameScRsp = 2933,
-    CmdApplyFriendCsReq = 2934,
-    CmdGetCurAssistCsReq = 2936,
-    CmdApplyFriendScRsp = 2937,
-    CmdGetFriendApplyListInfoCsReq = 2939,
-    CmdGetPlatformPlayerInfoCsReq = 2943,
-    CmdSetForbidOtherApplyFriendScRsp = 2945,
-    CmdGetPlayerDetailInfoScRsp = 2946,
-    CmdHandleFriendScRsp = 2947,
-    CmdSyncDeleteFriendScNotify = 2948,
-    CmdReportPlayerCsReq = 2951,
-    CmdGetFriendApplyListInfoScRsp = 2953,
-    CmdGetFriendAssistListCsReq = 2956,
-    CmdGetFriendListInfoCsReq = 2959,
-    CmdGetFriendChallengeDetailScRsp = 2960,
-    CmdGetFriendRecommendListInfoCsReq = 2961,
-    CmdGetPlatformPlayerInfoScRsp = 2963,
-    CmdGetAssistListCsReq = 2964,
-    CmdGetCurAssistScRsp = 2965,
-    CmdSetFriendMarkScRsp = 2966,
-    CmdSetAssistScRsp = 2970,
-    CmdGetFriendDevelopmentInfoScRsp = 2971,
-    CmdGetFriendChallengeLineupCsReq = 2972,
-    CmdReportPlayerScRsp = 2973,
-    CmdSyncHandleFriendScNotify = 2974,
-    CmdDeleteFriendScRsp = 2975,
-    CmdNewAssistHistoryNotify = 2977,
-    CmdGetFriendAssistListScRsp = 2978,
-    CmdAddBlacklistScRsp = 2979,
-    CmdSyncApplyFriendScNotify = 2980,
-    CmdDeleteBlacklistCsReq = 2983,
-    CmdCurAssistChangedNotify = 2988,
-    CmdAddBlacklistCsReq = 2990,
-    CmdTakeAssistRewardCsReq = 2991,
-    CmdSearchPlayerScRsp = 2993,
-    CmdGetAssistListScRsp = 2994,
-    CmdGetFriendBattleRecordDetailScRsp = 2996,
-    CmdDeleteBlacklistScRsp = 2999,
+    CmdNewAssistHistoryNotify = 2921,
+    CmdSetFriendMarkCsReq = 2922,
+    CmdSyncApplyFriendScNotify = 2924,
+    CmdDeleteFriendScRsp = 2925,
+    CmdGetFriendRecommendListInfoCsReq = 2926,
+    CmdGetPlayerDetailInfoScRsp = 2927,
+    CmdGetFriendApplyListInfoScRsp = 2928,
+    CmdDeleteBlacklistScRsp = 2929,
+    CmdHandleFriendScRsp = 2934,
+    CmdGetCurAssistCsReq = 2935,
+    CmdGetFriendListInfoCsReq = 2936,
+    CmdGetPlatformPlayerInfoCsReq = 2937,
+    CmdSetForbidOtherApplyFriendCsReq = 2939,
+    CmdGetFriendDevelopmentInfoScRsp = 2940,
+    CmdGetFriendAssistListCsReq = 2941,
+    CmdSyncHandleFriendScNotify = 2943,
+    CmdGetFriendChallengeDetailCsReq = 2945,
+    CmdDeleteFriendCsReq = 2946,
+    CmdSearchPlayerScRsp = 2948,
+    CmdSearchPlayerCsReq = 2950,
+    CmdApplyFriendCsReq = 2952,
+    CmdSetFriendRemarkNameCsReq = 2953,
+    CmdSetForbidOtherApplyFriendScRsp = 2955,
+    CmdGetAssistListScRsp = 2958,
+    CmdReportPlayerCsReq = 2959,
+    CmdGetFriendChallengeLineupScRsp = 2960,
+    CmdGetFriendChallengeDetailScRsp = 2964,
+    CmdTakeAssistRewardCsReq = 2965,
+    CmdGetFriendApplyListInfoCsReq = 2967,
+    CmdGetFriendBattleRecordDetailCsReq = 2972,
+    CmdGetCurAssistScRsp = 2973,
+    CmdApplyFriendScRsp = 2974,
+    CmdAddBlacklistScRsp = 2975,
+    CmdSetAssistScRsp = 2976,
+    CmdDeleteBlacklistCsReq = 2978,
+    CmdGetFriendLoginInfoCsReq = 2979,
+    CmdGetFriendLoginInfoScRsp = 2981,
+    CmdGetPlayerDetailInfoCsReq = 2984,
+    CmdGetAssistListCsReq = 2988,
+    CmdSetFriendRemarkNameScRsp = 2990,
+    CmdGetFriendChallengeLineupCsReq = 2992,
+    CmdHandleFriendCsReq = 2993,
+    CmdGetFriendAssistListScRsp = 2994,
+    CmdGetFriendListInfoScRsp = 2995,
+    CmdSyncDeleteFriendScNotify = 2996,
+    CmdGetFriendBattleRecordDetailScRsp = 2999,
+    CmdSetFriendMarkScRsp = 3000,
 }
 impl CmdFriendType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -5661,188 +5708,188 @@ impl CmdFriendType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdFriendType::None => "CmdFriendTypeNone",
-            CmdFriendType::CmdSetFriendMarkCsReq => "CmdSetFriendMarkCsReq",
-            CmdFriendType::CmdGetPlayerDetailInfoCsReq => "CmdGetPlayerDetailInfoCsReq",
-            CmdFriendType::CmdTakeAssistRewardScRsp => "CmdTakeAssistRewardScRsp",
-            CmdFriendType::CmdSearchPlayerCsReq => "CmdSearchPlayerCsReq",
-            CmdFriendType::CmdSetAssistCsReq => "CmdSetAssistCsReq",
-            CmdFriendType::CmdGetFriendChallengeDetailCsReq => {
-                "CmdGetFriendChallengeDetailCsReq"
+            CmdFriendType::CmdGetFriendDevelopmentInfoCsReq => {
+                "CmdGetFriendDevelopmentInfoCsReq"
             }
-            CmdFriendType::CmdGetAssistHistoryScRsp => "CmdGetAssistHistoryScRsp",
-            CmdFriendType::CmdGetFriendLoginInfoCsReq => "CmdGetFriendLoginInfoCsReq",
-            CmdFriendType::CmdSetForbidOtherApplyFriendCsReq => {
-                "CmdSetForbidOtherApplyFriendCsReq"
-            }
-            CmdFriendType::CmdHandleFriendCsReq => "CmdHandleFriendCsReq",
-            CmdFriendType::CmdSyncAddBlacklistScNotify => "CmdSyncAddBlacklistScNotify",
-            CmdFriendType::CmdGetFriendListInfoScRsp => "CmdGetFriendListInfoScRsp",
-            CmdFriendType::CmdGetFriendLoginInfoScRsp => "CmdGetFriendLoginInfoScRsp",
-            CmdFriendType::CmdGetFriendChallengeLineupScRsp => {
-                "CmdGetFriendChallengeLineupScRsp"
-            }
+            CmdFriendType::CmdAddBlacklistCsReq => "CmdAddBlacklistCsReq",
             CmdFriendType::CmdGetFriendRecommendListInfoScRsp => {
                 "CmdGetFriendRecommendListInfoScRsp"
             }
+            CmdFriendType::CmdTakeAssistRewardScRsp => "CmdTakeAssistRewardScRsp",
+            CmdFriendType::CmdSetAssistCsReq => "CmdSetAssistCsReq",
+            CmdFriendType::CmdGetPlatformPlayerInfoScRsp => {
+                "CmdGetPlatformPlayerInfoScRsp"
+            }
+            CmdFriendType::CmdReportPlayerScRsp => "CmdReportPlayerScRsp",
+            CmdFriendType::CmdGetAssistHistoryScRsp => "CmdGetAssistHistoryScRsp",
             CmdFriendType::CmdGetAssistHistoryCsReq => "CmdGetAssistHistoryCsReq",
-            CmdFriendType::CmdSetFriendRemarkNameCsReq => "CmdSetFriendRemarkNameCsReq",
+            CmdFriendType::CmdCurAssistChangedNotify => "CmdCurAssistChangedNotify",
+            CmdFriendType::CmdSyncAddBlacklistScNotify => "CmdSyncAddBlacklistScNotify",
+            CmdFriendType::CmdNewAssistHistoryNotify => "CmdNewAssistHistoryNotify",
+            CmdFriendType::CmdSetFriendMarkCsReq => "CmdSetFriendMarkCsReq",
+            CmdFriendType::CmdSyncApplyFriendScNotify => "CmdSyncApplyFriendScNotify",
+            CmdFriendType::CmdDeleteFriendScRsp => "CmdDeleteFriendScRsp",
+            CmdFriendType::CmdGetFriendRecommendListInfoCsReq => {
+                "CmdGetFriendRecommendListInfoCsReq"
+            }
+            CmdFriendType::CmdGetPlayerDetailInfoScRsp => "CmdGetPlayerDetailInfoScRsp",
+            CmdFriendType::CmdGetFriendApplyListInfoScRsp => {
+                "CmdGetFriendApplyListInfoScRsp"
+            }
+            CmdFriendType::CmdDeleteBlacklistScRsp => "CmdDeleteBlacklistScRsp",
+            CmdFriendType::CmdHandleFriendScRsp => "CmdHandleFriendScRsp",
+            CmdFriendType::CmdGetCurAssistCsReq => "CmdGetCurAssistCsReq",
+            CmdFriendType::CmdGetFriendListInfoCsReq => "CmdGetFriendListInfoCsReq",
+            CmdFriendType::CmdGetPlatformPlayerInfoCsReq => {
+                "CmdGetPlatformPlayerInfoCsReq"
+            }
+            CmdFriendType::CmdSetForbidOtherApplyFriendCsReq => {
+                "CmdSetForbidOtherApplyFriendCsReq"
+            }
+            CmdFriendType::CmdGetFriendDevelopmentInfoScRsp => {
+                "CmdGetFriendDevelopmentInfoScRsp"
+            }
+            CmdFriendType::CmdGetFriendAssistListCsReq => "CmdGetFriendAssistListCsReq",
+            CmdFriendType::CmdSyncHandleFriendScNotify => "CmdSyncHandleFriendScNotify",
+            CmdFriendType::CmdGetFriendChallengeDetailCsReq => {
+                "CmdGetFriendChallengeDetailCsReq"
+            }
             CmdFriendType::CmdDeleteFriendCsReq => "CmdDeleteFriendCsReq",
-            CmdFriendType::CmdGetFriendDevelopmentInfoCsReq => {
-                "CmdGetFriendDevelopmentInfoCsReq"
+            CmdFriendType::CmdSearchPlayerScRsp => "CmdSearchPlayerScRsp",
+            CmdFriendType::CmdSearchPlayerCsReq => "CmdSearchPlayerCsReq",
+            CmdFriendType::CmdApplyFriendCsReq => "CmdApplyFriendCsReq",
+            CmdFriendType::CmdSetFriendRemarkNameCsReq => "CmdSetFriendRemarkNameCsReq",
+            CmdFriendType::CmdSetForbidOtherApplyFriendScRsp => {
+                "CmdSetForbidOtherApplyFriendScRsp"
+            }
+            CmdFriendType::CmdGetAssistListScRsp => "CmdGetAssistListScRsp",
+            CmdFriendType::CmdReportPlayerCsReq => "CmdReportPlayerCsReq",
+            CmdFriendType::CmdGetFriendChallengeLineupScRsp => {
+                "CmdGetFriendChallengeLineupScRsp"
+            }
+            CmdFriendType::CmdGetFriendChallengeDetailScRsp => {
+                "CmdGetFriendChallengeDetailScRsp"
+            }
+            CmdFriendType::CmdTakeAssistRewardCsReq => "CmdTakeAssistRewardCsReq",
+            CmdFriendType::CmdGetFriendApplyListInfoCsReq => {
+                "CmdGetFriendApplyListInfoCsReq"
             }
             CmdFriendType::CmdGetFriendBattleRecordDetailCsReq => {
                 "CmdGetFriendBattleRecordDetailCsReq"
             }
-            CmdFriendType::CmdSetFriendRemarkNameScRsp => "CmdSetFriendRemarkNameScRsp",
-            CmdFriendType::CmdApplyFriendCsReq => "CmdApplyFriendCsReq",
-            CmdFriendType::CmdGetCurAssistCsReq => "CmdGetCurAssistCsReq",
-            CmdFriendType::CmdApplyFriendScRsp => "CmdApplyFriendScRsp",
-            CmdFriendType::CmdGetFriendApplyListInfoCsReq => {
-                "CmdGetFriendApplyListInfoCsReq"
-            }
-            CmdFriendType::CmdGetPlatformPlayerInfoCsReq => {
-                "CmdGetPlatformPlayerInfoCsReq"
-            }
-            CmdFriendType::CmdSetForbidOtherApplyFriendScRsp => {
-                "CmdSetForbidOtherApplyFriendScRsp"
-            }
-            CmdFriendType::CmdGetPlayerDetailInfoScRsp => "CmdGetPlayerDetailInfoScRsp",
-            CmdFriendType::CmdHandleFriendScRsp => "CmdHandleFriendScRsp",
-            CmdFriendType::CmdSyncDeleteFriendScNotify => "CmdSyncDeleteFriendScNotify",
-            CmdFriendType::CmdReportPlayerCsReq => "CmdReportPlayerCsReq",
-            CmdFriendType::CmdGetFriendApplyListInfoScRsp => {
-                "CmdGetFriendApplyListInfoScRsp"
-            }
-            CmdFriendType::CmdGetFriendAssistListCsReq => "CmdGetFriendAssistListCsReq",
-            CmdFriendType::CmdGetFriendListInfoCsReq => "CmdGetFriendListInfoCsReq",
-            CmdFriendType::CmdGetFriendChallengeDetailScRsp => {
-                "CmdGetFriendChallengeDetailScRsp"
-            }
-            CmdFriendType::CmdGetFriendRecommendListInfoCsReq => {
-                "CmdGetFriendRecommendListInfoCsReq"
-            }
-            CmdFriendType::CmdGetPlatformPlayerInfoScRsp => {
-                "CmdGetPlatformPlayerInfoScRsp"
-            }
-            CmdFriendType::CmdGetAssistListCsReq => "CmdGetAssistListCsReq",
             CmdFriendType::CmdGetCurAssistScRsp => "CmdGetCurAssistScRsp",
-            CmdFriendType::CmdSetFriendMarkScRsp => "CmdSetFriendMarkScRsp",
+            CmdFriendType::CmdApplyFriendScRsp => "CmdApplyFriendScRsp",
+            CmdFriendType::CmdAddBlacklistScRsp => "CmdAddBlacklistScRsp",
             CmdFriendType::CmdSetAssistScRsp => "CmdSetAssistScRsp",
-            CmdFriendType::CmdGetFriendDevelopmentInfoScRsp => {
-                "CmdGetFriendDevelopmentInfoScRsp"
-            }
+            CmdFriendType::CmdDeleteBlacklistCsReq => "CmdDeleteBlacklistCsReq",
+            CmdFriendType::CmdGetFriendLoginInfoCsReq => "CmdGetFriendLoginInfoCsReq",
+            CmdFriendType::CmdGetFriendLoginInfoScRsp => "CmdGetFriendLoginInfoScRsp",
+            CmdFriendType::CmdGetPlayerDetailInfoCsReq => "CmdGetPlayerDetailInfoCsReq",
+            CmdFriendType::CmdGetAssistListCsReq => "CmdGetAssistListCsReq",
+            CmdFriendType::CmdSetFriendRemarkNameScRsp => "CmdSetFriendRemarkNameScRsp",
             CmdFriendType::CmdGetFriendChallengeLineupCsReq => {
                 "CmdGetFriendChallengeLineupCsReq"
             }
-            CmdFriendType::CmdReportPlayerScRsp => "CmdReportPlayerScRsp",
-            CmdFriendType::CmdSyncHandleFriendScNotify => "CmdSyncHandleFriendScNotify",
-            CmdFriendType::CmdDeleteFriendScRsp => "CmdDeleteFriendScRsp",
-            CmdFriendType::CmdNewAssistHistoryNotify => "CmdNewAssistHistoryNotify",
+            CmdFriendType::CmdHandleFriendCsReq => "CmdHandleFriendCsReq",
             CmdFriendType::CmdGetFriendAssistListScRsp => "CmdGetFriendAssistListScRsp",
-            CmdFriendType::CmdAddBlacklistScRsp => "CmdAddBlacklistScRsp",
-            CmdFriendType::CmdSyncApplyFriendScNotify => "CmdSyncApplyFriendScNotify",
-            CmdFriendType::CmdDeleteBlacklistCsReq => "CmdDeleteBlacklistCsReq",
-            CmdFriendType::CmdCurAssistChangedNotify => "CmdCurAssistChangedNotify",
-            CmdFriendType::CmdAddBlacklistCsReq => "CmdAddBlacklistCsReq",
-            CmdFriendType::CmdTakeAssistRewardCsReq => "CmdTakeAssistRewardCsReq",
-            CmdFriendType::CmdSearchPlayerScRsp => "CmdSearchPlayerScRsp",
-            CmdFriendType::CmdGetAssistListScRsp => "CmdGetAssistListScRsp",
+            CmdFriendType::CmdGetFriendListInfoScRsp => "CmdGetFriendListInfoScRsp",
+            CmdFriendType::CmdSyncDeleteFriendScNotify => "CmdSyncDeleteFriendScNotify",
             CmdFriendType::CmdGetFriendBattleRecordDetailScRsp => {
                 "CmdGetFriendBattleRecordDetailScRsp"
             }
-            CmdFriendType::CmdDeleteBlacklistScRsp => "CmdDeleteBlacklistScRsp",
+            CmdFriendType::CmdSetFriendMarkScRsp => "CmdSetFriendMarkScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdFriendTypeNone" => Some(Self::None),
-            "CmdSetFriendMarkCsReq" => Some(Self::CmdSetFriendMarkCsReq),
-            "CmdGetPlayerDetailInfoCsReq" => Some(Self::CmdGetPlayerDetailInfoCsReq),
-            "CmdTakeAssistRewardScRsp" => Some(Self::CmdTakeAssistRewardScRsp),
-            "CmdSearchPlayerCsReq" => Some(Self::CmdSearchPlayerCsReq),
-            "CmdSetAssistCsReq" => Some(Self::CmdSetAssistCsReq),
-            "CmdGetFriendChallengeDetailCsReq" => {
-                Some(Self::CmdGetFriendChallengeDetailCsReq)
+            "CmdGetFriendDevelopmentInfoCsReq" => {
+                Some(Self::CmdGetFriendDevelopmentInfoCsReq)
             }
-            "CmdGetAssistHistoryScRsp" => Some(Self::CmdGetAssistHistoryScRsp),
-            "CmdGetFriendLoginInfoCsReq" => Some(Self::CmdGetFriendLoginInfoCsReq),
-            "CmdSetForbidOtherApplyFriendCsReq" => {
-                Some(Self::CmdSetForbidOtherApplyFriendCsReq)
-            }
-            "CmdHandleFriendCsReq" => Some(Self::CmdHandleFriendCsReq),
-            "CmdSyncAddBlacklistScNotify" => Some(Self::CmdSyncAddBlacklistScNotify),
-            "CmdGetFriendListInfoScRsp" => Some(Self::CmdGetFriendListInfoScRsp),
-            "CmdGetFriendLoginInfoScRsp" => Some(Self::CmdGetFriendLoginInfoScRsp),
-            "CmdGetFriendChallengeLineupScRsp" => {
-                Some(Self::CmdGetFriendChallengeLineupScRsp)
-            }
+            "CmdAddBlacklistCsReq" => Some(Self::CmdAddBlacklistCsReq),
             "CmdGetFriendRecommendListInfoScRsp" => {
                 Some(Self::CmdGetFriendRecommendListInfoScRsp)
             }
+            "CmdTakeAssistRewardScRsp" => Some(Self::CmdTakeAssistRewardScRsp),
+            "CmdSetAssistCsReq" => Some(Self::CmdSetAssistCsReq),
+            "CmdGetPlatformPlayerInfoScRsp" => Some(Self::CmdGetPlatformPlayerInfoScRsp),
+            "CmdReportPlayerScRsp" => Some(Self::CmdReportPlayerScRsp),
+            "CmdGetAssistHistoryScRsp" => Some(Self::CmdGetAssistHistoryScRsp),
             "CmdGetAssistHistoryCsReq" => Some(Self::CmdGetAssistHistoryCsReq),
-            "CmdSetFriendRemarkNameCsReq" => Some(Self::CmdSetFriendRemarkNameCsReq),
+            "CmdCurAssistChangedNotify" => Some(Self::CmdCurAssistChangedNotify),
+            "CmdSyncAddBlacklistScNotify" => Some(Self::CmdSyncAddBlacklistScNotify),
+            "CmdNewAssistHistoryNotify" => Some(Self::CmdNewAssistHistoryNotify),
+            "CmdSetFriendMarkCsReq" => Some(Self::CmdSetFriendMarkCsReq),
+            "CmdSyncApplyFriendScNotify" => Some(Self::CmdSyncApplyFriendScNotify),
+            "CmdDeleteFriendScRsp" => Some(Self::CmdDeleteFriendScRsp),
+            "CmdGetFriendRecommendListInfoCsReq" => {
+                Some(Self::CmdGetFriendRecommendListInfoCsReq)
+            }
+            "CmdGetPlayerDetailInfoScRsp" => Some(Self::CmdGetPlayerDetailInfoScRsp),
+            "CmdGetFriendApplyListInfoScRsp" => {
+                Some(Self::CmdGetFriendApplyListInfoScRsp)
+            }
+            "CmdDeleteBlacklistScRsp" => Some(Self::CmdDeleteBlacklistScRsp),
+            "CmdHandleFriendScRsp" => Some(Self::CmdHandleFriendScRsp),
+            "CmdGetCurAssistCsReq" => Some(Self::CmdGetCurAssistCsReq),
+            "CmdGetFriendListInfoCsReq" => Some(Self::CmdGetFriendListInfoCsReq),
+            "CmdGetPlatformPlayerInfoCsReq" => Some(Self::CmdGetPlatformPlayerInfoCsReq),
+            "CmdSetForbidOtherApplyFriendCsReq" => {
+                Some(Self::CmdSetForbidOtherApplyFriendCsReq)
+            }
+            "CmdGetFriendDevelopmentInfoScRsp" => {
+                Some(Self::CmdGetFriendDevelopmentInfoScRsp)
+            }
+            "CmdGetFriendAssistListCsReq" => Some(Self::CmdGetFriendAssistListCsReq),
+            "CmdSyncHandleFriendScNotify" => Some(Self::CmdSyncHandleFriendScNotify),
+            "CmdGetFriendChallengeDetailCsReq" => {
+                Some(Self::CmdGetFriendChallengeDetailCsReq)
+            }
             "CmdDeleteFriendCsReq" => Some(Self::CmdDeleteFriendCsReq),
-            "CmdGetFriendDevelopmentInfoCsReq" => {
-                Some(Self::CmdGetFriendDevelopmentInfoCsReq)
+            "CmdSearchPlayerScRsp" => Some(Self::CmdSearchPlayerScRsp),
+            "CmdSearchPlayerCsReq" => Some(Self::CmdSearchPlayerCsReq),
+            "CmdApplyFriendCsReq" => Some(Self::CmdApplyFriendCsReq),
+            "CmdSetFriendRemarkNameCsReq" => Some(Self::CmdSetFriendRemarkNameCsReq),
+            "CmdSetForbidOtherApplyFriendScRsp" => {
+                Some(Self::CmdSetForbidOtherApplyFriendScRsp)
+            }
+            "CmdGetAssistListScRsp" => Some(Self::CmdGetAssistListScRsp),
+            "CmdReportPlayerCsReq" => Some(Self::CmdReportPlayerCsReq),
+            "CmdGetFriendChallengeLineupScRsp" => {
+                Some(Self::CmdGetFriendChallengeLineupScRsp)
+            }
+            "CmdGetFriendChallengeDetailScRsp" => {
+                Some(Self::CmdGetFriendChallengeDetailScRsp)
+            }
+            "CmdTakeAssistRewardCsReq" => Some(Self::CmdTakeAssistRewardCsReq),
+            "CmdGetFriendApplyListInfoCsReq" => {
+                Some(Self::CmdGetFriendApplyListInfoCsReq)
             }
             "CmdGetFriendBattleRecordDetailCsReq" => {
                 Some(Self::CmdGetFriendBattleRecordDetailCsReq)
             }
-            "CmdSetFriendRemarkNameScRsp" => Some(Self::CmdSetFriendRemarkNameScRsp),
-            "CmdApplyFriendCsReq" => Some(Self::CmdApplyFriendCsReq),
-            "CmdGetCurAssistCsReq" => Some(Self::CmdGetCurAssistCsReq),
-            "CmdApplyFriendScRsp" => Some(Self::CmdApplyFriendScRsp),
-            "CmdGetFriendApplyListInfoCsReq" => {
-                Some(Self::CmdGetFriendApplyListInfoCsReq)
-            }
-            "CmdGetPlatformPlayerInfoCsReq" => Some(Self::CmdGetPlatformPlayerInfoCsReq),
-            "CmdSetForbidOtherApplyFriendScRsp" => {
-                Some(Self::CmdSetForbidOtherApplyFriendScRsp)
-            }
-            "CmdGetPlayerDetailInfoScRsp" => Some(Self::CmdGetPlayerDetailInfoScRsp),
-            "CmdHandleFriendScRsp" => Some(Self::CmdHandleFriendScRsp),
-            "CmdSyncDeleteFriendScNotify" => Some(Self::CmdSyncDeleteFriendScNotify),
-            "CmdReportPlayerCsReq" => Some(Self::CmdReportPlayerCsReq),
-            "CmdGetFriendApplyListInfoScRsp" => {
-                Some(Self::CmdGetFriendApplyListInfoScRsp)
-            }
-            "CmdGetFriendAssistListCsReq" => Some(Self::CmdGetFriendAssistListCsReq),
-            "CmdGetFriendListInfoCsReq" => Some(Self::CmdGetFriendListInfoCsReq),
-            "CmdGetFriendChallengeDetailScRsp" => {
-                Some(Self::CmdGetFriendChallengeDetailScRsp)
-            }
-            "CmdGetFriendRecommendListInfoCsReq" => {
-                Some(Self::CmdGetFriendRecommendListInfoCsReq)
-            }
-            "CmdGetPlatformPlayerInfoScRsp" => Some(Self::CmdGetPlatformPlayerInfoScRsp),
-            "CmdGetAssistListCsReq" => Some(Self::CmdGetAssistListCsReq),
             "CmdGetCurAssistScRsp" => Some(Self::CmdGetCurAssistScRsp),
-            "CmdSetFriendMarkScRsp" => Some(Self::CmdSetFriendMarkScRsp),
+            "CmdApplyFriendScRsp" => Some(Self::CmdApplyFriendScRsp),
+            "CmdAddBlacklistScRsp" => Some(Self::CmdAddBlacklistScRsp),
             "CmdSetAssistScRsp" => Some(Self::CmdSetAssistScRsp),
-            "CmdGetFriendDevelopmentInfoScRsp" => {
-                Some(Self::CmdGetFriendDevelopmentInfoScRsp)
-            }
+            "CmdDeleteBlacklistCsReq" => Some(Self::CmdDeleteBlacklistCsReq),
+            "CmdGetFriendLoginInfoCsReq" => Some(Self::CmdGetFriendLoginInfoCsReq),
+            "CmdGetFriendLoginInfoScRsp" => Some(Self::CmdGetFriendLoginInfoScRsp),
+            "CmdGetPlayerDetailInfoCsReq" => Some(Self::CmdGetPlayerDetailInfoCsReq),
+            "CmdGetAssistListCsReq" => Some(Self::CmdGetAssistListCsReq),
+            "CmdSetFriendRemarkNameScRsp" => Some(Self::CmdSetFriendRemarkNameScRsp),
             "CmdGetFriendChallengeLineupCsReq" => {
                 Some(Self::CmdGetFriendChallengeLineupCsReq)
             }
-            "CmdReportPlayerScRsp" => Some(Self::CmdReportPlayerScRsp),
-            "CmdSyncHandleFriendScNotify" => Some(Self::CmdSyncHandleFriendScNotify),
-            "CmdDeleteFriendScRsp" => Some(Self::CmdDeleteFriendScRsp),
-            "CmdNewAssistHistoryNotify" => Some(Self::CmdNewAssistHistoryNotify),
+            "CmdHandleFriendCsReq" => Some(Self::CmdHandleFriendCsReq),
             "CmdGetFriendAssistListScRsp" => Some(Self::CmdGetFriendAssistListScRsp),
-            "CmdAddBlacklistScRsp" => Some(Self::CmdAddBlacklistScRsp),
-            "CmdSyncApplyFriendScNotify" => Some(Self::CmdSyncApplyFriendScNotify),
-            "CmdDeleteBlacklistCsReq" => Some(Self::CmdDeleteBlacklistCsReq),
-            "CmdCurAssistChangedNotify" => Some(Self::CmdCurAssistChangedNotify),
-            "CmdAddBlacklistCsReq" => Some(Self::CmdAddBlacklistCsReq),
-            "CmdTakeAssistRewardCsReq" => Some(Self::CmdTakeAssistRewardCsReq),
-            "CmdSearchPlayerScRsp" => Some(Self::CmdSearchPlayerScRsp),
-            "CmdGetAssistListScRsp" => Some(Self::CmdGetAssistListScRsp),
+            "CmdGetFriendListInfoScRsp" => Some(Self::CmdGetFriendListInfoScRsp),
+            "CmdSyncDeleteFriendScNotify" => Some(Self::CmdSyncDeleteFriendScNotify),
             "CmdGetFriendBattleRecordDetailScRsp" => {
                 Some(Self::CmdGetFriendBattleRecordDetailScRsp)
             }
-            "CmdDeleteBlacklistScRsp" => Some(Self::CmdDeleteBlacklistScRsp),
+            "CmdSetFriendMarkScRsp" => Some(Self::CmdSetFriendMarkScRsp),
             _ => None,
         }
     }
@@ -5852,14 +5899,14 @@ impl CmdFriendType {
 #[repr(i32)]
 pub enum CmdGachaType {
     None = 0,
-    CmdDoGachaCsReq = 1903,
-    CmdGetGachaInfoScRsp = 1920,
-    CmdExchangeGachaCeilingCsReq = 1934,
-    CmdExchangeGachaCeilingScRsp = 1937,
-    CmdGetGachaCeilingCsReq = 1939,
-    CmdDoGachaScRsp = 1946,
-    CmdGetGachaCeilingScRsp = 1953,
-    CmdGetGachaInfoCsReq = 1959,
+    CmdDoGachaScRsp = 1927,
+    CmdGetGachaCeilingScRsp = 1928,
+    CmdGetGachaInfoCsReq = 1936,
+    CmdExchangeGachaCeilingCsReq = 1952,
+    CmdGetGachaCeilingCsReq = 1967,
+    CmdExchangeGachaCeilingScRsp = 1974,
+    CmdDoGachaCsReq = 1984,
+    CmdGetGachaInfoScRsp = 1995,
 }
 impl CmdGachaType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -5869,28 +5916,28 @@ impl CmdGachaType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdGachaType::None => "CmdGachaTypeNone",
-            CmdGachaType::CmdDoGachaCsReq => "CmdDoGachaCsReq",
-            CmdGachaType::CmdGetGachaInfoScRsp => "CmdGetGachaInfoScRsp",
-            CmdGachaType::CmdExchangeGachaCeilingCsReq => "CmdExchangeGachaCeilingCsReq",
-            CmdGachaType::CmdExchangeGachaCeilingScRsp => "CmdExchangeGachaCeilingScRsp",
-            CmdGachaType::CmdGetGachaCeilingCsReq => "CmdGetGachaCeilingCsReq",
             CmdGachaType::CmdDoGachaScRsp => "CmdDoGachaScRsp",
             CmdGachaType::CmdGetGachaCeilingScRsp => "CmdGetGachaCeilingScRsp",
             CmdGachaType::CmdGetGachaInfoCsReq => "CmdGetGachaInfoCsReq",
+            CmdGachaType::CmdExchangeGachaCeilingCsReq => "CmdExchangeGachaCeilingCsReq",
+            CmdGachaType::CmdGetGachaCeilingCsReq => "CmdGetGachaCeilingCsReq",
+            CmdGachaType::CmdExchangeGachaCeilingScRsp => "CmdExchangeGachaCeilingScRsp",
+            CmdGachaType::CmdDoGachaCsReq => "CmdDoGachaCsReq",
+            CmdGachaType::CmdGetGachaInfoScRsp => "CmdGetGachaInfoScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdGachaTypeNone" => Some(Self::None),
-            "CmdDoGachaCsReq" => Some(Self::CmdDoGachaCsReq),
-            "CmdGetGachaInfoScRsp" => Some(Self::CmdGetGachaInfoScRsp),
-            "CmdExchangeGachaCeilingCsReq" => Some(Self::CmdExchangeGachaCeilingCsReq),
-            "CmdExchangeGachaCeilingScRsp" => Some(Self::CmdExchangeGachaCeilingScRsp),
-            "CmdGetGachaCeilingCsReq" => Some(Self::CmdGetGachaCeilingCsReq),
             "CmdDoGachaScRsp" => Some(Self::CmdDoGachaScRsp),
             "CmdGetGachaCeilingScRsp" => Some(Self::CmdGetGachaCeilingScRsp),
             "CmdGetGachaInfoCsReq" => Some(Self::CmdGetGachaInfoCsReq),
+            "CmdExchangeGachaCeilingCsReq" => Some(Self::CmdExchangeGachaCeilingCsReq),
+            "CmdGetGachaCeilingCsReq" => Some(Self::CmdGetGachaCeilingCsReq),
+            "CmdExchangeGachaCeilingScRsp" => Some(Self::CmdExchangeGachaCeilingScRsp),
+            "CmdDoGachaCsReq" => Some(Self::CmdDoGachaCsReq),
+            "CmdGetGachaInfoScRsp" => Some(Self::CmdGetGachaInfoScRsp),
             _ => None,
         }
     }
@@ -5900,17 +5947,17 @@ impl CmdGachaType {
 #[repr(i32)]
 pub enum CmdHeartdialType {
     None = 0,
-    CmdChangeScriptEmotionCsReq = 6303,
-    CmdHeartDialTraceScriptCsReq = 6316,
-    CmdGetHeartDialInfoScRsp = 6320,
-    CmdFinishEmotionDialoguePerformanceCsReq = 6334,
-    CmdFinishEmotionDialoguePerformanceScRsp = 6337,
-    CmdSubmitEmotionItemCsReq = 6339,
-    CmdChangeScriptEmotionScRsp = 6346,
-    CmdHeartDialTraceScriptScRsp = 6347,
-    CmdSubmitEmotionItemScRsp = 6353,
-    CmdGetHeartDialInfoCsReq = 6359,
-    CmdHeartDialScriptChangeScNotify = 6380,
+    CmdHeartDialScriptChangeScNotify = 6324,
+    CmdChangeScriptEmotionScRsp = 6327,
+    CmdSubmitEmotionItemScRsp = 6328,
+    CmdHeartDialTraceScriptScRsp = 6334,
+    CmdGetHeartDialInfoCsReq = 6336,
+    CmdFinishEmotionDialoguePerformanceCsReq = 6352,
+    CmdSubmitEmotionItemCsReq = 6367,
+    CmdFinishEmotionDialoguePerformanceScRsp = 6374,
+    CmdChangeScriptEmotionCsReq = 6384,
+    CmdHeartDialTraceScriptCsReq = 6393,
+    CmdGetHeartDialInfoScRsp = 6395,
 }
 impl CmdHeartdialType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -5920,6 +5967,24 @@ impl CmdHeartdialType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdHeartdialType::None => "CmdHeartdialTypeNone",
+            CmdHeartdialType::CmdHeartDialScriptChangeScNotify => {
+                "CmdHeartDialScriptChangeScNotify"
+            }
+            CmdHeartdialType::CmdChangeScriptEmotionScRsp => {
+                "CmdChangeScriptEmotionScRsp"
+            }
+            CmdHeartdialType::CmdSubmitEmotionItemScRsp => "CmdSubmitEmotionItemScRsp",
+            CmdHeartdialType::CmdHeartDialTraceScriptScRsp => {
+                "CmdHeartDialTraceScriptScRsp"
+            }
+            CmdHeartdialType::CmdGetHeartDialInfoCsReq => "CmdGetHeartDialInfoCsReq",
+            CmdHeartdialType::CmdFinishEmotionDialoguePerformanceCsReq => {
+                "CmdFinishEmotionDialoguePerformanceCsReq"
+            }
+            CmdHeartdialType::CmdSubmitEmotionItemCsReq => "CmdSubmitEmotionItemCsReq",
+            CmdHeartdialType::CmdFinishEmotionDialoguePerformanceScRsp => {
+                "CmdFinishEmotionDialoguePerformanceScRsp"
+            }
             CmdHeartdialType::CmdChangeScriptEmotionCsReq => {
                 "CmdChangeScriptEmotionCsReq"
             }
@@ -5927,47 +5992,29 @@ impl CmdHeartdialType {
                 "CmdHeartDialTraceScriptCsReq"
             }
             CmdHeartdialType::CmdGetHeartDialInfoScRsp => "CmdGetHeartDialInfoScRsp",
-            CmdHeartdialType::CmdFinishEmotionDialoguePerformanceCsReq => {
-                "CmdFinishEmotionDialoguePerformanceCsReq"
-            }
-            CmdHeartdialType::CmdFinishEmotionDialoguePerformanceScRsp => {
-                "CmdFinishEmotionDialoguePerformanceScRsp"
-            }
-            CmdHeartdialType::CmdSubmitEmotionItemCsReq => "CmdSubmitEmotionItemCsReq",
-            CmdHeartdialType::CmdChangeScriptEmotionScRsp => {
-                "CmdChangeScriptEmotionScRsp"
-            }
-            CmdHeartdialType::CmdHeartDialTraceScriptScRsp => {
-                "CmdHeartDialTraceScriptScRsp"
-            }
-            CmdHeartdialType::CmdSubmitEmotionItemScRsp => "CmdSubmitEmotionItemScRsp",
-            CmdHeartdialType::CmdGetHeartDialInfoCsReq => "CmdGetHeartDialInfoCsReq",
-            CmdHeartdialType::CmdHeartDialScriptChangeScNotify => {
-                "CmdHeartDialScriptChangeScNotify"
-            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdHeartdialTypeNone" => Some(Self::None),
-            "CmdChangeScriptEmotionCsReq" => Some(Self::CmdChangeScriptEmotionCsReq),
-            "CmdHeartDialTraceScriptCsReq" => Some(Self::CmdHeartDialTraceScriptCsReq),
-            "CmdGetHeartDialInfoScRsp" => Some(Self::CmdGetHeartDialInfoScRsp),
-            "CmdFinishEmotionDialoguePerformanceCsReq" => {
-                Some(Self::CmdFinishEmotionDialoguePerformanceCsReq)
-            }
-            "CmdFinishEmotionDialoguePerformanceScRsp" => {
-                Some(Self::CmdFinishEmotionDialoguePerformanceScRsp)
-            }
-            "CmdSubmitEmotionItemCsReq" => Some(Self::CmdSubmitEmotionItemCsReq),
-            "CmdChangeScriptEmotionScRsp" => Some(Self::CmdChangeScriptEmotionScRsp),
-            "CmdHeartDialTraceScriptScRsp" => Some(Self::CmdHeartDialTraceScriptScRsp),
-            "CmdSubmitEmotionItemScRsp" => Some(Self::CmdSubmitEmotionItemScRsp),
-            "CmdGetHeartDialInfoCsReq" => Some(Self::CmdGetHeartDialInfoCsReq),
             "CmdHeartDialScriptChangeScNotify" => {
                 Some(Self::CmdHeartDialScriptChangeScNotify)
             }
+            "CmdChangeScriptEmotionScRsp" => Some(Self::CmdChangeScriptEmotionScRsp),
+            "CmdSubmitEmotionItemScRsp" => Some(Self::CmdSubmitEmotionItemScRsp),
+            "CmdHeartDialTraceScriptScRsp" => Some(Self::CmdHeartDialTraceScriptScRsp),
+            "CmdGetHeartDialInfoCsReq" => Some(Self::CmdGetHeartDialInfoCsReq),
+            "CmdFinishEmotionDialoguePerformanceCsReq" => {
+                Some(Self::CmdFinishEmotionDialoguePerformanceCsReq)
+            }
+            "CmdSubmitEmotionItemCsReq" => Some(Self::CmdSubmitEmotionItemCsReq),
+            "CmdFinishEmotionDialoguePerformanceScRsp" => {
+                Some(Self::CmdFinishEmotionDialoguePerformanceScRsp)
+            }
+            "CmdChangeScriptEmotionCsReq" => Some(Self::CmdChangeScriptEmotionCsReq),
+            "CmdHeartDialTraceScriptCsReq" => Some(Self::CmdHeartDialTraceScriptCsReq),
+            "CmdGetHeartDialInfoScRsp" => Some(Self::CmdGetHeartDialInfoScRsp),
             _ => None,
         }
     }
@@ -5977,29 +6024,29 @@ impl CmdHeartdialType {
 #[repr(i32)]
 pub enum CmdHeliobusType {
     None = 0,
-    CmdHeliobusSnsReadCsReq = 5803,
-    CmdHeliobusSnsCommentScRsp = 5816,
-    CmdHeliobusActivityDataScRsp = 5820,
-    CmdHeliobusEnterBattleCsReq = 5825,
-    CmdHeliobusEnterBattleScRsp = 5829,
-    CmdHeliobusUpgradeLevelCsReq = 5830,
-    CmdHeliobusStartRaidCsReq = 5833,
-    CmdHeliobusSnsLikeCsReq = 5834,
-    CmdHeliobusSnsLikeScRsp = 5837,
-    CmdHeliobusSnsPostCsReq = 5839,
-    CmdHeliobusSnsReadScRsp = 5846,
-    CmdHeliobusSnsUpdateScNotify = 5847,
-    CmdHeliobusUnlockSkillScNotify = 5848,
-    CmdHeliobusStartRaidScRsp = 5851,
-    CmdHeliobusSnsPostScRsp = 5853,
-    CmdHeliobusActivityDataCsReq = 5859,
-    CmdHeliobusChallengeUpdateScNotify = 5873,
-    CmdHeliobusInfoChangedScNotify = 5874,
-    CmdHeliobusUpgradeLevelScRsp = 5875,
-    CmdHeliobusSelectSkillScRsp = 5879,
-    CmdHeliobusSnsCommentCsReq = 5880,
-    CmdHeliobusLineupUpdateScNotify = 5883,
-    CmdHeliobusSelectSkillCsReq = 5890,
+    CmdHeliobusSelectSkillCsReq = 5805,
+    CmdHeliobusEnterBattleCsReq = 5807,
+    CmdHeliobusChallengeUpdateScNotify = 5812,
+    CmdHeliobusSnsCommentCsReq = 5824,
+    CmdHeliobusUpgradeLevelScRsp = 5825,
+    CmdHeliobusSnsReadScRsp = 5827,
+    CmdHeliobusSnsPostScRsp = 5828,
+    CmdHeliobusSnsUpdateScNotify = 5834,
+    CmdHeliobusActivityDataCsReq = 5836,
+    CmdHeliobusInfoChangedScNotify = 5843,
+    CmdHeliobusUpgradeLevelCsReq = 5846,
+    CmdHeliobusSnsLikeCsReq = 5852,
+    CmdHeliobusEnterBattleScRsp = 5853,
+    CmdHeliobusStartRaidScRsp = 5859,
+    CmdHeliobusSnsPostCsReq = 5867,
+    CmdHeliobusSnsLikeScRsp = 5874,
+    CmdHeliobusSelectSkillScRsp = 5875,
+    CmdHeliobusLineupUpdateScNotify = 5878,
+    CmdHeliobusSnsReadCsReq = 5884,
+    CmdHeliobusStartRaidCsReq = 5890,
+    CmdHeliobusSnsCommentScRsp = 5893,
+    CmdHeliobusActivityDataScRsp = 5895,
+    CmdHeliobusUnlockSkillScNotify = 5896,
 }
 impl CmdHeliobusType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -6009,84 +6056,84 @@ impl CmdHeliobusType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdHeliobusType::None => "CmdHeliobusTypeNone",
-            CmdHeliobusType::CmdHeliobusSnsReadCsReq => "CmdHeliobusSnsReadCsReq",
-            CmdHeliobusType::CmdHeliobusSnsCommentScRsp => "CmdHeliobusSnsCommentScRsp",
-            CmdHeliobusType::CmdHeliobusActivityDataScRsp => {
-                "CmdHeliobusActivityDataScRsp"
-            }
+            CmdHeliobusType::CmdHeliobusSelectSkillCsReq => "CmdHeliobusSelectSkillCsReq",
             CmdHeliobusType::CmdHeliobusEnterBattleCsReq => "CmdHeliobusEnterBattleCsReq",
-            CmdHeliobusType::CmdHeliobusEnterBattleScRsp => "CmdHeliobusEnterBattleScRsp",
-            CmdHeliobusType::CmdHeliobusUpgradeLevelCsReq => {
-                "CmdHeliobusUpgradeLevelCsReq"
+            CmdHeliobusType::CmdHeliobusChallengeUpdateScNotify => {
+                "CmdHeliobusChallengeUpdateScNotify"
             }
-            CmdHeliobusType::CmdHeliobusStartRaidCsReq => "CmdHeliobusStartRaidCsReq",
-            CmdHeliobusType::CmdHeliobusSnsLikeCsReq => "CmdHeliobusSnsLikeCsReq",
-            CmdHeliobusType::CmdHeliobusSnsLikeScRsp => "CmdHeliobusSnsLikeScRsp",
-            CmdHeliobusType::CmdHeliobusSnsPostCsReq => "CmdHeliobusSnsPostCsReq",
+            CmdHeliobusType::CmdHeliobusSnsCommentCsReq => "CmdHeliobusSnsCommentCsReq",
+            CmdHeliobusType::CmdHeliobusUpgradeLevelScRsp => {
+                "CmdHeliobusUpgradeLevelScRsp"
+            }
             CmdHeliobusType::CmdHeliobusSnsReadScRsp => "CmdHeliobusSnsReadScRsp",
+            CmdHeliobusType::CmdHeliobusSnsPostScRsp => "CmdHeliobusSnsPostScRsp",
             CmdHeliobusType::CmdHeliobusSnsUpdateScNotify => {
                 "CmdHeliobusSnsUpdateScNotify"
             }
-            CmdHeliobusType::CmdHeliobusUnlockSkillScNotify => {
-                "CmdHeliobusUnlockSkillScNotify"
-            }
-            CmdHeliobusType::CmdHeliobusStartRaidScRsp => "CmdHeliobusStartRaidScRsp",
-            CmdHeliobusType::CmdHeliobusSnsPostScRsp => "CmdHeliobusSnsPostScRsp",
             CmdHeliobusType::CmdHeliobusActivityDataCsReq => {
                 "CmdHeliobusActivityDataCsReq"
-            }
-            CmdHeliobusType::CmdHeliobusChallengeUpdateScNotify => {
-                "CmdHeliobusChallengeUpdateScNotify"
             }
             CmdHeliobusType::CmdHeliobusInfoChangedScNotify => {
                 "CmdHeliobusInfoChangedScNotify"
             }
-            CmdHeliobusType::CmdHeliobusUpgradeLevelScRsp => {
-                "CmdHeliobusUpgradeLevelScRsp"
+            CmdHeliobusType::CmdHeliobusUpgradeLevelCsReq => {
+                "CmdHeliobusUpgradeLevelCsReq"
             }
+            CmdHeliobusType::CmdHeliobusSnsLikeCsReq => "CmdHeliobusSnsLikeCsReq",
+            CmdHeliobusType::CmdHeliobusEnterBattleScRsp => "CmdHeliobusEnterBattleScRsp",
+            CmdHeliobusType::CmdHeliobusStartRaidScRsp => "CmdHeliobusStartRaidScRsp",
+            CmdHeliobusType::CmdHeliobusSnsPostCsReq => "CmdHeliobusSnsPostCsReq",
+            CmdHeliobusType::CmdHeliobusSnsLikeScRsp => "CmdHeliobusSnsLikeScRsp",
             CmdHeliobusType::CmdHeliobusSelectSkillScRsp => "CmdHeliobusSelectSkillScRsp",
-            CmdHeliobusType::CmdHeliobusSnsCommentCsReq => "CmdHeliobusSnsCommentCsReq",
             CmdHeliobusType::CmdHeliobusLineupUpdateScNotify => {
                 "CmdHeliobusLineupUpdateScNotify"
             }
-            CmdHeliobusType::CmdHeliobusSelectSkillCsReq => "CmdHeliobusSelectSkillCsReq",
+            CmdHeliobusType::CmdHeliobusSnsReadCsReq => "CmdHeliobusSnsReadCsReq",
+            CmdHeliobusType::CmdHeliobusStartRaidCsReq => "CmdHeliobusStartRaidCsReq",
+            CmdHeliobusType::CmdHeliobusSnsCommentScRsp => "CmdHeliobusSnsCommentScRsp",
+            CmdHeliobusType::CmdHeliobusActivityDataScRsp => {
+                "CmdHeliobusActivityDataScRsp"
+            }
+            CmdHeliobusType::CmdHeliobusUnlockSkillScNotify => {
+                "CmdHeliobusUnlockSkillScNotify"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdHeliobusTypeNone" => Some(Self::None),
-            "CmdHeliobusSnsReadCsReq" => Some(Self::CmdHeliobusSnsReadCsReq),
-            "CmdHeliobusSnsCommentScRsp" => Some(Self::CmdHeliobusSnsCommentScRsp),
-            "CmdHeliobusActivityDataScRsp" => Some(Self::CmdHeliobusActivityDataScRsp),
+            "CmdHeliobusSelectSkillCsReq" => Some(Self::CmdHeliobusSelectSkillCsReq),
             "CmdHeliobusEnterBattleCsReq" => Some(Self::CmdHeliobusEnterBattleCsReq),
-            "CmdHeliobusEnterBattleScRsp" => Some(Self::CmdHeliobusEnterBattleScRsp),
-            "CmdHeliobusUpgradeLevelCsReq" => Some(Self::CmdHeliobusUpgradeLevelCsReq),
-            "CmdHeliobusStartRaidCsReq" => Some(Self::CmdHeliobusStartRaidCsReq),
-            "CmdHeliobusSnsLikeCsReq" => Some(Self::CmdHeliobusSnsLikeCsReq),
-            "CmdHeliobusSnsLikeScRsp" => Some(Self::CmdHeliobusSnsLikeScRsp),
-            "CmdHeliobusSnsPostCsReq" => Some(Self::CmdHeliobusSnsPostCsReq),
-            "CmdHeliobusSnsReadScRsp" => Some(Self::CmdHeliobusSnsReadScRsp),
-            "CmdHeliobusSnsUpdateScNotify" => Some(Self::CmdHeliobusSnsUpdateScNotify),
-            "CmdHeliobusUnlockSkillScNotify" => {
-                Some(Self::CmdHeliobusUnlockSkillScNotify)
-            }
-            "CmdHeliobusStartRaidScRsp" => Some(Self::CmdHeliobusStartRaidScRsp),
-            "CmdHeliobusSnsPostScRsp" => Some(Self::CmdHeliobusSnsPostScRsp),
-            "CmdHeliobusActivityDataCsReq" => Some(Self::CmdHeliobusActivityDataCsReq),
             "CmdHeliobusChallengeUpdateScNotify" => {
                 Some(Self::CmdHeliobusChallengeUpdateScNotify)
             }
+            "CmdHeliobusSnsCommentCsReq" => Some(Self::CmdHeliobusSnsCommentCsReq),
+            "CmdHeliobusUpgradeLevelScRsp" => Some(Self::CmdHeliobusUpgradeLevelScRsp),
+            "CmdHeliobusSnsReadScRsp" => Some(Self::CmdHeliobusSnsReadScRsp),
+            "CmdHeliobusSnsPostScRsp" => Some(Self::CmdHeliobusSnsPostScRsp),
+            "CmdHeliobusSnsUpdateScNotify" => Some(Self::CmdHeliobusSnsUpdateScNotify),
+            "CmdHeliobusActivityDataCsReq" => Some(Self::CmdHeliobusActivityDataCsReq),
             "CmdHeliobusInfoChangedScNotify" => {
                 Some(Self::CmdHeliobusInfoChangedScNotify)
             }
-            "CmdHeliobusUpgradeLevelScRsp" => Some(Self::CmdHeliobusUpgradeLevelScRsp),
+            "CmdHeliobusUpgradeLevelCsReq" => Some(Self::CmdHeliobusUpgradeLevelCsReq),
+            "CmdHeliobusSnsLikeCsReq" => Some(Self::CmdHeliobusSnsLikeCsReq),
+            "CmdHeliobusEnterBattleScRsp" => Some(Self::CmdHeliobusEnterBattleScRsp),
+            "CmdHeliobusStartRaidScRsp" => Some(Self::CmdHeliobusStartRaidScRsp),
+            "CmdHeliobusSnsPostCsReq" => Some(Self::CmdHeliobusSnsPostCsReq),
+            "CmdHeliobusSnsLikeScRsp" => Some(Self::CmdHeliobusSnsLikeScRsp),
             "CmdHeliobusSelectSkillScRsp" => Some(Self::CmdHeliobusSelectSkillScRsp),
-            "CmdHeliobusSnsCommentCsReq" => Some(Self::CmdHeliobusSnsCommentCsReq),
             "CmdHeliobusLineupUpdateScNotify" => {
                 Some(Self::CmdHeliobusLineupUpdateScNotify)
             }
-            "CmdHeliobusSelectSkillCsReq" => Some(Self::CmdHeliobusSelectSkillCsReq),
+            "CmdHeliobusSnsReadCsReq" => Some(Self::CmdHeliobusSnsReadCsReq),
+            "CmdHeliobusStartRaidCsReq" => Some(Self::CmdHeliobusStartRaidCsReq),
+            "CmdHeliobusSnsCommentScRsp" => Some(Self::CmdHeliobusSnsCommentScRsp),
+            "CmdHeliobusActivityDataScRsp" => Some(Self::CmdHeliobusActivityDataScRsp),
+            "CmdHeliobusUnlockSkillScNotify" => {
+                Some(Self::CmdHeliobusUnlockSkillScNotify)
+            }
             _ => None,
         }
     }
@@ -6096,60 +6143,64 @@ impl CmdHeliobusType {
 #[repr(i32)]
 pub enum CmdItemType {
     None = 0,
-    CmdPromoteEquipmentCsReq = 503,
-    CmdSetTurnFoodSwitchCsReq = 504,
-    CmdGetRecyleTimeCsReq = 509,
+    CmdMarkRelicFilterPlanScRsp = 503,
+    CmdExpUpRelicScRsp = 505,
+    CmdSellItemScRsp = 507,
+    CmdSetTurnFoodSwitchCsReq = 508,
     CmdDestroyItemCsReq = 510,
-    CmdModifyRelicFilterPlanScRsp = 512,
+    CmdDiscardRelicCsReq = 511,
+    CmdComposeSelectedRelicCsReq = 512,
     CmdMarkItemScRsp = 513,
-    CmdDiscardRelicScRsp = 514,
-    CmdRankUpEquipmentScRsp = 516,
+    CmdMarkItemCsReq = 517,
+    CmdSetTurnFoodSwitchScRsp = 518,
     CmdLockRelicScRsp = 519,
-    CmdGetBagScRsp = 520,
-    CmdModifyRelicFilterPlanCsReq = 524,
-    CmdSellItemScRsp = 525,
-    CmdMarkItemCsReq = 526,
-    CmdRechargeSuccNotify = 529,
-    CmdComposeItemCsReq = 530,
-    CmdMarkRelicFilterPlanScRsp = 531,
-    CmdDeleteRelicFilterPlanScRsp = 532,
-    CmdExchangeHcoinCsReq = 533,
-    CmdUseItemCsReq = 534,
-    CmdGetMarkItemListCsReq = 536,
-    CmdUseItemScRsp = 537,
-    CmdLockEquipmentCsReq = 539,
-    CmdGeneralVirtualItemDataNotify = 543,
-    CmdPromoteEquipmentScRsp = 546,
-    CmdExpUpEquipmentCsReq = 547,
-    CmdExpUpRelicCsReq = 548,
-    CmdExchangeHcoinScRsp = 551,
-    CmdLockEquipmentScRsp = 553,
-    CmdGetRelicFilterPlanScRsp = 556,
-    CmdGetBagCsReq = 559,
-    CmdDeleteRelicFilterPlanCsReq = 560,
-    CmdSellItemCsReq = 561,
-    CmdDiscardRelicCsReq = 563,
-    CmdComposeLimitNumCompleteNotify = 564,
-    CmdGetMarkItemListScRsp = 565,
-    CmdGetRelicFilterPlanCsReq = 566,
-    CmdDestroyItemScRsp = 570,
-    CmdRelicFilterPlanClearNameScNotify = 571,
-    CmdAddRelicFilterPlanScRsp = 572,
-    CmdComposeSelectedRelicCsReq = 573,
-    CmdExpUpEquipmentScRsp = 574,
-    CmdComposeItemScRsp = 575,
-    CmdCancelMarkItemNotify = 577,
-    CmdAddRelicFilterPlanCsReq = 578,
-    CmdLockRelicCsReq = 579,
-    CmdRankUpEquipmentCsReq = 580,
-    CmdComposeSelectedRelicScRsp = 583,
-    CmdSetTurnFoodSwitchScRsp = 588,
-    CmdExpUpRelicScRsp = 590,
-    CmdSyncTurnFoodNotify = 591,
-    CmdGetRecyleTimeScRsp = 593,
-    CmdComposeLimitNumUpdateNotify = 594,
-    CmdMarkRelicFilterPlanCsReq = 596,
-    CmdAddEquipmentScNotify = 599,
+    CmdCancelMarkItemNotify = 521,
+    CmdRankUpEquipmentCsReq = 524,
+    CmdComposeItemScRsp = 525,
+    CmdSellItemCsReq = 526,
+    CmdPromoteEquipmentScRsp = 527,
+    CmdLockEquipmentScRsp = 528,
+    CmdAddEquipmentScNotify = 529,
+    CmdRelicReforgeScRsp = 530,
+    CmdRelicReforgeConfirmCsReq = 533,
+    CmdExpUpEquipmentCsReq = 534,
+    CmdGetMarkItemListCsReq = 535,
+    CmdGetBagCsReq = 536,
+    CmdGeneralVirtualItemDataNotify = 537,
+    CmdRelicFilterPlanClearNameScNotify = 540,
+    CmdGetRelicFilterPlanScRsp = 541,
+    CmdExpUpEquipmentScRsp = 543,
+    CmdModifyRelicFilterPlanScRsp = 545,
+    CmdComposeItemCsReq = 546,
+    CmdGetRecyleTimeScRsp = 548,
+    CmdGetRecyleTimeCsReq = 550,
+    CmdUseItemCsReq = 552,
+    CmdRechargeSuccNotify = 553,
+    CmdComposeLimitNumUpdateNotify = 558,
+    CmdExchangeHcoinScRsp = 559,
+    CmdModifyRelicFilterPlanCsReq = 560,
+    CmdRelicReforgeCsReq = 561,
+    CmdDeleteRelicFilterPlanCsReq = 564,
+    CmdSyncTurnFoodNotify = 565,
+    CmdLockEquipmentCsReq = 567,
+    CmdDeleteRelicFilterPlanScRsp = 572,
+    CmdGetMarkItemListScRsp = 573,
+    CmdUseItemScRsp = 574,
+    CmdLockRelicCsReq = 575,
+    CmdDestroyItemScRsp = 576,
+    CmdComposeSelectedRelicScRsp = 578,
+    CmdDiscardRelicScRsp = 579,
+    CmdPromoteEquipmentCsReq = 584,
+    CmdComposeLimitNumCompleteNotify = 588,
+    CmdExchangeHcoinCsReq = 590,
+    CmdAddRelicFilterPlanScRsp = 592,
+    CmdRankUpEquipmentScRsp = 593,
+    CmdAddRelicFilterPlanCsReq = 594,
+    CmdGetBagScRsp = 595,
+    CmdExpUpRelicCsReq = 596,
+    CmdRelicReforgeConfirmScRsp = 597,
+    CmdMarkRelicFilterPlanCsReq = 599,
+    CmdGetRelicFilterPlanCsReq = 600,
 }
 impl CmdItemType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -6159,136 +6210,144 @@ impl CmdItemType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdItemType::None => "CmdItemTypeNone",
-            CmdItemType::CmdPromoteEquipmentCsReq => "CmdPromoteEquipmentCsReq",
-            CmdItemType::CmdSetTurnFoodSwitchCsReq => "CmdSetTurnFoodSwitchCsReq",
-            CmdItemType::CmdGetRecyleTimeCsReq => "CmdGetRecyleTimeCsReq",
-            CmdItemType::CmdDestroyItemCsReq => "CmdDestroyItemCsReq",
-            CmdItemType::CmdModifyRelicFilterPlanScRsp => "CmdModifyRelicFilterPlanScRsp",
-            CmdItemType::CmdMarkItemScRsp => "CmdMarkItemScRsp",
-            CmdItemType::CmdDiscardRelicScRsp => "CmdDiscardRelicScRsp",
-            CmdItemType::CmdRankUpEquipmentScRsp => "CmdRankUpEquipmentScRsp",
-            CmdItemType::CmdLockRelicScRsp => "CmdLockRelicScRsp",
-            CmdItemType::CmdGetBagScRsp => "CmdGetBagScRsp",
-            CmdItemType::CmdModifyRelicFilterPlanCsReq => "CmdModifyRelicFilterPlanCsReq",
-            CmdItemType::CmdSellItemScRsp => "CmdSellItemScRsp",
-            CmdItemType::CmdMarkItemCsReq => "CmdMarkItemCsReq",
-            CmdItemType::CmdRechargeSuccNotify => "CmdRechargeSuccNotify",
-            CmdItemType::CmdComposeItemCsReq => "CmdComposeItemCsReq",
             CmdItemType::CmdMarkRelicFilterPlanScRsp => "CmdMarkRelicFilterPlanScRsp",
-            CmdItemType::CmdDeleteRelicFilterPlanScRsp => "CmdDeleteRelicFilterPlanScRsp",
-            CmdItemType::CmdExchangeHcoinCsReq => "CmdExchangeHcoinCsReq",
-            CmdItemType::CmdUseItemCsReq => "CmdUseItemCsReq",
+            CmdItemType::CmdExpUpRelicScRsp => "CmdExpUpRelicScRsp",
+            CmdItemType::CmdSellItemScRsp => "CmdSellItemScRsp",
+            CmdItemType::CmdSetTurnFoodSwitchCsReq => "CmdSetTurnFoodSwitchCsReq",
+            CmdItemType::CmdDestroyItemCsReq => "CmdDestroyItemCsReq",
+            CmdItemType::CmdDiscardRelicCsReq => "CmdDiscardRelicCsReq",
+            CmdItemType::CmdComposeSelectedRelicCsReq => "CmdComposeSelectedRelicCsReq",
+            CmdItemType::CmdMarkItemScRsp => "CmdMarkItemScRsp",
+            CmdItemType::CmdMarkItemCsReq => "CmdMarkItemCsReq",
+            CmdItemType::CmdSetTurnFoodSwitchScRsp => "CmdSetTurnFoodSwitchScRsp",
+            CmdItemType::CmdLockRelicScRsp => "CmdLockRelicScRsp",
+            CmdItemType::CmdCancelMarkItemNotify => "CmdCancelMarkItemNotify",
+            CmdItemType::CmdRankUpEquipmentCsReq => "CmdRankUpEquipmentCsReq",
+            CmdItemType::CmdComposeItemScRsp => "CmdComposeItemScRsp",
+            CmdItemType::CmdSellItemCsReq => "CmdSellItemCsReq",
+            CmdItemType::CmdPromoteEquipmentScRsp => "CmdPromoteEquipmentScRsp",
+            CmdItemType::CmdLockEquipmentScRsp => "CmdLockEquipmentScRsp",
+            CmdItemType::CmdAddEquipmentScNotify => "CmdAddEquipmentScNotify",
+            CmdItemType::CmdRelicReforgeScRsp => "CmdRelicReforgeScRsp",
+            CmdItemType::CmdRelicReforgeConfirmCsReq => "CmdRelicReforgeConfirmCsReq",
+            CmdItemType::CmdExpUpEquipmentCsReq => "CmdExpUpEquipmentCsReq",
             CmdItemType::CmdGetMarkItemListCsReq => "CmdGetMarkItemListCsReq",
-            CmdItemType::CmdUseItemScRsp => "CmdUseItemScRsp",
-            CmdItemType::CmdLockEquipmentCsReq => "CmdLockEquipmentCsReq",
+            CmdItemType::CmdGetBagCsReq => "CmdGetBagCsReq",
             CmdItemType::CmdGeneralVirtualItemDataNotify => {
                 "CmdGeneralVirtualItemDataNotify"
             }
-            CmdItemType::CmdPromoteEquipmentScRsp => "CmdPromoteEquipmentScRsp",
-            CmdItemType::CmdExpUpEquipmentCsReq => "CmdExpUpEquipmentCsReq",
-            CmdItemType::CmdExpUpRelicCsReq => "CmdExpUpRelicCsReq",
-            CmdItemType::CmdExchangeHcoinScRsp => "CmdExchangeHcoinScRsp",
-            CmdItemType::CmdLockEquipmentScRsp => "CmdLockEquipmentScRsp",
-            CmdItemType::CmdGetRelicFilterPlanScRsp => "CmdGetRelicFilterPlanScRsp",
-            CmdItemType::CmdGetBagCsReq => "CmdGetBagCsReq",
-            CmdItemType::CmdDeleteRelicFilterPlanCsReq => "CmdDeleteRelicFilterPlanCsReq",
-            CmdItemType::CmdSellItemCsReq => "CmdSellItemCsReq",
-            CmdItemType::CmdDiscardRelicCsReq => "CmdDiscardRelicCsReq",
-            CmdItemType::CmdComposeLimitNumCompleteNotify => {
-                "CmdComposeLimitNumCompleteNotify"
-            }
-            CmdItemType::CmdGetMarkItemListScRsp => "CmdGetMarkItemListScRsp",
-            CmdItemType::CmdGetRelicFilterPlanCsReq => "CmdGetRelicFilterPlanCsReq",
-            CmdItemType::CmdDestroyItemScRsp => "CmdDestroyItemScRsp",
             CmdItemType::CmdRelicFilterPlanClearNameScNotify => {
                 "CmdRelicFilterPlanClearNameScNotify"
             }
-            CmdItemType::CmdAddRelicFilterPlanScRsp => "CmdAddRelicFilterPlanScRsp",
-            CmdItemType::CmdComposeSelectedRelicCsReq => "CmdComposeSelectedRelicCsReq",
+            CmdItemType::CmdGetRelicFilterPlanScRsp => "CmdGetRelicFilterPlanScRsp",
             CmdItemType::CmdExpUpEquipmentScRsp => "CmdExpUpEquipmentScRsp",
-            CmdItemType::CmdComposeItemScRsp => "CmdComposeItemScRsp",
-            CmdItemType::CmdCancelMarkItemNotify => "CmdCancelMarkItemNotify",
-            CmdItemType::CmdAddRelicFilterPlanCsReq => "CmdAddRelicFilterPlanCsReq",
-            CmdItemType::CmdLockRelicCsReq => "CmdLockRelicCsReq",
-            CmdItemType::CmdRankUpEquipmentCsReq => "CmdRankUpEquipmentCsReq",
-            CmdItemType::CmdComposeSelectedRelicScRsp => "CmdComposeSelectedRelicScRsp",
-            CmdItemType::CmdSetTurnFoodSwitchScRsp => "CmdSetTurnFoodSwitchScRsp",
-            CmdItemType::CmdExpUpRelicScRsp => "CmdExpUpRelicScRsp",
-            CmdItemType::CmdSyncTurnFoodNotify => "CmdSyncTurnFoodNotify",
+            CmdItemType::CmdModifyRelicFilterPlanScRsp => "CmdModifyRelicFilterPlanScRsp",
+            CmdItemType::CmdComposeItemCsReq => "CmdComposeItemCsReq",
             CmdItemType::CmdGetRecyleTimeScRsp => "CmdGetRecyleTimeScRsp",
+            CmdItemType::CmdGetRecyleTimeCsReq => "CmdGetRecyleTimeCsReq",
+            CmdItemType::CmdUseItemCsReq => "CmdUseItemCsReq",
+            CmdItemType::CmdRechargeSuccNotify => "CmdRechargeSuccNotify",
             CmdItemType::CmdComposeLimitNumUpdateNotify => {
                 "CmdComposeLimitNumUpdateNotify"
             }
+            CmdItemType::CmdExchangeHcoinScRsp => "CmdExchangeHcoinScRsp",
+            CmdItemType::CmdModifyRelicFilterPlanCsReq => "CmdModifyRelicFilterPlanCsReq",
+            CmdItemType::CmdRelicReforgeCsReq => "CmdRelicReforgeCsReq",
+            CmdItemType::CmdDeleteRelicFilterPlanCsReq => "CmdDeleteRelicFilterPlanCsReq",
+            CmdItemType::CmdSyncTurnFoodNotify => "CmdSyncTurnFoodNotify",
+            CmdItemType::CmdLockEquipmentCsReq => "CmdLockEquipmentCsReq",
+            CmdItemType::CmdDeleteRelicFilterPlanScRsp => "CmdDeleteRelicFilterPlanScRsp",
+            CmdItemType::CmdGetMarkItemListScRsp => "CmdGetMarkItemListScRsp",
+            CmdItemType::CmdUseItemScRsp => "CmdUseItemScRsp",
+            CmdItemType::CmdLockRelicCsReq => "CmdLockRelicCsReq",
+            CmdItemType::CmdDestroyItemScRsp => "CmdDestroyItemScRsp",
+            CmdItemType::CmdComposeSelectedRelicScRsp => "CmdComposeSelectedRelicScRsp",
+            CmdItemType::CmdDiscardRelicScRsp => "CmdDiscardRelicScRsp",
+            CmdItemType::CmdPromoteEquipmentCsReq => "CmdPromoteEquipmentCsReq",
+            CmdItemType::CmdComposeLimitNumCompleteNotify => {
+                "CmdComposeLimitNumCompleteNotify"
+            }
+            CmdItemType::CmdExchangeHcoinCsReq => "CmdExchangeHcoinCsReq",
+            CmdItemType::CmdAddRelicFilterPlanScRsp => "CmdAddRelicFilterPlanScRsp",
+            CmdItemType::CmdRankUpEquipmentScRsp => "CmdRankUpEquipmentScRsp",
+            CmdItemType::CmdAddRelicFilterPlanCsReq => "CmdAddRelicFilterPlanCsReq",
+            CmdItemType::CmdGetBagScRsp => "CmdGetBagScRsp",
+            CmdItemType::CmdExpUpRelicCsReq => "CmdExpUpRelicCsReq",
+            CmdItemType::CmdRelicReforgeConfirmScRsp => "CmdRelicReforgeConfirmScRsp",
             CmdItemType::CmdMarkRelicFilterPlanCsReq => "CmdMarkRelicFilterPlanCsReq",
-            CmdItemType::CmdAddEquipmentScNotify => "CmdAddEquipmentScNotify",
+            CmdItemType::CmdGetRelicFilterPlanCsReq => "CmdGetRelicFilterPlanCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdItemTypeNone" => Some(Self::None),
-            "CmdPromoteEquipmentCsReq" => Some(Self::CmdPromoteEquipmentCsReq),
-            "CmdSetTurnFoodSwitchCsReq" => Some(Self::CmdSetTurnFoodSwitchCsReq),
-            "CmdGetRecyleTimeCsReq" => Some(Self::CmdGetRecyleTimeCsReq),
-            "CmdDestroyItemCsReq" => Some(Self::CmdDestroyItemCsReq),
-            "CmdModifyRelicFilterPlanScRsp" => Some(Self::CmdModifyRelicFilterPlanScRsp),
-            "CmdMarkItemScRsp" => Some(Self::CmdMarkItemScRsp),
-            "CmdDiscardRelicScRsp" => Some(Self::CmdDiscardRelicScRsp),
-            "CmdRankUpEquipmentScRsp" => Some(Self::CmdRankUpEquipmentScRsp),
-            "CmdLockRelicScRsp" => Some(Self::CmdLockRelicScRsp),
-            "CmdGetBagScRsp" => Some(Self::CmdGetBagScRsp),
-            "CmdModifyRelicFilterPlanCsReq" => Some(Self::CmdModifyRelicFilterPlanCsReq),
-            "CmdSellItemScRsp" => Some(Self::CmdSellItemScRsp),
-            "CmdMarkItemCsReq" => Some(Self::CmdMarkItemCsReq),
-            "CmdRechargeSuccNotify" => Some(Self::CmdRechargeSuccNotify),
-            "CmdComposeItemCsReq" => Some(Self::CmdComposeItemCsReq),
             "CmdMarkRelicFilterPlanScRsp" => Some(Self::CmdMarkRelicFilterPlanScRsp),
-            "CmdDeleteRelicFilterPlanScRsp" => Some(Self::CmdDeleteRelicFilterPlanScRsp),
-            "CmdExchangeHcoinCsReq" => Some(Self::CmdExchangeHcoinCsReq),
-            "CmdUseItemCsReq" => Some(Self::CmdUseItemCsReq),
+            "CmdExpUpRelicScRsp" => Some(Self::CmdExpUpRelicScRsp),
+            "CmdSellItemScRsp" => Some(Self::CmdSellItemScRsp),
+            "CmdSetTurnFoodSwitchCsReq" => Some(Self::CmdSetTurnFoodSwitchCsReq),
+            "CmdDestroyItemCsReq" => Some(Self::CmdDestroyItemCsReq),
+            "CmdDiscardRelicCsReq" => Some(Self::CmdDiscardRelicCsReq),
+            "CmdComposeSelectedRelicCsReq" => Some(Self::CmdComposeSelectedRelicCsReq),
+            "CmdMarkItemScRsp" => Some(Self::CmdMarkItemScRsp),
+            "CmdMarkItemCsReq" => Some(Self::CmdMarkItemCsReq),
+            "CmdSetTurnFoodSwitchScRsp" => Some(Self::CmdSetTurnFoodSwitchScRsp),
+            "CmdLockRelicScRsp" => Some(Self::CmdLockRelicScRsp),
+            "CmdCancelMarkItemNotify" => Some(Self::CmdCancelMarkItemNotify),
+            "CmdRankUpEquipmentCsReq" => Some(Self::CmdRankUpEquipmentCsReq),
+            "CmdComposeItemScRsp" => Some(Self::CmdComposeItemScRsp),
+            "CmdSellItemCsReq" => Some(Self::CmdSellItemCsReq),
+            "CmdPromoteEquipmentScRsp" => Some(Self::CmdPromoteEquipmentScRsp),
+            "CmdLockEquipmentScRsp" => Some(Self::CmdLockEquipmentScRsp),
+            "CmdAddEquipmentScNotify" => Some(Self::CmdAddEquipmentScNotify),
+            "CmdRelicReforgeScRsp" => Some(Self::CmdRelicReforgeScRsp),
+            "CmdRelicReforgeConfirmCsReq" => Some(Self::CmdRelicReforgeConfirmCsReq),
+            "CmdExpUpEquipmentCsReq" => Some(Self::CmdExpUpEquipmentCsReq),
             "CmdGetMarkItemListCsReq" => Some(Self::CmdGetMarkItemListCsReq),
-            "CmdUseItemScRsp" => Some(Self::CmdUseItemScRsp),
-            "CmdLockEquipmentCsReq" => Some(Self::CmdLockEquipmentCsReq),
+            "CmdGetBagCsReq" => Some(Self::CmdGetBagCsReq),
             "CmdGeneralVirtualItemDataNotify" => {
                 Some(Self::CmdGeneralVirtualItemDataNotify)
             }
-            "CmdPromoteEquipmentScRsp" => Some(Self::CmdPromoteEquipmentScRsp),
-            "CmdExpUpEquipmentCsReq" => Some(Self::CmdExpUpEquipmentCsReq),
-            "CmdExpUpRelicCsReq" => Some(Self::CmdExpUpRelicCsReq),
-            "CmdExchangeHcoinScRsp" => Some(Self::CmdExchangeHcoinScRsp),
-            "CmdLockEquipmentScRsp" => Some(Self::CmdLockEquipmentScRsp),
-            "CmdGetRelicFilterPlanScRsp" => Some(Self::CmdGetRelicFilterPlanScRsp),
-            "CmdGetBagCsReq" => Some(Self::CmdGetBagCsReq),
-            "CmdDeleteRelicFilterPlanCsReq" => Some(Self::CmdDeleteRelicFilterPlanCsReq),
-            "CmdSellItemCsReq" => Some(Self::CmdSellItemCsReq),
-            "CmdDiscardRelicCsReq" => Some(Self::CmdDiscardRelicCsReq),
-            "CmdComposeLimitNumCompleteNotify" => {
-                Some(Self::CmdComposeLimitNumCompleteNotify)
-            }
-            "CmdGetMarkItemListScRsp" => Some(Self::CmdGetMarkItemListScRsp),
-            "CmdGetRelicFilterPlanCsReq" => Some(Self::CmdGetRelicFilterPlanCsReq),
-            "CmdDestroyItemScRsp" => Some(Self::CmdDestroyItemScRsp),
             "CmdRelicFilterPlanClearNameScNotify" => {
                 Some(Self::CmdRelicFilterPlanClearNameScNotify)
             }
-            "CmdAddRelicFilterPlanScRsp" => Some(Self::CmdAddRelicFilterPlanScRsp),
-            "CmdComposeSelectedRelicCsReq" => Some(Self::CmdComposeSelectedRelicCsReq),
+            "CmdGetRelicFilterPlanScRsp" => Some(Self::CmdGetRelicFilterPlanScRsp),
             "CmdExpUpEquipmentScRsp" => Some(Self::CmdExpUpEquipmentScRsp),
-            "CmdComposeItemScRsp" => Some(Self::CmdComposeItemScRsp),
-            "CmdCancelMarkItemNotify" => Some(Self::CmdCancelMarkItemNotify),
-            "CmdAddRelicFilterPlanCsReq" => Some(Self::CmdAddRelicFilterPlanCsReq),
-            "CmdLockRelicCsReq" => Some(Self::CmdLockRelicCsReq),
-            "CmdRankUpEquipmentCsReq" => Some(Self::CmdRankUpEquipmentCsReq),
-            "CmdComposeSelectedRelicScRsp" => Some(Self::CmdComposeSelectedRelicScRsp),
-            "CmdSetTurnFoodSwitchScRsp" => Some(Self::CmdSetTurnFoodSwitchScRsp),
-            "CmdExpUpRelicScRsp" => Some(Self::CmdExpUpRelicScRsp),
-            "CmdSyncTurnFoodNotify" => Some(Self::CmdSyncTurnFoodNotify),
+            "CmdModifyRelicFilterPlanScRsp" => Some(Self::CmdModifyRelicFilterPlanScRsp),
+            "CmdComposeItemCsReq" => Some(Self::CmdComposeItemCsReq),
             "CmdGetRecyleTimeScRsp" => Some(Self::CmdGetRecyleTimeScRsp),
+            "CmdGetRecyleTimeCsReq" => Some(Self::CmdGetRecyleTimeCsReq),
+            "CmdUseItemCsReq" => Some(Self::CmdUseItemCsReq),
+            "CmdRechargeSuccNotify" => Some(Self::CmdRechargeSuccNotify),
             "CmdComposeLimitNumUpdateNotify" => {
                 Some(Self::CmdComposeLimitNumUpdateNotify)
             }
+            "CmdExchangeHcoinScRsp" => Some(Self::CmdExchangeHcoinScRsp),
+            "CmdModifyRelicFilterPlanCsReq" => Some(Self::CmdModifyRelicFilterPlanCsReq),
+            "CmdRelicReforgeCsReq" => Some(Self::CmdRelicReforgeCsReq),
+            "CmdDeleteRelicFilterPlanCsReq" => Some(Self::CmdDeleteRelicFilterPlanCsReq),
+            "CmdSyncTurnFoodNotify" => Some(Self::CmdSyncTurnFoodNotify),
+            "CmdLockEquipmentCsReq" => Some(Self::CmdLockEquipmentCsReq),
+            "CmdDeleteRelicFilterPlanScRsp" => Some(Self::CmdDeleteRelicFilterPlanScRsp),
+            "CmdGetMarkItemListScRsp" => Some(Self::CmdGetMarkItemListScRsp),
+            "CmdUseItemScRsp" => Some(Self::CmdUseItemScRsp),
+            "CmdLockRelicCsReq" => Some(Self::CmdLockRelicCsReq),
+            "CmdDestroyItemScRsp" => Some(Self::CmdDestroyItemScRsp),
+            "CmdComposeSelectedRelicScRsp" => Some(Self::CmdComposeSelectedRelicScRsp),
+            "CmdDiscardRelicScRsp" => Some(Self::CmdDiscardRelicScRsp),
+            "CmdPromoteEquipmentCsReq" => Some(Self::CmdPromoteEquipmentCsReq),
+            "CmdComposeLimitNumCompleteNotify" => {
+                Some(Self::CmdComposeLimitNumCompleteNotify)
+            }
+            "CmdExchangeHcoinCsReq" => Some(Self::CmdExchangeHcoinCsReq),
+            "CmdAddRelicFilterPlanScRsp" => Some(Self::CmdAddRelicFilterPlanScRsp),
+            "CmdRankUpEquipmentScRsp" => Some(Self::CmdRankUpEquipmentScRsp),
+            "CmdAddRelicFilterPlanCsReq" => Some(Self::CmdAddRelicFilterPlanCsReq),
+            "CmdGetBagScRsp" => Some(Self::CmdGetBagScRsp),
+            "CmdExpUpRelicCsReq" => Some(Self::CmdExpUpRelicCsReq),
+            "CmdRelicReforgeConfirmScRsp" => Some(Self::CmdRelicReforgeConfirmScRsp),
             "CmdMarkRelicFilterPlanCsReq" => Some(Self::CmdMarkRelicFilterPlanCsReq),
-            "CmdAddEquipmentScNotify" => Some(Self::CmdAddEquipmentScNotify),
+            "CmdGetRelicFilterPlanCsReq" => Some(Self::CmdGetRelicFilterPlanCsReq),
             _ => None,
         }
     }
@@ -6298,14 +6357,14 @@ impl CmdItemType {
 #[repr(i32)]
 pub enum CmdJukeboxType {
     None = 0,
-    CmdPlayBackGroundMusicCsReq = 3103,
-    CmdGetJukeboxDataScRsp = 3120,
-    CmdTrialBackGroundMusicCsReq = 3134,
-    CmdTrialBackGroundMusicScRsp = 3137,
-    CmdUnlockBackGroundMusicCsReq = 3139,
-    CmdPlayBackGroundMusicScRsp = 3146,
-    CmdUnlockBackGroundMusicScRsp = 3153,
-    CmdGetJukeboxDataCsReq = 3159,
+    CmdPlayBackGroundMusicScRsp = 3127,
+    CmdUnlockBackGroundMusicScRsp = 3128,
+    CmdGetJukeboxDataCsReq = 3136,
+    CmdTrialBackGroundMusicCsReq = 3152,
+    CmdUnlockBackGroundMusicCsReq = 3167,
+    CmdTrialBackGroundMusicScRsp = 3174,
+    CmdPlayBackGroundMusicCsReq = 3184,
+    CmdGetJukeboxDataScRsp = 3195,
 }
 impl CmdJukeboxType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -6315,36 +6374,36 @@ impl CmdJukeboxType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdJukeboxType::None => "CmdJukeboxTypeNone",
-            CmdJukeboxType::CmdPlayBackGroundMusicCsReq => "CmdPlayBackGroundMusicCsReq",
-            CmdJukeboxType::CmdGetJukeboxDataScRsp => "CmdGetJukeboxDataScRsp",
-            CmdJukeboxType::CmdTrialBackGroundMusicCsReq => {
-                "CmdTrialBackGroundMusicCsReq"
-            }
-            CmdJukeboxType::CmdTrialBackGroundMusicScRsp => {
-                "CmdTrialBackGroundMusicScRsp"
-            }
-            CmdJukeboxType::CmdUnlockBackGroundMusicCsReq => {
-                "CmdUnlockBackGroundMusicCsReq"
-            }
             CmdJukeboxType::CmdPlayBackGroundMusicScRsp => "CmdPlayBackGroundMusicScRsp",
             CmdJukeboxType::CmdUnlockBackGroundMusicScRsp => {
                 "CmdUnlockBackGroundMusicScRsp"
             }
             CmdJukeboxType::CmdGetJukeboxDataCsReq => "CmdGetJukeboxDataCsReq",
+            CmdJukeboxType::CmdTrialBackGroundMusicCsReq => {
+                "CmdTrialBackGroundMusicCsReq"
+            }
+            CmdJukeboxType::CmdUnlockBackGroundMusicCsReq => {
+                "CmdUnlockBackGroundMusicCsReq"
+            }
+            CmdJukeboxType::CmdTrialBackGroundMusicScRsp => {
+                "CmdTrialBackGroundMusicScRsp"
+            }
+            CmdJukeboxType::CmdPlayBackGroundMusicCsReq => "CmdPlayBackGroundMusicCsReq",
+            CmdJukeboxType::CmdGetJukeboxDataScRsp => "CmdGetJukeboxDataScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdJukeboxTypeNone" => Some(Self::None),
-            "CmdPlayBackGroundMusicCsReq" => Some(Self::CmdPlayBackGroundMusicCsReq),
-            "CmdGetJukeboxDataScRsp" => Some(Self::CmdGetJukeboxDataScRsp),
-            "CmdTrialBackGroundMusicCsReq" => Some(Self::CmdTrialBackGroundMusicCsReq),
-            "CmdTrialBackGroundMusicScRsp" => Some(Self::CmdTrialBackGroundMusicScRsp),
-            "CmdUnlockBackGroundMusicCsReq" => Some(Self::CmdUnlockBackGroundMusicCsReq),
             "CmdPlayBackGroundMusicScRsp" => Some(Self::CmdPlayBackGroundMusicScRsp),
             "CmdUnlockBackGroundMusicScRsp" => Some(Self::CmdUnlockBackGroundMusicScRsp),
             "CmdGetJukeboxDataCsReq" => Some(Self::CmdGetJukeboxDataCsReq),
+            "CmdTrialBackGroundMusicCsReq" => Some(Self::CmdTrialBackGroundMusicCsReq),
+            "CmdUnlockBackGroundMusicCsReq" => Some(Self::CmdUnlockBackGroundMusicCsReq),
+            "CmdTrialBackGroundMusicScRsp" => Some(Self::CmdTrialBackGroundMusicScRsp),
+            "CmdPlayBackGroundMusicCsReq" => Some(Self::CmdPlayBackGroundMusicCsReq),
+            "CmdGetJukeboxDataScRsp" => Some(Self::CmdGetJukeboxDataScRsp),
             _ => None,
         }
     }
@@ -6354,32 +6413,32 @@ impl CmdJukeboxType {
 #[repr(i32)]
 pub enum CmdLineupType {
     None = 0,
-    CmdGetCurLineupDataCsReq = 703,
-    CmdSwapLineupScRsp = 716,
+    CmdSwitchLineupIndexCsReq = 705,
+    CmdGetAllLineupDataCsReq = 707,
+    CmdReplaceLineupScRsp = 712,
     CmdSetLineupNameCsReq = 719,
-    CmdGetStageLineupScRsp = 720,
-    CmdGetAllLineupDataCsReq = 725,
-    CmdGetAllLineupDataScRsp = 729,
-    CmdGetLineupAvatarDataScRsp = 730,
-    CmdVirtualLineupDestroyNotify = 733,
-    CmdQuitLineupCsReq = 734,
-    CmdQuitLineupScRsp = 737,
-    CmdJoinLineupCsReq = 739,
-    CmdGetCurLineupDataScRsp = 746,
-    CmdSyncLineupNotify = 747,
-    CmdChangeLineupLeaderScRsp = 748,
-    CmdReplaceLineupCsReq = 751,
-    CmdJoinLineupScRsp = 753,
-    CmdGetStageLineupCsReq = 759,
-    CmdSetLineupNameScRsp = 761,
-    CmdReplaceLineupScRsp = 773,
-    CmdGetLineupAvatarDataCsReq = 774,
-    CmdChangeLineupLeaderCsReq = 775,
-    CmdSwitchLineupIndexScRsp = 779,
-    CmdSwapLineupCsReq = 780,
-    CmdExtraLineupDestroyNotify = 783,
-    CmdSwitchLineupIndexCsReq = 790,
-    CmdVirtualLineupTrialAvatarChangeScNotify = 799,
+    CmdSwapLineupCsReq = 724,
+    CmdChangeLineupLeaderCsReq = 725,
+    CmdSetLineupNameScRsp = 726,
+    CmdGetCurLineupDataScRsp = 727,
+    CmdJoinLineupScRsp = 728,
+    CmdVirtualLineupTrialAvatarChangeScNotify = 729,
+    CmdSyncLineupNotify = 734,
+    CmdGetStageLineupCsReq = 736,
+    CmdGetLineupAvatarDataCsReq = 743,
+    CmdGetLineupAvatarDataScRsp = 746,
+    CmdQuitLineupCsReq = 752,
+    CmdGetAllLineupDataScRsp = 753,
+    CmdReplaceLineupCsReq = 759,
+    CmdJoinLineupCsReq = 767,
+    CmdQuitLineupScRsp = 774,
+    CmdSwitchLineupIndexScRsp = 775,
+    CmdExtraLineupDestroyNotify = 778,
+    CmdGetCurLineupDataCsReq = 784,
+    CmdVirtualLineupDestroyNotify = 790,
+    CmdSwapLineupScRsp = 793,
+    CmdGetStageLineupScRsp = 795,
+    CmdChangeLineupLeaderScRsp = 796,
 }
 impl CmdLineupType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -6389,70 +6448,70 @@ impl CmdLineupType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdLineupType::None => "CmdLineupTypeNone",
-            CmdLineupType::CmdGetCurLineupDataCsReq => "CmdGetCurLineupDataCsReq",
-            CmdLineupType::CmdSwapLineupScRsp => "CmdSwapLineupScRsp",
-            CmdLineupType::CmdSetLineupNameCsReq => "CmdSetLineupNameCsReq",
-            CmdLineupType::CmdGetStageLineupScRsp => "CmdGetStageLineupScRsp",
-            CmdLineupType::CmdGetAllLineupDataCsReq => "CmdGetAllLineupDataCsReq",
-            CmdLineupType::CmdGetAllLineupDataScRsp => "CmdGetAllLineupDataScRsp",
-            CmdLineupType::CmdGetLineupAvatarDataScRsp => "CmdGetLineupAvatarDataScRsp",
-            CmdLineupType::CmdVirtualLineupDestroyNotify => {
-                "CmdVirtualLineupDestroyNotify"
-            }
-            CmdLineupType::CmdQuitLineupCsReq => "CmdQuitLineupCsReq",
-            CmdLineupType::CmdQuitLineupScRsp => "CmdQuitLineupScRsp",
-            CmdLineupType::CmdJoinLineupCsReq => "CmdJoinLineupCsReq",
-            CmdLineupType::CmdGetCurLineupDataScRsp => "CmdGetCurLineupDataScRsp",
-            CmdLineupType::CmdSyncLineupNotify => "CmdSyncLineupNotify",
-            CmdLineupType::CmdChangeLineupLeaderScRsp => "CmdChangeLineupLeaderScRsp",
-            CmdLineupType::CmdReplaceLineupCsReq => "CmdReplaceLineupCsReq",
-            CmdLineupType::CmdJoinLineupScRsp => "CmdJoinLineupScRsp",
-            CmdLineupType::CmdGetStageLineupCsReq => "CmdGetStageLineupCsReq",
-            CmdLineupType::CmdSetLineupNameScRsp => "CmdSetLineupNameScRsp",
-            CmdLineupType::CmdReplaceLineupScRsp => "CmdReplaceLineupScRsp",
-            CmdLineupType::CmdGetLineupAvatarDataCsReq => "CmdGetLineupAvatarDataCsReq",
-            CmdLineupType::CmdChangeLineupLeaderCsReq => "CmdChangeLineupLeaderCsReq",
-            CmdLineupType::CmdSwitchLineupIndexScRsp => "CmdSwitchLineupIndexScRsp",
-            CmdLineupType::CmdSwapLineupCsReq => "CmdSwapLineupCsReq",
-            CmdLineupType::CmdExtraLineupDestroyNotify => "CmdExtraLineupDestroyNotify",
             CmdLineupType::CmdSwitchLineupIndexCsReq => "CmdSwitchLineupIndexCsReq",
+            CmdLineupType::CmdGetAllLineupDataCsReq => "CmdGetAllLineupDataCsReq",
+            CmdLineupType::CmdReplaceLineupScRsp => "CmdReplaceLineupScRsp",
+            CmdLineupType::CmdSetLineupNameCsReq => "CmdSetLineupNameCsReq",
+            CmdLineupType::CmdSwapLineupCsReq => "CmdSwapLineupCsReq",
+            CmdLineupType::CmdChangeLineupLeaderCsReq => "CmdChangeLineupLeaderCsReq",
+            CmdLineupType::CmdSetLineupNameScRsp => "CmdSetLineupNameScRsp",
+            CmdLineupType::CmdGetCurLineupDataScRsp => "CmdGetCurLineupDataScRsp",
+            CmdLineupType::CmdJoinLineupScRsp => "CmdJoinLineupScRsp",
             CmdLineupType::CmdVirtualLineupTrialAvatarChangeScNotify => {
                 "CmdVirtualLineupTrialAvatarChangeScNotify"
             }
+            CmdLineupType::CmdSyncLineupNotify => "CmdSyncLineupNotify",
+            CmdLineupType::CmdGetStageLineupCsReq => "CmdGetStageLineupCsReq",
+            CmdLineupType::CmdGetLineupAvatarDataCsReq => "CmdGetLineupAvatarDataCsReq",
+            CmdLineupType::CmdGetLineupAvatarDataScRsp => "CmdGetLineupAvatarDataScRsp",
+            CmdLineupType::CmdQuitLineupCsReq => "CmdQuitLineupCsReq",
+            CmdLineupType::CmdGetAllLineupDataScRsp => "CmdGetAllLineupDataScRsp",
+            CmdLineupType::CmdReplaceLineupCsReq => "CmdReplaceLineupCsReq",
+            CmdLineupType::CmdJoinLineupCsReq => "CmdJoinLineupCsReq",
+            CmdLineupType::CmdQuitLineupScRsp => "CmdQuitLineupScRsp",
+            CmdLineupType::CmdSwitchLineupIndexScRsp => "CmdSwitchLineupIndexScRsp",
+            CmdLineupType::CmdExtraLineupDestroyNotify => "CmdExtraLineupDestroyNotify",
+            CmdLineupType::CmdGetCurLineupDataCsReq => "CmdGetCurLineupDataCsReq",
+            CmdLineupType::CmdVirtualLineupDestroyNotify => {
+                "CmdVirtualLineupDestroyNotify"
+            }
+            CmdLineupType::CmdSwapLineupScRsp => "CmdSwapLineupScRsp",
+            CmdLineupType::CmdGetStageLineupScRsp => "CmdGetStageLineupScRsp",
+            CmdLineupType::CmdChangeLineupLeaderScRsp => "CmdChangeLineupLeaderScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdLineupTypeNone" => Some(Self::None),
-            "CmdGetCurLineupDataCsReq" => Some(Self::CmdGetCurLineupDataCsReq),
-            "CmdSwapLineupScRsp" => Some(Self::CmdSwapLineupScRsp),
-            "CmdSetLineupNameCsReq" => Some(Self::CmdSetLineupNameCsReq),
-            "CmdGetStageLineupScRsp" => Some(Self::CmdGetStageLineupScRsp),
-            "CmdGetAllLineupDataCsReq" => Some(Self::CmdGetAllLineupDataCsReq),
-            "CmdGetAllLineupDataScRsp" => Some(Self::CmdGetAllLineupDataScRsp),
-            "CmdGetLineupAvatarDataScRsp" => Some(Self::CmdGetLineupAvatarDataScRsp),
-            "CmdVirtualLineupDestroyNotify" => Some(Self::CmdVirtualLineupDestroyNotify),
-            "CmdQuitLineupCsReq" => Some(Self::CmdQuitLineupCsReq),
-            "CmdQuitLineupScRsp" => Some(Self::CmdQuitLineupScRsp),
-            "CmdJoinLineupCsReq" => Some(Self::CmdJoinLineupCsReq),
-            "CmdGetCurLineupDataScRsp" => Some(Self::CmdGetCurLineupDataScRsp),
-            "CmdSyncLineupNotify" => Some(Self::CmdSyncLineupNotify),
-            "CmdChangeLineupLeaderScRsp" => Some(Self::CmdChangeLineupLeaderScRsp),
-            "CmdReplaceLineupCsReq" => Some(Self::CmdReplaceLineupCsReq),
-            "CmdJoinLineupScRsp" => Some(Self::CmdJoinLineupScRsp),
-            "CmdGetStageLineupCsReq" => Some(Self::CmdGetStageLineupCsReq),
-            "CmdSetLineupNameScRsp" => Some(Self::CmdSetLineupNameScRsp),
-            "CmdReplaceLineupScRsp" => Some(Self::CmdReplaceLineupScRsp),
-            "CmdGetLineupAvatarDataCsReq" => Some(Self::CmdGetLineupAvatarDataCsReq),
-            "CmdChangeLineupLeaderCsReq" => Some(Self::CmdChangeLineupLeaderCsReq),
-            "CmdSwitchLineupIndexScRsp" => Some(Self::CmdSwitchLineupIndexScRsp),
-            "CmdSwapLineupCsReq" => Some(Self::CmdSwapLineupCsReq),
-            "CmdExtraLineupDestroyNotify" => Some(Self::CmdExtraLineupDestroyNotify),
             "CmdSwitchLineupIndexCsReq" => Some(Self::CmdSwitchLineupIndexCsReq),
+            "CmdGetAllLineupDataCsReq" => Some(Self::CmdGetAllLineupDataCsReq),
+            "CmdReplaceLineupScRsp" => Some(Self::CmdReplaceLineupScRsp),
+            "CmdSetLineupNameCsReq" => Some(Self::CmdSetLineupNameCsReq),
+            "CmdSwapLineupCsReq" => Some(Self::CmdSwapLineupCsReq),
+            "CmdChangeLineupLeaderCsReq" => Some(Self::CmdChangeLineupLeaderCsReq),
+            "CmdSetLineupNameScRsp" => Some(Self::CmdSetLineupNameScRsp),
+            "CmdGetCurLineupDataScRsp" => Some(Self::CmdGetCurLineupDataScRsp),
+            "CmdJoinLineupScRsp" => Some(Self::CmdJoinLineupScRsp),
             "CmdVirtualLineupTrialAvatarChangeScNotify" => {
                 Some(Self::CmdVirtualLineupTrialAvatarChangeScNotify)
             }
+            "CmdSyncLineupNotify" => Some(Self::CmdSyncLineupNotify),
+            "CmdGetStageLineupCsReq" => Some(Self::CmdGetStageLineupCsReq),
+            "CmdGetLineupAvatarDataCsReq" => Some(Self::CmdGetLineupAvatarDataCsReq),
+            "CmdGetLineupAvatarDataScRsp" => Some(Self::CmdGetLineupAvatarDataScRsp),
+            "CmdQuitLineupCsReq" => Some(Self::CmdQuitLineupCsReq),
+            "CmdGetAllLineupDataScRsp" => Some(Self::CmdGetAllLineupDataScRsp),
+            "CmdReplaceLineupCsReq" => Some(Self::CmdReplaceLineupCsReq),
+            "CmdJoinLineupCsReq" => Some(Self::CmdJoinLineupCsReq),
+            "CmdQuitLineupScRsp" => Some(Self::CmdQuitLineupScRsp),
+            "CmdSwitchLineupIndexScRsp" => Some(Self::CmdSwitchLineupIndexScRsp),
+            "CmdExtraLineupDestroyNotify" => Some(Self::CmdExtraLineupDestroyNotify),
+            "CmdGetCurLineupDataCsReq" => Some(Self::CmdGetCurLineupDataCsReq),
+            "CmdVirtualLineupDestroyNotify" => Some(Self::CmdVirtualLineupDestroyNotify),
+            "CmdSwapLineupScRsp" => Some(Self::CmdSwapLineupScRsp),
+            "CmdGetStageLineupScRsp" => Some(Self::CmdGetStageLineupScRsp),
+            "CmdChangeLineupLeaderScRsp" => Some(Self::CmdChangeLineupLeaderScRsp),
             _ => None,
         }
     }
@@ -6462,24 +6521,24 @@ impl CmdLineupType {
 #[repr(i32)]
 pub enum CmdLobbyType {
     None = 0,
-    CmdLobbyInviteScRsp = 7357,
-    CmdLobbyKickOutCsReq = 7358,
-    CmdLobbyJoinCsReq = 7362,
-    CmdLobbyCreateCsReq = 7365,
-    CmdLobbyCreateScRsp = 7366,
-    CmdLobbyModifyPlayerInfoScRsp = 7373,
-    CmdLobbyJoinScRsp = 7374,
+    CmdLobbyGetInfoCsReq = 7354,
+    CmdLobbyModifyPlayerInfoCsReq = 7359,
+    CmdLobbyInviteScRsp = 7360,
+    CmdLobbyCreateCsReq = 7362,
+    CmdLobbyQuitScRsp = 7363,
+    CmdLobbyBeginCsReq = 7365,
+    CmdLobbyInviteScNotify = 7367,
+    CmdLobbyJoinScRsp = 7373,
     CmdLobbyInviteCsReq = 7378,
-    CmdLobbyKickOutScRsp = 7380,
-    CmdLobbyGetInfoCsReq = 7383,
-    CmdLobbyQuitCsReq = 7384,
-    CmdLobbySyncInfoScNotify = 7385,
-    CmdLobbyBeginScRsp = 7387,
-    CmdLobbyInviteScNotify = 7389,
-    CmdLobbyModifyPlayerInfoCsReq = 7390,
-    CmdLobbyBeginCsReq = 7392,
-    CmdLobbyGetInfoScRsp = 7394,
-    CmdLobbyQuitScRsp = 7399,
+    CmdLobbyJoinCsReq = 7380,
+    CmdLobbyGetInfoScRsp = 7390,
+    CmdLobbyModifyPlayerInfoScRsp = 7393,
+    CmdLobbySyncInfoScNotify = 7395,
+    CmdLobbyKickOutScRsp = 7396,
+    CmdLobbyKickOutCsReq = 7397,
+    CmdLobbyQuitCsReq = 7398,
+    CmdLobbyBeginScRsp = 7399,
+    CmdLobbyCreateScRsp = 7400,
 }
 impl CmdLobbyType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -6489,52 +6548,52 @@ impl CmdLobbyType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdLobbyType::None => "CmdLobbyTypeNone",
-            CmdLobbyType::CmdLobbyInviteScRsp => "CmdLobbyInviteScRsp",
-            CmdLobbyType::CmdLobbyKickOutCsReq => "CmdLobbyKickOutCsReq",
-            CmdLobbyType::CmdLobbyJoinCsReq => "CmdLobbyJoinCsReq",
-            CmdLobbyType::CmdLobbyCreateCsReq => "CmdLobbyCreateCsReq",
-            CmdLobbyType::CmdLobbyCreateScRsp => "CmdLobbyCreateScRsp",
-            CmdLobbyType::CmdLobbyModifyPlayerInfoScRsp => {
-                "CmdLobbyModifyPlayerInfoScRsp"
-            }
-            CmdLobbyType::CmdLobbyJoinScRsp => "CmdLobbyJoinScRsp",
-            CmdLobbyType::CmdLobbyInviteCsReq => "CmdLobbyInviteCsReq",
-            CmdLobbyType::CmdLobbyKickOutScRsp => "CmdLobbyKickOutScRsp",
             CmdLobbyType::CmdLobbyGetInfoCsReq => "CmdLobbyGetInfoCsReq",
-            CmdLobbyType::CmdLobbyQuitCsReq => "CmdLobbyQuitCsReq",
-            CmdLobbyType::CmdLobbySyncInfoScNotify => "CmdLobbySyncInfoScNotify",
-            CmdLobbyType::CmdLobbyBeginScRsp => "CmdLobbyBeginScRsp",
-            CmdLobbyType::CmdLobbyInviteScNotify => "CmdLobbyInviteScNotify",
             CmdLobbyType::CmdLobbyModifyPlayerInfoCsReq => {
                 "CmdLobbyModifyPlayerInfoCsReq"
             }
-            CmdLobbyType::CmdLobbyBeginCsReq => "CmdLobbyBeginCsReq",
-            CmdLobbyType::CmdLobbyGetInfoScRsp => "CmdLobbyGetInfoScRsp",
+            CmdLobbyType::CmdLobbyInviteScRsp => "CmdLobbyInviteScRsp",
+            CmdLobbyType::CmdLobbyCreateCsReq => "CmdLobbyCreateCsReq",
             CmdLobbyType::CmdLobbyQuitScRsp => "CmdLobbyQuitScRsp",
+            CmdLobbyType::CmdLobbyBeginCsReq => "CmdLobbyBeginCsReq",
+            CmdLobbyType::CmdLobbyInviteScNotify => "CmdLobbyInviteScNotify",
+            CmdLobbyType::CmdLobbyJoinScRsp => "CmdLobbyJoinScRsp",
+            CmdLobbyType::CmdLobbyInviteCsReq => "CmdLobbyInviteCsReq",
+            CmdLobbyType::CmdLobbyJoinCsReq => "CmdLobbyJoinCsReq",
+            CmdLobbyType::CmdLobbyGetInfoScRsp => "CmdLobbyGetInfoScRsp",
+            CmdLobbyType::CmdLobbyModifyPlayerInfoScRsp => {
+                "CmdLobbyModifyPlayerInfoScRsp"
+            }
+            CmdLobbyType::CmdLobbySyncInfoScNotify => "CmdLobbySyncInfoScNotify",
+            CmdLobbyType::CmdLobbyKickOutScRsp => "CmdLobbyKickOutScRsp",
+            CmdLobbyType::CmdLobbyKickOutCsReq => "CmdLobbyKickOutCsReq",
+            CmdLobbyType::CmdLobbyQuitCsReq => "CmdLobbyQuitCsReq",
+            CmdLobbyType::CmdLobbyBeginScRsp => "CmdLobbyBeginScRsp",
+            CmdLobbyType::CmdLobbyCreateScRsp => "CmdLobbyCreateScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdLobbyTypeNone" => Some(Self::None),
+            "CmdLobbyGetInfoCsReq" => Some(Self::CmdLobbyGetInfoCsReq),
+            "CmdLobbyModifyPlayerInfoCsReq" => Some(Self::CmdLobbyModifyPlayerInfoCsReq),
             "CmdLobbyInviteScRsp" => Some(Self::CmdLobbyInviteScRsp),
-            "CmdLobbyKickOutCsReq" => Some(Self::CmdLobbyKickOutCsReq),
-            "CmdLobbyJoinCsReq" => Some(Self::CmdLobbyJoinCsReq),
             "CmdLobbyCreateCsReq" => Some(Self::CmdLobbyCreateCsReq),
-            "CmdLobbyCreateScRsp" => Some(Self::CmdLobbyCreateScRsp),
-            "CmdLobbyModifyPlayerInfoScRsp" => Some(Self::CmdLobbyModifyPlayerInfoScRsp),
+            "CmdLobbyQuitScRsp" => Some(Self::CmdLobbyQuitScRsp),
+            "CmdLobbyBeginCsReq" => Some(Self::CmdLobbyBeginCsReq),
+            "CmdLobbyInviteScNotify" => Some(Self::CmdLobbyInviteScNotify),
             "CmdLobbyJoinScRsp" => Some(Self::CmdLobbyJoinScRsp),
             "CmdLobbyInviteCsReq" => Some(Self::CmdLobbyInviteCsReq),
-            "CmdLobbyKickOutScRsp" => Some(Self::CmdLobbyKickOutScRsp),
-            "CmdLobbyGetInfoCsReq" => Some(Self::CmdLobbyGetInfoCsReq),
-            "CmdLobbyQuitCsReq" => Some(Self::CmdLobbyQuitCsReq),
-            "CmdLobbySyncInfoScNotify" => Some(Self::CmdLobbySyncInfoScNotify),
-            "CmdLobbyBeginScRsp" => Some(Self::CmdLobbyBeginScRsp),
-            "CmdLobbyInviteScNotify" => Some(Self::CmdLobbyInviteScNotify),
-            "CmdLobbyModifyPlayerInfoCsReq" => Some(Self::CmdLobbyModifyPlayerInfoCsReq),
-            "CmdLobbyBeginCsReq" => Some(Self::CmdLobbyBeginCsReq),
+            "CmdLobbyJoinCsReq" => Some(Self::CmdLobbyJoinCsReq),
             "CmdLobbyGetInfoScRsp" => Some(Self::CmdLobbyGetInfoScRsp),
-            "CmdLobbyQuitScRsp" => Some(Self::CmdLobbyQuitScRsp),
+            "CmdLobbyModifyPlayerInfoScRsp" => Some(Self::CmdLobbyModifyPlayerInfoScRsp),
+            "CmdLobbySyncInfoScNotify" => Some(Self::CmdLobbySyncInfoScNotify),
+            "CmdLobbyKickOutScRsp" => Some(Self::CmdLobbyKickOutScRsp),
+            "CmdLobbyKickOutCsReq" => Some(Self::CmdLobbyKickOutCsReq),
+            "CmdLobbyQuitCsReq" => Some(Self::CmdLobbyQuitCsReq),
+            "CmdLobbyBeginScRsp" => Some(Self::CmdLobbyBeginScRsp),
+            "CmdLobbyCreateScRsp" => Some(Self::CmdLobbyCreateScRsp),
             _ => None,
         }
     }
@@ -6544,15 +6603,15 @@ impl CmdLobbyType {
 #[repr(i32)]
 pub enum CmdMailType {
     None = 0,
-    CmdMarkReadMailCsReq = 803,
-    CmdGetMailScRsp = 820,
-    CmdTakeMailAttachmentCsReq = 834,
-    CmdTakeMailAttachmentScRsp = 837,
-    CmdDelMailCsReq = 839,
-    CmdMarkReadMailScRsp = 846,
-    CmdDelMailScRsp = 853,
-    CmdGetMailCsReq = 859,
-    CmdNewMailScNotify = 880,
+    CmdNewMailScNotify = 824,
+    CmdMarkReadMailScRsp = 827,
+    CmdDelMailScRsp = 828,
+    CmdGetMailCsReq = 836,
+    CmdTakeMailAttachmentCsReq = 852,
+    CmdDelMailCsReq = 867,
+    CmdTakeMailAttachmentScRsp = 874,
+    CmdMarkReadMailCsReq = 884,
+    CmdGetMailScRsp = 895,
 }
 impl CmdMailType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -6562,30 +6621,30 @@ impl CmdMailType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdMailType::None => "CmdMailTypeNone",
-            CmdMailType::CmdMarkReadMailCsReq => "CmdMarkReadMailCsReq",
-            CmdMailType::CmdGetMailScRsp => "CmdGetMailScRsp",
-            CmdMailType::CmdTakeMailAttachmentCsReq => "CmdTakeMailAttachmentCsReq",
-            CmdMailType::CmdTakeMailAttachmentScRsp => "CmdTakeMailAttachmentScRsp",
-            CmdMailType::CmdDelMailCsReq => "CmdDelMailCsReq",
+            CmdMailType::CmdNewMailScNotify => "CmdNewMailScNotify",
             CmdMailType::CmdMarkReadMailScRsp => "CmdMarkReadMailScRsp",
             CmdMailType::CmdDelMailScRsp => "CmdDelMailScRsp",
             CmdMailType::CmdGetMailCsReq => "CmdGetMailCsReq",
-            CmdMailType::CmdNewMailScNotify => "CmdNewMailScNotify",
+            CmdMailType::CmdTakeMailAttachmentCsReq => "CmdTakeMailAttachmentCsReq",
+            CmdMailType::CmdDelMailCsReq => "CmdDelMailCsReq",
+            CmdMailType::CmdTakeMailAttachmentScRsp => "CmdTakeMailAttachmentScRsp",
+            CmdMailType::CmdMarkReadMailCsReq => "CmdMarkReadMailCsReq",
+            CmdMailType::CmdGetMailScRsp => "CmdGetMailScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdMailTypeNone" => Some(Self::None),
-            "CmdMarkReadMailCsReq" => Some(Self::CmdMarkReadMailCsReq),
-            "CmdGetMailScRsp" => Some(Self::CmdGetMailScRsp),
-            "CmdTakeMailAttachmentCsReq" => Some(Self::CmdTakeMailAttachmentCsReq),
-            "CmdTakeMailAttachmentScRsp" => Some(Self::CmdTakeMailAttachmentScRsp),
-            "CmdDelMailCsReq" => Some(Self::CmdDelMailCsReq),
+            "CmdNewMailScNotify" => Some(Self::CmdNewMailScNotify),
             "CmdMarkReadMailScRsp" => Some(Self::CmdMarkReadMailScRsp),
             "CmdDelMailScRsp" => Some(Self::CmdDelMailScRsp),
             "CmdGetMailCsReq" => Some(Self::CmdGetMailCsReq),
-            "CmdNewMailScNotify" => Some(Self::CmdNewMailScNotify),
+            "CmdTakeMailAttachmentCsReq" => Some(Self::CmdTakeMailAttachmentCsReq),
+            "CmdDelMailCsReq" => Some(Self::CmdDelMailCsReq),
+            "CmdTakeMailAttachmentScRsp" => Some(Self::CmdTakeMailAttachmentScRsp),
+            "CmdMarkReadMailCsReq" => Some(Self::CmdMarkReadMailCsReq),
+            "CmdGetMailScRsp" => Some(Self::CmdGetMailScRsp),
             _ => None,
         }
     }
@@ -6595,26 +6654,26 @@ impl CmdMailType {
 #[repr(i32)]
 pub enum CmdMapRotationType {
     None = 0,
-    CmdInteractChargerCsReq = 6803,
-    CmdLeaveMapRotationRegionScRsp = 6816,
+    CmdUpdateEnergyScNotify = 6805,
+    CmdUpdateRotaterScNotify = 6807,
     CmdRemoveRotaterCsReq = 6819,
-    CmdEnterMapRotationRegionScRsp = 6820,
-    CmdUpdateRotaterScNotify = 6825,
-    CmdResetMapRotationRegionCsReq = 6830,
-    CmdRotateMapCsReq = 6834,
-    CmdRotateMapScRsp = 6837,
-    CmdDeployRotaterCsReq = 6839,
-    CmdInteractChargerScRsp = 6846,
-    CmdGetMapRotationDataCsReq = 6847,
-    CmdLeaveMapRotationRegionScNotify = 6848,
-    CmdDeployRotaterScRsp = 6853,
-    CmdEnterMapRotationRegionCsReq = 6859,
-    CmdRemoveRotaterScRsp = 6861,
-    CmdGetMapRotationDataScRsp = 6874,
-    CmdResetMapRotationRegionScRsp = 6875,
-    CmdUpdateMapRotationDataScNotify = 6879,
-    CmdLeaveMapRotationRegionCsReq = 6880,
-    CmdUpdateEnergyScNotify = 6890,
+    CmdLeaveMapRotationRegionCsReq = 6824,
+    CmdResetMapRotationRegionScRsp = 6825,
+    CmdRemoveRotaterScRsp = 6826,
+    CmdInteractChargerScRsp = 6827,
+    CmdDeployRotaterScRsp = 6828,
+    CmdGetMapRotationDataCsReq = 6834,
+    CmdEnterMapRotationRegionCsReq = 6836,
+    CmdGetMapRotationDataScRsp = 6843,
+    CmdResetMapRotationRegionCsReq = 6846,
+    CmdRotateMapCsReq = 6852,
+    CmdDeployRotaterCsReq = 6867,
+    CmdRotateMapScRsp = 6874,
+    CmdUpdateMapRotationDataScNotify = 6875,
+    CmdInteractChargerCsReq = 6884,
+    CmdLeaveMapRotationRegionScRsp = 6893,
+    CmdEnterMapRotationRegionScRsp = 6895,
+    CmdLeaveMapRotationRegionScNotify = 6896,
 }
 impl CmdMapRotationType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -6624,88 +6683,129 @@ impl CmdMapRotationType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdMapRotationType::None => "CmdMapRotationTypeNone",
-            CmdMapRotationType::CmdInteractChargerCsReq => "CmdInteractChargerCsReq",
-            CmdMapRotationType::CmdLeaveMapRotationRegionScRsp => {
-                "CmdLeaveMapRotationRegionScRsp"
-            }
-            CmdMapRotationType::CmdRemoveRotaterCsReq => "CmdRemoveRotaterCsReq",
-            CmdMapRotationType::CmdEnterMapRotationRegionScRsp => {
-                "CmdEnterMapRotationRegionScRsp"
-            }
+            CmdMapRotationType::CmdUpdateEnergyScNotify => "CmdUpdateEnergyScNotify",
             CmdMapRotationType::CmdUpdateRotaterScNotify => "CmdUpdateRotaterScNotify",
-            CmdMapRotationType::CmdResetMapRotationRegionCsReq => {
-                "CmdResetMapRotationRegionCsReq"
-            }
-            CmdMapRotationType::CmdRotateMapCsReq => "CmdRotateMapCsReq",
-            CmdMapRotationType::CmdRotateMapScRsp => "CmdRotateMapScRsp",
-            CmdMapRotationType::CmdDeployRotaterCsReq => "CmdDeployRotaterCsReq",
-            CmdMapRotationType::CmdInteractChargerScRsp => "CmdInteractChargerScRsp",
-            CmdMapRotationType::CmdGetMapRotationDataCsReq => {
-                "CmdGetMapRotationDataCsReq"
-            }
-            CmdMapRotationType::CmdLeaveMapRotationRegionScNotify => {
-                "CmdLeaveMapRotationRegionScNotify"
-            }
-            CmdMapRotationType::CmdDeployRotaterScRsp => "CmdDeployRotaterScRsp",
-            CmdMapRotationType::CmdEnterMapRotationRegionCsReq => {
-                "CmdEnterMapRotationRegionCsReq"
-            }
-            CmdMapRotationType::CmdRemoveRotaterScRsp => "CmdRemoveRotaterScRsp",
-            CmdMapRotationType::CmdGetMapRotationDataScRsp => {
-                "CmdGetMapRotationDataScRsp"
+            CmdMapRotationType::CmdRemoveRotaterCsReq => "CmdRemoveRotaterCsReq",
+            CmdMapRotationType::CmdLeaveMapRotationRegionCsReq => {
+                "CmdLeaveMapRotationRegionCsReq"
             }
             CmdMapRotationType::CmdResetMapRotationRegionScRsp => {
                 "CmdResetMapRotationRegionScRsp"
             }
+            CmdMapRotationType::CmdRemoveRotaterScRsp => "CmdRemoveRotaterScRsp",
+            CmdMapRotationType::CmdInteractChargerScRsp => "CmdInteractChargerScRsp",
+            CmdMapRotationType::CmdDeployRotaterScRsp => "CmdDeployRotaterScRsp",
+            CmdMapRotationType::CmdGetMapRotationDataCsReq => {
+                "CmdGetMapRotationDataCsReq"
+            }
+            CmdMapRotationType::CmdEnterMapRotationRegionCsReq => {
+                "CmdEnterMapRotationRegionCsReq"
+            }
+            CmdMapRotationType::CmdGetMapRotationDataScRsp => {
+                "CmdGetMapRotationDataScRsp"
+            }
+            CmdMapRotationType::CmdResetMapRotationRegionCsReq => {
+                "CmdResetMapRotationRegionCsReq"
+            }
+            CmdMapRotationType::CmdRotateMapCsReq => "CmdRotateMapCsReq",
+            CmdMapRotationType::CmdDeployRotaterCsReq => "CmdDeployRotaterCsReq",
+            CmdMapRotationType::CmdRotateMapScRsp => "CmdRotateMapScRsp",
             CmdMapRotationType::CmdUpdateMapRotationDataScNotify => {
                 "CmdUpdateMapRotationDataScNotify"
             }
-            CmdMapRotationType::CmdLeaveMapRotationRegionCsReq => {
-                "CmdLeaveMapRotationRegionCsReq"
+            CmdMapRotationType::CmdInteractChargerCsReq => "CmdInteractChargerCsReq",
+            CmdMapRotationType::CmdLeaveMapRotationRegionScRsp => {
+                "CmdLeaveMapRotationRegionScRsp"
             }
-            CmdMapRotationType::CmdUpdateEnergyScNotify => "CmdUpdateEnergyScNotify",
+            CmdMapRotationType::CmdEnterMapRotationRegionScRsp => {
+                "CmdEnterMapRotationRegionScRsp"
+            }
+            CmdMapRotationType::CmdLeaveMapRotationRegionScNotify => {
+                "CmdLeaveMapRotationRegionScNotify"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdMapRotationTypeNone" => Some(Self::None),
-            "CmdInteractChargerCsReq" => Some(Self::CmdInteractChargerCsReq),
-            "CmdLeaveMapRotationRegionScRsp" => {
-                Some(Self::CmdLeaveMapRotationRegionScRsp)
-            }
-            "CmdRemoveRotaterCsReq" => Some(Self::CmdRemoveRotaterCsReq),
-            "CmdEnterMapRotationRegionScRsp" => {
-                Some(Self::CmdEnterMapRotationRegionScRsp)
-            }
+            "CmdUpdateEnergyScNotify" => Some(Self::CmdUpdateEnergyScNotify),
             "CmdUpdateRotaterScNotify" => Some(Self::CmdUpdateRotaterScNotify),
+            "CmdRemoveRotaterCsReq" => Some(Self::CmdRemoveRotaterCsReq),
+            "CmdLeaveMapRotationRegionCsReq" => {
+                Some(Self::CmdLeaveMapRotationRegionCsReq)
+            }
+            "CmdResetMapRotationRegionScRsp" => {
+                Some(Self::CmdResetMapRotationRegionScRsp)
+            }
+            "CmdRemoveRotaterScRsp" => Some(Self::CmdRemoveRotaterScRsp),
+            "CmdInteractChargerScRsp" => Some(Self::CmdInteractChargerScRsp),
+            "CmdDeployRotaterScRsp" => Some(Self::CmdDeployRotaterScRsp),
+            "CmdGetMapRotationDataCsReq" => Some(Self::CmdGetMapRotationDataCsReq),
+            "CmdEnterMapRotationRegionCsReq" => {
+                Some(Self::CmdEnterMapRotationRegionCsReq)
+            }
+            "CmdGetMapRotationDataScRsp" => Some(Self::CmdGetMapRotationDataScRsp),
             "CmdResetMapRotationRegionCsReq" => {
                 Some(Self::CmdResetMapRotationRegionCsReq)
             }
             "CmdRotateMapCsReq" => Some(Self::CmdRotateMapCsReq),
-            "CmdRotateMapScRsp" => Some(Self::CmdRotateMapScRsp),
             "CmdDeployRotaterCsReq" => Some(Self::CmdDeployRotaterCsReq),
-            "CmdInteractChargerScRsp" => Some(Self::CmdInteractChargerScRsp),
-            "CmdGetMapRotationDataCsReq" => Some(Self::CmdGetMapRotationDataCsReq),
-            "CmdLeaveMapRotationRegionScNotify" => {
-                Some(Self::CmdLeaveMapRotationRegionScNotify)
-            }
-            "CmdDeployRotaterScRsp" => Some(Self::CmdDeployRotaterScRsp),
-            "CmdEnterMapRotationRegionCsReq" => {
-                Some(Self::CmdEnterMapRotationRegionCsReq)
-            }
-            "CmdRemoveRotaterScRsp" => Some(Self::CmdRemoveRotaterScRsp),
-            "CmdGetMapRotationDataScRsp" => Some(Self::CmdGetMapRotationDataScRsp),
-            "CmdResetMapRotationRegionScRsp" => {
-                Some(Self::CmdResetMapRotationRegionScRsp)
-            }
+            "CmdRotateMapScRsp" => Some(Self::CmdRotateMapScRsp),
             "CmdUpdateMapRotationDataScNotify" => {
                 Some(Self::CmdUpdateMapRotationDataScNotify)
             }
-            "CmdLeaveMapRotationRegionCsReq" => {
-                Some(Self::CmdLeaveMapRotationRegionCsReq)
+            "CmdInteractChargerCsReq" => Some(Self::CmdInteractChargerCsReq),
+            "CmdLeaveMapRotationRegionScRsp" => {
+                Some(Self::CmdLeaveMapRotationRegionScRsp)
             }
-            "CmdUpdateEnergyScNotify" => Some(Self::CmdUpdateEnergyScNotify),
+            "CmdEnterMapRotationRegionScRsp" => {
+                Some(Self::CmdEnterMapRotationRegionScRsp)
+            }
+            "CmdLeaveMapRotationRegionScNotify" => {
+                Some(Self::CmdLeaveMapRotationRegionScNotify)
+            }
+            _ => None,
+        }
+    }
+}
+#[derive(proto_derive::CmdID)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CmdMarkChestType {
+    None = 0,
+    CmdUpdateMarkChestScRsp = 8183,
+    CmdUpdateMarkChestCsReq = 8187,
+    CmdGetMarkChestScRsp = 8195,
+    CmdMarkChestChangedScNotify = 8197,
+    CmdGetMarkChestCsReq = 8200,
+}
+impl CmdMarkChestType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            CmdMarkChestType::None => "CmdMarkChestTypeNone",
+            CmdMarkChestType::CmdUpdateMarkChestScRsp => "CmdUpdateMarkChestScRsp",
+            CmdMarkChestType::CmdUpdateMarkChestCsReq => "CmdUpdateMarkChestCsReq",
+            CmdMarkChestType::CmdGetMarkChestScRsp => "CmdGetMarkChestScRsp",
+            CmdMarkChestType::CmdMarkChestChangedScNotify => {
+                "CmdMarkChestChangedScNotify"
+            }
+            CmdMarkChestType::CmdGetMarkChestCsReq => "CmdGetMarkChestCsReq",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CmdMarkChestTypeNone" => Some(Self::None),
+            "CmdUpdateMarkChestScRsp" => Some(Self::CmdUpdateMarkChestScRsp),
+            "CmdUpdateMarkChestCsReq" => Some(Self::CmdUpdateMarkChestCsReq),
+            "CmdGetMarkChestScRsp" => Some(Self::CmdGetMarkChestScRsp),
+            "CmdMarkChestChangedScNotify" => Some(Self::CmdMarkChestChangedScNotify),
+            "CmdGetMarkChestCsReq" => Some(Self::CmdGetMarkChestCsReq),
             _ => None,
         }
     }
@@ -6715,13 +6815,13 @@ impl CmdMapRotationType {
 #[repr(i32)]
 pub enum CmdMatchType {
     None = 0,
-    CmdCancelMatchCsReq = 7312,
-    CmdStartMatchCsReq = 7315,
-    CmdStartMatchScRsp = 7316,
-    CmdCancelMatchScRsp = 7324,
-    CmdGetCrossInfoCsReq = 7337,
-    CmdGetCrossInfoScRsp = 7340,
-    CmdMatchResultScNotify = 7342,
+    CmdGetCrossInfoScRsp = 7309,
+    CmdStartMatchCsReq = 7312,
+    CmdMatchResultScNotify = 7315,
+    CmdCancelMatchScRsp = 7323,
+    CmdCancelMatchCsReq = 7330,
+    CmdGetCrossInfoCsReq = 7349,
+    CmdStartMatchScRsp = 7350,
 }
 impl CmdMatchType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -6731,26 +6831,26 @@ impl CmdMatchType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdMatchType::None => "CmdMatchTypeNone",
-            CmdMatchType::CmdCancelMatchCsReq => "CmdCancelMatchCsReq",
-            CmdMatchType::CmdStartMatchCsReq => "CmdStartMatchCsReq",
-            CmdMatchType::CmdStartMatchScRsp => "CmdStartMatchScRsp",
-            CmdMatchType::CmdCancelMatchScRsp => "CmdCancelMatchScRsp",
-            CmdMatchType::CmdGetCrossInfoCsReq => "CmdGetCrossInfoCsReq",
             CmdMatchType::CmdGetCrossInfoScRsp => "CmdGetCrossInfoScRsp",
+            CmdMatchType::CmdStartMatchCsReq => "CmdStartMatchCsReq",
             CmdMatchType::CmdMatchResultScNotify => "CmdMatchResultScNotify",
+            CmdMatchType::CmdCancelMatchScRsp => "CmdCancelMatchScRsp",
+            CmdMatchType::CmdCancelMatchCsReq => "CmdCancelMatchCsReq",
+            CmdMatchType::CmdGetCrossInfoCsReq => "CmdGetCrossInfoCsReq",
+            CmdMatchType::CmdStartMatchScRsp => "CmdStartMatchScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdMatchTypeNone" => Some(Self::None),
-            "CmdCancelMatchCsReq" => Some(Self::CmdCancelMatchCsReq),
-            "CmdStartMatchCsReq" => Some(Self::CmdStartMatchCsReq),
-            "CmdStartMatchScRsp" => Some(Self::CmdStartMatchScRsp),
-            "CmdCancelMatchScRsp" => Some(Self::CmdCancelMatchScRsp),
-            "CmdGetCrossInfoCsReq" => Some(Self::CmdGetCrossInfoCsReq),
             "CmdGetCrossInfoScRsp" => Some(Self::CmdGetCrossInfoScRsp),
+            "CmdStartMatchCsReq" => Some(Self::CmdStartMatchCsReq),
             "CmdMatchResultScNotify" => Some(Self::CmdMatchResultScNotify),
+            "CmdCancelMatchScRsp" => Some(Self::CmdCancelMatchScRsp),
+            "CmdCancelMatchCsReq" => Some(Self::CmdCancelMatchCsReq),
+            "CmdGetCrossInfoCsReq" => Some(Self::CmdGetCrossInfoCsReq),
+            "CmdStartMatchScRsp" => Some(Self::CmdStartMatchScRsp),
             _ => None,
         }
     }
@@ -6760,13 +6860,13 @@ impl CmdMatchType {
 #[repr(i32)]
 pub enum CmdMatchThreeModuleType {
     None = 0,
-    CmdMatchThreeLevelEndCsReq = 7412,
-    CmdMatchThreeGetDataCsReq = 7415,
-    CmdMatchThreeGetDataScRsp = 7416,
-    CmdMatchThreeLevelEndScRsp = 7424,
-    CmdMatchThreeSetBirdPosCsReq = 7437,
-    CmdMatchThreeSetBirdPosScRsp = 7440,
-    CmdMatchThreeSyncDataScNotify = 7442,
+    CmdMatchThreeSetBirdPosScRsp = 7409,
+    CmdMatchThreeGetDataCsReq = 7412,
+    CmdMatchThreeSyncDataScNotify = 7415,
+    CmdMatchThreeLevelEndScRsp = 7423,
+    CmdMatchThreeLevelEndCsReq = 7430,
+    CmdMatchThreeSetBirdPosCsReq = 7449,
+    CmdMatchThreeGetDataScRsp = 7450,
 }
 impl CmdMatchThreeModuleType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -6776,26 +6876,26 @@ impl CmdMatchThreeModuleType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdMatchThreeModuleType::None => "CmdMatchThreeModuleTypeNone",
-            CmdMatchThreeModuleType::CmdMatchThreeLevelEndCsReq => {
-                "CmdMatchThreeLevelEndCsReq"
+            CmdMatchThreeModuleType::CmdMatchThreeSetBirdPosScRsp => {
+                "CmdMatchThreeSetBirdPosScRsp"
             }
             CmdMatchThreeModuleType::CmdMatchThreeGetDataCsReq => {
                 "CmdMatchThreeGetDataCsReq"
             }
-            CmdMatchThreeModuleType::CmdMatchThreeGetDataScRsp => {
-                "CmdMatchThreeGetDataScRsp"
+            CmdMatchThreeModuleType::CmdMatchThreeSyncDataScNotify => {
+                "CmdMatchThreeSyncDataScNotify"
             }
             CmdMatchThreeModuleType::CmdMatchThreeLevelEndScRsp => {
                 "CmdMatchThreeLevelEndScRsp"
             }
+            CmdMatchThreeModuleType::CmdMatchThreeLevelEndCsReq => {
+                "CmdMatchThreeLevelEndCsReq"
+            }
             CmdMatchThreeModuleType::CmdMatchThreeSetBirdPosCsReq => {
                 "CmdMatchThreeSetBirdPosCsReq"
             }
-            CmdMatchThreeModuleType::CmdMatchThreeSetBirdPosScRsp => {
-                "CmdMatchThreeSetBirdPosScRsp"
-            }
-            CmdMatchThreeModuleType::CmdMatchThreeSyncDataScNotify => {
-                "CmdMatchThreeSyncDataScNotify"
+            CmdMatchThreeModuleType::CmdMatchThreeGetDataScRsp => {
+                "CmdMatchThreeGetDataScRsp"
             }
         }
     }
@@ -6803,13 +6903,13 @@ impl CmdMatchThreeModuleType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdMatchThreeModuleTypeNone" => Some(Self::None),
-            "CmdMatchThreeLevelEndCsReq" => Some(Self::CmdMatchThreeLevelEndCsReq),
-            "CmdMatchThreeGetDataCsReq" => Some(Self::CmdMatchThreeGetDataCsReq),
-            "CmdMatchThreeGetDataScRsp" => Some(Self::CmdMatchThreeGetDataScRsp),
-            "CmdMatchThreeLevelEndScRsp" => Some(Self::CmdMatchThreeLevelEndScRsp),
-            "CmdMatchThreeSetBirdPosCsReq" => Some(Self::CmdMatchThreeSetBirdPosCsReq),
             "CmdMatchThreeSetBirdPosScRsp" => Some(Self::CmdMatchThreeSetBirdPosScRsp),
+            "CmdMatchThreeGetDataCsReq" => Some(Self::CmdMatchThreeGetDataCsReq),
             "CmdMatchThreeSyncDataScNotify" => Some(Self::CmdMatchThreeSyncDataScNotify),
+            "CmdMatchThreeLevelEndScRsp" => Some(Self::CmdMatchThreeLevelEndScRsp),
+            "CmdMatchThreeLevelEndCsReq" => Some(Self::CmdMatchThreeLevelEndCsReq),
+            "CmdMatchThreeSetBirdPosCsReq" => Some(Self::CmdMatchThreeSetBirdPosCsReq),
+            "CmdMatchThreeGetDataScRsp" => Some(Self::CmdMatchThreeGetDataScRsp),
             _ => None,
         }
     }
@@ -6819,16 +6919,18 @@ impl CmdMatchThreeModuleType {
 #[repr(i32)]
 pub enum CmdMessageType {
     None = 0,
-    CmdGetNpcStatusCsReq = 2703,
-    CmdFinishPerformSectionIdScRsp = 2716,
-    CmdGetNpcMessageGroupScRsp = 2720,
-    CmdFinishSectionIdCsReq = 2734,
-    CmdFinishSectionIdScRsp = 2737,
-    CmdFinishItemIdCsReq = 2739,
-    CmdGetNpcStatusScRsp = 2746,
-    CmdFinishItemIdScRsp = 2753,
-    CmdGetNpcMessageGroupCsReq = 2759,
-    CmdFinishPerformSectionIdCsReq = 2780,
+    CmdFinishPerformSectionIdCsReq = 2724,
+    CmdGetNpcStatusScRsp = 2727,
+    CmdFinishItemIdScRsp = 2728,
+    CmdGetMissionMessageInfoCsReq = 2734,
+    CmdGetNpcMessageGroupCsReq = 2736,
+    CmdGetMissionMessageInfoScRsp = 2743,
+    CmdFinishSectionIdCsReq = 2752,
+    CmdFinishItemIdCsReq = 2767,
+    CmdFinishSectionIdScRsp = 2774,
+    CmdGetNpcStatusCsReq = 2784,
+    CmdFinishPerformSectionIdScRsp = 2793,
+    CmdGetNpcMessageGroupScRsp = 2795,
 }
 impl CmdMessageType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -6838,40 +6940,48 @@ impl CmdMessageType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdMessageType::None => "CmdMessageTypeNone",
+            CmdMessageType::CmdFinishPerformSectionIdCsReq => {
+                "CmdFinishPerformSectionIdCsReq"
+            }
+            CmdMessageType::CmdGetNpcStatusScRsp => "CmdGetNpcStatusScRsp",
+            CmdMessageType::CmdFinishItemIdScRsp => "CmdFinishItemIdScRsp",
+            CmdMessageType::CmdGetMissionMessageInfoCsReq => {
+                "CmdGetMissionMessageInfoCsReq"
+            }
+            CmdMessageType::CmdGetNpcMessageGroupCsReq => "CmdGetNpcMessageGroupCsReq",
+            CmdMessageType::CmdGetMissionMessageInfoScRsp => {
+                "CmdGetMissionMessageInfoScRsp"
+            }
+            CmdMessageType::CmdFinishSectionIdCsReq => "CmdFinishSectionIdCsReq",
+            CmdMessageType::CmdFinishItemIdCsReq => "CmdFinishItemIdCsReq",
+            CmdMessageType::CmdFinishSectionIdScRsp => "CmdFinishSectionIdScRsp",
             CmdMessageType::CmdGetNpcStatusCsReq => "CmdGetNpcStatusCsReq",
             CmdMessageType::CmdFinishPerformSectionIdScRsp => {
                 "CmdFinishPerformSectionIdScRsp"
             }
             CmdMessageType::CmdGetNpcMessageGroupScRsp => "CmdGetNpcMessageGroupScRsp",
-            CmdMessageType::CmdFinishSectionIdCsReq => "CmdFinishSectionIdCsReq",
-            CmdMessageType::CmdFinishSectionIdScRsp => "CmdFinishSectionIdScRsp",
-            CmdMessageType::CmdFinishItemIdCsReq => "CmdFinishItemIdCsReq",
-            CmdMessageType::CmdGetNpcStatusScRsp => "CmdGetNpcStatusScRsp",
-            CmdMessageType::CmdFinishItemIdScRsp => "CmdFinishItemIdScRsp",
-            CmdMessageType::CmdGetNpcMessageGroupCsReq => "CmdGetNpcMessageGroupCsReq",
-            CmdMessageType::CmdFinishPerformSectionIdCsReq => {
-                "CmdFinishPerformSectionIdCsReq"
-            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdMessageTypeNone" => Some(Self::None),
+            "CmdFinishPerformSectionIdCsReq" => {
+                Some(Self::CmdFinishPerformSectionIdCsReq)
+            }
+            "CmdGetNpcStatusScRsp" => Some(Self::CmdGetNpcStatusScRsp),
+            "CmdFinishItemIdScRsp" => Some(Self::CmdFinishItemIdScRsp),
+            "CmdGetMissionMessageInfoCsReq" => Some(Self::CmdGetMissionMessageInfoCsReq),
+            "CmdGetNpcMessageGroupCsReq" => Some(Self::CmdGetNpcMessageGroupCsReq),
+            "CmdGetMissionMessageInfoScRsp" => Some(Self::CmdGetMissionMessageInfoScRsp),
+            "CmdFinishSectionIdCsReq" => Some(Self::CmdFinishSectionIdCsReq),
+            "CmdFinishItemIdCsReq" => Some(Self::CmdFinishItemIdCsReq),
+            "CmdFinishSectionIdScRsp" => Some(Self::CmdFinishSectionIdScRsp),
             "CmdGetNpcStatusCsReq" => Some(Self::CmdGetNpcStatusCsReq),
             "CmdFinishPerformSectionIdScRsp" => {
                 Some(Self::CmdFinishPerformSectionIdScRsp)
             }
             "CmdGetNpcMessageGroupScRsp" => Some(Self::CmdGetNpcMessageGroupScRsp),
-            "CmdFinishSectionIdCsReq" => Some(Self::CmdFinishSectionIdCsReq),
-            "CmdFinishSectionIdScRsp" => Some(Self::CmdFinishSectionIdScRsp),
-            "CmdFinishItemIdCsReq" => Some(Self::CmdFinishItemIdCsReq),
-            "CmdGetNpcStatusScRsp" => Some(Self::CmdGetNpcStatusScRsp),
-            "CmdFinishItemIdScRsp" => Some(Self::CmdFinishItemIdScRsp),
-            "CmdGetNpcMessageGroupCsReq" => Some(Self::CmdGetNpcMessageGroupCsReq),
-            "CmdFinishPerformSectionIdCsReq" => {
-                Some(Self::CmdFinishPerformSectionIdCsReq)
-            }
             _ => None,
         }
     }
@@ -6881,32 +6991,34 @@ impl CmdMessageType {
 #[repr(i32)]
 pub enum CmdMiscModuleType {
     None = 0,
-    CmdGetShareDataCsReq = 4103,
-    CmdUpdateGunPlayDataCsReq = 4109,
+    CmdSubmitOrigamiItemScRsp = 4105,
     CmdDifficultyAdjustmentUpdateDataCsReq = 4110,
-    CmdCancelCacheNotifyScRsp = 4116,
-    CmdShareScRsp = 4120,
-    CmdGetMovieRacingDataCsReq = 4129,
-    CmdTriggerVoiceCsReq = 4130,
-    CmdGetMovieRacingDataScRsp = 4133,
-    CmdTakePictureCsReq = 4139,
-    CmdGetShareDataScRsp = 4146,
-    CmdSecurityReportCsReq = 4147,
-    CmdSubmitOrigamiItemCsReq = 4148,
-    CmdUpdateMovieRacingDataCsReq = 4151,
-    CmdTakePictureScRsp = 4153,
-    CmdShareCsReq = 4159,
-    CmdDifficultyAdjustmentGetDataCsReq = 4164,
-    CmdDifficultyAdjustmentUpdateDataScRsp = 4170,
-    CmdUpdateMovieRacingDataScRsp = 4173,
-    CmdSecurityReportScRsp = 4174,
-    CmdTriggerVoiceScRsp = 4175,
-    CmdCancelCacheNotifyCsReq = 4180,
-    CmdGetGunPlayDataCsReq = 4183,
-    CmdSubmitOrigamiItemScRsp = 4190,
-    CmdUpdateGunPlayDataScRsp = 4193,
-    CmdDifficultyAdjustmentGetDataScRsp = 4194,
-    CmdGetGunPlayDataScRsp = 4199,
+    CmdUpdateMovieRacingDataScRsp = 4112,
+    CmdCancelCacheNotifyCsReq = 4124,
+    CmdTriggerVoiceScRsp = 4125,
+    CmdGetShareDataScRsp = 4127,
+    CmdTakePictureScRsp = 4128,
+    CmdGetGunPlayDataScRsp = 4129,
+    CmdSecurityReportCsReq = 4134,
+    CmdMazeKillDirectCsReq = 4135,
+    CmdShareCsReq = 4136,
+    CmdSecurityReportScRsp = 4143,
+    CmdTriggerVoiceCsReq = 4146,
+    CmdUpdateGunPlayDataScRsp = 4148,
+    CmdUpdateGunPlayDataCsReq = 4150,
+    CmdGetMovieRacingDataCsReq = 4153,
+    CmdDifficultyAdjustmentGetDataScRsp = 4158,
+    CmdUpdateMovieRacingDataCsReq = 4159,
+    CmdTakePictureCsReq = 4167,
+    CmdMazeKillDirectScRsp = 4173,
+    CmdDifficultyAdjustmentUpdateDataScRsp = 4176,
+    CmdGetGunPlayDataCsReq = 4178,
+    CmdGetShareDataCsReq = 4184,
+    CmdDifficultyAdjustmentGetDataCsReq = 4188,
+    CmdGetMovieRacingDataScRsp = 4190,
+    CmdCancelCacheNotifyScRsp = 4193,
+    CmdShareScRsp = 4195,
+    CmdSubmitOrigamiItemCsReq = 4196,
 }
 impl CmdMiscModuleType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -6916,84 +7028,88 @@ impl CmdMiscModuleType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdMiscModuleType::None => "CmdMiscModuleTypeNone",
-            CmdMiscModuleType::CmdGetShareDataCsReq => "CmdGetShareDataCsReq",
-            CmdMiscModuleType::CmdUpdateGunPlayDataCsReq => "CmdUpdateGunPlayDataCsReq",
+            CmdMiscModuleType::CmdSubmitOrigamiItemScRsp => "CmdSubmitOrigamiItemScRsp",
             CmdMiscModuleType::CmdDifficultyAdjustmentUpdateDataCsReq => {
                 "CmdDifficultyAdjustmentUpdateDataCsReq"
-            }
-            CmdMiscModuleType::CmdCancelCacheNotifyScRsp => "CmdCancelCacheNotifyScRsp",
-            CmdMiscModuleType::CmdShareScRsp => "CmdShareScRsp",
-            CmdMiscModuleType::CmdGetMovieRacingDataCsReq => "CmdGetMovieRacingDataCsReq",
-            CmdMiscModuleType::CmdTriggerVoiceCsReq => "CmdTriggerVoiceCsReq",
-            CmdMiscModuleType::CmdGetMovieRacingDataScRsp => "CmdGetMovieRacingDataScRsp",
-            CmdMiscModuleType::CmdTakePictureCsReq => "CmdTakePictureCsReq",
-            CmdMiscModuleType::CmdGetShareDataScRsp => "CmdGetShareDataScRsp",
-            CmdMiscModuleType::CmdSecurityReportCsReq => "CmdSecurityReportCsReq",
-            CmdMiscModuleType::CmdSubmitOrigamiItemCsReq => "CmdSubmitOrigamiItemCsReq",
-            CmdMiscModuleType::CmdUpdateMovieRacingDataCsReq => {
-                "CmdUpdateMovieRacingDataCsReq"
-            }
-            CmdMiscModuleType::CmdTakePictureScRsp => "CmdTakePictureScRsp",
-            CmdMiscModuleType::CmdShareCsReq => "CmdShareCsReq",
-            CmdMiscModuleType::CmdDifficultyAdjustmentGetDataCsReq => {
-                "CmdDifficultyAdjustmentGetDataCsReq"
-            }
-            CmdMiscModuleType::CmdDifficultyAdjustmentUpdateDataScRsp => {
-                "CmdDifficultyAdjustmentUpdateDataScRsp"
             }
             CmdMiscModuleType::CmdUpdateMovieRacingDataScRsp => {
                 "CmdUpdateMovieRacingDataScRsp"
             }
-            CmdMiscModuleType::CmdSecurityReportScRsp => "CmdSecurityReportScRsp",
-            CmdMiscModuleType::CmdTriggerVoiceScRsp => "CmdTriggerVoiceScRsp",
             CmdMiscModuleType::CmdCancelCacheNotifyCsReq => "CmdCancelCacheNotifyCsReq",
-            CmdMiscModuleType::CmdGetGunPlayDataCsReq => "CmdGetGunPlayDataCsReq",
-            CmdMiscModuleType::CmdSubmitOrigamiItemScRsp => "CmdSubmitOrigamiItemScRsp",
+            CmdMiscModuleType::CmdTriggerVoiceScRsp => "CmdTriggerVoiceScRsp",
+            CmdMiscModuleType::CmdGetShareDataScRsp => "CmdGetShareDataScRsp",
+            CmdMiscModuleType::CmdTakePictureScRsp => "CmdTakePictureScRsp",
+            CmdMiscModuleType::CmdGetGunPlayDataScRsp => "CmdGetGunPlayDataScRsp",
+            CmdMiscModuleType::CmdSecurityReportCsReq => "CmdSecurityReportCsReq",
+            CmdMiscModuleType::CmdMazeKillDirectCsReq => "CmdMazeKillDirectCsReq",
+            CmdMiscModuleType::CmdShareCsReq => "CmdShareCsReq",
+            CmdMiscModuleType::CmdSecurityReportScRsp => "CmdSecurityReportScRsp",
+            CmdMiscModuleType::CmdTriggerVoiceCsReq => "CmdTriggerVoiceCsReq",
             CmdMiscModuleType::CmdUpdateGunPlayDataScRsp => "CmdUpdateGunPlayDataScRsp",
+            CmdMiscModuleType::CmdUpdateGunPlayDataCsReq => "CmdUpdateGunPlayDataCsReq",
+            CmdMiscModuleType::CmdGetMovieRacingDataCsReq => "CmdGetMovieRacingDataCsReq",
             CmdMiscModuleType::CmdDifficultyAdjustmentGetDataScRsp => {
                 "CmdDifficultyAdjustmentGetDataScRsp"
             }
-            CmdMiscModuleType::CmdGetGunPlayDataScRsp => "CmdGetGunPlayDataScRsp",
+            CmdMiscModuleType::CmdUpdateMovieRacingDataCsReq => {
+                "CmdUpdateMovieRacingDataCsReq"
+            }
+            CmdMiscModuleType::CmdTakePictureCsReq => "CmdTakePictureCsReq",
+            CmdMiscModuleType::CmdMazeKillDirectScRsp => "CmdMazeKillDirectScRsp",
+            CmdMiscModuleType::CmdDifficultyAdjustmentUpdateDataScRsp => {
+                "CmdDifficultyAdjustmentUpdateDataScRsp"
+            }
+            CmdMiscModuleType::CmdGetGunPlayDataCsReq => "CmdGetGunPlayDataCsReq",
+            CmdMiscModuleType::CmdGetShareDataCsReq => "CmdGetShareDataCsReq",
+            CmdMiscModuleType::CmdDifficultyAdjustmentGetDataCsReq => {
+                "CmdDifficultyAdjustmentGetDataCsReq"
+            }
+            CmdMiscModuleType::CmdGetMovieRacingDataScRsp => "CmdGetMovieRacingDataScRsp",
+            CmdMiscModuleType::CmdCancelCacheNotifyScRsp => "CmdCancelCacheNotifyScRsp",
+            CmdMiscModuleType::CmdShareScRsp => "CmdShareScRsp",
+            CmdMiscModuleType::CmdSubmitOrigamiItemCsReq => "CmdSubmitOrigamiItemCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdMiscModuleTypeNone" => Some(Self::None),
-            "CmdGetShareDataCsReq" => Some(Self::CmdGetShareDataCsReq),
-            "CmdUpdateGunPlayDataCsReq" => Some(Self::CmdUpdateGunPlayDataCsReq),
+            "CmdSubmitOrigamiItemScRsp" => Some(Self::CmdSubmitOrigamiItemScRsp),
             "CmdDifficultyAdjustmentUpdateDataCsReq" => {
                 Some(Self::CmdDifficultyAdjustmentUpdateDataCsReq)
             }
-            "CmdCancelCacheNotifyScRsp" => Some(Self::CmdCancelCacheNotifyScRsp),
-            "CmdShareScRsp" => Some(Self::CmdShareScRsp),
-            "CmdGetMovieRacingDataCsReq" => Some(Self::CmdGetMovieRacingDataCsReq),
-            "CmdTriggerVoiceCsReq" => Some(Self::CmdTriggerVoiceCsReq),
-            "CmdGetMovieRacingDataScRsp" => Some(Self::CmdGetMovieRacingDataScRsp),
-            "CmdTakePictureCsReq" => Some(Self::CmdTakePictureCsReq),
-            "CmdGetShareDataScRsp" => Some(Self::CmdGetShareDataScRsp),
-            "CmdSecurityReportCsReq" => Some(Self::CmdSecurityReportCsReq),
-            "CmdSubmitOrigamiItemCsReq" => Some(Self::CmdSubmitOrigamiItemCsReq),
-            "CmdUpdateMovieRacingDataCsReq" => Some(Self::CmdUpdateMovieRacingDataCsReq),
-            "CmdTakePictureScRsp" => Some(Self::CmdTakePictureScRsp),
-            "CmdShareCsReq" => Some(Self::CmdShareCsReq),
-            "CmdDifficultyAdjustmentGetDataCsReq" => {
-                Some(Self::CmdDifficultyAdjustmentGetDataCsReq)
-            }
-            "CmdDifficultyAdjustmentUpdateDataScRsp" => {
-                Some(Self::CmdDifficultyAdjustmentUpdateDataScRsp)
-            }
             "CmdUpdateMovieRacingDataScRsp" => Some(Self::CmdUpdateMovieRacingDataScRsp),
-            "CmdSecurityReportScRsp" => Some(Self::CmdSecurityReportScRsp),
-            "CmdTriggerVoiceScRsp" => Some(Self::CmdTriggerVoiceScRsp),
             "CmdCancelCacheNotifyCsReq" => Some(Self::CmdCancelCacheNotifyCsReq),
-            "CmdGetGunPlayDataCsReq" => Some(Self::CmdGetGunPlayDataCsReq),
-            "CmdSubmitOrigamiItemScRsp" => Some(Self::CmdSubmitOrigamiItemScRsp),
+            "CmdTriggerVoiceScRsp" => Some(Self::CmdTriggerVoiceScRsp),
+            "CmdGetShareDataScRsp" => Some(Self::CmdGetShareDataScRsp),
+            "CmdTakePictureScRsp" => Some(Self::CmdTakePictureScRsp),
+            "CmdGetGunPlayDataScRsp" => Some(Self::CmdGetGunPlayDataScRsp),
+            "CmdSecurityReportCsReq" => Some(Self::CmdSecurityReportCsReq),
+            "CmdMazeKillDirectCsReq" => Some(Self::CmdMazeKillDirectCsReq),
+            "CmdShareCsReq" => Some(Self::CmdShareCsReq),
+            "CmdSecurityReportScRsp" => Some(Self::CmdSecurityReportScRsp),
+            "CmdTriggerVoiceCsReq" => Some(Self::CmdTriggerVoiceCsReq),
             "CmdUpdateGunPlayDataScRsp" => Some(Self::CmdUpdateGunPlayDataScRsp),
+            "CmdUpdateGunPlayDataCsReq" => Some(Self::CmdUpdateGunPlayDataCsReq),
+            "CmdGetMovieRacingDataCsReq" => Some(Self::CmdGetMovieRacingDataCsReq),
             "CmdDifficultyAdjustmentGetDataScRsp" => {
                 Some(Self::CmdDifficultyAdjustmentGetDataScRsp)
             }
-            "CmdGetGunPlayDataScRsp" => Some(Self::CmdGetGunPlayDataScRsp),
+            "CmdUpdateMovieRacingDataCsReq" => Some(Self::CmdUpdateMovieRacingDataCsReq),
+            "CmdTakePictureCsReq" => Some(Self::CmdTakePictureCsReq),
+            "CmdMazeKillDirectScRsp" => Some(Self::CmdMazeKillDirectScRsp),
+            "CmdDifficultyAdjustmentUpdateDataScRsp" => {
+                Some(Self::CmdDifficultyAdjustmentUpdateDataScRsp)
+            }
+            "CmdGetGunPlayDataCsReq" => Some(Self::CmdGetGunPlayDataCsReq),
+            "CmdGetShareDataCsReq" => Some(Self::CmdGetShareDataCsReq),
+            "CmdDifficultyAdjustmentGetDataCsReq" => {
+                Some(Self::CmdDifficultyAdjustmentGetDataCsReq)
+            }
+            "CmdGetMovieRacingDataScRsp" => Some(Self::CmdGetMovieRacingDataScRsp),
+            "CmdCancelCacheNotifyScRsp" => Some(Self::CmdCancelCacheNotifyScRsp),
+            "CmdShareScRsp" => Some(Self::CmdShareScRsp),
+            "CmdSubmitOrigamiItemCsReq" => Some(Self::CmdSubmitOrigamiItemCsReq),
             _ => None,
         }
     }
@@ -7003,41 +7119,40 @@ impl CmdMiscModuleType {
 #[repr(i32)]
 pub enum CmdMissionType {
     None = 0,
-    CmdFinishTalkMissionCsReq = 1203,
-    CmdFinishedMissionScNotify = 1204,
-    CmdTeleportToMissionResetPointCsReq = 1209,
+    CmdGetMissionEventDataScRsp = 1205,
+    CmdGetMissionStatusCsReq = 1207,
+    CmdFinishedMissionScNotify = 1208,
     CmdAcceptMainMissionCsReq = 1210,
+    CmdSetMissionEventProgressCsReq = 1212,
+    CmdMissionAcceptScNotify = 1217,
     CmdAcceptMissionEventCsReq = 1219,
-    CmdGetMissionDataScRsp = 1220,
-    CmdGetMissionStatusCsReq = 1225,
-    CmdMissionAcceptScNotify = 1226,
-    CmdGetMissionStatusScRsp = 1229,
-    CmdFinishCosumeItemMissionCsReq = 1230,
-    CmdInterruptMissionEventCsReq = 1233,
-    CmdSyncTaskScRsp = 1234,
-    CmdGetMainMissionCustomValueCsReq = 1236,
-    CmdDailyTaskDataScNotify = 1237,
-    CmdMissionRewardScNotify = 1239,
-    CmdFinishTalkMissionScRsp = 1246,
-    CmdGetMissionEventDataCsReq = 1248,
-    CmdInterruptMissionEventScRsp = 1251,
-    CmdSyncTaskCsReq = 1253,
-    CmdGetMissionDataCsReq = 1259,
-    CmdAcceptMissionEventScRsp = 1261,
-    CmdStartFinishSubMissionScNotify = 1264,
-    CmdGetMainMissionCustomValueScRsp = 1265,
-    CmdAcceptMainMissionScRsp = 1270,
-    CmdSetMissionEventProgressCsReq = 1273,
-    CmdMissionGroupWarnScNotify = 1274,
-    CmdFinishCosumeItemMissionScRsp = 1275,
-    CmdUpdateTrackMainMissionIdCsReq = 1277,
-    CmdMissionEventRewardScNotify = 1279,
-    CmdSetMissionEventProgressScRsp = 1283,
-    CmdGetMissionEventDataScRsp = 1290,
-    CmdUpdateTrackMainMissionIdScRsp = 1291,
-    CmdTeleportToMissionResetPointScRsp = 1293,
-    CmdStartFinishMainMissionScNotify = 1294,
-    CmdSubMissionRewardScNotify = 1299,
+    CmdUpdateTrackMainMissionIdCsReq = 1221,
+    CmdFinishCosumeItemMissionScRsp = 1225,
+    CmdAcceptMissionEventScRsp = 1226,
+    CmdFinishTalkMissionScRsp = 1227,
+    CmdSyncTaskCsReq = 1228,
+    CmdSubMissionRewardScNotify = 1229,
+    CmdGetMainMissionCustomValueCsReq = 1235,
+    CmdGetMissionDataCsReq = 1236,
+    CmdMissionGroupWarnScNotify = 1243,
+    CmdFinishCosumeItemMissionCsReq = 1246,
+    CmdTeleportToMissionResetPointScRsp = 1248,
+    CmdTeleportToMissionResetPointCsReq = 1250,
+    CmdSyncTaskScRsp = 1252,
+    CmdGetMissionStatusScRsp = 1253,
+    CmdStartFinishMainMissionScNotify = 1258,
+    CmdInterruptMissionEventScRsp = 1259,
+    CmdUpdateTrackMainMissionIdScRsp = 1265,
+    CmdMissionRewardScNotify = 1267,
+    CmdGetMainMissionCustomValueScRsp = 1273,
+    CmdMissionEventRewardScNotify = 1275,
+    CmdAcceptMainMissionScRsp = 1276,
+    CmdSetMissionEventProgressScRsp = 1278,
+    CmdFinishTalkMissionCsReq = 1284,
+    CmdStartFinishSubMissionScNotify = 1288,
+    CmdInterruptMissionEventCsReq = 1290,
+    CmdGetMissionDataScRsp = 1295,
+    CmdGetMissionEventDataCsReq = 1296,
 }
 impl CmdMissionType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -7047,136 +7162,134 @@ impl CmdMissionType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdMissionType::None => "CmdMissionTypeNone",
-            CmdMissionType::CmdFinishTalkMissionCsReq => "CmdFinishTalkMissionCsReq",
-            CmdMissionType::CmdFinishedMissionScNotify => "CmdFinishedMissionScNotify",
-            CmdMissionType::CmdTeleportToMissionResetPointCsReq => {
-                "CmdTeleportToMissionResetPointCsReq"
-            }
-            CmdMissionType::CmdAcceptMainMissionCsReq => "CmdAcceptMainMissionCsReq",
-            CmdMissionType::CmdAcceptMissionEventCsReq => "CmdAcceptMissionEventCsReq",
-            CmdMissionType::CmdGetMissionDataScRsp => "CmdGetMissionDataScRsp",
+            CmdMissionType::CmdGetMissionEventDataScRsp => "CmdGetMissionEventDataScRsp",
             CmdMissionType::CmdGetMissionStatusCsReq => "CmdGetMissionStatusCsReq",
-            CmdMissionType::CmdMissionAcceptScNotify => "CmdMissionAcceptScNotify",
-            CmdMissionType::CmdGetMissionStatusScRsp => "CmdGetMissionStatusScRsp",
-            CmdMissionType::CmdFinishCosumeItemMissionCsReq => {
-                "CmdFinishCosumeItemMissionCsReq"
-            }
-            CmdMissionType::CmdInterruptMissionEventCsReq => {
-                "CmdInterruptMissionEventCsReq"
-            }
-            CmdMissionType::CmdSyncTaskScRsp => "CmdSyncTaskScRsp",
-            CmdMissionType::CmdGetMainMissionCustomValueCsReq => {
-                "CmdGetMainMissionCustomValueCsReq"
-            }
-            CmdMissionType::CmdDailyTaskDataScNotify => "CmdDailyTaskDataScNotify",
-            CmdMissionType::CmdMissionRewardScNotify => "CmdMissionRewardScNotify",
-            CmdMissionType::CmdFinishTalkMissionScRsp => "CmdFinishTalkMissionScRsp",
-            CmdMissionType::CmdGetMissionEventDataCsReq => "CmdGetMissionEventDataCsReq",
-            CmdMissionType::CmdInterruptMissionEventScRsp => {
-                "CmdInterruptMissionEventScRsp"
-            }
-            CmdMissionType::CmdSyncTaskCsReq => "CmdSyncTaskCsReq",
-            CmdMissionType::CmdGetMissionDataCsReq => "CmdGetMissionDataCsReq",
-            CmdMissionType::CmdAcceptMissionEventScRsp => "CmdAcceptMissionEventScRsp",
-            CmdMissionType::CmdStartFinishSubMissionScNotify => {
-                "CmdStartFinishSubMissionScNotify"
-            }
-            CmdMissionType::CmdGetMainMissionCustomValueScRsp => {
-                "CmdGetMainMissionCustomValueScRsp"
-            }
-            CmdMissionType::CmdAcceptMainMissionScRsp => "CmdAcceptMainMissionScRsp",
+            CmdMissionType::CmdFinishedMissionScNotify => "CmdFinishedMissionScNotify",
+            CmdMissionType::CmdAcceptMainMissionCsReq => "CmdAcceptMainMissionCsReq",
             CmdMissionType::CmdSetMissionEventProgressCsReq => {
                 "CmdSetMissionEventProgressCsReq"
             }
-            CmdMissionType::CmdMissionGroupWarnScNotify => "CmdMissionGroupWarnScNotify",
-            CmdMissionType::CmdFinishCosumeItemMissionScRsp => {
-                "CmdFinishCosumeItemMissionScRsp"
-            }
+            CmdMissionType::CmdMissionAcceptScNotify => "CmdMissionAcceptScNotify",
+            CmdMissionType::CmdAcceptMissionEventCsReq => "CmdAcceptMissionEventCsReq",
             CmdMissionType::CmdUpdateTrackMainMissionIdCsReq => {
                 "CmdUpdateTrackMainMissionIdCsReq"
             }
-            CmdMissionType::CmdMissionEventRewardScNotify => {
-                "CmdMissionEventRewardScNotify"
+            CmdMissionType::CmdFinishCosumeItemMissionScRsp => {
+                "CmdFinishCosumeItemMissionScRsp"
             }
-            CmdMissionType::CmdSetMissionEventProgressScRsp => {
-                "CmdSetMissionEventProgressScRsp"
+            CmdMissionType::CmdAcceptMissionEventScRsp => "CmdAcceptMissionEventScRsp",
+            CmdMissionType::CmdFinishTalkMissionScRsp => "CmdFinishTalkMissionScRsp",
+            CmdMissionType::CmdSyncTaskCsReq => "CmdSyncTaskCsReq",
+            CmdMissionType::CmdSubMissionRewardScNotify => "CmdSubMissionRewardScNotify",
+            CmdMissionType::CmdGetMainMissionCustomValueCsReq => {
+                "CmdGetMainMissionCustomValueCsReq"
             }
-            CmdMissionType::CmdGetMissionEventDataScRsp => "CmdGetMissionEventDataScRsp",
-            CmdMissionType::CmdUpdateTrackMainMissionIdScRsp => {
-                "CmdUpdateTrackMainMissionIdScRsp"
+            CmdMissionType::CmdGetMissionDataCsReq => "CmdGetMissionDataCsReq",
+            CmdMissionType::CmdMissionGroupWarnScNotify => "CmdMissionGroupWarnScNotify",
+            CmdMissionType::CmdFinishCosumeItemMissionCsReq => {
+                "CmdFinishCosumeItemMissionCsReq"
             }
             CmdMissionType::CmdTeleportToMissionResetPointScRsp => {
                 "CmdTeleportToMissionResetPointScRsp"
             }
+            CmdMissionType::CmdTeleportToMissionResetPointCsReq => {
+                "CmdTeleportToMissionResetPointCsReq"
+            }
+            CmdMissionType::CmdSyncTaskScRsp => "CmdSyncTaskScRsp",
+            CmdMissionType::CmdGetMissionStatusScRsp => "CmdGetMissionStatusScRsp",
             CmdMissionType::CmdStartFinishMainMissionScNotify => {
                 "CmdStartFinishMainMissionScNotify"
             }
-            CmdMissionType::CmdSubMissionRewardScNotify => "CmdSubMissionRewardScNotify",
+            CmdMissionType::CmdInterruptMissionEventScRsp => {
+                "CmdInterruptMissionEventScRsp"
+            }
+            CmdMissionType::CmdUpdateTrackMainMissionIdScRsp => {
+                "CmdUpdateTrackMainMissionIdScRsp"
+            }
+            CmdMissionType::CmdMissionRewardScNotify => "CmdMissionRewardScNotify",
+            CmdMissionType::CmdGetMainMissionCustomValueScRsp => {
+                "CmdGetMainMissionCustomValueScRsp"
+            }
+            CmdMissionType::CmdMissionEventRewardScNotify => {
+                "CmdMissionEventRewardScNotify"
+            }
+            CmdMissionType::CmdAcceptMainMissionScRsp => "CmdAcceptMainMissionScRsp",
+            CmdMissionType::CmdSetMissionEventProgressScRsp => {
+                "CmdSetMissionEventProgressScRsp"
+            }
+            CmdMissionType::CmdFinishTalkMissionCsReq => "CmdFinishTalkMissionCsReq",
+            CmdMissionType::CmdStartFinishSubMissionScNotify => {
+                "CmdStartFinishSubMissionScNotify"
+            }
+            CmdMissionType::CmdInterruptMissionEventCsReq => {
+                "CmdInterruptMissionEventCsReq"
+            }
+            CmdMissionType::CmdGetMissionDataScRsp => "CmdGetMissionDataScRsp",
+            CmdMissionType::CmdGetMissionEventDataCsReq => "CmdGetMissionEventDataCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdMissionTypeNone" => Some(Self::None),
-            "CmdFinishTalkMissionCsReq" => Some(Self::CmdFinishTalkMissionCsReq),
-            "CmdFinishedMissionScNotify" => Some(Self::CmdFinishedMissionScNotify),
-            "CmdTeleportToMissionResetPointCsReq" => {
-                Some(Self::CmdTeleportToMissionResetPointCsReq)
-            }
-            "CmdAcceptMainMissionCsReq" => Some(Self::CmdAcceptMainMissionCsReq),
-            "CmdAcceptMissionEventCsReq" => Some(Self::CmdAcceptMissionEventCsReq),
-            "CmdGetMissionDataScRsp" => Some(Self::CmdGetMissionDataScRsp),
+            "CmdGetMissionEventDataScRsp" => Some(Self::CmdGetMissionEventDataScRsp),
             "CmdGetMissionStatusCsReq" => Some(Self::CmdGetMissionStatusCsReq),
-            "CmdMissionAcceptScNotify" => Some(Self::CmdMissionAcceptScNotify),
-            "CmdGetMissionStatusScRsp" => Some(Self::CmdGetMissionStatusScRsp),
-            "CmdFinishCosumeItemMissionCsReq" => {
-                Some(Self::CmdFinishCosumeItemMissionCsReq)
-            }
-            "CmdInterruptMissionEventCsReq" => Some(Self::CmdInterruptMissionEventCsReq),
-            "CmdSyncTaskScRsp" => Some(Self::CmdSyncTaskScRsp),
-            "CmdGetMainMissionCustomValueCsReq" => {
-                Some(Self::CmdGetMainMissionCustomValueCsReq)
-            }
-            "CmdDailyTaskDataScNotify" => Some(Self::CmdDailyTaskDataScNotify),
-            "CmdMissionRewardScNotify" => Some(Self::CmdMissionRewardScNotify),
-            "CmdFinishTalkMissionScRsp" => Some(Self::CmdFinishTalkMissionScRsp),
-            "CmdGetMissionEventDataCsReq" => Some(Self::CmdGetMissionEventDataCsReq),
-            "CmdInterruptMissionEventScRsp" => Some(Self::CmdInterruptMissionEventScRsp),
-            "CmdSyncTaskCsReq" => Some(Self::CmdSyncTaskCsReq),
-            "CmdGetMissionDataCsReq" => Some(Self::CmdGetMissionDataCsReq),
-            "CmdAcceptMissionEventScRsp" => Some(Self::CmdAcceptMissionEventScRsp),
-            "CmdStartFinishSubMissionScNotify" => {
-                Some(Self::CmdStartFinishSubMissionScNotify)
-            }
-            "CmdGetMainMissionCustomValueScRsp" => {
-                Some(Self::CmdGetMainMissionCustomValueScRsp)
-            }
-            "CmdAcceptMainMissionScRsp" => Some(Self::CmdAcceptMainMissionScRsp),
+            "CmdFinishedMissionScNotify" => Some(Self::CmdFinishedMissionScNotify),
+            "CmdAcceptMainMissionCsReq" => Some(Self::CmdAcceptMainMissionCsReq),
             "CmdSetMissionEventProgressCsReq" => {
                 Some(Self::CmdSetMissionEventProgressCsReq)
             }
-            "CmdMissionGroupWarnScNotify" => Some(Self::CmdMissionGroupWarnScNotify),
-            "CmdFinishCosumeItemMissionScRsp" => {
-                Some(Self::CmdFinishCosumeItemMissionScRsp)
-            }
+            "CmdMissionAcceptScNotify" => Some(Self::CmdMissionAcceptScNotify),
+            "CmdAcceptMissionEventCsReq" => Some(Self::CmdAcceptMissionEventCsReq),
             "CmdUpdateTrackMainMissionIdCsReq" => {
                 Some(Self::CmdUpdateTrackMainMissionIdCsReq)
             }
-            "CmdMissionEventRewardScNotify" => Some(Self::CmdMissionEventRewardScNotify),
-            "CmdSetMissionEventProgressScRsp" => {
-                Some(Self::CmdSetMissionEventProgressScRsp)
+            "CmdFinishCosumeItemMissionScRsp" => {
+                Some(Self::CmdFinishCosumeItemMissionScRsp)
             }
-            "CmdGetMissionEventDataScRsp" => Some(Self::CmdGetMissionEventDataScRsp),
-            "CmdUpdateTrackMainMissionIdScRsp" => {
-                Some(Self::CmdUpdateTrackMainMissionIdScRsp)
+            "CmdAcceptMissionEventScRsp" => Some(Self::CmdAcceptMissionEventScRsp),
+            "CmdFinishTalkMissionScRsp" => Some(Self::CmdFinishTalkMissionScRsp),
+            "CmdSyncTaskCsReq" => Some(Self::CmdSyncTaskCsReq),
+            "CmdSubMissionRewardScNotify" => Some(Self::CmdSubMissionRewardScNotify),
+            "CmdGetMainMissionCustomValueCsReq" => {
+                Some(Self::CmdGetMainMissionCustomValueCsReq)
+            }
+            "CmdGetMissionDataCsReq" => Some(Self::CmdGetMissionDataCsReq),
+            "CmdMissionGroupWarnScNotify" => Some(Self::CmdMissionGroupWarnScNotify),
+            "CmdFinishCosumeItemMissionCsReq" => {
+                Some(Self::CmdFinishCosumeItemMissionCsReq)
             }
             "CmdTeleportToMissionResetPointScRsp" => {
                 Some(Self::CmdTeleportToMissionResetPointScRsp)
             }
+            "CmdTeleportToMissionResetPointCsReq" => {
+                Some(Self::CmdTeleportToMissionResetPointCsReq)
+            }
+            "CmdSyncTaskScRsp" => Some(Self::CmdSyncTaskScRsp),
+            "CmdGetMissionStatusScRsp" => Some(Self::CmdGetMissionStatusScRsp),
             "CmdStartFinishMainMissionScNotify" => {
                 Some(Self::CmdStartFinishMainMissionScNotify)
             }
-            "CmdSubMissionRewardScNotify" => Some(Self::CmdSubMissionRewardScNotify),
+            "CmdInterruptMissionEventScRsp" => Some(Self::CmdInterruptMissionEventScRsp),
+            "CmdUpdateTrackMainMissionIdScRsp" => {
+                Some(Self::CmdUpdateTrackMainMissionIdScRsp)
+            }
+            "CmdMissionRewardScNotify" => Some(Self::CmdMissionRewardScNotify),
+            "CmdGetMainMissionCustomValueScRsp" => {
+                Some(Self::CmdGetMainMissionCustomValueScRsp)
+            }
+            "CmdMissionEventRewardScNotify" => Some(Self::CmdMissionEventRewardScNotify),
+            "CmdAcceptMainMissionScRsp" => Some(Self::CmdAcceptMainMissionScRsp),
+            "CmdSetMissionEventProgressScRsp" => {
+                Some(Self::CmdSetMissionEventProgressScRsp)
+            }
+            "CmdFinishTalkMissionCsReq" => Some(Self::CmdFinishTalkMissionCsReq),
+            "CmdStartFinishSubMissionScNotify" => {
+                Some(Self::CmdStartFinishSubMissionScNotify)
+            }
+            "CmdInterruptMissionEventCsReq" => Some(Self::CmdInterruptMissionEventCsReq),
+            "CmdGetMissionDataScRsp" => Some(Self::CmdGetMissionDataScRsp),
+            "CmdGetMissionEventDataCsReq" => Some(Self::CmdGetMissionEventDataCsReq),
             _ => None,
         }
     }
@@ -7186,89 +7299,89 @@ impl CmdMissionType {
 #[repr(i32)]
 pub enum CmdMonopolyType {
     None = 0,
-    CmdGetMonopolyDailyReportScRsp = 7001,
-    CmdMonopolyActionResultScNotify = 7003,
-    CmdMonopolyGameCreateScNotify = 7004,
-    CmdMonopolyTakeRaffleTicketRewardCsReq = 7007,
-    CmdMonopolyClickMbtiReportCsReq = 7008,
-    CmdMonopolyCheatDiceCsReq = 7009,
+    CmdMonopolyEventLoadUpdateScNotify = 7001,
+    CmdGetMbtiReportScRsp = 7003,
+    CmdMonopolyRollRandomScRsp = 7005,
+    CmdMonopolyConfirmRandomScRsp = 7007,
+    CmdMonopolyGameCreateScNotify = 7008,
+    CmdMonopolyTakePhaseRewardCsReq = 7009,
     CmdMonopolyGameRaiseRatioScRsp = 7010,
-    CmdMonopolyConditionUpdateScNotify = 7011,
-    CmdMonopolyLikeCsReq = 7012,
+    CmdMonopolyGuessBuyInformationCsReq = 7011,
+    CmdMonopolyUpgradeAssetScRsp = 7012,
     CmdMonopolyGameBingoFlipCardScRsp = 7013,
-    CmdMonopolyGuessBuyInformationScRsp = 7014,
-    CmdMonopolyQuizDurationChangeScNotify = 7015,
-    CmdMonopolySelectOptionCsReq = 7016,
-    CmdGetMonopolyMbtiReportRewardScRsp = 7017,
-    CmdMonopolyTakeRaffleTicketRewardScRsp = 7018,
+    CmdMonopolyConditionUpdateScNotify = 7015,
+    CmdMonopolyGetRaffleTicketCsReq = 7016,
+    CmdMonopolyGameBingoFlipCardCsReq = 7017,
+    CmdMonopolyGuessChooseCsReq = 7018,
     CmdMonopolyReRollRandomScRsp = 7019,
-    CmdGetMonopolyInfoScRsp = 7020,
-    CmdMonopolyGetRaffleTicketCsReq = 7022,
-    CmdMonopolyGuessDrawScNotify = 7023,
-    CmdGetMonopolyFriendRankingListScRsp = 7024,
-    CmdMonopolyConfirmRandomScRsp = 7025,
-    CmdMonopolyGameBingoFlipCardCsReq = 7026,
-    CmdGetSocialEventServerCacheScRsp = 7027,
-    CmdMonopolyBuyGoodsCsReq = 7029,
-    CmdDailyFirstEnterMonopolyActivityCsReq = 7030,
-    CmdGetMbtiReportScRsp = 7031,
-    CmdMonopolyLikeScNotify = 7032,
-    CmdMonopolyBuyGoodsScRsp = 7033,
-    CmdMonopolyRollDiceScRsp = 7034,
-    CmdMonopolyGetRaffleTicketScRsp = 7035,
-    CmdMonopolyGameGachaCsReq = 7036,
-    CmdMonopolyMoveCsReq = 7037,
-    CmdDeleteSocialEventServerCacheCsReq = 7038,
-    CmdMonopolyTakePhaseRewardScRsp = 7040,
-    CmdMonopolyClickCellCsReq = 7041,
-    CmdMonopolyTakePhaseRewardCsReq = 7042,
-    CmdMonopolyGuessChooseScRsp = 7043,
-    CmdMonopolyGetDailyInitItemScRsp = 7044,
-    CmdMonopolyCellUpdateNotify = 7046,
-    CmdMonopolySelectOptionScRsp = 7047,
-    CmdMonopolyRollRandomCsReq = 7048,
-    CmdMonopolyScrachRaffleTicketScRsp = 7050,
-    CmdMonopolyUpgradeAssetCsReq = 7051,
-    CmdMonopolySttUpdateScNotify = 7052,
-    CmdMonopolyRollDiceCsReq = 7053,
-    CmdDeleteSocialEventServerCacheScRsp = 7055,
-    CmdGetMonopolyMbtiReportRewardCsReq = 7057,
-    CmdMonopolyClickCellScRsp = 7058,
-    CmdGetMonopolyInfoCsReq = 7059,
-    CmdMonopolyLikeScRsp = 7060,
-    CmdMonopolyConfirmRandomCsReq = 7061,
-    CmdMonopolySocialEventEffectScNotify = 7062,
-    CmdMonopolyGuessBuyInformationCsReq = 7063,
-    CmdMonopolyContentUpdateScNotify = 7064,
-    CmdMonopolyGameGachaScRsp = 7065,
-    CmdMonopolyEventLoadUpdateScNotify = 7067,
-    CmdMonopolyGetRegionProgressScRsp = 7068,
-    CmdMonopolyGetRegionProgressCsReq = 7069,
-    CmdMonopolyGameSettleScNotify = 7070,
-    CmdMonopolyEventSelectFriendCsReq = 7071,
-    CmdGetMonopolyFriendRankingListCsReq = 7072,
-    CmdMonopolyUpgradeAssetScRsp = 7073,
-    CmdDailyFirstEnterMonopolyActivityScRsp = 7075,
-    CmdGetMonopolyDailyReportCsReq = 7076,
-    CmdMonopolyAcceptQuizCsReq = 7077,
-    CmdMonopolyDailySettleScNotify = 7078,
-    CmdMonopolyReRollRandomCsReq = 7079,
-    CmdMonopolyMoveScRsp = 7080,
-    CmdMonopolyScrachRaffleTicketCsReq = 7081,
-    CmdMonopolyEventSelectFriendScRsp = 7082,
-    CmdMonopolyGiveUpCurContentCsReq = 7083,
-    CmdGetSocialEventServerCacheCsReq = 7084,
-    CmdMonopolyGetDailyInitItemCsReq = 7087,
-    CmdMonopolyGuessChooseCsReq = 7088,
-    CmdMonopolyRollRandomScRsp = 7090,
-    CmdMonopolyAcceptQuizScRsp = 7091,
-    CmdMonopolyGetRafflePoolInfoCsReq = 7092,
-    CmdMonopolyCheatDiceScRsp = 7093,
-    CmdMonopolyGameRaiseRatioCsReq = 7094,
-    CmdGetMbtiReportCsReq = 7096,
-    CmdMonopolyGetRafflePoolInfoScRsp = 7098,
-    CmdMonopolyGiveUpCurContentScRsp = 7099,
-    CmdMonopolyClickMbtiReportScRsp = 7100,
+    CmdMonopolyTakePhaseRewardScRsp = 7020,
+    CmdMonopolyAcceptQuizCsReq = 7021,
+    CmdMonopolyGetRegionProgressScRsp = 7023,
+    CmdMonopolyMoveScRsp = 7024,
+    CmdDailyFirstEnterMonopolyActivityScRsp = 7025,
+    CmdMonopolyConfirmRandomCsReq = 7026,
+    CmdMonopolyCellUpdateNotify = 7027,
+    CmdMonopolyRollDiceCsReq = 7028,
+    CmdMonopolyGiveUpCurContentScRsp = 7029,
+    CmdMonopolySocialEventEffectScNotify = 7030,
+    CmdMonopolySttUpdateScNotify = 7032,
+    CmdGetSocialEventServerCacheCsReq = 7033,
+    CmdMonopolySelectOptionScRsp = 7034,
+    CmdMonopolyGameGachaCsReq = 7035,
+    CmdGetMonopolyInfoCsReq = 7036,
+    CmdMonopolyGuessChooseScRsp = 7037,
+    CmdGetMonopolyDailyReportCsReq = 7038,
+    CmdMonopolyQuizDurationChangeScNotify = 7039,
+    CmdMonopolyEventSelectFriendCsReq = 7040,
+    CmdMonopolyGetRegionProgressCsReq = 7044,
+    CmdMonopolyLikeCsReq = 7045,
+    CmdDailyFirstEnterMonopolyActivityCsReq = 7046,
+    CmdMonopolyGetRaffleTicketScRsp = 7047,
+    CmdMonopolyCheatDiceScRsp = 7048,
+    CmdMonopolyTakeRaffleTicketRewardCsReq = 7049,
+    CmdMonopolyCheatDiceCsReq = 7050,
+    CmdMonopolyRollDiceScRsp = 7052,
+    CmdMonopolyBuyGoodsCsReq = 7053,
+    CmdMonopolyGetRafflePoolInfoScRsp = 7056,
+    CmdMonopolyGameRaiseRatioCsReq = 7058,
+    CmdMonopolyUpgradeAssetCsReq = 7059,
+    CmdGetMonopolyFriendRankingListScRsp = 7060,
+    CmdMonopolyEventSelectFriendScRsp = 7061,
+    CmdMonopolyClickMbtiReportScRsp = 7062,
+    CmdMonopolyGetDailyInitItemCsReq = 7063,
+    CmdMonopolyLikeScRsp = 7064,
+    CmdMonopolyAcceptQuizScRsp = 7065,
+    CmdMonopolyClickCellScRsp = 7066,
+    CmdDeleteSocialEventServerCacheScRsp = 7068,
+    CmdMonopolyGetRafflePoolInfoCsReq = 7069,
+    CmdMonopolyTakeRaffleTicketRewardScRsp = 7070,
+    CmdMonopolyLikeScNotify = 7072,
+    CmdMonopolyGameGachaScRsp = 7073,
+    CmdMonopolyMoveCsReq = 7074,
+    CmdMonopolyReRollRandomCsReq = 7075,
+    CmdMonopolyGameSettleScNotify = 7076,
+    CmdMonopolyGiveUpCurContentCsReq = 7078,
+    CmdMonopolyGuessBuyInformationScRsp = 7079,
+    CmdGetMonopolyMbtiReportRewardScRsp = 7080,
+    CmdMonopolyGuessDrawScNotify = 7081,
+    CmdGetMonopolyMbtiReportRewardCsReq = 7082,
+    CmdDeleteSocialEventServerCacheCsReq = 7083,
+    CmdMonopolyActionResultScNotify = 7084,
+    CmdMonopolyClickMbtiReportCsReq = 7085,
+    CmdMonopolyClickCellCsReq = 7086,
+    CmdGetMonopolyDailyReportScRsp = 7087,
+    CmdMonopolyContentUpdateScNotify = 7088,
+    CmdMonopolyGetDailyInitItemScRsp = 7089,
+    CmdMonopolyBuyGoodsScRsp = 7090,
+    CmdMonopolyScrachRaffleTicketScRsp = 7091,
+    CmdGetMonopolyFriendRankingListCsReq = 7092,
+    CmdMonopolySelectOptionCsReq = 7093,
+    CmdMonopolyDailySettleScNotify = 7094,
+    CmdGetMonopolyInfoScRsp = 7095,
+    CmdMonopolyRollRandomCsReq = 7096,
+    CmdGetSocialEventServerCacheScRsp = 7097,
+    CmdMonopolyScrachRaffleTicketCsReq = 7098,
+    CmdGetMbtiReportCsReq = 7099,
 }
 impl CmdMonopolyType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -7278,382 +7391,382 @@ impl CmdMonopolyType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdMonopolyType::None => "CmdMonopolyTypeNone",
-            CmdMonopolyType::CmdGetMonopolyDailyReportScRsp => {
-                "CmdGetMonopolyDailyReportScRsp"
+            CmdMonopolyType::CmdMonopolyEventLoadUpdateScNotify => {
+                "CmdMonopolyEventLoadUpdateScNotify"
             }
-            CmdMonopolyType::CmdMonopolyActionResultScNotify => {
-                "CmdMonopolyActionResultScNotify"
+            CmdMonopolyType::CmdGetMbtiReportScRsp => "CmdGetMbtiReportScRsp",
+            CmdMonopolyType::CmdMonopolyRollRandomScRsp => "CmdMonopolyRollRandomScRsp",
+            CmdMonopolyType::CmdMonopolyConfirmRandomScRsp => {
+                "CmdMonopolyConfirmRandomScRsp"
             }
             CmdMonopolyType::CmdMonopolyGameCreateScNotify => {
                 "CmdMonopolyGameCreateScNotify"
             }
-            CmdMonopolyType::CmdMonopolyTakeRaffleTicketRewardCsReq => {
-                "CmdMonopolyTakeRaffleTicketRewardCsReq"
-            }
-            CmdMonopolyType::CmdMonopolyClickMbtiReportCsReq => {
-                "CmdMonopolyClickMbtiReportCsReq"
-            }
-            CmdMonopolyType::CmdMonopolyCheatDiceCsReq => "CmdMonopolyCheatDiceCsReq",
-            CmdMonopolyType::CmdMonopolyGameRaiseRatioScRsp => {
-                "CmdMonopolyGameRaiseRatioScRsp"
-            }
-            CmdMonopolyType::CmdMonopolyConditionUpdateScNotify => {
-                "CmdMonopolyConditionUpdateScNotify"
-            }
-            CmdMonopolyType::CmdMonopolyLikeCsReq => "CmdMonopolyLikeCsReq",
-            CmdMonopolyType::CmdMonopolyGameBingoFlipCardScRsp => {
-                "CmdMonopolyGameBingoFlipCardScRsp"
-            }
-            CmdMonopolyType::CmdMonopolyGuessBuyInformationScRsp => {
-                "CmdMonopolyGuessBuyInformationScRsp"
-            }
-            CmdMonopolyType::CmdMonopolyQuizDurationChangeScNotify => {
-                "CmdMonopolyQuizDurationChangeScNotify"
-            }
-            CmdMonopolyType::CmdMonopolySelectOptionCsReq => {
-                "CmdMonopolySelectOptionCsReq"
-            }
-            CmdMonopolyType::CmdGetMonopolyMbtiReportRewardScRsp => {
-                "CmdGetMonopolyMbtiReportRewardScRsp"
-            }
-            CmdMonopolyType::CmdMonopolyTakeRaffleTicketRewardScRsp => {
-                "CmdMonopolyTakeRaffleTicketRewardScRsp"
-            }
-            CmdMonopolyType::CmdMonopolyReRollRandomScRsp => {
-                "CmdMonopolyReRollRandomScRsp"
-            }
-            CmdMonopolyType::CmdGetMonopolyInfoScRsp => "CmdGetMonopolyInfoScRsp",
-            CmdMonopolyType::CmdMonopolyGetRaffleTicketCsReq => {
-                "CmdMonopolyGetRaffleTicketCsReq"
-            }
-            CmdMonopolyType::CmdMonopolyGuessDrawScNotify => {
-                "CmdMonopolyGuessDrawScNotify"
-            }
-            CmdMonopolyType::CmdGetMonopolyFriendRankingListScRsp => {
-                "CmdGetMonopolyFriendRankingListScRsp"
-            }
-            CmdMonopolyType::CmdMonopolyConfirmRandomScRsp => {
-                "CmdMonopolyConfirmRandomScRsp"
-            }
-            CmdMonopolyType::CmdMonopolyGameBingoFlipCardCsReq => {
-                "CmdMonopolyGameBingoFlipCardCsReq"
-            }
-            CmdMonopolyType::CmdGetSocialEventServerCacheScRsp => {
-                "CmdGetSocialEventServerCacheScRsp"
-            }
-            CmdMonopolyType::CmdMonopolyBuyGoodsCsReq => "CmdMonopolyBuyGoodsCsReq",
-            CmdMonopolyType::CmdDailyFirstEnterMonopolyActivityCsReq => {
-                "CmdDailyFirstEnterMonopolyActivityCsReq"
-            }
-            CmdMonopolyType::CmdGetMbtiReportScRsp => "CmdGetMbtiReportScRsp",
-            CmdMonopolyType::CmdMonopolyLikeScNotify => "CmdMonopolyLikeScNotify",
-            CmdMonopolyType::CmdMonopolyBuyGoodsScRsp => "CmdMonopolyBuyGoodsScRsp",
-            CmdMonopolyType::CmdMonopolyRollDiceScRsp => "CmdMonopolyRollDiceScRsp",
-            CmdMonopolyType::CmdMonopolyGetRaffleTicketScRsp => {
-                "CmdMonopolyGetRaffleTicketScRsp"
-            }
-            CmdMonopolyType::CmdMonopolyGameGachaCsReq => "CmdMonopolyGameGachaCsReq",
-            CmdMonopolyType::CmdMonopolyMoveCsReq => "CmdMonopolyMoveCsReq",
-            CmdMonopolyType::CmdDeleteSocialEventServerCacheCsReq => {
-                "CmdDeleteSocialEventServerCacheCsReq"
-            }
-            CmdMonopolyType::CmdMonopolyTakePhaseRewardScRsp => {
-                "CmdMonopolyTakePhaseRewardScRsp"
-            }
-            CmdMonopolyType::CmdMonopolyClickCellCsReq => "CmdMonopolyClickCellCsReq",
             CmdMonopolyType::CmdMonopolyTakePhaseRewardCsReq => {
                 "CmdMonopolyTakePhaseRewardCsReq"
             }
-            CmdMonopolyType::CmdMonopolyGuessChooseScRsp => "CmdMonopolyGuessChooseScRsp",
-            CmdMonopolyType::CmdMonopolyGetDailyInitItemScRsp => {
-                "CmdMonopolyGetDailyInitItemScRsp"
-            }
-            CmdMonopolyType::CmdMonopolyCellUpdateNotify => "CmdMonopolyCellUpdateNotify",
-            CmdMonopolyType::CmdMonopolySelectOptionScRsp => {
-                "CmdMonopolySelectOptionScRsp"
-            }
-            CmdMonopolyType::CmdMonopolyRollRandomCsReq => "CmdMonopolyRollRandomCsReq",
-            CmdMonopolyType::CmdMonopolyScrachRaffleTicketScRsp => {
-                "CmdMonopolyScrachRaffleTicketScRsp"
-            }
-            CmdMonopolyType::CmdMonopolyUpgradeAssetCsReq => {
-                "CmdMonopolyUpgradeAssetCsReq"
-            }
-            CmdMonopolyType::CmdMonopolySttUpdateScNotify => {
-                "CmdMonopolySttUpdateScNotify"
-            }
-            CmdMonopolyType::CmdMonopolyRollDiceCsReq => "CmdMonopolyRollDiceCsReq",
-            CmdMonopolyType::CmdDeleteSocialEventServerCacheScRsp => {
-                "CmdDeleteSocialEventServerCacheScRsp"
-            }
-            CmdMonopolyType::CmdGetMonopolyMbtiReportRewardCsReq => {
-                "CmdGetMonopolyMbtiReportRewardCsReq"
-            }
-            CmdMonopolyType::CmdMonopolyClickCellScRsp => "CmdMonopolyClickCellScRsp",
-            CmdMonopolyType::CmdGetMonopolyInfoCsReq => "CmdGetMonopolyInfoCsReq",
-            CmdMonopolyType::CmdMonopolyLikeScRsp => "CmdMonopolyLikeScRsp",
-            CmdMonopolyType::CmdMonopolyConfirmRandomCsReq => {
-                "CmdMonopolyConfirmRandomCsReq"
-            }
-            CmdMonopolyType::CmdMonopolySocialEventEffectScNotify => {
-                "CmdMonopolySocialEventEffectScNotify"
+            CmdMonopolyType::CmdMonopolyGameRaiseRatioScRsp => {
+                "CmdMonopolyGameRaiseRatioScRsp"
             }
             CmdMonopolyType::CmdMonopolyGuessBuyInformationCsReq => {
                 "CmdMonopolyGuessBuyInformationCsReq"
             }
-            CmdMonopolyType::CmdMonopolyContentUpdateScNotify => {
-                "CmdMonopolyContentUpdateScNotify"
-            }
-            CmdMonopolyType::CmdMonopolyGameGachaScRsp => "CmdMonopolyGameGachaScRsp",
-            CmdMonopolyType::CmdMonopolyEventLoadUpdateScNotify => {
-                "CmdMonopolyEventLoadUpdateScNotify"
-            }
-            CmdMonopolyType::CmdMonopolyGetRegionProgressScRsp => {
-                "CmdMonopolyGetRegionProgressScRsp"
-            }
-            CmdMonopolyType::CmdMonopolyGetRegionProgressCsReq => {
-                "CmdMonopolyGetRegionProgressCsReq"
-            }
-            CmdMonopolyType::CmdMonopolyGameSettleScNotify => {
-                "CmdMonopolyGameSettleScNotify"
-            }
-            CmdMonopolyType::CmdMonopolyEventSelectFriendCsReq => {
-                "CmdMonopolyEventSelectFriendCsReq"
-            }
-            CmdMonopolyType::CmdGetMonopolyFriendRankingListCsReq => {
-                "CmdGetMonopolyFriendRankingListCsReq"
-            }
             CmdMonopolyType::CmdMonopolyUpgradeAssetScRsp => {
                 "CmdMonopolyUpgradeAssetScRsp"
             }
+            CmdMonopolyType::CmdMonopolyGameBingoFlipCardScRsp => {
+                "CmdMonopolyGameBingoFlipCardScRsp"
+            }
+            CmdMonopolyType::CmdMonopolyConditionUpdateScNotify => {
+                "CmdMonopolyConditionUpdateScNotify"
+            }
+            CmdMonopolyType::CmdMonopolyGetRaffleTicketCsReq => {
+                "CmdMonopolyGetRaffleTicketCsReq"
+            }
+            CmdMonopolyType::CmdMonopolyGameBingoFlipCardCsReq => {
+                "CmdMonopolyGameBingoFlipCardCsReq"
+            }
+            CmdMonopolyType::CmdMonopolyGuessChooseCsReq => "CmdMonopolyGuessChooseCsReq",
+            CmdMonopolyType::CmdMonopolyReRollRandomScRsp => {
+                "CmdMonopolyReRollRandomScRsp"
+            }
+            CmdMonopolyType::CmdMonopolyTakePhaseRewardScRsp => {
+                "CmdMonopolyTakePhaseRewardScRsp"
+            }
+            CmdMonopolyType::CmdMonopolyAcceptQuizCsReq => "CmdMonopolyAcceptQuizCsReq",
+            CmdMonopolyType::CmdMonopolyGetRegionProgressScRsp => {
+                "CmdMonopolyGetRegionProgressScRsp"
+            }
+            CmdMonopolyType::CmdMonopolyMoveScRsp => "CmdMonopolyMoveScRsp",
             CmdMonopolyType::CmdDailyFirstEnterMonopolyActivityScRsp => {
                 "CmdDailyFirstEnterMonopolyActivityScRsp"
             }
-            CmdMonopolyType::CmdGetMonopolyDailyReportCsReq => {
-                "CmdGetMonopolyDailyReportCsReq"
+            CmdMonopolyType::CmdMonopolyConfirmRandomCsReq => {
+                "CmdMonopolyConfirmRandomCsReq"
             }
-            CmdMonopolyType::CmdMonopolyAcceptQuizCsReq => "CmdMonopolyAcceptQuizCsReq",
-            CmdMonopolyType::CmdMonopolyDailySettleScNotify => {
-                "CmdMonopolyDailySettleScNotify"
+            CmdMonopolyType::CmdMonopolyCellUpdateNotify => "CmdMonopolyCellUpdateNotify",
+            CmdMonopolyType::CmdMonopolyRollDiceCsReq => "CmdMonopolyRollDiceCsReq",
+            CmdMonopolyType::CmdMonopolyGiveUpCurContentScRsp => {
+                "CmdMonopolyGiveUpCurContentScRsp"
             }
-            CmdMonopolyType::CmdMonopolyReRollRandomCsReq => {
-                "CmdMonopolyReRollRandomCsReq"
+            CmdMonopolyType::CmdMonopolySocialEventEffectScNotify => {
+                "CmdMonopolySocialEventEffectScNotify"
             }
-            CmdMonopolyType::CmdMonopolyMoveScRsp => "CmdMonopolyMoveScRsp",
-            CmdMonopolyType::CmdMonopolyScrachRaffleTicketCsReq => {
-                "CmdMonopolyScrachRaffleTicketCsReq"
-            }
-            CmdMonopolyType::CmdMonopolyEventSelectFriendScRsp => {
-                "CmdMonopolyEventSelectFriendScRsp"
-            }
-            CmdMonopolyType::CmdMonopolyGiveUpCurContentCsReq => {
-                "CmdMonopolyGiveUpCurContentCsReq"
+            CmdMonopolyType::CmdMonopolySttUpdateScNotify => {
+                "CmdMonopolySttUpdateScNotify"
             }
             CmdMonopolyType::CmdGetSocialEventServerCacheCsReq => {
                 "CmdGetSocialEventServerCacheCsReq"
             }
-            CmdMonopolyType::CmdMonopolyGetDailyInitItemCsReq => {
-                "CmdMonopolyGetDailyInitItemCsReq"
+            CmdMonopolyType::CmdMonopolySelectOptionScRsp => {
+                "CmdMonopolySelectOptionScRsp"
             }
-            CmdMonopolyType::CmdMonopolyGuessChooseCsReq => "CmdMonopolyGuessChooseCsReq",
-            CmdMonopolyType::CmdMonopolyRollRandomScRsp => "CmdMonopolyRollRandomScRsp",
-            CmdMonopolyType::CmdMonopolyAcceptQuizScRsp => "CmdMonopolyAcceptQuizScRsp",
-            CmdMonopolyType::CmdMonopolyGetRafflePoolInfoCsReq => {
-                "CmdMonopolyGetRafflePoolInfoCsReq"
+            CmdMonopolyType::CmdMonopolyGameGachaCsReq => "CmdMonopolyGameGachaCsReq",
+            CmdMonopolyType::CmdGetMonopolyInfoCsReq => "CmdGetMonopolyInfoCsReq",
+            CmdMonopolyType::CmdMonopolyGuessChooseScRsp => "CmdMonopolyGuessChooseScRsp",
+            CmdMonopolyType::CmdGetMonopolyDailyReportCsReq => {
+                "CmdGetMonopolyDailyReportCsReq"
+            }
+            CmdMonopolyType::CmdMonopolyQuizDurationChangeScNotify => {
+                "CmdMonopolyQuizDurationChangeScNotify"
+            }
+            CmdMonopolyType::CmdMonopolyEventSelectFriendCsReq => {
+                "CmdMonopolyEventSelectFriendCsReq"
+            }
+            CmdMonopolyType::CmdMonopolyGetRegionProgressCsReq => {
+                "CmdMonopolyGetRegionProgressCsReq"
+            }
+            CmdMonopolyType::CmdMonopolyLikeCsReq => "CmdMonopolyLikeCsReq",
+            CmdMonopolyType::CmdDailyFirstEnterMonopolyActivityCsReq => {
+                "CmdDailyFirstEnterMonopolyActivityCsReq"
+            }
+            CmdMonopolyType::CmdMonopolyGetRaffleTicketScRsp => {
+                "CmdMonopolyGetRaffleTicketScRsp"
             }
             CmdMonopolyType::CmdMonopolyCheatDiceScRsp => "CmdMonopolyCheatDiceScRsp",
-            CmdMonopolyType::CmdMonopolyGameRaiseRatioCsReq => {
-                "CmdMonopolyGameRaiseRatioCsReq"
+            CmdMonopolyType::CmdMonopolyTakeRaffleTicketRewardCsReq => {
+                "CmdMonopolyTakeRaffleTicketRewardCsReq"
             }
-            CmdMonopolyType::CmdGetMbtiReportCsReq => "CmdGetMbtiReportCsReq",
+            CmdMonopolyType::CmdMonopolyCheatDiceCsReq => "CmdMonopolyCheatDiceCsReq",
+            CmdMonopolyType::CmdMonopolyRollDiceScRsp => "CmdMonopolyRollDiceScRsp",
+            CmdMonopolyType::CmdMonopolyBuyGoodsCsReq => "CmdMonopolyBuyGoodsCsReq",
             CmdMonopolyType::CmdMonopolyGetRafflePoolInfoScRsp => {
                 "CmdMonopolyGetRafflePoolInfoScRsp"
             }
-            CmdMonopolyType::CmdMonopolyGiveUpCurContentScRsp => {
-                "CmdMonopolyGiveUpCurContentScRsp"
+            CmdMonopolyType::CmdMonopolyGameRaiseRatioCsReq => {
+                "CmdMonopolyGameRaiseRatioCsReq"
+            }
+            CmdMonopolyType::CmdMonopolyUpgradeAssetCsReq => {
+                "CmdMonopolyUpgradeAssetCsReq"
+            }
+            CmdMonopolyType::CmdGetMonopolyFriendRankingListScRsp => {
+                "CmdGetMonopolyFriendRankingListScRsp"
+            }
+            CmdMonopolyType::CmdMonopolyEventSelectFriendScRsp => {
+                "CmdMonopolyEventSelectFriendScRsp"
             }
             CmdMonopolyType::CmdMonopolyClickMbtiReportScRsp => {
                 "CmdMonopolyClickMbtiReportScRsp"
             }
+            CmdMonopolyType::CmdMonopolyGetDailyInitItemCsReq => {
+                "CmdMonopolyGetDailyInitItemCsReq"
+            }
+            CmdMonopolyType::CmdMonopolyLikeScRsp => "CmdMonopolyLikeScRsp",
+            CmdMonopolyType::CmdMonopolyAcceptQuizScRsp => "CmdMonopolyAcceptQuizScRsp",
+            CmdMonopolyType::CmdMonopolyClickCellScRsp => "CmdMonopolyClickCellScRsp",
+            CmdMonopolyType::CmdDeleteSocialEventServerCacheScRsp => {
+                "CmdDeleteSocialEventServerCacheScRsp"
+            }
+            CmdMonopolyType::CmdMonopolyGetRafflePoolInfoCsReq => {
+                "CmdMonopolyGetRafflePoolInfoCsReq"
+            }
+            CmdMonopolyType::CmdMonopolyTakeRaffleTicketRewardScRsp => {
+                "CmdMonopolyTakeRaffleTicketRewardScRsp"
+            }
+            CmdMonopolyType::CmdMonopolyLikeScNotify => "CmdMonopolyLikeScNotify",
+            CmdMonopolyType::CmdMonopolyGameGachaScRsp => "CmdMonopolyGameGachaScRsp",
+            CmdMonopolyType::CmdMonopolyMoveCsReq => "CmdMonopolyMoveCsReq",
+            CmdMonopolyType::CmdMonopolyReRollRandomCsReq => {
+                "CmdMonopolyReRollRandomCsReq"
+            }
+            CmdMonopolyType::CmdMonopolyGameSettleScNotify => {
+                "CmdMonopolyGameSettleScNotify"
+            }
+            CmdMonopolyType::CmdMonopolyGiveUpCurContentCsReq => {
+                "CmdMonopolyGiveUpCurContentCsReq"
+            }
+            CmdMonopolyType::CmdMonopolyGuessBuyInformationScRsp => {
+                "CmdMonopolyGuessBuyInformationScRsp"
+            }
+            CmdMonopolyType::CmdGetMonopolyMbtiReportRewardScRsp => {
+                "CmdGetMonopolyMbtiReportRewardScRsp"
+            }
+            CmdMonopolyType::CmdMonopolyGuessDrawScNotify => {
+                "CmdMonopolyGuessDrawScNotify"
+            }
+            CmdMonopolyType::CmdGetMonopolyMbtiReportRewardCsReq => {
+                "CmdGetMonopolyMbtiReportRewardCsReq"
+            }
+            CmdMonopolyType::CmdDeleteSocialEventServerCacheCsReq => {
+                "CmdDeleteSocialEventServerCacheCsReq"
+            }
+            CmdMonopolyType::CmdMonopolyActionResultScNotify => {
+                "CmdMonopolyActionResultScNotify"
+            }
+            CmdMonopolyType::CmdMonopolyClickMbtiReportCsReq => {
+                "CmdMonopolyClickMbtiReportCsReq"
+            }
+            CmdMonopolyType::CmdMonopolyClickCellCsReq => "CmdMonopolyClickCellCsReq",
+            CmdMonopolyType::CmdGetMonopolyDailyReportScRsp => {
+                "CmdGetMonopolyDailyReportScRsp"
+            }
+            CmdMonopolyType::CmdMonopolyContentUpdateScNotify => {
+                "CmdMonopolyContentUpdateScNotify"
+            }
+            CmdMonopolyType::CmdMonopolyGetDailyInitItemScRsp => {
+                "CmdMonopolyGetDailyInitItemScRsp"
+            }
+            CmdMonopolyType::CmdMonopolyBuyGoodsScRsp => "CmdMonopolyBuyGoodsScRsp",
+            CmdMonopolyType::CmdMonopolyScrachRaffleTicketScRsp => {
+                "CmdMonopolyScrachRaffleTicketScRsp"
+            }
+            CmdMonopolyType::CmdGetMonopolyFriendRankingListCsReq => {
+                "CmdGetMonopolyFriendRankingListCsReq"
+            }
+            CmdMonopolyType::CmdMonopolySelectOptionCsReq => {
+                "CmdMonopolySelectOptionCsReq"
+            }
+            CmdMonopolyType::CmdMonopolyDailySettleScNotify => {
+                "CmdMonopolyDailySettleScNotify"
+            }
+            CmdMonopolyType::CmdGetMonopolyInfoScRsp => "CmdGetMonopolyInfoScRsp",
+            CmdMonopolyType::CmdMonopolyRollRandomCsReq => "CmdMonopolyRollRandomCsReq",
+            CmdMonopolyType::CmdGetSocialEventServerCacheScRsp => {
+                "CmdGetSocialEventServerCacheScRsp"
+            }
+            CmdMonopolyType::CmdMonopolyScrachRaffleTicketCsReq => {
+                "CmdMonopolyScrachRaffleTicketCsReq"
+            }
+            CmdMonopolyType::CmdGetMbtiReportCsReq => "CmdGetMbtiReportCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdMonopolyTypeNone" => Some(Self::None),
-            "CmdGetMonopolyDailyReportScRsp" => {
-                Some(Self::CmdGetMonopolyDailyReportScRsp)
-            }
-            "CmdMonopolyActionResultScNotify" => {
-                Some(Self::CmdMonopolyActionResultScNotify)
-            }
-            "CmdMonopolyGameCreateScNotify" => Some(Self::CmdMonopolyGameCreateScNotify),
-            "CmdMonopolyTakeRaffleTicketRewardCsReq" => {
-                Some(Self::CmdMonopolyTakeRaffleTicketRewardCsReq)
-            }
-            "CmdMonopolyClickMbtiReportCsReq" => {
-                Some(Self::CmdMonopolyClickMbtiReportCsReq)
-            }
-            "CmdMonopolyCheatDiceCsReq" => Some(Self::CmdMonopolyCheatDiceCsReq),
-            "CmdMonopolyGameRaiseRatioScRsp" => {
-                Some(Self::CmdMonopolyGameRaiseRatioScRsp)
-            }
-            "CmdMonopolyConditionUpdateScNotify" => {
-                Some(Self::CmdMonopolyConditionUpdateScNotify)
-            }
-            "CmdMonopolyLikeCsReq" => Some(Self::CmdMonopolyLikeCsReq),
-            "CmdMonopolyGameBingoFlipCardScRsp" => {
-                Some(Self::CmdMonopolyGameBingoFlipCardScRsp)
-            }
-            "CmdMonopolyGuessBuyInformationScRsp" => {
-                Some(Self::CmdMonopolyGuessBuyInformationScRsp)
-            }
-            "CmdMonopolyQuizDurationChangeScNotify" => {
-                Some(Self::CmdMonopolyQuizDurationChangeScNotify)
-            }
-            "CmdMonopolySelectOptionCsReq" => Some(Self::CmdMonopolySelectOptionCsReq),
-            "CmdGetMonopolyMbtiReportRewardScRsp" => {
-                Some(Self::CmdGetMonopolyMbtiReportRewardScRsp)
-            }
-            "CmdMonopolyTakeRaffleTicketRewardScRsp" => {
-                Some(Self::CmdMonopolyTakeRaffleTicketRewardScRsp)
-            }
-            "CmdMonopolyReRollRandomScRsp" => Some(Self::CmdMonopolyReRollRandomScRsp),
-            "CmdGetMonopolyInfoScRsp" => Some(Self::CmdGetMonopolyInfoScRsp),
-            "CmdMonopolyGetRaffleTicketCsReq" => {
-                Some(Self::CmdMonopolyGetRaffleTicketCsReq)
-            }
-            "CmdMonopolyGuessDrawScNotify" => Some(Self::CmdMonopolyGuessDrawScNotify),
-            "CmdGetMonopolyFriendRankingListScRsp" => {
-                Some(Self::CmdGetMonopolyFriendRankingListScRsp)
-            }
-            "CmdMonopolyConfirmRandomScRsp" => Some(Self::CmdMonopolyConfirmRandomScRsp),
-            "CmdMonopolyGameBingoFlipCardCsReq" => {
-                Some(Self::CmdMonopolyGameBingoFlipCardCsReq)
-            }
-            "CmdGetSocialEventServerCacheScRsp" => {
-                Some(Self::CmdGetSocialEventServerCacheScRsp)
-            }
-            "CmdMonopolyBuyGoodsCsReq" => Some(Self::CmdMonopolyBuyGoodsCsReq),
-            "CmdDailyFirstEnterMonopolyActivityCsReq" => {
-                Some(Self::CmdDailyFirstEnterMonopolyActivityCsReq)
+            "CmdMonopolyEventLoadUpdateScNotify" => {
+                Some(Self::CmdMonopolyEventLoadUpdateScNotify)
             }
             "CmdGetMbtiReportScRsp" => Some(Self::CmdGetMbtiReportScRsp),
-            "CmdMonopolyLikeScNotify" => Some(Self::CmdMonopolyLikeScNotify),
-            "CmdMonopolyBuyGoodsScRsp" => Some(Self::CmdMonopolyBuyGoodsScRsp),
-            "CmdMonopolyRollDiceScRsp" => Some(Self::CmdMonopolyRollDiceScRsp),
-            "CmdMonopolyGetRaffleTicketScRsp" => {
-                Some(Self::CmdMonopolyGetRaffleTicketScRsp)
-            }
-            "CmdMonopolyGameGachaCsReq" => Some(Self::CmdMonopolyGameGachaCsReq),
-            "CmdMonopolyMoveCsReq" => Some(Self::CmdMonopolyMoveCsReq),
-            "CmdDeleteSocialEventServerCacheCsReq" => {
-                Some(Self::CmdDeleteSocialEventServerCacheCsReq)
-            }
-            "CmdMonopolyTakePhaseRewardScRsp" => {
-                Some(Self::CmdMonopolyTakePhaseRewardScRsp)
-            }
-            "CmdMonopolyClickCellCsReq" => Some(Self::CmdMonopolyClickCellCsReq),
+            "CmdMonopolyRollRandomScRsp" => Some(Self::CmdMonopolyRollRandomScRsp),
+            "CmdMonopolyConfirmRandomScRsp" => Some(Self::CmdMonopolyConfirmRandomScRsp),
+            "CmdMonopolyGameCreateScNotify" => Some(Self::CmdMonopolyGameCreateScNotify),
             "CmdMonopolyTakePhaseRewardCsReq" => {
                 Some(Self::CmdMonopolyTakePhaseRewardCsReq)
             }
-            "CmdMonopolyGuessChooseScRsp" => Some(Self::CmdMonopolyGuessChooseScRsp),
-            "CmdMonopolyGetDailyInitItemScRsp" => {
-                Some(Self::CmdMonopolyGetDailyInitItemScRsp)
-            }
-            "CmdMonopolyCellUpdateNotify" => Some(Self::CmdMonopolyCellUpdateNotify),
-            "CmdMonopolySelectOptionScRsp" => Some(Self::CmdMonopolySelectOptionScRsp),
-            "CmdMonopolyRollRandomCsReq" => Some(Self::CmdMonopolyRollRandomCsReq),
-            "CmdMonopolyScrachRaffleTicketScRsp" => {
-                Some(Self::CmdMonopolyScrachRaffleTicketScRsp)
-            }
-            "CmdMonopolyUpgradeAssetCsReq" => Some(Self::CmdMonopolyUpgradeAssetCsReq),
-            "CmdMonopolySttUpdateScNotify" => Some(Self::CmdMonopolySttUpdateScNotify),
-            "CmdMonopolyRollDiceCsReq" => Some(Self::CmdMonopolyRollDiceCsReq),
-            "CmdDeleteSocialEventServerCacheScRsp" => {
-                Some(Self::CmdDeleteSocialEventServerCacheScRsp)
-            }
-            "CmdGetMonopolyMbtiReportRewardCsReq" => {
-                Some(Self::CmdGetMonopolyMbtiReportRewardCsReq)
-            }
-            "CmdMonopolyClickCellScRsp" => Some(Self::CmdMonopolyClickCellScRsp),
-            "CmdGetMonopolyInfoCsReq" => Some(Self::CmdGetMonopolyInfoCsReq),
-            "CmdMonopolyLikeScRsp" => Some(Self::CmdMonopolyLikeScRsp),
-            "CmdMonopolyConfirmRandomCsReq" => Some(Self::CmdMonopolyConfirmRandomCsReq),
-            "CmdMonopolySocialEventEffectScNotify" => {
-                Some(Self::CmdMonopolySocialEventEffectScNotify)
+            "CmdMonopolyGameRaiseRatioScRsp" => {
+                Some(Self::CmdMonopolyGameRaiseRatioScRsp)
             }
             "CmdMonopolyGuessBuyInformationCsReq" => {
                 Some(Self::CmdMonopolyGuessBuyInformationCsReq)
             }
-            "CmdMonopolyContentUpdateScNotify" => {
-                Some(Self::CmdMonopolyContentUpdateScNotify)
+            "CmdMonopolyUpgradeAssetScRsp" => Some(Self::CmdMonopolyUpgradeAssetScRsp),
+            "CmdMonopolyGameBingoFlipCardScRsp" => {
+                Some(Self::CmdMonopolyGameBingoFlipCardScRsp)
             }
-            "CmdMonopolyGameGachaScRsp" => Some(Self::CmdMonopolyGameGachaScRsp),
-            "CmdMonopolyEventLoadUpdateScNotify" => {
-                Some(Self::CmdMonopolyEventLoadUpdateScNotify)
+            "CmdMonopolyConditionUpdateScNotify" => {
+                Some(Self::CmdMonopolyConditionUpdateScNotify)
             }
+            "CmdMonopolyGetRaffleTicketCsReq" => {
+                Some(Self::CmdMonopolyGetRaffleTicketCsReq)
+            }
+            "CmdMonopolyGameBingoFlipCardCsReq" => {
+                Some(Self::CmdMonopolyGameBingoFlipCardCsReq)
+            }
+            "CmdMonopolyGuessChooseCsReq" => Some(Self::CmdMonopolyGuessChooseCsReq),
+            "CmdMonopolyReRollRandomScRsp" => Some(Self::CmdMonopolyReRollRandomScRsp),
+            "CmdMonopolyTakePhaseRewardScRsp" => {
+                Some(Self::CmdMonopolyTakePhaseRewardScRsp)
+            }
+            "CmdMonopolyAcceptQuizCsReq" => Some(Self::CmdMonopolyAcceptQuizCsReq),
             "CmdMonopolyGetRegionProgressScRsp" => {
                 Some(Self::CmdMonopolyGetRegionProgressScRsp)
+            }
+            "CmdMonopolyMoveScRsp" => Some(Self::CmdMonopolyMoveScRsp),
+            "CmdDailyFirstEnterMonopolyActivityScRsp" => {
+                Some(Self::CmdDailyFirstEnterMonopolyActivityScRsp)
+            }
+            "CmdMonopolyConfirmRandomCsReq" => Some(Self::CmdMonopolyConfirmRandomCsReq),
+            "CmdMonopolyCellUpdateNotify" => Some(Self::CmdMonopolyCellUpdateNotify),
+            "CmdMonopolyRollDiceCsReq" => Some(Self::CmdMonopolyRollDiceCsReq),
+            "CmdMonopolyGiveUpCurContentScRsp" => {
+                Some(Self::CmdMonopolyGiveUpCurContentScRsp)
+            }
+            "CmdMonopolySocialEventEffectScNotify" => {
+                Some(Self::CmdMonopolySocialEventEffectScNotify)
+            }
+            "CmdMonopolySttUpdateScNotify" => Some(Self::CmdMonopolySttUpdateScNotify),
+            "CmdGetSocialEventServerCacheCsReq" => {
+                Some(Self::CmdGetSocialEventServerCacheCsReq)
+            }
+            "CmdMonopolySelectOptionScRsp" => Some(Self::CmdMonopolySelectOptionScRsp),
+            "CmdMonopolyGameGachaCsReq" => Some(Self::CmdMonopolyGameGachaCsReq),
+            "CmdGetMonopolyInfoCsReq" => Some(Self::CmdGetMonopolyInfoCsReq),
+            "CmdMonopolyGuessChooseScRsp" => Some(Self::CmdMonopolyGuessChooseScRsp),
+            "CmdGetMonopolyDailyReportCsReq" => {
+                Some(Self::CmdGetMonopolyDailyReportCsReq)
+            }
+            "CmdMonopolyQuizDurationChangeScNotify" => {
+                Some(Self::CmdMonopolyQuizDurationChangeScNotify)
+            }
+            "CmdMonopolyEventSelectFriendCsReq" => {
+                Some(Self::CmdMonopolyEventSelectFriendCsReq)
             }
             "CmdMonopolyGetRegionProgressCsReq" => {
                 Some(Self::CmdMonopolyGetRegionProgressCsReq)
             }
-            "CmdMonopolyGameSettleScNotify" => Some(Self::CmdMonopolyGameSettleScNotify),
-            "CmdMonopolyEventSelectFriendCsReq" => {
-                Some(Self::CmdMonopolyEventSelectFriendCsReq)
+            "CmdMonopolyLikeCsReq" => Some(Self::CmdMonopolyLikeCsReq),
+            "CmdDailyFirstEnterMonopolyActivityCsReq" => {
+                Some(Self::CmdDailyFirstEnterMonopolyActivityCsReq)
             }
-            "CmdGetMonopolyFriendRankingListCsReq" => {
-                Some(Self::CmdGetMonopolyFriendRankingListCsReq)
+            "CmdMonopolyGetRaffleTicketScRsp" => {
+                Some(Self::CmdMonopolyGetRaffleTicketScRsp)
             }
-            "CmdMonopolyUpgradeAssetScRsp" => Some(Self::CmdMonopolyUpgradeAssetScRsp),
-            "CmdDailyFirstEnterMonopolyActivityScRsp" => {
-                Some(Self::CmdDailyFirstEnterMonopolyActivityScRsp)
+            "CmdMonopolyCheatDiceScRsp" => Some(Self::CmdMonopolyCheatDiceScRsp),
+            "CmdMonopolyTakeRaffleTicketRewardCsReq" => {
+                Some(Self::CmdMonopolyTakeRaffleTicketRewardCsReq)
             }
-            "CmdGetMonopolyDailyReportCsReq" => {
-                Some(Self::CmdGetMonopolyDailyReportCsReq)
+            "CmdMonopolyCheatDiceCsReq" => Some(Self::CmdMonopolyCheatDiceCsReq),
+            "CmdMonopolyRollDiceScRsp" => Some(Self::CmdMonopolyRollDiceScRsp),
+            "CmdMonopolyBuyGoodsCsReq" => Some(Self::CmdMonopolyBuyGoodsCsReq),
+            "CmdMonopolyGetRafflePoolInfoScRsp" => {
+                Some(Self::CmdMonopolyGetRafflePoolInfoScRsp)
             }
-            "CmdMonopolyAcceptQuizCsReq" => Some(Self::CmdMonopolyAcceptQuizCsReq),
-            "CmdMonopolyDailySettleScNotify" => {
-                Some(Self::CmdMonopolyDailySettleScNotify)
+            "CmdMonopolyGameRaiseRatioCsReq" => {
+                Some(Self::CmdMonopolyGameRaiseRatioCsReq)
             }
-            "CmdMonopolyReRollRandomCsReq" => Some(Self::CmdMonopolyReRollRandomCsReq),
-            "CmdMonopolyMoveScRsp" => Some(Self::CmdMonopolyMoveScRsp),
-            "CmdMonopolyScrachRaffleTicketCsReq" => {
-                Some(Self::CmdMonopolyScrachRaffleTicketCsReq)
+            "CmdMonopolyUpgradeAssetCsReq" => Some(Self::CmdMonopolyUpgradeAssetCsReq),
+            "CmdGetMonopolyFriendRankingListScRsp" => {
+                Some(Self::CmdGetMonopolyFriendRankingListScRsp)
             }
             "CmdMonopolyEventSelectFriendScRsp" => {
                 Some(Self::CmdMonopolyEventSelectFriendScRsp)
             }
-            "CmdMonopolyGiveUpCurContentCsReq" => {
-                Some(Self::CmdMonopolyGiveUpCurContentCsReq)
-            }
-            "CmdGetSocialEventServerCacheCsReq" => {
-                Some(Self::CmdGetSocialEventServerCacheCsReq)
+            "CmdMonopolyClickMbtiReportScRsp" => {
+                Some(Self::CmdMonopolyClickMbtiReportScRsp)
             }
             "CmdMonopolyGetDailyInitItemCsReq" => {
                 Some(Self::CmdMonopolyGetDailyInitItemCsReq)
             }
-            "CmdMonopolyGuessChooseCsReq" => Some(Self::CmdMonopolyGuessChooseCsReq),
-            "CmdMonopolyRollRandomScRsp" => Some(Self::CmdMonopolyRollRandomScRsp),
+            "CmdMonopolyLikeScRsp" => Some(Self::CmdMonopolyLikeScRsp),
             "CmdMonopolyAcceptQuizScRsp" => Some(Self::CmdMonopolyAcceptQuizScRsp),
+            "CmdMonopolyClickCellScRsp" => Some(Self::CmdMonopolyClickCellScRsp),
+            "CmdDeleteSocialEventServerCacheScRsp" => {
+                Some(Self::CmdDeleteSocialEventServerCacheScRsp)
+            }
             "CmdMonopolyGetRafflePoolInfoCsReq" => {
                 Some(Self::CmdMonopolyGetRafflePoolInfoCsReq)
             }
-            "CmdMonopolyCheatDiceScRsp" => Some(Self::CmdMonopolyCheatDiceScRsp),
-            "CmdMonopolyGameRaiseRatioCsReq" => {
-                Some(Self::CmdMonopolyGameRaiseRatioCsReq)
+            "CmdMonopolyTakeRaffleTicketRewardScRsp" => {
+                Some(Self::CmdMonopolyTakeRaffleTicketRewardScRsp)
+            }
+            "CmdMonopolyLikeScNotify" => Some(Self::CmdMonopolyLikeScNotify),
+            "CmdMonopolyGameGachaScRsp" => Some(Self::CmdMonopolyGameGachaScRsp),
+            "CmdMonopolyMoveCsReq" => Some(Self::CmdMonopolyMoveCsReq),
+            "CmdMonopolyReRollRandomCsReq" => Some(Self::CmdMonopolyReRollRandomCsReq),
+            "CmdMonopolyGameSettleScNotify" => Some(Self::CmdMonopolyGameSettleScNotify),
+            "CmdMonopolyGiveUpCurContentCsReq" => {
+                Some(Self::CmdMonopolyGiveUpCurContentCsReq)
+            }
+            "CmdMonopolyGuessBuyInformationScRsp" => {
+                Some(Self::CmdMonopolyGuessBuyInformationScRsp)
+            }
+            "CmdGetMonopolyMbtiReportRewardScRsp" => {
+                Some(Self::CmdGetMonopolyMbtiReportRewardScRsp)
+            }
+            "CmdMonopolyGuessDrawScNotify" => Some(Self::CmdMonopolyGuessDrawScNotify),
+            "CmdGetMonopolyMbtiReportRewardCsReq" => {
+                Some(Self::CmdGetMonopolyMbtiReportRewardCsReq)
+            }
+            "CmdDeleteSocialEventServerCacheCsReq" => {
+                Some(Self::CmdDeleteSocialEventServerCacheCsReq)
+            }
+            "CmdMonopolyActionResultScNotify" => {
+                Some(Self::CmdMonopolyActionResultScNotify)
+            }
+            "CmdMonopolyClickMbtiReportCsReq" => {
+                Some(Self::CmdMonopolyClickMbtiReportCsReq)
+            }
+            "CmdMonopolyClickCellCsReq" => Some(Self::CmdMonopolyClickCellCsReq),
+            "CmdGetMonopolyDailyReportScRsp" => {
+                Some(Self::CmdGetMonopolyDailyReportScRsp)
+            }
+            "CmdMonopolyContentUpdateScNotify" => {
+                Some(Self::CmdMonopolyContentUpdateScNotify)
+            }
+            "CmdMonopolyGetDailyInitItemScRsp" => {
+                Some(Self::CmdMonopolyGetDailyInitItemScRsp)
+            }
+            "CmdMonopolyBuyGoodsScRsp" => Some(Self::CmdMonopolyBuyGoodsScRsp),
+            "CmdMonopolyScrachRaffleTicketScRsp" => {
+                Some(Self::CmdMonopolyScrachRaffleTicketScRsp)
+            }
+            "CmdGetMonopolyFriendRankingListCsReq" => {
+                Some(Self::CmdGetMonopolyFriendRankingListCsReq)
+            }
+            "CmdMonopolySelectOptionCsReq" => Some(Self::CmdMonopolySelectOptionCsReq),
+            "CmdMonopolyDailySettleScNotify" => {
+                Some(Self::CmdMonopolyDailySettleScNotify)
+            }
+            "CmdGetMonopolyInfoScRsp" => Some(Self::CmdGetMonopolyInfoScRsp),
+            "CmdMonopolyRollRandomCsReq" => Some(Self::CmdMonopolyRollRandomCsReq),
+            "CmdGetSocialEventServerCacheScRsp" => {
+                Some(Self::CmdGetSocialEventServerCacheScRsp)
+            }
+            "CmdMonopolyScrachRaffleTicketCsReq" => {
+                Some(Self::CmdMonopolyScrachRaffleTicketCsReq)
             }
             "CmdGetMbtiReportCsReq" => Some(Self::CmdGetMbtiReportCsReq),
-            "CmdMonopolyGetRafflePoolInfoScRsp" => {
-                Some(Self::CmdMonopolyGetRafflePoolInfoScRsp)
-            }
-            "CmdMonopolyGiveUpCurContentScRsp" => {
-                Some(Self::CmdMonopolyGiveUpCurContentScRsp)
-            }
-            "CmdMonopolyClickMbtiReportScRsp" => {
-                Some(Self::CmdMonopolyClickMbtiReportScRsp)
-            }
             _ => None,
         }
     }
@@ -7663,15 +7776,15 @@ impl CmdMonopolyType {
 #[repr(i32)]
 pub enum CmdMultiplayerType {
     None = 0,
-    CmdMultiplayerGetFightGateCsReq = 1003,
-    CmdMultiplayerFightGameStateScRsp = 1020,
-    CmdMultiplayerFightGameStartScNotify = 1034,
-    CmdMultiplayerFightGameFinishScNotify = 1037,
-    CmdMultiplayerFightGiveUpCsReq = 1039,
-    CmdMultiplayerGetFightGateScRsp = 1046,
-    CmdMultiplayerFightGiveUpScRsp = 1053,
-    CmdMultiplayerFightGameStateCsReq = 1059,
-    CmdMultiplayerMatch3FinishScNotify = 1080,
+    CmdMultiplayerMatch3FinishScNotify = 1024,
+    CmdMultiplayerGetFightGateScRsp = 1027,
+    CmdMultiplayerFightGiveUpScRsp = 1028,
+    CmdMultiplayerFightGameStateCsReq = 1036,
+    CmdMultiplayerFightGameStartScNotify = 1052,
+    CmdMultiplayerFightGiveUpCsReq = 1067,
+    CmdMultiplayerFightGameFinishScNotify = 1074,
+    CmdMultiplayerGetFightGateCsReq = 1084,
+    CmdMultiplayerFightGameStateScRsp = 1095,
 }
 impl CmdMultiplayerType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -7681,20 +7794,8 @@ impl CmdMultiplayerType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdMultiplayerType::None => "CmdMultiplayerTypeNone",
-            CmdMultiplayerType::CmdMultiplayerGetFightGateCsReq => {
-                "CmdMultiplayerGetFightGateCsReq"
-            }
-            CmdMultiplayerType::CmdMultiplayerFightGameStateScRsp => {
-                "CmdMultiplayerFightGameStateScRsp"
-            }
-            CmdMultiplayerType::CmdMultiplayerFightGameStartScNotify => {
-                "CmdMultiplayerFightGameStartScNotify"
-            }
-            CmdMultiplayerType::CmdMultiplayerFightGameFinishScNotify => {
-                "CmdMultiplayerFightGameFinishScNotify"
-            }
-            CmdMultiplayerType::CmdMultiplayerFightGiveUpCsReq => {
-                "CmdMultiplayerFightGiveUpCsReq"
+            CmdMultiplayerType::CmdMultiplayerMatch3FinishScNotify => {
+                "CmdMultiplayerMatch3FinishScNotify"
             }
             CmdMultiplayerType::CmdMultiplayerGetFightGateScRsp => {
                 "CmdMultiplayerGetFightGateScRsp"
@@ -7705,8 +7806,20 @@ impl CmdMultiplayerType {
             CmdMultiplayerType::CmdMultiplayerFightGameStateCsReq => {
                 "CmdMultiplayerFightGameStateCsReq"
             }
-            CmdMultiplayerType::CmdMultiplayerMatch3FinishScNotify => {
-                "CmdMultiplayerMatch3FinishScNotify"
+            CmdMultiplayerType::CmdMultiplayerFightGameStartScNotify => {
+                "CmdMultiplayerFightGameStartScNotify"
+            }
+            CmdMultiplayerType::CmdMultiplayerFightGiveUpCsReq => {
+                "CmdMultiplayerFightGiveUpCsReq"
+            }
+            CmdMultiplayerType::CmdMultiplayerFightGameFinishScNotify => {
+                "CmdMultiplayerFightGameFinishScNotify"
+            }
+            CmdMultiplayerType::CmdMultiplayerGetFightGateCsReq => {
+                "CmdMultiplayerGetFightGateCsReq"
+            }
+            CmdMultiplayerType::CmdMultiplayerFightGameStateScRsp => {
+                "CmdMultiplayerFightGameStateScRsp"
             }
         }
     }
@@ -7714,20 +7827,8 @@ impl CmdMultiplayerType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdMultiplayerTypeNone" => Some(Self::None),
-            "CmdMultiplayerGetFightGateCsReq" => {
-                Some(Self::CmdMultiplayerGetFightGateCsReq)
-            }
-            "CmdMultiplayerFightGameStateScRsp" => {
-                Some(Self::CmdMultiplayerFightGameStateScRsp)
-            }
-            "CmdMultiplayerFightGameStartScNotify" => {
-                Some(Self::CmdMultiplayerFightGameStartScNotify)
-            }
-            "CmdMultiplayerFightGameFinishScNotify" => {
-                Some(Self::CmdMultiplayerFightGameFinishScNotify)
-            }
-            "CmdMultiplayerFightGiveUpCsReq" => {
-                Some(Self::CmdMultiplayerFightGiveUpCsReq)
+            "CmdMultiplayerMatch3FinishScNotify" => {
+                Some(Self::CmdMultiplayerMatch3FinishScNotify)
             }
             "CmdMultiplayerGetFightGateScRsp" => {
                 Some(Self::CmdMultiplayerGetFightGateScRsp)
@@ -7738,8 +7839,20 @@ impl CmdMultiplayerType {
             "CmdMultiplayerFightGameStateCsReq" => {
                 Some(Self::CmdMultiplayerFightGameStateCsReq)
             }
-            "CmdMultiplayerMatch3FinishScNotify" => {
-                Some(Self::CmdMultiplayerMatch3FinishScNotify)
+            "CmdMultiplayerFightGameStartScNotify" => {
+                Some(Self::CmdMultiplayerFightGameStartScNotify)
+            }
+            "CmdMultiplayerFightGiveUpCsReq" => {
+                Some(Self::CmdMultiplayerFightGiveUpCsReq)
+            }
+            "CmdMultiplayerFightGameFinishScNotify" => {
+                Some(Self::CmdMultiplayerFightGameFinishScNotify)
+            }
+            "CmdMultiplayerGetFightGateCsReq" => {
+                Some(Self::CmdMultiplayerGetFightGateCsReq)
+            }
+            "CmdMultiplayerFightGameStateScRsp" => {
+                Some(Self::CmdMultiplayerFightGameStateScRsp)
             }
             _ => None,
         }
@@ -7750,12 +7863,12 @@ impl CmdMultiplayerType {
 #[repr(i32)]
 pub enum CmdMultipleDropType {
     None = 0,
-    CmdMultipleDropInfoScNotify = 4603,
-    CmdGetMultipleDropInfoScRsp = 4620,
-    CmdGetPlayerReturnMultiDropInfoScRsp = 4639,
-    CmdGetPlayerReturnMultiDropInfoCsReq = 4646,
-    CmdMultipleDropInfoNotify = 4653,
-    CmdGetMultipleDropInfoCsReq = 4659,
+    CmdGetPlayerReturnMultiDropInfoCsReq = 4627,
+    CmdMultipleDropInfoNotify = 4628,
+    CmdGetMultipleDropInfoCsReq = 4636,
+    CmdGetPlayerReturnMultiDropInfoScRsp = 4667,
+    CmdMultipleDropInfoScNotify = 4684,
+    CmdGetMultipleDropInfoScRsp = 4695,
 }
 impl CmdMultipleDropType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -7765,15 +7878,6 @@ impl CmdMultipleDropType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdMultipleDropType::None => "CmdMultipleDropTypeNone",
-            CmdMultipleDropType::CmdMultipleDropInfoScNotify => {
-                "CmdMultipleDropInfoScNotify"
-            }
-            CmdMultipleDropType::CmdGetMultipleDropInfoScRsp => {
-                "CmdGetMultipleDropInfoScRsp"
-            }
-            CmdMultipleDropType::CmdGetPlayerReturnMultiDropInfoScRsp => {
-                "CmdGetPlayerReturnMultiDropInfoScRsp"
-            }
             CmdMultipleDropType::CmdGetPlayerReturnMultiDropInfoCsReq => {
                 "CmdGetPlayerReturnMultiDropInfoCsReq"
             }
@@ -7781,22 +7885,31 @@ impl CmdMultipleDropType {
             CmdMultipleDropType::CmdGetMultipleDropInfoCsReq => {
                 "CmdGetMultipleDropInfoCsReq"
             }
+            CmdMultipleDropType::CmdGetPlayerReturnMultiDropInfoScRsp => {
+                "CmdGetPlayerReturnMultiDropInfoScRsp"
+            }
+            CmdMultipleDropType::CmdMultipleDropInfoScNotify => {
+                "CmdMultipleDropInfoScNotify"
+            }
+            CmdMultipleDropType::CmdGetMultipleDropInfoScRsp => {
+                "CmdGetMultipleDropInfoScRsp"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdMultipleDropTypeNone" => Some(Self::None),
-            "CmdMultipleDropInfoScNotify" => Some(Self::CmdMultipleDropInfoScNotify),
-            "CmdGetMultipleDropInfoScRsp" => Some(Self::CmdGetMultipleDropInfoScRsp),
-            "CmdGetPlayerReturnMultiDropInfoScRsp" => {
-                Some(Self::CmdGetPlayerReturnMultiDropInfoScRsp)
-            }
             "CmdGetPlayerReturnMultiDropInfoCsReq" => {
                 Some(Self::CmdGetPlayerReturnMultiDropInfoCsReq)
             }
             "CmdMultipleDropInfoNotify" => Some(Self::CmdMultipleDropInfoNotify),
             "CmdGetMultipleDropInfoCsReq" => Some(Self::CmdGetMultipleDropInfoCsReq),
+            "CmdGetPlayerReturnMultiDropInfoScRsp" => {
+                Some(Self::CmdGetPlayerReturnMultiDropInfoScRsp)
+            }
+            "CmdMultipleDropInfoScNotify" => Some(Self::CmdMultipleDropInfoScNotify),
+            "CmdGetMultipleDropInfoScRsp" => Some(Self::CmdGetMultipleDropInfoScRsp),
             _ => None,
         }
     }
@@ -7806,35 +7919,35 @@ impl CmdMultipleDropType {
 #[repr(i32)]
 pub enum CmdMuseumType {
     None = 0,
-    CmdBuyNpcStuffCsReq = 4303,
-    CmdMuseumTargetRewardNotify = 4309,
-    CmdGetExhibitScNotify = 4316,
+    CmdUpgradeAreaStatScRsp = 4305,
+    CmdMuseumRandomEventQueryCsReq = 4307,
+    CmdMuseumDispatchFinishedScNotify = 4312,
     CmdMuseumFundsChangedScNotify = 4319,
-    CmdGetMuseumInfoScRsp = 4320,
-    CmdMuseumRandomEventQueryCsReq = 4325,
-    CmdMuseumRandomEventQueryScRsp = 4329,
-    CmdUpgradeAreaCsReq = 4330,
-    CmdMuseumRandomEventSelectCsReq = 4333,
-    CmdRemoveStuffFromAreaCsReq = 4334,
-    CmdRemoveStuffFromAreaScRsp = 4337,
-    CmdSetStuffToAreaCsReq = 4339,
-    CmdBuyNpcStuffScRsp = 4346,
-    CmdFinishCurTurnCsReq = 4347,
-    CmdUpgradeAreaStatCsReq = 4348,
-    CmdMuseumRandomEventSelectScRsp = 4351,
-    CmdSetStuffToAreaScRsp = 4353,
-    CmdGetMuseumInfoCsReq = 4359,
-    CmdMuseumRandomEventStartScNotify = 4361,
-    CmdMuseumTakeCollectRewardScRsp = 4364,
-    CmdMuseumDispatchFinishedScNotify = 4373,
-    CmdFinishCurTurnScRsp = 4374,
-    CmdUpgradeAreaScRsp = 4375,
-    CmdMuseumInfoChangedScNotify = 4379,
-    CmdGetStuffScNotify = 4380,
-    CmdMuseumTargetStartNotify = 4383,
-    CmdUpgradeAreaStatScRsp = 4390,
-    CmdMuseumTakeCollectRewardCsReq = 4393,
-    CmdMuseumTargetMissionFinishNotify = 4399,
+    CmdGetStuffScNotify = 4324,
+    CmdUpgradeAreaScRsp = 4325,
+    CmdMuseumRandomEventStartScNotify = 4326,
+    CmdBuyNpcStuffScRsp = 4327,
+    CmdSetStuffToAreaScRsp = 4328,
+    CmdMuseumTargetMissionFinishNotify = 4329,
+    CmdFinishCurTurnCsReq = 4334,
+    CmdGetMuseumInfoCsReq = 4336,
+    CmdFinishCurTurnScRsp = 4343,
+    CmdUpgradeAreaCsReq = 4346,
+    CmdMuseumTakeCollectRewardCsReq = 4348,
+    CmdMuseumTargetRewardNotify = 4350,
+    CmdRemoveStuffFromAreaCsReq = 4352,
+    CmdMuseumRandomEventQueryScRsp = 4353,
+    CmdMuseumRandomEventSelectScRsp = 4359,
+    CmdSetStuffToAreaCsReq = 4367,
+    CmdRemoveStuffFromAreaScRsp = 4374,
+    CmdMuseumInfoChangedScNotify = 4375,
+    CmdMuseumTargetStartNotify = 4378,
+    CmdBuyNpcStuffCsReq = 4384,
+    CmdMuseumTakeCollectRewardScRsp = 4388,
+    CmdMuseumRandomEventSelectCsReq = 4390,
+    CmdGetExhibitScNotify = 4393,
+    CmdGetMuseumInfoScRsp = 4395,
+    CmdUpgradeAreaStatCsReq = 4396,
 }
 impl CmdMuseumType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -7844,108 +7957,108 @@ impl CmdMuseumType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdMuseumType::None => "CmdMuseumTypeNone",
-            CmdMuseumType::CmdBuyNpcStuffCsReq => "CmdBuyNpcStuffCsReq",
-            CmdMuseumType::CmdMuseumTargetRewardNotify => "CmdMuseumTargetRewardNotify",
-            CmdMuseumType::CmdGetExhibitScNotify => "CmdGetExhibitScNotify",
-            CmdMuseumType::CmdMuseumFundsChangedScNotify => {
-                "CmdMuseumFundsChangedScNotify"
-            }
-            CmdMuseumType::CmdGetMuseumInfoScRsp => "CmdGetMuseumInfoScRsp",
+            CmdMuseumType::CmdUpgradeAreaStatScRsp => "CmdUpgradeAreaStatScRsp",
             CmdMuseumType::CmdMuseumRandomEventQueryCsReq => {
                 "CmdMuseumRandomEventQueryCsReq"
-            }
-            CmdMuseumType::CmdMuseumRandomEventQueryScRsp => {
-                "CmdMuseumRandomEventQueryScRsp"
-            }
-            CmdMuseumType::CmdUpgradeAreaCsReq => "CmdUpgradeAreaCsReq",
-            CmdMuseumType::CmdMuseumRandomEventSelectCsReq => {
-                "CmdMuseumRandomEventSelectCsReq"
-            }
-            CmdMuseumType::CmdRemoveStuffFromAreaCsReq => "CmdRemoveStuffFromAreaCsReq",
-            CmdMuseumType::CmdRemoveStuffFromAreaScRsp => "CmdRemoveStuffFromAreaScRsp",
-            CmdMuseumType::CmdSetStuffToAreaCsReq => "CmdSetStuffToAreaCsReq",
-            CmdMuseumType::CmdBuyNpcStuffScRsp => "CmdBuyNpcStuffScRsp",
-            CmdMuseumType::CmdFinishCurTurnCsReq => "CmdFinishCurTurnCsReq",
-            CmdMuseumType::CmdUpgradeAreaStatCsReq => "CmdUpgradeAreaStatCsReq",
-            CmdMuseumType::CmdMuseumRandomEventSelectScRsp => {
-                "CmdMuseumRandomEventSelectScRsp"
-            }
-            CmdMuseumType::CmdSetStuffToAreaScRsp => "CmdSetStuffToAreaScRsp",
-            CmdMuseumType::CmdGetMuseumInfoCsReq => "CmdGetMuseumInfoCsReq",
-            CmdMuseumType::CmdMuseumRandomEventStartScNotify => {
-                "CmdMuseumRandomEventStartScNotify"
-            }
-            CmdMuseumType::CmdMuseumTakeCollectRewardScRsp => {
-                "CmdMuseumTakeCollectRewardScRsp"
             }
             CmdMuseumType::CmdMuseumDispatchFinishedScNotify => {
                 "CmdMuseumDispatchFinishedScNotify"
             }
-            CmdMuseumType::CmdFinishCurTurnScRsp => "CmdFinishCurTurnScRsp",
-            CmdMuseumType::CmdUpgradeAreaScRsp => "CmdUpgradeAreaScRsp",
-            CmdMuseumType::CmdMuseumInfoChangedScNotify => "CmdMuseumInfoChangedScNotify",
-            CmdMuseumType::CmdGetStuffScNotify => "CmdGetStuffScNotify",
-            CmdMuseumType::CmdMuseumTargetStartNotify => "CmdMuseumTargetStartNotify",
-            CmdMuseumType::CmdUpgradeAreaStatScRsp => "CmdUpgradeAreaStatScRsp",
-            CmdMuseumType::CmdMuseumTakeCollectRewardCsReq => {
-                "CmdMuseumTakeCollectRewardCsReq"
+            CmdMuseumType::CmdMuseumFundsChangedScNotify => {
+                "CmdMuseumFundsChangedScNotify"
             }
+            CmdMuseumType::CmdGetStuffScNotify => "CmdGetStuffScNotify",
+            CmdMuseumType::CmdUpgradeAreaScRsp => "CmdUpgradeAreaScRsp",
+            CmdMuseumType::CmdMuseumRandomEventStartScNotify => {
+                "CmdMuseumRandomEventStartScNotify"
+            }
+            CmdMuseumType::CmdBuyNpcStuffScRsp => "CmdBuyNpcStuffScRsp",
+            CmdMuseumType::CmdSetStuffToAreaScRsp => "CmdSetStuffToAreaScRsp",
             CmdMuseumType::CmdMuseumTargetMissionFinishNotify => {
                 "CmdMuseumTargetMissionFinishNotify"
             }
+            CmdMuseumType::CmdFinishCurTurnCsReq => "CmdFinishCurTurnCsReq",
+            CmdMuseumType::CmdGetMuseumInfoCsReq => "CmdGetMuseumInfoCsReq",
+            CmdMuseumType::CmdFinishCurTurnScRsp => "CmdFinishCurTurnScRsp",
+            CmdMuseumType::CmdUpgradeAreaCsReq => "CmdUpgradeAreaCsReq",
+            CmdMuseumType::CmdMuseumTakeCollectRewardCsReq => {
+                "CmdMuseumTakeCollectRewardCsReq"
+            }
+            CmdMuseumType::CmdMuseumTargetRewardNotify => "CmdMuseumTargetRewardNotify",
+            CmdMuseumType::CmdRemoveStuffFromAreaCsReq => "CmdRemoveStuffFromAreaCsReq",
+            CmdMuseumType::CmdMuseumRandomEventQueryScRsp => {
+                "CmdMuseumRandomEventQueryScRsp"
+            }
+            CmdMuseumType::CmdMuseumRandomEventSelectScRsp => {
+                "CmdMuseumRandomEventSelectScRsp"
+            }
+            CmdMuseumType::CmdSetStuffToAreaCsReq => "CmdSetStuffToAreaCsReq",
+            CmdMuseumType::CmdRemoveStuffFromAreaScRsp => "CmdRemoveStuffFromAreaScRsp",
+            CmdMuseumType::CmdMuseumInfoChangedScNotify => "CmdMuseumInfoChangedScNotify",
+            CmdMuseumType::CmdMuseumTargetStartNotify => "CmdMuseumTargetStartNotify",
+            CmdMuseumType::CmdBuyNpcStuffCsReq => "CmdBuyNpcStuffCsReq",
+            CmdMuseumType::CmdMuseumTakeCollectRewardScRsp => {
+                "CmdMuseumTakeCollectRewardScRsp"
+            }
+            CmdMuseumType::CmdMuseumRandomEventSelectCsReq => {
+                "CmdMuseumRandomEventSelectCsReq"
+            }
+            CmdMuseumType::CmdGetExhibitScNotify => "CmdGetExhibitScNotify",
+            CmdMuseumType::CmdGetMuseumInfoScRsp => "CmdGetMuseumInfoScRsp",
+            CmdMuseumType::CmdUpgradeAreaStatCsReq => "CmdUpgradeAreaStatCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdMuseumTypeNone" => Some(Self::None),
-            "CmdBuyNpcStuffCsReq" => Some(Self::CmdBuyNpcStuffCsReq),
-            "CmdMuseumTargetRewardNotify" => Some(Self::CmdMuseumTargetRewardNotify),
-            "CmdGetExhibitScNotify" => Some(Self::CmdGetExhibitScNotify),
-            "CmdMuseumFundsChangedScNotify" => Some(Self::CmdMuseumFundsChangedScNotify),
-            "CmdGetMuseumInfoScRsp" => Some(Self::CmdGetMuseumInfoScRsp),
+            "CmdUpgradeAreaStatScRsp" => Some(Self::CmdUpgradeAreaStatScRsp),
             "CmdMuseumRandomEventQueryCsReq" => {
                 Some(Self::CmdMuseumRandomEventQueryCsReq)
-            }
-            "CmdMuseumRandomEventQueryScRsp" => {
-                Some(Self::CmdMuseumRandomEventQueryScRsp)
-            }
-            "CmdUpgradeAreaCsReq" => Some(Self::CmdUpgradeAreaCsReq),
-            "CmdMuseumRandomEventSelectCsReq" => {
-                Some(Self::CmdMuseumRandomEventSelectCsReq)
-            }
-            "CmdRemoveStuffFromAreaCsReq" => Some(Self::CmdRemoveStuffFromAreaCsReq),
-            "CmdRemoveStuffFromAreaScRsp" => Some(Self::CmdRemoveStuffFromAreaScRsp),
-            "CmdSetStuffToAreaCsReq" => Some(Self::CmdSetStuffToAreaCsReq),
-            "CmdBuyNpcStuffScRsp" => Some(Self::CmdBuyNpcStuffScRsp),
-            "CmdFinishCurTurnCsReq" => Some(Self::CmdFinishCurTurnCsReq),
-            "CmdUpgradeAreaStatCsReq" => Some(Self::CmdUpgradeAreaStatCsReq),
-            "CmdMuseumRandomEventSelectScRsp" => {
-                Some(Self::CmdMuseumRandomEventSelectScRsp)
-            }
-            "CmdSetStuffToAreaScRsp" => Some(Self::CmdSetStuffToAreaScRsp),
-            "CmdGetMuseumInfoCsReq" => Some(Self::CmdGetMuseumInfoCsReq),
-            "CmdMuseumRandomEventStartScNotify" => {
-                Some(Self::CmdMuseumRandomEventStartScNotify)
-            }
-            "CmdMuseumTakeCollectRewardScRsp" => {
-                Some(Self::CmdMuseumTakeCollectRewardScRsp)
             }
             "CmdMuseumDispatchFinishedScNotify" => {
                 Some(Self::CmdMuseumDispatchFinishedScNotify)
             }
-            "CmdFinishCurTurnScRsp" => Some(Self::CmdFinishCurTurnScRsp),
-            "CmdUpgradeAreaScRsp" => Some(Self::CmdUpgradeAreaScRsp),
-            "CmdMuseumInfoChangedScNotify" => Some(Self::CmdMuseumInfoChangedScNotify),
+            "CmdMuseumFundsChangedScNotify" => Some(Self::CmdMuseumFundsChangedScNotify),
             "CmdGetStuffScNotify" => Some(Self::CmdGetStuffScNotify),
-            "CmdMuseumTargetStartNotify" => Some(Self::CmdMuseumTargetStartNotify),
-            "CmdUpgradeAreaStatScRsp" => Some(Self::CmdUpgradeAreaStatScRsp),
-            "CmdMuseumTakeCollectRewardCsReq" => {
-                Some(Self::CmdMuseumTakeCollectRewardCsReq)
+            "CmdUpgradeAreaScRsp" => Some(Self::CmdUpgradeAreaScRsp),
+            "CmdMuseumRandomEventStartScNotify" => {
+                Some(Self::CmdMuseumRandomEventStartScNotify)
             }
+            "CmdBuyNpcStuffScRsp" => Some(Self::CmdBuyNpcStuffScRsp),
+            "CmdSetStuffToAreaScRsp" => Some(Self::CmdSetStuffToAreaScRsp),
             "CmdMuseumTargetMissionFinishNotify" => {
                 Some(Self::CmdMuseumTargetMissionFinishNotify)
             }
+            "CmdFinishCurTurnCsReq" => Some(Self::CmdFinishCurTurnCsReq),
+            "CmdGetMuseumInfoCsReq" => Some(Self::CmdGetMuseumInfoCsReq),
+            "CmdFinishCurTurnScRsp" => Some(Self::CmdFinishCurTurnScRsp),
+            "CmdUpgradeAreaCsReq" => Some(Self::CmdUpgradeAreaCsReq),
+            "CmdMuseumTakeCollectRewardCsReq" => {
+                Some(Self::CmdMuseumTakeCollectRewardCsReq)
+            }
+            "CmdMuseumTargetRewardNotify" => Some(Self::CmdMuseumTargetRewardNotify),
+            "CmdRemoveStuffFromAreaCsReq" => Some(Self::CmdRemoveStuffFromAreaCsReq),
+            "CmdMuseumRandomEventQueryScRsp" => {
+                Some(Self::CmdMuseumRandomEventQueryScRsp)
+            }
+            "CmdMuseumRandomEventSelectScRsp" => {
+                Some(Self::CmdMuseumRandomEventSelectScRsp)
+            }
+            "CmdSetStuffToAreaCsReq" => Some(Self::CmdSetStuffToAreaCsReq),
+            "CmdRemoveStuffFromAreaScRsp" => Some(Self::CmdRemoveStuffFromAreaScRsp),
+            "CmdMuseumInfoChangedScNotify" => Some(Self::CmdMuseumInfoChangedScNotify),
+            "CmdMuseumTargetStartNotify" => Some(Self::CmdMuseumTargetStartNotify),
+            "CmdBuyNpcStuffCsReq" => Some(Self::CmdBuyNpcStuffCsReq),
+            "CmdMuseumTakeCollectRewardScRsp" => {
+                Some(Self::CmdMuseumTakeCollectRewardScRsp)
+            }
+            "CmdMuseumRandomEventSelectCsReq" => {
+                Some(Self::CmdMuseumRandomEventSelectCsReq)
+            }
+            "CmdGetExhibitScNotify" => Some(Self::CmdGetExhibitScNotify),
+            "CmdGetMuseumInfoScRsp" => Some(Self::CmdGetMuseumInfoScRsp),
+            "CmdUpgradeAreaStatCsReq" => Some(Self::CmdUpgradeAreaStatCsReq),
             _ => None,
         }
     }
@@ -7955,18 +8068,18 @@ impl CmdMuseumType {
 #[repr(i32)]
 pub enum CmdMusicRhythmType {
     None = 0,
-    CmdMusicRhythmUnlockSongSfxScNotify = 7571,
-    CmdMusicRhythmDataScRsp = 7574,
-    CmdMusicRhythmFinishLevelScRsp = 7575,
-    CmdMusicRhythmSaveSongConfigDataScRsp = 7578,
-    CmdMusicRhythmUnlockTrackScNotify = 7579,
+    CmdMusicRhythmDataCsReq = 7573,
+    CmdMusicRhythmStartLevelCsReq = 7576,
+    CmdMusicRhythmUnlockTrackScNotify = 7577,
     CmdMusicRhythmMaxDifficultyLevelsUnlockNotify = 7580,
-    CmdMusicRhythmStartLevelCsReq = 7582,
-    CmdMusicRhythmFinishLevelCsReq = 7587,
-    CmdMusicRhythmUnlockSongNotify = 7589,
-    CmdMusicRhythmDataCsReq = 7590,
-    CmdMusicRhythmStartLevelScRsp = 7591,
-    CmdMusicRhythmSaveSongConfigDataCsReq = 7599,
+    CmdMusicRhythmDataScRsp = 7585,
+    CmdMusicRhythmFinishLevelCsReq = 7591,
+    CmdMusicRhythmSaveSongConfigDataScRsp = 7592,
+    CmdMusicRhythmStartLevelScRsp = 7593,
+    CmdMusicRhythmSaveSongConfigDataCsReq = 7596,
+    CmdMusicRhythmUnlockSongNotify = 7597,
+    CmdMusicRhythmUnlockSongSfxScNotify = 7599,
+    CmdMusicRhythmFinishLevelScRsp = 7600,
 }
 impl CmdMusicRhythmType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -7976,15 +8089,9 @@ impl CmdMusicRhythmType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdMusicRhythmType::None => "CmdMusicRhythmTypeNone",
-            CmdMusicRhythmType::CmdMusicRhythmUnlockSongSfxScNotify => {
-                "CmdMusicRhythmUnlockSongSfxScNotify"
-            }
-            CmdMusicRhythmType::CmdMusicRhythmDataScRsp => "CmdMusicRhythmDataScRsp",
-            CmdMusicRhythmType::CmdMusicRhythmFinishLevelScRsp => {
-                "CmdMusicRhythmFinishLevelScRsp"
-            }
-            CmdMusicRhythmType::CmdMusicRhythmSaveSongConfigDataScRsp => {
-                "CmdMusicRhythmSaveSongConfigDataScRsp"
+            CmdMusicRhythmType::CmdMusicRhythmDataCsReq => "CmdMusicRhythmDataCsReq",
+            CmdMusicRhythmType::CmdMusicRhythmStartLevelCsReq => {
+                "CmdMusicRhythmStartLevelCsReq"
             }
             CmdMusicRhythmType::CmdMusicRhythmUnlockTrackScNotify => {
                 "CmdMusicRhythmUnlockTrackScNotify"
@@ -7992,21 +8099,27 @@ impl CmdMusicRhythmType {
             CmdMusicRhythmType::CmdMusicRhythmMaxDifficultyLevelsUnlockNotify => {
                 "CmdMusicRhythmMaxDifficultyLevelsUnlockNotify"
             }
-            CmdMusicRhythmType::CmdMusicRhythmStartLevelCsReq => {
-                "CmdMusicRhythmStartLevelCsReq"
-            }
+            CmdMusicRhythmType::CmdMusicRhythmDataScRsp => "CmdMusicRhythmDataScRsp",
             CmdMusicRhythmType::CmdMusicRhythmFinishLevelCsReq => {
                 "CmdMusicRhythmFinishLevelCsReq"
             }
-            CmdMusicRhythmType::CmdMusicRhythmUnlockSongNotify => {
-                "CmdMusicRhythmUnlockSongNotify"
+            CmdMusicRhythmType::CmdMusicRhythmSaveSongConfigDataScRsp => {
+                "CmdMusicRhythmSaveSongConfigDataScRsp"
             }
-            CmdMusicRhythmType::CmdMusicRhythmDataCsReq => "CmdMusicRhythmDataCsReq",
             CmdMusicRhythmType::CmdMusicRhythmStartLevelScRsp => {
                 "CmdMusicRhythmStartLevelScRsp"
             }
             CmdMusicRhythmType::CmdMusicRhythmSaveSongConfigDataCsReq => {
                 "CmdMusicRhythmSaveSongConfigDataCsReq"
+            }
+            CmdMusicRhythmType::CmdMusicRhythmUnlockSongNotify => {
+                "CmdMusicRhythmUnlockSongNotify"
+            }
+            CmdMusicRhythmType::CmdMusicRhythmUnlockSongSfxScNotify => {
+                "CmdMusicRhythmUnlockSongSfxScNotify"
+            }
+            CmdMusicRhythmType::CmdMusicRhythmFinishLevelScRsp => {
+                "CmdMusicRhythmFinishLevelScRsp"
             }
         }
     }
@@ -8014,33 +8127,33 @@ impl CmdMusicRhythmType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdMusicRhythmTypeNone" => Some(Self::None),
-            "CmdMusicRhythmUnlockSongSfxScNotify" => {
-                Some(Self::CmdMusicRhythmUnlockSongSfxScNotify)
-            }
-            "CmdMusicRhythmDataScRsp" => Some(Self::CmdMusicRhythmDataScRsp),
-            "CmdMusicRhythmFinishLevelScRsp" => {
-                Some(Self::CmdMusicRhythmFinishLevelScRsp)
-            }
-            "CmdMusicRhythmSaveSongConfigDataScRsp" => {
-                Some(Self::CmdMusicRhythmSaveSongConfigDataScRsp)
-            }
+            "CmdMusicRhythmDataCsReq" => Some(Self::CmdMusicRhythmDataCsReq),
+            "CmdMusicRhythmStartLevelCsReq" => Some(Self::CmdMusicRhythmStartLevelCsReq),
             "CmdMusicRhythmUnlockTrackScNotify" => {
                 Some(Self::CmdMusicRhythmUnlockTrackScNotify)
             }
             "CmdMusicRhythmMaxDifficultyLevelsUnlockNotify" => {
                 Some(Self::CmdMusicRhythmMaxDifficultyLevelsUnlockNotify)
             }
-            "CmdMusicRhythmStartLevelCsReq" => Some(Self::CmdMusicRhythmStartLevelCsReq),
+            "CmdMusicRhythmDataScRsp" => Some(Self::CmdMusicRhythmDataScRsp),
             "CmdMusicRhythmFinishLevelCsReq" => {
                 Some(Self::CmdMusicRhythmFinishLevelCsReq)
+            }
+            "CmdMusicRhythmSaveSongConfigDataScRsp" => {
+                Some(Self::CmdMusicRhythmSaveSongConfigDataScRsp)
+            }
+            "CmdMusicRhythmStartLevelScRsp" => Some(Self::CmdMusicRhythmStartLevelScRsp),
+            "CmdMusicRhythmSaveSongConfigDataCsReq" => {
+                Some(Self::CmdMusicRhythmSaveSongConfigDataCsReq)
             }
             "CmdMusicRhythmUnlockSongNotify" => {
                 Some(Self::CmdMusicRhythmUnlockSongNotify)
             }
-            "CmdMusicRhythmDataCsReq" => Some(Self::CmdMusicRhythmDataCsReq),
-            "CmdMusicRhythmStartLevelScRsp" => Some(Self::CmdMusicRhythmStartLevelScRsp),
-            "CmdMusicRhythmSaveSongConfigDataCsReq" => {
-                Some(Self::CmdMusicRhythmSaveSongConfigDataCsReq)
+            "CmdMusicRhythmUnlockSongSfxScNotify" => {
+                Some(Self::CmdMusicRhythmUnlockSongSfxScNotify)
+            }
+            "CmdMusicRhythmFinishLevelScRsp" => {
+                Some(Self::CmdMusicRhythmFinishLevelScRsp)
             }
             _ => None,
         }
@@ -8051,13 +8164,13 @@ impl CmdMusicRhythmType {
 #[repr(i32)]
 pub enum CmdOfferingType {
     None = 0,
-    CmdTakeOfferingRewardScRsp = 6923,
-    CmdOfferingInfoScNotify = 6924,
-    CmdGetOfferingInfoCsReq = 6925,
-    CmdGetOfferingInfoScRsp = 6928,
-    CmdSubmitOfferingItemScRsp = 6930,
-    CmdTakeOfferingRewardCsReq = 6932,
-    CmdSubmitOfferingItemCsReq = 6935,
+    CmdSubmitOfferingItemScRsp = 6923,
+    CmdOfferingInfoScNotify = 6925,
+    CmdTakeOfferingRewardScRsp = 6926,
+    CmdSubmitOfferingItemCsReq = 6927,
+    CmdGetOfferingInfoScRsp = 6935,
+    CmdTakeOfferingRewardCsReq = 6937,
+    CmdGetOfferingInfoCsReq = 6940,
 }
 impl CmdOfferingType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -8067,26 +8180,26 @@ impl CmdOfferingType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdOfferingType::None => "CmdOfferingTypeNone",
-            CmdOfferingType::CmdTakeOfferingRewardScRsp => "CmdTakeOfferingRewardScRsp",
-            CmdOfferingType::CmdOfferingInfoScNotify => "CmdOfferingInfoScNotify",
-            CmdOfferingType::CmdGetOfferingInfoCsReq => "CmdGetOfferingInfoCsReq",
-            CmdOfferingType::CmdGetOfferingInfoScRsp => "CmdGetOfferingInfoScRsp",
             CmdOfferingType::CmdSubmitOfferingItemScRsp => "CmdSubmitOfferingItemScRsp",
-            CmdOfferingType::CmdTakeOfferingRewardCsReq => "CmdTakeOfferingRewardCsReq",
+            CmdOfferingType::CmdOfferingInfoScNotify => "CmdOfferingInfoScNotify",
+            CmdOfferingType::CmdTakeOfferingRewardScRsp => "CmdTakeOfferingRewardScRsp",
             CmdOfferingType::CmdSubmitOfferingItemCsReq => "CmdSubmitOfferingItemCsReq",
+            CmdOfferingType::CmdGetOfferingInfoScRsp => "CmdGetOfferingInfoScRsp",
+            CmdOfferingType::CmdTakeOfferingRewardCsReq => "CmdTakeOfferingRewardCsReq",
+            CmdOfferingType::CmdGetOfferingInfoCsReq => "CmdGetOfferingInfoCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdOfferingTypeNone" => Some(Self::None),
-            "CmdTakeOfferingRewardScRsp" => Some(Self::CmdTakeOfferingRewardScRsp),
-            "CmdOfferingInfoScNotify" => Some(Self::CmdOfferingInfoScNotify),
-            "CmdGetOfferingInfoCsReq" => Some(Self::CmdGetOfferingInfoCsReq),
-            "CmdGetOfferingInfoScRsp" => Some(Self::CmdGetOfferingInfoScRsp),
             "CmdSubmitOfferingItemScRsp" => Some(Self::CmdSubmitOfferingItemScRsp),
-            "CmdTakeOfferingRewardCsReq" => Some(Self::CmdTakeOfferingRewardCsReq),
+            "CmdOfferingInfoScNotify" => Some(Self::CmdOfferingInfoScNotify),
+            "CmdTakeOfferingRewardScRsp" => Some(Self::CmdTakeOfferingRewardScRsp),
             "CmdSubmitOfferingItemCsReq" => Some(Self::CmdSubmitOfferingItemCsReq),
+            "CmdGetOfferingInfoScRsp" => Some(Self::CmdGetOfferingInfoScRsp),
+            "CmdTakeOfferingRewardCsReq" => Some(Self::CmdTakeOfferingRewardCsReq),
+            "CmdGetOfferingInfoCsReq" => Some(Self::CmdGetOfferingInfoCsReq),
             _ => None,
         }
     }
@@ -8096,9 +8209,9 @@ impl CmdOfferingType {
 #[repr(i32)]
 pub enum CmdPamMissionType {
     None = 0,
-    CmdSyncAcceptedPamMissionNotify = 4003,
-    CmdAcceptedPamMissionExpireScRsp = 4020,
-    CmdAcceptedPamMissionExpireCsReq = 4059,
+    CmdAcceptedPamMissionExpireCsReq = 4036,
+    CmdSyncAcceptedPamMissionNotify = 4084,
+    CmdAcceptedPamMissionExpireScRsp = 4095,
 }
 impl CmdPamMissionType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -8108,14 +8221,14 @@ impl CmdPamMissionType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdPamMissionType::None => "CmdPamMissionTypeNone",
+            CmdPamMissionType::CmdAcceptedPamMissionExpireCsReq => {
+                "CmdAcceptedPamMissionExpireCsReq"
+            }
             CmdPamMissionType::CmdSyncAcceptedPamMissionNotify => {
                 "CmdSyncAcceptedPamMissionNotify"
             }
             CmdPamMissionType::CmdAcceptedPamMissionExpireScRsp => {
                 "CmdAcceptedPamMissionExpireScRsp"
-            }
-            CmdPamMissionType::CmdAcceptedPamMissionExpireCsReq => {
-                "CmdAcceptedPamMissionExpireCsReq"
             }
         }
     }
@@ -8123,14 +8236,14 @@ impl CmdPamMissionType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdPamMissionTypeNone" => Some(Self::None),
+            "CmdAcceptedPamMissionExpireCsReq" => {
+                Some(Self::CmdAcceptedPamMissionExpireCsReq)
+            }
             "CmdSyncAcceptedPamMissionNotify" => {
                 Some(Self::CmdSyncAcceptedPamMissionNotify)
             }
             "CmdAcceptedPamMissionExpireScRsp" => {
                 Some(Self::CmdAcceptedPamMissionExpireScRsp)
-            }
-            "CmdAcceptedPamMissionExpireCsReq" => {
-                Some(Self::CmdAcceptedPamMissionExpireCsReq)
             }
             _ => None,
         }
@@ -8141,11 +8254,11 @@ impl CmdPamMissionType {
 #[repr(i32)]
 pub enum CmdPamSkinType {
     None = 0,
-    CmdGetPamSkinDataCsReq = 8125,
-    CmdGetPamSkinDataScRsp = 8128,
-    CmdSelectPamSkinScRsp = 8130,
-    CmdUnlockPamSkinScNotify = 8132,
-    CmdSelectPamSkinCsReq = 8135,
+    CmdSelectPamSkinScRsp = 8123,
+    CmdSelectPamSkinCsReq = 8127,
+    CmdGetPamSkinDataScRsp = 8135,
+    CmdUnlockPamSkinScNotify = 8137,
+    CmdGetPamSkinDataCsReq = 8140,
 }
 impl CmdPamSkinType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -8155,22 +8268,22 @@ impl CmdPamSkinType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdPamSkinType::None => "CmdPamSkinTypeNone",
-            CmdPamSkinType::CmdGetPamSkinDataCsReq => "CmdGetPamSkinDataCsReq",
-            CmdPamSkinType::CmdGetPamSkinDataScRsp => "CmdGetPamSkinDataScRsp",
             CmdPamSkinType::CmdSelectPamSkinScRsp => "CmdSelectPamSkinScRsp",
-            CmdPamSkinType::CmdUnlockPamSkinScNotify => "CmdUnlockPamSkinScNotify",
             CmdPamSkinType::CmdSelectPamSkinCsReq => "CmdSelectPamSkinCsReq",
+            CmdPamSkinType::CmdGetPamSkinDataScRsp => "CmdGetPamSkinDataScRsp",
+            CmdPamSkinType::CmdUnlockPamSkinScNotify => "CmdUnlockPamSkinScNotify",
+            CmdPamSkinType::CmdGetPamSkinDataCsReq => "CmdGetPamSkinDataCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdPamSkinTypeNone" => Some(Self::None),
-            "CmdGetPamSkinDataCsReq" => Some(Self::CmdGetPamSkinDataCsReq),
-            "CmdGetPamSkinDataScRsp" => Some(Self::CmdGetPamSkinDataScRsp),
             "CmdSelectPamSkinScRsp" => Some(Self::CmdSelectPamSkinScRsp),
-            "CmdUnlockPamSkinScNotify" => Some(Self::CmdUnlockPamSkinScNotify),
             "CmdSelectPamSkinCsReq" => Some(Self::CmdSelectPamSkinCsReq),
+            "CmdGetPamSkinDataScRsp" => Some(Self::CmdGetPamSkinDataScRsp),
+            "CmdUnlockPamSkinScNotify" => Some(Self::CmdUnlockPamSkinScNotify),
+            "CmdGetPamSkinDataCsReq" => Some(Self::CmdGetPamSkinDataCsReq),
             _ => None,
         }
     }
@@ -8180,13 +8293,13 @@ impl CmdPamSkinType {
 #[repr(i32)]
 pub enum CmdPetType {
     None = 0,
-    CmdSummonPetCsReq = 7612,
-    CmdGetPetDataCsReq = 7615,
-    CmdGetPetDataScRsp = 7616,
-    CmdSummonPetScRsp = 7624,
-    CmdRecallPetScRsp = 7637,
-    CmdCurPetChangedScNotify = 7640,
-    CmdRecallPetCsReq = 7642,
+    CmdSummonPetScRsp = 7603,
+    CmdCurPetChangedScNotify = 7606,
+    CmdRecallPetScRsp = 7607,
+    CmdRecallPetCsReq = 7610,
+    CmdSummonPetCsReq = 7616,
+    CmdGetPetDataScRsp = 7623,
+    CmdGetPetDataCsReq = 7624,
 }
 impl CmdPetType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -8196,26 +8309,26 @@ impl CmdPetType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdPetType::None => "CmdPetTypeNone",
-            CmdPetType::CmdSummonPetCsReq => "CmdSummonPetCsReq",
-            CmdPetType::CmdGetPetDataCsReq => "CmdGetPetDataCsReq",
-            CmdPetType::CmdGetPetDataScRsp => "CmdGetPetDataScRsp",
             CmdPetType::CmdSummonPetScRsp => "CmdSummonPetScRsp",
-            CmdPetType::CmdRecallPetScRsp => "CmdRecallPetScRsp",
             CmdPetType::CmdCurPetChangedScNotify => "CmdCurPetChangedScNotify",
+            CmdPetType::CmdRecallPetScRsp => "CmdRecallPetScRsp",
             CmdPetType::CmdRecallPetCsReq => "CmdRecallPetCsReq",
+            CmdPetType::CmdSummonPetCsReq => "CmdSummonPetCsReq",
+            CmdPetType::CmdGetPetDataScRsp => "CmdGetPetDataScRsp",
+            CmdPetType::CmdGetPetDataCsReq => "CmdGetPetDataCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdPetTypeNone" => Some(Self::None),
-            "CmdSummonPetCsReq" => Some(Self::CmdSummonPetCsReq),
-            "CmdGetPetDataCsReq" => Some(Self::CmdGetPetDataCsReq),
-            "CmdGetPetDataScRsp" => Some(Self::CmdGetPetDataScRsp),
             "CmdSummonPetScRsp" => Some(Self::CmdSummonPetScRsp),
-            "CmdRecallPetScRsp" => Some(Self::CmdRecallPetScRsp),
             "CmdCurPetChangedScNotify" => Some(Self::CmdCurPetChangedScNotify),
+            "CmdRecallPetScRsp" => Some(Self::CmdRecallPetScRsp),
             "CmdRecallPetCsReq" => Some(Self::CmdRecallPetCsReq),
+            "CmdSummonPetCsReq" => Some(Self::CmdSummonPetCsReq),
+            "CmdGetPetDataScRsp" => Some(Self::CmdGetPetDataScRsp),
+            "CmdGetPetDataCsReq" => Some(Self::CmdGetPetDataCsReq),
             _ => None,
         }
     }
@@ -8225,14 +8338,14 @@ impl CmdPetType {
 #[repr(i32)]
 pub enum CmdPhoneType {
     None = 0,
-    CmdSelectChatBubbleCsReq = 5103,
-    CmdGetPhoneDataScRsp = 5120,
-    CmdSelectPhoneThemeScRsp = 5134,
-    CmdUnlockPhoneThemeScNotify = 5137,
-    CmdUnlockChatBubbleScNotify = 5139,
-    CmdSelectChatBubbleScRsp = 5146,
-    CmdSelectPhoneThemeCsReq = 5153,
-    CmdGetPhoneDataCsReq = 5159,
+    CmdSelectChatBubbleScRsp = 5127,
+    CmdSelectPhoneThemeCsReq = 5128,
+    CmdGetPhoneDataCsReq = 5136,
+    CmdSelectPhoneThemeScRsp = 5152,
+    CmdUnlockChatBubbleScNotify = 5167,
+    CmdUnlockPhoneThemeScNotify = 5174,
+    CmdSelectChatBubbleCsReq = 5184,
+    CmdGetPhoneDataScRsp = 5195,
 }
 impl CmdPhoneType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -8242,28 +8355,28 @@ impl CmdPhoneType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdPhoneType::None => "CmdPhoneTypeNone",
-            CmdPhoneType::CmdSelectChatBubbleCsReq => "CmdSelectChatBubbleCsReq",
-            CmdPhoneType::CmdGetPhoneDataScRsp => "CmdGetPhoneDataScRsp",
-            CmdPhoneType::CmdSelectPhoneThemeScRsp => "CmdSelectPhoneThemeScRsp",
-            CmdPhoneType::CmdUnlockPhoneThemeScNotify => "CmdUnlockPhoneThemeScNotify",
-            CmdPhoneType::CmdUnlockChatBubbleScNotify => "CmdUnlockChatBubbleScNotify",
             CmdPhoneType::CmdSelectChatBubbleScRsp => "CmdSelectChatBubbleScRsp",
             CmdPhoneType::CmdSelectPhoneThemeCsReq => "CmdSelectPhoneThemeCsReq",
             CmdPhoneType::CmdGetPhoneDataCsReq => "CmdGetPhoneDataCsReq",
+            CmdPhoneType::CmdSelectPhoneThemeScRsp => "CmdSelectPhoneThemeScRsp",
+            CmdPhoneType::CmdUnlockChatBubbleScNotify => "CmdUnlockChatBubbleScNotify",
+            CmdPhoneType::CmdUnlockPhoneThemeScNotify => "CmdUnlockPhoneThemeScNotify",
+            CmdPhoneType::CmdSelectChatBubbleCsReq => "CmdSelectChatBubbleCsReq",
+            CmdPhoneType::CmdGetPhoneDataScRsp => "CmdGetPhoneDataScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdPhoneTypeNone" => Some(Self::None),
-            "CmdSelectChatBubbleCsReq" => Some(Self::CmdSelectChatBubbleCsReq),
-            "CmdGetPhoneDataScRsp" => Some(Self::CmdGetPhoneDataScRsp),
-            "CmdSelectPhoneThemeScRsp" => Some(Self::CmdSelectPhoneThemeScRsp),
-            "CmdUnlockPhoneThemeScNotify" => Some(Self::CmdUnlockPhoneThemeScNotify),
-            "CmdUnlockChatBubbleScNotify" => Some(Self::CmdUnlockChatBubbleScNotify),
             "CmdSelectChatBubbleScRsp" => Some(Self::CmdSelectChatBubbleScRsp),
             "CmdSelectPhoneThemeCsReq" => Some(Self::CmdSelectPhoneThemeCsReq),
             "CmdGetPhoneDataCsReq" => Some(Self::CmdGetPhoneDataCsReq),
+            "CmdSelectPhoneThemeScRsp" => Some(Self::CmdSelectPhoneThemeScRsp),
+            "CmdUnlockChatBubbleScNotify" => Some(Self::CmdUnlockChatBubbleScNotify),
+            "CmdUnlockPhoneThemeScNotify" => Some(Self::CmdUnlockPhoneThemeScNotify),
+            "CmdSelectChatBubbleCsReq" => Some(Self::CmdSelectChatBubbleCsReq),
+            "CmdGetPhoneDataScRsp" => Some(Self::CmdGetPhoneDataScRsp),
             _ => None,
         }
     }
@@ -8273,80 +8386,80 @@ impl CmdPhoneType {
 #[repr(i32)]
 pub enum CmdPlayerType {
     None = 0,
-    CmdSetAvatarPathCsReq = 1,
-    CmdGetBasicInfoCsReq = 2,
-    CmdPlayerLogoutCsReq = 3,
-    CmdSetGenderScRsp = 4,
-    CmdGetGameStateServiceConfigCsReq = 5,
-    CmdPlayerLoginFinishScRsp = 6,
-    CmdSetRedPointStatusScNotify = 7,
-    CmdUnlockAvatarPathScRsp = 8,
-    CmdUnlockAvatarPathCsReq = 11,
-    CmdAceAntiCheaterScRsp = 12,
-    CmdQueryProductInfoCsReq = 14,
-    CmdClientDownloadDataScNotify = 15,
-    CmdGmTalkCsReq = 16,
+    CmdClientObjUploadScRsp = 1,
+    CmdSetMultipleAvatarPathsScRsp = 2,
+    CmdPlayerHeartBeatScRsp = 3,
+    CmdGetAuthkeyCsReq = 5,
+    CmdGetGameStateServiceConfigCsReq = 6,
+    CmdSetNicknameCsReq = 7,
+    CmdSetGenderScRsp = 8,
+    CmdClientObjDownloadDataScNotify = 9,
+    CmdGetLevelRewardCsReq = 12,
+    CmdUnlockAvatarPathCsReq = 15,
+    CmdGetVideoVersionKeyCsReq = 16,
+    CmdSetPlayerInfoCsReq = 18,
     CmdRegionStopScNotify = 19,
-    CmdPlayerLoginScRsp = 20,
-    CmdGetVideoVersionKeyCsReq = 22,
-    CmdQueryProductInfoScRsp = 23,
-    CmdAceAntiCheaterCsReq = 24,
-    CmdSetNicknameCsReq = 25,
-    CmdGetSecretKeyInfoCsReq = 27,
-    CmdSetNicknameScRsp = 29,
-    CmdPlayerHeartBeatScRsp = 31,
-    CmdRetcodeNotify = 32,
-    CmdGetLevelRewardTakenListCsReq = 33,
-    CmdGetVideoVersionKeyScRsp = 35,
-    CmdGmTalkScNotify = 37,
-    CmdGetSecretKeyInfoScRsp = 38,
-    CmdPlayerGetTokenCsReq = 39,
-    CmdClientObjUploadCsReq = 40,
-    CmdSetAvatarPathScRsp = 41,
-    CmdClientObjDownloadDataScNotify = 42,
-    CmdSetPlayerInfoScRsp = 43,
-    CmdAvatarPathChangedNotify = 44,
-    CmdUpdateFeatureSwitchScNotify = 45,
-    CmdPlayerLogoutScRsp = 46,
-    CmdGmTalkScRsp = 47,
-    CmdExchangeStaminaScRsp = 48,
-    CmdReserveStaminaExchangeCsReq = 50,
-    CmdGetLevelRewardTakenListScRsp = 51,
-    CmdUpdatePsnSettingsInfoCsReq = 52,
-    CmdPlayerGetTokenScRsp = 53,
-    CmdPlayerLoginFinishCsReq = 55,
-    CmdDailyRefreshNotify = 56,
-    CmdUpdatePsnSettingsInfoScRsp = 57,
-    CmdGetMultiPathAvatarInfoCsReq = 58,
-    CmdPlayerLoginCsReq = 59,
-    CmdMonthCardRewardNotify = 60,
-    CmdAntiAddictScNotify = 61,
-    CmdSetLanguageScRsp = 64,
-    CmdGetBasicInfoScRsp = 66,
-    CmdClientObjUploadScRsp = 67,
-    CmdStaminaInfoScNotify = 68,
-    CmdReserveStaminaExchangeScRsp = 69,
-    CmdGateServerScNotify = 71,
-    CmdSetGameplayBirthdayScRsp = 72,
-    CmdGetLevelRewardCsReq = 73,
-    CmdExchangeStaminaCsReq = 75,
-    CmdSetGameplayBirthdayCsReq = 78,
-    CmdGetAuthkeyScRsp = 79,
-    CmdPlayerKickOutScNotify = 80,
-    CmdFeatureSwitchClosedScNotify = 82,
-    CmdGetLevelRewardScRsp = 83,
-    CmdGetMultiPathAvatarInfoScRsp = 87,
-    CmdSetPlayerInfoCsReq = 88,
-    CmdGetAuthkeyCsReq = 90,
-    CmdSetGenderCsReq = 91,
-    CmdUpdatePlayerSettingCsReq = 92,
-    CmdSetLanguageCsReq = 93,
-    CmdServerAnnounceNotify = 94,
-    CmdSetMultipleAvatarPathsScRsp = 95,
-    CmdPlayerHeartBeatCsReq = 96,
-    CmdGetGameStateServiceConfigScRsp = 97,
-    CmdUpdatePlayerSettingScRsp = 98,
-    CmdSetMultipleAvatarPathsCsReq = 100,
+    CmdClientObjUploadCsReq = 20,
+    CmdGetBasicInfoCsReq = 22,
+    CmdStaminaInfoScNotify = 23,
+    CmdPlayerKickOutScNotify = 24,
+    CmdExchangeStaminaCsReq = 25,
+    CmdAntiAddictScNotify = 26,
+    CmdPlayerLogoutScRsp = 27,
+    CmdPlayerGetTokenScRsp = 28,
+    CmdUpdatePsnSettingsInfoCsReq = 32,
+    CmdGmTalkScRsp = 34,
+    CmdPlayerLoginCsReq = 36,
+    CmdSetPlayerInfoScRsp = 37,
+    CmdClientDownloadDataScNotify = 39,
+    CmdGateServerScNotify = 40,
+    CmdDailyRefreshNotify = 41,
+    CmdReserveStaminaExchangeScRsp = 44,
+    CmdAceAntiCheaterScRsp = 45,
+    CmdGetVideoVersionKeyScRsp = 47,
+    CmdSetLanguageCsReq = 48,
+    CmdSetRedPointStatusScNotify = 49,
+    CmdSetNicknameScRsp = 53,
+    CmdUpdateFeatureSwitchScNotify = 55,
+    CmdUpdatePlayerSettingScRsp = 56,
+    CmdPlayerLoginFinishScRsp = 57,
+    CmdServerAnnounceNotify = 58,
+    CmdGetLevelRewardTakenListScRsp = 59,
+    CmdAceAntiCheaterCsReq = 60,
+    CmdFeatureSwitchClosedScNotify = 61,
+    CmdSetMultipleAvatarPathsCsReq = 62,
+    CmdGetMultiPathAvatarInfoScRsp = 63,
+    CmdMonthCardRewardNotify = 64,
+    CmdSetGenderCsReq = 65,
+    CmdGetMultiPathAvatarInfoCsReq = 66,
+    CmdPlayerGetTokenCsReq = 67,
+    CmdPlayerLoginFinishCsReq = 68,
+    CmdUpdatePlayerSettingCsReq = 69,
+    CmdGetGameStateServiceConfigScRsp = 71,
+    CmdRetcodeNotify = 72,
+    CmdGmTalkScNotify = 74,
+    CmdGetAuthkeyScRsp = 75,
+    CmdGetLevelRewardScRsp = 78,
+    CmdQueryProductInfoCsReq = 79,
+    CmdQueryProductInfoScRsp = 81,
+    CmdUpdatePsnSettingsInfoScRsp = 82,
+    CmdGetSecretKeyInfoScRsp = 83,
+    CmdPlayerLogoutCsReq = 84,
+    CmdUnlockAvatarPathScRsp = 85,
+    CmdSetAvatarPathScRsp = 86,
+    CmdSetAvatarPathCsReq = 87,
+    CmdSetLanguageScRsp = 88,
+    CmdAvatarPathChangedNotify = 89,
+    CmdGetLevelRewardTakenListCsReq = 90,
+    CmdReserveStaminaExchangeCsReq = 91,
+    CmdSetGameplayBirthdayScRsp = 92,
+    CmdGmTalkCsReq = 93,
+    CmdSetGameplayBirthdayCsReq = 94,
+    CmdPlayerLoginScRsp = 95,
+    CmdExchangeStaminaScRsp = 96,
+    CmdGetSecretKeyInfoCsReq = 97,
+    CmdPlayerHeartBeatCsReq = 99,
+    CmdGetBasicInfoScRsp = 100,
 }
 impl CmdPlayerType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -8356,218 +8469,218 @@ impl CmdPlayerType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdPlayerType::None => "CmdPlayerTypeNone",
-            CmdPlayerType::CmdSetAvatarPathCsReq => "CmdSetAvatarPathCsReq",
-            CmdPlayerType::CmdGetBasicInfoCsReq => "CmdGetBasicInfoCsReq",
-            CmdPlayerType::CmdPlayerLogoutCsReq => "CmdPlayerLogoutCsReq",
-            CmdPlayerType::CmdSetGenderScRsp => "CmdSetGenderScRsp",
-            CmdPlayerType::CmdGetGameStateServiceConfigCsReq => {
-                "CmdGetGameStateServiceConfigCsReq"
-            }
-            CmdPlayerType::CmdPlayerLoginFinishScRsp => "CmdPlayerLoginFinishScRsp",
-            CmdPlayerType::CmdSetRedPointStatusScNotify => "CmdSetRedPointStatusScNotify",
-            CmdPlayerType::CmdUnlockAvatarPathScRsp => "CmdUnlockAvatarPathScRsp",
-            CmdPlayerType::CmdUnlockAvatarPathCsReq => "CmdUnlockAvatarPathCsReq",
-            CmdPlayerType::CmdAceAntiCheaterScRsp => "CmdAceAntiCheaterScRsp",
-            CmdPlayerType::CmdQueryProductInfoCsReq => "CmdQueryProductInfoCsReq",
-            CmdPlayerType::CmdClientDownloadDataScNotify => {
-                "CmdClientDownloadDataScNotify"
-            }
-            CmdPlayerType::CmdGmTalkCsReq => "CmdGmTalkCsReq",
-            CmdPlayerType::CmdRegionStopScNotify => "CmdRegionStopScNotify",
-            CmdPlayerType::CmdPlayerLoginScRsp => "CmdPlayerLoginScRsp",
-            CmdPlayerType::CmdGetVideoVersionKeyCsReq => "CmdGetVideoVersionKeyCsReq",
-            CmdPlayerType::CmdQueryProductInfoScRsp => "CmdQueryProductInfoScRsp",
-            CmdPlayerType::CmdAceAntiCheaterCsReq => "CmdAceAntiCheaterCsReq",
-            CmdPlayerType::CmdSetNicknameCsReq => "CmdSetNicknameCsReq",
-            CmdPlayerType::CmdGetSecretKeyInfoCsReq => "CmdGetSecretKeyInfoCsReq",
-            CmdPlayerType::CmdSetNicknameScRsp => "CmdSetNicknameScRsp",
-            CmdPlayerType::CmdPlayerHeartBeatScRsp => "CmdPlayerHeartBeatScRsp",
-            CmdPlayerType::CmdRetcodeNotify => "CmdRetcodeNotify",
-            CmdPlayerType::CmdGetLevelRewardTakenListCsReq => {
-                "CmdGetLevelRewardTakenListCsReq"
-            }
-            CmdPlayerType::CmdGetVideoVersionKeyScRsp => "CmdGetVideoVersionKeyScRsp",
-            CmdPlayerType::CmdGmTalkScNotify => "CmdGmTalkScNotify",
-            CmdPlayerType::CmdGetSecretKeyInfoScRsp => "CmdGetSecretKeyInfoScRsp",
-            CmdPlayerType::CmdPlayerGetTokenCsReq => "CmdPlayerGetTokenCsReq",
-            CmdPlayerType::CmdClientObjUploadCsReq => "CmdClientObjUploadCsReq",
-            CmdPlayerType::CmdSetAvatarPathScRsp => "CmdSetAvatarPathScRsp",
-            CmdPlayerType::CmdClientObjDownloadDataScNotify => {
-                "CmdClientObjDownloadDataScNotify"
-            }
-            CmdPlayerType::CmdSetPlayerInfoScRsp => "CmdSetPlayerInfoScRsp",
-            CmdPlayerType::CmdAvatarPathChangedNotify => "CmdAvatarPathChangedNotify",
-            CmdPlayerType::CmdUpdateFeatureSwitchScNotify => {
-                "CmdUpdateFeatureSwitchScNotify"
-            }
-            CmdPlayerType::CmdPlayerLogoutScRsp => "CmdPlayerLogoutScRsp",
-            CmdPlayerType::CmdGmTalkScRsp => "CmdGmTalkScRsp",
-            CmdPlayerType::CmdExchangeStaminaScRsp => "CmdExchangeStaminaScRsp",
-            CmdPlayerType::CmdReserveStaminaExchangeCsReq => {
-                "CmdReserveStaminaExchangeCsReq"
-            }
-            CmdPlayerType::CmdGetLevelRewardTakenListScRsp => {
-                "CmdGetLevelRewardTakenListScRsp"
-            }
-            CmdPlayerType::CmdUpdatePsnSettingsInfoCsReq => {
-                "CmdUpdatePsnSettingsInfoCsReq"
-            }
-            CmdPlayerType::CmdPlayerGetTokenScRsp => "CmdPlayerGetTokenScRsp",
-            CmdPlayerType::CmdPlayerLoginFinishCsReq => "CmdPlayerLoginFinishCsReq",
-            CmdPlayerType::CmdDailyRefreshNotify => "CmdDailyRefreshNotify",
-            CmdPlayerType::CmdUpdatePsnSettingsInfoScRsp => {
-                "CmdUpdatePsnSettingsInfoScRsp"
-            }
-            CmdPlayerType::CmdGetMultiPathAvatarInfoCsReq => {
-                "CmdGetMultiPathAvatarInfoCsReq"
-            }
-            CmdPlayerType::CmdPlayerLoginCsReq => "CmdPlayerLoginCsReq",
-            CmdPlayerType::CmdMonthCardRewardNotify => "CmdMonthCardRewardNotify",
-            CmdPlayerType::CmdAntiAddictScNotify => "CmdAntiAddictScNotify",
-            CmdPlayerType::CmdSetLanguageScRsp => "CmdSetLanguageScRsp",
-            CmdPlayerType::CmdGetBasicInfoScRsp => "CmdGetBasicInfoScRsp",
             CmdPlayerType::CmdClientObjUploadScRsp => "CmdClientObjUploadScRsp",
-            CmdPlayerType::CmdStaminaInfoScNotify => "CmdStaminaInfoScNotify",
-            CmdPlayerType::CmdReserveStaminaExchangeScRsp => {
-                "CmdReserveStaminaExchangeScRsp"
-            }
-            CmdPlayerType::CmdGateServerScNotify => "CmdGateServerScNotify",
-            CmdPlayerType::CmdSetGameplayBirthdayScRsp => "CmdSetGameplayBirthdayScRsp",
-            CmdPlayerType::CmdGetLevelRewardCsReq => "CmdGetLevelRewardCsReq",
-            CmdPlayerType::CmdExchangeStaminaCsReq => "CmdExchangeStaminaCsReq",
-            CmdPlayerType::CmdSetGameplayBirthdayCsReq => "CmdSetGameplayBirthdayCsReq",
-            CmdPlayerType::CmdGetAuthkeyScRsp => "CmdGetAuthkeyScRsp",
-            CmdPlayerType::CmdPlayerKickOutScNotify => "CmdPlayerKickOutScNotify",
-            CmdPlayerType::CmdFeatureSwitchClosedScNotify => {
-                "CmdFeatureSwitchClosedScNotify"
-            }
-            CmdPlayerType::CmdGetLevelRewardScRsp => "CmdGetLevelRewardScRsp",
-            CmdPlayerType::CmdGetMultiPathAvatarInfoScRsp => {
-                "CmdGetMultiPathAvatarInfoScRsp"
-            }
-            CmdPlayerType::CmdSetPlayerInfoCsReq => "CmdSetPlayerInfoCsReq",
-            CmdPlayerType::CmdGetAuthkeyCsReq => "CmdGetAuthkeyCsReq",
-            CmdPlayerType::CmdSetGenderCsReq => "CmdSetGenderCsReq",
-            CmdPlayerType::CmdUpdatePlayerSettingCsReq => "CmdUpdatePlayerSettingCsReq",
-            CmdPlayerType::CmdSetLanguageCsReq => "CmdSetLanguageCsReq",
-            CmdPlayerType::CmdServerAnnounceNotify => "CmdServerAnnounceNotify",
             CmdPlayerType::CmdSetMultipleAvatarPathsScRsp => {
                 "CmdSetMultipleAvatarPathsScRsp"
             }
-            CmdPlayerType::CmdPlayerHeartBeatCsReq => "CmdPlayerHeartBeatCsReq",
-            CmdPlayerType::CmdGetGameStateServiceConfigScRsp => {
-                "CmdGetGameStateServiceConfigScRsp"
+            CmdPlayerType::CmdPlayerHeartBeatScRsp => "CmdPlayerHeartBeatScRsp",
+            CmdPlayerType::CmdGetAuthkeyCsReq => "CmdGetAuthkeyCsReq",
+            CmdPlayerType::CmdGetGameStateServiceConfigCsReq => {
+                "CmdGetGameStateServiceConfigCsReq"
+            }
+            CmdPlayerType::CmdSetNicknameCsReq => "CmdSetNicknameCsReq",
+            CmdPlayerType::CmdSetGenderScRsp => "CmdSetGenderScRsp",
+            CmdPlayerType::CmdClientObjDownloadDataScNotify => {
+                "CmdClientObjDownloadDataScNotify"
+            }
+            CmdPlayerType::CmdGetLevelRewardCsReq => "CmdGetLevelRewardCsReq",
+            CmdPlayerType::CmdUnlockAvatarPathCsReq => "CmdUnlockAvatarPathCsReq",
+            CmdPlayerType::CmdGetVideoVersionKeyCsReq => "CmdGetVideoVersionKeyCsReq",
+            CmdPlayerType::CmdSetPlayerInfoCsReq => "CmdSetPlayerInfoCsReq",
+            CmdPlayerType::CmdRegionStopScNotify => "CmdRegionStopScNotify",
+            CmdPlayerType::CmdClientObjUploadCsReq => "CmdClientObjUploadCsReq",
+            CmdPlayerType::CmdGetBasicInfoCsReq => "CmdGetBasicInfoCsReq",
+            CmdPlayerType::CmdStaminaInfoScNotify => "CmdStaminaInfoScNotify",
+            CmdPlayerType::CmdPlayerKickOutScNotify => "CmdPlayerKickOutScNotify",
+            CmdPlayerType::CmdExchangeStaminaCsReq => "CmdExchangeStaminaCsReq",
+            CmdPlayerType::CmdAntiAddictScNotify => "CmdAntiAddictScNotify",
+            CmdPlayerType::CmdPlayerLogoutScRsp => "CmdPlayerLogoutScRsp",
+            CmdPlayerType::CmdPlayerGetTokenScRsp => "CmdPlayerGetTokenScRsp",
+            CmdPlayerType::CmdUpdatePsnSettingsInfoCsReq => {
+                "CmdUpdatePsnSettingsInfoCsReq"
+            }
+            CmdPlayerType::CmdGmTalkScRsp => "CmdGmTalkScRsp",
+            CmdPlayerType::CmdPlayerLoginCsReq => "CmdPlayerLoginCsReq",
+            CmdPlayerType::CmdSetPlayerInfoScRsp => "CmdSetPlayerInfoScRsp",
+            CmdPlayerType::CmdClientDownloadDataScNotify => {
+                "CmdClientDownloadDataScNotify"
+            }
+            CmdPlayerType::CmdGateServerScNotify => "CmdGateServerScNotify",
+            CmdPlayerType::CmdDailyRefreshNotify => "CmdDailyRefreshNotify",
+            CmdPlayerType::CmdReserveStaminaExchangeScRsp => {
+                "CmdReserveStaminaExchangeScRsp"
+            }
+            CmdPlayerType::CmdAceAntiCheaterScRsp => "CmdAceAntiCheaterScRsp",
+            CmdPlayerType::CmdGetVideoVersionKeyScRsp => "CmdGetVideoVersionKeyScRsp",
+            CmdPlayerType::CmdSetLanguageCsReq => "CmdSetLanguageCsReq",
+            CmdPlayerType::CmdSetRedPointStatusScNotify => "CmdSetRedPointStatusScNotify",
+            CmdPlayerType::CmdSetNicknameScRsp => "CmdSetNicknameScRsp",
+            CmdPlayerType::CmdUpdateFeatureSwitchScNotify => {
+                "CmdUpdateFeatureSwitchScNotify"
             }
             CmdPlayerType::CmdUpdatePlayerSettingScRsp => "CmdUpdatePlayerSettingScRsp",
+            CmdPlayerType::CmdPlayerLoginFinishScRsp => "CmdPlayerLoginFinishScRsp",
+            CmdPlayerType::CmdServerAnnounceNotify => "CmdServerAnnounceNotify",
+            CmdPlayerType::CmdGetLevelRewardTakenListScRsp => {
+                "CmdGetLevelRewardTakenListScRsp"
+            }
+            CmdPlayerType::CmdAceAntiCheaterCsReq => "CmdAceAntiCheaterCsReq",
+            CmdPlayerType::CmdFeatureSwitchClosedScNotify => {
+                "CmdFeatureSwitchClosedScNotify"
+            }
             CmdPlayerType::CmdSetMultipleAvatarPathsCsReq => {
                 "CmdSetMultipleAvatarPathsCsReq"
             }
+            CmdPlayerType::CmdGetMultiPathAvatarInfoScRsp => {
+                "CmdGetMultiPathAvatarInfoScRsp"
+            }
+            CmdPlayerType::CmdMonthCardRewardNotify => "CmdMonthCardRewardNotify",
+            CmdPlayerType::CmdSetGenderCsReq => "CmdSetGenderCsReq",
+            CmdPlayerType::CmdGetMultiPathAvatarInfoCsReq => {
+                "CmdGetMultiPathAvatarInfoCsReq"
+            }
+            CmdPlayerType::CmdPlayerGetTokenCsReq => "CmdPlayerGetTokenCsReq",
+            CmdPlayerType::CmdPlayerLoginFinishCsReq => "CmdPlayerLoginFinishCsReq",
+            CmdPlayerType::CmdUpdatePlayerSettingCsReq => "CmdUpdatePlayerSettingCsReq",
+            CmdPlayerType::CmdGetGameStateServiceConfigScRsp => {
+                "CmdGetGameStateServiceConfigScRsp"
+            }
+            CmdPlayerType::CmdRetcodeNotify => "CmdRetcodeNotify",
+            CmdPlayerType::CmdGmTalkScNotify => "CmdGmTalkScNotify",
+            CmdPlayerType::CmdGetAuthkeyScRsp => "CmdGetAuthkeyScRsp",
+            CmdPlayerType::CmdGetLevelRewardScRsp => "CmdGetLevelRewardScRsp",
+            CmdPlayerType::CmdQueryProductInfoCsReq => "CmdQueryProductInfoCsReq",
+            CmdPlayerType::CmdQueryProductInfoScRsp => "CmdQueryProductInfoScRsp",
+            CmdPlayerType::CmdUpdatePsnSettingsInfoScRsp => {
+                "CmdUpdatePsnSettingsInfoScRsp"
+            }
+            CmdPlayerType::CmdGetSecretKeyInfoScRsp => "CmdGetSecretKeyInfoScRsp",
+            CmdPlayerType::CmdPlayerLogoutCsReq => "CmdPlayerLogoutCsReq",
+            CmdPlayerType::CmdUnlockAvatarPathScRsp => "CmdUnlockAvatarPathScRsp",
+            CmdPlayerType::CmdSetAvatarPathScRsp => "CmdSetAvatarPathScRsp",
+            CmdPlayerType::CmdSetAvatarPathCsReq => "CmdSetAvatarPathCsReq",
+            CmdPlayerType::CmdSetLanguageScRsp => "CmdSetLanguageScRsp",
+            CmdPlayerType::CmdAvatarPathChangedNotify => "CmdAvatarPathChangedNotify",
+            CmdPlayerType::CmdGetLevelRewardTakenListCsReq => {
+                "CmdGetLevelRewardTakenListCsReq"
+            }
+            CmdPlayerType::CmdReserveStaminaExchangeCsReq => {
+                "CmdReserveStaminaExchangeCsReq"
+            }
+            CmdPlayerType::CmdSetGameplayBirthdayScRsp => "CmdSetGameplayBirthdayScRsp",
+            CmdPlayerType::CmdGmTalkCsReq => "CmdGmTalkCsReq",
+            CmdPlayerType::CmdSetGameplayBirthdayCsReq => "CmdSetGameplayBirthdayCsReq",
+            CmdPlayerType::CmdPlayerLoginScRsp => "CmdPlayerLoginScRsp",
+            CmdPlayerType::CmdExchangeStaminaScRsp => "CmdExchangeStaminaScRsp",
+            CmdPlayerType::CmdGetSecretKeyInfoCsReq => "CmdGetSecretKeyInfoCsReq",
+            CmdPlayerType::CmdPlayerHeartBeatCsReq => "CmdPlayerHeartBeatCsReq",
+            CmdPlayerType::CmdGetBasicInfoScRsp => "CmdGetBasicInfoScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdPlayerTypeNone" => Some(Self::None),
-            "CmdSetAvatarPathCsReq" => Some(Self::CmdSetAvatarPathCsReq),
-            "CmdGetBasicInfoCsReq" => Some(Self::CmdGetBasicInfoCsReq),
-            "CmdPlayerLogoutCsReq" => Some(Self::CmdPlayerLogoutCsReq),
-            "CmdSetGenderScRsp" => Some(Self::CmdSetGenderScRsp),
-            "CmdGetGameStateServiceConfigCsReq" => {
-                Some(Self::CmdGetGameStateServiceConfigCsReq)
-            }
-            "CmdPlayerLoginFinishScRsp" => Some(Self::CmdPlayerLoginFinishScRsp),
-            "CmdSetRedPointStatusScNotify" => Some(Self::CmdSetRedPointStatusScNotify),
-            "CmdUnlockAvatarPathScRsp" => Some(Self::CmdUnlockAvatarPathScRsp),
-            "CmdUnlockAvatarPathCsReq" => Some(Self::CmdUnlockAvatarPathCsReq),
-            "CmdAceAntiCheaterScRsp" => Some(Self::CmdAceAntiCheaterScRsp),
-            "CmdQueryProductInfoCsReq" => Some(Self::CmdQueryProductInfoCsReq),
-            "CmdClientDownloadDataScNotify" => Some(Self::CmdClientDownloadDataScNotify),
-            "CmdGmTalkCsReq" => Some(Self::CmdGmTalkCsReq),
-            "CmdRegionStopScNotify" => Some(Self::CmdRegionStopScNotify),
-            "CmdPlayerLoginScRsp" => Some(Self::CmdPlayerLoginScRsp),
-            "CmdGetVideoVersionKeyCsReq" => Some(Self::CmdGetVideoVersionKeyCsReq),
-            "CmdQueryProductInfoScRsp" => Some(Self::CmdQueryProductInfoScRsp),
-            "CmdAceAntiCheaterCsReq" => Some(Self::CmdAceAntiCheaterCsReq),
-            "CmdSetNicknameCsReq" => Some(Self::CmdSetNicknameCsReq),
-            "CmdGetSecretKeyInfoCsReq" => Some(Self::CmdGetSecretKeyInfoCsReq),
-            "CmdSetNicknameScRsp" => Some(Self::CmdSetNicknameScRsp),
-            "CmdPlayerHeartBeatScRsp" => Some(Self::CmdPlayerHeartBeatScRsp),
-            "CmdRetcodeNotify" => Some(Self::CmdRetcodeNotify),
-            "CmdGetLevelRewardTakenListCsReq" => {
-                Some(Self::CmdGetLevelRewardTakenListCsReq)
-            }
-            "CmdGetVideoVersionKeyScRsp" => Some(Self::CmdGetVideoVersionKeyScRsp),
-            "CmdGmTalkScNotify" => Some(Self::CmdGmTalkScNotify),
-            "CmdGetSecretKeyInfoScRsp" => Some(Self::CmdGetSecretKeyInfoScRsp),
-            "CmdPlayerGetTokenCsReq" => Some(Self::CmdPlayerGetTokenCsReq),
-            "CmdClientObjUploadCsReq" => Some(Self::CmdClientObjUploadCsReq),
-            "CmdSetAvatarPathScRsp" => Some(Self::CmdSetAvatarPathScRsp),
-            "CmdClientObjDownloadDataScNotify" => {
-                Some(Self::CmdClientObjDownloadDataScNotify)
-            }
-            "CmdSetPlayerInfoScRsp" => Some(Self::CmdSetPlayerInfoScRsp),
-            "CmdAvatarPathChangedNotify" => Some(Self::CmdAvatarPathChangedNotify),
-            "CmdUpdateFeatureSwitchScNotify" => {
-                Some(Self::CmdUpdateFeatureSwitchScNotify)
-            }
-            "CmdPlayerLogoutScRsp" => Some(Self::CmdPlayerLogoutScRsp),
-            "CmdGmTalkScRsp" => Some(Self::CmdGmTalkScRsp),
-            "CmdExchangeStaminaScRsp" => Some(Self::CmdExchangeStaminaScRsp),
-            "CmdReserveStaminaExchangeCsReq" => {
-                Some(Self::CmdReserveStaminaExchangeCsReq)
-            }
-            "CmdGetLevelRewardTakenListScRsp" => {
-                Some(Self::CmdGetLevelRewardTakenListScRsp)
-            }
-            "CmdUpdatePsnSettingsInfoCsReq" => Some(Self::CmdUpdatePsnSettingsInfoCsReq),
-            "CmdPlayerGetTokenScRsp" => Some(Self::CmdPlayerGetTokenScRsp),
-            "CmdPlayerLoginFinishCsReq" => Some(Self::CmdPlayerLoginFinishCsReq),
-            "CmdDailyRefreshNotify" => Some(Self::CmdDailyRefreshNotify),
-            "CmdUpdatePsnSettingsInfoScRsp" => Some(Self::CmdUpdatePsnSettingsInfoScRsp),
-            "CmdGetMultiPathAvatarInfoCsReq" => {
-                Some(Self::CmdGetMultiPathAvatarInfoCsReq)
-            }
-            "CmdPlayerLoginCsReq" => Some(Self::CmdPlayerLoginCsReq),
-            "CmdMonthCardRewardNotify" => Some(Self::CmdMonthCardRewardNotify),
-            "CmdAntiAddictScNotify" => Some(Self::CmdAntiAddictScNotify),
-            "CmdSetLanguageScRsp" => Some(Self::CmdSetLanguageScRsp),
-            "CmdGetBasicInfoScRsp" => Some(Self::CmdGetBasicInfoScRsp),
             "CmdClientObjUploadScRsp" => Some(Self::CmdClientObjUploadScRsp),
-            "CmdStaminaInfoScNotify" => Some(Self::CmdStaminaInfoScNotify),
-            "CmdReserveStaminaExchangeScRsp" => {
-                Some(Self::CmdReserveStaminaExchangeScRsp)
-            }
-            "CmdGateServerScNotify" => Some(Self::CmdGateServerScNotify),
-            "CmdSetGameplayBirthdayScRsp" => Some(Self::CmdSetGameplayBirthdayScRsp),
-            "CmdGetLevelRewardCsReq" => Some(Self::CmdGetLevelRewardCsReq),
-            "CmdExchangeStaminaCsReq" => Some(Self::CmdExchangeStaminaCsReq),
-            "CmdSetGameplayBirthdayCsReq" => Some(Self::CmdSetGameplayBirthdayCsReq),
-            "CmdGetAuthkeyScRsp" => Some(Self::CmdGetAuthkeyScRsp),
-            "CmdPlayerKickOutScNotify" => Some(Self::CmdPlayerKickOutScNotify),
-            "CmdFeatureSwitchClosedScNotify" => {
-                Some(Self::CmdFeatureSwitchClosedScNotify)
-            }
-            "CmdGetLevelRewardScRsp" => Some(Self::CmdGetLevelRewardScRsp),
-            "CmdGetMultiPathAvatarInfoScRsp" => {
-                Some(Self::CmdGetMultiPathAvatarInfoScRsp)
-            }
-            "CmdSetPlayerInfoCsReq" => Some(Self::CmdSetPlayerInfoCsReq),
-            "CmdGetAuthkeyCsReq" => Some(Self::CmdGetAuthkeyCsReq),
-            "CmdSetGenderCsReq" => Some(Self::CmdSetGenderCsReq),
-            "CmdUpdatePlayerSettingCsReq" => Some(Self::CmdUpdatePlayerSettingCsReq),
-            "CmdSetLanguageCsReq" => Some(Self::CmdSetLanguageCsReq),
-            "CmdServerAnnounceNotify" => Some(Self::CmdServerAnnounceNotify),
             "CmdSetMultipleAvatarPathsScRsp" => {
                 Some(Self::CmdSetMultipleAvatarPathsScRsp)
             }
-            "CmdPlayerHeartBeatCsReq" => Some(Self::CmdPlayerHeartBeatCsReq),
-            "CmdGetGameStateServiceConfigScRsp" => {
-                Some(Self::CmdGetGameStateServiceConfigScRsp)
+            "CmdPlayerHeartBeatScRsp" => Some(Self::CmdPlayerHeartBeatScRsp),
+            "CmdGetAuthkeyCsReq" => Some(Self::CmdGetAuthkeyCsReq),
+            "CmdGetGameStateServiceConfigCsReq" => {
+                Some(Self::CmdGetGameStateServiceConfigCsReq)
+            }
+            "CmdSetNicknameCsReq" => Some(Self::CmdSetNicknameCsReq),
+            "CmdSetGenderScRsp" => Some(Self::CmdSetGenderScRsp),
+            "CmdClientObjDownloadDataScNotify" => {
+                Some(Self::CmdClientObjDownloadDataScNotify)
+            }
+            "CmdGetLevelRewardCsReq" => Some(Self::CmdGetLevelRewardCsReq),
+            "CmdUnlockAvatarPathCsReq" => Some(Self::CmdUnlockAvatarPathCsReq),
+            "CmdGetVideoVersionKeyCsReq" => Some(Self::CmdGetVideoVersionKeyCsReq),
+            "CmdSetPlayerInfoCsReq" => Some(Self::CmdSetPlayerInfoCsReq),
+            "CmdRegionStopScNotify" => Some(Self::CmdRegionStopScNotify),
+            "CmdClientObjUploadCsReq" => Some(Self::CmdClientObjUploadCsReq),
+            "CmdGetBasicInfoCsReq" => Some(Self::CmdGetBasicInfoCsReq),
+            "CmdStaminaInfoScNotify" => Some(Self::CmdStaminaInfoScNotify),
+            "CmdPlayerKickOutScNotify" => Some(Self::CmdPlayerKickOutScNotify),
+            "CmdExchangeStaminaCsReq" => Some(Self::CmdExchangeStaminaCsReq),
+            "CmdAntiAddictScNotify" => Some(Self::CmdAntiAddictScNotify),
+            "CmdPlayerLogoutScRsp" => Some(Self::CmdPlayerLogoutScRsp),
+            "CmdPlayerGetTokenScRsp" => Some(Self::CmdPlayerGetTokenScRsp),
+            "CmdUpdatePsnSettingsInfoCsReq" => Some(Self::CmdUpdatePsnSettingsInfoCsReq),
+            "CmdGmTalkScRsp" => Some(Self::CmdGmTalkScRsp),
+            "CmdPlayerLoginCsReq" => Some(Self::CmdPlayerLoginCsReq),
+            "CmdSetPlayerInfoScRsp" => Some(Self::CmdSetPlayerInfoScRsp),
+            "CmdClientDownloadDataScNotify" => Some(Self::CmdClientDownloadDataScNotify),
+            "CmdGateServerScNotify" => Some(Self::CmdGateServerScNotify),
+            "CmdDailyRefreshNotify" => Some(Self::CmdDailyRefreshNotify),
+            "CmdReserveStaminaExchangeScRsp" => {
+                Some(Self::CmdReserveStaminaExchangeScRsp)
+            }
+            "CmdAceAntiCheaterScRsp" => Some(Self::CmdAceAntiCheaterScRsp),
+            "CmdGetVideoVersionKeyScRsp" => Some(Self::CmdGetVideoVersionKeyScRsp),
+            "CmdSetLanguageCsReq" => Some(Self::CmdSetLanguageCsReq),
+            "CmdSetRedPointStatusScNotify" => Some(Self::CmdSetRedPointStatusScNotify),
+            "CmdSetNicknameScRsp" => Some(Self::CmdSetNicknameScRsp),
+            "CmdUpdateFeatureSwitchScNotify" => {
+                Some(Self::CmdUpdateFeatureSwitchScNotify)
             }
             "CmdUpdatePlayerSettingScRsp" => Some(Self::CmdUpdatePlayerSettingScRsp),
+            "CmdPlayerLoginFinishScRsp" => Some(Self::CmdPlayerLoginFinishScRsp),
+            "CmdServerAnnounceNotify" => Some(Self::CmdServerAnnounceNotify),
+            "CmdGetLevelRewardTakenListScRsp" => {
+                Some(Self::CmdGetLevelRewardTakenListScRsp)
+            }
+            "CmdAceAntiCheaterCsReq" => Some(Self::CmdAceAntiCheaterCsReq),
+            "CmdFeatureSwitchClosedScNotify" => {
+                Some(Self::CmdFeatureSwitchClosedScNotify)
+            }
             "CmdSetMultipleAvatarPathsCsReq" => {
                 Some(Self::CmdSetMultipleAvatarPathsCsReq)
             }
+            "CmdGetMultiPathAvatarInfoScRsp" => {
+                Some(Self::CmdGetMultiPathAvatarInfoScRsp)
+            }
+            "CmdMonthCardRewardNotify" => Some(Self::CmdMonthCardRewardNotify),
+            "CmdSetGenderCsReq" => Some(Self::CmdSetGenderCsReq),
+            "CmdGetMultiPathAvatarInfoCsReq" => {
+                Some(Self::CmdGetMultiPathAvatarInfoCsReq)
+            }
+            "CmdPlayerGetTokenCsReq" => Some(Self::CmdPlayerGetTokenCsReq),
+            "CmdPlayerLoginFinishCsReq" => Some(Self::CmdPlayerLoginFinishCsReq),
+            "CmdUpdatePlayerSettingCsReq" => Some(Self::CmdUpdatePlayerSettingCsReq),
+            "CmdGetGameStateServiceConfigScRsp" => {
+                Some(Self::CmdGetGameStateServiceConfigScRsp)
+            }
+            "CmdRetcodeNotify" => Some(Self::CmdRetcodeNotify),
+            "CmdGmTalkScNotify" => Some(Self::CmdGmTalkScNotify),
+            "CmdGetAuthkeyScRsp" => Some(Self::CmdGetAuthkeyScRsp),
+            "CmdGetLevelRewardScRsp" => Some(Self::CmdGetLevelRewardScRsp),
+            "CmdQueryProductInfoCsReq" => Some(Self::CmdQueryProductInfoCsReq),
+            "CmdQueryProductInfoScRsp" => Some(Self::CmdQueryProductInfoScRsp),
+            "CmdUpdatePsnSettingsInfoScRsp" => Some(Self::CmdUpdatePsnSettingsInfoScRsp),
+            "CmdGetSecretKeyInfoScRsp" => Some(Self::CmdGetSecretKeyInfoScRsp),
+            "CmdPlayerLogoutCsReq" => Some(Self::CmdPlayerLogoutCsReq),
+            "CmdUnlockAvatarPathScRsp" => Some(Self::CmdUnlockAvatarPathScRsp),
+            "CmdSetAvatarPathScRsp" => Some(Self::CmdSetAvatarPathScRsp),
+            "CmdSetAvatarPathCsReq" => Some(Self::CmdSetAvatarPathCsReq),
+            "CmdSetLanguageScRsp" => Some(Self::CmdSetLanguageScRsp),
+            "CmdAvatarPathChangedNotify" => Some(Self::CmdAvatarPathChangedNotify),
+            "CmdGetLevelRewardTakenListCsReq" => {
+                Some(Self::CmdGetLevelRewardTakenListCsReq)
+            }
+            "CmdReserveStaminaExchangeCsReq" => {
+                Some(Self::CmdReserveStaminaExchangeCsReq)
+            }
+            "CmdSetGameplayBirthdayScRsp" => Some(Self::CmdSetGameplayBirthdayScRsp),
+            "CmdGmTalkCsReq" => Some(Self::CmdGmTalkCsReq),
+            "CmdSetGameplayBirthdayCsReq" => Some(Self::CmdSetGameplayBirthdayCsReq),
+            "CmdPlayerLoginScRsp" => Some(Self::CmdPlayerLoginScRsp),
+            "CmdExchangeStaminaScRsp" => Some(Self::CmdExchangeStaminaScRsp),
+            "CmdGetSecretKeyInfoCsReq" => Some(Self::CmdGetSecretKeyInfoCsReq),
+            "CmdPlayerHeartBeatCsReq" => Some(Self::CmdPlayerHeartBeatCsReq),
+            "CmdGetBasicInfoScRsp" => Some(Self::CmdGetBasicInfoScRsp),
             _ => None,
         }
     }
@@ -8577,19 +8690,19 @@ impl CmdPlayerType {
 #[repr(i32)]
 pub enum CmdPlayerBoardType {
     None = 0,
-    CmdSetHeadIconCsReq = 2803,
-    CmdSetSignatureCsReq = 2816,
-    CmdGetPlayerBoardDataScRsp = 2820,
-    CmdSetAssistAvatarScRsp = 2830,
-    CmdSetIsDisplayAvatarInfoCsReq = 2834,
-    CmdSetIsDisplayAvatarInfoScRsp = 2837,
-    CmdSetDisplayAvatarCsReq = 2839,
-    CmdSetHeadIconScRsp = 2846,
-    CmdSetSignatureScRsp = 2847,
-    CmdSetDisplayAvatarScRsp = 2853,
-    CmdGetPlayerBoardDataCsReq = 2859,
-    CmdSetAssistAvatarCsReq = 2874,
-    CmdUnlockHeadIconScNotify = 2880,
+    CmdUnlockHeadIconScNotify = 2824,
+    CmdSetHeadIconScRsp = 2827,
+    CmdSetDisplayAvatarScRsp = 2828,
+    CmdSetSignatureScRsp = 2834,
+    CmdGetPlayerBoardDataCsReq = 2836,
+    CmdSetAssistAvatarCsReq = 2843,
+    CmdSetAssistAvatarScRsp = 2846,
+    CmdSetIsDisplayAvatarInfoCsReq = 2852,
+    CmdSetDisplayAvatarCsReq = 2867,
+    CmdSetIsDisplayAvatarInfoScRsp = 2874,
+    CmdSetHeadIconCsReq = 2884,
+    CmdSetSignatureCsReq = 2893,
+    CmdGetPlayerBoardDataScRsp = 2895,
 }
 impl CmdPlayerBoardType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -8599,50 +8712,50 @@ impl CmdPlayerBoardType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdPlayerBoardType::None => "CmdPlayerBoardTypeNone",
+            CmdPlayerBoardType::CmdUnlockHeadIconScNotify => "CmdUnlockHeadIconScNotify",
+            CmdPlayerBoardType::CmdSetHeadIconScRsp => "CmdSetHeadIconScRsp",
+            CmdPlayerBoardType::CmdSetDisplayAvatarScRsp => "CmdSetDisplayAvatarScRsp",
+            CmdPlayerBoardType::CmdSetSignatureScRsp => "CmdSetSignatureScRsp",
+            CmdPlayerBoardType::CmdGetPlayerBoardDataCsReq => {
+                "CmdGetPlayerBoardDataCsReq"
+            }
+            CmdPlayerBoardType::CmdSetAssistAvatarCsReq => "CmdSetAssistAvatarCsReq",
+            CmdPlayerBoardType::CmdSetAssistAvatarScRsp => "CmdSetAssistAvatarScRsp",
+            CmdPlayerBoardType::CmdSetIsDisplayAvatarInfoCsReq => {
+                "CmdSetIsDisplayAvatarInfoCsReq"
+            }
+            CmdPlayerBoardType::CmdSetDisplayAvatarCsReq => "CmdSetDisplayAvatarCsReq",
+            CmdPlayerBoardType::CmdSetIsDisplayAvatarInfoScRsp => {
+                "CmdSetIsDisplayAvatarInfoScRsp"
+            }
             CmdPlayerBoardType::CmdSetHeadIconCsReq => "CmdSetHeadIconCsReq",
             CmdPlayerBoardType::CmdSetSignatureCsReq => "CmdSetSignatureCsReq",
             CmdPlayerBoardType::CmdGetPlayerBoardDataScRsp => {
                 "CmdGetPlayerBoardDataScRsp"
             }
-            CmdPlayerBoardType::CmdSetAssistAvatarScRsp => "CmdSetAssistAvatarScRsp",
-            CmdPlayerBoardType::CmdSetIsDisplayAvatarInfoCsReq => {
-                "CmdSetIsDisplayAvatarInfoCsReq"
-            }
-            CmdPlayerBoardType::CmdSetIsDisplayAvatarInfoScRsp => {
-                "CmdSetIsDisplayAvatarInfoScRsp"
-            }
-            CmdPlayerBoardType::CmdSetDisplayAvatarCsReq => "CmdSetDisplayAvatarCsReq",
-            CmdPlayerBoardType::CmdSetHeadIconScRsp => "CmdSetHeadIconScRsp",
-            CmdPlayerBoardType::CmdSetSignatureScRsp => "CmdSetSignatureScRsp",
-            CmdPlayerBoardType::CmdSetDisplayAvatarScRsp => "CmdSetDisplayAvatarScRsp",
-            CmdPlayerBoardType::CmdGetPlayerBoardDataCsReq => {
-                "CmdGetPlayerBoardDataCsReq"
-            }
-            CmdPlayerBoardType::CmdSetAssistAvatarCsReq => "CmdSetAssistAvatarCsReq",
-            CmdPlayerBoardType::CmdUnlockHeadIconScNotify => "CmdUnlockHeadIconScNotify",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdPlayerBoardTypeNone" => Some(Self::None),
-            "CmdSetHeadIconCsReq" => Some(Self::CmdSetHeadIconCsReq),
-            "CmdSetSignatureCsReq" => Some(Self::CmdSetSignatureCsReq),
-            "CmdGetPlayerBoardDataScRsp" => Some(Self::CmdGetPlayerBoardDataScRsp),
+            "CmdUnlockHeadIconScNotify" => Some(Self::CmdUnlockHeadIconScNotify),
+            "CmdSetHeadIconScRsp" => Some(Self::CmdSetHeadIconScRsp),
+            "CmdSetDisplayAvatarScRsp" => Some(Self::CmdSetDisplayAvatarScRsp),
+            "CmdSetSignatureScRsp" => Some(Self::CmdSetSignatureScRsp),
+            "CmdGetPlayerBoardDataCsReq" => Some(Self::CmdGetPlayerBoardDataCsReq),
+            "CmdSetAssistAvatarCsReq" => Some(Self::CmdSetAssistAvatarCsReq),
             "CmdSetAssistAvatarScRsp" => Some(Self::CmdSetAssistAvatarScRsp),
             "CmdSetIsDisplayAvatarInfoCsReq" => {
                 Some(Self::CmdSetIsDisplayAvatarInfoCsReq)
             }
+            "CmdSetDisplayAvatarCsReq" => Some(Self::CmdSetDisplayAvatarCsReq),
             "CmdSetIsDisplayAvatarInfoScRsp" => {
                 Some(Self::CmdSetIsDisplayAvatarInfoScRsp)
             }
-            "CmdSetDisplayAvatarCsReq" => Some(Self::CmdSetDisplayAvatarCsReq),
-            "CmdSetHeadIconScRsp" => Some(Self::CmdSetHeadIconScRsp),
-            "CmdSetSignatureScRsp" => Some(Self::CmdSetSignatureScRsp),
-            "CmdSetDisplayAvatarScRsp" => Some(Self::CmdSetDisplayAvatarScRsp),
-            "CmdGetPlayerBoardDataCsReq" => Some(Self::CmdGetPlayerBoardDataCsReq),
-            "CmdSetAssistAvatarCsReq" => Some(Self::CmdSetAssistAvatarCsReq),
-            "CmdUnlockHeadIconScNotify" => Some(Self::CmdUnlockHeadIconScNotify),
+            "CmdSetHeadIconCsReq" => Some(Self::CmdSetHeadIconCsReq),
+            "CmdSetSignatureCsReq" => Some(Self::CmdSetSignatureCsReq),
+            "CmdGetPlayerBoardDataScRsp" => Some(Self::CmdGetPlayerBoardDataScRsp),
             _ => None,
         }
     }
@@ -8652,17 +8765,17 @@ impl CmdPlayerBoardType {
 #[repr(i32)]
 pub enum CmdPlayerReturnType {
     None = 0,
-    CmdPlayerReturnSignScRsp = 4503,
-    CmdPlayerReturnInfoQueryScRsp = 4516,
-    CmdPlayerReturnSignCsReq = 4520,
-    CmdPlayerReturnTakeRewardCsReq = 4534,
-    CmdPlayerReturnTakeRewardScRsp = 4537,
-    CmdPlayerReturnTakePointRewardCsReq = 4539,
-    CmdPlayerReturnPointChangeScNotify = 4546,
-    CmdPlayerReturnForceFinishScNotify = 4547,
-    CmdPlayerReturnTakePointRewardScRsp = 4553,
-    CmdPlayerReturnStartScNotify = 4559,
-    CmdPlayerReturnInfoQueryCsReq = 4580,
+    CmdPlayerReturnInfoQueryCsReq = 4524,
+    CmdPlayerReturnPointChangeScNotify = 4527,
+    CmdPlayerReturnTakePointRewardScRsp = 4528,
+    CmdPlayerReturnForceFinishScNotify = 4534,
+    CmdPlayerReturnStartScNotify = 4536,
+    CmdPlayerReturnTakeRewardCsReq = 4552,
+    CmdPlayerReturnTakePointRewardCsReq = 4567,
+    CmdPlayerReturnTakeRewardScRsp = 4574,
+    CmdPlayerReturnSignScRsp = 4584,
+    CmdPlayerReturnInfoQueryScRsp = 4593,
+    CmdPlayerReturnSignCsReq = 4595,
 }
 impl CmdPlayerReturnType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -8672,64 +8785,64 @@ impl CmdPlayerReturnType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdPlayerReturnType::None => "CmdPlayerReturnTypeNone",
+            CmdPlayerReturnType::CmdPlayerReturnInfoQueryCsReq => {
+                "CmdPlayerReturnInfoQueryCsReq"
+            }
+            CmdPlayerReturnType::CmdPlayerReturnPointChangeScNotify => {
+                "CmdPlayerReturnPointChangeScNotify"
+            }
+            CmdPlayerReturnType::CmdPlayerReturnTakePointRewardScRsp => {
+                "CmdPlayerReturnTakePointRewardScRsp"
+            }
+            CmdPlayerReturnType::CmdPlayerReturnForceFinishScNotify => {
+                "CmdPlayerReturnForceFinishScNotify"
+            }
+            CmdPlayerReturnType::CmdPlayerReturnStartScNotify => {
+                "CmdPlayerReturnStartScNotify"
+            }
+            CmdPlayerReturnType::CmdPlayerReturnTakeRewardCsReq => {
+                "CmdPlayerReturnTakeRewardCsReq"
+            }
+            CmdPlayerReturnType::CmdPlayerReturnTakePointRewardCsReq => {
+                "CmdPlayerReturnTakePointRewardCsReq"
+            }
+            CmdPlayerReturnType::CmdPlayerReturnTakeRewardScRsp => {
+                "CmdPlayerReturnTakeRewardScRsp"
+            }
             CmdPlayerReturnType::CmdPlayerReturnSignScRsp => "CmdPlayerReturnSignScRsp",
             CmdPlayerReturnType::CmdPlayerReturnInfoQueryScRsp => {
                 "CmdPlayerReturnInfoQueryScRsp"
             }
             CmdPlayerReturnType::CmdPlayerReturnSignCsReq => "CmdPlayerReturnSignCsReq",
-            CmdPlayerReturnType::CmdPlayerReturnTakeRewardCsReq => {
-                "CmdPlayerReturnTakeRewardCsReq"
-            }
-            CmdPlayerReturnType::CmdPlayerReturnTakeRewardScRsp => {
-                "CmdPlayerReturnTakeRewardScRsp"
-            }
-            CmdPlayerReturnType::CmdPlayerReturnTakePointRewardCsReq => {
-                "CmdPlayerReturnTakePointRewardCsReq"
-            }
-            CmdPlayerReturnType::CmdPlayerReturnPointChangeScNotify => {
-                "CmdPlayerReturnPointChangeScNotify"
-            }
-            CmdPlayerReturnType::CmdPlayerReturnForceFinishScNotify => {
-                "CmdPlayerReturnForceFinishScNotify"
-            }
-            CmdPlayerReturnType::CmdPlayerReturnTakePointRewardScRsp => {
-                "CmdPlayerReturnTakePointRewardScRsp"
-            }
-            CmdPlayerReturnType::CmdPlayerReturnStartScNotify => {
-                "CmdPlayerReturnStartScNotify"
-            }
-            CmdPlayerReturnType::CmdPlayerReturnInfoQueryCsReq => {
-                "CmdPlayerReturnInfoQueryCsReq"
-            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdPlayerReturnTypeNone" => Some(Self::None),
-            "CmdPlayerReturnSignScRsp" => Some(Self::CmdPlayerReturnSignScRsp),
-            "CmdPlayerReturnInfoQueryScRsp" => Some(Self::CmdPlayerReturnInfoQueryScRsp),
-            "CmdPlayerReturnSignCsReq" => Some(Self::CmdPlayerReturnSignCsReq),
-            "CmdPlayerReturnTakeRewardCsReq" => {
-                Some(Self::CmdPlayerReturnTakeRewardCsReq)
-            }
-            "CmdPlayerReturnTakeRewardScRsp" => {
-                Some(Self::CmdPlayerReturnTakeRewardScRsp)
-            }
-            "CmdPlayerReturnTakePointRewardCsReq" => {
-                Some(Self::CmdPlayerReturnTakePointRewardCsReq)
-            }
+            "CmdPlayerReturnInfoQueryCsReq" => Some(Self::CmdPlayerReturnInfoQueryCsReq),
             "CmdPlayerReturnPointChangeScNotify" => {
                 Some(Self::CmdPlayerReturnPointChangeScNotify)
-            }
-            "CmdPlayerReturnForceFinishScNotify" => {
-                Some(Self::CmdPlayerReturnForceFinishScNotify)
             }
             "CmdPlayerReturnTakePointRewardScRsp" => {
                 Some(Self::CmdPlayerReturnTakePointRewardScRsp)
             }
+            "CmdPlayerReturnForceFinishScNotify" => {
+                Some(Self::CmdPlayerReturnForceFinishScNotify)
+            }
             "CmdPlayerReturnStartScNotify" => Some(Self::CmdPlayerReturnStartScNotify),
-            "CmdPlayerReturnInfoQueryCsReq" => Some(Self::CmdPlayerReturnInfoQueryCsReq),
+            "CmdPlayerReturnTakeRewardCsReq" => {
+                Some(Self::CmdPlayerReturnTakeRewardCsReq)
+            }
+            "CmdPlayerReturnTakePointRewardCsReq" => {
+                Some(Self::CmdPlayerReturnTakePointRewardCsReq)
+            }
+            "CmdPlayerReturnTakeRewardScRsp" => {
+                Some(Self::CmdPlayerReturnTakeRewardScRsp)
+            }
+            "CmdPlayerReturnSignScRsp" => Some(Self::CmdPlayerReturnSignScRsp),
+            "CmdPlayerReturnInfoQueryScRsp" => Some(Self::CmdPlayerReturnInfoQueryScRsp),
+            "CmdPlayerReturnSignCsReq" => Some(Self::CmdPlayerReturnSignCsReq),
             _ => None,
         }
     }
@@ -8739,8 +8852,8 @@ impl CmdPlayerReturnType {
 #[repr(i32)]
 pub enum CmdPlotType {
     None = 0,
-    CmdFinishPlotScRsp = 1120,
-    CmdFinishPlotCsReq = 1159,
+    CmdFinishPlotCsReq = 1136,
+    CmdFinishPlotScRsp = 1195,
 }
 impl CmdPlotType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -8750,16 +8863,16 @@ impl CmdPlotType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdPlotType::None => "CmdPlotTypeNone",
-            CmdPlotType::CmdFinishPlotScRsp => "CmdFinishPlotScRsp",
             CmdPlotType::CmdFinishPlotCsReq => "CmdFinishPlotCsReq",
+            CmdPlotType::CmdFinishPlotScRsp => "CmdFinishPlotScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdPlotTypeNone" => Some(Self::None),
-            "CmdFinishPlotScRsp" => Some(Self::CmdFinishPlotScRsp),
             "CmdFinishPlotCsReq" => Some(Self::CmdFinishPlotCsReq),
+            "CmdFinishPlotScRsp" => Some(Self::CmdFinishPlotScRsp),
             _ => None,
         }
     }
@@ -8769,29 +8882,29 @@ impl CmdPlotType {
 #[repr(i32)]
 pub enum CmdPunkLordType {
     None = 0,
-    CmdStartPunkLordRaidCsReq = 3203,
+    CmdGetPunkLordDataCsReq = 3205,
     CmdPunkLordDataChangeNotify = 3210,
-    CmdGetPunkLordMonsterDataScRsp = 3220,
-    CmdTakePunkLordPointRewardCsReq = 3230,
-    CmdSummonPunkLordMonsterCsReq = 3234,
-    CmdGetPunkLordBattleRecordScRsp = 3236,
-    CmdSummonPunkLordMonsterScRsp = 3237,
-    CmdSharePunkLordMonsterCsReq = 3239,
-    CmdStartPunkLordRaidScRsp = 3246,
-    CmdPunkLordMonsterInfoScNotify = 3248,
-    CmdPunkLordBattleResultScNotify = 3251,
-    CmdSharePunkLordMonsterScRsp = 3253,
-    CmdGetPunkLordMonsterDataCsReq = 3259,
-    CmdPunkLordRaidTimeOutScNotify = 3261,
-    CmdTakeKilledPunkLordMonsterScoreCsReq = 3264,
-    CmdGetPunkLordBattleRecordCsReq = 3270,
-    CmdGetKilledPunkLordMonsterDataCsReq = 3273,
-    CmdTakePunkLordPointRewardScRsp = 3275,
-    CmdGetPunkLordDataScRsp = 3279,
-    CmdGetKilledPunkLordMonsterDataScRsp = 3283,
-    CmdGetPunkLordDataCsReq = 3290,
-    CmdPunkLordMonsterKilledNotify = 3293,
-    CmdTakeKilledPunkLordMonsterScoreScRsp = 3294,
+    CmdGetKilledPunkLordMonsterDataCsReq = 3212,
+    CmdTakePunkLordPointRewardScRsp = 3225,
+    CmdPunkLordRaidTimeOutScNotify = 3226,
+    CmdStartPunkLordRaidScRsp = 3227,
+    CmdSharePunkLordMonsterScRsp = 3228,
+    CmdGetPunkLordBattleRecordScRsp = 3235,
+    CmdGetPunkLordMonsterDataCsReq = 3236,
+    CmdTakePunkLordPointRewardCsReq = 3246,
+    CmdPunkLordMonsterKilledNotify = 3248,
+    CmdSummonPunkLordMonsterCsReq = 3252,
+    CmdTakeKilledPunkLordMonsterScoreScRsp = 3258,
+    CmdPunkLordBattleResultScNotify = 3259,
+    CmdSharePunkLordMonsterCsReq = 3267,
+    CmdSummonPunkLordMonsterScRsp = 3274,
+    CmdGetPunkLordDataScRsp = 3275,
+    CmdGetPunkLordBattleRecordCsReq = 3276,
+    CmdGetKilledPunkLordMonsterDataScRsp = 3278,
+    CmdStartPunkLordRaidCsReq = 3284,
+    CmdTakeKilledPunkLordMonsterScoreCsReq = 3288,
+    CmdGetPunkLordMonsterDataScRsp = 3295,
+    CmdPunkLordMonsterInfoScNotify = 3296,
 }
 impl CmdPunkLordType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -8801,64 +8914,64 @@ impl CmdPunkLordType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdPunkLordType::None => "CmdPunkLordTypeNone",
-            CmdPunkLordType::CmdStartPunkLordRaidCsReq => "CmdStartPunkLordRaidCsReq",
+            CmdPunkLordType::CmdGetPunkLordDataCsReq => "CmdGetPunkLordDataCsReq",
             CmdPunkLordType::CmdPunkLordDataChangeNotify => "CmdPunkLordDataChangeNotify",
-            CmdPunkLordType::CmdGetPunkLordMonsterDataScRsp => {
-                "CmdGetPunkLordMonsterDataScRsp"
-            }
-            CmdPunkLordType::CmdTakePunkLordPointRewardCsReq => {
-                "CmdTakePunkLordPointRewardCsReq"
-            }
-            CmdPunkLordType::CmdSummonPunkLordMonsterCsReq => {
-                "CmdSummonPunkLordMonsterCsReq"
-            }
-            CmdPunkLordType::CmdGetPunkLordBattleRecordScRsp => {
-                "CmdGetPunkLordBattleRecordScRsp"
-            }
-            CmdPunkLordType::CmdSummonPunkLordMonsterScRsp => {
-                "CmdSummonPunkLordMonsterScRsp"
-            }
-            CmdPunkLordType::CmdSharePunkLordMonsterCsReq => {
-                "CmdSharePunkLordMonsterCsReq"
-            }
-            CmdPunkLordType::CmdStartPunkLordRaidScRsp => "CmdStartPunkLordRaidScRsp",
-            CmdPunkLordType::CmdPunkLordMonsterInfoScNotify => {
-                "CmdPunkLordMonsterInfoScNotify"
-            }
-            CmdPunkLordType::CmdPunkLordBattleResultScNotify => {
-                "CmdPunkLordBattleResultScNotify"
-            }
-            CmdPunkLordType::CmdSharePunkLordMonsterScRsp => {
-                "CmdSharePunkLordMonsterScRsp"
-            }
-            CmdPunkLordType::CmdGetPunkLordMonsterDataCsReq => {
-                "CmdGetPunkLordMonsterDataCsReq"
-            }
-            CmdPunkLordType::CmdPunkLordRaidTimeOutScNotify => {
-                "CmdPunkLordRaidTimeOutScNotify"
-            }
-            CmdPunkLordType::CmdTakeKilledPunkLordMonsterScoreCsReq => {
-                "CmdTakeKilledPunkLordMonsterScoreCsReq"
-            }
-            CmdPunkLordType::CmdGetPunkLordBattleRecordCsReq => {
-                "CmdGetPunkLordBattleRecordCsReq"
-            }
             CmdPunkLordType::CmdGetKilledPunkLordMonsterDataCsReq => {
                 "CmdGetKilledPunkLordMonsterDataCsReq"
             }
             CmdPunkLordType::CmdTakePunkLordPointRewardScRsp => {
                 "CmdTakePunkLordPointRewardScRsp"
             }
-            CmdPunkLordType::CmdGetPunkLordDataScRsp => "CmdGetPunkLordDataScRsp",
-            CmdPunkLordType::CmdGetKilledPunkLordMonsterDataScRsp => {
-                "CmdGetKilledPunkLordMonsterDataScRsp"
+            CmdPunkLordType::CmdPunkLordRaidTimeOutScNotify => {
+                "CmdPunkLordRaidTimeOutScNotify"
             }
-            CmdPunkLordType::CmdGetPunkLordDataCsReq => "CmdGetPunkLordDataCsReq",
+            CmdPunkLordType::CmdStartPunkLordRaidScRsp => "CmdStartPunkLordRaidScRsp",
+            CmdPunkLordType::CmdSharePunkLordMonsterScRsp => {
+                "CmdSharePunkLordMonsterScRsp"
+            }
+            CmdPunkLordType::CmdGetPunkLordBattleRecordScRsp => {
+                "CmdGetPunkLordBattleRecordScRsp"
+            }
+            CmdPunkLordType::CmdGetPunkLordMonsterDataCsReq => {
+                "CmdGetPunkLordMonsterDataCsReq"
+            }
+            CmdPunkLordType::CmdTakePunkLordPointRewardCsReq => {
+                "CmdTakePunkLordPointRewardCsReq"
+            }
             CmdPunkLordType::CmdPunkLordMonsterKilledNotify => {
                 "CmdPunkLordMonsterKilledNotify"
             }
+            CmdPunkLordType::CmdSummonPunkLordMonsterCsReq => {
+                "CmdSummonPunkLordMonsterCsReq"
+            }
             CmdPunkLordType::CmdTakeKilledPunkLordMonsterScoreScRsp => {
                 "CmdTakeKilledPunkLordMonsterScoreScRsp"
+            }
+            CmdPunkLordType::CmdPunkLordBattleResultScNotify => {
+                "CmdPunkLordBattleResultScNotify"
+            }
+            CmdPunkLordType::CmdSharePunkLordMonsterCsReq => {
+                "CmdSharePunkLordMonsterCsReq"
+            }
+            CmdPunkLordType::CmdSummonPunkLordMonsterScRsp => {
+                "CmdSummonPunkLordMonsterScRsp"
+            }
+            CmdPunkLordType::CmdGetPunkLordDataScRsp => "CmdGetPunkLordDataScRsp",
+            CmdPunkLordType::CmdGetPunkLordBattleRecordCsReq => {
+                "CmdGetPunkLordBattleRecordCsReq"
+            }
+            CmdPunkLordType::CmdGetKilledPunkLordMonsterDataScRsp => {
+                "CmdGetKilledPunkLordMonsterDataScRsp"
+            }
+            CmdPunkLordType::CmdStartPunkLordRaidCsReq => "CmdStartPunkLordRaidCsReq",
+            CmdPunkLordType::CmdTakeKilledPunkLordMonsterScoreCsReq => {
+                "CmdTakeKilledPunkLordMonsterScoreCsReq"
+            }
+            CmdPunkLordType::CmdGetPunkLordMonsterDataScRsp => {
+                "CmdGetPunkLordMonsterDataScRsp"
+            }
+            CmdPunkLordType::CmdPunkLordMonsterInfoScNotify => {
+                "CmdPunkLordMonsterInfoScNotify"
             }
         }
     }
@@ -8866,56 +8979,56 @@ impl CmdPunkLordType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdPunkLordTypeNone" => Some(Self::None),
-            "CmdStartPunkLordRaidCsReq" => Some(Self::CmdStartPunkLordRaidCsReq),
+            "CmdGetPunkLordDataCsReq" => Some(Self::CmdGetPunkLordDataCsReq),
             "CmdPunkLordDataChangeNotify" => Some(Self::CmdPunkLordDataChangeNotify),
-            "CmdGetPunkLordMonsterDataScRsp" => {
-                Some(Self::CmdGetPunkLordMonsterDataScRsp)
-            }
-            "CmdTakePunkLordPointRewardCsReq" => {
-                Some(Self::CmdTakePunkLordPointRewardCsReq)
-            }
-            "CmdSummonPunkLordMonsterCsReq" => Some(Self::CmdSummonPunkLordMonsterCsReq),
-            "CmdGetPunkLordBattleRecordScRsp" => {
-                Some(Self::CmdGetPunkLordBattleRecordScRsp)
-            }
-            "CmdSummonPunkLordMonsterScRsp" => Some(Self::CmdSummonPunkLordMonsterScRsp),
-            "CmdSharePunkLordMonsterCsReq" => Some(Self::CmdSharePunkLordMonsterCsReq),
-            "CmdStartPunkLordRaidScRsp" => Some(Self::CmdStartPunkLordRaidScRsp),
-            "CmdPunkLordMonsterInfoScNotify" => {
-                Some(Self::CmdPunkLordMonsterInfoScNotify)
-            }
-            "CmdPunkLordBattleResultScNotify" => {
-                Some(Self::CmdPunkLordBattleResultScNotify)
-            }
-            "CmdSharePunkLordMonsterScRsp" => Some(Self::CmdSharePunkLordMonsterScRsp),
-            "CmdGetPunkLordMonsterDataCsReq" => {
-                Some(Self::CmdGetPunkLordMonsterDataCsReq)
-            }
-            "CmdPunkLordRaidTimeOutScNotify" => {
-                Some(Self::CmdPunkLordRaidTimeOutScNotify)
-            }
-            "CmdTakeKilledPunkLordMonsterScoreCsReq" => {
-                Some(Self::CmdTakeKilledPunkLordMonsterScoreCsReq)
-            }
-            "CmdGetPunkLordBattleRecordCsReq" => {
-                Some(Self::CmdGetPunkLordBattleRecordCsReq)
-            }
             "CmdGetKilledPunkLordMonsterDataCsReq" => {
                 Some(Self::CmdGetKilledPunkLordMonsterDataCsReq)
             }
             "CmdTakePunkLordPointRewardScRsp" => {
                 Some(Self::CmdTakePunkLordPointRewardScRsp)
             }
-            "CmdGetPunkLordDataScRsp" => Some(Self::CmdGetPunkLordDataScRsp),
-            "CmdGetKilledPunkLordMonsterDataScRsp" => {
-                Some(Self::CmdGetKilledPunkLordMonsterDataScRsp)
+            "CmdPunkLordRaidTimeOutScNotify" => {
+                Some(Self::CmdPunkLordRaidTimeOutScNotify)
             }
-            "CmdGetPunkLordDataCsReq" => Some(Self::CmdGetPunkLordDataCsReq),
+            "CmdStartPunkLordRaidScRsp" => Some(Self::CmdStartPunkLordRaidScRsp),
+            "CmdSharePunkLordMonsterScRsp" => Some(Self::CmdSharePunkLordMonsterScRsp),
+            "CmdGetPunkLordBattleRecordScRsp" => {
+                Some(Self::CmdGetPunkLordBattleRecordScRsp)
+            }
+            "CmdGetPunkLordMonsterDataCsReq" => {
+                Some(Self::CmdGetPunkLordMonsterDataCsReq)
+            }
+            "CmdTakePunkLordPointRewardCsReq" => {
+                Some(Self::CmdTakePunkLordPointRewardCsReq)
+            }
             "CmdPunkLordMonsterKilledNotify" => {
                 Some(Self::CmdPunkLordMonsterKilledNotify)
             }
+            "CmdSummonPunkLordMonsterCsReq" => Some(Self::CmdSummonPunkLordMonsterCsReq),
             "CmdTakeKilledPunkLordMonsterScoreScRsp" => {
                 Some(Self::CmdTakeKilledPunkLordMonsterScoreScRsp)
+            }
+            "CmdPunkLordBattleResultScNotify" => {
+                Some(Self::CmdPunkLordBattleResultScNotify)
+            }
+            "CmdSharePunkLordMonsterCsReq" => Some(Self::CmdSharePunkLordMonsterCsReq),
+            "CmdSummonPunkLordMonsterScRsp" => Some(Self::CmdSummonPunkLordMonsterScRsp),
+            "CmdGetPunkLordDataScRsp" => Some(Self::CmdGetPunkLordDataScRsp),
+            "CmdGetPunkLordBattleRecordCsReq" => {
+                Some(Self::CmdGetPunkLordBattleRecordCsReq)
+            }
+            "CmdGetKilledPunkLordMonsterDataScRsp" => {
+                Some(Self::CmdGetKilledPunkLordMonsterDataScRsp)
+            }
+            "CmdStartPunkLordRaidCsReq" => Some(Self::CmdStartPunkLordRaidCsReq),
+            "CmdTakeKilledPunkLordMonsterScoreCsReq" => {
+                Some(Self::CmdTakeKilledPunkLordMonsterScoreCsReq)
+            }
+            "CmdGetPunkLordMonsterDataScRsp" => {
+                Some(Self::CmdGetPunkLordMonsterDataScRsp)
+            }
+            "CmdPunkLordMonsterInfoScNotify" => {
+                Some(Self::CmdPunkLordMonsterInfoScNotify)
             }
             _ => None,
         }
@@ -8926,19 +9039,19 @@ impl CmdPunkLordType {
 #[repr(i32)]
 pub enum CmdQuestType {
     None = 0,
-    CmdTakeQuestRewardCsReq = 903,
-    CmdFinishQuestCsReq = 916,
-    CmdGetQuestDataScRsp = 920,
-    CmdTakeQuestOptionalRewardScRsp = 930,
-    CmdGetQuestRecordCsReq = 934,
-    CmdGetQuestRecordScRsp = 937,
-    CmdTakeQuestRewardScRsp = 946,
-    CmdFinishQuestScRsp = 947,
-    CmdBatchGetQuestDataCsReq = 948,
-    CmdGetQuestDataCsReq = 959,
-    CmdTakeQuestOptionalRewardCsReq = 974,
-    CmdQuestRecordScNotify = 980,
-    CmdBatchGetQuestDataScRsp = 990,
+    CmdBatchGetQuestDataScRsp = 905,
+    CmdQuestRecordScNotify = 924,
+    CmdTakeQuestRewardScRsp = 927,
+    CmdFinishQuestScRsp = 934,
+    CmdGetQuestDataCsReq = 936,
+    CmdTakeQuestOptionalRewardCsReq = 943,
+    CmdTakeQuestOptionalRewardScRsp = 946,
+    CmdGetQuestRecordCsReq = 952,
+    CmdGetQuestRecordScRsp = 974,
+    CmdTakeQuestRewardCsReq = 984,
+    CmdFinishQuestCsReq = 993,
+    CmdGetQuestDataScRsp = 995,
+    CmdBatchGetQuestDataCsReq = 996,
 }
 impl CmdQuestType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -8948,46 +9061,46 @@ impl CmdQuestType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdQuestType::None => "CmdQuestTypeNone",
-            CmdQuestType::CmdTakeQuestRewardCsReq => "CmdTakeQuestRewardCsReq",
-            CmdQuestType::CmdFinishQuestCsReq => "CmdFinishQuestCsReq",
-            CmdQuestType::CmdGetQuestDataScRsp => "CmdGetQuestDataScRsp",
+            CmdQuestType::CmdBatchGetQuestDataScRsp => "CmdBatchGetQuestDataScRsp",
+            CmdQuestType::CmdQuestRecordScNotify => "CmdQuestRecordScNotify",
+            CmdQuestType::CmdTakeQuestRewardScRsp => "CmdTakeQuestRewardScRsp",
+            CmdQuestType::CmdFinishQuestScRsp => "CmdFinishQuestScRsp",
+            CmdQuestType::CmdGetQuestDataCsReq => "CmdGetQuestDataCsReq",
+            CmdQuestType::CmdTakeQuestOptionalRewardCsReq => {
+                "CmdTakeQuestOptionalRewardCsReq"
+            }
             CmdQuestType::CmdTakeQuestOptionalRewardScRsp => {
                 "CmdTakeQuestOptionalRewardScRsp"
             }
             CmdQuestType::CmdGetQuestRecordCsReq => "CmdGetQuestRecordCsReq",
             CmdQuestType::CmdGetQuestRecordScRsp => "CmdGetQuestRecordScRsp",
-            CmdQuestType::CmdTakeQuestRewardScRsp => "CmdTakeQuestRewardScRsp",
-            CmdQuestType::CmdFinishQuestScRsp => "CmdFinishQuestScRsp",
+            CmdQuestType::CmdTakeQuestRewardCsReq => "CmdTakeQuestRewardCsReq",
+            CmdQuestType::CmdFinishQuestCsReq => "CmdFinishQuestCsReq",
+            CmdQuestType::CmdGetQuestDataScRsp => "CmdGetQuestDataScRsp",
             CmdQuestType::CmdBatchGetQuestDataCsReq => "CmdBatchGetQuestDataCsReq",
-            CmdQuestType::CmdGetQuestDataCsReq => "CmdGetQuestDataCsReq",
-            CmdQuestType::CmdTakeQuestOptionalRewardCsReq => {
-                "CmdTakeQuestOptionalRewardCsReq"
-            }
-            CmdQuestType::CmdQuestRecordScNotify => "CmdQuestRecordScNotify",
-            CmdQuestType::CmdBatchGetQuestDataScRsp => "CmdBatchGetQuestDataScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdQuestTypeNone" => Some(Self::None),
-            "CmdTakeQuestRewardCsReq" => Some(Self::CmdTakeQuestRewardCsReq),
-            "CmdFinishQuestCsReq" => Some(Self::CmdFinishQuestCsReq),
-            "CmdGetQuestDataScRsp" => Some(Self::CmdGetQuestDataScRsp),
+            "CmdBatchGetQuestDataScRsp" => Some(Self::CmdBatchGetQuestDataScRsp),
+            "CmdQuestRecordScNotify" => Some(Self::CmdQuestRecordScNotify),
+            "CmdTakeQuestRewardScRsp" => Some(Self::CmdTakeQuestRewardScRsp),
+            "CmdFinishQuestScRsp" => Some(Self::CmdFinishQuestScRsp),
+            "CmdGetQuestDataCsReq" => Some(Self::CmdGetQuestDataCsReq),
+            "CmdTakeQuestOptionalRewardCsReq" => {
+                Some(Self::CmdTakeQuestOptionalRewardCsReq)
+            }
             "CmdTakeQuestOptionalRewardScRsp" => {
                 Some(Self::CmdTakeQuestOptionalRewardScRsp)
             }
             "CmdGetQuestRecordCsReq" => Some(Self::CmdGetQuestRecordCsReq),
             "CmdGetQuestRecordScRsp" => Some(Self::CmdGetQuestRecordScRsp),
-            "CmdTakeQuestRewardScRsp" => Some(Self::CmdTakeQuestRewardScRsp),
-            "CmdFinishQuestScRsp" => Some(Self::CmdFinishQuestScRsp),
+            "CmdTakeQuestRewardCsReq" => Some(Self::CmdTakeQuestRewardCsReq),
+            "CmdFinishQuestCsReq" => Some(Self::CmdFinishQuestCsReq),
+            "CmdGetQuestDataScRsp" => Some(Self::CmdGetQuestDataScRsp),
             "CmdBatchGetQuestDataCsReq" => Some(Self::CmdBatchGetQuestDataCsReq),
-            "CmdGetQuestDataCsReq" => Some(Self::CmdGetQuestDataCsReq),
-            "CmdTakeQuestOptionalRewardCsReq" => {
-                Some(Self::CmdTakeQuestOptionalRewardCsReq)
-            }
-            "CmdQuestRecordScNotify" => Some(Self::CmdQuestRecordScNotify),
-            "CmdBatchGetQuestDataScRsp" => Some(Self::CmdBatchGetQuestDataScRsp),
             _ => None,
         }
     }
@@ -8997,26 +9110,26 @@ impl CmdQuestType {
 #[repr(i32)]
 pub enum CmdRaidType {
     None = 0,
-    CmdLeaveRaidCsReq = 2203,
-    CmdChallengeRaidNotify = 2216,
+    CmdGetSaveRaidScRsp = 2205,
+    CmdRaidKickByServerScNotify = 2207,
     CmdGetAllSaveRaidScRsp = 2219,
-    CmdStartRaidScRsp = 2220,
-    CmdRaidKickByServerScNotify = 2225,
-    CmdSetClientRaidTargetCountCsReq = 2230,
-    CmdGetChallengeRaidInfoScRsp = 2234,
-    CmdTakeChallengeRaidRewardCsReq = 2237,
-    CmdRaidInfoNotify = 2239,
-    CmdLeaveRaidScRsp = 2246,
-    CmdGetRaidInfoCsReq = 2247,
-    CmdGetSaveRaidCsReq = 2248,
-    CmdGetChallengeRaidInfoCsReq = 2253,
-    CmdStartRaidCsReq = 2259,
-    CmdDelSaveRaidScNotify = 2261,
-    CmdGetRaidInfoScRsp = 2274,
-    CmdSetClientRaidTargetCountScRsp = 2275,
-    CmdGetAllSaveRaidCsReq = 2279,
-    CmdTakeChallengeRaidRewardScRsp = 2280,
-    CmdGetSaveRaidScRsp = 2290,
+    CmdTakeChallengeRaidRewardScRsp = 2224,
+    CmdSetClientRaidTargetCountScRsp = 2225,
+    CmdDelSaveRaidScNotify = 2226,
+    CmdLeaveRaidScRsp = 2227,
+    CmdGetChallengeRaidInfoCsReq = 2228,
+    CmdGetRaidInfoCsReq = 2234,
+    CmdStartRaidCsReq = 2236,
+    CmdGetRaidInfoScRsp = 2243,
+    CmdSetClientRaidTargetCountCsReq = 2246,
+    CmdGetChallengeRaidInfoScRsp = 2252,
+    CmdRaidInfoNotify = 2267,
+    CmdTakeChallengeRaidRewardCsReq = 2274,
+    CmdGetAllSaveRaidCsReq = 2275,
+    CmdLeaveRaidCsReq = 2284,
+    CmdChallengeRaidNotify = 2293,
+    CmdStartRaidScRsp = 2295,
+    CmdGetSaveRaidCsReq = 2296,
 }
 impl CmdRaidType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -9026,68 +9139,68 @@ impl CmdRaidType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdRaidType::None => "CmdRaidTypeNone",
-            CmdRaidType::CmdLeaveRaidCsReq => "CmdLeaveRaidCsReq",
-            CmdRaidType::CmdChallengeRaidNotify => "CmdChallengeRaidNotify",
-            CmdRaidType::CmdGetAllSaveRaidScRsp => "CmdGetAllSaveRaidScRsp",
-            CmdRaidType::CmdStartRaidScRsp => "CmdStartRaidScRsp",
+            CmdRaidType::CmdGetSaveRaidScRsp => "CmdGetSaveRaidScRsp",
             CmdRaidType::CmdRaidKickByServerScNotify => "CmdRaidKickByServerScNotify",
+            CmdRaidType::CmdGetAllSaveRaidScRsp => "CmdGetAllSaveRaidScRsp",
+            CmdRaidType::CmdTakeChallengeRaidRewardScRsp => {
+                "CmdTakeChallengeRaidRewardScRsp"
+            }
+            CmdRaidType::CmdSetClientRaidTargetCountScRsp => {
+                "CmdSetClientRaidTargetCountScRsp"
+            }
+            CmdRaidType::CmdDelSaveRaidScNotify => "CmdDelSaveRaidScNotify",
+            CmdRaidType::CmdLeaveRaidScRsp => "CmdLeaveRaidScRsp",
+            CmdRaidType::CmdGetChallengeRaidInfoCsReq => "CmdGetChallengeRaidInfoCsReq",
+            CmdRaidType::CmdGetRaidInfoCsReq => "CmdGetRaidInfoCsReq",
+            CmdRaidType::CmdStartRaidCsReq => "CmdStartRaidCsReq",
+            CmdRaidType::CmdGetRaidInfoScRsp => "CmdGetRaidInfoScRsp",
             CmdRaidType::CmdSetClientRaidTargetCountCsReq => {
                 "CmdSetClientRaidTargetCountCsReq"
             }
             CmdRaidType::CmdGetChallengeRaidInfoScRsp => "CmdGetChallengeRaidInfoScRsp",
+            CmdRaidType::CmdRaidInfoNotify => "CmdRaidInfoNotify",
             CmdRaidType::CmdTakeChallengeRaidRewardCsReq => {
                 "CmdTakeChallengeRaidRewardCsReq"
             }
-            CmdRaidType::CmdRaidInfoNotify => "CmdRaidInfoNotify",
-            CmdRaidType::CmdLeaveRaidScRsp => "CmdLeaveRaidScRsp",
-            CmdRaidType::CmdGetRaidInfoCsReq => "CmdGetRaidInfoCsReq",
-            CmdRaidType::CmdGetSaveRaidCsReq => "CmdGetSaveRaidCsReq",
-            CmdRaidType::CmdGetChallengeRaidInfoCsReq => "CmdGetChallengeRaidInfoCsReq",
-            CmdRaidType::CmdStartRaidCsReq => "CmdStartRaidCsReq",
-            CmdRaidType::CmdDelSaveRaidScNotify => "CmdDelSaveRaidScNotify",
-            CmdRaidType::CmdGetRaidInfoScRsp => "CmdGetRaidInfoScRsp",
-            CmdRaidType::CmdSetClientRaidTargetCountScRsp => {
-                "CmdSetClientRaidTargetCountScRsp"
-            }
             CmdRaidType::CmdGetAllSaveRaidCsReq => "CmdGetAllSaveRaidCsReq",
-            CmdRaidType::CmdTakeChallengeRaidRewardScRsp => {
-                "CmdTakeChallengeRaidRewardScRsp"
-            }
-            CmdRaidType::CmdGetSaveRaidScRsp => "CmdGetSaveRaidScRsp",
+            CmdRaidType::CmdLeaveRaidCsReq => "CmdLeaveRaidCsReq",
+            CmdRaidType::CmdChallengeRaidNotify => "CmdChallengeRaidNotify",
+            CmdRaidType::CmdStartRaidScRsp => "CmdStartRaidScRsp",
+            CmdRaidType::CmdGetSaveRaidCsReq => "CmdGetSaveRaidCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdRaidTypeNone" => Some(Self::None),
-            "CmdLeaveRaidCsReq" => Some(Self::CmdLeaveRaidCsReq),
-            "CmdChallengeRaidNotify" => Some(Self::CmdChallengeRaidNotify),
-            "CmdGetAllSaveRaidScRsp" => Some(Self::CmdGetAllSaveRaidScRsp),
-            "CmdStartRaidScRsp" => Some(Self::CmdStartRaidScRsp),
+            "CmdGetSaveRaidScRsp" => Some(Self::CmdGetSaveRaidScRsp),
             "CmdRaidKickByServerScNotify" => Some(Self::CmdRaidKickByServerScNotify),
+            "CmdGetAllSaveRaidScRsp" => Some(Self::CmdGetAllSaveRaidScRsp),
+            "CmdTakeChallengeRaidRewardScRsp" => {
+                Some(Self::CmdTakeChallengeRaidRewardScRsp)
+            }
+            "CmdSetClientRaidTargetCountScRsp" => {
+                Some(Self::CmdSetClientRaidTargetCountScRsp)
+            }
+            "CmdDelSaveRaidScNotify" => Some(Self::CmdDelSaveRaidScNotify),
+            "CmdLeaveRaidScRsp" => Some(Self::CmdLeaveRaidScRsp),
+            "CmdGetChallengeRaidInfoCsReq" => Some(Self::CmdGetChallengeRaidInfoCsReq),
+            "CmdGetRaidInfoCsReq" => Some(Self::CmdGetRaidInfoCsReq),
+            "CmdStartRaidCsReq" => Some(Self::CmdStartRaidCsReq),
+            "CmdGetRaidInfoScRsp" => Some(Self::CmdGetRaidInfoScRsp),
             "CmdSetClientRaidTargetCountCsReq" => {
                 Some(Self::CmdSetClientRaidTargetCountCsReq)
             }
             "CmdGetChallengeRaidInfoScRsp" => Some(Self::CmdGetChallengeRaidInfoScRsp),
+            "CmdRaidInfoNotify" => Some(Self::CmdRaidInfoNotify),
             "CmdTakeChallengeRaidRewardCsReq" => {
                 Some(Self::CmdTakeChallengeRaidRewardCsReq)
             }
-            "CmdRaidInfoNotify" => Some(Self::CmdRaidInfoNotify),
-            "CmdLeaveRaidScRsp" => Some(Self::CmdLeaveRaidScRsp),
-            "CmdGetRaidInfoCsReq" => Some(Self::CmdGetRaidInfoCsReq),
-            "CmdGetSaveRaidCsReq" => Some(Self::CmdGetSaveRaidCsReq),
-            "CmdGetChallengeRaidInfoCsReq" => Some(Self::CmdGetChallengeRaidInfoCsReq),
-            "CmdStartRaidCsReq" => Some(Self::CmdStartRaidCsReq),
-            "CmdDelSaveRaidScNotify" => Some(Self::CmdDelSaveRaidScNotify),
-            "CmdGetRaidInfoScRsp" => Some(Self::CmdGetRaidInfoScRsp),
-            "CmdSetClientRaidTargetCountScRsp" => {
-                Some(Self::CmdSetClientRaidTargetCountScRsp)
-            }
             "CmdGetAllSaveRaidCsReq" => Some(Self::CmdGetAllSaveRaidCsReq),
-            "CmdTakeChallengeRaidRewardScRsp" => {
-                Some(Self::CmdTakeChallengeRaidRewardScRsp)
-            }
-            "CmdGetSaveRaidScRsp" => Some(Self::CmdGetSaveRaidScRsp),
+            "CmdLeaveRaidCsReq" => Some(Self::CmdLeaveRaidCsReq),
+            "CmdChallengeRaidNotify" => Some(Self::CmdChallengeRaidNotify),
+            "CmdStartRaidScRsp" => Some(Self::CmdStartRaidScRsp),
+            "CmdGetSaveRaidCsReq" => Some(Self::CmdGetSaveRaidCsReq),
             _ => None,
         }
     }
@@ -9097,11 +9210,11 @@ impl CmdRaidType {
 #[repr(i32)]
 pub enum CmdRaidCollectionType {
     None = 0,
-    CmdRaidCollectionDataCsReq = 6945,
-    CmdRaidCollectionDataScRsp = 6948,
-    CmdRaidCollectionEnterNextRaidCsReq = 6950,
-    CmdRaidCollectionEnterNextRaidScRsp = 6952,
-    CmdRaidCollectionDataScNotify = 6955,
+    CmdRaidCollectionEnterNextRaidCsReq = 6943,
+    CmdRaidCollectionDataScNotify = 6947,
+    CmdRaidCollectionDataScRsp = 6955,
+    CmdRaidCollectionEnterNextRaidScRsp = 6957,
+    CmdRaidCollectionDataCsReq = 6960,
 }
 impl CmdRaidCollectionType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -9111,20 +9224,20 @@ impl CmdRaidCollectionType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdRaidCollectionType::None => "CmdRaidCollectionTypeNone",
-            CmdRaidCollectionType::CmdRaidCollectionDataCsReq => {
-                "CmdRaidCollectionDataCsReq"
+            CmdRaidCollectionType::CmdRaidCollectionEnterNextRaidCsReq => {
+                "CmdRaidCollectionEnterNextRaidCsReq"
+            }
+            CmdRaidCollectionType::CmdRaidCollectionDataScNotify => {
+                "CmdRaidCollectionDataScNotify"
             }
             CmdRaidCollectionType::CmdRaidCollectionDataScRsp => {
                 "CmdRaidCollectionDataScRsp"
             }
-            CmdRaidCollectionType::CmdRaidCollectionEnterNextRaidCsReq => {
-                "CmdRaidCollectionEnterNextRaidCsReq"
-            }
             CmdRaidCollectionType::CmdRaidCollectionEnterNextRaidScRsp => {
                 "CmdRaidCollectionEnterNextRaidScRsp"
             }
-            CmdRaidCollectionType::CmdRaidCollectionDataScNotify => {
-                "CmdRaidCollectionDataScNotify"
+            CmdRaidCollectionType::CmdRaidCollectionDataCsReq => {
+                "CmdRaidCollectionDataCsReq"
             }
         }
     }
@@ -9132,15 +9245,15 @@ impl CmdRaidCollectionType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdRaidCollectionTypeNone" => Some(Self::None),
-            "CmdRaidCollectionDataCsReq" => Some(Self::CmdRaidCollectionDataCsReq),
-            "CmdRaidCollectionDataScRsp" => Some(Self::CmdRaidCollectionDataScRsp),
             "CmdRaidCollectionEnterNextRaidCsReq" => {
                 Some(Self::CmdRaidCollectionEnterNextRaidCsReq)
             }
+            "CmdRaidCollectionDataScNotify" => Some(Self::CmdRaidCollectionDataScNotify),
+            "CmdRaidCollectionDataScRsp" => Some(Self::CmdRaidCollectionDataScRsp),
             "CmdRaidCollectionEnterNextRaidScRsp" => {
                 Some(Self::CmdRaidCollectionEnterNextRaidScRsp)
             }
-            "CmdRaidCollectionDataScNotify" => Some(Self::CmdRaidCollectionDataScNotify),
+            "CmdRaidCollectionDataCsReq" => Some(Self::CmdRaidCollectionDataCsReq),
             _ => None,
         }
     }
@@ -9150,12 +9263,14 @@ impl CmdRaidCollectionType {
 #[repr(i32)]
 pub enum CmdRecommendType {
     None = 0,
-    CmdRelicAvatarRecommendCsReq = 2412,
-    CmdRelicRecommendCsReq = 2415,
-    CmdRelicRecommendScRsp = 2416,
-    CmdRelicAvatarRecommendScRsp = 2424,
-    CmdGetChallengeRecommendLineupListScRsp = 2437,
-    CmdGetChallengeRecommendLineupListCsReq = 2442,
+    CmdGetBigDataRecommendCsReq = 2409,
+    CmdRelicRecommendCsReq = 2412,
+    CmdGetChallengeRecommendLineupListCsReq = 2415,
+    CmdRelicAvatarRecommendScRsp = 2423,
+    CmdRelicAvatarRecommendCsReq = 2430,
+    CmdGetBigDataRecommendScRsp = 2443,
+    CmdGetChallengeRecommendLineupListScRsp = 2449,
+    CmdRelicRecommendScRsp = 2450,
 }
 impl CmdRecommendType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -9165,36 +9280,44 @@ impl CmdRecommendType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdRecommendType::None => "CMD_RECOMMEND_TYPE_NONE",
+            CmdRecommendType::CmdGetBigDataRecommendCsReq => {
+                "CmdGetBigDataRecommendCsReq"
+            }
+            CmdRecommendType::CmdRelicRecommendCsReq => "CmdRelicRecommendCsReq",
+            CmdRecommendType::CmdGetChallengeRecommendLineupListCsReq => {
+                "CmdGetChallengeRecommendLineupListCsReq"
+            }
+            CmdRecommendType::CmdRelicAvatarRecommendScRsp => {
+                "CmdRelicAvatarRecommendScRsp"
+            }
             CmdRecommendType::CmdRelicAvatarRecommendCsReq => {
                 "CmdRelicAvatarRecommendCsReq"
             }
-            CmdRecommendType::CmdRelicRecommendCsReq => "CmdRelicRecommendCsReq",
-            CmdRecommendType::CmdRelicRecommendScRsp => "CmdRelicRecommendScRsp",
-            CmdRecommendType::CmdRelicAvatarRecommendScRsp => {
-                "CmdRelicAvatarRecommendScRsp"
+            CmdRecommendType::CmdGetBigDataRecommendScRsp => {
+                "CmdGetBigDataRecommendScRsp"
             }
             CmdRecommendType::CmdGetChallengeRecommendLineupListScRsp => {
                 "CmdGetChallengeRecommendLineupListScRsp"
             }
-            CmdRecommendType::CmdGetChallengeRecommendLineupListCsReq => {
-                "CmdGetChallengeRecommendLineupListCsReq"
-            }
+            CmdRecommendType::CmdRelicRecommendScRsp => "CmdRelicRecommendScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CMD_RECOMMEND_TYPE_NONE" => Some(Self::None),
-            "CmdRelicAvatarRecommendCsReq" => Some(Self::CmdRelicAvatarRecommendCsReq),
+            "CmdGetBigDataRecommendCsReq" => Some(Self::CmdGetBigDataRecommendCsReq),
             "CmdRelicRecommendCsReq" => Some(Self::CmdRelicRecommendCsReq),
-            "CmdRelicRecommendScRsp" => Some(Self::CmdRelicRecommendScRsp),
-            "CmdRelicAvatarRecommendScRsp" => Some(Self::CmdRelicAvatarRecommendScRsp),
-            "CmdGetChallengeRecommendLineupListScRsp" => {
-                Some(Self::CmdGetChallengeRecommendLineupListScRsp)
-            }
             "CmdGetChallengeRecommendLineupListCsReq" => {
                 Some(Self::CmdGetChallengeRecommendLineupListCsReq)
             }
+            "CmdRelicAvatarRecommendScRsp" => Some(Self::CmdRelicAvatarRecommendScRsp),
+            "CmdRelicAvatarRecommendCsReq" => Some(Self::CmdRelicAvatarRecommendCsReq),
+            "CmdGetBigDataRecommendScRsp" => Some(Self::CmdGetBigDataRecommendScRsp),
+            "CmdGetChallengeRecommendLineupListScRsp" => {
+                Some(Self::CmdGetChallengeRecommendLineupListScRsp)
+            }
+            "CmdRelicRecommendScRsp" => Some(Self::CmdRelicRecommendScRsp),
             _ => None,
         }
     }
@@ -9204,12 +9327,12 @@ impl CmdRecommendType {
 #[repr(i32)]
 pub enum CmdRedDotType {
     None = 0,
-    CmdUpdateRedDotDataCsReq = 5903,
-    CmdGetAllRedDotDataScRsp = 5920,
-    CmdGetSingleRedDotParamGroupCsReq = 5939,
-    CmdUpdateRedDotDataScRsp = 5946,
-    CmdGetSingleRedDotParamGroupScRsp = 5953,
-    CmdGetAllRedDotDataCsReq = 5959,
+    CmdUpdateRedDotDataScRsp = 5927,
+    CmdGetSingleRedDotParamGroupScRsp = 5928,
+    CmdGetAllRedDotDataCsReq = 5936,
+    CmdGetSingleRedDotParamGroupCsReq = 5967,
+    CmdUpdateRedDotDataCsReq = 5984,
+    CmdGetAllRedDotDataScRsp = 5995,
 }
 impl CmdRedDotType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -9219,32 +9342,104 @@ impl CmdRedDotType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdRedDotType::None => "CmdRedDotTypeNone",
-            CmdRedDotType::CmdUpdateRedDotDataCsReq => "CmdUpdateRedDotDataCsReq",
-            CmdRedDotType::CmdGetAllRedDotDataScRsp => "CmdGetAllRedDotDataScRsp",
-            CmdRedDotType::CmdGetSingleRedDotParamGroupCsReq => {
-                "CmdGetSingleRedDotParamGroupCsReq"
-            }
             CmdRedDotType::CmdUpdateRedDotDataScRsp => "CmdUpdateRedDotDataScRsp",
             CmdRedDotType::CmdGetSingleRedDotParamGroupScRsp => {
                 "CmdGetSingleRedDotParamGroupScRsp"
             }
             CmdRedDotType::CmdGetAllRedDotDataCsReq => "CmdGetAllRedDotDataCsReq",
+            CmdRedDotType::CmdGetSingleRedDotParamGroupCsReq => {
+                "CmdGetSingleRedDotParamGroupCsReq"
+            }
+            CmdRedDotType::CmdUpdateRedDotDataCsReq => "CmdUpdateRedDotDataCsReq",
+            CmdRedDotType::CmdGetAllRedDotDataScRsp => "CmdGetAllRedDotDataScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdRedDotTypeNone" => Some(Self::None),
-            "CmdUpdateRedDotDataCsReq" => Some(Self::CmdUpdateRedDotDataCsReq),
-            "CmdGetAllRedDotDataScRsp" => Some(Self::CmdGetAllRedDotDataScRsp),
-            "CmdGetSingleRedDotParamGroupCsReq" => {
-                Some(Self::CmdGetSingleRedDotParamGroupCsReq)
-            }
             "CmdUpdateRedDotDataScRsp" => Some(Self::CmdUpdateRedDotDataScRsp),
             "CmdGetSingleRedDotParamGroupScRsp" => {
                 Some(Self::CmdGetSingleRedDotParamGroupScRsp)
             }
             "CmdGetAllRedDotDataCsReq" => Some(Self::CmdGetAllRedDotDataCsReq),
+            "CmdGetSingleRedDotParamGroupCsReq" => {
+                Some(Self::CmdGetSingleRedDotParamGroupCsReq)
+            }
+            "CmdUpdateRedDotDataCsReq" => Some(Self::CmdUpdateRedDotDataCsReq),
+            "CmdGetAllRedDotDataScRsp" => Some(Self::CmdGetAllRedDotDataScRsp),
+            _ => None,
+        }
+    }
+}
+#[derive(proto_derive::CmdID)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CmdRelicSmartWearType {
+    None = 0,
+    CmdRelicSmartWearAddPlanScRsp = 8253,
+    CmdRelicSmartWearDeletePlanCsReq = 8255,
+    CmdRelicSmartWearUpdatePlanScRsp = 8256,
+    CmdRelicSmartWearAddPlanCsReq = 8257,
+    CmdRelicSmartWearDeletePlanScRsp = 8260,
+    CmdRelicSmartWearGetPlanScRsp = 8265,
+    CmdRelicSmartWearUpdatePlanCsReq = 8267,
+    CmdRelicSmartWearGetPlanCsReq = 8270,
+}
+impl CmdRelicSmartWearType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            CmdRelicSmartWearType::None => "CmdRelicSmartWearTypeNone",
+            CmdRelicSmartWearType::CmdRelicSmartWearAddPlanScRsp => {
+                "CmdRelicSmartWearAddPlanScRsp"
+            }
+            CmdRelicSmartWearType::CmdRelicSmartWearDeletePlanCsReq => {
+                "CmdRelicSmartWearDeletePlanCsReq"
+            }
+            CmdRelicSmartWearType::CmdRelicSmartWearUpdatePlanScRsp => {
+                "CmdRelicSmartWearUpdatePlanScRsp"
+            }
+            CmdRelicSmartWearType::CmdRelicSmartWearAddPlanCsReq => {
+                "CmdRelicSmartWearAddPlanCsReq"
+            }
+            CmdRelicSmartWearType::CmdRelicSmartWearDeletePlanScRsp => {
+                "CmdRelicSmartWearDeletePlanScRsp"
+            }
+            CmdRelicSmartWearType::CmdRelicSmartWearGetPlanScRsp => {
+                "CmdRelicSmartWearGetPlanScRsp"
+            }
+            CmdRelicSmartWearType::CmdRelicSmartWearUpdatePlanCsReq => {
+                "CmdRelicSmartWearUpdatePlanCsReq"
+            }
+            CmdRelicSmartWearType::CmdRelicSmartWearGetPlanCsReq => {
+                "CmdRelicSmartWearGetPlanCsReq"
+            }
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CmdRelicSmartWearTypeNone" => Some(Self::None),
+            "CmdRelicSmartWearAddPlanScRsp" => Some(Self::CmdRelicSmartWearAddPlanScRsp),
+            "CmdRelicSmartWearDeletePlanCsReq" => {
+                Some(Self::CmdRelicSmartWearDeletePlanCsReq)
+            }
+            "CmdRelicSmartWearUpdatePlanScRsp" => {
+                Some(Self::CmdRelicSmartWearUpdatePlanScRsp)
+            }
+            "CmdRelicSmartWearAddPlanCsReq" => Some(Self::CmdRelicSmartWearAddPlanCsReq),
+            "CmdRelicSmartWearDeletePlanScRsp" => {
+                Some(Self::CmdRelicSmartWearDeletePlanScRsp)
+            }
+            "CmdRelicSmartWearGetPlanScRsp" => Some(Self::CmdRelicSmartWearGetPlanScRsp),
+            "CmdRelicSmartWearUpdatePlanCsReq" => {
+                Some(Self::CmdRelicSmartWearUpdatePlanCsReq)
+            }
+            "CmdRelicSmartWearGetPlanCsReq" => Some(Self::CmdRelicSmartWearGetPlanCsReq),
             _ => None,
         }
     }
@@ -9254,10 +9449,10 @@ impl CmdRedDotType {
 #[repr(i32)]
 pub enum CmdReplayType {
     None = 0,
-    CmdGetPlayerReplayInfoCsReq = 3503,
-    CmdGetReplayTokenScRsp = 3520,
-    CmdGetPlayerReplayInfoScRsp = 3546,
-    CmdGetReplayTokenCsReq = 3559,
+    CmdGetPlayerReplayInfoScRsp = 3527,
+    CmdGetReplayTokenCsReq = 3536,
+    CmdGetPlayerReplayInfoCsReq = 3584,
+    CmdGetReplayTokenScRsp = 3595,
 }
 impl CmdReplayType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -9267,20 +9462,20 @@ impl CmdReplayType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdReplayType::None => "CmdReplayTypeNone",
-            CmdReplayType::CmdGetPlayerReplayInfoCsReq => "CmdGetPlayerReplayInfoCsReq",
-            CmdReplayType::CmdGetReplayTokenScRsp => "CmdGetReplayTokenScRsp",
             CmdReplayType::CmdGetPlayerReplayInfoScRsp => "CmdGetPlayerReplayInfoScRsp",
             CmdReplayType::CmdGetReplayTokenCsReq => "CmdGetReplayTokenCsReq",
+            CmdReplayType::CmdGetPlayerReplayInfoCsReq => "CmdGetPlayerReplayInfoCsReq",
+            CmdReplayType::CmdGetReplayTokenScRsp => "CmdGetReplayTokenScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdReplayTypeNone" => Some(Self::None),
-            "CmdGetPlayerReplayInfoCsReq" => Some(Self::CmdGetPlayerReplayInfoCsReq),
-            "CmdGetReplayTokenScRsp" => Some(Self::CmdGetReplayTokenScRsp),
             "CmdGetPlayerReplayInfoScRsp" => Some(Self::CmdGetPlayerReplayInfoScRsp),
             "CmdGetReplayTokenCsReq" => Some(Self::CmdGetReplayTokenCsReq),
+            "CmdGetPlayerReplayInfoCsReq" => Some(Self::CmdGetPlayerReplayInfoCsReq),
+            "CmdGetReplayTokenScRsp" => Some(Self::CmdGetReplayTokenScRsp),
             _ => None,
         }
     }
@@ -9290,10 +9485,10 @@ impl CmdReplayType {
 #[repr(i32)]
 pub enum CmdRndOptionType {
     None = 0,
-    CmdDailyFirstMeetPamCsReq = 3403,
-    CmdGetRndOptionScRsp = 3420,
-    CmdDailyFirstMeetPamScRsp = 3446,
-    CmdGetRndOptionCsReq = 3459,
+    CmdDailyFirstMeetPamScRsp = 3427,
+    CmdGetRndOptionCsReq = 3436,
+    CmdDailyFirstMeetPamCsReq = 3484,
+    CmdGetRndOptionScRsp = 3495,
 }
 impl CmdRndOptionType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -9303,20 +9498,20 @@ impl CmdRndOptionType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdRndOptionType::None => "CmdRndOptionTypeNone",
-            CmdRndOptionType::CmdDailyFirstMeetPamCsReq => "CmdDailyFirstMeetPamCsReq",
-            CmdRndOptionType::CmdGetRndOptionScRsp => "CmdGetRndOptionScRsp",
             CmdRndOptionType::CmdDailyFirstMeetPamScRsp => "CmdDailyFirstMeetPamScRsp",
             CmdRndOptionType::CmdGetRndOptionCsReq => "CmdGetRndOptionCsReq",
+            CmdRndOptionType::CmdDailyFirstMeetPamCsReq => "CmdDailyFirstMeetPamCsReq",
+            CmdRndOptionType::CmdGetRndOptionScRsp => "CmdGetRndOptionScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdRndOptionTypeNone" => Some(Self::None),
-            "CmdDailyFirstMeetPamCsReq" => Some(Self::CmdDailyFirstMeetPamCsReq),
-            "CmdGetRndOptionScRsp" => Some(Self::CmdGetRndOptionScRsp),
             "CmdDailyFirstMeetPamScRsp" => Some(Self::CmdDailyFirstMeetPamScRsp),
             "CmdGetRndOptionCsReq" => Some(Self::CmdGetRndOptionCsReq),
+            "CmdDailyFirstMeetPamCsReq" => Some(Self::CmdDailyFirstMeetPamCsReq),
+            "CmdGetRndOptionScRsp" => Some(Self::CmdGetRndOptionScRsp),
             _ => None,
         }
     }
@@ -9326,59 +9521,59 @@ impl CmdRndOptionType {
 #[repr(i32)]
 pub enum CmdRogueType {
     None = 0,
-    CmdStartRogueCsReq = 1803,
-    CmdEnterRogueMapRoomCsReq = 1804,
-    CmdSyncRogueAreaUnlockScNotify = 1807,
-    CmdGetRogueTalentInfoScRsp = 1808,
+    CmdEnableRogueTalentScRsp = 1802,
+    CmdExchangeRogueRewardKeyScRsp = 1803,
+    CmdPickRogueAvatarCsReq = 1805,
+    CmdReviveRogueAvatarScRsp = 1807,
+    CmdEnterRogueMapRoomCsReq = 1808,
+    CmdGetRogueScoreRewardInfoCsReq = 1809,
     CmdSyncRogueReviveInfoScNotify = 1810,
-    CmdGetRogueTalentInfoCsReq = 1811,
+    CmdGetRogueInitialScoreScRsp = 1811,
+    CmdGetRogueBuffEnhanceInfoScRsp = 1812,
     CmdSyncRogueSeasonFinishScNotify = 1813,
-    CmdSyncRogueMapRoomScNotify = 1814,
-    CmdSyncRogueGetItemScNotify = 1818,
-    CmdGetRogueInfoScRsp = 1820,
-    CmdSyncRogueStatusScNotify = 1821,
-    CmdReviveRogueAvatarScRsp = 1825,
-    CmdSyncRogueExploreWinScNotify = 1826,
-    CmdSyncRoguePickAvatarInfoScNotify = 1828,
-    CmdTakeRogueScoreRewardCsReq = 1829,
-    CmdExchangeRogueRewardKeyScRsp = 1831,
-    CmdOpenRogueChestScRsp = 1832,
-    CmdTakeRogueScoreRewardScRsp = 1833,
-    CmdLeaveRogueCsReq = 1834,
-    CmdSyncRogueAeonScNotify = 1835,
-    CmdQuitRogueScRsp = 1836,
-    CmdLeaveRogueScRsp = 1837,
-    CmdEnterRogueCsReq = 1839,
-    CmdGetRogueScoreRewardInfoScRsp = 1840,
-    CmdGetRogueAeonInfoCsReq = 1841,
-    CmdGetRogueScoreRewardInfoCsReq = 1842,
-    CmdGetRogueInitialScoreCsReq = 1843,
-    CmdFinishAeonDialogueGroupScRsp = 1844,
-    CmdStartRogueScRsp = 1846,
-    CmdSyncRogueFinishScNotify = 1848,
-    CmdTakeRogueAeonLevelRewardScRsp = 1850,
-    CmdGetRogueBuffEnhanceInfoCsReq = 1851,
-    CmdEnterRogueScRsp = 1853,
-    CmdGetRogueAeonInfoScRsp = 1858,
-    CmdGetRogueInfoCsReq = 1859,
-    CmdOpenRogueChestCsReq = 1860,
-    CmdReviveRogueAvatarCsReq = 1861,
-    CmdGetRogueInitialScoreScRsp = 1863,
-    CmdQuitRogueCsReq = 1870,
-    CmdGetRogueBuffEnhanceInfoScRsp = 1873,
-    CmdPickRogueAvatarScRsp = 1879,
-    CmdTakeRogueAeonLevelRewardCsReq = 1881,
-    CmdEnhanceRogueBuffCsReq = 1883,
-    CmdSyncRogueVirtualItemInfoScNotify = 1886,
-    CmdFinishAeonDialogueGroupCsReq = 1887,
-    CmdEnterRogueMapRoomScRsp = 1888,
-    CmdSyncRogueRewardInfoScNotify = 1889,
-    CmdPickRogueAvatarCsReq = 1890,
-    CmdEnableRogueTalentScRsp = 1895,
-    CmdExchangeRogueRewardKeyCsReq = 1896,
-    CmdSyncRogueAeonLevelUpRewardScNotify = 1898,
-    CmdEnhanceRogueBuffScRsp = 1899,
-    CmdEnableRogueTalentCsReq = 1900,
+    CmdSyncRogueRewardInfoScNotify = 1814,
+    CmdGetRogueTalentInfoCsReq = 1815,
+    CmdSyncRogueExploreWinScNotify = 1817,
+    CmdEnterRogueMapRoomScRsp = 1818,
+    CmdGetRogueScoreRewardInfoScRsp = 1820,
+    CmdReviveRogueAvatarCsReq = 1826,
+    CmdStartRogueScRsp = 1827,
+    CmdEnterRogueScRsp = 1828,
+    CmdEnhanceRogueBuffScRsp = 1829,
+    CmdQuitRogueScRsp = 1835,
+    CmdGetRogueInfoCsReq = 1836,
+    CmdGetRogueInitialScoreCsReq = 1837,
+    CmdSyncRogueAeonScNotify = 1847,
+    CmdSyncRogueAreaUnlockScNotify = 1849,
+    CmdSyncRoguePickAvatarInfoScNotify = 1851,
+    CmdLeaveRogueCsReq = 1852,
+    CmdTakeRogueScoreRewardCsReq = 1853,
+    CmdSyncRogueStatusScNotify = 1854,
+    CmdSyncRogueAeonLevelUpRewardScNotify = 1856,
+    CmdGetRogueBuffEnhanceInfoCsReq = 1859,
+    CmdEnableRogueTalentCsReq = 1862,
+    CmdFinishAeonDialogueGroupCsReq = 1863,
+    CmdOpenRogueChestCsReq = 1864,
+    CmdGetRogueAeonInfoScRsp = 1866,
+    CmdEnterRogueCsReq = 1867,
+    CmdSyncRogueGetItemScNotify = 1870,
+    CmdOpenRogueChestScRsp = 1872,
+    CmdLeaveRogueScRsp = 1874,
+    CmdPickRogueAvatarScRsp = 1875,
+    CmdQuitRogueCsReq = 1876,
+    CmdSyncRogueVirtualItemInfoScNotify = 1877,
+    CmdEnhanceRogueBuffCsReq = 1878,
+    CmdSyncRogueMapRoomScNotify = 1879,
+    CmdStartRogueCsReq = 1884,
+    CmdGetRogueTalentInfoScRsp = 1885,
+    CmdGetRogueAeonInfoCsReq = 1886,
+    CmdFinishAeonDialogueGroupScRsp = 1889,
+    CmdTakeRogueScoreRewardScRsp = 1890,
+    CmdTakeRogueAeonLevelRewardScRsp = 1891,
+    CmdGetRogueInfoScRsp = 1895,
+    CmdSyncRogueFinishScNotify = 1896,
+    CmdTakeRogueAeonLevelRewardCsReq = 1898,
+    CmdExchangeRogueRewardKeyCsReq = 1899,
 }
 impl CmdRogueType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -9388,190 +9583,190 @@ impl CmdRogueType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdRogueType::None => "CmdRogueTypeNone",
-            CmdRogueType::CmdStartRogueCsReq => "CmdStartRogueCsReq",
-            CmdRogueType::CmdEnterRogueMapRoomCsReq => "CmdEnterRogueMapRoomCsReq",
-            CmdRogueType::CmdSyncRogueAreaUnlockScNotify => {
-                "CmdSyncRogueAreaUnlockScNotify"
+            CmdRogueType::CmdEnableRogueTalentScRsp => "CmdEnableRogueTalentScRsp",
+            CmdRogueType::CmdExchangeRogueRewardKeyScRsp => {
+                "CmdExchangeRogueRewardKeyScRsp"
             }
-            CmdRogueType::CmdGetRogueTalentInfoScRsp => "CmdGetRogueTalentInfoScRsp",
+            CmdRogueType::CmdPickRogueAvatarCsReq => "CmdPickRogueAvatarCsReq",
+            CmdRogueType::CmdReviveRogueAvatarScRsp => "CmdReviveRogueAvatarScRsp",
+            CmdRogueType::CmdEnterRogueMapRoomCsReq => "CmdEnterRogueMapRoomCsReq",
+            CmdRogueType::CmdGetRogueScoreRewardInfoCsReq => {
+                "CmdGetRogueScoreRewardInfoCsReq"
+            }
             CmdRogueType::CmdSyncRogueReviveInfoScNotify => {
                 "CmdSyncRogueReviveInfoScNotify"
             }
-            CmdRogueType::CmdGetRogueTalentInfoCsReq => "CmdGetRogueTalentInfoCsReq",
+            CmdRogueType::CmdGetRogueInitialScoreScRsp => "CmdGetRogueInitialScoreScRsp",
+            CmdRogueType::CmdGetRogueBuffEnhanceInfoScRsp => {
+                "CmdGetRogueBuffEnhanceInfoScRsp"
+            }
             CmdRogueType::CmdSyncRogueSeasonFinishScNotify => {
                 "CmdSyncRogueSeasonFinishScNotify"
             }
-            CmdRogueType::CmdSyncRogueMapRoomScNotify => "CmdSyncRogueMapRoomScNotify",
-            CmdRogueType::CmdSyncRogueGetItemScNotify => "CmdSyncRogueGetItemScNotify",
-            CmdRogueType::CmdGetRogueInfoScRsp => "CmdGetRogueInfoScRsp",
-            CmdRogueType::CmdSyncRogueStatusScNotify => "CmdSyncRogueStatusScNotify",
-            CmdRogueType::CmdReviveRogueAvatarScRsp => "CmdReviveRogueAvatarScRsp",
+            CmdRogueType::CmdSyncRogueRewardInfoScNotify => {
+                "CmdSyncRogueRewardInfoScNotify"
+            }
+            CmdRogueType::CmdGetRogueTalentInfoCsReq => "CmdGetRogueTalentInfoCsReq",
             CmdRogueType::CmdSyncRogueExploreWinScNotify => {
                 "CmdSyncRogueExploreWinScNotify"
+            }
+            CmdRogueType::CmdEnterRogueMapRoomScRsp => "CmdEnterRogueMapRoomScRsp",
+            CmdRogueType::CmdGetRogueScoreRewardInfoScRsp => {
+                "CmdGetRogueScoreRewardInfoScRsp"
+            }
+            CmdRogueType::CmdReviveRogueAvatarCsReq => "CmdReviveRogueAvatarCsReq",
+            CmdRogueType::CmdStartRogueScRsp => "CmdStartRogueScRsp",
+            CmdRogueType::CmdEnterRogueScRsp => "CmdEnterRogueScRsp",
+            CmdRogueType::CmdEnhanceRogueBuffScRsp => "CmdEnhanceRogueBuffScRsp",
+            CmdRogueType::CmdQuitRogueScRsp => "CmdQuitRogueScRsp",
+            CmdRogueType::CmdGetRogueInfoCsReq => "CmdGetRogueInfoCsReq",
+            CmdRogueType::CmdGetRogueInitialScoreCsReq => "CmdGetRogueInitialScoreCsReq",
+            CmdRogueType::CmdSyncRogueAeonScNotify => "CmdSyncRogueAeonScNotify",
+            CmdRogueType::CmdSyncRogueAreaUnlockScNotify => {
+                "CmdSyncRogueAreaUnlockScNotify"
             }
             CmdRogueType::CmdSyncRoguePickAvatarInfoScNotify => {
                 "CmdSyncRoguePickAvatarInfoScNotify"
             }
-            CmdRogueType::CmdTakeRogueScoreRewardCsReq => "CmdTakeRogueScoreRewardCsReq",
-            CmdRogueType::CmdExchangeRogueRewardKeyScRsp => {
-                "CmdExchangeRogueRewardKeyScRsp"
-            }
-            CmdRogueType::CmdOpenRogueChestScRsp => "CmdOpenRogueChestScRsp",
-            CmdRogueType::CmdTakeRogueScoreRewardScRsp => "CmdTakeRogueScoreRewardScRsp",
             CmdRogueType::CmdLeaveRogueCsReq => "CmdLeaveRogueCsReq",
-            CmdRogueType::CmdSyncRogueAeonScNotify => "CmdSyncRogueAeonScNotify",
-            CmdRogueType::CmdQuitRogueScRsp => "CmdQuitRogueScRsp",
-            CmdRogueType::CmdLeaveRogueScRsp => "CmdLeaveRogueScRsp",
-            CmdRogueType::CmdEnterRogueCsReq => "CmdEnterRogueCsReq",
-            CmdRogueType::CmdGetRogueScoreRewardInfoScRsp => {
-                "CmdGetRogueScoreRewardInfoScRsp"
-            }
-            CmdRogueType::CmdGetRogueAeonInfoCsReq => "CmdGetRogueAeonInfoCsReq",
-            CmdRogueType::CmdGetRogueScoreRewardInfoCsReq => {
-                "CmdGetRogueScoreRewardInfoCsReq"
-            }
-            CmdRogueType::CmdGetRogueInitialScoreCsReq => "CmdGetRogueInitialScoreCsReq",
-            CmdRogueType::CmdFinishAeonDialogueGroupScRsp => {
-                "CmdFinishAeonDialogueGroupScRsp"
-            }
-            CmdRogueType::CmdStartRogueScRsp => "CmdStartRogueScRsp",
-            CmdRogueType::CmdSyncRogueFinishScNotify => "CmdSyncRogueFinishScNotify",
-            CmdRogueType::CmdTakeRogueAeonLevelRewardScRsp => {
-                "CmdTakeRogueAeonLevelRewardScRsp"
+            CmdRogueType::CmdTakeRogueScoreRewardCsReq => "CmdTakeRogueScoreRewardCsReq",
+            CmdRogueType::CmdSyncRogueStatusScNotify => "CmdSyncRogueStatusScNotify",
+            CmdRogueType::CmdSyncRogueAeonLevelUpRewardScNotify => {
+                "CmdSyncRogueAeonLevelUpRewardScNotify"
             }
             CmdRogueType::CmdGetRogueBuffEnhanceInfoCsReq => {
                 "CmdGetRogueBuffEnhanceInfoCsReq"
             }
-            CmdRogueType::CmdEnterRogueScRsp => "CmdEnterRogueScRsp",
-            CmdRogueType::CmdGetRogueAeonInfoScRsp => "CmdGetRogueAeonInfoScRsp",
-            CmdRogueType::CmdGetRogueInfoCsReq => "CmdGetRogueInfoCsReq",
-            CmdRogueType::CmdOpenRogueChestCsReq => "CmdOpenRogueChestCsReq",
-            CmdRogueType::CmdReviveRogueAvatarCsReq => "CmdReviveRogueAvatarCsReq",
-            CmdRogueType::CmdGetRogueInitialScoreScRsp => "CmdGetRogueInitialScoreScRsp",
-            CmdRogueType::CmdQuitRogueCsReq => "CmdQuitRogueCsReq",
-            CmdRogueType::CmdGetRogueBuffEnhanceInfoScRsp => {
-                "CmdGetRogueBuffEnhanceInfoScRsp"
-            }
-            CmdRogueType::CmdPickRogueAvatarScRsp => "CmdPickRogueAvatarScRsp",
-            CmdRogueType::CmdTakeRogueAeonLevelRewardCsReq => {
-                "CmdTakeRogueAeonLevelRewardCsReq"
-            }
-            CmdRogueType::CmdEnhanceRogueBuffCsReq => "CmdEnhanceRogueBuffCsReq",
-            CmdRogueType::CmdSyncRogueVirtualItemInfoScNotify => {
-                "CmdSyncRogueVirtualItemInfoScNotify"
-            }
+            CmdRogueType::CmdEnableRogueTalentCsReq => "CmdEnableRogueTalentCsReq",
             CmdRogueType::CmdFinishAeonDialogueGroupCsReq => {
                 "CmdFinishAeonDialogueGroupCsReq"
             }
-            CmdRogueType::CmdEnterRogueMapRoomScRsp => "CmdEnterRogueMapRoomScRsp",
-            CmdRogueType::CmdSyncRogueRewardInfoScNotify => {
-                "CmdSyncRogueRewardInfoScNotify"
+            CmdRogueType::CmdOpenRogueChestCsReq => "CmdOpenRogueChestCsReq",
+            CmdRogueType::CmdGetRogueAeonInfoScRsp => "CmdGetRogueAeonInfoScRsp",
+            CmdRogueType::CmdEnterRogueCsReq => "CmdEnterRogueCsReq",
+            CmdRogueType::CmdSyncRogueGetItemScNotify => "CmdSyncRogueGetItemScNotify",
+            CmdRogueType::CmdOpenRogueChestScRsp => "CmdOpenRogueChestScRsp",
+            CmdRogueType::CmdLeaveRogueScRsp => "CmdLeaveRogueScRsp",
+            CmdRogueType::CmdPickRogueAvatarScRsp => "CmdPickRogueAvatarScRsp",
+            CmdRogueType::CmdQuitRogueCsReq => "CmdQuitRogueCsReq",
+            CmdRogueType::CmdSyncRogueVirtualItemInfoScNotify => {
+                "CmdSyncRogueVirtualItemInfoScNotify"
             }
-            CmdRogueType::CmdPickRogueAvatarCsReq => "CmdPickRogueAvatarCsReq",
-            CmdRogueType::CmdEnableRogueTalentScRsp => "CmdEnableRogueTalentScRsp",
+            CmdRogueType::CmdEnhanceRogueBuffCsReq => "CmdEnhanceRogueBuffCsReq",
+            CmdRogueType::CmdSyncRogueMapRoomScNotify => "CmdSyncRogueMapRoomScNotify",
+            CmdRogueType::CmdStartRogueCsReq => "CmdStartRogueCsReq",
+            CmdRogueType::CmdGetRogueTalentInfoScRsp => "CmdGetRogueTalentInfoScRsp",
+            CmdRogueType::CmdGetRogueAeonInfoCsReq => "CmdGetRogueAeonInfoCsReq",
+            CmdRogueType::CmdFinishAeonDialogueGroupScRsp => {
+                "CmdFinishAeonDialogueGroupScRsp"
+            }
+            CmdRogueType::CmdTakeRogueScoreRewardScRsp => "CmdTakeRogueScoreRewardScRsp",
+            CmdRogueType::CmdTakeRogueAeonLevelRewardScRsp => {
+                "CmdTakeRogueAeonLevelRewardScRsp"
+            }
+            CmdRogueType::CmdGetRogueInfoScRsp => "CmdGetRogueInfoScRsp",
+            CmdRogueType::CmdSyncRogueFinishScNotify => "CmdSyncRogueFinishScNotify",
+            CmdRogueType::CmdTakeRogueAeonLevelRewardCsReq => {
+                "CmdTakeRogueAeonLevelRewardCsReq"
+            }
             CmdRogueType::CmdExchangeRogueRewardKeyCsReq => {
                 "CmdExchangeRogueRewardKeyCsReq"
             }
-            CmdRogueType::CmdSyncRogueAeonLevelUpRewardScNotify => {
-                "CmdSyncRogueAeonLevelUpRewardScNotify"
-            }
-            CmdRogueType::CmdEnhanceRogueBuffScRsp => "CmdEnhanceRogueBuffScRsp",
-            CmdRogueType::CmdEnableRogueTalentCsReq => "CmdEnableRogueTalentCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdRogueTypeNone" => Some(Self::None),
-            "CmdStartRogueCsReq" => Some(Self::CmdStartRogueCsReq),
-            "CmdEnterRogueMapRoomCsReq" => Some(Self::CmdEnterRogueMapRoomCsReq),
-            "CmdSyncRogueAreaUnlockScNotify" => {
-                Some(Self::CmdSyncRogueAreaUnlockScNotify)
+            "CmdEnableRogueTalentScRsp" => Some(Self::CmdEnableRogueTalentScRsp),
+            "CmdExchangeRogueRewardKeyScRsp" => {
+                Some(Self::CmdExchangeRogueRewardKeyScRsp)
             }
-            "CmdGetRogueTalentInfoScRsp" => Some(Self::CmdGetRogueTalentInfoScRsp),
+            "CmdPickRogueAvatarCsReq" => Some(Self::CmdPickRogueAvatarCsReq),
+            "CmdReviveRogueAvatarScRsp" => Some(Self::CmdReviveRogueAvatarScRsp),
+            "CmdEnterRogueMapRoomCsReq" => Some(Self::CmdEnterRogueMapRoomCsReq),
+            "CmdGetRogueScoreRewardInfoCsReq" => {
+                Some(Self::CmdGetRogueScoreRewardInfoCsReq)
+            }
             "CmdSyncRogueReviveInfoScNotify" => {
                 Some(Self::CmdSyncRogueReviveInfoScNotify)
             }
-            "CmdGetRogueTalentInfoCsReq" => Some(Self::CmdGetRogueTalentInfoCsReq),
+            "CmdGetRogueInitialScoreScRsp" => Some(Self::CmdGetRogueInitialScoreScRsp),
+            "CmdGetRogueBuffEnhanceInfoScRsp" => {
+                Some(Self::CmdGetRogueBuffEnhanceInfoScRsp)
+            }
             "CmdSyncRogueSeasonFinishScNotify" => {
                 Some(Self::CmdSyncRogueSeasonFinishScNotify)
             }
-            "CmdSyncRogueMapRoomScNotify" => Some(Self::CmdSyncRogueMapRoomScNotify),
-            "CmdSyncRogueGetItemScNotify" => Some(Self::CmdSyncRogueGetItemScNotify),
-            "CmdGetRogueInfoScRsp" => Some(Self::CmdGetRogueInfoScRsp),
-            "CmdSyncRogueStatusScNotify" => Some(Self::CmdSyncRogueStatusScNotify),
-            "CmdReviveRogueAvatarScRsp" => Some(Self::CmdReviveRogueAvatarScRsp),
+            "CmdSyncRogueRewardInfoScNotify" => {
+                Some(Self::CmdSyncRogueRewardInfoScNotify)
+            }
+            "CmdGetRogueTalentInfoCsReq" => Some(Self::CmdGetRogueTalentInfoCsReq),
             "CmdSyncRogueExploreWinScNotify" => {
                 Some(Self::CmdSyncRogueExploreWinScNotify)
+            }
+            "CmdEnterRogueMapRoomScRsp" => Some(Self::CmdEnterRogueMapRoomScRsp),
+            "CmdGetRogueScoreRewardInfoScRsp" => {
+                Some(Self::CmdGetRogueScoreRewardInfoScRsp)
+            }
+            "CmdReviveRogueAvatarCsReq" => Some(Self::CmdReviveRogueAvatarCsReq),
+            "CmdStartRogueScRsp" => Some(Self::CmdStartRogueScRsp),
+            "CmdEnterRogueScRsp" => Some(Self::CmdEnterRogueScRsp),
+            "CmdEnhanceRogueBuffScRsp" => Some(Self::CmdEnhanceRogueBuffScRsp),
+            "CmdQuitRogueScRsp" => Some(Self::CmdQuitRogueScRsp),
+            "CmdGetRogueInfoCsReq" => Some(Self::CmdGetRogueInfoCsReq),
+            "CmdGetRogueInitialScoreCsReq" => Some(Self::CmdGetRogueInitialScoreCsReq),
+            "CmdSyncRogueAeonScNotify" => Some(Self::CmdSyncRogueAeonScNotify),
+            "CmdSyncRogueAreaUnlockScNotify" => {
+                Some(Self::CmdSyncRogueAreaUnlockScNotify)
             }
             "CmdSyncRoguePickAvatarInfoScNotify" => {
                 Some(Self::CmdSyncRoguePickAvatarInfoScNotify)
             }
-            "CmdTakeRogueScoreRewardCsReq" => Some(Self::CmdTakeRogueScoreRewardCsReq),
-            "CmdExchangeRogueRewardKeyScRsp" => {
-                Some(Self::CmdExchangeRogueRewardKeyScRsp)
-            }
-            "CmdOpenRogueChestScRsp" => Some(Self::CmdOpenRogueChestScRsp),
-            "CmdTakeRogueScoreRewardScRsp" => Some(Self::CmdTakeRogueScoreRewardScRsp),
             "CmdLeaveRogueCsReq" => Some(Self::CmdLeaveRogueCsReq),
-            "CmdSyncRogueAeonScNotify" => Some(Self::CmdSyncRogueAeonScNotify),
-            "CmdQuitRogueScRsp" => Some(Self::CmdQuitRogueScRsp),
-            "CmdLeaveRogueScRsp" => Some(Self::CmdLeaveRogueScRsp),
-            "CmdEnterRogueCsReq" => Some(Self::CmdEnterRogueCsReq),
-            "CmdGetRogueScoreRewardInfoScRsp" => {
-                Some(Self::CmdGetRogueScoreRewardInfoScRsp)
-            }
-            "CmdGetRogueAeonInfoCsReq" => Some(Self::CmdGetRogueAeonInfoCsReq),
-            "CmdGetRogueScoreRewardInfoCsReq" => {
-                Some(Self::CmdGetRogueScoreRewardInfoCsReq)
-            }
-            "CmdGetRogueInitialScoreCsReq" => Some(Self::CmdGetRogueInitialScoreCsReq),
-            "CmdFinishAeonDialogueGroupScRsp" => {
-                Some(Self::CmdFinishAeonDialogueGroupScRsp)
-            }
-            "CmdStartRogueScRsp" => Some(Self::CmdStartRogueScRsp),
-            "CmdSyncRogueFinishScNotify" => Some(Self::CmdSyncRogueFinishScNotify),
-            "CmdTakeRogueAeonLevelRewardScRsp" => {
-                Some(Self::CmdTakeRogueAeonLevelRewardScRsp)
+            "CmdTakeRogueScoreRewardCsReq" => Some(Self::CmdTakeRogueScoreRewardCsReq),
+            "CmdSyncRogueStatusScNotify" => Some(Self::CmdSyncRogueStatusScNotify),
+            "CmdSyncRogueAeonLevelUpRewardScNotify" => {
+                Some(Self::CmdSyncRogueAeonLevelUpRewardScNotify)
             }
             "CmdGetRogueBuffEnhanceInfoCsReq" => {
                 Some(Self::CmdGetRogueBuffEnhanceInfoCsReq)
             }
-            "CmdEnterRogueScRsp" => Some(Self::CmdEnterRogueScRsp),
-            "CmdGetRogueAeonInfoScRsp" => Some(Self::CmdGetRogueAeonInfoScRsp),
-            "CmdGetRogueInfoCsReq" => Some(Self::CmdGetRogueInfoCsReq),
-            "CmdOpenRogueChestCsReq" => Some(Self::CmdOpenRogueChestCsReq),
-            "CmdReviveRogueAvatarCsReq" => Some(Self::CmdReviveRogueAvatarCsReq),
-            "CmdGetRogueInitialScoreScRsp" => Some(Self::CmdGetRogueInitialScoreScRsp),
-            "CmdQuitRogueCsReq" => Some(Self::CmdQuitRogueCsReq),
-            "CmdGetRogueBuffEnhanceInfoScRsp" => {
-                Some(Self::CmdGetRogueBuffEnhanceInfoScRsp)
-            }
-            "CmdPickRogueAvatarScRsp" => Some(Self::CmdPickRogueAvatarScRsp),
-            "CmdTakeRogueAeonLevelRewardCsReq" => {
-                Some(Self::CmdTakeRogueAeonLevelRewardCsReq)
-            }
-            "CmdEnhanceRogueBuffCsReq" => Some(Self::CmdEnhanceRogueBuffCsReq),
-            "CmdSyncRogueVirtualItemInfoScNotify" => {
-                Some(Self::CmdSyncRogueVirtualItemInfoScNotify)
-            }
+            "CmdEnableRogueTalentCsReq" => Some(Self::CmdEnableRogueTalentCsReq),
             "CmdFinishAeonDialogueGroupCsReq" => {
                 Some(Self::CmdFinishAeonDialogueGroupCsReq)
             }
-            "CmdEnterRogueMapRoomScRsp" => Some(Self::CmdEnterRogueMapRoomScRsp),
-            "CmdSyncRogueRewardInfoScNotify" => {
-                Some(Self::CmdSyncRogueRewardInfoScNotify)
+            "CmdOpenRogueChestCsReq" => Some(Self::CmdOpenRogueChestCsReq),
+            "CmdGetRogueAeonInfoScRsp" => Some(Self::CmdGetRogueAeonInfoScRsp),
+            "CmdEnterRogueCsReq" => Some(Self::CmdEnterRogueCsReq),
+            "CmdSyncRogueGetItemScNotify" => Some(Self::CmdSyncRogueGetItemScNotify),
+            "CmdOpenRogueChestScRsp" => Some(Self::CmdOpenRogueChestScRsp),
+            "CmdLeaveRogueScRsp" => Some(Self::CmdLeaveRogueScRsp),
+            "CmdPickRogueAvatarScRsp" => Some(Self::CmdPickRogueAvatarScRsp),
+            "CmdQuitRogueCsReq" => Some(Self::CmdQuitRogueCsReq),
+            "CmdSyncRogueVirtualItemInfoScNotify" => {
+                Some(Self::CmdSyncRogueVirtualItemInfoScNotify)
             }
-            "CmdPickRogueAvatarCsReq" => Some(Self::CmdPickRogueAvatarCsReq),
-            "CmdEnableRogueTalentScRsp" => Some(Self::CmdEnableRogueTalentScRsp),
+            "CmdEnhanceRogueBuffCsReq" => Some(Self::CmdEnhanceRogueBuffCsReq),
+            "CmdSyncRogueMapRoomScNotify" => Some(Self::CmdSyncRogueMapRoomScNotify),
+            "CmdStartRogueCsReq" => Some(Self::CmdStartRogueCsReq),
+            "CmdGetRogueTalentInfoScRsp" => Some(Self::CmdGetRogueTalentInfoScRsp),
+            "CmdGetRogueAeonInfoCsReq" => Some(Self::CmdGetRogueAeonInfoCsReq),
+            "CmdFinishAeonDialogueGroupScRsp" => {
+                Some(Self::CmdFinishAeonDialogueGroupScRsp)
+            }
+            "CmdTakeRogueScoreRewardScRsp" => Some(Self::CmdTakeRogueScoreRewardScRsp),
+            "CmdTakeRogueAeonLevelRewardScRsp" => {
+                Some(Self::CmdTakeRogueAeonLevelRewardScRsp)
+            }
+            "CmdGetRogueInfoScRsp" => Some(Self::CmdGetRogueInfoScRsp),
+            "CmdSyncRogueFinishScNotify" => Some(Self::CmdSyncRogueFinishScNotify),
+            "CmdTakeRogueAeonLevelRewardCsReq" => {
+                Some(Self::CmdTakeRogueAeonLevelRewardCsReq)
+            }
             "CmdExchangeRogueRewardKeyCsReq" => {
                 Some(Self::CmdExchangeRogueRewardKeyCsReq)
             }
-            "CmdSyncRogueAeonLevelUpRewardScNotify" => {
-                Some(Self::CmdSyncRogueAeonLevelUpRewardScNotify)
-            }
-            "CmdEnhanceRogueBuffScRsp" => Some(Self::CmdEnhanceRogueBuffScRsp),
-            "CmdEnableRogueTalentCsReq" => Some(Self::CmdEnableRogueTalentCsReq),
             _ => None,
         }
     }
@@ -9581,14 +9776,14 @@ impl CmdRogueType {
 #[repr(i32)]
 pub enum CmdRogueArcadeType {
     None = 0,
-    CmdRogueArcadeLeaveCsReq = 7662,
-    CmdRogueArcadeStartCsReq = 7665,
-    CmdRogueArcadeStartScRsp = 7666,
-    CmdRogueArcadeGetInfoScRsp = 7673,
-    CmdRogueArcadeLeaveScRsp = 7674,
-    CmdRogueArcadeRestartScRsp = 7687,
-    CmdRogueArcadeGetInfoCsReq = 7690,
-    CmdRogueArcadeRestartCsReq = 7692,
+    CmdRogueArcadeGetInfoCsReq = 7659,
+    CmdRogueArcadeStartCsReq = 7662,
+    CmdRogueArcadeRestartCsReq = 7665,
+    CmdRogueArcadeLeaveScRsp = 7673,
+    CmdRogueArcadeLeaveCsReq = 7680,
+    CmdRogueArcadeGetInfoScRsp = 7693,
+    CmdRogueArcadeRestartScRsp = 7699,
+    CmdRogueArcadeStartScRsp = 7700,
 }
 impl CmdRogueArcadeType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -9598,36 +9793,36 @@ impl CmdRogueArcadeType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdRogueArcadeType::None => "CmdRogueArcadeTypeNone",
-            CmdRogueArcadeType::CmdRogueArcadeLeaveCsReq => "CmdRogueArcadeLeaveCsReq",
-            CmdRogueArcadeType::CmdRogueArcadeStartCsReq => "CmdRogueArcadeStartCsReq",
-            CmdRogueArcadeType::CmdRogueArcadeStartScRsp => "CmdRogueArcadeStartScRsp",
-            CmdRogueArcadeType::CmdRogueArcadeGetInfoScRsp => {
-                "CmdRogueArcadeGetInfoScRsp"
-            }
-            CmdRogueArcadeType::CmdRogueArcadeLeaveScRsp => "CmdRogueArcadeLeaveScRsp",
-            CmdRogueArcadeType::CmdRogueArcadeRestartScRsp => {
-                "CmdRogueArcadeRestartScRsp"
-            }
             CmdRogueArcadeType::CmdRogueArcadeGetInfoCsReq => {
                 "CmdRogueArcadeGetInfoCsReq"
             }
+            CmdRogueArcadeType::CmdRogueArcadeStartCsReq => "CmdRogueArcadeStartCsReq",
             CmdRogueArcadeType::CmdRogueArcadeRestartCsReq => {
                 "CmdRogueArcadeRestartCsReq"
             }
+            CmdRogueArcadeType::CmdRogueArcadeLeaveScRsp => "CmdRogueArcadeLeaveScRsp",
+            CmdRogueArcadeType::CmdRogueArcadeLeaveCsReq => "CmdRogueArcadeLeaveCsReq",
+            CmdRogueArcadeType::CmdRogueArcadeGetInfoScRsp => {
+                "CmdRogueArcadeGetInfoScRsp"
+            }
+            CmdRogueArcadeType::CmdRogueArcadeRestartScRsp => {
+                "CmdRogueArcadeRestartScRsp"
+            }
+            CmdRogueArcadeType::CmdRogueArcadeStartScRsp => "CmdRogueArcadeStartScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdRogueArcadeTypeNone" => Some(Self::None),
-            "CmdRogueArcadeLeaveCsReq" => Some(Self::CmdRogueArcadeLeaveCsReq),
-            "CmdRogueArcadeStartCsReq" => Some(Self::CmdRogueArcadeStartCsReq),
-            "CmdRogueArcadeStartScRsp" => Some(Self::CmdRogueArcadeStartScRsp),
-            "CmdRogueArcadeGetInfoScRsp" => Some(Self::CmdRogueArcadeGetInfoScRsp),
-            "CmdRogueArcadeLeaveScRsp" => Some(Self::CmdRogueArcadeLeaveScRsp),
-            "CmdRogueArcadeRestartScRsp" => Some(Self::CmdRogueArcadeRestartScRsp),
             "CmdRogueArcadeGetInfoCsReq" => Some(Self::CmdRogueArcadeGetInfoCsReq),
+            "CmdRogueArcadeStartCsReq" => Some(Self::CmdRogueArcadeStartCsReq),
             "CmdRogueArcadeRestartCsReq" => Some(Self::CmdRogueArcadeRestartCsReq),
+            "CmdRogueArcadeLeaveScRsp" => Some(Self::CmdRogueArcadeLeaveScRsp),
+            "CmdRogueArcadeLeaveCsReq" => Some(Self::CmdRogueArcadeLeaveCsReq),
+            "CmdRogueArcadeGetInfoScRsp" => Some(Self::CmdRogueArcadeGetInfoScRsp),
+            "CmdRogueArcadeRestartScRsp" => Some(Self::CmdRogueArcadeRestartScRsp),
+            "CmdRogueArcadeStartScRsp" => Some(Self::CmdRogueArcadeStartScRsp),
             _ => None,
         }
     }
@@ -9637,74 +9832,74 @@ impl CmdRogueArcadeType {
 #[repr(i32)]
 pub enum CmdRogueCommonType {
     None = 0,
-    CmdRogueGetGambleInfoScRsp = 5601,
-    CmdUpdateRogueAdventureRoomScoreScRsp = 5602,
-    CmdPrepareRogueAdventureRoomScRsp = 5603,
-    CmdSyncRogueHandbookDataUpdateScNotify = 5604,
-    CmdCommonRogueComponentUpdateScNotify = 5606,
-    CmdRogueWorkbenchHandleFuncCsReq = 5607,
-    CmdRogueDebugMessageScNotify = 5611,
-    CmdHandleRogueCommonPendingActionScRsp = 5612,
-    CmdTakeRogueEventHandbookRewardScRsp = 5614,
-    CmdSyncRogueCommonPendingActionScNotify = 5615,
-    CmdBuyRogueShopBuffCsReq = 5616,
-    CmdRogueWorkbenchHandleFuncScRsp = 5618,
-    CmdPrepareRogueAdventureRoomCsReq = 5620,
-    CmdRogueWorkbenchGetInfoCsReq = 5622,
-    CmdSyncRogueCommonActionResultScNotify = 5623,
-    CmdHandleRogueCommonPendingActionCsReq = 5624,
-    CmdExchangeRogueBuffWithMiracleScRsp = 5625,
-    CmdFinishRogueCommonDialogueScRsp = 5627,
-    CmdGetEnhanceCommonRogueBuffInfoCsReq = 5629,
-    CmdRogueNpcDisappearScRsp = 5630,
-    CmdGetRogueCommonDialogueDataCsReq = 5631,
-    CmdCommonRogueQueryScRsp = 5632,
-    CmdGetEnhanceCommonRogueBuffInfoScRsp = 5633,
-    CmdGetRogueShopBuffInfoScRsp = 5634,
-    CmdRogueWorkbenchGetInfoScRsp = 5635,
-    CmdBuyRogueShopMiracleCsReq = 5637,
-    CmdSyncRogueCommonDialogueDataScNotify = 5638,
-    CmdGetRogueShopMiracleInfoScRsp = 5639,
-    CmdSetRogueExhibitionScRsp = 5640,
-    CmdRogueDoGambleCsReq = 5641,
-    CmdSetRogueExhibitionCsReq = 5642,
-    CmdTakeRogueMiracleHandbookRewardScRsp = 5643,
-    CmdRogueWorkbenchSelectFuncScRsp = 5644,
-    CmdUpdateRogueAdventureRoomScoreCsReq = 5645,
-    CmdGetRogueShopMiracleInfoCsReq = 5646,
-    CmdBuyRogueShopBuffScRsp = 5647,
-    CmdGetRogueAdventureRoomInfoScRsp = 5648,
-    CmdGetRogueCollectionScRsp = 5650,
-    CmdEnhanceCommonRogueBuffCsReq = 5651,
-    CmdGetRogueShopBuffInfoCsReq = 5653,
-    CmdSyncRogueCommonDialogueOptionFinishScNotify = 5655,
-    CmdRogueDoGambleScRsp = 5658,
-    CmdSyncRogueAdventureRoomInfoScNotify = 5659,
-    CmdCommonRogueQueryCsReq = 5660,
-    CmdExchangeRogueBuffWithMiracleCsReq = 5661,
-    CmdSelectRogueCommonDialogueOptionScRsp = 5662,
-    CmdTakeRogueEventHandbookRewardCsReq = 5663,
-    CmdSyncRogueCommonVirtualItemInfoScNotify = 5666,
-    CmdSetRogueCollectionScRsp = 5668,
-    CmdSetRogueCollectionCsReq = 5669,
-    CmdGetRogueCommonDialogueDataScRsp = 5671,
-    CmdEnhanceCommonRogueBuffScRsp = 5673,
-    CmdRogueNpcDisappearCsReq = 5674,
-    CmdGetRogueAdventureRoomInfoCsReq = 5675,
-    CmdRogueGetGambleInfoCsReq = 5676,
-    CmdGetRogueHandbookDataCsReq = 5677,
-    CmdBuyRogueShopMiracleScRsp = 5680,
-    CmdGetRogueCollectionCsReq = 5681,
-    CmdSelectRogueCommonDialogueOptionCsReq = 5682,
-    CmdStopRogueAdventureRoomCsReq = 5683,
-    CmdFinishRogueCommonDialogueCsReq = 5684,
-    CmdRogueWorkbenchSelectFuncCsReq = 5687,
-    CmdTakeRogueMiracleHandbookRewardCsReq = 5688,
-    CmdGetRogueHandbookDataScRsp = 5691,
-    CmdGetRogueExhibitionCsReq = 5692,
-    CmdCommonRogueUpdateScNotify = 5696,
-    CmdGetRogueExhibitionScRsp = 5698,
-    CmdStopRogueAdventureRoomScRsp = 5699,
+    CmdGetRogueCommonDialogueDataCsReq = 5603,
+    CmdExchangeRogueBuffWithMiracleScRsp = 5607,
+    CmdSyncRogueHandbookDataUpdateScNotify = 5608,
+    CmdSetRogueExhibitionCsReq = 5609,
+    CmdTakeRogueEventHandbookRewardCsReq = 5611,
+    CmdEnhanceCommonRogueBuffScRsp = 5612,
+    CmdRogueDebugMessageScNotify = 5615,
+    CmdRogueWorkbenchGetInfoCsReq = 5616,
+    CmdTakeRogueMiracleHandbookRewardCsReq = 5618,
+    CmdSetRogueExhibitionScRsp = 5620,
+    CmdGetRogueHandbookDataCsReq = 5621,
+    CmdUpdateRogueAdventureRoomScoreScRsp = 5622,
+    CmdSetRogueCollectionScRsp = 5623,
+    CmdBuyRogueShopMiracleScRsp = 5624,
+    CmdGetRogueAdventureRoomInfoCsReq = 5625,
+    CmdExchangeRogueBuffWithMiracleCsReq = 5626,
+    CmdGetRogueShopMiracleInfoCsReq = 5627,
+    CmdGetRogueShopBuffInfoCsReq = 5628,
+    CmdStopRogueAdventureRoomScRsp = 5629,
+    CmdSelectRogueCommonDialogueOptionScRsp = 5630,
+    CmdFinishRogueCommonDialogueCsReq = 5633,
+    CmdBuyRogueShopBuffScRsp = 5634,
+    CmdSyncRogueAdventureRoomInfoScNotify = 5636,
+    CmdTakeRogueMiracleHandbookRewardScRsp = 5637,
+    CmdRogueGetGambleInfoCsReq = 5638,
+    CmdSyncRogueCommonPendingActionScNotify = 5639,
+    CmdGetRogueCommonDialogueDataScRsp = 5640,
+    CmdRogueNpcDisappearCsReq = 5643,
+    CmdSetRogueCollectionCsReq = 5644,
+    CmdHandleRogueCommonPendingActionScRsp = 5645,
+    CmdRogueNpcDisappearScRsp = 5646,
+    CmdRogueWorkbenchGetInfoScRsp = 5647,
+    CmdRogueWorkbenchHandleFuncCsReq = 5649,
+    CmdGetRogueShopBuffInfoScRsp = 5652,
+    CmdGetEnhanceCommonRogueBuffInfoCsReq = 5653,
+    CmdUpdateRogueAdventureRoomScoreCsReq = 5655,
+    CmdGetRogueExhibitionScRsp = 5656,
+    CmdCommonRogueComponentUpdateScNotify = 5657,
+    CmdEnhanceCommonRogueBuffCsReq = 5659,
+    CmdHandleRogueCommonPendingActionCsReq = 5660,
+    CmdSelectRogueCommonDialogueOptionCsReq = 5661,
+    CmdRogueWorkbenchSelectFuncCsReq = 5663,
+    CmdCommonRogueQueryCsReq = 5664,
+    CmdGetRogueHandbookDataScRsp = 5665,
+    CmdRogueDoGambleScRsp = 5666,
+    CmdGetRogueShopMiracleInfoScRsp = 5667,
+    CmdSyncRogueCommonDialogueOptionFinishScNotify = 5668,
+    CmdGetRogueExhibitionCsReq = 5669,
+    CmdRogueWorkbenchHandleFuncScRsp = 5670,
+    CmdCommonRogueQueryScRsp = 5672,
+    CmdBuyRogueShopMiracleCsReq = 5674,
+    CmdStopRogueAdventureRoomCsReq = 5678,
+    CmdTakeRogueEventHandbookRewardScRsp = 5679,
+    CmdSyncRogueCommonActionResultScNotify = 5681,
+    CmdSyncRogueCommonDialogueDataScNotify = 5683,
+    CmdPrepareRogueAdventureRoomScRsp = 5684,
+    CmdRogueDoGambleCsReq = 5686,
+    CmdRogueGetGambleInfoScRsp = 5687,
+    CmdRogueWorkbenchSelectFuncScRsp = 5689,
+    CmdGetEnhanceCommonRogueBuffInfoScRsp = 5690,
+    CmdGetRogueCollectionScRsp = 5691,
+    CmdBuyRogueShopBuffCsReq = 5693,
+    CmdPrepareRogueAdventureRoomCsReq = 5695,
+    CmdGetRogueAdventureRoomInfoScRsp = 5696,
+    CmdFinishRogueCommonDialogueScRsp = 5697,
+    CmdGetRogueCollectionCsReq = 5698,
+    CmdCommonRogueUpdateScNotify = 5699,
+    CmdSyncRogueCommonVirtualItemInfoScNotify = 5700,
 }
 impl CmdRogueCommonType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -9714,193 +9909,193 @@ impl CmdRogueCommonType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdRogueCommonType::None => "CmdRogueCommonTypeNone",
-            CmdRogueCommonType::CmdRogueGetGambleInfoScRsp => {
-                "CmdRogueGetGambleInfoScRsp"
-            }
-            CmdRogueCommonType::CmdUpdateRogueAdventureRoomScoreScRsp => {
-                "CmdUpdateRogueAdventureRoomScoreScRsp"
-            }
-            CmdRogueCommonType::CmdPrepareRogueAdventureRoomScRsp => {
-                "CmdPrepareRogueAdventureRoomScRsp"
-            }
-            CmdRogueCommonType::CmdSyncRogueHandbookDataUpdateScNotify => {
-                "CmdSyncRogueHandbookDataUpdateScNotify"
-            }
-            CmdRogueCommonType::CmdCommonRogueComponentUpdateScNotify => {
-                "CmdCommonRogueComponentUpdateScNotify"
-            }
-            CmdRogueCommonType::CmdRogueWorkbenchHandleFuncCsReq => {
-                "CmdRogueWorkbenchHandleFuncCsReq"
-            }
-            CmdRogueCommonType::CmdRogueDebugMessageScNotify => {
-                "CmdRogueDebugMessageScNotify"
-            }
-            CmdRogueCommonType::CmdHandleRogueCommonPendingActionScRsp => {
-                "CmdHandleRogueCommonPendingActionScRsp"
-            }
-            CmdRogueCommonType::CmdTakeRogueEventHandbookRewardScRsp => {
-                "CmdTakeRogueEventHandbookRewardScRsp"
-            }
-            CmdRogueCommonType::CmdSyncRogueCommonPendingActionScNotify => {
-                "CmdSyncRogueCommonPendingActionScNotify"
-            }
-            CmdRogueCommonType::CmdBuyRogueShopBuffCsReq => "CmdBuyRogueShopBuffCsReq",
-            CmdRogueCommonType::CmdRogueWorkbenchHandleFuncScRsp => {
-                "CmdRogueWorkbenchHandleFuncScRsp"
-            }
-            CmdRogueCommonType::CmdPrepareRogueAdventureRoomCsReq => {
-                "CmdPrepareRogueAdventureRoomCsReq"
-            }
-            CmdRogueCommonType::CmdRogueWorkbenchGetInfoCsReq => {
-                "CmdRogueWorkbenchGetInfoCsReq"
-            }
-            CmdRogueCommonType::CmdSyncRogueCommonActionResultScNotify => {
-                "CmdSyncRogueCommonActionResultScNotify"
-            }
-            CmdRogueCommonType::CmdHandleRogueCommonPendingActionCsReq => {
-                "CmdHandleRogueCommonPendingActionCsReq"
+            CmdRogueCommonType::CmdGetRogueCommonDialogueDataCsReq => {
+                "CmdGetRogueCommonDialogueDataCsReq"
             }
             CmdRogueCommonType::CmdExchangeRogueBuffWithMiracleScRsp => {
                 "CmdExchangeRogueBuffWithMiracleScRsp"
             }
-            CmdRogueCommonType::CmdFinishRogueCommonDialogueScRsp => {
-                "CmdFinishRogueCommonDialogueScRsp"
+            CmdRogueCommonType::CmdSyncRogueHandbookDataUpdateScNotify => {
+                "CmdSyncRogueHandbookDataUpdateScNotify"
             }
-            CmdRogueCommonType::CmdGetEnhanceCommonRogueBuffInfoCsReq => {
-                "CmdGetEnhanceCommonRogueBuffInfoCsReq"
-            }
-            CmdRogueCommonType::CmdRogueNpcDisappearScRsp => "CmdRogueNpcDisappearScRsp",
-            CmdRogueCommonType::CmdGetRogueCommonDialogueDataCsReq => {
-                "CmdGetRogueCommonDialogueDataCsReq"
-            }
-            CmdRogueCommonType::CmdCommonRogueQueryScRsp => "CmdCommonRogueQueryScRsp",
-            CmdRogueCommonType::CmdGetEnhanceCommonRogueBuffInfoScRsp => {
-                "CmdGetEnhanceCommonRogueBuffInfoScRsp"
-            }
-            CmdRogueCommonType::CmdGetRogueShopBuffInfoScRsp => {
-                "CmdGetRogueShopBuffInfoScRsp"
-            }
-            CmdRogueCommonType::CmdRogueWorkbenchGetInfoScRsp => {
-                "CmdRogueWorkbenchGetInfoScRsp"
-            }
-            CmdRogueCommonType::CmdBuyRogueShopMiracleCsReq => {
-                "CmdBuyRogueShopMiracleCsReq"
-            }
-            CmdRogueCommonType::CmdSyncRogueCommonDialogueDataScNotify => {
-                "CmdSyncRogueCommonDialogueDataScNotify"
-            }
-            CmdRogueCommonType::CmdGetRogueShopMiracleInfoScRsp => {
-                "CmdGetRogueShopMiracleInfoScRsp"
-            }
-            CmdRogueCommonType::CmdSetRogueExhibitionScRsp => {
-                "CmdSetRogueExhibitionScRsp"
-            }
-            CmdRogueCommonType::CmdRogueDoGambleCsReq => "CmdRogueDoGambleCsReq",
             CmdRogueCommonType::CmdSetRogueExhibitionCsReq => {
                 "CmdSetRogueExhibitionCsReq"
-            }
-            CmdRogueCommonType::CmdTakeRogueMiracleHandbookRewardScRsp => {
-                "CmdTakeRogueMiracleHandbookRewardScRsp"
-            }
-            CmdRogueCommonType::CmdRogueWorkbenchSelectFuncScRsp => {
-                "CmdRogueWorkbenchSelectFuncScRsp"
-            }
-            CmdRogueCommonType::CmdUpdateRogueAdventureRoomScoreCsReq => {
-                "CmdUpdateRogueAdventureRoomScoreCsReq"
-            }
-            CmdRogueCommonType::CmdGetRogueShopMiracleInfoCsReq => {
-                "CmdGetRogueShopMiracleInfoCsReq"
-            }
-            CmdRogueCommonType::CmdBuyRogueShopBuffScRsp => "CmdBuyRogueShopBuffScRsp",
-            CmdRogueCommonType::CmdGetRogueAdventureRoomInfoScRsp => {
-                "CmdGetRogueAdventureRoomInfoScRsp"
-            }
-            CmdRogueCommonType::CmdGetRogueCollectionScRsp => {
-                "CmdGetRogueCollectionScRsp"
-            }
-            CmdRogueCommonType::CmdEnhanceCommonRogueBuffCsReq => {
-                "CmdEnhanceCommonRogueBuffCsReq"
-            }
-            CmdRogueCommonType::CmdGetRogueShopBuffInfoCsReq => {
-                "CmdGetRogueShopBuffInfoCsReq"
-            }
-            CmdRogueCommonType::CmdSyncRogueCommonDialogueOptionFinishScNotify => {
-                "CmdSyncRogueCommonDialogueOptionFinishScNotify"
-            }
-            CmdRogueCommonType::CmdRogueDoGambleScRsp => "CmdRogueDoGambleScRsp",
-            CmdRogueCommonType::CmdSyncRogueAdventureRoomInfoScNotify => {
-                "CmdSyncRogueAdventureRoomInfoScNotify"
-            }
-            CmdRogueCommonType::CmdCommonRogueQueryCsReq => "CmdCommonRogueQueryCsReq",
-            CmdRogueCommonType::CmdExchangeRogueBuffWithMiracleCsReq => {
-                "CmdExchangeRogueBuffWithMiracleCsReq"
-            }
-            CmdRogueCommonType::CmdSelectRogueCommonDialogueOptionScRsp => {
-                "CmdSelectRogueCommonDialogueOptionScRsp"
             }
             CmdRogueCommonType::CmdTakeRogueEventHandbookRewardCsReq => {
                 "CmdTakeRogueEventHandbookRewardCsReq"
             }
-            CmdRogueCommonType::CmdSyncRogueCommonVirtualItemInfoScNotify => {
-                "CmdSyncRogueCommonVirtualItemInfoScNotify"
-            }
-            CmdRogueCommonType::CmdSetRogueCollectionScRsp => {
-                "CmdSetRogueCollectionScRsp"
-            }
-            CmdRogueCommonType::CmdSetRogueCollectionCsReq => {
-                "CmdSetRogueCollectionCsReq"
-            }
-            CmdRogueCommonType::CmdGetRogueCommonDialogueDataScRsp => {
-                "CmdGetRogueCommonDialogueDataScRsp"
-            }
             CmdRogueCommonType::CmdEnhanceCommonRogueBuffScRsp => {
                 "CmdEnhanceCommonRogueBuffScRsp"
             }
-            CmdRogueCommonType::CmdRogueNpcDisappearCsReq => "CmdRogueNpcDisappearCsReq",
-            CmdRogueCommonType::CmdGetRogueAdventureRoomInfoCsReq => {
-                "CmdGetRogueAdventureRoomInfoCsReq"
+            CmdRogueCommonType::CmdRogueDebugMessageScNotify => {
+                "CmdRogueDebugMessageScNotify"
             }
-            CmdRogueCommonType::CmdRogueGetGambleInfoCsReq => {
-                "CmdRogueGetGambleInfoCsReq"
-            }
-            CmdRogueCommonType::CmdGetRogueHandbookDataCsReq => {
-                "CmdGetRogueHandbookDataCsReq"
-            }
-            CmdRogueCommonType::CmdBuyRogueShopMiracleScRsp => {
-                "CmdBuyRogueShopMiracleScRsp"
-            }
-            CmdRogueCommonType::CmdGetRogueCollectionCsReq => {
-                "CmdGetRogueCollectionCsReq"
-            }
-            CmdRogueCommonType::CmdSelectRogueCommonDialogueOptionCsReq => {
-                "CmdSelectRogueCommonDialogueOptionCsReq"
-            }
-            CmdRogueCommonType::CmdStopRogueAdventureRoomCsReq => {
-                "CmdStopRogueAdventureRoomCsReq"
-            }
-            CmdRogueCommonType::CmdFinishRogueCommonDialogueCsReq => {
-                "CmdFinishRogueCommonDialogueCsReq"
-            }
-            CmdRogueCommonType::CmdRogueWorkbenchSelectFuncCsReq => {
-                "CmdRogueWorkbenchSelectFuncCsReq"
+            CmdRogueCommonType::CmdRogueWorkbenchGetInfoCsReq => {
+                "CmdRogueWorkbenchGetInfoCsReq"
             }
             CmdRogueCommonType::CmdTakeRogueMiracleHandbookRewardCsReq => {
                 "CmdTakeRogueMiracleHandbookRewardCsReq"
             }
-            CmdRogueCommonType::CmdGetRogueHandbookDataScRsp => {
-                "CmdGetRogueHandbookDataScRsp"
+            CmdRogueCommonType::CmdSetRogueExhibitionScRsp => {
+                "CmdSetRogueExhibitionScRsp"
             }
-            CmdRogueCommonType::CmdGetRogueExhibitionCsReq => {
-                "CmdGetRogueExhibitionCsReq"
+            CmdRogueCommonType::CmdGetRogueHandbookDataCsReq => {
+                "CmdGetRogueHandbookDataCsReq"
             }
-            CmdRogueCommonType::CmdCommonRogueUpdateScNotify => {
-                "CmdCommonRogueUpdateScNotify"
+            CmdRogueCommonType::CmdUpdateRogueAdventureRoomScoreScRsp => {
+                "CmdUpdateRogueAdventureRoomScoreScRsp"
+            }
+            CmdRogueCommonType::CmdSetRogueCollectionScRsp => {
+                "CmdSetRogueCollectionScRsp"
+            }
+            CmdRogueCommonType::CmdBuyRogueShopMiracleScRsp => {
+                "CmdBuyRogueShopMiracleScRsp"
+            }
+            CmdRogueCommonType::CmdGetRogueAdventureRoomInfoCsReq => {
+                "CmdGetRogueAdventureRoomInfoCsReq"
+            }
+            CmdRogueCommonType::CmdExchangeRogueBuffWithMiracleCsReq => {
+                "CmdExchangeRogueBuffWithMiracleCsReq"
+            }
+            CmdRogueCommonType::CmdGetRogueShopMiracleInfoCsReq => {
+                "CmdGetRogueShopMiracleInfoCsReq"
+            }
+            CmdRogueCommonType::CmdGetRogueShopBuffInfoCsReq => {
+                "CmdGetRogueShopBuffInfoCsReq"
+            }
+            CmdRogueCommonType::CmdStopRogueAdventureRoomScRsp => {
+                "CmdStopRogueAdventureRoomScRsp"
+            }
+            CmdRogueCommonType::CmdSelectRogueCommonDialogueOptionScRsp => {
+                "CmdSelectRogueCommonDialogueOptionScRsp"
+            }
+            CmdRogueCommonType::CmdFinishRogueCommonDialogueCsReq => {
+                "CmdFinishRogueCommonDialogueCsReq"
+            }
+            CmdRogueCommonType::CmdBuyRogueShopBuffScRsp => "CmdBuyRogueShopBuffScRsp",
+            CmdRogueCommonType::CmdSyncRogueAdventureRoomInfoScNotify => {
+                "CmdSyncRogueAdventureRoomInfoScNotify"
+            }
+            CmdRogueCommonType::CmdTakeRogueMiracleHandbookRewardScRsp => {
+                "CmdTakeRogueMiracleHandbookRewardScRsp"
+            }
+            CmdRogueCommonType::CmdRogueGetGambleInfoCsReq => {
+                "CmdRogueGetGambleInfoCsReq"
+            }
+            CmdRogueCommonType::CmdSyncRogueCommonPendingActionScNotify => {
+                "CmdSyncRogueCommonPendingActionScNotify"
+            }
+            CmdRogueCommonType::CmdGetRogueCommonDialogueDataScRsp => {
+                "CmdGetRogueCommonDialogueDataScRsp"
+            }
+            CmdRogueCommonType::CmdRogueNpcDisappearCsReq => "CmdRogueNpcDisappearCsReq",
+            CmdRogueCommonType::CmdSetRogueCollectionCsReq => {
+                "CmdSetRogueCollectionCsReq"
+            }
+            CmdRogueCommonType::CmdHandleRogueCommonPendingActionScRsp => {
+                "CmdHandleRogueCommonPendingActionScRsp"
+            }
+            CmdRogueCommonType::CmdRogueNpcDisappearScRsp => "CmdRogueNpcDisappearScRsp",
+            CmdRogueCommonType::CmdRogueWorkbenchGetInfoScRsp => {
+                "CmdRogueWorkbenchGetInfoScRsp"
+            }
+            CmdRogueCommonType::CmdRogueWorkbenchHandleFuncCsReq => {
+                "CmdRogueWorkbenchHandleFuncCsReq"
+            }
+            CmdRogueCommonType::CmdGetRogueShopBuffInfoScRsp => {
+                "CmdGetRogueShopBuffInfoScRsp"
+            }
+            CmdRogueCommonType::CmdGetEnhanceCommonRogueBuffInfoCsReq => {
+                "CmdGetEnhanceCommonRogueBuffInfoCsReq"
+            }
+            CmdRogueCommonType::CmdUpdateRogueAdventureRoomScoreCsReq => {
+                "CmdUpdateRogueAdventureRoomScoreCsReq"
             }
             CmdRogueCommonType::CmdGetRogueExhibitionScRsp => {
                 "CmdGetRogueExhibitionScRsp"
             }
-            CmdRogueCommonType::CmdStopRogueAdventureRoomScRsp => {
-                "CmdStopRogueAdventureRoomScRsp"
+            CmdRogueCommonType::CmdCommonRogueComponentUpdateScNotify => {
+                "CmdCommonRogueComponentUpdateScNotify"
+            }
+            CmdRogueCommonType::CmdEnhanceCommonRogueBuffCsReq => {
+                "CmdEnhanceCommonRogueBuffCsReq"
+            }
+            CmdRogueCommonType::CmdHandleRogueCommonPendingActionCsReq => {
+                "CmdHandleRogueCommonPendingActionCsReq"
+            }
+            CmdRogueCommonType::CmdSelectRogueCommonDialogueOptionCsReq => {
+                "CmdSelectRogueCommonDialogueOptionCsReq"
+            }
+            CmdRogueCommonType::CmdRogueWorkbenchSelectFuncCsReq => {
+                "CmdRogueWorkbenchSelectFuncCsReq"
+            }
+            CmdRogueCommonType::CmdCommonRogueQueryCsReq => "CmdCommonRogueQueryCsReq",
+            CmdRogueCommonType::CmdGetRogueHandbookDataScRsp => {
+                "CmdGetRogueHandbookDataScRsp"
+            }
+            CmdRogueCommonType::CmdRogueDoGambleScRsp => "CmdRogueDoGambleScRsp",
+            CmdRogueCommonType::CmdGetRogueShopMiracleInfoScRsp => {
+                "CmdGetRogueShopMiracleInfoScRsp"
+            }
+            CmdRogueCommonType::CmdSyncRogueCommonDialogueOptionFinishScNotify => {
+                "CmdSyncRogueCommonDialogueOptionFinishScNotify"
+            }
+            CmdRogueCommonType::CmdGetRogueExhibitionCsReq => {
+                "CmdGetRogueExhibitionCsReq"
+            }
+            CmdRogueCommonType::CmdRogueWorkbenchHandleFuncScRsp => {
+                "CmdRogueWorkbenchHandleFuncScRsp"
+            }
+            CmdRogueCommonType::CmdCommonRogueQueryScRsp => "CmdCommonRogueQueryScRsp",
+            CmdRogueCommonType::CmdBuyRogueShopMiracleCsReq => {
+                "CmdBuyRogueShopMiracleCsReq"
+            }
+            CmdRogueCommonType::CmdStopRogueAdventureRoomCsReq => {
+                "CmdStopRogueAdventureRoomCsReq"
+            }
+            CmdRogueCommonType::CmdTakeRogueEventHandbookRewardScRsp => {
+                "CmdTakeRogueEventHandbookRewardScRsp"
+            }
+            CmdRogueCommonType::CmdSyncRogueCommonActionResultScNotify => {
+                "CmdSyncRogueCommonActionResultScNotify"
+            }
+            CmdRogueCommonType::CmdSyncRogueCommonDialogueDataScNotify => {
+                "CmdSyncRogueCommonDialogueDataScNotify"
+            }
+            CmdRogueCommonType::CmdPrepareRogueAdventureRoomScRsp => {
+                "CmdPrepareRogueAdventureRoomScRsp"
+            }
+            CmdRogueCommonType::CmdRogueDoGambleCsReq => "CmdRogueDoGambleCsReq",
+            CmdRogueCommonType::CmdRogueGetGambleInfoScRsp => {
+                "CmdRogueGetGambleInfoScRsp"
+            }
+            CmdRogueCommonType::CmdRogueWorkbenchSelectFuncScRsp => {
+                "CmdRogueWorkbenchSelectFuncScRsp"
+            }
+            CmdRogueCommonType::CmdGetEnhanceCommonRogueBuffInfoScRsp => {
+                "CmdGetEnhanceCommonRogueBuffInfoScRsp"
+            }
+            CmdRogueCommonType::CmdGetRogueCollectionScRsp => {
+                "CmdGetRogueCollectionScRsp"
+            }
+            CmdRogueCommonType::CmdBuyRogueShopBuffCsReq => "CmdBuyRogueShopBuffCsReq",
+            CmdRogueCommonType::CmdPrepareRogueAdventureRoomCsReq => {
+                "CmdPrepareRogueAdventureRoomCsReq"
+            }
+            CmdRogueCommonType::CmdGetRogueAdventureRoomInfoScRsp => {
+                "CmdGetRogueAdventureRoomInfoScRsp"
+            }
+            CmdRogueCommonType::CmdFinishRogueCommonDialogueScRsp => {
+                "CmdFinishRogueCommonDialogueScRsp"
+            }
+            CmdRogueCommonType::CmdGetRogueCollectionCsReq => {
+                "CmdGetRogueCollectionCsReq"
+            }
+            CmdRogueCommonType::CmdCommonRogueUpdateScNotify => {
+                "CmdCommonRogueUpdateScNotify"
+            }
+            CmdRogueCommonType::CmdSyncRogueCommonVirtualItemInfoScNotify => {
+                "CmdSyncRogueCommonVirtualItemInfoScNotify"
             }
         }
     }
@@ -9908,153 +10103,153 @@ impl CmdRogueCommonType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdRogueCommonTypeNone" => Some(Self::None),
-            "CmdRogueGetGambleInfoScRsp" => Some(Self::CmdRogueGetGambleInfoScRsp),
-            "CmdUpdateRogueAdventureRoomScoreScRsp" => {
-                Some(Self::CmdUpdateRogueAdventureRoomScoreScRsp)
-            }
-            "CmdPrepareRogueAdventureRoomScRsp" => {
-                Some(Self::CmdPrepareRogueAdventureRoomScRsp)
-            }
-            "CmdSyncRogueHandbookDataUpdateScNotify" => {
-                Some(Self::CmdSyncRogueHandbookDataUpdateScNotify)
-            }
-            "CmdCommonRogueComponentUpdateScNotify" => {
-                Some(Self::CmdCommonRogueComponentUpdateScNotify)
-            }
-            "CmdRogueWorkbenchHandleFuncCsReq" => {
-                Some(Self::CmdRogueWorkbenchHandleFuncCsReq)
-            }
-            "CmdRogueDebugMessageScNotify" => Some(Self::CmdRogueDebugMessageScNotify),
-            "CmdHandleRogueCommonPendingActionScRsp" => {
-                Some(Self::CmdHandleRogueCommonPendingActionScRsp)
-            }
-            "CmdTakeRogueEventHandbookRewardScRsp" => {
-                Some(Self::CmdTakeRogueEventHandbookRewardScRsp)
-            }
-            "CmdSyncRogueCommonPendingActionScNotify" => {
-                Some(Self::CmdSyncRogueCommonPendingActionScNotify)
-            }
-            "CmdBuyRogueShopBuffCsReq" => Some(Self::CmdBuyRogueShopBuffCsReq),
-            "CmdRogueWorkbenchHandleFuncScRsp" => {
-                Some(Self::CmdRogueWorkbenchHandleFuncScRsp)
-            }
-            "CmdPrepareRogueAdventureRoomCsReq" => {
-                Some(Self::CmdPrepareRogueAdventureRoomCsReq)
-            }
-            "CmdRogueWorkbenchGetInfoCsReq" => Some(Self::CmdRogueWorkbenchGetInfoCsReq),
-            "CmdSyncRogueCommonActionResultScNotify" => {
-                Some(Self::CmdSyncRogueCommonActionResultScNotify)
-            }
-            "CmdHandleRogueCommonPendingActionCsReq" => {
-                Some(Self::CmdHandleRogueCommonPendingActionCsReq)
+            "CmdGetRogueCommonDialogueDataCsReq" => {
+                Some(Self::CmdGetRogueCommonDialogueDataCsReq)
             }
             "CmdExchangeRogueBuffWithMiracleScRsp" => {
                 Some(Self::CmdExchangeRogueBuffWithMiracleScRsp)
             }
-            "CmdFinishRogueCommonDialogueScRsp" => {
-                Some(Self::CmdFinishRogueCommonDialogueScRsp)
+            "CmdSyncRogueHandbookDataUpdateScNotify" => {
+                Some(Self::CmdSyncRogueHandbookDataUpdateScNotify)
             }
-            "CmdGetEnhanceCommonRogueBuffInfoCsReq" => {
-                Some(Self::CmdGetEnhanceCommonRogueBuffInfoCsReq)
-            }
-            "CmdRogueNpcDisappearScRsp" => Some(Self::CmdRogueNpcDisappearScRsp),
-            "CmdGetRogueCommonDialogueDataCsReq" => {
-                Some(Self::CmdGetRogueCommonDialogueDataCsReq)
-            }
-            "CmdCommonRogueQueryScRsp" => Some(Self::CmdCommonRogueQueryScRsp),
-            "CmdGetEnhanceCommonRogueBuffInfoScRsp" => {
-                Some(Self::CmdGetEnhanceCommonRogueBuffInfoScRsp)
-            }
-            "CmdGetRogueShopBuffInfoScRsp" => Some(Self::CmdGetRogueShopBuffInfoScRsp),
-            "CmdRogueWorkbenchGetInfoScRsp" => Some(Self::CmdRogueWorkbenchGetInfoScRsp),
-            "CmdBuyRogueShopMiracleCsReq" => Some(Self::CmdBuyRogueShopMiracleCsReq),
-            "CmdSyncRogueCommonDialogueDataScNotify" => {
-                Some(Self::CmdSyncRogueCommonDialogueDataScNotify)
-            }
-            "CmdGetRogueShopMiracleInfoScRsp" => {
-                Some(Self::CmdGetRogueShopMiracleInfoScRsp)
-            }
-            "CmdSetRogueExhibitionScRsp" => Some(Self::CmdSetRogueExhibitionScRsp),
-            "CmdRogueDoGambleCsReq" => Some(Self::CmdRogueDoGambleCsReq),
             "CmdSetRogueExhibitionCsReq" => Some(Self::CmdSetRogueExhibitionCsReq),
-            "CmdTakeRogueMiracleHandbookRewardScRsp" => {
-                Some(Self::CmdTakeRogueMiracleHandbookRewardScRsp)
-            }
-            "CmdRogueWorkbenchSelectFuncScRsp" => {
-                Some(Self::CmdRogueWorkbenchSelectFuncScRsp)
-            }
-            "CmdUpdateRogueAdventureRoomScoreCsReq" => {
-                Some(Self::CmdUpdateRogueAdventureRoomScoreCsReq)
-            }
-            "CmdGetRogueShopMiracleInfoCsReq" => {
-                Some(Self::CmdGetRogueShopMiracleInfoCsReq)
-            }
-            "CmdBuyRogueShopBuffScRsp" => Some(Self::CmdBuyRogueShopBuffScRsp),
-            "CmdGetRogueAdventureRoomInfoScRsp" => {
-                Some(Self::CmdGetRogueAdventureRoomInfoScRsp)
-            }
-            "CmdGetRogueCollectionScRsp" => Some(Self::CmdGetRogueCollectionScRsp),
-            "CmdEnhanceCommonRogueBuffCsReq" => {
-                Some(Self::CmdEnhanceCommonRogueBuffCsReq)
-            }
-            "CmdGetRogueShopBuffInfoCsReq" => Some(Self::CmdGetRogueShopBuffInfoCsReq),
-            "CmdSyncRogueCommonDialogueOptionFinishScNotify" => {
-                Some(Self::CmdSyncRogueCommonDialogueOptionFinishScNotify)
-            }
-            "CmdRogueDoGambleScRsp" => Some(Self::CmdRogueDoGambleScRsp),
-            "CmdSyncRogueAdventureRoomInfoScNotify" => {
-                Some(Self::CmdSyncRogueAdventureRoomInfoScNotify)
-            }
-            "CmdCommonRogueQueryCsReq" => Some(Self::CmdCommonRogueQueryCsReq),
-            "CmdExchangeRogueBuffWithMiracleCsReq" => {
-                Some(Self::CmdExchangeRogueBuffWithMiracleCsReq)
-            }
-            "CmdSelectRogueCommonDialogueOptionScRsp" => {
-                Some(Self::CmdSelectRogueCommonDialogueOptionScRsp)
-            }
             "CmdTakeRogueEventHandbookRewardCsReq" => {
                 Some(Self::CmdTakeRogueEventHandbookRewardCsReq)
-            }
-            "CmdSyncRogueCommonVirtualItemInfoScNotify" => {
-                Some(Self::CmdSyncRogueCommonVirtualItemInfoScNotify)
-            }
-            "CmdSetRogueCollectionScRsp" => Some(Self::CmdSetRogueCollectionScRsp),
-            "CmdSetRogueCollectionCsReq" => Some(Self::CmdSetRogueCollectionCsReq),
-            "CmdGetRogueCommonDialogueDataScRsp" => {
-                Some(Self::CmdGetRogueCommonDialogueDataScRsp)
             }
             "CmdEnhanceCommonRogueBuffScRsp" => {
                 Some(Self::CmdEnhanceCommonRogueBuffScRsp)
             }
-            "CmdRogueNpcDisappearCsReq" => Some(Self::CmdRogueNpcDisappearCsReq),
+            "CmdRogueDebugMessageScNotify" => Some(Self::CmdRogueDebugMessageScNotify),
+            "CmdRogueWorkbenchGetInfoCsReq" => Some(Self::CmdRogueWorkbenchGetInfoCsReq),
+            "CmdTakeRogueMiracleHandbookRewardCsReq" => {
+                Some(Self::CmdTakeRogueMiracleHandbookRewardCsReq)
+            }
+            "CmdSetRogueExhibitionScRsp" => Some(Self::CmdSetRogueExhibitionScRsp),
+            "CmdGetRogueHandbookDataCsReq" => Some(Self::CmdGetRogueHandbookDataCsReq),
+            "CmdUpdateRogueAdventureRoomScoreScRsp" => {
+                Some(Self::CmdUpdateRogueAdventureRoomScoreScRsp)
+            }
+            "CmdSetRogueCollectionScRsp" => Some(Self::CmdSetRogueCollectionScRsp),
+            "CmdBuyRogueShopMiracleScRsp" => Some(Self::CmdBuyRogueShopMiracleScRsp),
             "CmdGetRogueAdventureRoomInfoCsReq" => {
                 Some(Self::CmdGetRogueAdventureRoomInfoCsReq)
             }
-            "CmdRogueGetGambleInfoCsReq" => Some(Self::CmdRogueGetGambleInfoCsReq),
-            "CmdGetRogueHandbookDataCsReq" => Some(Self::CmdGetRogueHandbookDataCsReq),
-            "CmdBuyRogueShopMiracleScRsp" => Some(Self::CmdBuyRogueShopMiracleScRsp),
-            "CmdGetRogueCollectionCsReq" => Some(Self::CmdGetRogueCollectionCsReq),
-            "CmdSelectRogueCommonDialogueOptionCsReq" => {
-                Some(Self::CmdSelectRogueCommonDialogueOptionCsReq)
+            "CmdExchangeRogueBuffWithMiracleCsReq" => {
+                Some(Self::CmdExchangeRogueBuffWithMiracleCsReq)
             }
-            "CmdStopRogueAdventureRoomCsReq" => {
-                Some(Self::CmdStopRogueAdventureRoomCsReq)
+            "CmdGetRogueShopMiracleInfoCsReq" => {
+                Some(Self::CmdGetRogueShopMiracleInfoCsReq)
+            }
+            "CmdGetRogueShopBuffInfoCsReq" => Some(Self::CmdGetRogueShopBuffInfoCsReq),
+            "CmdStopRogueAdventureRoomScRsp" => {
+                Some(Self::CmdStopRogueAdventureRoomScRsp)
+            }
+            "CmdSelectRogueCommonDialogueOptionScRsp" => {
+                Some(Self::CmdSelectRogueCommonDialogueOptionScRsp)
             }
             "CmdFinishRogueCommonDialogueCsReq" => {
                 Some(Self::CmdFinishRogueCommonDialogueCsReq)
             }
+            "CmdBuyRogueShopBuffScRsp" => Some(Self::CmdBuyRogueShopBuffScRsp),
+            "CmdSyncRogueAdventureRoomInfoScNotify" => {
+                Some(Self::CmdSyncRogueAdventureRoomInfoScNotify)
+            }
+            "CmdTakeRogueMiracleHandbookRewardScRsp" => {
+                Some(Self::CmdTakeRogueMiracleHandbookRewardScRsp)
+            }
+            "CmdRogueGetGambleInfoCsReq" => Some(Self::CmdRogueGetGambleInfoCsReq),
+            "CmdSyncRogueCommonPendingActionScNotify" => {
+                Some(Self::CmdSyncRogueCommonPendingActionScNotify)
+            }
+            "CmdGetRogueCommonDialogueDataScRsp" => {
+                Some(Self::CmdGetRogueCommonDialogueDataScRsp)
+            }
+            "CmdRogueNpcDisappearCsReq" => Some(Self::CmdRogueNpcDisappearCsReq),
+            "CmdSetRogueCollectionCsReq" => Some(Self::CmdSetRogueCollectionCsReq),
+            "CmdHandleRogueCommonPendingActionScRsp" => {
+                Some(Self::CmdHandleRogueCommonPendingActionScRsp)
+            }
+            "CmdRogueNpcDisappearScRsp" => Some(Self::CmdRogueNpcDisappearScRsp),
+            "CmdRogueWorkbenchGetInfoScRsp" => Some(Self::CmdRogueWorkbenchGetInfoScRsp),
+            "CmdRogueWorkbenchHandleFuncCsReq" => {
+                Some(Self::CmdRogueWorkbenchHandleFuncCsReq)
+            }
+            "CmdGetRogueShopBuffInfoScRsp" => Some(Self::CmdGetRogueShopBuffInfoScRsp),
+            "CmdGetEnhanceCommonRogueBuffInfoCsReq" => {
+                Some(Self::CmdGetEnhanceCommonRogueBuffInfoCsReq)
+            }
+            "CmdUpdateRogueAdventureRoomScoreCsReq" => {
+                Some(Self::CmdUpdateRogueAdventureRoomScoreCsReq)
+            }
+            "CmdGetRogueExhibitionScRsp" => Some(Self::CmdGetRogueExhibitionScRsp),
+            "CmdCommonRogueComponentUpdateScNotify" => {
+                Some(Self::CmdCommonRogueComponentUpdateScNotify)
+            }
+            "CmdEnhanceCommonRogueBuffCsReq" => {
+                Some(Self::CmdEnhanceCommonRogueBuffCsReq)
+            }
+            "CmdHandleRogueCommonPendingActionCsReq" => {
+                Some(Self::CmdHandleRogueCommonPendingActionCsReq)
+            }
+            "CmdSelectRogueCommonDialogueOptionCsReq" => {
+                Some(Self::CmdSelectRogueCommonDialogueOptionCsReq)
+            }
             "CmdRogueWorkbenchSelectFuncCsReq" => {
                 Some(Self::CmdRogueWorkbenchSelectFuncCsReq)
             }
-            "CmdTakeRogueMiracleHandbookRewardCsReq" => {
-                Some(Self::CmdTakeRogueMiracleHandbookRewardCsReq)
-            }
+            "CmdCommonRogueQueryCsReq" => Some(Self::CmdCommonRogueQueryCsReq),
             "CmdGetRogueHandbookDataScRsp" => Some(Self::CmdGetRogueHandbookDataScRsp),
+            "CmdRogueDoGambleScRsp" => Some(Self::CmdRogueDoGambleScRsp),
+            "CmdGetRogueShopMiracleInfoScRsp" => {
+                Some(Self::CmdGetRogueShopMiracleInfoScRsp)
+            }
+            "CmdSyncRogueCommonDialogueOptionFinishScNotify" => {
+                Some(Self::CmdSyncRogueCommonDialogueOptionFinishScNotify)
+            }
             "CmdGetRogueExhibitionCsReq" => Some(Self::CmdGetRogueExhibitionCsReq),
+            "CmdRogueWorkbenchHandleFuncScRsp" => {
+                Some(Self::CmdRogueWorkbenchHandleFuncScRsp)
+            }
+            "CmdCommonRogueQueryScRsp" => Some(Self::CmdCommonRogueQueryScRsp),
+            "CmdBuyRogueShopMiracleCsReq" => Some(Self::CmdBuyRogueShopMiracleCsReq),
+            "CmdStopRogueAdventureRoomCsReq" => {
+                Some(Self::CmdStopRogueAdventureRoomCsReq)
+            }
+            "CmdTakeRogueEventHandbookRewardScRsp" => {
+                Some(Self::CmdTakeRogueEventHandbookRewardScRsp)
+            }
+            "CmdSyncRogueCommonActionResultScNotify" => {
+                Some(Self::CmdSyncRogueCommonActionResultScNotify)
+            }
+            "CmdSyncRogueCommonDialogueDataScNotify" => {
+                Some(Self::CmdSyncRogueCommonDialogueDataScNotify)
+            }
+            "CmdPrepareRogueAdventureRoomScRsp" => {
+                Some(Self::CmdPrepareRogueAdventureRoomScRsp)
+            }
+            "CmdRogueDoGambleCsReq" => Some(Self::CmdRogueDoGambleCsReq),
+            "CmdRogueGetGambleInfoScRsp" => Some(Self::CmdRogueGetGambleInfoScRsp),
+            "CmdRogueWorkbenchSelectFuncScRsp" => {
+                Some(Self::CmdRogueWorkbenchSelectFuncScRsp)
+            }
+            "CmdGetEnhanceCommonRogueBuffInfoScRsp" => {
+                Some(Self::CmdGetEnhanceCommonRogueBuffInfoScRsp)
+            }
+            "CmdGetRogueCollectionScRsp" => Some(Self::CmdGetRogueCollectionScRsp),
+            "CmdBuyRogueShopBuffCsReq" => Some(Self::CmdBuyRogueShopBuffCsReq),
+            "CmdPrepareRogueAdventureRoomCsReq" => {
+                Some(Self::CmdPrepareRogueAdventureRoomCsReq)
+            }
+            "CmdGetRogueAdventureRoomInfoScRsp" => {
+                Some(Self::CmdGetRogueAdventureRoomInfoScRsp)
+            }
+            "CmdFinishRogueCommonDialogueScRsp" => {
+                Some(Self::CmdFinishRogueCommonDialogueScRsp)
+            }
+            "CmdGetRogueCollectionCsReq" => Some(Self::CmdGetRogueCollectionCsReq),
             "CmdCommonRogueUpdateScNotify" => Some(Self::CmdCommonRogueUpdateScNotify),
-            "CmdGetRogueExhibitionScRsp" => Some(Self::CmdGetRogueExhibitionScRsp),
-            "CmdStopRogueAdventureRoomScRsp" => {
-                Some(Self::CmdStopRogueAdventureRoomScRsp)
+            "CmdSyncRogueCommonVirtualItemInfoScNotify" => {
+                Some(Self::CmdSyncRogueCommonVirtualItemInfoScNotify)
             }
             _ => None,
         }
@@ -10066,14 +10261,14 @@ impl CmdRogueCommonType {
 pub enum CmdRogueEndless {
     None = 0,
     ActivityBattleEndScNotify = 6001,
-    CmdTakeRogueEndlessActivityPointRewardCsReq = 6002,
-    CmdTakeRogueEndlessActivityAllBonusRewardScRsp = 6003,
-    CmdGetRogueEndlessActivityDataScRsp = 6005,
-    CmdGetRogueEndlessActivityDataCsReq = 6006,
-    CmdTakeRogueEndlessActivityAllBonusRewardCsReq = 6007,
+    CmdTakeRogueEndlessActivityAllBonusRewardCsReq = 6002,
+    CmdEnterRogueEndlessActivityStageCsReq = 6003,
+    CmdTakeRogueEndlessActivityPointRewardScRsp = 6004,
+    CmdTakeRogueEndlessActivityPointRewardCsReq = 6005,
+    CmdTakeRogueEndlessActivityAllBonusRewardScRsp = 6007,
     CmdEnterRogueEndlessActivityStageScRsp = 6008,
-    CmdEnterRogueEndlessActivityStageCsReq = 6009,
-    CmdTakeRogueEndlessActivityPointRewardScRsp = 6010,
+    CmdGetRogueEndlessActivityDataCsReq = 6009,
+    CmdGetRogueEndlessActivityDataScRsp = 6010,
 }
 impl CmdRogueEndless {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -10086,29 +10281,29 @@ impl CmdRogueEndless {
             CmdRogueEndless::ActivityBattleEndScNotify => {
                 "CmdRogueEndlessActivityBattleEndScNotify"
             }
-            CmdRogueEndless::CmdTakeRogueEndlessActivityPointRewardCsReq => {
-                "CmdTakeRogueEndlessActivityPointRewardCsReq"
-            }
-            CmdRogueEndless::CmdTakeRogueEndlessActivityAllBonusRewardScRsp => {
-                "CmdTakeRogueEndlessActivityAllBonusRewardScRsp"
-            }
-            CmdRogueEndless::CmdGetRogueEndlessActivityDataScRsp => {
-                "CmdGetRogueEndlessActivityDataScRsp"
-            }
-            CmdRogueEndless::CmdGetRogueEndlessActivityDataCsReq => {
-                "CmdGetRogueEndlessActivityDataCsReq"
-            }
             CmdRogueEndless::CmdTakeRogueEndlessActivityAllBonusRewardCsReq => {
                 "CmdTakeRogueEndlessActivityAllBonusRewardCsReq"
-            }
-            CmdRogueEndless::CmdEnterRogueEndlessActivityStageScRsp => {
-                "CmdEnterRogueEndlessActivityStageScRsp"
             }
             CmdRogueEndless::CmdEnterRogueEndlessActivityStageCsReq => {
                 "CmdEnterRogueEndlessActivityStageCsReq"
             }
             CmdRogueEndless::CmdTakeRogueEndlessActivityPointRewardScRsp => {
                 "CmdTakeRogueEndlessActivityPointRewardScRsp"
+            }
+            CmdRogueEndless::CmdTakeRogueEndlessActivityPointRewardCsReq => {
+                "CmdTakeRogueEndlessActivityPointRewardCsReq"
+            }
+            CmdRogueEndless::CmdTakeRogueEndlessActivityAllBonusRewardScRsp => {
+                "CmdTakeRogueEndlessActivityAllBonusRewardScRsp"
+            }
+            CmdRogueEndless::CmdEnterRogueEndlessActivityStageScRsp => {
+                "CmdEnterRogueEndlessActivityStageScRsp"
+            }
+            CmdRogueEndless::CmdGetRogueEndlessActivityDataCsReq => {
+                "CmdGetRogueEndlessActivityDataCsReq"
+            }
+            CmdRogueEndless::CmdGetRogueEndlessActivityDataScRsp => {
+                "CmdGetRogueEndlessActivityDataScRsp"
             }
         }
     }
@@ -10119,29 +10314,29 @@ impl CmdRogueEndless {
             "CmdRogueEndlessActivityBattleEndScNotify" => {
                 Some(Self::ActivityBattleEndScNotify)
             }
-            "CmdTakeRogueEndlessActivityPointRewardCsReq" => {
-                Some(Self::CmdTakeRogueEndlessActivityPointRewardCsReq)
-            }
-            "CmdTakeRogueEndlessActivityAllBonusRewardScRsp" => {
-                Some(Self::CmdTakeRogueEndlessActivityAllBonusRewardScRsp)
-            }
-            "CmdGetRogueEndlessActivityDataScRsp" => {
-                Some(Self::CmdGetRogueEndlessActivityDataScRsp)
-            }
-            "CmdGetRogueEndlessActivityDataCsReq" => {
-                Some(Self::CmdGetRogueEndlessActivityDataCsReq)
-            }
             "CmdTakeRogueEndlessActivityAllBonusRewardCsReq" => {
                 Some(Self::CmdTakeRogueEndlessActivityAllBonusRewardCsReq)
-            }
-            "CmdEnterRogueEndlessActivityStageScRsp" => {
-                Some(Self::CmdEnterRogueEndlessActivityStageScRsp)
             }
             "CmdEnterRogueEndlessActivityStageCsReq" => {
                 Some(Self::CmdEnterRogueEndlessActivityStageCsReq)
             }
             "CmdTakeRogueEndlessActivityPointRewardScRsp" => {
                 Some(Self::CmdTakeRogueEndlessActivityPointRewardScRsp)
+            }
+            "CmdTakeRogueEndlessActivityPointRewardCsReq" => {
+                Some(Self::CmdTakeRogueEndlessActivityPointRewardCsReq)
+            }
+            "CmdTakeRogueEndlessActivityAllBonusRewardScRsp" => {
+                Some(Self::CmdTakeRogueEndlessActivityAllBonusRewardScRsp)
+            }
+            "CmdEnterRogueEndlessActivityStageScRsp" => {
+                Some(Self::CmdEnterRogueEndlessActivityStageScRsp)
+            }
+            "CmdGetRogueEndlessActivityDataCsReq" => {
+                Some(Self::CmdGetRogueEndlessActivityDataCsReq)
+            }
+            "CmdGetRogueEndlessActivityDataScRsp" => {
+                Some(Self::CmdGetRogueEndlessActivityDataScRsp)
             }
             _ => None,
         }
@@ -10152,46 +10347,46 @@ impl CmdRogueEndless {
 #[repr(i32)]
 pub enum CmdRogueMagic {
     None = 0,
-    EnterCsReq = 7703,
-    GetMiscRealTimeDataCsReq = 7704,
-    ScepterTakeOffUnitCsReq = 7709,
+    ReviveAvatarCsReq = 7707,
+    GetMiscRealTimeDataCsReq = 7708,
     UnitReforgeCsReq = 7710,
+    AutoDressInUnitScRsp = 7711,
     EnableTalentScRsp = 7713,
-    StoryInfoUpdateScNotify = 7714,
-    EnterRoomScRsp = 7716,
+    EnableTalentCsReq = 7717,
+    GetMiscRealTimeDataScRsp = 7718,
     BattleFailSettleInfoScNotify = 7719,
-    StartScRsp = 7720,
-    AutoDressInMagicUnitChangeScNotify = 7723,
-    ReviveAvatarCsReq = 7725,
-    EnableTalentCsReq = 7726,
-    ReviveAvatarScRsp = 7729,
-    LevelInfoUpdateScNotify = 7730,
-    QueryCsReq = 7733,
-    SettleCsReq = 7734,
-    GetTalentInfoCsReq = 7736,
-    SettleScRsp = 7737,
-    LeaveCsReq = 7739,
-    AutoDressInUnitCsReq = 7743,
-    EnterScRsp = 7746,
-    EnterLayerCsReq = 7747,
-    QueryScRsp = 7751,
-    LeaveScRsp = 7753,
-    StartCsReq = 7759,
-    ReviveCostUpdateScNotify = 7761,
-    AutoDressInUnitScRsp = 7763,
-    UnitComposeCsReq = 7764,
-    GetTalentInfoScRsp = 7765,
-    UnitReforgeScRsp = 7770,
-    EnterLayerScRsp = 7774,
-    AreaUpdateScNotify = 7775,
-    SetAutoDressInMagicUnitCsReq = 7777,
-    EnterRoomCsReq = 7780,
-    ScepterDressInUnitCsReq = 7783,
-    GetMiscRealTimeDataScRsp = 7788,
-    SetAutoDressInMagicUnitScRsp = 7791,
-    ScepterTakeOffUnitScRsp = 7793,
-    UnitComposeScRsp = 7794,
-    ScepterDressInUnitScRsp = 7799,
+    SetAutoDressInMagicUnitCsReq = 7721,
+    EnterRoomCsReq = 7724,
+    AreaUpdateScNotify = 7725,
+    ReviveCostUpdateScNotify = 7726,
+    EnterScRsp = 7727,
+    LeaveScRsp = 7728,
+    ScepterDressInUnitScRsp = 7729,
+    EnterLayerCsReq = 7734,
+    GetTalentInfoCsReq = 7735,
+    StartCsReq = 7736,
+    AutoDressInUnitCsReq = 7737,
+    EnterLayerScRsp = 7743,
+    LevelInfoUpdateScNotify = 7746,
+    ScepterTakeOffUnitScRsp = 7748,
+    ScepterTakeOffUnitCsReq = 7750,
+    SettleCsReq = 7752,
+    ReviveAvatarScRsp = 7753,
+    UnitComposeScRsp = 7758,
+    QueryScRsp = 7759,
+    SetAutoDressInMagicUnitScRsp = 7765,
+    LeaveCsReq = 7767,
+    GetTalentInfoScRsp = 7773,
+    SettleScRsp = 7774,
+    UnitReforgeScRsp = 7776,
+    ScepterDressInUnitCsReq = 7778,
+    StoryInfoUpdateScNotify = 7779,
+    AutoDressInMagicUnitChangeScNotify = 7781,
+    EnterCsReq = 7784,
+    UnitComposeCsReq = 7788,
+    QueryCsReq = 7790,
+    EnterRoomScRsp = 7793,
+    StartScRsp = 7795,
 }
 impl CmdRogueMagic {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -10201,132 +10396,132 @@ impl CmdRogueMagic {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdRogueMagic::None => "CmdRogueMagicNone",
-            CmdRogueMagic::EnterCsReq => "CmdRogueMagicEnterCsReq",
+            CmdRogueMagic::ReviveAvatarCsReq => "CmdRogueMagicReviveAvatarCsReq",
             CmdRogueMagic::GetMiscRealTimeDataCsReq => {
                 "CmdRogueMagicGetMiscRealTimeDataCsReq"
             }
-            CmdRogueMagic::ScepterTakeOffUnitCsReq => {
-                "CmdRogueMagicScepterTakeOffUnitCsReq"
-            }
             CmdRogueMagic::UnitReforgeCsReq => "CmdRogueMagicUnitReforgeCsReq",
+            CmdRogueMagic::AutoDressInUnitScRsp => "CmdRogueMagicAutoDressInUnitScRsp",
             CmdRogueMagic::EnableTalentScRsp => "CmdRogueMagicEnableTalentScRsp",
-            CmdRogueMagic::StoryInfoUpdateScNotify => {
-                "CmdRogueMagicStoryInfoUpdateScNotify"
+            CmdRogueMagic::EnableTalentCsReq => "CmdRogueMagicEnableTalentCsReq",
+            CmdRogueMagic::GetMiscRealTimeDataScRsp => {
+                "CmdRogueMagicGetMiscRealTimeDataScRsp"
             }
-            CmdRogueMagic::EnterRoomScRsp => "CmdRogueMagicEnterRoomScRsp",
             CmdRogueMagic::BattleFailSettleInfoScNotify => {
                 "CmdRogueMagicBattleFailSettleInfoScNotify"
             }
-            CmdRogueMagic::StartScRsp => "CmdRogueMagicStartScRsp",
-            CmdRogueMagic::AutoDressInMagicUnitChangeScNotify => {
-                "CmdRogueMagicAutoDressInMagicUnitChangeScNotify"
-            }
-            CmdRogueMagic::ReviveAvatarCsReq => "CmdRogueMagicReviveAvatarCsReq",
-            CmdRogueMagic::EnableTalentCsReq => "CmdRogueMagicEnableTalentCsReq",
-            CmdRogueMagic::ReviveAvatarScRsp => "CmdRogueMagicReviveAvatarScRsp",
-            CmdRogueMagic::LevelInfoUpdateScNotify => {
-                "CmdRogueMagicLevelInfoUpdateScNotify"
-            }
-            CmdRogueMagic::QueryCsReq => "CmdRogueMagicQueryCsReq",
-            CmdRogueMagic::SettleCsReq => "CmdRogueMagicSettleCsReq",
-            CmdRogueMagic::GetTalentInfoCsReq => "CmdRogueMagicGetTalentInfoCsReq",
-            CmdRogueMagic::SettleScRsp => "CmdRogueMagicSettleScRsp",
-            CmdRogueMagic::LeaveCsReq => "CmdRogueMagicLeaveCsReq",
-            CmdRogueMagic::AutoDressInUnitCsReq => "CmdRogueMagicAutoDressInUnitCsReq",
-            CmdRogueMagic::EnterScRsp => "CmdRogueMagicEnterScRsp",
-            CmdRogueMagic::EnterLayerCsReq => "CmdRogueMagicEnterLayerCsReq",
-            CmdRogueMagic::QueryScRsp => "CmdRogueMagicQueryScRsp",
-            CmdRogueMagic::LeaveScRsp => "CmdRogueMagicLeaveScRsp",
-            CmdRogueMagic::StartCsReq => "CmdRogueMagicStartCsReq",
-            CmdRogueMagic::ReviveCostUpdateScNotify => {
-                "CmdRogueMagicReviveCostUpdateScNotify"
-            }
-            CmdRogueMagic::AutoDressInUnitScRsp => "CmdRogueMagicAutoDressInUnitScRsp",
-            CmdRogueMagic::UnitComposeCsReq => "CmdRogueMagicUnitComposeCsReq",
-            CmdRogueMagic::GetTalentInfoScRsp => "CmdRogueMagicGetTalentInfoScRsp",
-            CmdRogueMagic::UnitReforgeScRsp => "CmdRogueMagicUnitReforgeScRsp",
-            CmdRogueMagic::EnterLayerScRsp => "CmdRogueMagicEnterLayerScRsp",
-            CmdRogueMagic::AreaUpdateScNotify => "CmdRogueMagicAreaUpdateScNotify",
             CmdRogueMagic::SetAutoDressInMagicUnitCsReq => {
                 "CmdRogueMagicSetAutoDressInMagicUnitCsReq"
             }
             CmdRogueMagic::EnterRoomCsReq => "CmdRogueMagicEnterRoomCsReq",
-            CmdRogueMagic::ScepterDressInUnitCsReq => {
-                "CmdRogueMagicScepterDressInUnitCsReq"
+            CmdRogueMagic::AreaUpdateScNotify => "CmdRogueMagicAreaUpdateScNotify",
+            CmdRogueMagic::ReviveCostUpdateScNotify => {
+                "CmdRogueMagicReviveCostUpdateScNotify"
             }
-            CmdRogueMagic::GetMiscRealTimeDataScRsp => {
-                "CmdRogueMagicGetMiscRealTimeDataScRsp"
+            CmdRogueMagic::EnterScRsp => "CmdRogueMagicEnterScRsp",
+            CmdRogueMagic::LeaveScRsp => "CmdRogueMagicLeaveScRsp",
+            CmdRogueMagic::ScepterDressInUnitScRsp => {
+                "CmdRogueMagicScepterDressInUnitScRsp"
             }
-            CmdRogueMagic::SetAutoDressInMagicUnitScRsp => {
-                "CmdRogueMagicSetAutoDressInMagicUnitScRsp"
+            CmdRogueMagic::EnterLayerCsReq => "CmdRogueMagicEnterLayerCsReq",
+            CmdRogueMagic::GetTalentInfoCsReq => "CmdRogueMagicGetTalentInfoCsReq",
+            CmdRogueMagic::StartCsReq => "CmdRogueMagicStartCsReq",
+            CmdRogueMagic::AutoDressInUnitCsReq => "CmdRogueMagicAutoDressInUnitCsReq",
+            CmdRogueMagic::EnterLayerScRsp => "CmdRogueMagicEnterLayerScRsp",
+            CmdRogueMagic::LevelInfoUpdateScNotify => {
+                "CmdRogueMagicLevelInfoUpdateScNotify"
             }
             CmdRogueMagic::ScepterTakeOffUnitScRsp => {
                 "CmdRogueMagicScepterTakeOffUnitScRsp"
             }
-            CmdRogueMagic::UnitComposeScRsp => "CmdRogueMagicUnitComposeScRsp",
-            CmdRogueMagic::ScepterDressInUnitScRsp => {
-                "CmdRogueMagicScepterDressInUnitScRsp"
+            CmdRogueMagic::ScepterTakeOffUnitCsReq => {
+                "CmdRogueMagicScepterTakeOffUnitCsReq"
             }
+            CmdRogueMagic::SettleCsReq => "CmdRogueMagicSettleCsReq",
+            CmdRogueMagic::ReviveAvatarScRsp => "CmdRogueMagicReviveAvatarScRsp",
+            CmdRogueMagic::UnitComposeScRsp => "CmdRogueMagicUnitComposeScRsp",
+            CmdRogueMagic::QueryScRsp => "CmdRogueMagicQueryScRsp",
+            CmdRogueMagic::SetAutoDressInMagicUnitScRsp => {
+                "CmdRogueMagicSetAutoDressInMagicUnitScRsp"
+            }
+            CmdRogueMagic::LeaveCsReq => "CmdRogueMagicLeaveCsReq",
+            CmdRogueMagic::GetTalentInfoScRsp => "CmdRogueMagicGetTalentInfoScRsp",
+            CmdRogueMagic::SettleScRsp => "CmdRogueMagicSettleScRsp",
+            CmdRogueMagic::UnitReforgeScRsp => "CmdRogueMagicUnitReforgeScRsp",
+            CmdRogueMagic::ScepterDressInUnitCsReq => {
+                "CmdRogueMagicScepterDressInUnitCsReq"
+            }
+            CmdRogueMagic::StoryInfoUpdateScNotify => {
+                "CmdRogueMagicStoryInfoUpdateScNotify"
+            }
+            CmdRogueMagic::AutoDressInMagicUnitChangeScNotify => {
+                "CmdRogueMagicAutoDressInMagicUnitChangeScNotify"
+            }
+            CmdRogueMagic::EnterCsReq => "CmdRogueMagicEnterCsReq",
+            CmdRogueMagic::UnitComposeCsReq => "CmdRogueMagicUnitComposeCsReq",
+            CmdRogueMagic::QueryCsReq => "CmdRogueMagicQueryCsReq",
+            CmdRogueMagic::EnterRoomScRsp => "CmdRogueMagicEnterRoomScRsp",
+            CmdRogueMagic::StartScRsp => "CmdRogueMagicStartScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdRogueMagicNone" => Some(Self::None),
-            "CmdRogueMagicEnterCsReq" => Some(Self::EnterCsReq),
+            "CmdRogueMagicReviveAvatarCsReq" => Some(Self::ReviveAvatarCsReq),
             "CmdRogueMagicGetMiscRealTimeDataCsReq" => {
                 Some(Self::GetMiscRealTimeDataCsReq)
             }
-            "CmdRogueMagicScepterTakeOffUnitCsReq" => Some(Self::ScepterTakeOffUnitCsReq),
             "CmdRogueMagicUnitReforgeCsReq" => Some(Self::UnitReforgeCsReq),
+            "CmdRogueMagicAutoDressInUnitScRsp" => Some(Self::AutoDressInUnitScRsp),
             "CmdRogueMagicEnableTalentScRsp" => Some(Self::EnableTalentScRsp),
-            "CmdRogueMagicStoryInfoUpdateScNotify" => Some(Self::StoryInfoUpdateScNotify),
-            "CmdRogueMagicEnterRoomScRsp" => Some(Self::EnterRoomScRsp),
+            "CmdRogueMagicEnableTalentCsReq" => Some(Self::EnableTalentCsReq),
+            "CmdRogueMagicGetMiscRealTimeDataScRsp" => {
+                Some(Self::GetMiscRealTimeDataScRsp)
+            }
             "CmdRogueMagicBattleFailSettleInfoScNotify" => {
                 Some(Self::BattleFailSettleInfoScNotify)
             }
-            "CmdRogueMagicStartScRsp" => Some(Self::StartScRsp),
-            "CmdRogueMagicAutoDressInMagicUnitChangeScNotify" => {
-                Some(Self::AutoDressInMagicUnitChangeScNotify)
-            }
-            "CmdRogueMagicReviveAvatarCsReq" => Some(Self::ReviveAvatarCsReq),
-            "CmdRogueMagicEnableTalentCsReq" => Some(Self::EnableTalentCsReq),
-            "CmdRogueMagicReviveAvatarScRsp" => Some(Self::ReviveAvatarScRsp),
-            "CmdRogueMagicLevelInfoUpdateScNotify" => Some(Self::LevelInfoUpdateScNotify),
-            "CmdRogueMagicQueryCsReq" => Some(Self::QueryCsReq),
-            "CmdRogueMagicSettleCsReq" => Some(Self::SettleCsReq),
-            "CmdRogueMagicGetTalentInfoCsReq" => Some(Self::GetTalentInfoCsReq),
-            "CmdRogueMagicSettleScRsp" => Some(Self::SettleScRsp),
-            "CmdRogueMagicLeaveCsReq" => Some(Self::LeaveCsReq),
-            "CmdRogueMagicAutoDressInUnitCsReq" => Some(Self::AutoDressInUnitCsReq),
-            "CmdRogueMagicEnterScRsp" => Some(Self::EnterScRsp),
-            "CmdRogueMagicEnterLayerCsReq" => Some(Self::EnterLayerCsReq),
-            "CmdRogueMagicQueryScRsp" => Some(Self::QueryScRsp),
-            "CmdRogueMagicLeaveScRsp" => Some(Self::LeaveScRsp),
-            "CmdRogueMagicStartCsReq" => Some(Self::StartCsReq),
-            "CmdRogueMagicReviveCostUpdateScNotify" => {
-                Some(Self::ReviveCostUpdateScNotify)
-            }
-            "CmdRogueMagicAutoDressInUnitScRsp" => Some(Self::AutoDressInUnitScRsp),
-            "CmdRogueMagicUnitComposeCsReq" => Some(Self::UnitComposeCsReq),
-            "CmdRogueMagicGetTalentInfoScRsp" => Some(Self::GetTalentInfoScRsp),
-            "CmdRogueMagicUnitReforgeScRsp" => Some(Self::UnitReforgeScRsp),
-            "CmdRogueMagicEnterLayerScRsp" => Some(Self::EnterLayerScRsp),
-            "CmdRogueMagicAreaUpdateScNotify" => Some(Self::AreaUpdateScNotify),
             "CmdRogueMagicSetAutoDressInMagicUnitCsReq" => {
                 Some(Self::SetAutoDressInMagicUnitCsReq)
             }
             "CmdRogueMagicEnterRoomCsReq" => Some(Self::EnterRoomCsReq),
-            "CmdRogueMagicScepterDressInUnitCsReq" => Some(Self::ScepterDressInUnitCsReq),
-            "CmdRogueMagicGetMiscRealTimeDataScRsp" => {
-                Some(Self::GetMiscRealTimeDataScRsp)
+            "CmdRogueMagicAreaUpdateScNotify" => Some(Self::AreaUpdateScNotify),
+            "CmdRogueMagicReviveCostUpdateScNotify" => {
+                Some(Self::ReviveCostUpdateScNotify)
             }
+            "CmdRogueMagicEnterScRsp" => Some(Self::EnterScRsp),
+            "CmdRogueMagicLeaveScRsp" => Some(Self::LeaveScRsp),
+            "CmdRogueMagicScepterDressInUnitScRsp" => Some(Self::ScepterDressInUnitScRsp),
+            "CmdRogueMagicEnterLayerCsReq" => Some(Self::EnterLayerCsReq),
+            "CmdRogueMagicGetTalentInfoCsReq" => Some(Self::GetTalentInfoCsReq),
+            "CmdRogueMagicStartCsReq" => Some(Self::StartCsReq),
+            "CmdRogueMagicAutoDressInUnitCsReq" => Some(Self::AutoDressInUnitCsReq),
+            "CmdRogueMagicEnterLayerScRsp" => Some(Self::EnterLayerScRsp),
+            "CmdRogueMagicLevelInfoUpdateScNotify" => Some(Self::LevelInfoUpdateScNotify),
+            "CmdRogueMagicScepterTakeOffUnitScRsp" => Some(Self::ScepterTakeOffUnitScRsp),
+            "CmdRogueMagicScepterTakeOffUnitCsReq" => Some(Self::ScepterTakeOffUnitCsReq),
+            "CmdRogueMagicSettleCsReq" => Some(Self::SettleCsReq),
+            "CmdRogueMagicReviveAvatarScRsp" => Some(Self::ReviveAvatarScRsp),
+            "CmdRogueMagicUnitComposeScRsp" => Some(Self::UnitComposeScRsp),
+            "CmdRogueMagicQueryScRsp" => Some(Self::QueryScRsp),
             "CmdRogueMagicSetAutoDressInMagicUnitScRsp" => {
                 Some(Self::SetAutoDressInMagicUnitScRsp)
             }
-            "CmdRogueMagicScepterTakeOffUnitScRsp" => Some(Self::ScepterTakeOffUnitScRsp),
-            "CmdRogueMagicUnitComposeScRsp" => Some(Self::UnitComposeScRsp),
-            "CmdRogueMagicScepterDressInUnitScRsp" => Some(Self::ScepterDressInUnitScRsp),
+            "CmdRogueMagicLeaveCsReq" => Some(Self::LeaveCsReq),
+            "CmdRogueMagicGetTalentInfoScRsp" => Some(Self::GetTalentInfoScRsp),
+            "CmdRogueMagicSettleScRsp" => Some(Self::SettleScRsp),
+            "CmdRogueMagicUnitReforgeScRsp" => Some(Self::UnitReforgeScRsp),
+            "CmdRogueMagicScepterDressInUnitCsReq" => Some(Self::ScepterDressInUnitCsReq),
+            "CmdRogueMagicStoryInfoUpdateScNotify" => Some(Self::StoryInfoUpdateScNotify),
+            "CmdRogueMagicAutoDressInMagicUnitChangeScNotify" => {
+                Some(Self::AutoDressInMagicUnitChangeScNotify)
+            }
+            "CmdRogueMagicEnterCsReq" => Some(Self::EnterCsReq),
+            "CmdRogueMagicUnitComposeCsReq" => Some(Self::UnitComposeCsReq),
+            "CmdRogueMagicQueryCsReq" => Some(Self::QueryCsReq),
+            "CmdRogueMagicEnterRoomScRsp" => Some(Self::EnterRoomScRsp),
+            "CmdRogueMagicStartScRsp" => Some(Self::StartScRsp),
             _ => None,
         }
     }
@@ -10336,12 +10531,12 @@ impl CmdRogueMagic {
 #[repr(i32)]
 pub enum CmdRogueModifierType {
     None = 0,
-    CmdRogueModifierAddNotify = 5303,
-    CmdRogueModifierStageStartNotify = 5316,
-    CmdRogueModifierUpdateNotify = 5337,
-    CmdRogueModifierSelectCellScRsp = 5339,
-    CmdRogueModifierSelectCellCsReq = 5346,
-    CmdRogueModifierDelNotify = 5380,
+    CmdRogueModifierDelNotify = 5324,
+    CmdRogueModifierSelectCellCsReq = 5327,
+    CmdRogueModifierSelectCellScRsp = 5367,
+    CmdRogueModifierUpdateNotify = 5374,
+    CmdRogueModifierAddNotify = 5384,
+    CmdRogueModifierStageStartNotify = 5393,
 }
 impl CmdRogueModifierType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -10351,23 +10546,23 @@ impl CmdRogueModifierType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdRogueModifierType::None => "CmdRogueModifierTypeNone",
+            CmdRogueModifierType::CmdRogueModifierDelNotify => {
+                "CmdRogueModifierDelNotify"
+            }
+            CmdRogueModifierType::CmdRogueModifierSelectCellCsReq => {
+                "CmdRogueModifierSelectCellCsReq"
+            }
+            CmdRogueModifierType::CmdRogueModifierSelectCellScRsp => {
+                "CmdRogueModifierSelectCellScRsp"
+            }
+            CmdRogueModifierType::CmdRogueModifierUpdateNotify => {
+                "CmdRogueModifierUpdateNotify"
+            }
             CmdRogueModifierType::CmdRogueModifierAddNotify => {
                 "CmdRogueModifierAddNotify"
             }
             CmdRogueModifierType::CmdRogueModifierStageStartNotify => {
                 "CmdRogueModifierStageStartNotify"
-            }
-            CmdRogueModifierType::CmdRogueModifierUpdateNotify => {
-                "CmdRogueModifierUpdateNotify"
-            }
-            CmdRogueModifierType::CmdRogueModifierSelectCellScRsp => {
-                "CmdRogueModifierSelectCellScRsp"
-            }
-            CmdRogueModifierType::CmdRogueModifierSelectCellCsReq => {
-                "CmdRogueModifierSelectCellCsReq"
-            }
-            CmdRogueModifierType::CmdRogueModifierDelNotify => {
-                "CmdRogueModifierDelNotify"
             }
         }
     }
@@ -10375,18 +10570,18 @@ impl CmdRogueModifierType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdRogueModifierTypeNone" => Some(Self::None),
+            "CmdRogueModifierDelNotify" => Some(Self::CmdRogueModifierDelNotify),
+            "CmdRogueModifierSelectCellCsReq" => {
+                Some(Self::CmdRogueModifierSelectCellCsReq)
+            }
+            "CmdRogueModifierSelectCellScRsp" => {
+                Some(Self::CmdRogueModifierSelectCellScRsp)
+            }
+            "CmdRogueModifierUpdateNotify" => Some(Self::CmdRogueModifierUpdateNotify),
             "CmdRogueModifierAddNotify" => Some(Self::CmdRogueModifierAddNotify),
             "CmdRogueModifierStageStartNotify" => {
                 Some(Self::CmdRogueModifierStageStartNotify)
             }
-            "CmdRogueModifierUpdateNotify" => Some(Self::CmdRogueModifierUpdateNotify),
-            "CmdRogueModifierSelectCellScRsp" => {
-                Some(Self::CmdRogueModifierSelectCellScRsp)
-            }
-            "CmdRogueModifierSelectCellCsReq" => {
-                Some(Self::CmdRogueModifierSelectCellCsReq)
-            }
-            "CmdRogueModifierDelNotify" => Some(Self::CmdRogueModifierDelNotify),
             _ => None,
         }
     }
@@ -10396,61 +10591,61 @@ impl CmdRogueModifierType {
 #[repr(i32)]
 pub enum CmdRogueTournType {
     None = 0,
-    CmdRogueTournHandBookNotify = 6012,
-    CmdRogueTournLeaveCsReq = 6016,
-    CmdRogueTournRenameArchiveCsReq = 6017,
-    CmdRogueTournGetAllArchiveScRsp = 6019,
-    CmdRogueTournGetAllArchiveCsReq = 6020,
-    CmdRogueTournGetSettleInfoScRsp = 6022,
-    CmdRogueTournDeleteArchiveCsReq = 6023,
-    CmdRogueTournReEnterRogueCocoonStageCsReq = 6024,
-    CmdRogueTournDifficultyCompNotify = 6025,
-    CmdRogueTournEnterCsReq = 6026,
-    CmdRogueTournQueryScRsp = 6029,
-    CmdRogueTournEnterRoomCsReq = 6030,
-    CmdRogueTournExpNotify = 6032,
-    CmdRogueTournReEnterRogueCocoonStageScRsp = 6033,
-    CmdRogueTournGetSettleInfoCsReq = 6034,
-    CmdRogueTournReviveAvatarScRsp = 6035,
-    CmdRogueTournGetPermanentTalentInfoCsReq = 6036,
-    CmdRogueTournReviveCostUpdateScNotify = 6037,
-    CmdRogueTournAreaUpdateScNotify = 6039,
-    CmdRogueTournSettleScRsp = 6040,
-    CmdRogueTournGetMiscRealTimeDataCsReq = 6041,
-    CmdRogueTournConfirmSettleScRsp = 6042,
-    CmdRogueTournEnablePermanentTalentCsReq = 6043,
-    CmdRogueTournEnterRoomScRsp = 6044,
-    CmdRogueTournGetCurRogueCocoonInfoCsReq = 6045,
-    CmdRogueTournSettleCsReq = 6046,
-    CmdRogueTournLeaveRogueCocoonSceneScRsp = 6047,
-    CmdRogueTournBattleFailSettleInfoScNotify = 6048,
-    CmdRogueTournEnterLayerCsReq = 6049,
-    CmdRogueTournEnterLayerScRsp = 6053,
-    CmdRogueTournQueryCsReq = 6055,
-    CmdRogueTournEnterRogueCocoonSceneCsReq = 6056,
-    CmdRogueTournTakeExpRewardScRsp = 6057,
-    CmdRogueTournDeleteArchiveScRsp = 6058,
-    CmdRogueTournRenameArchiveScRsp = 6061,
-    CmdRogueTournTakeExpRewardCsReq = 6063,
-    CmdRogueTournEnterScRsp = 6066,
-    CmdRogueTournLeaveRogueCocoonSceneCsReq = 6069,
-    CmdRogueTournEnterRogueCocoonSceneScRsp = 6071,
-    CmdRogueTournGetArchiveRepositoryScRsp = 6072,
-    CmdRogueTournGetCurRogueCocoonInfoScRsp = 6073,
-    CmdRogueTournResetPermanentTalentCsReq = 6075,
-    CmdRogueTournGetMiscRealTimeDataScRsp = 6076,
-    CmdRogueTournLeaveScRsp = 6078,
-    CmdRogueTournGetArchiveRepositoryCsReq = 6079,
-    CmdRogueTournStartScRsp = 6080,
-    CmdRogueTournStartCsReq = 6081,
-    CmdRogueTournConfirmSettleCsReq = 6082,
-    CmdRogueTournLevelInfoUpdateScNotify = 6083,
-    CmdRogueTournGetPermanentTalentInfoScRsp = 6085,
-    CmdRogueTournClearArchiveNameScNotify = 6086,
-    CmdRogueTournResetPermanentTalentScRsp = 6087,
-    CmdRogueTournWeekChallengeUpdateScNotify = 6088,
-    CmdRogueTournEnablePermanentTalentScRsp = 6094,
-    CmdRogueTournReviveAvatarCsReq = 6100,
+    CmdRogueTournConfirmSettleScRsp = 6013,
+    CmdRogueTournResetPermanentTalentScRsp = 6015,
+    CmdRogueTournBattleFailSettleInfoScNotify = 6018,
+    CmdRogueTournResetPermanentTalentCsReq = 6020,
+    CmdRogueTournLeaveRogueCocoonSceneScRsp = 6021,
+    CmdRogueTournGetAllArchiveScRsp = 6022,
+    CmdRogueTournTakeExpRewardCsReq = 6023,
+    CmdRogueTournGetArchiveRepositoryScRsp = 6026,
+    CmdRogueTournStartScRsp = 6027,
+    CmdRogueTournLeaveRogueCocoonSceneCsReq = 6028,
+    CmdRogueTournLevelInfoUpdateScNotify = 6029,
+    CmdRogueTournRenameArchiveScRsp = 6031,
+    CmdRogueTournHandBookNotify = 6032,
+    CmdRogueTournEnterRoomScRsp = 6036,
+    CmdRogueTournGetAllArchiveCsReq = 6037,
+    CmdRogueTournEnterLayerScRsp = 6038,
+    CmdRogueTournReviveCostUpdateScNotify = 6039,
+    CmdRogueTournGetMiscRealTimeDataScRsp = 6040,
+    CmdRogueTournGetArchiveRepositoryCsReq = 6043,
+    CmdRogueTournEnterRoomCsReq = 6044,
+    CmdRogueTournEnablePermanentTalentScRsp = 6045,
+    CmdRogueTournGetPermanentTalentInfoScRsp = 6046,
+    CmdRogueTournLeaveCsReq = 6047,
+    CmdRogueTournWeekChallengeUpdateScNotify = 6050,
+    CmdRogueTournExpNotify = 6051,
+    CmdRogueTournQueryCsReq = 6053,
+    CmdRogueTournGetSettleInfoScRsp = 6055,
+    CmdRogueTournEnterRogueCocoonSceneCsReq = 6057,
+    CmdRogueTournGetPermanentTalentInfoCsReq = 6058,
+    CmdRogueTournStartCsReq = 6059,
+    CmdRogueTournGetSettleInfoCsReq = 6060,
+    CmdRogueTournReviveAvatarCsReq = 6063,
+    CmdRogueTournEnterRogueCocoonSceneScRsp = 6065,
+    CmdRogueTournClearArchiveNameScNotify = 6068,
+    CmdRogueTournEnterScRsp = 6069,
+    CmdRogueTournDeleteArchiveCsReq = 6070,
+    CmdRogueTournSettleScRsp = 6074,
+    CmdRogueTournSettleCsReq = 6075,
+    CmdRogueTournDeleteArchiveScRsp = 6077,
+    CmdRogueTournTakeExpRewardScRsp = 6078,
+    CmdRogueTournReviveAvatarScRsp = 6079,
+    CmdRogueTournAreaUpdateScNotify = 6080,
+    CmdRogueTournReEnterRogueCocoonStageCsReq = 6082,
+    CmdRogueTournReEnterRogueCocoonStageScRsp = 6083,
+    CmdRogueTournConfirmSettleCsReq = 6085,
+    CmdRogueTournDifficultyCompNotify = 6086,
+    CmdRogueTournEnablePermanentTalentCsReq = 6089,
+    CmdRogueTournRenameArchiveCsReq = 6090,
+    CmdRogueTournGetCurRogueCocoonInfoScRsp = 6092,
+    CmdRogueTournQueryScRsp = 6093,
+    CmdRogueTournGetCurRogueCocoonInfoCsReq = 6094,
+    CmdRogueTournEnterLayerCsReq = 6095,
+    CmdRogueTournLeaveScRsp = 6097,
+    CmdRogueTournGetMiscRealTimeDataCsReq = 6099,
+    CmdRogueTournEnterCsReq = 6100,
 }
 impl CmdRogueTournType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -10460,288 +10655,288 @@ impl CmdRogueTournType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdRogueTournType::None => "CmdRogueTournTypeNone",
-            CmdRogueTournType::CmdRogueTournHandBookNotify => {
-                "CmdRogueTournHandBookNotify"
-            }
-            CmdRogueTournType::CmdRogueTournLeaveCsReq => "CmdRogueTournLeaveCsReq",
-            CmdRogueTournType::CmdRogueTournRenameArchiveCsReq => {
-                "CmdRogueTournRenameArchiveCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournGetAllArchiveScRsp => {
-                "CmdRogueTournGetAllArchiveScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournGetAllArchiveCsReq => {
-                "CmdRogueTournGetAllArchiveCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournGetSettleInfoScRsp => {
-                "CmdRogueTournGetSettleInfoScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournDeleteArchiveCsReq => {
-                "CmdRogueTournDeleteArchiveCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournReEnterRogueCocoonStageCsReq => {
-                "CmdRogueTournReEnterRogueCocoonStageCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournDifficultyCompNotify => {
-                "CmdRogueTournDifficultyCompNotify"
-            }
-            CmdRogueTournType::CmdRogueTournEnterCsReq => "CmdRogueTournEnterCsReq",
-            CmdRogueTournType::CmdRogueTournQueryScRsp => "CmdRogueTournQueryScRsp",
-            CmdRogueTournType::CmdRogueTournEnterRoomCsReq => {
-                "CmdRogueTournEnterRoomCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournExpNotify => "CmdRogueTournExpNotify",
-            CmdRogueTournType::CmdRogueTournReEnterRogueCocoonStageScRsp => {
-                "CmdRogueTournReEnterRogueCocoonStageScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournGetSettleInfoCsReq => {
-                "CmdRogueTournGetSettleInfoCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournReviveAvatarScRsp => {
-                "CmdRogueTournReviveAvatarScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournGetPermanentTalentInfoCsReq => {
-                "CmdRogueTournGetPermanentTalentInfoCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournReviveCostUpdateScNotify => {
-                "CmdRogueTournReviveCostUpdateScNotify"
-            }
-            CmdRogueTournType::CmdRogueTournAreaUpdateScNotify => {
-                "CmdRogueTournAreaUpdateScNotify"
-            }
-            CmdRogueTournType::CmdRogueTournSettleScRsp => "CmdRogueTournSettleScRsp",
-            CmdRogueTournType::CmdRogueTournGetMiscRealTimeDataCsReq => {
-                "CmdRogueTournGetMiscRealTimeDataCsReq"
-            }
             CmdRogueTournType::CmdRogueTournConfirmSettleScRsp => {
                 "CmdRogueTournConfirmSettleScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournEnablePermanentTalentCsReq => {
-                "CmdRogueTournEnablePermanentTalentCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournEnterRoomScRsp => {
-                "CmdRogueTournEnterRoomScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournGetCurRogueCocoonInfoCsReq => {
-                "CmdRogueTournGetCurRogueCocoonInfoCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournSettleCsReq => "CmdRogueTournSettleCsReq",
-            CmdRogueTournType::CmdRogueTournLeaveRogueCocoonSceneScRsp => {
-                "CmdRogueTournLeaveRogueCocoonSceneScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournBattleFailSettleInfoScNotify => {
-                "CmdRogueTournBattleFailSettleInfoScNotify"
-            }
-            CmdRogueTournType::CmdRogueTournEnterLayerCsReq => {
-                "CmdRogueTournEnterLayerCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournEnterLayerScRsp => {
-                "CmdRogueTournEnterLayerScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournQueryCsReq => "CmdRogueTournQueryCsReq",
-            CmdRogueTournType::CmdRogueTournEnterRogueCocoonSceneCsReq => {
-                "CmdRogueTournEnterRogueCocoonSceneCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournTakeExpRewardScRsp => {
-                "CmdRogueTournTakeExpRewardScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournDeleteArchiveScRsp => {
-                "CmdRogueTournDeleteArchiveScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournRenameArchiveScRsp => {
-                "CmdRogueTournRenameArchiveScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournTakeExpRewardCsReq => {
-                "CmdRogueTournTakeExpRewardCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournEnterScRsp => "CmdRogueTournEnterScRsp",
-            CmdRogueTournType::CmdRogueTournLeaveRogueCocoonSceneCsReq => {
-                "CmdRogueTournLeaveRogueCocoonSceneCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournEnterRogueCocoonSceneScRsp => {
-                "CmdRogueTournEnterRogueCocoonSceneScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournGetArchiveRepositoryScRsp => {
-                "CmdRogueTournGetArchiveRepositoryScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournGetCurRogueCocoonInfoScRsp => {
-                "CmdRogueTournGetCurRogueCocoonInfoScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournResetPermanentTalentCsReq => {
-                "CmdRogueTournResetPermanentTalentCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournGetMiscRealTimeDataScRsp => {
-                "CmdRogueTournGetMiscRealTimeDataScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournLeaveScRsp => "CmdRogueTournLeaveScRsp",
-            CmdRogueTournType::CmdRogueTournGetArchiveRepositoryCsReq => {
-                "CmdRogueTournGetArchiveRepositoryCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournStartScRsp => "CmdRogueTournStartScRsp",
-            CmdRogueTournType::CmdRogueTournStartCsReq => "CmdRogueTournStartCsReq",
-            CmdRogueTournType::CmdRogueTournConfirmSettleCsReq => {
-                "CmdRogueTournConfirmSettleCsReq"
-            }
-            CmdRogueTournType::CmdRogueTournLevelInfoUpdateScNotify => {
-                "CmdRogueTournLevelInfoUpdateScNotify"
-            }
-            CmdRogueTournType::CmdRogueTournGetPermanentTalentInfoScRsp => {
-                "CmdRogueTournGetPermanentTalentInfoScRsp"
-            }
-            CmdRogueTournType::CmdRogueTournClearArchiveNameScNotify => {
-                "CmdRogueTournClearArchiveNameScNotify"
             }
             CmdRogueTournType::CmdRogueTournResetPermanentTalentScRsp => {
                 "CmdRogueTournResetPermanentTalentScRsp"
             }
-            CmdRogueTournType::CmdRogueTournWeekChallengeUpdateScNotify => {
-                "CmdRogueTournWeekChallengeUpdateScNotify"
+            CmdRogueTournType::CmdRogueTournBattleFailSettleInfoScNotify => {
+                "CmdRogueTournBattleFailSettleInfoScNotify"
+            }
+            CmdRogueTournType::CmdRogueTournResetPermanentTalentCsReq => {
+                "CmdRogueTournResetPermanentTalentCsReq"
+            }
+            CmdRogueTournType::CmdRogueTournLeaveRogueCocoonSceneScRsp => {
+                "CmdRogueTournLeaveRogueCocoonSceneScRsp"
+            }
+            CmdRogueTournType::CmdRogueTournGetAllArchiveScRsp => {
+                "CmdRogueTournGetAllArchiveScRsp"
+            }
+            CmdRogueTournType::CmdRogueTournTakeExpRewardCsReq => {
+                "CmdRogueTournTakeExpRewardCsReq"
+            }
+            CmdRogueTournType::CmdRogueTournGetArchiveRepositoryScRsp => {
+                "CmdRogueTournGetArchiveRepositoryScRsp"
+            }
+            CmdRogueTournType::CmdRogueTournStartScRsp => "CmdRogueTournStartScRsp",
+            CmdRogueTournType::CmdRogueTournLeaveRogueCocoonSceneCsReq => {
+                "CmdRogueTournLeaveRogueCocoonSceneCsReq"
+            }
+            CmdRogueTournType::CmdRogueTournLevelInfoUpdateScNotify => {
+                "CmdRogueTournLevelInfoUpdateScNotify"
+            }
+            CmdRogueTournType::CmdRogueTournRenameArchiveScRsp => {
+                "CmdRogueTournRenameArchiveScRsp"
+            }
+            CmdRogueTournType::CmdRogueTournHandBookNotify => {
+                "CmdRogueTournHandBookNotify"
+            }
+            CmdRogueTournType::CmdRogueTournEnterRoomScRsp => {
+                "CmdRogueTournEnterRoomScRsp"
+            }
+            CmdRogueTournType::CmdRogueTournGetAllArchiveCsReq => {
+                "CmdRogueTournGetAllArchiveCsReq"
+            }
+            CmdRogueTournType::CmdRogueTournEnterLayerScRsp => {
+                "CmdRogueTournEnterLayerScRsp"
+            }
+            CmdRogueTournType::CmdRogueTournReviveCostUpdateScNotify => {
+                "CmdRogueTournReviveCostUpdateScNotify"
+            }
+            CmdRogueTournType::CmdRogueTournGetMiscRealTimeDataScRsp => {
+                "CmdRogueTournGetMiscRealTimeDataScRsp"
+            }
+            CmdRogueTournType::CmdRogueTournGetArchiveRepositoryCsReq => {
+                "CmdRogueTournGetArchiveRepositoryCsReq"
+            }
+            CmdRogueTournType::CmdRogueTournEnterRoomCsReq => {
+                "CmdRogueTournEnterRoomCsReq"
             }
             CmdRogueTournType::CmdRogueTournEnablePermanentTalentScRsp => {
                 "CmdRogueTournEnablePermanentTalentScRsp"
             }
+            CmdRogueTournType::CmdRogueTournGetPermanentTalentInfoScRsp => {
+                "CmdRogueTournGetPermanentTalentInfoScRsp"
+            }
+            CmdRogueTournType::CmdRogueTournLeaveCsReq => "CmdRogueTournLeaveCsReq",
+            CmdRogueTournType::CmdRogueTournWeekChallengeUpdateScNotify => {
+                "CmdRogueTournWeekChallengeUpdateScNotify"
+            }
+            CmdRogueTournType::CmdRogueTournExpNotify => "CmdRogueTournExpNotify",
+            CmdRogueTournType::CmdRogueTournQueryCsReq => "CmdRogueTournQueryCsReq",
+            CmdRogueTournType::CmdRogueTournGetSettleInfoScRsp => {
+                "CmdRogueTournGetSettleInfoScRsp"
+            }
+            CmdRogueTournType::CmdRogueTournEnterRogueCocoonSceneCsReq => {
+                "CmdRogueTournEnterRogueCocoonSceneCsReq"
+            }
+            CmdRogueTournType::CmdRogueTournGetPermanentTalentInfoCsReq => {
+                "CmdRogueTournGetPermanentTalentInfoCsReq"
+            }
+            CmdRogueTournType::CmdRogueTournStartCsReq => "CmdRogueTournStartCsReq",
+            CmdRogueTournType::CmdRogueTournGetSettleInfoCsReq => {
+                "CmdRogueTournGetSettleInfoCsReq"
+            }
             CmdRogueTournType::CmdRogueTournReviveAvatarCsReq => {
                 "CmdRogueTournReviveAvatarCsReq"
             }
+            CmdRogueTournType::CmdRogueTournEnterRogueCocoonSceneScRsp => {
+                "CmdRogueTournEnterRogueCocoonSceneScRsp"
+            }
+            CmdRogueTournType::CmdRogueTournClearArchiveNameScNotify => {
+                "CmdRogueTournClearArchiveNameScNotify"
+            }
+            CmdRogueTournType::CmdRogueTournEnterScRsp => "CmdRogueTournEnterScRsp",
+            CmdRogueTournType::CmdRogueTournDeleteArchiveCsReq => {
+                "CmdRogueTournDeleteArchiveCsReq"
+            }
+            CmdRogueTournType::CmdRogueTournSettleScRsp => "CmdRogueTournSettleScRsp",
+            CmdRogueTournType::CmdRogueTournSettleCsReq => "CmdRogueTournSettleCsReq",
+            CmdRogueTournType::CmdRogueTournDeleteArchiveScRsp => {
+                "CmdRogueTournDeleteArchiveScRsp"
+            }
+            CmdRogueTournType::CmdRogueTournTakeExpRewardScRsp => {
+                "CmdRogueTournTakeExpRewardScRsp"
+            }
+            CmdRogueTournType::CmdRogueTournReviveAvatarScRsp => {
+                "CmdRogueTournReviveAvatarScRsp"
+            }
+            CmdRogueTournType::CmdRogueTournAreaUpdateScNotify => {
+                "CmdRogueTournAreaUpdateScNotify"
+            }
+            CmdRogueTournType::CmdRogueTournReEnterRogueCocoonStageCsReq => {
+                "CmdRogueTournReEnterRogueCocoonStageCsReq"
+            }
+            CmdRogueTournType::CmdRogueTournReEnterRogueCocoonStageScRsp => {
+                "CmdRogueTournReEnterRogueCocoonStageScRsp"
+            }
+            CmdRogueTournType::CmdRogueTournConfirmSettleCsReq => {
+                "CmdRogueTournConfirmSettleCsReq"
+            }
+            CmdRogueTournType::CmdRogueTournDifficultyCompNotify => {
+                "CmdRogueTournDifficultyCompNotify"
+            }
+            CmdRogueTournType::CmdRogueTournEnablePermanentTalentCsReq => {
+                "CmdRogueTournEnablePermanentTalentCsReq"
+            }
+            CmdRogueTournType::CmdRogueTournRenameArchiveCsReq => {
+                "CmdRogueTournRenameArchiveCsReq"
+            }
+            CmdRogueTournType::CmdRogueTournGetCurRogueCocoonInfoScRsp => {
+                "CmdRogueTournGetCurRogueCocoonInfoScRsp"
+            }
+            CmdRogueTournType::CmdRogueTournQueryScRsp => "CmdRogueTournQueryScRsp",
+            CmdRogueTournType::CmdRogueTournGetCurRogueCocoonInfoCsReq => {
+                "CmdRogueTournGetCurRogueCocoonInfoCsReq"
+            }
+            CmdRogueTournType::CmdRogueTournEnterLayerCsReq => {
+                "CmdRogueTournEnterLayerCsReq"
+            }
+            CmdRogueTournType::CmdRogueTournLeaveScRsp => "CmdRogueTournLeaveScRsp",
+            CmdRogueTournType::CmdRogueTournGetMiscRealTimeDataCsReq => {
+                "CmdRogueTournGetMiscRealTimeDataCsReq"
+            }
+            CmdRogueTournType::CmdRogueTournEnterCsReq => "CmdRogueTournEnterCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdRogueTournTypeNone" => Some(Self::None),
-            "CmdRogueTournHandBookNotify" => Some(Self::CmdRogueTournHandBookNotify),
-            "CmdRogueTournLeaveCsReq" => Some(Self::CmdRogueTournLeaveCsReq),
-            "CmdRogueTournRenameArchiveCsReq" => {
-                Some(Self::CmdRogueTournRenameArchiveCsReq)
-            }
-            "CmdRogueTournGetAllArchiveScRsp" => {
-                Some(Self::CmdRogueTournGetAllArchiveScRsp)
-            }
-            "CmdRogueTournGetAllArchiveCsReq" => {
-                Some(Self::CmdRogueTournGetAllArchiveCsReq)
-            }
-            "CmdRogueTournGetSettleInfoScRsp" => {
-                Some(Self::CmdRogueTournGetSettleInfoScRsp)
-            }
-            "CmdRogueTournDeleteArchiveCsReq" => {
-                Some(Self::CmdRogueTournDeleteArchiveCsReq)
-            }
-            "CmdRogueTournReEnterRogueCocoonStageCsReq" => {
-                Some(Self::CmdRogueTournReEnterRogueCocoonStageCsReq)
-            }
-            "CmdRogueTournDifficultyCompNotify" => {
-                Some(Self::CmdRogueTournDifficultyCompNotify)
-            }
-            "CmdRogueTournEnterCsReq" => Some(Self::CmdRogueTournEnterCsReq),
-            "CmdRogueTournQueryScRsp" => Some(Self::CmdRogueTournQueryScRsp),
-            "CmdRogueTournEnterRoomCsReq" => Some(Self::CmdRogueTournEnterRoomCsReq),
-            "CmdRogueTournExpNotify" => Some(Self::CmdRogueTournExpNotify),
-            "CmdRogueTournReEnterRogueCocoonStageScRsp" => {
-                Some(Self::CmdRogueTournReEnterRogueCocoonStageScRsp)
-            }
-            "CmdRogueTournGetSettleInfoCsReq" => {
-                Some(Self::CmdRogueTournGetSettleInfoCsReq)
-            }
-            "CmdRogueTournReviveAvatarScRsp" => {
-                Some(Self::CmdRogueTournReviveAvatarScRsp)
-            }
-            "CmdRogueTournGetPermanentTalentInfoCsReq" => {
-                Some(Self::CmdRogueTournGetPermanentTalentInfoCsReq)
-            }
-            "CmdRogueTournReviveCostUpdateScNotify" => {
-                Some(Self::CmdRogueTournReviveCostUpdateScNotify)
-            }
-            "CmdRogueTournAreaUpdateScNotify" => {
-                Some(Self::CmdRogueTournAreaUpdateScNotify)
-            }
-            "CmdRogueTournSettleScRsp" => Some(Self::CmdRogueTournSettleScRsp),
-            "CmdRogueTournGetMiscRealTimeDataCsReq" => {
-                Some(Self::CmdRogueTournGetMiscRealTimeDataCsReq)
-            }
             "CmdRogueTournConfirmSettleScRsp" => {
                 Some(Self::CmdRogueTournConfirmSettleScRsp)
-            }
-            "CmdRogueTournEnablePermanentTalentCsReq" => {
-                Some(Self::CmdRogueTournEnablePermanentTalentCsReq)
-            }
-            "CmdRogueTournEnterRoomScRsp" => Some(Self::CmdRogueTournEnterRoomScRsp),
-            "CmdRogueTournGetCurRogueCocoonInfoCsReq" => {
-                Some(Self::CmdRogueTournGetCurRogueCocoonInfoCsReq)
-            }
-            "CmdRogueTournSettleCsReq" => Some(Self::CmdRogueTournSettleCsReq),
-            "CmdRogueTournLeaveRogueCocoonSceneScRsp" => {
-                Some(Self::CmdRogueTournLeaveRogueCocoonSceneScRsp)
-            }
-            "CmdRogueTournBattleFailSettleInfoScNotify" => {
-                Some(Self::CmdRogueTournBattleFailSettleInfoScNotify)
-            }
-            "CmdRogueTournEnterLayerCsReq" => Some(Self::CmdRogueTournEnterLayerCsReq),
-            "CmdRogueTournEnterLayerScRsp" => Some(Self::CmdRogueTournEnterLayerScRsp),
-            "CmdRogueTournQueryCsReq" => Some(Self::CmdRogueTournQueryCsReq),
-            "CmdRogueTournEnterRogueCocoonSceneCsReq" => {
-                Some(Self::CmdRogueTournEnterRogueCocoonSceneCsReq)
-            }
-            "CmdRogueTournTakeExpRewardScRsp" => {
-                Some(Self::CmdRogueTournTakeExpRewardScRsp)
-            }
-            "CmdRogueTournDeleteArchiveScRsp" => {
-                Some(Self::CmdRogueTournDeleteArchiveScRsp)
-            }
-            "CmdRogueTournRenameArchiveScRsp" => {
-                Some(Self::CmdRogueTournRenameArchiveScRsp)
-            }
-            "CmdRogueTournTakeExpRewardCsReq" => {
-                Some(Self::CmdRogueTournTakeExpRewardCsReq)
-            }
-            "CmdRogueTournEnterScRsp" => Some(Self::CmdRogueTournEnterScRsp),
-            "CmdRogueTournLeaveRogueCocoonSceneCsReq" => {
-                Some(Self::CmdRogueTournLeaveRogueCocoonSceneCsReq)
-            }
-            "CmdRogueTournEnterRogueCocoonSceneScRsp" => {
-                Some(Self::CmdRogueTournEnterRogueCocoonSceneScRsp)
-            }
-            "CmdRogueTournGetArchiveRepositoryScRsp" => {
-                Some(Self::CmdRogueTournGetArchiveRepositoryScRsp)
-            }
-            "CmdRogueTournGetCurRogueCocoonInfoScRsp" => {
-                Some(Self::CmdRogueTournGetCurRogueCocoonInfoScRsp)
-            }
-            "CmdRogueTournResetPermanentTalentCsReq" => {
-                Some(Self::CmdRogueTournResetPermanentTalentCsReq)
-            }
-            "CmdRogueTournGetMiscRealTimeDataScRsp" => {
-                Some(Self::CmdRogueTournGetMiscRealTimeDataScRsp)
-            }
-            "CmdRogueTournLeaveScRsp" => Some(Self::CmdRogueTournLeaveScRsp),
-            "CmdRogueTournGetArchiveRepositoryCsReq" => {
-                Some(Self::CmdRogueTournGetArchiveRepositoryCsReq)
-            }
-            "CmdRogueTournStartScRsp" => Some(Self::CmdRogueTournStartScRsp),
-            "CmdRogueTournStartCsReq" => Some(Self::CmdRogueTournStartCsReq),
-            "CmdRogueTournConfirmSettleCsReq" => {
-                Some(Self::CmdRogueTournConfirmSettleCsReq)
-            }
-            "CmdRogueTournLevelInfoUpdateScNotify" => {
-                Some(Self::CmdRogueTournLevelInfoUpdateScNotify)
-            }
-            "CmdRogueTournGetPermanentTalentInfoScRsp" => {
-                Some(Self::CmdRogueTournGetPermanentTalentInfoScRsp)
-            }
-            "CmdRogueTournClearArchiveNameScNotify" => {
-                Some(Self::CmdRogueTournClearArchiveNameScNotify)
             }
             "CmdRogueTournResetPermanentTalentScRsp" => {
                 Some(Self::CmdRogueTournResetPermanentTalentScRsp)
             }
+            "CmdRogueTournBattleFailSettleInfoScNotify" => {
+                Some(Self::CmdRogueTournBattleFailSettleInfoScNotify)
+            }
+            "CmdRogueTournResetPermanentTalentCsReq" => {
+                Some(Self::CmdRogueTournResetPermanentTalentCsReq)
+            }
+            "CmdRogueTournLeaveRogueCocoonSceneScRsp" => {
+                Some(Self::CmdRogueTournLeaveRogueCocoonSceneScRsp)
+            }
+            "CmdRogueTournGetAllArchiveScRsp" => {
+                Some(Self::CmdRogueTournGetAllArchiveScRsp)
+            }
+            "CmdRogueTournTakeExpRewardCsReq" => {
+                Some(Self::CmdRogueTournTakeExpRewardCsReq)
+            }
+            "CmdRogueTournGetArchiveRepositoryScRsp" => {
+                Some(Self::CmdRogueTournGetArchiveRepositoryScRsp)
+            }
+            "CmdRogueTournStartScRsp" => Some(Self::CmdRogueTournStartScRsp),
+            "CmdRogueTournLeaveRogueCocoonSceneCsReq" => {
+                Some(Self::CmdRogueTournLeaveRogueCocoonSceneCsReq)
+            }
+            "CmdRogueTournLevelInfoUpdateScNotify" => {
+                Some(Self::CmdRogueTournLevelInfoUpdateScNotify)
+            }
+            "CmdRogueTournRenameArchiveScRsp" => {
+                Some(Self::CmdRogueTournRenameArchiveScRsp)
+            }
+            "CmdRogueTournHandBookNotify" => Some(Self::CmdRogueTournHandBookNotify),
+            "CmdRogueTournEnterRoomScRsp" => Some(Self::CmdRogueTournEnterRoomScRsp),
+            "CmdRogueTournGetAllArchiveCsReq" => {
+                Some(Self::CmdRogueTournGetAllArchiveCsReq)
+            }
+            "CmdRogueTournEnterLayerScRsp" => Some(Self::CmdRogueTournEnterLayerScRsp),
+            "CmdRogueTournReviveCostUpdateScNotify" => {
+                Some(Self::CmdRogueTournReviveCostUpdateScNotify)
+            }
+            "CmdRogueTournGetMiscRealTimeDataScRsp" => {
+                Some(Self::CmdRogueTournGetMiscRealTimeDataScRsp)
+            }
+            "CmdRogueTournGetArchiveRepositoryCsReq" => {
+                Some(Self::CmdRogueTournGetArchiveRepositoryCsReq)
+            }
+            "CmdRogueTournEnterRoomCsReq" => Some(Self::CmdRogueTournEnterRoomCsReq),
+            "CmdRogueTournEnablePermanentTalentScRsp" => {
+                Some(Self::CmdRogueTournEnablePermanentTalentScRsp)
+            }
+            "CmdRogueTournGetPermanentTalentInfoScRsp" => {
+                Some(Self::CmdRogueTournGetPermanentTalentInfoScRsp)
+            }
+            "CmdRogueTournLeaveCsReq" => Some(Self::CmdRogueTournLeaveCsReq),
             "CmdRogueTournWeekChallengeUpdateScNotify" => {
                 Some(Self::CmdRogueTournWeekChallengeUpdateScNotify)
             }
-            "CmdRogueTournEnablePermanentTalentScRsp" => {
-                Some(Self::CmdRogueTournEnablePermanentTalentScRsp)
+            "CmdRogueTournExpNotify" => Some(Self::CmdRogueTournExpNotify),
+            "CmdRogueTournQueryCsReq" => Some(Self::CmdRogueTournQueryCsReq),
+            "CmdRogueTournGetSettleInfoScRsp" => {
+                Some(Self::CmdRogueTournGetSettleInfoScRsp)
+            }
+            "CmdRogueTournEnterRogueCocoonSceneCsReq" => {
+                Some(Self::CmdRogueTournEnterRogueCocoonSceneCsReq)
+            }
+            "CmdRogueTournGetPermanentTalentInfoCsReq" => {
+                Some(Self::CmdRogueTournGetPermanentTalentInfoCsReq)
+            }
+            "CmdRogueTournStartCsReq" => Some(Self::CmdRogueTournStartCsReq),
+            "CmdRogueTournGetSettleInfoCsReq" => {
+                Some(Self::CmdRogueTournGetSettleInfoCsReq)
             }
             "CmdRogueTournReviveAvatarCsReq" => {
                 Some(Self::CmdRogueTournReviveAvatarCsReq)
             }
+            "CmdRogueTournEnterRogueCocoonSceneScRsp" => {
+                Some(Self::CmdRogueTournEnterRogueCocoonSceneScRsp)
+            }
+            "CmdRogueTournClearArchiveNameScNotify" => {
+                Some(Self::CmdRogueTournClearArchiveNameScNotify)
+            }
+            "CmdRogueTournEnterScRsp" => Some(Self::CmdRogueTournEnterScRsp),
+            "CmdRogueTournDeleteArchiveCsReq" => {
+                Some(Self::CmdRogueTournDeleteArchiveCsReq)
+            }
+            "CmdRogueTournSettleScRsp" => Some(Self::CmdRogueTournSettleScRsp),
+            "CmdRogueTournSettleCsReq" => Some(Self::CmdRogueTournSettleCsReq),
+            "CmdRogueTournDeleteArchiveScRsp" => {
+                Some(Self::CmdRogueTournDeleteArchiveScRsp)
+            }
+            "CmdRogueTournTakeExpRewardScRsp" => {
+                Some(Self::CmdRogueTournTakeExpRewardScRsp)
+            }
+            "CmdRogueTournReviveAvatarScRsp" => {
+                Some(Self::CmdRogueTournReviveAvatarScRsp)
+            }
+            "CmdRogueTournAreaUpdateScNotify" => {
+                Some(Self::CmdRogueTournAreaUpdateScNotify)
+            }
+            "CmdRogueTournReEnterRogueCocoonStageCsReq" => {
+                Some(Self::CmdRogueTournReEnterRogueCocoonStageCsReq)
+            }
+            "CmdRogueTournReEnterRogueCocoonStageScRsp" => {
+                Some(Self::CmdRogueTournReEnterRogueCocoonStageScRsp)
+            }
+            "CmdRogueTournConfirmSettleCsReq" => {
+                Some(Self::CmdRogueTournConfirmSettleCsReq)
+            }
+            "CmdRogueTournDifficultyCompNotify" => {
+                Some(Self::CmdRogueTournDifficultyCompNotify)
+            }
+            "CmdRogueTournEnablePermanentTalentCsReq" => {
+                Some(Self::CmdRogueTournEnablePermanentTalentCsReq)
+            }
+            "CmdRogueTournRenameArchiveCsReq" => {
+                Some(Self::CmdRogueTournRenameArchiveCsReq)
+            }
+            "CmdRogueTournGetCurRogueCocoonInfoScRsp" => {
+                Some(Self::CmdRogueTournGetCurRogueCocoonInfoScRsp)
+            }
+            "CmdRogueTournQueryScRsp" => Some(Self::CmdRogueTournQueryScRsp),
+            "CmdRogueTournGetCurRogueCocoonInfoCsReq" => {
+                Some(Self::CmdRogueTournGetCurRogueCocoonInfoCsReq)
+            }
+            "CmdRogueTournEnterLayerCsReq" => Some(Self::CmdRogueTournEnterLayerCsReq),
+            "CmdRogueTournLeaveScRsp" => Some(Self::CmdRogueTournLeaveScRsp),
+            "CmdRogueTournGetMiscRealTimeDataCsReq" => {
+                Some(Self::CmdRogueTournGetMiscRealTimeDataCsReq)
+            }
+            "CmdRogueTournEnterCsReq" => Some(Self::CmdRogueTournEnterCsReq),
             _ => None,
         }
     }
@@ -10751,12 +10946,12 @@ impl CmdRogueTournType {
 #[repr(i32)]
 pub enum CmdRollShopType {
     None = 0,
-    CmdTakeRollShopRewardScRsp = 6903,
-    CmdGetRollShopInfoCsReq = 6905,
-    CmdGetRollShopInfoScRsp = 6908,
-    CmdDoGachaInRollShopScRsp = 6910,
-    CmdTakeRollShopRewardCsReq = 6912,
-    CmdDoGachaInRollShopCsReq = 6915,
+    CmdDoGachaInRollShopScRsp = 6903,
+    CmdTakeRollShopRewardScRsp = 6906,
+    CmdDoGachaInRollShopCsReq = 6907,
+    CmdGetRollShopInfoScRsp = 6915,
+    CmdTakeRollShopRewardCsReq = 6917,
+    CmdGetRollShopInfoCsReq = 6920,
 }
 impl CmdRollShopType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -10766,24 +10961,24 @@ impl CmdRollShopType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdRollShopType::None => "CmdRollShopTypeNone",
-            CmdRollShopType::CmdTakeRollShopRewardScRsp => "CmdTakeRollShopRewardScRsp",
-            CmdRollShopType::CmdGetRollShopInfoCsReq => "CmdGetRollShopInfoCsReq",
-            CmdRollShopType::CmdGetRollShopInfoScRsp => "CmdGetRollShopInfoScRsp",
             CmdRollShopType::CmdDoGachaInRollShopScRsp => "CmdDoGachaInRollShopScRsp",
-            CmdRollShopType::CmdTakeRollShopRewardCsReq => "CmdTakeRollShopRewardCsReq",
+            CmdRollShopType::CmdTakeRollShopRewardScRsp => "CmdTakeRollShopRewardScRsp",
             CmdRollShopType::CmdDoGachaInRollShopCsReq => "CmdDoGachaInRollShopCsReq",
+            CmdRollShopType::CmdGetRollShopInfoScRsp => "CmdGetRollShopInfoScRsp",
+            CmdRollShopType::CmdTakeRollShopRewardCsReq => "CmdTakeRollShopRewardCsReq",
+            CmdRollShopType::CmdGetRollShopInfoCsReq => "CmdGetRollShopInfoCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdRollShopTypeNone" => Some(Self::None),
-            "CmdTakeRollShopRewardScRsp" => Some(Self::CmdTakeRollShopRewardScRsp),
-            "CmdGetRollShopInfoCsReq" => Some(Self::CmdGetRollShopInfoCsReq),
-            "CmdGetRollShopInfoScRsp" => Some(Self::CmdGetRollShopInfoScRsp),
             "CmdDoGachaInRollShopScRsp" => Some(Self::CmdDoGachaInRollShopScRsp),
-            "CmdTakeRollShopRewardCsReq" => Some(Self::CmdTakeRollShopRewardCsReq),
+            "CmdTakeRollShopRewardScRsp" => Some(Self::CmdTakeRollShopRewardScRsp),
             "CmdDoGachaInRollShopCsReq" => Some(Self::CmdDoGachaInRollShopCsReq),
+            "CmdGetRollShopInfoScRsp" => Some(Self::CmdGetRollShopInfoScRsp),
+            "CmdTakeRollShopRewardCsReq" => Some(Self::CmdTakeRollShopRewardCsReq),
+            "CmdGetRollShopInfoCsReq" => Some(Self::CmdGetRollShopInfoCsReq),
             _ => None,
         }
     }
@@ -10793,97 +10988,87 @@ impl CmdRollShopType {
 #[repr(i32)]
 pub enum CmdSceneType {
     None = 0,
-    CmdGroupStateChangeScRsp = 1401,
-    CmdGetSpringRecoverDataCsReq = 1402,
-    CmdInteractPropCsReq = 1403,
-    CmdEntityBindPropScRsp = 1404,
-    CmdDeleteSummonUnitScRsp = 1405,
-    CmdEnterSceneCsReq = 1406,
-    CmdScenePlaneEventScNotify = 1407,
-    CmdRefreshTriggerByClientScRsp = 1408,
-    CmdEnterSectionCsReq = 1409,
+    CmdGameplayCounterUpdateScNotify = 1401,
+    CmdDeleteSummonUnitCsReq = 1402,
+    CmdSetGroupCustomSaveDataCsReq = 1403,
+    CmdSceneCastSkillMpUpdateScNotify = 1405,
+    CmdDeleteSummonUnitScRsp = 1406,
+    CmdLastSpringRefreshTimeNotify = 1407,
+    CmdEntityBindPropScRsp = 1408,
+    CmdGameplayCounterCountDownCsReq = 1409,
     CmdSetCurInteractEntityCsReq = 1410,
-    CmdRefreshTriggerByClientCsReq = 1411,
-    CmdHealPoolInfoNotify = 1412,
+    CmdSceneEnterStageScRsp = 1412,
     CmdStartCocoonStageCsReq = 1413,
-    CmdDeactivateFarmElementCsReq = 1414,
-    CmdActivateFarmElementCsReq = 1415,
-    CmdGameplayCounterRecoverScRsp = 1417,
-    CmdGetSceneMapInfoCsReq = 1418,
+    CmdUnlockTeleportNotify = 1414,
+    CmdRefreshTriggerByClientCsReq = 1415,
+    CmdEnterSceneScRsp = 1416,
+    CmdSavePointsInfoNotify = 1417,
+    CmdSetClientPausedCsReq = 1418,
     CmdSpringRefreshCsReq = 1419,
-    CmdSceneEntityMoveScRsp = 1420,
-    CmdStartTimedFarmElementScRsp = 1421,
-    CmdEnterSceneScRsp = 1422,
-    CmdDeactivateFarmElementScRsp = 1423,
-    CmdSpringRecoverScRsp = 1424,
-    CmdLastSpringRefreshTimeNotify = 1425,
-    CmdSavePointsInfoNotify = 1426,
-    CmdReEnterLastElementStageScRsp = 1427,
-    CmdUpdateGroupPropertyCsReq = 1428,
-    CmdReturnLastTownCsReq = 1429,
-    CmdSyncEntityBuffChangeListScNotify = 1430,
-    CmdSetGroupCustomSaveDataCsReq = 1431,
-    CmdSpringRecoverSingleAvatarScRsp = 1432,
-    CmdReturnLastTownScRsp = 1433,
-    CmdGetCurSceneInfoCsReq = 1434,
-    CmdEnterSceneByServerScNotify = 1435,
-    CmdRecoverAllLineupCsReq = 1436,
-    CmdGetCurSceneInfoScRsp = 1437,
-    CmdSceneEntityTeleportCsReq = 1438,
-    CmdSceneCastSkillCsReq = 1439,
-    CmdGameplayCounterCountDownScRsp = 1440,
-    CmdGroupStateChangeScNotify = 1441,
-    CmdGameplayCounterCountDownCsReq = 1442,
-    CmdSetClientPausedScRsp = 1443,
-    CmdEnteredSceneChangeScNotify = 1444,
-    CmdActivateFarmElementScRsp = 1445,
-    CmdInteractPropScRsp = 1446,
-    CmdSceneEntityMoveScNotify = 1447,
-    CmdSceneCastSkillCostMpScRsp = 1448,
-    CmdStartTimedCocoonStageCsReq = 1449,
-    CmdSyncServerSceneChangeNotify = 1450,
-    CmdSceneEnterStageCsReq = 1451,
-    CmdSceneGroupRefreshScNotify = 1452,
-    CmdSceneCastSkillScRsp = 1453,
-    CmdStartTimedCocoonStageScRsp = 1454,
-    CmdSceneEntityTeleportScRsp = 1455,
-    CmdSetSpringRecoverConfigCsReq = 1456,
-    CmdGameplayCounterRecoverCsReq = 1457,
-    CmdGetEnteredSceneCsReq = 1458,
-    CmdSceneEntityMoveCsReq = 1459,
-    CmdSpringRecoverSingleAvatarCsReq = 1460,
-    CmdSpringRefreshScRsp = 1461,
-    CmdRecoverAllLineupScRsp = 1465,
-    CmdGetSpringRecoverDataScRsp = 1466,
-    CmdGameplayCounterUpdateScNotify = 1467,
-    CmdGetUnlockTeleportScRsp = 1468,
-    CmdGetUnlockTeleportCsReq = 1469,
-    CmdSetCurInteractEntityScRsp = 1470,
-    CmdSetGroupCustomSaveDataScRsp = 1471,
-    CmdSpringRecoverCsReq = 1472,
-    CmdSceneEnterStageScRsp = 1473,
-    CmdSceneUpdatePositionVersionNotify = 1474,
-    CmdSceneCastSkillCostMpCsReq = 1475,
-    CmdGroupStateChangeCsReq = 1476,
-    CmdStartCocoonStageScRsp = 1477,
-    CmdSetSpringRecoverConfigScRsp = 1478,
-    CmdGetSceneMapInfoScRsp = 1481,
-    CmdSceneReviveAfterRebattleCsReq = 1483,
-    CmdReEnterLastElementStageCsReq = 1484,
-    CmdUpdateGroupPropertyScRsp = 1485,
-    CmdStartTimedFarmElementCsReq = 1486,
-    CmdGetEnteredSceneScRsp = 1487,
-    CmdSetClientPausedCsReq = 1488,
-    CmdUnlockTeleportNotify = 1489,
-    CmdSceneCastSkillMpUpdateScNotify = 1490,
-    CmdEntityBindPropCsReq = 1491,
-    CmdEnterSectionScRsp = 1493,
-    CmdDeleteSummonUnitCsReq = 1495,
-    CmdUpdateMechanismBarScNotify = 1496,
-    CmdUnlockedAreaMapScNotify = 1497,
-    CmdUpdateFloorSavedValueNotify = 1498,
-    CmdSceneReviveAfterRebattleScRsp = 1499,
-    CmdRefreshTriggerByClientScNotify = 1500,
+    CmdGameplayCounterCountDownScRsp = 1420,
+    CmdStartCocoonStageScRsp = 1421,
+    CmdGetUnlockTeleportScRsp = 1423,
+    CmdChangePropTimelineInfoCsReq = 1424,
+    CmdSceneCastSkillCostMpCsReq = 1425,
+    CmdSpringRefreshScRsp = 1426,
+    CmdInteractPropScRsp = 1427,
+    CmdSceneCastSkillScRsp = 1428,
+    CmdSceneReviveAfterRebattleScRsp = 1429,
+    CmdSceneGroupRefreshScNotify = 1432,
+    CmdReEnterLastElementStageCsReq = 1433,
+    CmdSceneEntityMoveScNotify = 1434,
+    CmdRecoverAllLineupCsReq = 1435,
+    CmdSceneEntityMoveCsReq = 1436,
+    CmdSetClientPausedScRsp = 1437,
+    CmdGroupStateChangeCsReq = 1438,
+    CmdActivateFarmElementCsReq = 1439,
+    CmdSetGroupCustomSaveDataScRsp = 1440,
+    CmdUpdateGroupPropertyScRsp = 1442,
+    CmdSceneUpdatePositionVersionNotify = 1443,
+    CmdGetUnlockTeleportCsReq = 1444,
+    CmdSyncEntityBuffChangeListScNotify = 1446,
+    CmdEnterSceneByServerScNotify = 1447,
+    CmdEnterSectionScRsp = 1448,
+    CmdScenePlaneEventScNotify = 1449,
+    CmdEnterSectionCsReq = 1450,
+    CmdUpdateGroupPropertyCsReq = 1451,
+    CmdGetCurSceneInfoCsReq = 1452,
+    CmdReturnLastTownCsReq = 1453,
+    CmdActivateFarmElementScRsp = 1455,
+    CmdUpdateFloorSavedValueNotify = 1456,
+    CmdEnterSceneCsReq = 1457,
+    CmdSceneEnterStageCsReq = 1459,
+    CmdRefreshTriggerByClientScNotify = 1462,
+    CmdGetEnteredSceneScRsp = 1463,
+    CmdEntityBindPropCsReq = 1465,
+    CmdGetEnteredSceneCsReq = 1466,
+    CmdSceneCastSkillCsReq = 1467,
+    CmdSceneEntityTeleportScRsp = 1468,
+    CmdOpenChestScNotify = 1469,
+    CmdGetSceneMapInfoCsReq = 1470,
+    CmdUnlockedAreaMapScNotify = 1471,
+    CmdRecoverAllLineupScRsp = 1473,
+    CmdGetCurSceneInfoScRsp = 1474,
+    CmdSetCurInteractEntityScRsp = 1476,
+    CmdSceneReviveAfterRebattleCsReq = 1478,
+    CmdDeactivateFarmElementCsReq = 1479,
+    CmdGameplayCounterRecoverScRsp = 1480,
+    CmdDeactivateFarmElementScRsp = 1481,
+    CmdGameplayCounterRecoverCsReq = 1482,
+    CmdSceneEntityTeleportCsReq = 1483,
+    CmdInteractPropCsReq = 1484,
+    CmdRefreshTriggerByClientScRsp = 1485,
+    CmdGroupStateChangeScNotify = 1486,
+    CmdGroupStateChangeScRsp = 1487,
+    CmdEnteredSceneChangeScNotify = 1489,
+    CmdReturnLastTownScRsp = 1490,
+    CmdSyncServerSceneChangeNotify = 1491,
+    CmdChangePropTimelineInfoScRsp = 1493,
+    CmdSceneEntityMoveScRsp = 1495,
+    CmdSceneCastSkillCostMpScRsp = 1496,
+    CmdReEnterLastElementStageScRsp = 1497,
+    CmdGetSceneMapInfoScRsp = 1498,
+    CmdUpdateMechanismBarScNotify = 1499,
 }
 impl CmdSceneType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -10893,162 +11078,140 @@ impl CmdSceneType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdSceneType::None => "CmdSceneTypeNone",
-            CmdSceneType::CmdGroupStateChangeScRsp => "CmdGroupStateChangeScRsp",
-            CmdSceneType::CmdGetSpringRecoverDataCsReq => "CmdGetSpringRecoverDataCsReq",
-            CmdSceneType::CmdInteractPropCsReq => "CmdInteractPropCsReq",
-            CmdSceneType::CmdEntityBindPropScRsp => "CmdEntityBindPropScRsp",
-            CmdSceneType::CmdDeleteSummonUnitScRsp => "CmdDeleteSummonUnitScRsp",
-            CmdSceneType::CmdEnterSceneCsReq => "CmdEnterSceneCsReq",
-            CmdSceneType::CmdScenePlaneEventScNotify => "CmdScenePlaneEventScNotify",
-            CmdSceneType::CmdRefreshTriggerByClientScRsp => {
-                "CmdRefreshTriggerByClientScRsp"
+            CmdSceneType::CmdGameplayCounterUpdateScNotify => {
+                "CmdGameplayCounterUpdateScNotify"
             }
-            CmdSceneType::CmdEnterSectionCsReq => "CmdEnterSectionCsReq",
-            CmdSceneType::CmdSetCurInteractEntityCsReq => "CmdSetCurInteractEntityCsReq",
-            CmdSceneType::CmdRefreshTriggerByClientCsReq => {
-                "CmdRefreshTriggerByClientCsReq"
-            }
-            CmdSceneType::CmdHealPoolInfoNotify => "CmdHealPoolInfoNotify",
-            CmdSceneType::CmdStartCocoonStageCsReq => "CmdStartCocoonStageCsReq",
-            CmdSceneType::CmdDeactivateFarmElementCsReq => {
-                "CmdDeactivateFarmElementCsReq"
-            }
-            CmdSceneType::CmdActivateFarmElementCsReq => "CmdActivateFarmElementCsReq",
-            CmdSceneType::CmdGameplayCounterRecoverScRsp => {
-                "CmdGameplayCounterRecoverScRsp"
-            }
-            CmdSceneType::CmdGetSceneMapInfoCsReq => "CmdGetSceneMapInfoCsReq",
-            CmdSceneType::CmdSpringRefreshCsReq => "CmdSpringRefreshCsReq",
-            CmdSceneType::CmdSceneEntityMoveScRsp => "CmdSceneEntityMoveScRsp",
-            CmdSceneType::CmdStartTimedFarmElementScRsp => {
-                "CmdStartTimedFarmElementScRsp"
-            }
-            CmdSceneType::CmdEnterSceneScRsp => "CmdEnterSceneScRsp",
-            CmdSceneType::CmdDeactivateFarmElementScRsp => {
-                "CmdDeactivateFarmElementScRsp"
-            }
-            CmdSceneType::CmdSpringRecoverScRsp => "CmdSpringRecoverScRsp",
-            CmdSceneType::CmdLastSpringRefreshTimeNotify => {
-                "CmdLastSpringRefreshTimeNotify"
-            }
-            CmdSceneType::CmdSavePointsInfoNotify => "CmdSavePointsInfoNotify",
-            CmdSceneType::CmdReEnterLastElementStageScRsp => {
-                "CmdReEnterLastElementStageScRsp"
-            }
-            CmdSceneType::CmdUpdateGroupPropertyCsReq => "CmdUpdateGroupPropertyCsReq",
-            CmdSceneType::CmdReturnLastTownCsReq => "CmdReturnLastTownCsReq",
-            CmdSceneType::CmdSyncEntityBuffChangeListScNotify => {
-                "CmdSyncEntityBuffChangeListScNotify"
-            }
+            CmdSceneType::CmdDeleteSummonUnitCsReq => "CmdDeleteSummonUnitCsReq",
             CmdSceneType::CmdSetGroupCustomSaveDataCsReq => {
                 "CmdSetGroupCustomSaveDataCsReq"
             }
-            CmdSceneType::CmdSpringRecoverSingleAvatarScRsp => {
-                "CmdSpringRecoverSingleAvatarScRsp"
+            CmdSceneType::CmdSceneCastSkillMpUpdateScNotify => {
+                "CmdSceneCastSkillMpUpdateScNotify"
             }
-            CmdSceneType::CmdReturnLastTownScRsp => "CmdReturnLastTownScRsp",
-            CmdSceneType::CmdGetCurSceneInfoCsReq => "CmdGetCurSceneInfoCsReq",
-            CmdSceneType::CmdEnterSceneByServerScNotify => {
-                "CmdEnterSceneByServerScNotify"
+            CmdSceneType::CmdDeleteSummonUnitScRsp => "CmdDeleteSummonUnitScRsp",
+            CmdSceneType::CmdLastSpringRefreshTimeNotify => {
+                "CmdLastSpringRefreshTimeNotify"
             }
-            CmdSceneType::CmdRecoverAllLineupCsReq => "CmdRecoverAllLineupCsReq",
-            CmdSceneType::CmdGetCurSceneInfoScRsp => "CmdGetCurSceneInfoScRsp",
-            CmdSceneType::CmdSceneEntityTeleportCsReq => "CmdSceneEntityTeleportCsReq",
-            CmdSceneType::CmdSceneCastSkillCsReq => "CmdSceneCastSkillCsReq",
-            CmdSceneType::CmdGameplayCounterCountDownScRsp => {
-                "CmdGameplayCounterCountDownScRsp"
-            }
-            CmdSceneType::CmdGroupStateChangeScNotify => "CmdGroupStateChangeScNotify",
+            CmdSceneType::CmdEntityBindPropScRsp => "CmdEntityBindPropScRsp",
             CmdSceneType::CmdGameplayCounterCountDownCsReq => {
                 "CmdGameplayCounterCountDownCsReq"
             }
-            CmdSceneType::CmdSetClientPausedScRsp => "CmdSetClientPausedScRsp",
-            CmdSceneType::CmdEnteredSceneChangeScNotify => {
-                "CmdEnteredSceneChangeScNotify"
+            CmdSceneType::CmdSetCurInteractEntityCsReq => "CmdSetCurInteractEntityCsReq",
+            CmdSceneType::CmdSceneEnterStageScRsp => "CmdSceneEnterStageScRsp",
+            CmdSceneType::CmdStartCocoonStageCsReq => "CmdStartCocoonStageCsReq",
+            CmdSceneType::CmdUnlockTeleportNotify => "CmdUnlockTeleportNotify",
+            CmdSceneType::CmdRefreshTriggerByClientCsReq => {
+                "CmdRefreshTriggerByClientCsReq"
             }
-            CmdSceneType::CmdActivateFarmElementScRsp => "CmdActivateFarmElementScRsp",
+            CmdSceneType::CmdEnterSceneScRsp => "CmdEnterSceneScRsp",
+            CmdSceneType::CmdSavePointsInfoNotify => "CmdSavePointsInfoNotify",
+            CmdSceneType::CmdSetClientPausedCsReq => "CmdSetClientPausedCsReq",
+            CmdSceneType::CmdSpringRefreshCsReq => "CmdSpringRefreshCsReq",
+            CmdSceneType::CmdGameplayCounterCountDownScRsp => {
+                "CmdGameplayCounterCountDownScRsp"
+            }
+            CmdSceneType::CmdStartCocoonStageScRsp => "CmdStartCocoonStageScRsp",
+            CmdSceneType::CmdGetUnlockTeleportScRsp => "CmdGetUnlockTeleportScRsp",
+            CmdSceneType::CmdChangePropTimelineInfoCsReq => {
+                "CmdChangePropTimelineInfoCsReq"
+            }
+            CmdSceneType::CmdSceneCastSkillCostMpCsReq => "CmdSceneCastSkillCostMpCsReq",
+            CmdSceneType::CmdSpringRefreshScRsp => "CmdSpringRefreshScRsp",
             CmdSceneType::CmdInteractPropScRsp => "CmdInteractPropScRsp",
-            CmdSceneType::CmdSceneEntityMoveScNotify => "CmdSceneEntityMoveScNotify",
-            CmdSceneType::CmdSceneCastSkillCostMpScRsp => "CmdSceneCastSkillCostMpScRsp",
-            CmdSceneType::CmdStartTimedCocoonStageCsReq => {
-                "CmdStartTimedCocoonStageCsReq"
-            }
-            CmdSceneType::CmdSyncServerSceneChangeNotify => {
-                "CmdSyncServerSceneChangeNotify"
-            }
-            CmdSceneType::CmdSceneEnterStageCsReq => "CmdSceneEnterStageCsReq",
-            CmdSceneType::CmdSceneGroupRefreshScNotify => "CmdSceneGroupRefreshScNotify",
             CmdSceneType::CmdSceneCastSkillScRsp => "CmdSceneCastSkillScRsp",
-            CmdSceneType::CmdStartTimedCocoonStageScRsp => {
-                "CmdStartTimedCocoonStageScRsp"
+            CmdSceneType::CmdSceneReviveAfterRebattleScRsp => {
+                "CmdSceneReviveAfterRebattleScRsp"
             }
+            CmdSceneType::CmdSceneGroupRefreshScNotify => "CmdSceneGroupRefreshScNotify",
+            CmdSceneType::CmdReEnterLastElementStageCsReq => {
+                "CmdReEnterLastElementStageCsReq"
+            }
+            CmdSceneType::CmdSceneEntityMoveScNotify => "CmdSceneEntityMoveScNotify",
+            CmdSceneType::CmdRecoverAllLineupCsReq => "CmdRecoverAllLineupCsReq",
+            CmdSceneType::CmdSceneEntityMoveCsReq => "CmdSceneEntityMoveCsReq",
+            CmdSceneType::CmdSetClientPausedScRsp => "CmdSetClientPausedScRsp",
+            CmdSceneType::CmdGroupStateChangeCsReq => "CmdGroupStateChangeCsReq",
+            CmdSceneType::CmdActivateFarmElementCsReq => "CmdActivateFarmElementCsReq",
+            CmdSceneType::CmdSetGroupCustomSaveDataScRsp => {
+                "CmdSetGroupCustomSaveDataScRsp"
+            }
+            CmdSceneType::CmdUpdateGroupPropertyScRsp => "CmdUpdateGroupPropertyScRsp",
+            CmdSceneType::CmdSceneUpdatePositionVersionNotify => {
+                "CmdSceneUpdatePositionVersionNotify"
+            }
+            CmdSceneType::CmdGetUnlockTeleportCsReq => "CmdGetUnlockTeleportCsReq",
+            CmdSceneType::CmdSyncEntityBuffChangeListScNotify => {
+                "CmdSyncEntityBuffChangeListScNotify"
+            }
+            CmdSceneType::CmdEnterSceneByServerScNotify => {
+                "CmdEnterSceneByServerScNotify"
+            }
+            CmdSceneType::CmdEnterSectionScRsp => "CmdEnterSectionScRsp",
+            CmdSceneType::CmdScenePlaneEventScNotify => "CmdScenePlaneEventScNotify",
+            CmdSceneType::CmdEnterSectionCsReq => "CmdEnterSectionCsReq",
+            CmdSceneType::CmdUpdateGroupPropertyCsReq => "CmdUpdateGroupPropertyCsReq",
+            CmdSceneType::CmdGetCurSceneInfoCsReq => "CmdGetCurSceneInfoCsReq",
+            CmdSceneType::CmdReturnLastTownCsReq => "CmdReturnLastTownCsReq",
+            CmdSceneType::CmdActivateFarmElementScRsp => "CmdActivateFarmElementScRsp",
+            CmdSceneType::CmdUpdateFloorSavedValueNotify => {
+                "CmdUpdateFloorSavedValueNotify"
+            }
+            CmdSceneType::CmdEnterSceneCsReq => "CmdEnterSceneCsReq",
+            CmdSceneType::CmdSceneEnterStageCsReq => "CmdSceneEnterStageCsReq",
+            CmdSceneType::CmdRefreshTriggerByClientScNotify => {
+                "CmdRefreshTriggerByClientScNotify"
+            }
+            CmdSceneType::CmdGetEnteredSceneScRsp => "CmdGetEnteredSceneScRsp",
+            CmdSceneType::CmdEntityBindPropCsReq => "CmdEntityBindPropCsReq",
+            CmdSceneType::CmdGetEnteredSceneCsReq => "CmdGetEnteredSceneCsReq",
+            CmdSceneType::CmdSceneCastSkillCsReq => "CmdSceneCastSkillCsReq",
             CmdSceneType::CmdSceneEntityTeleportScRsp => "CmdSceneEntityTeleportScRsp",
-            CmdSceneType::CmdSetSpringRecoverConfigCsReq => {
-                "CmdSetSpringRecoverConfigCsReq"
+            CmdSceneType::CmdOpenChestScNotify => "CmdOpenChestScNotify",
+            CmdSceneType::CmdGetSceneMapInfoCsReq => "CmdGetSceneMapInfoCsReq",
+            CmdSceneType::CmdUnlockedAreaMapScNotify => "CmdUnlockedAreaMapScNotify",
+            CmdSceneType::CmdRecoverAllLineupScRsp => "CmdRecoverAllLineupScRsp",
+            CmdSceneType::CmdGetCurSceneInfoScRsp => "CmdGetCurSceneInfoScRsp",
+            CmdSceneType::CmdSetCurInteractEntityScRsp => "CmdSetCurInteractEntityScRsp",
+            CmdSceneType::CmdSceneReviveAfterRebattleCsReq => {
+                "CmdSceneReviveAfterRebattleCsReq"
+            }
+            CmdSceneType::CmdDeactivateFarmElementCsReq => {
+                "CmdDeactivateFarmElementCsReq"
+            }
+            CmdSceneType::CmdGameplayCounterRecoverScRsp => {
+                "CmdGameplayCounterRecoverScRsp"
+            }
+            CmdSceneType::CmdDeactivateFarmElementScRsp => {
+                "CmdDeactivateFarmElementScRsp"
             }
             CmdSceneType::CmdGameplayCounterRecoverCsReq => {
                 "CmdGameplayCounterRecoverCsReq"
             }
-            CmdSceneType::CmdGetEnteredSceneCsReq => "CmdGetEnteredSceneCsReq",
-            CmdSceneType::CmdSceneEntityMoveCsReq => "CmdSceneEntityMoveCsReq",
-            CmdSceneType::CmdSpringRecoverSingleAvatarCsReq => {
-                "CmdSpringRecoverSingleAvatarCsReq"
+            CmdSceneType::CmdSceneEntityTeleportCsReq => "CmdSceneEntityTeleportCsReq",
+            CmdSceneType::CmdInteractPropCsReq => "CmdInteractPropCsReq",
+            CmdSceneType::CmdRefreshTriggerByClientScRsp => {
+                "CmdRefreshTriggerByClientScRsp"
             }
-            CmdSceneType::CmdSpringRefreshScRsp => "CmdSpringRefreshScRsp",
-            CmdSceneType::CmdRecoverAllLineupScRsp => "CmdRecoverAllLineupScRsp",
-            CmdSceneType::CmdGetSpringRecoverDataScRsp => "CmdGetSpringRecoverDataScRsp",
-            CmdSceneType::CmdGameplayCounterUpdateScNotify => {
-                "CmdGameplayCounterUpdateScNotify"
+            CmdSceneType::CmdGroupStateChangeScNotify => "CmdGroupStateChangeScNotify",
+            CmdSceneType::CmdGroupStateChangeScRsp => "CmdGroupStateChangeScRsp",
+            CmdSceneType::CmdEnteredSceneChangeScNotify => {
+                "CmdEnteredSceneChangeScNotify"
             }
-            CmdSceneType::CmdGetUnlockTeleportScRsp => "CmdGetUnlockTeleportScRsp",
-            CmdSceneType::CmdGetUnlockTeleportCsReq => "CmdGetUnlockTeleportCsReq",
-            CmdSceneType::CmdSetCurInteractEntityScRsp => "CmdSetCurInteractEntityScRsp",
-            CmdSceneType::CmdSetGroupCustomSaveDataScRsp => {
-                "CmdSetGroupCustomSaveDataScRsp"
+            CmdSceneType::CmdReturnLastTownScRsp => "CmdReturnLastTownScRsp",
+            CmdSceneType::CmdSyncServerSceneChangeNotify => {
+                "CmdSyncServerSceneChangeNotify"
             }
-            CmdSceneType::CmdSpringRecoverCsReq => "CmdSpringRecoverCsReq",
-            CmdSceneType::CmdSceneEnterStageScRsp => "CmdSceneEnterStageScRsp",
-            CmdSceneType::CmdSceneUpdatePositionVersionNotify => {
-                "CmdSceneUpdatePositionVersionNotify"
+            CmdSceneType::CmdChangePropTimelineInfoScRsp => {
+                "CmdChangePropTimelineInfoScRsp"
             }
-            CmdSceneType::CmdSceneCastSkillCostMpCsReq => "CmdSceneCastSkillCostMpCsReq",
-            CmdSceneType::CmdGroupStateChangeCsReq => "CmdGroupStateChangeCsReq",
-            CmdSceneType::CmdStartCocoonStageScRsp => "CmdStartCocoonStageScRsp",
-            CmdSceneType::CmdSetSpringRecoverConfigScRsp => {
-                "CmdSetSpringRecoverConfigScRsp"
+            CmdSceneType::CmdSceneEntityMoveScRsp => "CmdSceneEntityMoveScRsp",
+            CmdSceneType::CmdSceneCastSkillCostMpScRsp => "CmdSceneCastSkillCostMpScRsp",
+            CmdSceneType::CmdReEnterLastElementStageScRsp => {
+                "CmdReEnterLastElementStageScRsp"
             }
             CmdSceneType::CmdGetSceneMapInfoScRsp => "CmdGetSceneMapInfoScRsp",
-            CmdSceneType::CmdSceneReviveAfterRebattleCsReq => {
-                "CmdSceneReviveAfterRebattleCsReq"
-            }
-            CmdSceneType::CmdReEnterLastElementStageCsReq => {
-                "CmdReEnterLastElementStageCsReq"
-            }
-            CmdSceneType::CmdUpdateGroupPropertyScRsp => "CmdUpdateGroupPropertyScRsp",
-            CmdSceneType::CmdStartTimedFarmElementCsReq => {
-                "CmdStartTimedFarmElementCsReq"
-            }
-            CmdSceneType::CmdGetEnteredSceneScRsp => "CmdGetEnteredSceneScRsp",
-            CmdSceneType::CmdSetClientPausedCsReq => "CmdSetClientPausedCsReq",
-            CmdSceneType::CmdUnlockTeleportNotify => "CmdUnlockTeleportNotify",
-            CmdSceneType::CmdSceneCastSkillMpUpdateScNotify => {
-                "CmdSceneCastSkillMpUpdateScNotify"
-            }
-            CmdSceneType::CmdEntityBindPropCsReq => "CmdEntityBindPropCsReq",
-            CmdSceneType::CmdEnterSectionScRsp => "CmdEnterSectionScRsp",
-            CmdSceneType::CmdDeleteSummonUnitCsReq => "CmdDeleteSummonUnitCsReq",
             CmdSceneType::CmdUpdateMechanismBarScNotify => {
                 "CmdUpdateMechanismBarScNotify"
-            }
-            CmdSceneType::CmdUnlockedAreaMapScNotify => "CmdUnlockedAreaMapScNotify",
-            CmdSceneType::CmdUpdateFloorSavedValueNotify => {
-                "CmdUpdateFloorSavedValueNotify"
-            }
-            CmdSceneType::CmdSceneReviveAfterRebattleScRsp => {
-                "CmdSceneReviveAfterRebattleScRsp"
-            }
-            CmdSceneType::CmdRefreshTriggerByClientScNotify => {
-                "CmdRefreshTriggerByClientScNotify"
             }
         }
     }
@@ -11056,145 +11219,131 @@ impl CmdSceneType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdSceneTypeNone" => Some(Self::None),
-            "CmdGroupStateChangeScRsp" => Some(Self::CmdGroupStateChangeScRsp),
-            "CmdGetSpringRecoverDataCsReq" => Some(Self::CmdGetSpringRecoverDataCsReq),
-            "CmdInteractPropCsReq" => Some(Self::CmdInteractPropCsReq),
-            "CmdEntityBindPropScRsp" => Some(Self::CmdEntityBindPropScRsp),
-            "CmdDeleteSummonUnitScRsp" => Some(Self::CmdDeleteSummonUnitScRsp),
-            "CmdEnterSceneCsReq" => Some(Self::CmdEnterSceneCsReq),
-            "CmdScenePlaneEventScNotify" => Some(Self::CmdScenePlaneEventScNotify),
-            "CmdRefreshTriggerByClientScRsp" => {
-                Some(Self::CmdRefreshTriggerByClientScRsp)
-            }
-            "CmdEnterSectionCsReq" => Some(Self::CmdEnterSectionCsReq),
-            "CmdSetCurInteractEntityCsReq" => Some(Self::CmdSetCurInteractEntityCsReq),
-            "CmdRefreshTriggerByClientCsReq" => {
-                Some(Self::CmdRefreshTriggerByClientCsReq)
-            }
-            "CmdHealPoolInfoNotify" => Some(Self::CmdHealPoolInfoNotify),
-            "CmdStartCocoonStageCsReq" => Some(Self::CmdStartCocoonStageCsReq),
-            "CmdDeactivateFarmElementCsReq" => Some(Self::CmdDeactivateFarmElementCsReq),
-            "CmdActivateFarmElementCsReq" => Some(Self::CmdActivateFarmElementCsReq),
-            "CmdGameplayCounterRecoverScRsp" => {
-                Some(Self::CmdGameplayCounterRecoverScRsp)
-            }
-            "CmdGetSceneMapInfoCsReq" => Some(Self::CmdGetSceneMapInfoCsReq),
-            "CmdSpringRefreshCsReq" => Some(Self::CmdSpringRefreshCsReq),
-            "CmdSceneEntityMoveScRsp" => Some(Self::CmdSceneEntityMoveScRsp),
-            "CmdStartTimedFarmElementScRsp" => Some(Self::CmdStartTimedFarmElementScRsp),
-            "CmdEnterSceneScRsp" => Some(Self::CmdEnterSceneScRsp),
-            "CmdDeactivateFarmElementScRsp" => Some(Self::CmdDeactivateFarmElementScRsp),
-            "CmdSpringRecoverScRsp" => Some(Self::CmdSpringRecoverScRsp),
-            "CmdLastSpringRefreshTimeNotify" => {
-                Some(Self::CmdLastSpringRefreshTimeNotify)
-            }
-            "CmdSavePointsInfoNotify" => Some(Self::CmdSavePointsInfoNotify),
-            "CmdReEnterLastElementStageScRsp" => {
-                Some(Self::CmdReEnterLastElementStageScRsp)
-            }
-            "CmdUpdateGroupPropertyCsReq" => Some(Self::CmdUpdateGroupPropertyCsReq),
-            "CmdReturnLastTownCsReq" => Some(Self::CmdReturnLastTownCsReq),
-            "CmdSyncEntityBuffChangeListScNotify" => {
-                Some(Self::CmdSyncEntityBuffChangeListScNotify)
-            }
-            "CmdSetGroupCustomSaveDataCsReq" => {
-                Some(Self::CmdSetGroupCustomSaveDataCsReq)
-            }
-            "CmdSpringRecoverSingleAvatarScRsp" => {
-                Some(Self::CmdSpringRecoverSingleAvatarScRsp)
-            }
-            "CmdReturnLastTownScRsp" => Some(Self::CmdReturnLastTownScRsp),
-            "CmdGetCurSceneInfoCsReq" => Some(Self::CmdGetCurSceneInfoCsReq),
-            "CmdEnterSceneByServerScNotify" => Some(Self::CmdEnterSceneByServerScNotify),
-            "CmdRecoverAllLineupCsReq" => Some(Self::CmdRecoverAllLineupCsReq),
-            "CmdGetCurSceneInfoScRsp" => Some(Self::CmdGetCurSceneInfoScRsp),
-            "CmdSceneEntityTeleportCsReq" => Some(Self::CmdSceneEntityTeleportCsReq),
-            "CmdSceneCastSkillCsReq" => Some(Self::CmdSceneCastSkillCsReq),
-            "CmdGameplayCounterCountDownScRsp" => {
-                Some(Self::CmdGameplayCounterCountDownScRsp)
-            }
-            "CmdGroupStateChangeScNotify" => Some(Self::CmdGroupStateChangeScNotify),
-            "CmdGameplayCounterCountDownCsReq" => {
-                Some(Self::CmdGameplayCounterCountDownCsReq)
-            }
-            "CmdSetClientPausedScRsp" => Some(Self::CmdSetClientPausedScRsp),
-            "CmdEnteredSceneChangeScNotify" => Some(Self::CmdEnteredSceneChangeScNotify),
-            "CmdActivateFarmElementScRsp" => Some(Self::CmdActivateFarmElementScRsp),
-            "CmdInteractPropScRsp" => Some(Self::CmdInteractPropScRsp),
-            "CmdSceneEntityMoveScNotify" => Some(Self::CmdSceneEntityMoveScNotify),
-            "CmdSceneCastSkillCostMpScRsp" => Some(Self::CmdSceneCastSkillCostMpScRsp),
-            "CmdStartTimedCocoonStageCsReq" => Some(Self::CmdStartTimedCocoonStageCsReq),
-            "CmdSyncServerSceneChangeNotify" => {
-                Some(Self::CmdSyncServerSceneChangeNotify)
-            }
-            "CmdSceneEnterStageCsReq" => Some(Self::CmdSceneEnterStageCsReq),
-            "CmdSceneGroupRefreshScNotify" => Some(Self::CmdSceneGroupRefreshScNotify),
-            "CmdSceneCastSkillScRsp" => Some(Self::CmdSceneCastSkillScRsp),
-            "CmdStartTimedCocoonStageScRsp" => Some(Self::CmdStartTimedCocoonStageScRsp),
-            "CmdSceneEntityTeleportScRsp" => Some(Self::CmdSceneEntityTeleportScRsp),
-            "CmdSetSpringRecoverConfigCsReq" => {
-                Some(Self::CmdSetSpringRecoverConfigCsReq)
-            }
-            "CmdGameplayCounterRecoverCsReq" => {
-                Some(Self::CmdGameplayCounterRecoverCsReq)
-            }
-            "CmdGetEnteredSceneCsReq" => Some(Self::CmdGetEnteredSceneCsReq),
-            "CmdSceneEntityMoveCsReq" => Some(Self::CmdSceneEntityMoveCsReq),
-            "CmdSpringRecoverSingleAvatarCsReq" => {
-                Some(Self::CmdSpringRecoverSingleAvatarCsReq)
-            }
-            "CmdSpringRefreshScRsp" => Some(Self::CmdSpringRefreshScRsp),
-            "CmdRecoverAllLineupScRsp" => Some(Self::CmdRecoverAllLineupScRsp),
-            "CmdGetSpringRecoverDataScRsp" => Some(Self::CmdGetSpringRecoverDataScRsp),
             "CmdGameplayCounterUpdateScNotify" => {
                 Some(Self::CmdGameplayCounterUpdateScNotify)
             }
-            "CmdGetUnlockTeleportScRsp" => Some(Self::CmdGetUnlockTeleportScRsp),
-            "CmdGetUnlockTeleportCsReq" => Some(Self::CmdGetUnlockTeleportCsReq),
-            "CmdSetCurInteractEntityScRsp" => Some(Self::CmdSetCurInteractEntityScRsp),
-            "CmdSetGroupCustomSaveDataScRsp" => {
-                Some(Self::CmdSetGroupCustomSaveDataScRsp)
+            "CmdDeleteSummonUnitCsReq" => Some(Self::CmdDeleteSummonUnitCsReq),
+            "CmdSetGroupCustomSaveDataCsReq" => {
+                Some(Self::CmdSetGroupCustomSaveDataCsReq)
             }
-            "CmdSpringRecoverCsReq" => Some(Self::CmdSpringRecoverCsReq),
-            "CmdSceneEnterStageScRsp" => Some(Self::CmdSceneEnterStageScRsp),
-            "CmdSceneUpdatePositionVersionNotify" => {
-                Some(Self::CmdSceneUpdatePositionVersionNotify)
-            }
-            "CmdSceneCastSkillCostMpCsReq" => Some(Self::CmdSceneCastSkillCostMpCsReq),
-            "CmdGroupStateChangeCsReq" => Some(Self::CmdGroupStateChangeCsReq),
-            "CmdStartCocoonStageScRsp" => Some(Self::CmdStartCocoonStageScRsp),
-            "CmdSetSpringRecoverConfigScRsp" => {
-                Some(Self::CmdSetSpringRecoverConfigScRsp)
-            }
-            "CmdGetSceneMapInfoScRsp" => Some(Self::CmdGetSceneMapInfoScRsp),
-            "CmdSceneReviveAfterRebattleCsReq" => {
-                Some(Self::CmdSceneReviveAfterRebattleCsReq)
-            }
-            "CmdReEnterLastElementStageCsReq" => {
-                Some(Self::CmdReEnterLastElementStageCsReq)
-            }
-            "CmdUpdateGroupPropertyScRsp" => Some(Self::CmdUpdateGroupPropertyScRsp),
-            "CmdStartTimedFarmElementCsReq" => Some(Self::CmdStartTimedFarmElementCsReq),
-            "CmdGetEnteredSceneScRsp" => Some(Self::CmdGetEnteredSceneScRsp),
-            "CmdSetClientPausedCsReq" => Some(Self::CmdSetClientPausedCsReq),
-            "CmdUnlockTeleportNotify" => Some(Self::CmdUnlockTeleportNotify),
             "CmdSceneCastSkillMpUpdateScNotify" => {
                 Some(Self::CmdSceneCastSkillMpUpdateScNotify)
             }
-            "CmdEntityBindPropCsReq" => Some(Self::CmdEntityBindPropCsReq),
-            "CmdEnterSectionScRsp" => Some(Self::CmdEnterSectionScRsp),
-            "CmdDeleteSummonUnitCsReq" => Some(Self::CmdDeleteSummonUnitCsReq),
-            "CmdUpdateMechanismBarScNotify" => Some(Self::CmdUpdateMechanismBarScNotify),
-            "CmdUnlockedAreaMapScNotify" => Some(Self::CmdUnlockedAreaMapScNotify),
-            "CmdUpdateFloorSavedValueNotify" => {
-                Some(Self::CmdUpdateFloorSavedValueNotify)
+            "CmdDeleteSummonUnitScRsp" => Some(Self::CmdDeleteSummonUnitScRsp),
+            "CmdLastSpringRefreshTimeNotify" => {
+                Some(Self::CmdLastSpringRefreshTimeNotify)
             }
+            "CmdEntityBindPropScRsp" => Some(Self::CmdEntityBindPropScRsp),
+            "CmdGameplayCounterCountDownCsReq" => {
+                Some(Self::CmdGameplayCounterCountDownCsReq)
+            }
+            "CmdSetCurInteractEntityCsReq" => Some(Self::CmdSetCurInteractEntityCsReq),
+            "CmdSceneEnterStageScRsp" => Some(Self::CmdSceneEnterStageScRsp),
+            "CmdStartCocoonStageCsReq" => Some(Self::CmdStartCocoonStageCsReq),
+            "CmdUnlockTeleportNotify" => Some(Self::CmdUnlockTeleportNotify),
+            "CmdRefreshTriggerByClientCsReq" => {
+                Some(Self::CmdRefreshTriggerByClientCsReq)
+            }
+            "CmdEnterSceneScRsp" => Some(Self::CmdEnterSceneScRsp),
+            "CmdSavePointsInfoNotify" => Some(Self::CmdSavePointsInfoNotify),
+            "CmdSetClientPausedCsReq" => Some(Self::CmdSetClientPausedCsReq),
+            "CmdSpringRefreshCsReq" => Some(Self::CmdSpringRefreshCsReq),
+            "CmdGameplayCounterCountDownScRsp" => {
+                Some(Self::CmdGameplayCounterCountDownScRsp)
+            }
+            "CmdStartCocoonStageScRsp" => Some(Self::CmdStartCocoonStageScRsp),
+            "CmdGetUnlockTeleportScRsp" => Some(Self::CmdGetUnlockTeleportScRsp),
+            "CmdChangePropTimelineInfoCsReq" => {
+                Some(Self::CmdChangePropTimelineInfoCsReq)
+            }
+            "CmdSceneCastSkillCostMpCsReq" => Some(Self::CmdSceneCastSkillCostMpCsReq),
+            "CmdSpringRefreshScRsp" => Some(Self::CmdSpringRefreshScRsp),
+            "CmdInteractPropScRsp" => Some(Self::CmdInteractPropScRsp),
+            "CmdSceneCastSkillScRsp" => Some(Self::CmdSceneCastSkillScRsp),
             "CmdSceneReviveAfterRebattleScRsp" => {
                 Some(Self::CmdSceneReviveAfterRebattleScRsp)
             }
+            "CmdSceneGroupRefreshScNotify" => Some(Self::CmdSceneGroupRefreshScNotify),
+            "CmdReEnterLastElementStageCsReq" => {
+                Some(Self::CmdReEnterLastElementStageCsReq)
+            }
+            "CmdSceneEntityMoveScNotify" => Some(Self::CmdSceneEntityMoveScNotify),
+            "CmdRecoverAllLineupCsReq" => Some(Self::CmdRecoverAllLineupCsReq),
+            "CmdSceneEntityMoveCsReq" => Some(Self::CmdSceneEntityMoveCsReq),
+            "CmdSetClientPausedScRsp" => Some(Self::CmdSetClientPausedScRsp),
+            "CmdGroupStateChangeCsReq" => Some(Self::CmdGroupStateChangeCsReq),
+            "CmdActivateFarmElementCsReq" => Some(Self::CmdActivateFarmElementCsReq),
+            "CmdSetGroupCustomSaveDataScRsp" => {
+                Some(Self::CmdSetGroupCustomSaveDataScRsp)
+            }
+            "CmdUpdateGroupPropertyScRsp" => Some(Self::CmdUpdateGroupPropertyScRsp),
+            "CmdSceneUpdatePositionVersionNotify" => {
+                Some(Self::CmdSceneUpdatePositionVersionNotify)
+            }
+            "CmdGetUnlockTeleportCsReq" => Some(Self::CmdGetUnlockTeleportCsReq),
+            "CmdSyncEntityBuffChangeListScNotify" => {
+                Some(Self::CmdSyncEntityBuffChangeListScNotify)
+            }
+            "CmdEnterSceneByServerScNotify" => Some(Self::CmdEnterSceneByServerScNotify),
+            "CmdEnterSectionScRsp" => Some(Self::CmdEnterSectionScRsp),
+            "CmdScenePlaneEventScNotify" => Some(Self::CmdScenePlaneEventScNotify),
+            "CmdEnterSectionCsReq" => Some(Self::CmdEnterSectionCsReq),
+            "CmdUpdateGroupPropertyCsReq" => Some(Self::CmdUpdateGroupPropertyCsReq),
+            "CmdGetCurSceneInfoCsReq" => Some(Self::CmdGetCurSceneInfoCsReq),
+            "CmdReturnLastTownCsReq" => Some(Self::CmdReturnLastTownCsReq),
+            "CmdActivateFarmElementScRsp" => Some(Self::CmdActivateFarmElementScRsp),
+            "CmdUpdateFloorSavedValueNotify" => {
+                Some(Self::CmdUpdateFloorSavedValueNotify)
+            }
+            "CmdEnterSceneCsReq" => Some(Self::CmdEnterSceneCsReq),
+            "CmdSceneEnterStageCsReq" => Some(Self::CmdSceneEnterStageCsReq),
             "CmdRefreshTriggerByClientScNotify" => {
                 Some(Self::CmdRefreshTriggerByClientScNotify)
             }
+            "CmdGetEnteredSceneScRsp" => Some(Self::CmdGetEnteredSceneScRsp),
+            "CmdEntityBindPropCsReq" => Some(Self::CmdEntityBindPropCsReq),
+            "CmdGetEnteredSceneCsReq" => Some(Self::CmdGetEnteredSceneCsReq),
+            "CmdSceneCastSkillCsReq" => Some(Self::CmdSceneCastSkillCsReq),
+            "CmdSceneEntityTeleportScRsp" => Some(Self::CmdSceneEntityTeleportScRsp),
+            "CmdOpenChestScNotify" => Some(Self::CmdOpenChestScNotify),
+            "CmdGetSceneMapInfoCsReq" => Some(Self::CmdGetSceneMapInfoCsReq),
+            "CmdUnlockedAreaMapScNotify" => Some(Self::CmdUnlockedAreaMapScNotify),
+            "CmdRecoverAllLineupScRsp" => Some(Self::CmdRecoverAllLineupScRsp),
+            "CmdGetCurSceneInfoScRsp" => Some(Self::CmdGetCurSceneInfoScRsp),
+            "CmdSetCurInteractEntityScRsp" => Some(Self::CmdSetCurInteractEntityScRsp),
+            "CmdSceneReviveAfterRebattleCsReq" => {
+                Some(Self::CmdSceneReviveAfterRebattleCsReq)
+            }
+            "CmdDeactivateFarmElementCsReq" => Some(Self::CmdDeactivateFarmElementCsReq),
+            "CmdGameplayCounterRecoverScRsp" => {
+                Some(Self::CmdGameplayCounterRecoverScRsp)
+            }
+            "CmdDeactivateFarmElementScRsp" => Some(Self::CmdDeactivateFarmElementScRsp),
+            "CmdGameplayCounterRecoverCsReq" => {
+                Some(Self::CmdGameplayCounterRecoverCsReq)
+            }
+            "CmdSceneEntityTeleportCsReq" => Some(Self::CmdSceneEntityTeleportCsReq),
+            "CmdInteractPropCsReq" => Some(Self::CmdInteractPropCsReq),
+            "CmdRefreshTriggerByClientScRsp" => {
+                Some(Self::CmdRefreshTriggerByClientScRsp)
+            }
+            "CmdGroupStateChangeScNotify" => Some(Self::CmdGroupStateChangeScNotify),
+            "CmdGroupStateChangeScRsp" => Some(Self::CmdGroupStateChangeScRsp),
+            "CmdEnteredSceneChangeScNotify" => Some(Self::CmdEnteredSceneChangeScNotify),
+            "CmdReturnLastTownScRsp" => Some(Self::CmdReturnLastTownScRsp),
+            "CmdSyncServerSceneChangeNotify" => {
+                Some(Self::CmdSyncServerSceneChangeNotify)
+            }
+            "CmdChangePropTimelineInfoScRsp" => {
+                Some(Self::CmdChangePropTimelineInfoScRsp)
+            }
+            "CmdSceneEntityMoveScRsp" => Some(Self::CmdSceneEntityMoveScRsp),
+            "CmdSceneCastSkillCostMpScRsp" => Some(Self::CmdSceneCastSkillCostMpScRsp),
+            "CmdReEnterLastElementStageScRsp" => {
+                Some(Self::CmdReEnterLastElementStageScRsp)
+            }
+            "CmdGetSceneMapInfoScRsp" => Some(Self::CmdGetSceneMapInfoScRsp),
+            "CmdUpdateMechanismBarScNotify" => Some(Self::CmdUpdateMechanismBarScNotify),
             _ => None,
         }
     }
@@ -11204,12 +11353,12 @@ impl CmdSceneType {
 #[repr(i32)]
 pub enum CmdServerPrefsType {
     None = 0,
-    CmdGetServerPrefsDataCsReq = 6103,
-    CmdGetAllServerPrefsDataScRsp = 6120,
-    CmdUpdateServerPrefsDataCsReq = 6139,
-    CmdGetServerPrefsDataScRsp = 6146,
-    CmdUpdateServerPrefsDataScRsp = 6153,
-    CmdGetAllServerPrefsDataCsReq = 6159,
+    CmdGetServerPrefsDataScRsp = 6127,
+    CmdUpdateServerPrefsDataScRsp = 6128,
+    CmdGetAllServerPrefsDataCsReq = 6136,
+    CmdUpdateServerPrefsDataCsReq = 6167,
+    CmdGetServerPrefsDataCsReq = 6184,
+    CmdGetAllServerPrefsDataScRsp = 6195,
 }
 impl CmdServerPrefsType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -11219,15 +11368,6 @@ impl CmdServerPrefsType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdServerPrefsType::None => "CmdServerPrefsTypeNone",
-            CmdServerPrefsType::CmdGetServerPrefsDataCsReq => {
-                "CmdGetServerPrefsDataCsReq"
-            }
-            CmdServerPrefsType::CmdGetAllServerPrefsDataScRsp => {
-                "CmdGetAllServerPrefsDataScRsp"
-            }
-            CmdServerPrefsType::CmdUpdateServerPrefsDataCsReq => {
-                "CmdUpdateServerPrefsDataCsReq"
-            }
             CmdServerPrefsType::CmdGetServerPrefsDataScRsp => {
                 "CmdGetServerPrefsDataScRsp"
             }
@@ -11237,18 +11377,27 @@ impl CmdServerPrefsType {
             CmdServerPrefsType::CmdGetAllServerPrefsDataCsReq => {
                 "CmdGetAllServerPrefsDataCsReq"
             }
+            CmdServerPrefsType::CmdUpdateServerPrefsDataCsReq => {
+                "CmdUpdateServerPrefsDataCsReq"
+            }
+            CmdServerPrefsType::CmdGetServerPrefsDataCsReq => {
+                "CmdGetServerPrefsDataCsReq"
+            }
+            CmdServerPrefsType::CmdGetAllServerPrefsDataScRsp => {
+                "CmdGetAllServerPrefsDataScRsp"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdServerPrefsTypeNone" => Some(Self::None),
-            "CmdGetServerPrefsDataCsReq" => Some(Self::CmdGetServerPrefsDataCsReq),
-            "CmdGetAllServerPrefsDataScRsp" => Some(Self::CmdGetAllServerPrefsDataScRsp),
-            "CmdUpdateServerPrefsDataCsReq" => Some(Self::CmdUpdateServerPrefsDataCsReq),
             "CmdGetServerPrefsDataScRsp" => Some(Self::CmdGetServerPrefsDataScRsp),
             "CmdUpdateServerPrefsDataScRsp" => Some(Self::CmdUpdateServerPrefsDataScRsp),
             "CmdGetAllServerPrefsDataCsReq" => Some(Self::CmdGetAllServerPrefsDataCsReq),
+            "CmdUpdateServerPrefsDataCsReq" => Some(Self::CmdUpdateServerPrefsDataCsReq),
+            "CmdGetServerPrefsDataCsReq" => Some(Self::CmdGetServerPrefsDataCsReq),
+            "CmdGetAllServerPrefsDataScRsp" => Some(Self::CmdGetAllServerPrefsDataScRsp),
             _ => None,
         }
     }
@@ -11258,13 +11407,13 @@ impl CmdServerPrefsType {
 #[repr(i32)]
 pub enum CmdShopType {
     None = 0,
-    CmdBuyGoodsCsReq = 1503,
-    CmdGetShopListScRsp = 1520,
-    CmdCityShopInfoScNotify = 1534,
-    CmdTakeCityShopRewardCsReq = 1539,
-    CmdBuyGoodsScRsp = 1546,
-    CmdTakeCityShopRewardScRsp = 1553,
-    CmdGetShopListCsReq = 1559,
+    CmdBuyGoodsScRsp = 1527,
+    CmdTakeCityShopRewardScRsp = 1528,
+    CmdGetShopListCsReq = 1536,
+    CmdCityShopInfoScNotify = 1552,
+    CmdTakeCityShopRewardCsReq = 1567,
+    CmdBuyGoodsCsReq = 1584,
+    CmdGetShopListScRsp = 1595,
 }
 impl CmdShopType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -11274,26 +11423,26 @@ impl CmdShopType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdShopType::None => "CmdShopTypeNone",
-            CmdShopType::CmdBuyGoodsCsReq => "CmdBuyGoodsCsReq",
-            CmdShopType::CmdGetShopListScRsp => "CmdGetShopListScRsp",
-            CmdShopType::CmdCityShopInfoScNotify => "CmdCityShopInfoScNotify",
-            CmdShopType::CmdTakeCityShopRewardCsReq => "CmdTakeCityShopRewardCsReq",
             CmdShopType::CmdBuyGoodsScRsp => "CmdBuyGoodsScRsp",
             CmdShopType::CmdTakeCityShopRewardScRsp => "CmdTakeCityShopRewardScRsp",
             CmdShopType::CmdGetShopListCsReq => "CmdGetShopListCsReq",
+            CmdShopType::CmdCityShopInfoScNotify => "CmdCityShopInfoScNotify",
+            CmdShopType::CmdTakeCityShopRewardCsReq => "CmdTakeCityShopRewardCsReq",
+            CmdShopType::CmdBuyGoodsCsReq => "CmdBuyGoodsCsReq",
+            CmdShopType::CmdGetShopListScRsp => "CmdGetShopListScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdShopTypeNone" => Some(Self::None),
-            "CmdBuyGoodsCsReq" => Some(Self::CmdBuyGoodsCsReq),
-            "CmdGetShopListScRsp" => Some(Self::CmdGetShopListScRsp),
-            "CmdCityShopInfoScNotify" => Some(Self::CmdCityShopInfoScNotify),
-            "CmdTakeCityShopRewardCsReq" => Some(Self::CmdTakeCityShopRewardCsReq),
             "CmdBuyGoodsScRsp" => Some(Self::CmdBuyGoodsScRsp),
             "CmdTakeCityShopRewardScRsp" => Some(Self::CmdTakeCityShopRewardScRsp),
             "CmdGetShopListCsReq" => Some(Self::CmdGetShopListCsReq),
+            "CmdCityShopInfoScNotify" => Some(Self::CmdCityShopInfoScNotify),
+            "CmdTakeCityShopRewardCsReq" => Some(Self::CmdTakeCityShopRewardCsReq),
+            "CmdBuyGoodsCsReq" => Some(Self::CmdBuyGoodsCsReq),
+            "CmdGetShopListScRsp" => Some(Self::CmdGetShopListScRsp),
             _ => None,
         }
     }
@@ -11303,21 +11452,21 @@ impl CmdShopType {
 #[repr(i32)]
 pub enum CmdSpaceZooType {
     None = 0,
-    CmdSpaceZooBornCsReq = 6703,
-    CmdSpaceZooDeleteCatScRsp = 6716,
-    CmdSpaceZooDataScRsp = 6720,
-    CmdSpaceZooExchangeItemScRsp = 6730,
-    CmdSpaceZooOpCatteryCsReq = 6734,
-    CmdSpaceZooOpCatteryScRsp = 6737,
-    CmdSpaceZooMutateCsReq = 6739,
-    CmdSpaceZooBornScRsp = 6746,
-    CmdSpaceZooCatUpdateNotify = 6747,
-    CmdSpaceZooTakeScRsp = 6748,
-    CmdSpaceZooMutateScRsp = 6753,
-    CmdSpaceZooDataCsReq = 6759,
-    CmdSpaceZooExchangeItemCsReq = 6774,
-    CmdSpaceZooTakeCsReq = 6775,
-    CmdSpaceZooDeleteCatCsReq = 6780,
+    CmdSpaceZooDeleteCatCsReq = 6724,
+    CmdSpaceZooTakeCsReq = 6725,
+    CmdSpaceZooBornScRsp = 6727,
+    CmdSpaceZooMutateScRsp = 6728,
+    CmdSpaceZooCatUpdateNotify = 6734,
+    CmdSpaceZooDataCsReq = 6736,
+    CmdSpaceZooExchangeItemCsReq = 6743,
+    CmdSpaceZooExchangeItemScRsp = 6746,
+    CmdSpaceZooOpCatteryCsReq = 6752,
+    CmdSpaceZooMutateCsReq = 6767,
+    CmdSpaceZooOpCatteryScRsp = 6774,
+    CmdSpaceZooBornCsReq = 6784,
+    CmdSpaceZooDeleteCatScRsp = 6793,
+    CmdSpaceZooDataScRsp = 6795,
+    CmdSpaceZooTakeScRsp = 6796,
 }
 impl CmdSpaceZooType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -11327,46 +11476,46 @@ impl CmdSpaceZooType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdSpaceZooType::None => "CmdSpaceZooTypeNone",
-            CmdSpaceZooType::CmdSpaceZooBornCsReq => "CmdSpaceZooBornCsReq",
-            CmdSpaceZooType::CmdSpaceZooDeleteCatScRsp => "CmdSpaceZooDeleteCatScRsp",
-            CmdSpaceZooType::CmdSpaceZooDataScRsp => "CmdSpaceZooDataScRsp",
-            CmdSpaceZooType::CmdSpaceZooExchangeItemScRsp => {
-                "CmdSpaceZooExchangeItemScRsp"
-            }
-            CmdSpaceZooType::CmdSpaceZooOpCatteryCsReq => "CmdSpaceZooOpCatteryCsReq",
-            CmdSpaceZooType::CmdSpaceZooOpCatteryScRsp => "CmdSpaceZooOpCatteryScRsp",
-            CmdSpaceZooType::CmdSpaceZooMutateCsReq => "CmdSpaceZooMutateCsReq",
+            CmdSpaceZooType::CmdSpaceZooDeleteCatCsReq => "CmdSpaceZooDeleteCatCsReq",
+            CmdSpaceZooType::CmdSpaceZooTakeCsReq => "CmdSpaceZooTakeCsReq",
             CmdSpaceZooType::CmdSpaceZooBornScRsp => "CmdSpaceZooBornScRsp",
-            CmdSpaceZooType::CmdSpaceZooCatUpdateNotify => "CmdSpaceZooCatUpdateNotify",
-            CmdSpaceZooType::CmdSpaceZooTakeScRsp => "CmdSpaceZooTakeScRsp",
             CmdSpaceZooType::CmdSpaceZooMutateScRsp => "CmdSpaceZooMutateScRsp",
+            CmdSpaceZooType::CmdSpaceZooCatUpdateNotify => "CmdSpaceZooCatUpdateNotify",
             CmdSpaceZooType::CmdSpaceZooDataCsReq => "CmdSpaceZooDataCsReq",
             CmdSpaceZooType::CmdSpaceZooExchangeItemCsReq => {
                 "CmdSpaceZooExchangeItemCsReq"
             }
-            CmdSpaceZooType::CmdSpaceZooTakeCsReq => "CmdSpaceZooTakeCsReq",
-            CmdSpaceZooType::CmdSpaceZooDeleteCatCsReq => "CmdSpaceZooDeleteCatCsReq",
+            CmdSpaceZooType::CmdSpaceZooExchangeItemScRsp => {
+                "CmdSpaceZooExchangeItemScRsp"
+            }
+            CmdSpaceZooType::CmdSpaceZooOpCatteryCsReq => "CmdSpaceZooOpCatteryCsReq",
+            CmdSpaceZooType::CmdSpaceZooMutateCsReq => "CmdSpaceZooMutateCsReq",
+            CmdSpaceZooType::CmdSpaceZooOpCatteryScRsp => "CmdSpaceZooOpCatteryScRsp",
+            CmdSpaceZooType::CmdSpaceZooBornCsReq => "CmdSpaceZooBornCsReq",
+            CmdSpaceZooType::CmdSpaceZooDeleteCatScRsp => "CmdSpaceZooDeleteCatScRsp",
+            CmdSpaceZooType::CmdSpaceZooDataScRsp => "CmdSpaceZooDataScRsp",
+            CmdSpaceZooType::CmdSpaceZooTakeScRsp => "CmdSpaceZooTakeScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdSpaceZooTypeNone" => Some(Self::None),
+            "CmdSpaceZooDeleteCatCsReq" => Some(Self::CmdSpaceZooDeleteCatCsReq),
+            "CmdSpaceZooTakeCsReq" => Some(Self::CmdSpaceZooTakeCsReq),
+            "CmdSpaceZooBornScRsp" => Some(Self::CmdSpaceZooBornScRsp),
+            "CmdSpaceZooMutateScRsp" => Some(Self::CmdSpaceZooMutateScRsp),
+            "CmdSpaceZooCatUpdateNotify" => Some(Self::CmdSpaceZooCatUpdateNotify),
+            "CmdSpaceZooDataCsReq" => Some(Self::CmdSpaceZooDataCsReq),
+            "CmdSpaceZooExchangeItemCsReq" => Some(Self::CmdSpaceZooExchangeItemCsReq),
+            "CmdSpaceZooExchangeItemScRsp" => Some(Self::CmdSpaceZooExchangeItemScRsp),
+            "CmdSpaceZooOpCatteryCsReq" => Some(Self::CmdSpaceZooOpCatteryCsReq),
+            "CmdSpaceZooMutateCsReq" => Some(Self::CmdSpaceZooMutateCsReq),
+            "CmdSpaceZooOpCatteryScRsp" => Some(Self::CmdSpaceZooOpCatteryScRsp),
             "CmdSpaceZooBornCsReq" => Some(Self::CmdSpaceZooBornCsReq),
             "CmdSpaceZooDeleteCatScRsp" => Some(Self::CmdSpaceZooDeleteCatScRsp),
             "CmdSpaceZooDataScRsp" => Some(Self::CmdSpaceZooDataScRsp),
-            "CmdSpaceZooExchangeItemScRsp" => Some(Self::CmdSpaceZooExchangeItemScRsp),
-            "CmdSpaceZooOpCatteryCsReq" => Some(Self::CmdSpaceZooOpCatteryCsReq),
-            "CmdSpaceZooOpCatteryScRsp" => Some(Self::CmdSpaceZooOpCatteryScRsp),
-            "CmdSpaceZooMutateCsReq" => Some(Self::CmdSpaceZooMutateCsReq),
-            "CmdSpaceZooBornScRsp" => Some(Self::CmdSpaceZooBornScRsp),
-            "CmdSpaceZooCatUpdateNotify" => Some(Self::CmdSpaceZooCatUpdateNotify),
             "CmdSpaceZooTakeScRsp" => Some(Self::CmdSpaceZooTakeScRsp),
-            "CmdSpaceZooMutateScRsp" => Some(Self::CmdSpaceZooMutateScRsp),
-            "CmdSpaceZooDataCsReq" => Some(Self::CmdSpaceZooDataCsReq),
-            "CmdSpaceZooExchangeItemCsReq" => Some(Self::CmdSpaceZooExchangeItemCsReq),
-            "CmdSpaceZooTakeCsReq" => Some(Self::CmdSpaceZooTakeCsReq),
-            "CmdSpaceZooDeleteCatCsReq" => Some(Self::CmdSpaceZooDeleteCatCsReq),
             _ => None,
         }
     }
@@ -11377,10 +11526,10 @@ impl CmdSpaceZooType {
 pub enum CmdStarFightType {
     None = 0,
     CmdStarFightDataChangeNotify = 7161,
-    CmdGetStarFightDataScRsp = 7165,
-    CmdGetStarFightDataCsReq = 7166,
+    CmdStartStarFightLevelCsReq = 7163,
     CmdStartStarFightLevelScRsp = 7168,
-    CmdStartStarFightLevelCsReq = 7169,
+    CmdGetStarFightDataCsReq = 7169,
+    CmdGetStarFightDataScRsp = 7170,
 }
 impl CmdStarFightType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -11393,14 +11542,14 @@ impl CmdStarFightType {
             CmdStarFightType::CmdStarFightDataChangeNotify => {
                 "CmdStarFightDataChangeNotify"
             }
-            CmdStarFightType::CmdGetStarFightDataScRsp => "CmdGetStarFightDataScRsp",
-            CmdStarFightType::CmdGetStarFightDataCsReq => "CmdGetStarFightDataCsReq",
-            CmdStarFightType::CmdStartStarFightLevelScRsp => {
-                "CmdStartStarFightLevelScRsp"
-            }
             CmdStarFightType::CmdStartStarFightLevelCsReq => {
                 "CmdStartStarFightLevelCsReq"
             }
+            CmdStarFightType::CmdStartStarFightLevelScRsp => {
+                "CmdStartStarFightLevelScRsp"
+            }
+            CmdStarFightType::CmdGetStarFightDataCsReq => "CmdGetStarFightDataCsReq",
+            CmdStarFightType::CmdGetStarFightDataScRsp => "CmdGetStarFightDataScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -11408,10 +11557,10 @@ impl CmdStarFightType {
         match value {
             "CmdStarFightTypeNone" => Some(Self::None),
             "CmdStarFightDataChangeNotify" => Some(Self::CmdStarFightDataChangeNotify),
-            "CmdGetStarFightDataScRsp" => Some(Self::CmdGetStarFightDataScRsp),
-            "CmdGetStarFightDataCsReq" => Some(Self::CmdGetStarFightDataCsReq),
-            "CmdStartStarFightLevelScRsp" => Some(Self::CmdStartStarFightLevelScRsp),
             "CmdStartStarFightLevelCsReq" => Some(Self::CmdStartStarFightLevelCsReq),
+            "CmdStartStarFightLevelScRsp" => Some(Self::CmdStartStarFightLevelScRsp),
+            "CmdGetStarFightDataCsReq" => Some(Self::CmdGetStarFightDataCsReq),
+            "CmdGetStarFightDataScRsp" => Some(Self::CmdGetStarFightDataScRsp),
             _ => None,
         }
     }
@@ -11421,11 +11570,11 @@ impl CmdStarFightType {
 #[repr(i32)]
 pub enum CmdStoryLineType {
     None = 0,
-    CmdStoryLineInfoScNotify = 6203,
-    CmdGetStoryLineInfoScRsp = 6220,
-    CmdStoryLineTrialAvatarChangeScNotify = 6234,
-    CmdChangeStoryLineFinishScNotify = 6253,
-    CmdGetStoryLineInfoCsReq = 6259,
+    CmdChangeStoryLineFinishScNotify = 6228,
+    CmdGetStoryLineInfoCsReq = 6236,
+    CmdStoryLineTrialAvatarChangeScNotify = 6252,
+    CmdStoryLineInfoScNotify = 6284,
+    CmdGetStoryLineInfoScRsp = 6295,
 }
 impl CmdStoryLineType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -11435,30 +11584,30 @@ impl CmdStoryLineType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdStoryLineType::None => "CmdStoryLineTypeNone",
-            CmdStoryLineType::CmdStoryLineInfoScNotify => "CmdStoryLineInfoScNotify",
-            CmdStoryLineType::CmdGetStoryLineInfoScRsp => "CmdGetStoryLineInfoScRsp",
-            CmdStoryLineType::CmdStoryLineTrialAvatarChangeScNotify => {
-                "CmdStoryLineTrialAvatarChangeScNotify"
-            }
             CmdStoryLineType::CmdChangeStoryLineFinishScNotify => {
                 "CmdChangeStoryLineFinishScNotify"
             }
             CmdStoryLineType::CmdGetStoryLineInfoCsReq => "CmdGetStoryLineInfoCsReq",
+            CmdStoryLineType::CmdStoryLineTrialAvatarChangeScNotify => {
+                "CmdStoryLineTrialAvatarChangeScNotify"
+            }
+            CmdStoryLineType::CmdStoryLineInfoScNotify => "CmdStoryLineInfoScNotify",
+            CmdStoryLineType::CmdGetStoryLineInfoScRsp => "CmdGetStoryLineInfoScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdStoryLineTypeNone" => Some(Self::None),
-            "CmdStoryLineInfoScNotify" => Some(Self::CmdStoryLineInfoScNotify),
-            "CmdGetStoryLineInfoScRsp" => Some(Self::CmdGetStoryLineInfoScRsp),
-            "CmdStoryLineTrialAvatarChangeScNotify" => {
-                Some(Self::CmdStoryLineTrialAvatarChangeScNotify)
-            }
             "CmdChangeStoryLineFinishScNotify" => {
                 Some(Self::CmdChangeStoryLineFinishScNotify)
             }
             "CmdGetStoryLineInfoCsReq" => Some(Self::CmdGetStoryLineInfoCsReq),
+            "CmdStoryLineTrialAvatarChangeScNotify" => {
+                Some(Self::CmdStoryLineTrialAvatarChangeScNotify)
+            }
+            "CmdStoryLineInfoScNotify" => Some(Self::CmdStoryLineInfoScNotify),
+            "CmdGetStoryLineInfoScRsp" => Some(Self::CmdGetStoryLineInfoScRsp),
             _ => None,
         }
     }
@@ -11468,11 +11617,11 @@ impl CmdStoryLineType {
 #[repr(i32)]
 pub enum CmdStrongChallengeActivityType {
     None = 0,
-    CmdEnterStrongChallengeActivityStageCsReq = 6603,
-    CmdGetStrongChallengeActivityDataScRsp = 6620,
-    CmdStrongChallengeActivityBattleEndScNotify = 6639,
-    CmdEnterStrongChallengeActivityStageScRsp = 6646,
-    CmdGetStrongChallengeActivityDataCsReq = 6659,
+    CmdEnterStrongChallengeActivityStageScRsp = 6627,
+    CmdGetStrongChallengeActivityDataCsReq = 6636,
+    CmdStrongChallengeActivityBattleEndScNotify = 6667,
+    CmdEnterStrongChallengeActivityStageCsReq = 6684,
+    CmdGetStrongChallengeActivityDataScRsp = 6695,
 }
 impl CmdStrongChallengeActivityType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -11482,20 +11631,20 @@ impl CmdStrongChallengeActivityType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdStrongChallengeActivityType::None => "CmdStrongChallengeActivityTypeNone",
-            CmdStrongChallengeActivityType::CmdEnterStrongChallengeActivityStageCsReq => {
-                "CmdEnterStrongChallengeActivityStageCsReq"
-            }
-            CmdStrongChallengeActivityType::CmdGetStrongChallengeActivityDataScRsp => {
-                "CmdGetStrongChallengeActivityDataScRsp"
-            }
-            CmdStrongChallengeActivityType::CmdStrongChallengeActivityBattleEndScNotify => {
-                "CmdStrongChallengeActivityBattleEndScNotify"
-            }
             CmdStrongChallengeActivityType::CmdEnterStrongChallengeActivityStageScRsp => {
                 "CmdEnterStrongChallengeActivityStageScRsp"
             }
             CmdStrongChallengeActivityType::CmdGetStrongChallengeActivityDataCsReq => {
                 "CmdGetStrongChallengeActivityDataCsReq"
+            }
+            CmdStrongChallengeActivityType::CmdStrongChallengeActivityBattleEndScNotify => {
+                "CmdStrongChallengeActivityBattleEndScNotify"
+            }
+            CmdStrongChallengeActivityType::CmdEnterStrongChallengeActivityStageCsReq => {
+                "CmdEnterStrongChallengeActivityStageCsReq"
+            }
+            CmdStrongChallengeActivityType::CmdGetStrongChallengeActivityDataScRsp => {
+                "CmdGetStrongChallengeActivityDataScRsp"
             }
         }
     }
@@ -11503,20 +11652,20 @@ impl CmdStrongChallengeActivityType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdStrongChallengeActivityTypeNone" => Some(Self::None),
-            "CmdEnterStrongChallengeActivityStageCsReq" => {
-                Some(Self::CmdEnterStrongChallengeActivityStageCsReq)
-            }
-            "CmdGetStrongChallengeActivityDataScRsp" => {
-                Some(Self::CmdGetStrongChallengeActivityDataScRsp)
-            }
-            "CmdStrongChallengeActivityBattleEndScNotify" => {
-                Some(Self::CmdStrongChallengeActivityBattleEndScNotify)
-            }
             "CmdEnterStrongChallengeActivityStageScRsp" => {
                 Some(Self::CmdEnterStrongChallengeActivityStageScRsp)
             }
             "CmdGetStrongChallengeActivityDataCsReq" => {
                 Some(Self::CmdGetStrongChallengeActivityDataCsReq)
+            }
+            "CmdStrongChallengeActivityBattleEndScNotify" => {
+                Some(Self::CmdStrongChallengeActivityBattleEndScNotify)
+            }
+            "CmdEnterStrongChallengeActivityStageCsReq" => {
+                Some(Self::CmdEnterStrongChallengeActivityStageCsReq)
+            }
+            "CmdGetStrongChallengeActivityDataScRsp" => {
+                Some(Self::CmdGetStrongChallengeActivityDataScRsp)
             }
             _ => None,
         }
@@ -11528,10 +11677,10 @@ impl CmdStrongChallengeActivityType {
 pub enum CmdSummonActivityType {
     None = 0,
     CmdSummonActivityBattleEndScNotify = 7561,
-    CmdGetSummonActivityDataScRsp = 7565,
-    CmdGetSummonActivityDataCsReq = 7566,
+    CmdEnterSummonActivityStageCsReq = 7563,
     CmdEnterSummonActivityStageScRsp = 7568,
-    CmdEnterSummonActivityStageCsReq = 7569,
+    CmdGetSummonActivityDataCsReq = 7569,
+    CmdGetSummonActivityDataScRsp = 7570,
 }
 impl CmdSummonActivityType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -11544,17 +11693,17 @@ impl CmdSummonActivityType {
             CmdSummonActivityType::CmdSummonActivityBattleEndScNotify => {
                 "CmdSummonActivityBattleEndScNotify"
             }
-            CmdSummonActivityType::CmdGetSummonActivityDataScRsp => {
-                "CmdGetSummonActivityDataScRsp"
-            }
-            CmdSummonActivityType::CmdGetSummonActivityDataCsReq => {
-                "CmdGetSummonActivityDataCsReq"
+            CmdSummonActivityType::CmdEnterSummonActivityStageCsReq => {
+                "CmdEnterSummonActivityStageCsReq"
             }
             CmdSummonActivityType::CmdEnterSummonActivityStageScRsp => {
                 "CmdEnterSummonActivityStageScRsp"
             }
-            CmdSummonActivityType::CmdEnterSummonActivityStageCsReq => {
-                "CmdEnterSummonActivityStageCsReq"
+            CmdSummonActivityType::CmdGetSummonActivityDataCsReq => {
+                "CmdGetSummonActivityDataCsReq"
+            }
+            CmdSummonActivityType::CmdGetSummonActivityDataScRsp => {
+                "CmdGetSummonActivityDataScRsp"
             }
         }
     }
@@ -11565,14 +11714,72 @@ impl CmdSummonActivityType {
             "CmdSummonActivityBattleEndScNotify" => {
                 Some(Self::CmdSummonActivityBattleEndScNotify)
             }
-            "CmdGetSummonActivityDataScRsp" => Some(Self::CmdGetSummonActivityDataScRsp),
-            "CmdGetSummonActivityDataCsReq" => Some(Self::CmdGetSummonActivityDataCsReq),
-            "CmdEnterSummonActivityStageScRsp" => {
-                Some(Self::CmdEnterSummonActivityStageScRsp)
-            }
             "CmdEnterSummonActivityStageCsReq" => {
                 Some(Self::CmdEnterSummonActivityStageCsReq)
             }
+            "CmdEnterSummonActivityStageScRsp" => {
+                Some(Self::CmdEnterSummonActivityStageScRsp)
+            }
+            "CmdGetSummonActivityDataCsReq" => Some(Self::CmdGetSummonActivityDataCsReq),
+            "CmdGetSummonActivityDataScRsp" => Some(Self::CmdGetSummonActivityDataScRsp),
+            _ => None,
+        }
+    }
+}
+#[derive(proto_derive::CmdID)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CmdSwitchHandType {
+    None = 0,
+    CmdSwitchHandCoinUpdateCsReq = 8102,
+    CmdSwitchHandStartScRsp = 8103,
+    CmdSwitchHandUpdateCsReq = 8105,
+    CmdSwitchHandFinishScRsp = 8106,
+    CmdSwitchHandStartCsReq = 8107,
+    CmdSwitchHandCoinUpdateScRsp = 8108,
+    CmdSwitchHandUpdateScRsp = 8110,
+    CmdSwitchHandDataScRsp = 8115,
+    CmdSwitchHandFinishCsReq = 8117,
+    CmdSwitchHandDataCsReq = 8120,
+}
+impl CmdSwitchHandType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            CmdSwitchHandType::None => "CmdSwitchHandTypeNone",
+            CmdSwitchHandType::CmdSwitchHandCoinUpdateCsReq => {
+                "CmdSwitchHandCoinUpdateCsReq"
+            }
+            CmdSwitchHandType::CmdSwitchHandStartScRsp => "CmdSwitchHandStartScRsp",
+            CmdSwitchHandType::CmdSwitchHandUpdateCsReq => "CmdSwitchHandUpdateCsReq",
+            CmdSwitchHandType::CmdSwitchHandFinishScRsp => "CmdSwitchHandFinishScRsp",
+            CmdSwitchHandType::CmdSwitchHandStartCsReq => "CmdSwitchHandStartCsReq",
+            CmdSwitchHandType::CmdSwitchHandCoinUpdateScRsp => {
+                "CmdSwitchHandCoinUpdateScRsp"
+            }
+            CmdSwitchHandType::CmdSwitchHandUpdateScRsp => "CmdSwitchHandUpdateScRsp",
+            CmdSwitchHandType::CmdSwitchHandDataScRsp => "CmdSwitchHandDataScRsp",
+            CmdSwitchHandType::CmdSwitchHandFinishCsReq => "CmdSwitchHandFinishCsReq",
+            CmdSwitchHandType::CmdSwitchHandDataCsReq => "CmdSwitchHandDataCsReq",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CmdSwitchHandTypeNone" => Some(Self::None),
+            "CmdSwitchHandCoinUpdateCsReq" => Some(Self::CmdSwitchHandCoinUpdateCsReq),
+            "CmdSwitchHandStartScRsp" => Some(Self::CmdSwitchHandStartScRsp),
+            "CmdSwitchHandUpdateCsReq" => Some(Self::CmdSwitchHandUpdateCsReq),
+            "CmdSwitchHandFinishScRsp" => Some(Self::CmdSwitchHandFinishScRsp),
+            "CmdSwitchHandStartCsReq" => Some(Self::CmdSwitchHandStartCsReq),
+            "CmdSwitchHandCoinUpdateScRsp" => Some(Self::CmdSwitchHandCoinUpdateScRsp),
+            "CmdSwitchHandUpdateScRsp" => Some(Self::CmdSwitchHandUpdateScRsp),
+            "CmdSwitchHandDataScRsp" => Some(Self::CmdSwitchHandDataScRsp),
+            "CmdSwitchHandFinishCsReq" => Some(Self::CmdSwitchHandFinishCsReq),
+            "CmdSwitchHandDataCsReq" => Some(Self::CmdSwitchHandDataCsReq),
             _ => None,
         }
     }
@@ -11582,42 +11789,42 @@ impl CmdSummonActivityType {
 #[repr(i32)]
 pub enum CmdSwordTrainingType {
     None = 0,
-    CmdSwordTrainingRestoreGameScRsp = 7451,
-    CmdSwordTrainingUnlockSyncScNotify = 7452,
+    CmdSwordTrainingStoryBattleScRsp = 7451,
     CmdSwordTrainingResumeGameCsReq = 7453,
-    CmdSwordTrainingStoryBattleCsReq = 7454,
-    CmdSwordTrainingStoryConfirmCsReq = 7455,
-    CmdSwordTrainingDialogueSelectOptionScRsp = 7458,
-    CmdSwordTrainingRestoreGameCsReq = 7459,
-    CmdSwordTrainingSetSkillTraceScRsp = 7461,
-    CmdGetSwordTrainingDataScRsp = 7462,
-    CmdSwordTrainingMarkEndingViewedScRsp = 7464,
-    CmdSwordTrainingGameSyncChangeScNotify = 7465,
-    CmdGetSwordTrainingDataCsReq = 7466,
-    CmdSwordTrainingSelectEndingCsReq = 7467,
+    CmdSwordTrainingLearnSkillScRsp = 7454,
+    CmdSwordTrainingUnlockSyncScNotify = 7455,
+    CmdSwordTrainingStoryConfirmCsReq = 7456,
+    CmdSwordTrainingMarkEndingViewedCsReq = 7457,
+    CmdSwordTrainingDailyPhaseConfirmScRsp = 7459,
+    CmdSwordTrainingStartGameScRsp = 7461,
+    CmdSwordTrainingGameSyncChangeScNotify = 7462,
+    CmdEnterSwordTrainingExamScRsp = 7463,
+    CmdSwordTrainingTurnActionScRsp = 7465,
+    CmdSwordTrainingLearnSkillCsReq = 7467,
     CmdSwordTrainingGiveUpGameCsReq = 7468,
-    CmdSwordTrainingStartGameScRsp = 7470,
-    CmdSwordTrainingActionTurnSettleScNotify = 7471,
-    CmdSwordTrainingDialogueSelectOptionCsReq = 7473,
-    CmdSwordTrainingTurnActionCsReq = 7474,
-    CmdSwordTrainingGameSettleScNotify = 7476,
-    CmdSwordTrainingExamResultConfirmCsReq = 7479,
-    CmdSwordTrainingStoryConfirmScRsp = 7481,
-    CmdSwordTrainingGiveUpGameScRsp = 7482,
-    CmdSwordTrainingLearnSkillScRsp = 7483,
-    CmdEnterSwordTrainingExamCsReq = 7484,
-    CmdSwordTrainingDailyPhaseConfirmCsReq = 7487,
-    CmdSwordTrainingExamResultConfirmScRsp = 7488,
-    CmdSwordTrainingLearnSkillCsReq = 7489,
-    CmdSwordTrainingDailyPhaseConfirmScRsp = 7490,
-    CmdSwordTrainingSelectEndingScRsp = 7491,
-    CmdSwordTrainingTurnActionScRsp = 7492,
-    CmdSwordTrainingStartGameCsReq = 7494,
-    CmdSwordTrainingMarkEndingViewedCsReq = 7495,
-    CmdSwordTrainingResumeGameScRsp = 7497,
-    CmdSwordTrainingStoryBattleScRsp = 7498,
-    CmdEnterSwordTrainingExamScRsp = 7499,
-    CmdSwordTrainingSetSkillTraceCsReq = 7500,
+    CmdSwordTrainingRestoreGameScRsp = 7469,
+    CmdSwordTrainingGiveUpGameScRsp = 7472,
+    CmdSwordTrainingTurnActionCsReq = 7473,
+    CmdSwordTrainingSelectEndingScRsp = 7475,
+    CmdSwordTrainingMarkEndingViewedScRsp = 7476,
+    CmdSwordTrainingSetSkillTraceScRsp = 7477,
+    CmdSwordTrainingSelectEndingCsReq = 7479,
+    CmdGetSwordTrainingDataScRsp = 7480,
+    CmdSwordTrainingStoryBattleCsReq = 7481,
+    CmdSwordTrainingExamResultConfirmScRsp = 7483,
+    CmdSwordTrainingRestoreGameCsReq = 7484,
+    CmdSwordTrainingStoryConfirmScRsp = 7485,
+    CmdSwordTrainingResumeGameScRsp = 7486,
+    CmdSwordTrainingActionTurnSettleScNotify = 7487,
+    CmdSwordTrainingExamResultConfirmCsReq = 7488,
+    CmdSwordTrainingSetSkillTraceCsReq = 7489,
+    CmdSwordTrainingStartGameCsReq = 7490,
+    CmdSwordTrainingGameSettleScNotify = 7492,
+    CmdSwordTrainingDialogueSelectOptionCsReq = 7493,
+    CmdSwordTrainingDialogueSelectOptionScRsp = 7497,
+    CmdEnterSwordTrainingExamCsReq = 7498,
+    CmdSwordTrainingDailyPhaseConfirmCsReq = 7499,
+    CmdGetSwordTrainingDataCsReq = 7500,
 }
 impl CmdSwordTrainingType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -11627,74 +11834,104 @@ impl CmdSwordTrainingType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdSwordTrainingType::None => "CmdSwordTrainingTypeNone",
-            CmdSwordTrainingType::CmdSwordTrainingRestoreGameScRsp => {
-                "CmdSwordTrainingRestoreGameScRsp"
-            }
-            CmdSwordTrainingType::CmdSwordTrainingUnlockSyncScNotify => {
-                "CmdSwordTrainingUnlockSyncScNotify"
+            CmdSwordTrainingType::CmdSwordTrainingStoryBattleScRsp => {
+                "CmdSwordTrainingStoryBattleScRsp"
             }
             CmdSwordTrainingType::CmdSwordTrainingResumeGameCsReq => {
                 "CmdSwordTrainingResumeGameCsReq"
             }
-            CmdSwordTrainingType::CmdSwordTrainingStoryBattleCsReq => {
-                "CmdSwordTrainingStoryBattleCsReq"
+            CmdSwordTrainingType::CmdSwordTrainingLearnSkillScRsp => {
+                "CmdSwordTrainingLearnSkillScRsp"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingUnlockSyncScNotify => {
+                "CmdSwordTrainingUnlockSyncScNotify"
             }
             CmdSwordTrainingType::CmdSwordTrainingStoryConfirmCsReq => {
                 "CmdSwordTrainingStoryConfirmCsReq"
             }
-            CmdSwordTrainingType::CmdSwordTrainingDialogueSelectOptionScRsp => {
-                "CmdSwordTrainingDialogueSelectOptionScRsp"
+            CmdSwordTrainingType::CmdSwordTrainingMarkEndingViewedCsReq => {
+                "CmdSwordTrainingMarkEndingViewedCsReq"
             }
-            CmdSwordTrainingType::CmdSwordTrainingRestoreGameCsReq => {
-                "CmdSwordTrainingRestoreGameCsReq"
-            }
-            CmdSwordTrainingType::CmdSwordTrainingSetSkillTraceScRsp => {
-                "CmdSwordTrainingSetSkillTraceScRsp"
-            }
-            CmdSwordTrainingType::CmdGetSwordTrainingDataScRsp => {
-                "CmdGetSwordTrainingDataScRsp"
-            }
-            CmdSwordTrainingType::CmdSwordTrainingMarkEndingViewedScRsp => {
-                "CmdSwordTrainingMarkEndingViewedScRsp"
-            }
-            CmdSwordTrainingType::CmdSwordTrainingGameSyncChangeScNotify => {
-                "CmdSwordTrainingGameSyncChangeScNotify"
-            }
-            CmdSwordTrainingType::CmdGetSwordTrainingDataCsReq => {
-                "CmdGetSwordTrainingDataCsReq"
-            }
-            CmdSwordTrainingType::CmdSwordTrainingSelectEndingCsReq => {
-                "CmdSwordTrainingSelectEndingCsReq"
-            }
-            CmdSwordTrainingType::CmdSwordTrainingGiveUpGameCsReq => {
-                "CmdSwordTrainingGiveUpGameCsReq"
+            CmdSwordTrainingType::CmdSwordTrainingDailyPhaseConfirmScRsp => {
+                "CmdSwordTrainingDailyPhaseConfirmScRsp"
             }
             CmdSwordTrainingType::CmdSwordTrainingStartGameScRsp => {
                 "CmdSwordTrainingStartGameScRsp"
             }
-            CmdSwordTrainingType::CmdSwordTrainingActionTurnSettleScNotify => {
-                "CmdSwordTrainingActionTurnSettleScNotify"
+            CmdSwordTrainingType::CmdSwordTrainingGameSyncChangeScNotify => {
+                "CmdSwordTrainingGameSyncChangeScNotify"
             }
-            CmdSwordTrainingType::CmdSwordTrainingDialogueSelectOptionCsReq => {
-                "CmdSwordTrainingDialogueSelectOptionCsReq"
+            CmdSwordTrainingType::CmdEnterSwordTrainingExamScRsp => {
+                "CmdEnterSwordTrainingExamScRsp"
             }
-            CmdSwordTrainingType::CmdSwordTrainingTurnActionCsReq => {
-                "CmdSwordTrainingTurnActionCsReq"
+            CmdSwordTrainingType::CmdSwordTrainingTurnActionScRsp => {
+                "CmdSwordTrainingTurnActionScRsp"
             }
-            CmdSwordTrainingType::CmdSwordTrainingGameSettleScNotify => {
-                "CmdSwordTrainingGameSettleScNotify"
+            CmdSwordTrainingType::CmdSwordTrainingLearnSkillCsReq => {
+                "CmdSwordTrainingLearnSkillCsReq"
             }
-            CmdSwordTrainingType::CmdSwordTrainingExamResultConfirmCsReq => {
-                "CmdSwordTrainingExamResultConfirmCsReq"
+            CmdSwordTrainingType::CmdSwordTrainingGiveUpGameCsReq => {
+                "CmdSwordTrainingGiveUpGameCsReq"
             }
-            CmdSwordTrainingType::CmdSwordTrainingStoryConfirmScRsp => {
-                "CmdSwordTrainingStoryConfirmScRsp"
+            CmdSwordTrainingType::CmdSwordTrainingRestoreGameScRsp => {
+                "CmdSwordTrainingRestoreGameScRsp"
             }
             CmdSwordTrainingType::CmdSwordTrainingGiveUpGameScRsp => {
                 "CmdSwordTrainingGiveUpGameScRsp"
             }
-            CmdSwordTrainingType::CmdSwordTrainingLearnSkillScRsp => {
-                "CmdSwordTrainingLearnSkillScRsp"
+            CmdSwordTrainingType::CmdSwordTrainingTurnActionCsReq => {
+                "CmdSwordTrainingTurnActionCsReq"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingSelectEndingScRsp => {
+                "CmdSwordTrainingSelectEndingScRsp"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingMarkEndingViewedScRsp => {
+                "CmdSwordTrainingMarkEndingViewedScRsp"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingSetSkillTraceScRsp => {
+                "CmdSwordTrainingSetSkillTraceScRsp"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingSelectEndingCsReq => {
+                "CmdSwordTrainingSelectEndingCsReq"
+            }
+            CmdSwordTrainingType::CmdGetSwordTrainingDataScRsp => {
+                "CmdGetSwordTrainingDataScRsp"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingStoryBattleCsReq => {
+                "CmdSwordTrainingStoryBattleCsReq"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingExamResultConfirmScRsp => {
+                "CmdSwordTrainingExamResultConfirmScRsp"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingRestoreGameCsReq => {
+                "CmdSwordTrainingRestoreGameCsReq"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingStoryConfirmScRsp => {
+                "CmdSwordTrainingStoryConfirmScRsp"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingResumeGameScRsp => {
+                "CmdSwordTrainingResumeGameScRsp"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingActionTurnSettleScNotify => {
+                "CmdSwordTrainingActionTurnSettleScNotify"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingExamResultConfirmCsReq => {
+                "CmdSwordTrainingExamResultConfirmCsReq"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingSetSkillTraceCsReq => {
+                "CmdSwordTrainingSetSkillTraceCsReq"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingStartGameCsReq => {
+                "CmdSwordTrainingStartGameCsReq"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingGameSettleScNotify => {
+                "CmdSwordTrainingGameSettleScNotify"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingDialogueSelectOptionCsReq => {
+                "CmdSwordTrainingDialogueSelectOptionCsReq"
+            }
+            CmdSwordTrainingType::CmdSwordTrainingDialogueSelectOptionScRsp => {
+                "CmdSwordTrainingDialogueSelectOptionScRsp"
             }
             CmdSwordTrainingType::CmdEnterSwordTrainingExamCsReq => {
                 "CmdEnterSwordTrainingExamCsReq"
@@ -11702,38 +11939,8 @@ impl CmdSwordTrainingType {
             CmdSwordTrainingType::CmdSwordTrainingDailyPhaseConfirmCsReq => {
                 "CmdSwordTrainingDailyPhaseConfirmCsReq"
             }
-            CmdSwordTrainingType::CmdSwordTrainingExamResultConfirmScRsp => {
-                "CmdSwordTrainingExamResultConfirmScRsp"
-            }
-            CmdSwordTrainingType::CmdSwordTrainingLearnSkillCsReq => {
-                "CmdSwordTrainingLearnSkillCsReq"
-            }
-            CmdSwordTrainingType::CmdSwordTrainingDailyPhaseConfirmScRsp => {
-                "CmdSwordTrainingDailyPhaseConfirmScRsp"
-            }
-            CmdSwordTrainingType::CmdSwordTrainingSelectEndingScRsp => {
-                "CmdSwordTrainingSelectEndingScRsp"
-            }
-            CmdSwordTrainingType::CmdSwordTrainingTurnActionScRsp => {
-                "CmdSwordTrainingTurnActionScRsp"
-            }
-            CmdSwordTrainingType::CmdSwordTrainingStartGameCsReq => {
-                "CmdSwordTrainingStartGameCsReq"
-            }
-            CmdSwordTrainingType::CmdSwordTrainingMarkEndingViewedCsReq => {
-                "CmdSwordTrainingMarkEndingViewedCsReq"
-            }
-            CmdSwordTrainingType::CmdSwordTrainingResumeGameScRsp => {
-                "CmdSwordTrainingResumeGameScRsp"
-            }
-            CmdSwordTrainingType::CmdSwordTrainingStoryBattleScRsp => {
-                "CmdSwordTrainingStoryBattleScRsp"
-            }
-            CmdSwordTrainingType::CmdEnterSwordTrainingExamScRsp => {
-                "CmdEnterSwordTrainingExamScRsp"
-            }
-            CmdSwordTrainingType::CmdSwordTrainingSetSkillTraceCsReq => {
-                "CmdSwordTrainingSetSkillTraceCsReq"
+            CmdSwordTrainingType::CmdGetSwordTrainingDataCsReq => {
+                "CmdGetSwordTrainingDataCsReq"
             }
         }
     }
@@ -11741,70 +11948,102 @@ impl CmdSwordTrainingType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdSwordTrainingTypeNone" => Some(Self::None),
-            "CmdSwordTrainingRestoreGameScRsp" => {
-                Some(Self::CmdSwordTrainingRestoreGameScRsp)
-            }
-            "CmdSwordTrainingUnlockSyncScNotify" => {
-                Some(Self::CmdSwordTrainingUnlockSyncScNotify)
+            "CmdSwordTrainingStoryBattleScRsp" => {
+                Some(Self::CmdSwordTrainingStoryBattleScRsp)
             }
             "CmdSwordTrainingResumeGameCsReq" => {
                 Some(Self::CmdSwordTrainingResumeGameCsReq)
             }
-            "CmdSwordTrainingStoryBattleCsReq" => {
-                Some(Self::CmdSwordTrainingStoryBattleCsReq)
+            "CmdSwordTrainingLearnSkillScRsp" => {
+                Some(Self::CmdSwordTrainingLearnSkillScRsp)
+            }
+            "CmdSwordTrainingUnlockSyncScNotify" => {
+                Some(Self::CmdSwordTrainingUnlockSyncScNotify)
             }
             "CmdSwordTrainingStoryConfirmCsReq" => {
                 Some(Self::CmdSwordTrainingStoryConfirmCsReq)
             }
-            "CmdSwordTrainingDialogueSelectOptionScRsp" => {
-                Some(Self::CmdSwordTrainingDialogueSelectOptionScRsp)
+            "CmdSwordTrainingMarkEndingViewedCsReq" => {
+                Some(Self::CmdSwordTrainingMarkEndingViewedCsReq)
             }
-            "CmdSwordTrainingRestoreGameCsReq" => {
-                Some(Self::CmdSwordTrainingRestoreGameCsReq)
-            }
-            "CmdSwordTrainingSetSkillTraceScRsp" => {
-                Some(Self::CmdSwordTrainingSetSkillTraceScRsp)
-            }
-            "CmdGetSwordTrainingDataScRsp" => Some(Self::CmdGetSwordTrainingDataScRsp),
-            "CmdSwordTrainingMarkEndingViewedScRsp" => {
-                Some(Self::CmdSwordTrainingMarkEndingViewedScRsp)
-            }
-            "CmdSwordTrainingGameSyncChangeScNotify" => {
-                Some(Self::CmdSwordTrainingGameSyncChangeScNotify)
-            }
-            "CmdGetSwordTrainingDataCsReq" => Some(Self::CmdGetSwordTrainingDataCsReq),
-            "CmdSwordTrainingSelectEndingCsReq" => {
-                Some(Self::CmdSwordTrainingSelectEndingCsReq)
-            }
-            "CmdSwordTrainingGiveUpGameCsReq" => {
-                Some(Self::CmdSwordTrainingGiveUpGameCsReq)
+            "CmdSwordTrainingDailyPhaseConfirmScRsp" => {
+                Some(Self::CmdSwordTrainingDailyPhaseConfirmScRsp)
             }
             "CmdSwordTrainingStartGameScRsp" => {
                 Some(Self::CmdSwordTrainingStartGameScRsp)
             }
-            "CmdSwordTrainingActionTurnSettleScNotify" => {
-                Some(Self::CmdSwordTrainingActionTurnSettleScNotify)
+            "CmdSwordTrainingGameSyncChangeScNotify" => {
+                Some(Self::CmdSwordTrainingGameSyncChangeScNotify)
             }
-            "CmdSwordTrainingDialogueSelectOptionCsReq" => {
-                Some(Self::CmdSwordTrainingDialogueSelectOptionCsReq)
+            "CmdEnterSwordTrainingExamScRsp" => {
+                Some(Self::CmdEnterSwordTrainingExamScRsp)
             }
-            "CmdSwordTrainingTurnActionCsReq" => {
-                Some(Self::CmdSwordTrainingTurnActionCsReq)
+            "CmdSwordTrainingTurnActionScRsp" => {
+                Some(Self::CmdSwordTrainingTurnActionScRsp)
             }
-            "CmdSwordTrainingGameSettleScNotify" => {
-                Some(Self::CmdSwordTrainingGameSettleScNotify)
+            "CmdSwordTrainingLearnSkillCsReq" => {
+                Some(Self::CmdSwordTrainingLearnSkillCsReq)
             }
-            "CmdSwordTrainingExamResultConfirmCsReq" => {
-                Some(Self::CmdSwordTrainingExamResultConfirmCsReq)
+            "CmdSwordTrainingGiveUpGameCsReq" => {
+                Some(Self::CmdSwordTrainingGiveUpGameCsReq)
             }
-            "CmdSwordTrainingStoryConfirmScRsp" => {
-                Some(Self::CmdSwordTrainingStoryConfirmScRsp)
+            "CmdSwordTrainingRestoreGameScRsp" => {
+                Some(Self::CmdSwordTrainingRestoreGameScRsp)
             }
             "CmdSwordTrainingGiveUpGameScRsp" => {
                 Some(Self::CmdSwordTrainingGiveUpGameScRsp)
             }
-            "CmdSwordTrainingLearnSkillScRsp" => {
-                Some(Self::CmdSwordTrainingLearnSkillScRsp)
+            "CmdSwordTrainingTurnActionCsReq" => {
+                Some(Self::CmdSwordTrainingTurnActionCsReq)
+            }
+            "CmdSwordTrainingSelectEndingScRsp" => {
+                Some(Self::CmdSwordTrainingSelectEndingScRsp)
+            }
+            "CmdSwordTrainingMarkEndingViewedScRsp" => {
+                Some(Self::CmdSwordTrainingMarkEndingViewedScRsp)
+            }
+            "CmdSwordTrainingSetSkillTraceScRsp" => {
+                Some(Self::CmdSwordTrainingSetSkillTraceScRsp)
+            }
+            "CmdSwordTrainingSelectEndingCsReq" => {
+                Some(Self::CmdSwordTrainingSelectEndingCsReq)
+            }
+            "CmdGetSwordTrainingDataScRsp" => Some(Self::CmdGetSwordTrainingDataScRsp),
+            "CmdSwordTrainingStoryBattleCsReq" => {
+                Some(Self::CmdSwordTrainingStoryBattleCsReq)
+            }
+            "CmdSwordTrainingExamResultConfirmScRsp" => {
+                Some(Self::CmdSwordTrainingExamResultConfirmScRsp)
+            }
+            "CmdSwordTrainingRestoreGameCsReq" => {
+                Some(Self::CmdSwordTrainingRestoreGameCsReq)
+            }
+            "CmdSwordTrainingStoryConfirmScRsp" => {
+                Some(Self::CmdSwordTrainingStoryConfirmScRsp)
+            }
+            "CmdSwordTrainingResumeGameScRsp" => {
+                Some(Self::CmdSwordTrainingResumeGameScRsp)
+            }
+            "CmdSwordTrainingActionTurnSettleScNotify" => {
+                Some(Self::CmdSwordTrainingActionTurnSettleScNotify)
+            }
+            "CmdSwordTrainingExamResultConfirmCsReq" => {
+                Some(Self::CmdSwordTrainingExamResultConfirmCsReq)
+            }
+            "CmdSwordTrainingSetSkillTraceCsReq" => {
+                Some(Self::CmdSwordTrainingSetSkillTraceCsReq)
+            }
+            "CmdSwordTrainingStartGameCsReq" => {
+                Some(Self::CmdSwordTrainingStartGameCsReq)
+            }
+            "CmdSwordTrainingGameSettleScNotify" => {
+                Some(Self::CmdSwordTrainingGameSettleScNotify)
+            }
+            "CmdSwordTrainingDialogueSelectOptionCsReq" => {
+                Some(Self::CmdSwordTrainingDialogueSelectOptionCsReq)
+            }
+            "CmdSwordTrainingDialogueSelectOptionScRsp" => {
+                Some(Self::CmdSwordTrainingDialogueSelectOptionScRsp)
             }
             "CmdEnterSwordTrainingExamCsReq" => {
                 Some(Self::CmdEnterSwordTrainingExamCsReq)
@@ -11812,39 +12051,7 @@ impl CmdSwordTrainingType {
             "CmdSwordTrainingDailyPhaseConfirmCsReq" => {
                 Some(Self::CmdSwordTrainingDailyPhaseConfirmCsReq)
             }
-            "CmdSwordTrainingExamResultConfirmScRsp" => {
-                Some(Self::CmdSwordTrainingExamResultConfirmScRsp)
-            }
-            "CmdSwordTrainingLearnSkillCsReq" => {
-                Some(Self::CmdSwordTrainingLearnSkillCsReq)
-            }
-            "CmdSwordTrainingDailyPhaseConfirmScRsp" => {
-                Some(Self::CmdSwordTrainingDailyPhaseConfirmScRsp)
-            }
-            "CmdSwordTrainingSelectEndingScRsp" => {
-                Some(Self::CmdSwordTrainingSelectEndingScRsp)
-            }
-            "CmdSwordTrainingTurnActionScRsp" => {
-                Some(Self::CmdSwordTrainingTurnActionScRsp)
-            }
-            "CmdSwordTrainingStartGameCsReq" => {
-                Some(Self::CmdSwordTrainingStartGameCsReq)
-            }
-            "CmdSwordTrainingMarkEndingViewedCsReq" => {
-                Some(Self::CmdSwordTrainingMarkEndingViewedCsReq)
-            }
-            "CmdSwordTrainingResumeGameScRsp" => {
-                Some(Self::CmdSwordTrainingResumeGameScRsp)
-            }
-            "CmdSwordTrainingStoryBattleScRsp" => {
-                Some(Self::CmdSwordTrainingStoryBattleScRsp)
-            }
-            "CmdEnterSwordTrainingExamScRsp" => {
-                Some(Self::CmdEnterSwordTrainingExamScRsp)
-            }
-            "CmdSwordTrainingSetSkillTraceCsReq" => {
-                Some(Self::CmdSwordTrainingSetSkillTraceCsReq)
-            }
+            "CmdGetSwordTrainingDataCsReq" => Some(Self::CmdGetSwordTrainingDataCsReq),
             _ => None,
         }
     }
@@ -11854,7 +12061,7 @@ impl CmdSwordTrainingType {
 #[repr(i32)]
 pub enum CmdPlayerSync {
     None = 0,
-    ScNotify = 659,
+    ScNotify = 636,
 }
 impl CmdPlayerSync {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -11881,20 +12088,20 @@ impl CmdPlayerSync {
 #[repr(i32)]
 pub enum CmdTalkRewardType {
     None = 0,
-    CmdTakeTalkRewardCsReq = 2103,
-    CmdSelectInclinationTextScRsp = 2116,
-    CmdGetNpcTakenRewardScRsp = 2120,
-    CmdFinishFirstTalkByPerformanceNpcCsReq = 2130,
-    CmdFinishFirstTalkNpcCsReq = 2134,
-    CmdFinishFirstTalkNpcScRsp = 2137,
-    CmdGetFirstTalkNpcCsReq = 2139,
-    CmdTakeTalkRewardScRsp = 2146,
-    CmdGetFirstTalkByPerformanceNpcCsReq = 2147,
-    CmdGetFirstTalkNpcScRsp = 2153,
-    CmdGetNpcTakenRewardCsReq = 2159,
-    CmdGetFirstTalkByPerformanceNpcScRsp = 2174,
-    CmdFinishFirstTalkByPerformanceNpcScRsp = 2175,
-    CmdSelectInclinationTextCsReq = 2180,
+    CmdSelectInclinationTextCsReq = 2124,
+    CmdFinishFirstTalkByPerformanceNpcScRsp = 2125,
+    CmdTakeTalkRewardScRsp = 2127,
+    CmdGetFirstTalkNpcScRsp = 2128,
+    CmdGetFirstTalkByPerformanceNpcCsReq = 2134,
+    CmdGetNpcTakenRewardCsReq = 2136,
+    CmdGetFirstTalkByPerformanceNpcScRsp = 2143,
+    CmdFinishFirstTalkByPerformanceNpcCsReq = 2146,
+    CmdFinishFirstTalkNpcCsReq = 2152,
+    CmdGetFirstTalkNpcCsReq = 2167,
+    CmdFinishFirstTalkNpcScRsp = 2174,
+    CmdTakeTalkRewardCsReq = 2184,
+    CmdSelectInclinationTextScRsp = 2193,
+    CmdGetNpcTakenRewardScRsp = 2195,
 }
 impl CmdTalkRewardType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -11904,60 +12111,137 @@ impl CmdTalkRewardType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdTalkRewardType::None => "CmdTalkRewardTypeNone",
+            CmdTalkRewardType::CmdSelectInclinationTextCsReq => {
+                "CmdSelectInclinationTextCsReq"
+            }
+            CmdTalkRewardType::CmdFinishFirstTalkByPerformanceNpcScRsp => {
+                "CmdFinishFirstTalkByPerformanceNpcScRsp"
+            }
+            CmdTalkRewardType::CmdTakeTalkRewardScRsp => "CmdTakeTalkRewardScRsp",
+            CmdTalkRewardType::CmdGetFirstTalkNpcScRsp => "CmdGetFirstTalkNpcScRsp",
+            CmdTalkRewardType::CmdGetFirstTalkByPerformanceNpcCsReq => {
+                "CmdGetFirstTalkByPerformanceNpcCsReq"
+            }
+            CmdTalkRewardType::CmdGetNpcTakenRewardCsReq => "CmdGetNpcTakenRewardCsReq",
+            CmdTalkRewardType::CmdGetFirstTalkByPerformanceNpcScRsp => {
+                "CmdGetFirstTalkByPerformanceNpcScRsp"
+            }
+            CmdTalkRewardType::CmdFinishFirstTalkByPerformanceNpcCsReq => {
+                "CmdFinishFirstTalkByPerformanceNpcCsReq"
+            }
+            CmdTalkRewardType::CmdFinishFirstTalkNpcCsReq => "CmdFinishFirstTalkNpcCsReq",
+            CmdTalkRewardType::CmdGetFirstTalkNpcCsReq => "CmdGetFirstTalkNpcCsReq",
+            CmdTalkRewardType::CmdFinishFirstTalkNpcScRsp => "CmdFinishFirstTalkNpcScRsp",
             CmdTalkRewardType::CmdTakeTalkRewardCsReq => "CmdTakeTalkRewardCsReq",
             CmdTalkRewardType::CmdSelectInclinationTextScRsp => {
                 "CmdSelectInclinationTextScRsp"
             }
             CmdTalkRewardType::CmdGetNpcTakenRewardScRsp => "CmdGetNpcTakenRewardScRsp",
-            CmdTalkRewardType::CmdFinishFirstTalkByPerformanceNpcCsReq => {
-                "CmdFinishFirstTalkByPerformanceNpcCsReq"
-            }
-            CmdTalkRewardType::CmdFinishFirstTalkNpcCsReq => "CmdFinishFirstTalkNpcCsReq",
-            CmdTalkRewardType::CmdFinishFirstTalkNpcScRsp => "CmdFinishFirstTalkNpcScRsp",
-            CmdTalkRewardType::CmdGetFirstTalkNpcCsReq => "CmdGetFirstTalkNpcCsReq",
-            CmdTalkRewardType::CmdTakeTalkRewardScRsp => "CmdTakeTalkRewardScRsp",
-            CmdTalkRewardType::CmdGetFirstTalkByPerformanceNpcCsReq => {
-                "CmdGetFirstTalkByPerformanceNpcCsReq"
-            }
-            CmdTalkRewardType::CmdGetFirstTalkNpcScRsp => "CmdGetFirstTalkNpcScRsp",
-            CmdTalkRewardType::CmdGetNpcTakenRewardCsReq => "CmdGetNpcTakenRewardCsReq",
-            CmdTalkRewardType::CmdGetFirstTalkByPerformanceNpcScRsp => {
-                "CmdGetFirstTalkByPerformanceNpcScRsp"
-            }
-            CmdTalkRewardType::CmdFinishFirstTalkByPerformanceNpcScRsp => {
-                "CmdFinishFirstTalkByPerformanceNpcScRsp"
-            }
-            CmdTalkRewardType::CmdSelectInclinationTextCsReq => {
-                "CmdSelectInclinationTextCsReq"
-            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdTalkRewardTypeNone" => Some(Self::None),
-            "CmdTakeTalkRewardCsReq" => Some(Self::CmdTakeTalkRewardCsReq),
-            "CmdSelectInclinationTextScRsp" => Some(Self::CmdSelectInclinationTextScRsp),
-            "CmdGetNpcTakenRewardScRsp" => Some(Self::CmdGetNpcTakenRewardScRsp),
-            "CmdFinishFirstTalkByPerformanceNpcCsReq" => {
-                Some(Self::CmdFinishFirstTalkByPerformanceNpcCsReq)
+            "CmdSelectInclinationTextCsReq" => Some(Self::CmdSelectInclinationTextCsReq),
+            "CmdFinishFirstTalkByPerformanceNpcScRsp" => {
+                Some(Self::CmdFinishFirstTalkByPerformanceNpcScRsp)
             }
-            "CmdFinishFirstTalkNpcCsReq" => Some(Self::CmdFinishFirstTalkNpcCsReq),
-            "CmdFinishFirstTalkNpcScRsp" => Some(Self::CmdFinishFirstTalkNpcScRsp),
-            "CmdGetFirstTalkNpcCsReq" => Some(Self::CmdGetFirstTalkNpcCsReq),
             "CmdTakeTalkRewardScRsp" => Some(Self::CmdTakeTalkRewardScRsp),
+            "CmdGetFirstTalkNpcScRsp" => Some(Self::CmdGetFirstTalkNpcScRsp),
             "CmdGetFirstTalkByPerformanceNpcCsReq" => {
                 Some(Self::CmdGetFirstTalkByPerformanceNpcCsReq)
             }
-            "CmdGetFirstTalkNpcScRsp" => Some(Self::CmdGetFirstTalkNpcScRsp),
             "CmdGetNpcTakenRewardCsReq" => Some(Self::CmdGetNpcTakenRewardCsReq),
             "CmdGetFirstTalkByPerformanceNpcScRsp" => {
                 Some(Self::CmdGetFirstTalkByPerformanceNpcScRsp)
             }
-            "CmdFinishFirstTalkByPerformanceNpcScRsp" => {
-                Some(Self::CmdFinishFirstTalkByPerformanceNpcScRsp)
+            "CmdFinishFirstTalkByPerformanceNpcCsReq" => {
+                Some(Self::CmdFinishFirstTalkByPerformanceNpcCsReq)
             }
-            "CmdSelectInclinationTextCsReq" => Some(Self::CmdSelectInclinationTextCsReq),
+            "CmdFinishFirstTalkNpcCsReq" => Some(Self::CmdFinishFirstTalkNpcCsReq),
+            "CmdGetFirstTalkNpcCsReq" => Some(Self::CmdGetFirstTalkNpcCsReq),
+            "CmdFinishFirstTalkNpcScRsp" => Some(Self::CmdFinishFirstTalkNpcScRsp),
+            "CmdTakeTalkRewardCsReq" => Some(Self::CmdTakeTalkRewardCsReq),
+            "CmdSelectInclinationTextScRsp" => Some(Self::CmdSelectInclinationTextScRsp),
+            "CmdGetNpcTakenRewardScRsp" => Some(Self::CmdGetNpcTakenRewardScRsp),
+            _ => None,
+        }
+    }
+}
+#[derive(proto_derive::CmdID)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CmdTarotBookType {
+    None = 0,
+    CmdTarotBookModifyEnergyScNotify = 8142,
+    CmdTarotBookOpenPackScRsp = 8143,
+    CmdTarotBookFinishStoryCsReq = 8145,
+    CmdTarotBookUnlockStoryScRsp = 8146,
+    CmdTarotBookOpenPackCsReq = 8147,
+    CmdTarotBookFinishInteractionCsReq = 8148,
+    CmdTarotBookFinishStoryScRsp = 8150,
+    CmdTarotBookFinishInteractionScRsp = 8152,
+    CmdTarotBookGetDataScRsp = 8155,
+    CmdTarotBookUnlockStoryCsReq = 8157,
+    CmdTarotBookGetDataCsReq = 8160,
+}
+impl CmdTarotBookType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            CmdTarotBookType::None => "CmdTarotBookTypeNone",
+            CmdTarotBookType::CmdTarotBookModifyEnergyScNotify => {
+                "CmdTarotBookModifyEnergyScNotify"
+            }
+            CmdTarotBookType::CmdTarotBookOpenPackScRsp => "CmdTarotBookOpenPackScRsp",
+            CmdTarotBookType::CmdTarotBookFinishStoryCsReq => {
+                "CmdTarotBookFinishStoryCsReq"
+            }
+            CmdTarotBookType::CmdTarotBookUnlockStoryScRsp => {
+                "CmdTarotBookUnlockStoryScRsp"
+            }
+            CmdTarotBookType::CmdTarotBookOpenPackCsReq => "CmdTarotBookOpenPackCsReq",
+            CmdTarotBookType::CmdTarotBookFinishInteractionCsReq => {
+                "CmdTarotBookFinishInteractionCsReq"
+            }
+            CmdTarotBookType::CmdTarotBookFinishStoryScRsp => {
+                "CmdTarotBookFinishStoryScRsp"
+            }
+            CmdTarotBookType::CmdTarotBookFinishInteractionScRsp => {
+                "CmdTarotBookFinishInteractionScRsp"
+            }
+            CmdTarotBookType::CmdTarotBookGetDataScRsp => "CmdTarotBookGetDataScRsp",
+            CmdTarotBookType::CmdTarotBookUnlockStoryCsReq => {
+                "CmdTarotBookUnlockStoryCsReq"
+            }
+            CmdTarotBookType::CmdTarotBookGetDataCsReq => "CmdTarotBookGetDataCsReq",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CmdTarotBookTypeNone" => Some(Self::None),
+            "CmdTarotBookModifyEnergyScNotify" => {
+                Some(Self::CmdTarotBookModifyEnergyScNotify)
+            }
+            "CmdTarotBookOpenPackScRsp" => Some(Self::CmdTarotBookOpenPackScRsp),
+            "CmdTarotBookFinishStoryCsReq" => Some(Self::CmdTarotBookFinishStoryCsReq),
+            "CmdTarotBookUnlockStoryScRsp" => Some(Self::CmdTarotBookUnlockStoryScRsp),
+            "CmdTarotBookOpenPackCsReq" => Some(Self::CmdTarotBookOpenPackCsReq),
+            "CmdTarotBookFinishInteractionCsReq" => {
+                Some(Self::CmdTarotBookFinishInteractionCsReq)
+            }
+            "CmdTarotBookFinishStoryScRsp" => Some(Self::CmdTarotBookFinishStoryScRsp),
+            "CmdTarotBookFinishInteractionScRsp" => {
+                Some(Self::CmdTarotBookFinishInteractionScRsp)
+            }
+            "CmdTarotBookGetDataScRsp" => Some(Self::CmdTarotBookGetDataScRsp),
+            "CmdTarotBookUnlockStoryCsReq" => Some(Self::CmdTarotBookUnlockStoryCsReq),
+            "CmdTarotBookGetDataCsReq" => Some(Self::CmdTarotBookGetDataCsReq),
             _ => None,
         }
     }
@@ -11967,12 +12251,12 @@ impl CmdTalkRewardType {
 #[repr(i32)]
 pub enum CmdTelevisionActivityType {
     None = 0,
-    CmdTelevisionActivityBattleEndScNotify = 6963,
-    CmdGetTelevisionActivityDataCsReq = 6965,
-    CmdGetTelevisionActivityDataScRsp = 6968,
-    CmdEnterTelevisionActivityStageCsReq = 6970,
-    CmdEnterTelevisionActivityStageScRsp = 6972,
-    CmdTelevisionActivityDataChangeScNotify = 6975,
+    CmdEnterTelevisionActivityStageCsReq = 6963,
+    CmdTelevisionActivityBattleEndScNotify = 6966,
+    CmdTelevisionActivityDataChangeScNotify = 6967,
+    CmdGetTelevisionActivityDataScRsp = 6975,
+    CmdEnterTelevisionActivityStageScRsp = 6977,
+    CmdGetTelevisionActivityDataCsReq = 6980,
 }
 impl CmdTelevisionActivityType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -11982,23 +12266,23 @@ impl CmdTelevisionActivityType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdTelevisionActivityType::None => "CmdTelevisionActivityTypeNone",
+            CmdTelevisionActivityType::CmdEnterTelevisionActivityStageCsReq => {
+                "CmdEnterTelevisionActivityStageCsReq"
+            }
             CmdTelevisionActivityType::CmdTelevisionActivityBattleEndScNotify => {
                 "CmdTelevisionActivityBattleEndScNotify"
             }
-            CmdTelevisionActivityType::CmdGetTelevisionActivityDataCsReq => {
-                "CmdGetTelevisionActivityDataCsReq"
+            CmdTelevisionActivityType::CmdTelevisionActivityDataChangeScNotify => {
+                "CmdTelevisionActivityDataChangeScNotify"
             }
             CmdTelevisionActivityType::CmdGetTelevisionActivityDataScRsp => {
                 "CmdGetTelevisionActivityDataScRsp"
             }
-            CmdTelevisionActivityType::CmdEnterTelevisionActivityStageCsReq => {
-                "CmdEnterTelevisionActivityStageCsReq"
-            }
             CmdTelevisionActivityType::CmdEnterTelevisionActivityStageScRsp => {
                 "CmdEnterTelevisionActivityStageScRsp"
             }
-            CmdTelevisionActivityType::CmdTelevisionActivityDataChangeScNotify => {
-                "CmdTelevisionActivityDataChangeScNotify"
+            CmdTelevisionActivityType::CmdGetTelevisionActivityDataCsReq => {
+                "CmdGetTelevisionActivityDataCsReq"
             }
         }
     }
@@ -12006,23 +12290,23 @@ impl CmdTelevisionActivityType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdTelevisionActivityTypeNone" => Some(Self::None),
+            "CmdEnterTelevisionActivityStageCsReq" => {
+                Some(Self::CmdEnterTelevisionActivityStageCsReq)
+            }
             "CmdTelevisionActivityBattleEndScNotify" => {
                 Some(Self::CmdTelevisionActivityBattleEndScNotify)
             }
-            "CmdGetTelevisionActivityDataCsReq" => {
-                Some(Self::CmdGetTelevisionActivityDataCsReq)
+            "CmdTelevisionActivityDataChangeScNotify" => {
+                Some(Self::CmdTelevisionActivityDataChangeScNotify)
             }
             "CmdGetTelevisionActivityDataScRsp" => {
                 Some(Self::CmdGetTelevisionActivityDataScRsp)
             }
-            "CmdEnterTelevisionActivityStageCsReq" => {
-                Some(Self::CmdEnterTelevisionActivityStageCsReq)
-            }
             "CmdEnterTelevisionActivityStageScRsp" => {
                 Some(Self::CmdEnterTelevisionActivityStageScRsp)
             }
-            "CmdTelevisionActivityDataChangeScNotify" => {
-                Some(Self::CmdTelevisionActivityDataChangeScNotify)
+            "CmdGetTelevisionActivityDataCsReq" => {
+                Some(Self::CmdGetTelevisionActivityDataCsReq)
             }
             _ => None,
         }
@@ -12033,12 +12317,12 @@ impl CmdTelevisionActivityType {
 #[repr(i32)]
 pub enum CmdTextJoinType {
     None = 0,
-    CmdTextJoinQueryCsReq = 3803,
-    CmdTextJoinSaveScRsp = 3820,
-    CmdTextJoinBatchSaveCsReq = 3839,
-    CmdTextJoinQueryScRsp = 3846,
-    CmdTextJoinBatchSaveScRsp = 3853,
-    CmdTextJoinSaveCsReq = 3859,
+    CmdTextJoinQueryScRsp = 3827,
+    CmdTextJoinBatchSaveScRsp = 3828,
+    CmdTextJoinSaveCsReq = 3836,
+    CmdTextJoinBatchSaveCsReq = 3867,
+    CmdTextJoinQueryCsReq = 3884,
+    CmdTextJoinSaveScRsp = 3895,
 }
 impl CmdTextJoinType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -12048,24 +12332,24 @@ impl CmdTextJoinType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdTextJoinType::None => "CmdTextJoinTypeNone",
-            CmdTextJoinType::CmdTextJoinQueryCsReq => "CmdTextJoinQueryCsReq",
-            CmdTextJoinType::CmdTextJoinSaveScRsp => "CmdTextJoinSaveScRsp",
-            CmdTextJoinType::CmdTextJoinBatchSaveCsReq => "CmdTextJoinBatchSaveCsReq",
             CmdTextJoinType::CmdTextJoinQueryScRsp => "CmdTextJoinQueryScRsp",
             CmdTextJoinType::CmdTextJoinBatchSaveScRsp => "CmdTextJoinBatchSaveScRsp",
             CmdTextJoinType::CmdTextJoinSaveCsReq => "CmdTextJoinSaveCsReq",
+            CmdTextJoinType::CmdTextJoinBatchSaveCsReq => "CmdTextJoinBatchSaveCsReq",
+            CmdTextJoinType::CmdTextJoinQueryCsReq => "CmdTextJoinQueryCsReq",
+            CmdTextJoinType::CmdTextJoinSaveScRsp => "CmdTextJoinSaveScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdTextJoinTypeNone" => Some(Self::None),
-            "CmdTextJoinQueryCsReq" => Some(Self::CmdTextJoinQueryCsReq),
-            "CmdTextJoinSaveScRsp" => Some(Self::CmdTextJoinSaveScRsp),
-            "CmdTextJoinBatchSaveCsReq" => Some(Self::CmdTextJoinBatchSaveCsReq),
             "CmdTextJoinQueryScRsp" => Some(Self::CmdTextJoinQueryScRsp),
             "CmdTextJoinBatchSaveScRsp" => Some(Self::CmdTextJoinBatchSaveScRsp),
             "CmdTextJoinSaveCsReq" => Some(Self::CmdTextJoinSaveCsReq),
+            "CmdTextJoinBatchSaveCsReq" => Some(Self::CmdTextJoinBatchSaveCsReq),
+            "CmdTextJoinQueryCsReq" => Some(Self::CmdTextJoinQueryCsReq),
+            "CmdTextJoinSaveScRsp" => Some(Self::CmdTextJoinSaveScRsp),
             _ => None,
         }
     }
@@ -12076,13 +12360,13 @@ impl CmdTextJoinType {
 pub enum CmdTrackPhotoActivityType {
     None = 0,
     CmdStartTrackPhotoStageCsReq = 7551,
-    CmdStartTrackPhotoStageScRsp = 7552,
-    CmdGetTrackPhotoActivityDataScRsp = 7555,
-    CmdGetTrackPhotoActivityDataCsReq = 7556,
-    CmdQuitTrackPhotoStageScRsp = 7557,
+    CmdQuitTrackPhotoStageScRsp = 7552,
+    CmdSettleTrackPhotoStageCsReq = 7553,
+    CmdQuitTrackPhotoStageCsReq = 7554,
+    CmdStartTrackPhotoStageScRsp = 7555,
     CmdSettleTrackPhotoStageScRsp = 7558,
-    CmdSettleTrackPhotoStageCsReq = 7559,
-    CmdQuitTrackPhotoStageCsReq = 7560,
+    CmdGetTrackPhotoActivityDataCsReq = 7559,
+    CmdGetTrackPhotoActivityDataScRsp = 7560,
 }
 impl CmdTrackPhotoActivityType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -12095,26 +12379,26 @@ impl CmdTrackPhotoActivityType {
             CmdTrackPhotoActivityType::CmdStartTrackPhotoStageCsReq => {
                 "CmdStartTrackPhotoStageCsReq"
             }
-            CmdTrackPhotoActivityType::CmdStartTrackPhotoStageScRsp => {
-                "CmdStartTrackPhotoStageScRsp"
-            }
-            CmdTrackPhotoActivityType::CmdGetTrackPhotoActivityDataScRsp => {
-                "CmdGetTrackPhotoActivityDataScRsp"
-            }
-            CmdTrackPhotoActivityType::CmdGetTrackPhotoActivityDataCsReq => {
-                "CmdGetTrackPhotoActivityDataCsReq"
-            }
             CmdTrackPhotoActivityType::CmdQuitTrackPhotoStageScRsp => {
                 "CmdQuitTrackPhotoStageScRsp"
-            }
-            CmdTrackPhotoActivityType::CmdSettleTrackPhotoStageScRsp => {
-                "CmdSettleTrackPhotoStageScRsp"
             }
             CmdTrackPhotoActivityType::CmdSettleTrackPhotoStageCsReq => {
                 "CmdSettleTrackPhotoStageCsReq"
             }
             CmdTrackPhotoActivityType::CmdQuitTrackPhotoStageCsReq => {
                 "CmdQuitTrackPhotoStageCsReq"
+            }
+            CmdTrackPhotoActivityType::CmdStartTrackPhotoStageScRsp => {
+                "CmdStartTrackPhotoStageScRsp"
+            }
+            CmdTrackPhotoActivityType::CmdSettleTrackPhotoStageScRsp => {
+                "CmdSettleTrackPhotoStageScRsp"
+            }
+            CmdTrackPhotoActivityType::CmdGetTrackPhotoActivityDataCsReq => {
+                "CmdGetTrackPhotoActivityDataCsReq"
+            }
+            CmdTrackPhotoActivityType::CmdGetTrackPhotoActivityDataScRsp => {
+                "CmdGetTrackPhotoActivityDataScRsp"
             }
         }
     }
@@ -12123,17 +12407,17 @@ impl CmdTrackPhotoActivityType {
         match value {
             "CmdTrackPhotoActivityTypeNone" => Some(Self::None),
             "CmdStartTrackPhotoStageCsReq" => Some(Self::CmdStartTrackPhotoStageCsReq),
+            "CmdQuitTrackPhotoStageScRsp" => Some(Self::CmdQuitTrackPhotoStageScRsp),
+            "CmdSettleTrackPhotoStageCsReq" => Some(Self::CmdSettleTrackPhotoStageCsReq),
+            "CmdQuitTrackPhotoStageCsReq" => Some(Self::CmdQuitTrackPhotoStageCsReq),
             "CmdStartTrackPhotoStageScRsp" => Some(Self::CmdStartTrackPhotoStageScRsp),
-            "CmdGetTrackPhotoActivityDataScRsp" => {
-                Some(Self::CmdGetTrackPhotoActivityDataScRsp)
-            }
+            "CmdSettleTrackPhotoStageScRsp" => Some(Self::CmdSettleTrackPhotoStageScRsp),
             "CmdGetTrackPhotoActivityDataCsReq" => {
                 Some(Self::CmdGetTrackPhotoActivityDataCsReq)
             }
-            "CmdQuitTrackPhotoStageScRsp" => Some(Self::CmdQuitTrackPhotoStageScRsp),
-            "CmdSettleTrackPhotoStageScRsp" => Some(Self::CmdSettleTrackPhotoStageScRsp),
-            "CmdSettleTrackPhotoStageCsReq" => Some(Self::CmdSettleTrackPhotoStageCsReq),
-            "CmdQuitTrackPhotoStageCsReq" => Some(Self::CmdQuitTrackPhotoStageCsReq),
+            "CmdGetTrackPhotoActivityDataScRsp" => {
+                Some(Self::CmdGetTrackPhotoActivityDataScRsp)
+            }
             _ => None,
         }
     }
@@ -12143,35 +12427,33 @@ impl CmdTrackPhotoActivityType {
 #[repr(i32)]
 pub enum CmdTrainPartyType {
     None = 0,
-    CmdTrainPartyUseCardCsReq = 8003,
-    CmdTrainPartyGamePlayStartCsReq = 8009,
+    CmdTrainPartyBuildDiyScRsp = 8005,
+    CmdTrainPartyEnterScRsp = 8007,
     CmdTrainPartyUpdatePosEnvCsReq = 8010,
     CmdTrainPartyAddBuildDynamicBuffScRsp = 8013,
-    CmdTrainPartyGetDataScRsp = 8020,
-    CmdTrainPartyEnterScRsp = 8025,
-    CmdTrainPartyAddBuildDynamicBuffCsReq = 8026,
-    CmdTrainPartyLeaveCsReq = 8029,
-    CmdTrainPartyBuildStartStepCsReq = 8030,
-    CmdTrainPartyLeaveScRsp = 8033,
-    CmdTrainPartySettleNotify = 8034,
-    CmdTrainPartyTakeBuildLevelAwardCsReq = 8036,
-    CmdTrainPartyMoveScNotify = 8039,
-    CmdTrainPartyUseCardScRsp = 8046,
-    CmdTrainPartyHandlePendingActionCsReq = 8047,
-    CmdTrainPartyBuildDiyCsReq = 8048,
-    CmdTrainPartyGetDataCsReq = 8059,
-    CmdTrainPartyEnterCsReq = 8061,
-    CmdTrainPartyGamePlaySettleNotify = 8064,
-    CmdTrainPartyTakeBuildLevelAwardScRsp = 8065,
-    CmdTrainPartyUpdatePosEnvScRsp = 8070,
-    CmdTrainPartyHandlePendingActionScRsp = 8074,
-    CmdTrainPartyBuildStartStepScRsp = 8075,
-    CmdTrainPartyBuildingUpdateNotify = 8079,
-    CmdTrainPartySyncUpdateScNotify = 8080,
-    CmdTrainPartyUnlockBuildAreaCsReq = 8083,
-    CmdTrainPartyBuildDiyScRsp = 8090,
-    CmdTrainPartyGamePlayStartScRsp = 8093,
-    CmdTrainPartyUnlockBuildAreaScRsp = 8099,
+    CmdTrainPartyAddBuildDynamicBuffCsReq = 8017,
+    CmdTrainPartySyncUpdateScNotify = 8024,
+    CmdTrainPartyBuildStartStepScRsp = 8025,
+    CmdTrainPartyEnterCsReq = 8026,
+    CmdTrainPartyUseCardScRsp = 8027,
+    CmdTrainPartyHandlePendingActionCsReq = 8034,
+    CmdTrainPartyTakeBuildLevelAwardCsReq = 8035,
+    CmdTrainPartyGetDataCsReq = 8036,
+    CmdTrainPartyHandlePendingActionScRsp = 8043,
+    CmdTrainPartyBuildStartStepCsReq = 8046,
+    CmdTrainPartyGamePlayStartScRsp = 8048,
+    CmdTrainPartyGamePlayStartCsReq = 8050,
+    CmdTrainPartySettleNotify = 8052,
+    CmdTrainPartyLeaveCsReq = 8053,
+    CmdTrainPartyMoveScNotify = 8067,
+    CmdTrainPartyTakeBuildLevelAwardScRsp = 8073,
+    CmdTrainPartyBuildingUpdateNotify = 8075,
+    CmdTrainPartyUpdatePosEnvScRsp = 8076,
+    CmdTrainPartyUseCardCsReq = 8084,
+    CmdTrainPartyGamePlaySettleNotify = 8088,
+    CmdTrainPartyLeaveScRsp = 8090,
+    CmdTrainPartyGetDataScRsp = 8095,
+    CmdTrainPartyBuildDiyCsReq = 8096,
 }
 impl CmdTrainPartyType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -12181,138 +12463,126 @@ impl CmdTrainPartyType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdTrainPartyType::None => "CmdTrainPartyTypeNone",
-            CmdTrainPartyType::CmdTrainPartyUseCardCsReq => "CmdTrainPartyUseCardCsReq",
-            CmdTrainPartyType::CmdTrainPartyGamePlayStartCsReq => {
-                "CmdTrainPartyGamePlayStartCsReq"
-            }
+            CmdTrainPartyType::CmdTrainPartyBuildDiyScRsp => "CmdTrainPartyBuildDiyScRsp",
+            CmdTrainPartyType::CmdTrainPartyEnterScRsp => "CmdTrainPartyEnterScRsp",
             CmdTrainPartyType::CmdTrainPartyUpdatePosEnvCsReq => {
                 "CmdTrainPartyUpdatePosEnvCsReq"
             }
             CmdTrainPartyType::CmdTrainPartyAddBuildDynamicBuffScRsp => {
                 "CmdTrainPartyAddBuildDynamicBuffScRsp"
             }
-            CmdTrainPartyType::CmdTrainPartyGetDataScRsp => "CmdTrainPartyGetDataScRsp",
-            CmdTrainPartyType::CmdTrainPartyEnterScRsp => "CmdTrainPartyEnterScRsp",
             CmdTrainPartyType::CmdTrainPartyAddBuildDynamicBuffCsReq => {
                 "CmdTrainPartyAddBuildDynamicBuffCsReq"
-            }
-            CmdTrainPartyType::CmdTrainPartyLeaveCsReq => "CmdTrainPartyLeaveCsReq",
-            CmdTrainPartyType::CmdTrainPartyBuildStartStepCsReq => {
-                "CmdTrainPartyBuildStartStepCsReq"
-            }
-            CmdTrainPartyType::CmdTrainPartyLeaveScRsp => "CmdTrainPartyLeaveScRsp",
-            CmdTrainPartyType::CmdTrainPartySettleNotify => "CmdTrainPartySettleNotify",
-            CmdTrainPartyType::CmdTrainPartyTakeBuildLevelAwardCsReq => {
-                "CmdTrainPartyTakeBuildLevelAwardCsReq"
-            }
-            CmdTrainPartyType::CmdTrainPartyMoveScNotify => "CmdTrainPartyMoveScNotify",
-            CmdTrainPartyType::CmdTrainPartyUseCardScRsp => "CmdTrainPartyUseCardScRsp",
-            CmdTrainPartyType::CmdTrainPartyHandlePendingActionCsReq => {
-                "CmdTrainPartyHandlePendingActionCsReq"
-            }
-            CmdTrainPartyType::CmdTrainPartyBuildDiyCsReq => "CmdTrainPartyBuildDiyCsReq",
-            CmdTrainPartyType::CmdTrainPartyGetDataCsReq => "CmdTrainPartyGetDataCsReq",
-            CmdTrainPartyType::CmdTrainPartyEnterCsReq => "CmdTrainPartyEnterCsReq",
-            CmdTrainPartyType::CmdTrainPartyGamePlaySettleNotify => {
-                "CmdTrainPartyGamePlaySettleNotify"
-            }
-            CmdTrainPartyType::CmdTrainPartyTakeBuildLevelAwardScRsp => {
-                "CmdTrainPartyTakeBuildLevelAwardScRsp"
-            }
-            CmdTrainPartyType::CmdTrainPartyUpdatePosEnvScRsp => {
-                "CmdTrainPartyUpdatePosEnvScRsp"
-            }
-            CmdTrainPartyType::CmdTrainPartyHandlePendingActionScRsp => {
-                "CmdTrainPartyHandlePendingActionScRsp"
-            }
-            CmdTrainPartyType::CmdTrainPartyBuildStartStepScRsp => {
-                "CmdTrainPartyBuildStartStepScRsp"
-            }
-            CmdTrainPartyType::CmdTrainPartyBuildingUpdateNotify => {
-                "CmdTrainPartyBuildingUpdateNotify"
             }
             CmdTrainPartyType::CmdTrainPartySyncUpdateScNotify => {
                 "CmdTrainPartySyncUpdateScNotify"
             }
-            CmdTrainPartyType::CmdTrainPartyUnlockBuildAreaCsReq => {
-                "CmdTrainPartyUnlockBuildAreaCsReq"
+            CmdTrainPartyType::CmdTrainPartyBuildStartStepScRsp => {
+                "CmdTrainPartyBuildStartStepScRsp"
             }
-            CmdTrainPartyType::CmdTrainPartyBuildDiyScRsp => "CmdTrainPartyBuildDiyScRsp",
+            CmdTrainPartyType::CmdTrainPartyEnterCsReq => "CmdTrainPartyEnterCsReq",
+            CmdTrainPartyType::CmdTrainPartyUseCardScRsp => "CmdTrainPartyUseCardScRsp",
+            CmdTrainPartyType::CmdTrainPartyHandlePendingActionCsReq => {
+                "CmdTrainPartyHandlePendingActionCsReq"
+            }
+            CmdTrainPartyType::CmdTrainPartyTakeBuildLevelAwardCsReq => {
+                "CmdTrainPartyTakeBuildLevelAwardCsReq"
+            }
+            CmdTrainPartyType::CmdTrainPartyGetDataCsReq => "CmdTrainPartyGetDataCsReq",
+            CmdTrainPartyType::CmdTrainPartyHandlePendingActionScRsp => {
+                "CmdTrainPartyHandlePendingActionScRsp"
+            }
+            CmdTrainPartyType::CmdTrainPartyBuildStartStepCsReq => {
+                "CmdTrainPartyBuildStartStepCsReq"
+            }
             CmdTrainPartyType::CmdTrainPartyGamePlayStartScRsp => {
                 "CmdTrainPartyGamePlayStartScRsp"
             }
-            CmdTrainPartyType::CmdTrainPartyUnlockBuildAreaScRsp => {
-                "CmdTrainPartyUnlockBuildAreaScRsp"
+            CmdTrainPartyType::CmdTrainPartyGamePlayStartCsReq => {
+                "CmdTrainPartyGamePlayStartCsReq"
             }
+            CmdTrainPartyType::CmdTrainPartySettleNotify => "CmdTrainPartySettleNotify",
+            CmdTrainPartyType::CmdTrainPartyLeaveCsReq => "CmdTrainPartyLeaveCsReq",
+            CmdTrainPartyType::CmdTrainPartyMoveScNotify => "CmdTrainPartyMoveScNotify",
+            CmdTrainPartyType::CmdTrainPartyTakeBuildLevelAwardScRsp => {
+                "CmdTrainPartyTakeBuildLevelAwardScRsp"
+            }
+            CmdTrainPartyType::CmdTrainPartyBuildingUpdateNotify => {
+                "CmdTrainPartyBuildingUpdateNotify"
+            }
+            CmdTrainPartyType::CmdTrainPartyUpdatePosEnvScRsp => {
+                "CmdTrainPartyUpdatePosEnvScRsp"
+            }
+            CmdTrainPartyType::CmdTrainPartyUseCardCsReq => "CmdTrainPartyUseCardCsReq",
+            CmdTrainPartyType::CmdTrainPartyGamePlaySettleNotify => {
+                "CmdTrainPartyGamePlaySettleNotify"
+            }
+            CmdTrainPartyType::CmdTrainPartyLeaveScRsp => "CmdTrainPartyLeaveScRsp",
+            CmdTrainPartyType::CmdTrainPartyGetDataScRsp => "CmdTrainPartyGetDataScRsp",
+            CmdTrainPartyType::CmdTrainPartyBuildDiyCsReq => "CmdTrainPartyBuildDiyCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdTrainPartyTypeNone" => Some(Self::None),
-            "CmdTrainPartyUseCardCsReq" => Some(Self::CmdTrainPartyUseCardCsReq),
-            "CmdTrainPartyGamePlayStartCsReq" => {
-                Some(Self::CmdTrainPartyGamePlayStartCsReq)
-            }
+            "CmdTrainPartyBuildDiyScRsp" => Some(Self::CmdTrainPartyBuildDiyScRsp),
+            "CmdTrainPartyEnterScRsp" => Some(Self::CmdTrainPartyEnterScRsp),
             "CmdTrainPartyUpdatePosEnvCsReq" => {
                 Some(Self::CmdTrainPartyUpdatePosEnvCsReq)
             }
             "CmdTrainPartyAddBuildDynamicBuffScRsp" => {
                 Some(Self::CmdTrainPartyAddBuildDynamicBuffScRsp)
             }
-            "CmdTrainPartyGetDataScRsp" => Some(Self::CmdTrainPartyGetDataScRsp),
-            "CmdTrainPartyEnterScRsp" => Some(Self::CmdTrainPartyEnterScRsp),
             "CmdTrainPartyAddBuildDynamicBuffCsReq" => {
                 Some(Self::CmdTrainPartyAddBuildDynamicBuffCsReq)
-            }
-            "CmdTrainPartyLeaveCsReq" => Some(Self::CmdTrainPartyLeaveCsReq),
-            "CmdTrainPartyBuildStartStepCsReq" => {
-                Some(Self::CmdTrainPartyBuildStartStepCsReq)
-            }
-            "CmdTrainPartyLeaveScRsp" => Some(Self::CmdTrainPartyLeaveScRsp),
-            "CmdTrainPartySettleNotify" => Some(Self::CmdTrainPartySettleNotify),
-            "CmdTrainPartyTakeBuildLevelAwardCsReq" => {
-                Some(Self::CmdTrainPartyTakeBuildLevelAwardCsReq)
-            }
-            "CmdTrainPartyMoveScNotify" => Some(Self::CmdTrainPartyMoveScNotify),
-            "CmdTrainPartyUseCardScRsp" => Some(Self::CmdTrainPartyUseCardScRsp),
-            "CmdTrainPartyHandlePendingActionCsReq" => {
-                Some(Self::CmdTrainPartyHandlePendingActionCsReq)
-            }
-            "CmdTrainPartyBuildDiyCsReq" => Some(Self::CmdTrainPartyBuildDiyCsReq),
-            "CmdTrainPartyGetDataCsReq" => Some(Self::CmdTrainPartyGetDataCsReq),
-            "CmdTrainPartyEnterCsReq" => Some(Self::CmdTrainPartyEnterCsReq),
-            "CmdTrainPartyGamePlaySettleNotify" => {
-                Some(Self::CmdTrainPartyGamePlaySettleNotify)
-            }
-            "CmdTrainPartyTakeBuildLevelAwardScRsp" => {
-                Some(Self::CmdTrainPartyTakeBuildLevelAwardScRsp)
-            }
-            "CmdTrainPartyUpdatePosEnvScRsp" => {
-                Some(Self::CmdTrainPartyUpdatePosEnvScRsp)
-            }
-            "CmdTrainPartyHandlePendingActionScRsp" => {
-                Some(Self::CmdTrainPartyHandlePendingActionScRsp)
-            }
-            "CmdTrainPartyBuildStartStepScRsp" => {
-                Some(Self::CmdTrainPartyBuildStartStepScRsp)
-            }
-            "CmdTrainPartyBuildingUpdateNotify" => {
-                Some(Self::CmdTrainPartyBuildingUpdateNotify)
             }
             "CmdTrainPartySyncUpdateScNotify" => {
                 Some(Self::CmdTrainPartySyncUpdateScNotify)
             }
-            "CmdTrainPartyUnlockBuildAreaCsReq" => {
-                Some(Self::CmdTrainPartyUnlockBuildAreaCsReq)
+            "CmdTrainPartyBuildStartStepScRsp" => {
+                Some(Self::CmdTrainPartyBuildStartStepScRsp)
             }
-            "CmdTrainPartyBuildDiyScRsp" => Some(Self::CmdTrainPartyBuildDiyScRsp),
+            "CmdTrainPartyEnterCsReq" => Some(Self::CmdTrainPartyEnterCsReq),
+            "CmdTrainPartyUseCardScRsp" => Some(Self::CmdTrainPartyUseCardScRsp),
+            "CmdTrainPartyHandlePendingActionCsReq" => {
+                Some(Self::CmdTrainPartyHandlePendingActionCsReq)
+            }
+            "CmdTrainPartyTakeBuildLevelAwardCsReq" => {
+                Some(Self::CmdTrainPartyTakeBuildLevelAwardCsReq)
+            }
+            "CmdTrainPartyGetDataCsReq" => Some(Self::CmdTrainPartyGetDataCsReq),
+            "CmdTrainPartyHandlePendingActionScRsp" => {
+                Some(Self::CmdTrainPartyHandlePendingActionScRsp)
+            }
+            "CmdTrainPartyBuildStartStepCsReq" => {
+                Some(Self::CmdTrainPartyBuildStartStepCsReq)
+            }
             "CmdTrainPartyGamePlayStartScRsp" => {
                 Some(Self::CmdTrainPartyGamePlayStartScRsp)
             }
-            "CmdTrainPartyUnlockBuildAreaScRsp" => {
-                Some(Self::CmdTrainPartyUnlockBuildAreaScRsp)
+            "CmdTrainPartyGamePlayStartCsReq" => {
+                Some(Self::CmdTrainPartyGamePlayStartCsReq)
             }
+            "CmdTrainPartySettleNotify" => Some(Self::CmdTrainPartySettleNotify),
+            "CmdTrainPartyLeaveCsReq" => Some(Self::CmdTrainPartyLeaveCsReq),
+            "CmdTrainPartyMoveScNotify" => Some(Self::CmdTrainPartyMoveScNotify),
+            "CmdTrainPartyTakeBuildLevelAwardScRsp" => {
+                Some(Self::CmdTrainPartyTakeBuildLevelAwardScRsp)
+            }
+            "CmdTrainPartyBuildingUpdateNotify" => {
+                Some(Self::CmdTrainPartyBuildingUpdateNotify)
+            }
+            "CmdTrainPartyUpdatePosEnvScRsp" => {
+                Some(Self::CmdTrainPartyUpdatePosEnvScRsp)
+            }
+            "CmdTrainPartyUseCardCsReq" => Some(Self::CmdTrainPartyUseCardCsReq),
+            "CmdTrainPartyGamePlaySettleNotify" => {
+                Some(Self::CmdTrainPartyGamePlaySettleNotify)
+            }
+            "CmdTrainPartyLeaveScRsp" => Some(Self::CmdTrainPartyLeaveScRsp),
+            "CmdTrainPartyGetDataScRsp" => Some(Self::CmdTrainPartyGetDataScRsp),
+            "CmdTrainPartyBuildDiyCsReq" => Some(Self::CmdTrainPartyBuildDiyCsReq),
             _ => None,
         }
     }
@@ -12322,18 +12592,18 @@ impl CmdTrainPartyType {
 #[repr(i32)]
 pub enum CmdTrainVisitorType {
     None = 0,
-    CmdGetTrainVisitorBehaviorCsReq = 3703,
-    CmdTakeTrainVisitorUntakenBehaviorRewardScRsp = 3716,
-    CmdTrainVisitorBehaviorFinishScRsp = 3720,
-    CmdGetTrainVisitorRegisterCsReq = 3734,
-    CmdGetTrainVisitorRegisterScRsp = 3737,
-    CmdTrainRefreshTimeNotify = 3739,
-    CmdGetTrainVisitorBehaviorScRsp = 3746,
-    CmdShowNewSupplementVisitorCsReq = 3747,
-    CmdTrainVisitorRewardSendNotify = 3753,
-    CmdTrainVisitorBehaviorFinishCsReq = 3759,
-    CmdShowNewSupplementVisitorScRsp = 3774,
-    CmdTakeTrainVisitorUntakenBehaviorRewardCsReq = 3780,
+    CmdTakeTrainVisitorUntakenBehaviorRewardCsReq = 3724,
+    CmdGetTrainVisitorBehaviorScRsp = 3727,
+    CmdTrainVisitorRewardSendNotify = 3728,
+    CmdShowNewSupplementVisitorCsReq = 3734,
+    CmdTrainVisitorBehaviorFinishCsReq = 3736,
+    CmdShowNewSupplementVisitorScRsp = 3743,
+    CmdGetTrainVisitorRegisterCsReq = 3752,
+    CmdTrainRefreshTimeNotify = 3767,
+    CmdGetTrainVisitorRegisterScRsp = 3774,
+    CmdGetTrainVisitorBehaviorCsReq = 3784,
+    CmdTakeTrainVisitorUntakenBehaviorRewardScRsp = 3793,
+    CmdTrainVisitorBehaviorFinishScRsp = 3795,
 }
 impl CmdTrainVisitorType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -12343,6 +12613,31 @@ impl CmdTrainVisitorType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdTrainVisitorType::None => "CmdTrainVisitorTypeNone",
+            CmdTrainVisitorType::CmdTakeTrainVisitorUntakenBehaviorRewardCsReq => {
+                "CmdTakeTrainVisitorUntakenBehaviorRewardCsReq"
+            }
+            CmdTrainVisitorType::CmdGetTrainVisitorBehaviorScRsp => {
+                "CmdGetTrainVisitorBehaviorScRsp"
+            }
+            CmdTrainVisitorType::CmdTrainVisitorRewardSendNotify => {
+                "CmdTrainVisitorRewardSendNotify"
+            }
+            CmdTrainVisitorType::CmdShowNewSupplementVisitorCsReq => {
+                "CmdShowNewSupplementVisitorCsReq"
+            }
+            CmdTrainVisitorType::CmdTrainVisitorBehaviorFinishCsReq => {
+                "CmdTrainVisitorBehaviorFinishCsReq"
+            }
+            CmdTrainVisitorType::CmdShowNewSupplementVisitorScRsp => {
+                "CmdShowNewSupplementVisitorScRsp"
+            }
+            CmdTrainVisitorType::CmdGetTrainVisitorRegisterCsReq => {
+                "CmdGetTrainVisitorRegisterCsReq"
+            }
+            CmdTrainVisitorType::CmdTrainRefreshTimeNotify => "CmdTrainRefreshTimeNotify",
+            CmdTrainVisitorType::CmdGetTrainVisitorRegisterScRsp => {
+                "CmdGetTrainVisitorRegisterScRsp"
+            }
             CmdTrainVisitorType::CmdGetTrainVisitorBehaviorCsReq => {
                 "CmdGetTrainVisitorBehaviorCsReq"
             }
@@ -12352,37 +12647,37 @@ impl CmdTrainVisitorType {
             CmdTrainVisitorType::CmdTrainVisitorBehaviorFinishScRsp => {
                 "CmdTrainVisitorBehaviorFinishScRsp"
             }
-            CmdTrainVisitorType::CmdGetTrainVisitorRegisterCsReq => {
-                "CmdGetTrainVisitorRegisterCsReq"
-            }
-            CmdTrainVisitorType::CmdGetTrainVisitorRegisterScRsp => {
-                "CmdGetTrainVisitorRegisterScRsp"
-            }
-            CmdTrainVisitorType::CmdTrainRefreshTimeNotify => "CmdTrainRefreshTimeNotify",
-            CmdTrainVisitorType::CmdGetTrainVisitorBehaviorScRsp => {
-                "CmdGetTrainVisitorBehaviorScRsp"
-            }
-            CmdTrainVisitorType::CmdShowNewSupplementVisitorCsReq => {
-                "CmdShowNewSupplementVisitorCsReq"
-            }
-            CmdTrainVisitorType::CmdTrainVisitorRewardSendNotify => {
-                "CmdTrainVisitorRewardSendNotify"
-            }
-            CmdTrainVisitorType::CmdTrainVisitorBehaviorFinishCsReq => {
-                "CmdTrainVisitorBehaviorFinishCsReq"
-            }
-            CmdTrainVisitorType::CmdShowNewSupplementVisitorScRsp => {
-                "CmdShowNewSupplementVisitorScRsp"
-            }
-            CmdTrainVisitorType::CmdTakeTrainVisitorUntakenBehaviorRewardCsReq => {
-                "CmdTakeTrainVisitorUntakenBehaviorRewardCsReq"
-            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdTrainVisitorTypeNone" => Some(Self::None),
+            "CmdTakeTrainVisitorUntakenBehaviorRewardCsReq" => {
+                Some(Self::CmdTakeTrainVisitorUntakenBehaviorRewardCsReq)
+            }
+            "CmdGetTrainVisitorBehaviorScRsp" => {
+                Some(Self::CmdGetTrainVisitorBehaviorScRsp)
+            }
+            "CmdTrainVisitorRewardSendNotify" => {
+                Some(Self::CmdTrainVisitorRewardSendNotify)
+            }
+            "CmdShowNewSupplementVisitorCsReq" => {
+                Some(Self::CmdShowNewSupplementVisitorCsReq)
+            }
+            "CmdTrainVisitorBehaviorFinishCsReq" => {
+                Some(Self::CmdTrainVisitorBehaviorFinishCsReq)
+            }
+            "CmdShowNewSupplementVisitorScRsp" => {
+                Some(Self::CmdShowNewSupplementVisitorScRsp)
+            }
+            "CmdGetTrainVisitorRegisterCsReq" => {
+                Some(Self::CmdGetTrainVisitorRegisterCsReq)
+            }
+            "CmdTrainRefreshTimeNotify" => Some(Self::CmdTrainRefreshTimeNotify),
+            "CmdGetTrainVisitorRegisterScRsp" => {
+                Some(Self::CmdGetTrainVisitorRegisterScRsp)
+            }
             "CmdGetTrainVisitorBehaviorCsReq" => {
                 Some(Self::CmdGetTrainVisitorBehaviorCsReq)
             }
@@ -12391,31 +12686,6 @@ impl CmdTrainVisitorType {
             }
             "CmdTrainVisitorBehaviorFinishScRsp" => {
                 Some(Self::CmdTrainVisitorBehaviorFinishScRsp)
-            }
-            "CmdGetTrainVisitorRegisterCsReq" => {
-                Some(Self::CmdGetTrainVisitorRegisterCsReq)
-            }
-            "CmdGetTrainVisitorRegisterScRsp" => {
-                Some(Self::CmdGetTrainVisitorRegisterScRsp)
-            }
-            "CmdTrainRefreshTimeNotify" => Some(Self::CmdTrainRefreshTimeNotify),
-            "CmdGetTrainVisitorBehaviorScRsp" => {
-                Some(Self::CmdGetTrainVisitorBehaviorScRsp)
-            }
-            "CmdShowNewSupplementVisitorCsReq" => {
-                Some(Self::CmdShowNewSupplementVisitorCsReq)
-            }
-            "CmdTrainVisitorRewardSendNotify" => {
-                Some(Self::CmdTrainVisitorRewardSendNotify)
-            }
-            "CmdTrainVisitorBehaviorFinishCsReq" => {
-                Some(Self::CmdTrainVisitorBehaviorFinishCsReq)
-            }
-            "CmdShowNewSupplementVisitorScRsp" => {
-                Some(Self::CmdShowNewSupplementVisitorScRsp)
-            }
-            "CmdTakeTrainVisitorUntakenBehaviorRewardCsReq" => {
-                Some(Self::CmdTakeTrainVisitorUntakenBehaviorRewardCsReq)
             }
             _ => None,
         }
@@ -12426,26 +12696,26 @@ impl CmdTrainVisitorType {
 #[repr(i32)]
 pub enum CmdTravelBrochure {
     None = 0,
-    PageUnlockScNotify = 6403,
-    RemovePasterScRsp = 6416,
+    SetCustomValueScRsp = 6405,
+    PageResetScRsp = 6407,
     SetPageDescStatusScRsp = 6419,
-    GetDataScRsp = 6420,
-    PageResetScRsp = 6425,
-    ApplyPasterListCsReq = 6429,
-    GetPasterScNotify = 6430,
-    ApplyPasterListScRsp = 6433,
-    ApplyPasterCsReq = 6434,
-    ApplyPasterScRsp = 6437,
-    SelectMessageCsReq = 6439,
-    UpdatePasterPosCsReq = 6447,
-    SetCustomValueCsReq = 6448,
-    SelectMessageScRsp = 6453,
-    GetDataCsReq = 6459,
-    PageResetCsReq = 6461,
-    UpdatePasterPosScRsp = 6474,
-    SetPageDescStatusCsReq = 6479,
-    RemovePasterCsReq = 6480,
-    SetCustomValueScRsp = 6490,
+    RemovePasterCsReq = 6424,
+    PageResetCsReq = 6426,
+    SelectMessageScRsp = 6428,
+    UpdatePasterPosCsReq = 6434,
+    GetDataCsReq = 6436,
+    UpdatePasterPosScRsp = 6443,
+    GetPasterScNotify = 6446,
+    ApplyPasterCsReq = 6452,
+    ApplyPasterListCsReq = 6453,
+    SelectMessageCsReq = 6467,
+    ApplyPasterScRsp = 6474,
+    SetPageDescStatusCsReq = 6475,
+    PageUnlockScNotify = 6484,
+    ApplyPasterListScRsp = 6490,
+    RemovePasterScRsp = 6493,
+    GetDataScRsp = 6495,
+    SetCustomValueCsReq = 6496,
 }
 impl CmdTravelBrochure {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -12455,47 +12725,47 @@ impl CmdTravelBrochure {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdTravelBrochure::None => "CmdTravelBrochureNone",
-            CmdTravelBrochure::PageUnlockScNotify => {
-                "CmdTravelBrochurePageUnlockScNotify"
+            CmdTravelBrochure::SetCustomValueScRsp => {
+                "CmdTravelBrochureSetCustomValueScRsp"
             }
-            CmdTravelBrochure::RemovePasterScRsp => "CmdTravelBrochureRemovePasterScRsp",
+            CmdTravelBrochure::PageResetScRsp => "CmdTravelBrochurePageResetScRsp",
             CmdTravelBrochure::SetPageDescStatusScRsp => {
                 "CmdTravelBrochureSetPageDescStatusScRsp"
             }
-            CmdTravelBrochure::GetDataScRsp => "CmdTravelBrochureGetDataScRsp",
-            CmdTravelBrochure::PageResetScRsp => "CmdTravelBrochurePageResetScRsp",
-            CmdTravelBrochure::ApplyPasterListCsReq => {
-                "CmdTravelBrochureApplyPasterListCsReq"
-            }
-            CmdTravelBrochure::GetPasterScNotify => "CmdTravelBrochureGetPasterScNotify",
-            CmdTravelBrochure::ApplyPasterListScRsp => {
-                "CmdTravelBrochureApplyPasterListScRsp"
-            }
-            CmdTravelBrochure::ApplyPasterCsReq => "CmdTravelBrochureApplyPasterCsReq",
-            CmdTravelBrochure::ApplyPasterScRsp => "CmdTravelBrochureApplyPasterScRsp",
-            CmdTravelBrochure::SelectMessageCsReq => {
-                "CmdTravelBrochureSelectMessageCsReq"
+            CmdTravelBrochure::RemovePasterCsReq => "CmdTravelBrochureRemovePasterCsReq",
+            CmdTravelBrochure::PageResetCsReq => "CmdTravelBrochurePageResetCsReq",
+            CmdTravelBrochure::SelectMessageScRsp => {
+                "CmdTravelBrochureSelectMessageScRsp"
             }
             CmdTravelBrochure::UpdatePasterPosCsReq => {
                 "CmdTravelBrochureUpdatePasterPosCsReq"
             }
-            CmdTravelBrochure::SetCustomValueCsReq => {
-                "CmdTravelBrochureSetCustomValueCsReq"
-            }
-            CmdTravelBrochure::SelectMessageScRsp => {
-                "CmdTravelBrochureSelectMessageScRsp"
-            }
             CmdTravelBrochure::GetDataCsReq => "CmdTravelBrochureGetDataCsReq",
-            CmdTravelBrochure::PageResetCsReq => "CmdTravelBrochurePageResetCsReq",
             CmdTravelBrochure::UpdatePasterPosScRsp => {
                 "CmdTravelBrochureUpdatePasterPosScRsp"
             }
+            CmdTravelBrochure::GetPasterScNotify => "CmdTravelBrochureGetPasterScNotify",
+            CmdTravelBrochure::ApplyPasterCsReq => "CmdTravelBrochureApplyPasterCsReq",
+            CmdTravelBrochure::ApplyPasterListCsReq => {
+                "CmdTravelBrochureApplyPasterListCsReq"
+            }
+            CmdTravelBrochure::SelectMessageCsReq => {
+                "CmdTravelBrochureSelectMessageCsReq"
+            }
+            CmdTravelBrochure::ApplyPasterScRsp => "CmdTravelBrochureApplyPasterScRsp",
             CmdTravelBrochure::SetPageDescStatusCsReq => {
                 "CmdTravelBrochureSetPageDescStatusCsReq"
             }
-            CmdTravelBrochure::RemovePasterCsReq => "CmdTravelBrochureRemovePasterCsReq",
-            CmdTravelBrochure::SetCustomValueScRsp => {
-                "CmdTravelBrochureSetCustomValueScRsp"
+            CmdTravelBrochure::PageUnlockScNotify => {
+                "CmdTravelBrochurePageUnlockScNotify"
+            }
+            CmdTravelBrochure::ApplyPasterListScRsp => {
+                "CmdTravelBrochureApplyPasterListScRsp"
+            }
+            CmdTravelBrochure::RemovePasterScRsp => "CmdTravelBrochureRemovePasterScRsp",
+            CmdTravelBrochure::GetDataScRsp => "CmdTravelBrochureGetDataScRsp",
+            CmdTravelBrochure::SetCustomValueCsReq => {
+                "CmdTravelBrochureSetCustomValueCsReq"
             }
         }
     }
@@ -12503,30 +12773,30 @@ impl CmdTravelBrochure {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdTravelBrochureNone" => Some(Self::None),
-            "CmdTravelBrochurePageUnlockScNotify" => Some(Self::PageUnlockScNotify),
-            "CmdTravelBrochureRemovePasterScRsp" => Some(Self::RemovePasterScRsp),
+            "CmdTravelBrochureSetCustomValueScRsp" => Some(Self::SetCustomValueScRsp),
+            "CmdTravelBrochurePageResetScRsp" => Some(Self::PageResetScRsp),
             "CmdTravelBrochureSetPageDescStatusScRsp" => {
                 Some(Self::SetPageDescStatusScRsp)
             }
-            "CmdTravelBrochureGetDataScRsp" => Some(Self::GetDataScRsp),
-            "CmdTravelBrochurePageResetScRsp" => Some(Self::PageResetScRsp),
-            "CmdTravelBrochureApplyPasterListCsReq" => Some(Self::ApplyPasterListCsReq),
-            "CmdTravelBrochureGetPasterScNotify" => Some(Self::GetPasterScNotify),
-            "CmdTravelBrochureApplyPasterListScRsp" => Some(Self::ApplyPasterListScRsp),
-            "CmdTravelBrochureApplyPasterCsReq" => Some(Self::ApplyPasterCsReq),
-            "CmdTravelBrochureApplyPasterScRsp" => Some(Self::ApplyPasterScRsp),
-            "CmdTravelBrochureSelectMessageCsReq" => Some(Self::SelectMessageCsReq),
-            "CmdTravelBrochureUpdatePasterPosCsReq" => Some(Self::UpdatePasterPosCsReq),
-            "CmdTravelBrochureSetCustomValueCsReq" => Some(Self::SetCustomValueCsReq),
-            "CmdTravelBrochureSelectMessageScRsp" => Some(Self::SelectMessageScRsp),
-            "CmdTravelBrochureGetDataCsReq" => Some(Self::GetDataCsReq),
+            "CmdTravelBrochureRemovePasterCsReq" => Some(Self::RemovePasterCsReq),
             "CmdTravelBrochurePageResetCsReq" => Some(Self::PageResetCsReq),
+            "CmdTravelBrochureSelectMessageScRsp" => Some(Self::SelectMessageScRsp),
+            "CmdTravelBrochureUpdatePasterPosCsReq" => Some(Self::UpdatePasterPosCsReq),
+            "CmdTravelBrochureGetDataCsReq" => Some(Self::GetDataCsReq),
             "CmdTravelBrochureUpdatePasterPosScRsp" => Some(Self::UpdatePasterPosScRsp),
+            "CmdTravelBrochureGetPasterScNotify" => Some(Self::GetPasterScNotify),
+            "CmdTravelBrochureApplyPasterCsReq" => Some(Self::ApplyPasterCsReq),
+            "CmdTravelBrochureApplyPasterListCsReq" => Some(Self::ApplyPasterListCsReq),
+            "CmdTravelBrochureSelectMessageCsReq" => Some(Self::SelectMessageCsReq),
+            "CmdTravelBrochureApplyPasterScRsp" => Some(Self::ApplyPasterScRsp),
             "CmdTravelBrochureSetPageDescStatusCsReq" => {
                 Some(Self::SetPageDescStatusCsReq)
             }
-            "CmdTravelBrochureRemovePasterCsReq" => Some(Self::RemovePasterCsReq),
-            "CmdTravelBrochureSetCustomValueScRsp" => Some(Self::SetCustomValueScRsp),
+            "CmdTravelBrochurePageUnlockScNotify" => Some(Self::PageUnlockScNotify),
+            "CmdTravelBrochureApplyPasterListScRsp" => Some(Self::ApplyPasterListScRsp),
+            "CmdTravelBrochureRemovePasterScRsp" => Some(Self::RemovePasterScRsp),
+            "CmdTravelBrochureGetDataScRsp" => Some(Self::GetDataScRsp),
+            "CmdTravelBrochureSetCustomValueCsReq" => Some(Self::SetCustomValueCsReq),
             _ => None,
         }
     }
@@ -12536,22 +12806,22 @@ impl CmdTravelBrochure {
 #[repr(i32)]
 pub enum CmdTreasureDungeonType {
     None = 0,
+    CmdOpenTreasureDungeonGridScRsp = 4405,
+    CmdInteractTreasureDungeonGridScRsp = 4407,
+    CmdQuitTreasureDungeonScRsp = 4412,
     CmdFightTreasureDungeonMonsterScRsp = 4419,
-    CmdTreasureDungeonFinishScNotify = 4420,
-    CmdInteractTreasureDungeonGridScRsp = 4425,
-    CmdUseTreasureDungeonItemCsReq = 4429,
-    CmdEnterTreasureDungeonCsReq = 4430,
-    CmdUseTreasureDungeonItemScRsp = 4433,
-    CmdGetTreasureDungeonActivityDataCsReq = 4447,
-    CmdOpenTreasureDungeonGridCsReq = 4448,
-    CmdQuitTreasureDungeonCsReq = 4451,
-    CmdTreasureDungeonDataScNotify = 4459,
-    CmdInteractTreasureDungeonGridCsReq = 4461,
-    CmdQuitTreasureDungeonScRsp = 4473,
-    CmdGetTreasureDungeonActivityDataScRsp = 4474,
-    CmdEnterTreasureDungeonScRsp = 4475,
-    CmdFightTreasureDungeonMonsterCsReq = 4479,
-    CmdOpenTreasureDungeonGridScRsp = 4490,
+    CmdEnterTreasureDungeonScRsp = 4425,
+    CmdInteractTreasureDungeonGridCsReq = 4426,
+    CmdGetTreasureDungeonActivityDataCsReq = 4434,
+    CmdTreasureDungeonDataScNotify = 4436,
+    CmdGetTreasureDungeonActivityDataScRsp = 4443,
+    CmdEnterTreasureDungeonCsReq = 4446,
+    CmdUseTreasureDungeonItemCsReq = 4453,
+    CmdQuitTreasureDungeonCsReq = 4459,
+    CmdFightTreasureDungeonMonsterCsReq = 4475,
+    CmdUseTreasureDungeonItemScRsp = 4490,
+    CmdTreasureDungeonFinishScNotify = 4495,
+    CmdOpenTreasureDungeonGridCsReq = 4496,
 }
 impl CmdTreasureDungeonType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -12561,53 +12831,53 @@ impl CmdTreasureDungeonType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdTreasureDungeonType::None => "CmdTreasureDungeonTypeNone",
-            CmdTreasureDungeonType::CmdFightTreasureDungeonMonsterScRsp => {
-                "CmdFightTreasureDungeonMonsterScRsp"
-            }
-            CmdTreasureDungeonType::CmdTreasureDungeonFinishScNotify => {
-                "CmdTreasureDungeonFinishScNotify"
+            CmdTreasureDungeonType::CmdOpenTreasureDungeonGridScRsp => {
+                "CmdOpenTreasureDungeonGridScRsp"
             }
             CmdTreasureDungeonType::CmdInteractTreasureDungeonGridScRsp => {
                 "CmdInteractTreasureDungeonGridScRsp"
             }
-            CmdTreasureDungeonType::CmdUseTreasureDungeonItemCsReq => {
-                "CmdUseTreasureDungeonItemCsReq"
-            }
-            CmdTreasureDungeonType::CmdEnterTreasureDungeonCsReq => {
-                "CmdEnterTreasureDungeonCsReq"
-            }
-            CmdTreasureDungeonType::CmdUseTreasureDungeonItemScRsp => {
-                "CmdUseTreasureDungeonItemScRsp"
-            }
-            CmdTreasureDungeonType::CmdGetTreasureDungeonActivityDataCsReq => {
-                "CmdGetTreasureDungeonActivityDataCsReq"
-            }
-            CmdTreasureDungeonType::CmdOpenTreasureDungeonGridCsReq => {
-                "CmdOpenTreasureDungeonGridCsReq"
-            }
-            CmdTreasureDungeonType::CmdQuitTreasureDungeonCsReq => {
-                "CmdQuitTreasureDungeonCsReq"
-            }
-            CmdTreasureDungeonType::CmdTreasureDungeonDataScNotify => {
-                "CmdTreasureDungeonDataScNotify"
-            }
-            CmdTreasureDungeonType::CmdInteractTreasureDungeonGridCsReq => {
-                "CmdInteractTreasureDungeonGridCsReq"
-            }
             CmdTreasureDungeonType::CmdQuitTreasureDungeonScRsp => {
                 "CmdQuitTreasureDungeonScRsp"
             }
-            CmdTreasureDungeonType::CmdGetTreasureDungeonActivityDataScRsp => {
-                "CmdGetTreasureDungeonActivityDataScRsp"
+            CmdTreasureDungeonType::CmdFightTreasureDungeonMonsterScRsp => {
+                "CmdFightTreasureDungeonMonsterScRsp"
             }
             CmdTreasureDungeonType::CmdEnterTreasureDungeonScRsp => {
                 "CmdEnterTreasureDungeonScRsp"
             }
+            CmdTreasureDungeonType::CmdInteractTreasureDungeonGridCsReq => {
+                "CmdInteractTreasureDungeonGridCsReq"
+            }
+            CmdTreasureDungeonType::CmdGetTreasureDungeonActivityDataCsReq => {
+                "CmdGetTreasureDungeonActivityDataCsReq"
+            }
+            CmdTreasureDungeonType::CmdTreasureDungeonDataScNotify => {
+                "CmdTreasureDungeonDataScNotify"
+            }
+            CmdTreasureDungeonType::CmdGetTreasureDungeonActivityDataScRsp => {
+                "CmdGetTreasureDungeonActivityDataScRsp"
+            }
+            CmdTreasureDungeonType::CmdEnterTreasureDungeonCsReq => {
+                "CmdEnterTreasureDungeonCsReq"
+            }
+            CmdTreasureDungeonType::CmdUseTreasureDungeonItemCsReq => {
+                "CmdUseTreasureDungeonItemCsReq"
+            }
+            CmdTreasureDungeonType::CmdQuitTreasureDungeonCsReq => {
+                "CmdQuitTreasureDungeonCsReq"
+            }
             CmdTreasureDungeonType::CmdFightTreasureDungeonMonsterCsReq => {
                 "CmdFightTreasureDungeonMonsterCsReq"
             }
-            CmdTreasureDungeonType::CmdOpenTreasureDungeonGridScRsp => {
-                "CmdOpenTreasureDungeonGridScRsp"
+            CmdTreasureDungeonType::CmdUseTreasureDungeonItemScRsp => {
+                "CmdUseTreasureDungeonItemScRsp"
+            }
+            CmdTreasureDungeonType::CmdTreasureDungeonFinishScNotify => {
+                "CmdTreasureDungeonFinishScNotify"
+            }
+            CmdTreasureDungeonType::CmdOpenTreasureDungeonGridCsReq => {
+                "CmdOpenTreasureDungeonGridCsReq"
             }
         }
     }
@@ -12615,45 +12885,45 @@ impl CmdTreasureDungeonType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdTreasureDungeonTypeNone" => Some(Self::None),
-            "CmdFightTreasureDungeonMonsterScRsp" => {
-                Some(Self::CmdFightTreasureDungeonMonsterScRsp)
-            }
-            "CmdTreasureDungeonFinishScNotify" => {
-                Some(Self::CmdTreasureDungeonFinishScNotify)
+            "CmdOpenTreasureDungeonGridScRsp" => {
+                Some(Self::CmdOpenTreasureDungeonGridScRsp)
             }
             "CmdInteractTreasureDungeonGridScRsp" => {
                 Some(Self::CmdInteractTreasureDungeonGridScRsp)
             }
-            "CmdUseTreasureDungeonItemCsReq" => {
-                Some(Self::CmdUseTreasureDungeonItemCsReq)
+            "CmdQuitTreasureDungeonScRsp" => Some(Self::CmdQuitTreasureDungeonScRsp),
+            "CmdFightTreasureDungeonMonsterScRsp" => {
+                Some(Self::CmdFightTreasureDungeonMonsterScRsp)
             }
-            "CmdEnterTreasureDungeonCsReq" => Some(Self::CmdEnterTreasureDungeonCsReq),
-            "CmdUseTreasureDungeonItemScRsp" => {
-                Some(Self::CmdUseTreasureDungeonItemScRsp)
+            "CmdEnterTreasureDungeonScRsp" => Some(Self::CmdEnterTreasureDungeonScRsp),
+            "CmdInteractTreasureDungeonGridCsReq" => {
+                Some(Self::CmdInteractTreasureDungeonGridCsReq)
             }
             "CmdGetTreasureDungeonActivityDataCsReq" => {
                 Some(Self::CmdGetTreasureDungeonActivityDataCsReq)
             }
-            "CmdOpenTreasureDungeonGridCsReq" => {
-                Some(Self::CmdOpenTreasureDungeonGridCsReq)
-            }
-            "CmdQuitTreasureDungeonCsReq" => Some(Self::CmdQuitTreasureDungeonCsReq),
             "CmdTreasureDungeonDataScNotify" => {
                 Some(Self::CmdTreasureDungeonDataScNotify)
             }
-            "CmdInteractTreasureDungeonGridCsReq" => {
-                Some(Self::CmdInteractTreasureDungeonGridCsReq)
-            }
-            "CmdQuitTreasureDungeonScRsp" => Some(Self::CmdQuitTreasureDungeonScRsp),
             "CmdGetTreasureDungeonActivityDataScRsp" => {
                 Some(Self::CmdGetTreasureDungeonActivityDataScRsp)
             }
-            "CmdEnterTreasureDungeonScRsp" => Some(Self::CmdEnterTreasureDungeonScRsp),
+            "CmdEnterTreasureDungeonCsReq" => Some(Self::CmdEnterTreasureDungeonCsReq),
+            "CmdUseTreasureDungeonItemCsReq" => {
+                Some(Self::CmdUseTreasureDungeonItemCsReq)
+            }
+            "CmdQuitTreasureDungeonCsReq" => Some(Self::CmdQuitTreasureDungeonCsReq),
             "CmdFightTreasureDungeonMonsterCsReq" => {
                 Some(Self::CmdFightTreasureDungeonMonsterCsReq)
             }
-            "CmdOpenTreasureDungeonGridScRsp" => {
-                Some(Self::CmdOpenTreasureDungeonGridScRsp)
+            "CmdUseTreasureDungeonItemScRsp" => {
+                Some(Self::CmdUseTreasureDungeonItemScRsp)
+            }
+            "CmdTreasureDungeonFinishScNotify" => {
+                Some(Self::CmdTreasureDungeonFinishScNotify)
+            }
+            "CmdOpenTreasureDungeonGridCsReq" => {
+                Some(Self::CmdOpenTreasureDungeonGridCsReq)
             }
             _ => None,
         }
@@ -12664,18 +12934,18 @@ impl CmdTreasureDungeonType {
 #[repr(i32)]
 pub enum CmdTutorialType {
     None = 0,
-    CmdGetTutorialGuideCsReq = 1603,
-    CmdFinishTutorialScRsp = 1616,
-    CmdGetTutorialScRsp = 1620,
-    CmdUnlockTutorialGuideCsReq = 1634,
-    CmdUnlockTutorialGuideScRsp = 1637,
-    CmdUnlockTutorialCsReq = 1639,
-    CmdGetTutorialGuideScRsp = 1646,
-    CmdFinishTutorialGuideCsReq = 1647,
-    CmdUnlockTutorialScRsp = 1653,
-    CmdGetTutorialCsReq = 1659,
-    CmdFinishTutorialGuideScRsp = 1674,
-    CmdFinishTutorialCsReq = 1680,
+    CmdFinishTutorialCsReq = 1624,
+    CmdGetTutorialGuideScRsp = 1627,
+    CmdUnlockTutorialScRsp = 1628,
+    CmdFinishTutorialGuideCsReq = 1634,
+    CmdGetTutorialCsReq = 1636,
+    CmdFinishTutorialGuideScRsp = 1643,
+    CmdUnlockTutorialGuideCsReq = 1652,
+    CmdUnlockTutorialCsReq = 1667,
+    CmdUnlockTutorialGuideScRsp = 1674,
+    CmdGetTutorialGuideCsReq = 1684,
+    CmdFinishTutorialScRsp = 1693,
+    CmdGetTutorialScRsp = 1695,
 }
 impl CmdTutorialType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -12685,36 +12955,36 @@ impl CmdTutorialType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdTutorialType::None => "CmdTutorialTypeNone",
+            CmdTutorialType::CmdFinishTutorialCsReq => "CmdFinishTutorialCsReq",
+            CmdTutorialType::CmdGetTutorialGuideScRsp => "CmdGetTutorialGuideScRsp",
+            CmdTutorialType::CmdUnlockTutorialScRsp => "CmdUnlockTutorialScRsp",
+            CmdTutorialType::CmdFinishTutorialGuideCsReq => "CmdFinishTutorialGuideCsReq",
+            CmdTutorialType::CmdGetTutorialCsReq => "CmdGetTutorialCsReq",
+            CmdTutorialType::CmdFinishTutorialGuideScRsp => "CmdFinishTutorialGuideScRsp",
+            CmdTutorialType::CmdUnlockTutorialGuideCsReq => "CmdUnlockTutorialGuideCsReq",
+            CmdTutorialType::CmdUnlockTutorialCsReq => "CmdUnlockTutorialCsReq",
+            CmdTutorialType::CmdUnlockTutorialGuideScRsp => "CmdUnlockTutorialGuideScRsp",
             CmdTutorialType::CmdGetTutorialGuideCsReq => "CmdGetTutorialGuideCsReq",
             CmdTutorialType::CmdFinishTutorialScRsp => "CmdFinishTutorialScRsp",
             CmdTutorialType::CmdGetTutorialScRsp => "CmdGetTutorialScRsp",
-            CmdTutorialType::CmdUnlockTutorialGuideCsReq => "CmdUnlockTutorialGuideCsReq",
-            CmdTutorialType::CmdUnlockTutorialGuideScRsp => "CmdUnlockTutorialGuideScRsp",
-            CmdTutorialType::CmdUnlockTutorialCsReq => "CmdUnlockTutorialCsReq",
-            CmdTutorialType::CmdGetTutorialGuideScRsp => "CmdGetTutorialGuideScRsp",
-            CmdTutorialType::CmdFinishTutorialGuideCsReq => "CmdFinishTutorialGuideCsReq",
-            CmdTutorialType::CmdUnlockTutorialScRsp => "CmdUnlockTutorialScRsp",
-            CmdTutorialType::CmdGetTutorialCsReq => "CmdGetTutorialCsReq",
-            CmdTutorialType::CmdFinishTutorialGuideScRsp => "CmdFinishTutorialGuideScRsp",
-            CmdTutorialType::CmdFinishTutorialCsReq => "CmdFinishTutorialCsReq",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdTutorialTypeNone" => Some(Self::None),
+            "CmdFinishTutorialCsReq" => Some(Self::CmdFinishTutorialCsReq),
+            "CmdGetTutorialGuideScRsp" => Some(Self::CmdGetTutorialGuideScRsp),
+            "CmdUnlockTutorialScRsp" => Some(Self::CmdUnlockTutorialScRsp),
+            "CmdFinishTutorialGuideCsReq" => Some(Self::CmdFinishTutorialGuideCsReq),
+            "CmdGetTutorialCsReq" => Some(Self::CmdGetTutorialCsReq),
+            "CmdFinishTutorialGuideScRsp" => Some(Self::CmdFinishTutorialGuideScRsp),
+            "CmdUnlockTutorialGuideCsReq" => Some(Self::CmdUnlockTutorialGuideCsReq),
+            "CmdUnlockTutorialCsReq" => Some(Self::CmdUnlockTutorialCsReq),
+            "CmdUnlockTutorialGuideScRsp" => Some(Self::CmdUnlockTutorialGuideScRsp),
             "CmdGetTutorialGuideCsReq" => Some(Self::CmdGetTutorialGuideCsReq),
             "CmdFinishTutorialScRsp" => Some(Self::CmdFinishTutorialScRsp),
             "CmdGetTutorialScRsp" => Some(Self::CmdGetTutorialScRsp),
-            "CmdUnlockTutorialGuideCsReq" => Some(Self::CmdUnlockTutorialGuideCsReq),
-            "CmdUnlockTutorialGuideScRsp" => Some(Self::CmdUnlockTutorialGuideScRsp),
-            "CmdUnlockTutorialCsReq" => Some(Self::CmdUnlockTutorialCsReq),
-            "CmdGetTutorialGuideScRsp" => Some(Self::CmdGetTutorialGuideScRsp),
-            "CmdFinishTutorialGuideCsReq" => Some(Self::CmdFinishTutorialGuideCsReq),
-            "CmdUnlockTutorialScRsp" => Some(Self::CmdUnlockTutorialScRsp),
-            "CmdGetTutorialCsReq" => Some(Self::CmdGetTutorialCsReq),
-            "CmdFinishTutorialGuideScRsp" => Some(Self::CmdFinishTutorialGuideScRsp),
-            "CmdFinishTutorialCsReq" => Some(Self::CmdFinishTutorialCsReq),
             _ => None,
         }
     }
@@ -12724,15 +12994,15 @@ impl CmdTutorialType {
 #[repr(i32)]
 pub enum CmdWaypointType {
     None = 0,
-    CmdSetCurWaypointCsReq = 403,
-    CmdGetWaypointScRsp = 420,
-    CmdWaypointShowNewCsNotify = 434,
-    CmdTakeChapterRewardCsReq = 437,
-    CmdGetChapterCsReq = 439,
-    CmdSetCurWaypointScRsp = 446,
-    CmdGetChapterScRsp = 453,
-    CmdGetWaypointCsReq = 459,
-    CmdTakeChapterRewardScRsp = 480,
+    CmdTakeChapterRewardScRsp = 424,
+    CmdSetCurWaypointScRsp = 427,
+    CmdGetChapterScRsp = 428,
+    CmdGetWaypointCsReq = 436,
+    CmdWaypointShowNewCsNotify = 452,
+    CmdGetChapterCsReq = 467,
+    CmdTakeChapterRewardCsReq = 474,
+    CmdSetCurWaypointCsReq = 484,
+    CmdGetWaypointScRsp = 495,
 }
 impl CmdWaypointType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -12742,30 +13012,30 @@ impl CmdWaypointType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdWaypointType::None => "CmdWaypointTypeNone",
-            CmdWaypointType::CmdSetCurWaypointCsReq => "CmdSetCurWaypointCsReq",
-            CmdWaypointType::CmdGetWaypointScRsp => "CmdGetWaypointScRsp",
-            CmdWaypointType::CmdWaypointShowNewCsNotify => "CmdWaypointShowNewCsNotify",
-            CmdWaypointType::CmdTakeChapterRewardCsReq => "CmdTakeChapterRewardCsReq",
-            CmdWaypointType::CmdGetChapterCsReq => "CmdGetChapterCsReq",
+            CmdWaypointType::CmdTakeChapterRewardScRsp => "CmdTakeChapterRewardScRsp",
             CmdWaypointType::CmdSetCurWaypointScRsp => "CmdSetCurWaypointScRsp",
             CmdWaypointType::CmdGetChapterScRsp => "CmdGetChapterScRsp",
             CmdWaypointType::CmdGetWaypointCsReq => "CmdGetWaypointCsReq",
-            CmdWaypointType::CmdTakeChapterRewardScRsp => "CmdTakeChapterRewardScRsp",
+            CmdWaypointType::CmdWaypointShowNewCsNotify => "CmdWaypointShowNewCsNotify",
+            CmdWaypointType::CmdGetChapterCsReq => "CmdGetChapterCsReq",
+            CmdWaypointType::CmdTakeChapterRewardCsReq => "CmdTakeChapterRewardCsReq",
+            CmdWaypointType::CmdSetCurWaypointCsReq => "CmdSetCurWaypointCsReq",
+            CmdWaypointType::CmdGetWaypointScRsp => "CmdGetWaypointScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdWaypointTypeNone" => Some(Self::None),
-            "CmdSetCurWaypointCsReq" => Some(Self::CmdSetCurWaypointCsReq),
-            "CmdGetWaypointScRsp" => Some(Self::CmdGetWaypointScRsp),
-            "CmdWaypointShowNewCsNotify" => Some(Self::CmdWaypointShowNewCsNotify),
-            "CmdTakeChapterRewardCsReq" => Some(Self::CmdTakeChapterRewardCsReq),
-            "CmdGetChapterCsReq" => Some(Self::CmdGetChapterCsReq),
+            "CmdTakeChapterRewardScRsp" => Some(Self::CmdTakeChapterRewardScRsp),
             "CmdSetCurWaypointScRsp" => Some(Self::CmdSetCurWaypointScRsp),
             "CmdGetChapterScRsp" => Some(Self::CmdGetChapterScRsp),
             "CmdGetWaypointCsReq" => Some(Self::CmdGetWaypointCsReq),
-            "CmdTakeChapterRewardScRsp" => Some(Self::CmdTakeChapterRewardScRsp),
+            "CmdWaypointShowNewCsNotify" => Some(Self::CmdWaypointShowNewCsNotify),
+            "CmdGetChapterCsReq" => Some(Self::CmdGetChapterCsReq),
+            "CmdTakeChapterRewardCsReq" => Some(Self::CmdTakeChapterRewardCsReq),
+            "CmdSetCurWaypointCsReq" => Some(Self::CmdSetCurWaypointCsReq),
+            "CmdGetWaypointScRsp" => Some(Self::CmdGetWaypointScRsp),
             _ => None,
         }
     }
@@ -12775,25 +13045,25 @@ impl CmdWaypointType {
 #[repr(i32)]
 pub enum CmdWolfBroType {
     None = 0,
-    CmdArchiveWolfBroGameCsReq = 6503,
-    CmdGetWolfBroGameDataScRsp = 6516,
-    CmdWolfBroGameExplodeMonsterCsReq = 6519,
-    CmdStartWolfBroGameScRsp = 6520,
-    CmdWolfBroGameUseBulletScRsp = 6530,
-    CmdQuitWolfBroGameCsReq = 6534,
-    CmdQuitWolfBroGameScRsp = 6537,
-    CmdRestoreWolfBroGameArchiveCsReq = 6539,
-    CmdArchiveWolfBroGameScRsp = 6546,
-    CmdWolfBroGameDataChangeScNotify = 6547,
-    CmdWolfBroGamePickupBulletScRsp = 6548,
-    CmdRestoreWolfBroGameArchiveScRsp = 6553,
-    CmdStartWolfBroGameCsReq = 6559,
-    CmdWolfBroGameExplodeMonsterScRsp = 6561,
-    CmdWolfBroGameUseBulletCsReq = 6574,
-    CmdWolfBroGamePickupBulletCsReq = 6575,
-    CmdWolfBroGameActivateBulletScRsp = 6579,
-    CmdGetWolfBroGameDataCsReq = 6580,
-    CmdWolfBroGameActivateBulletCsReq = 6590,
+    CmdWolfBroGameActivateBulletScRsp = 6504,
+    CmdQuitWolfBroGameCsReq = 6509,
+    CmdWolfBroGameUseBulletScRsp = 6510,
+    CmdWolfBroGameExplodeMonsterScRsp = 6511,
+    CmdStartWolfBroGameCsReq = 6512,
+    CmdWolfBroGamePickupBulletScRsp = 6513,
+    CmdRestoreWolfBroGameArchiveCsReq = 6515,
+    CmdWolfBroGameActivateBulletCsReq = 6517,
+    CmdArchiveWolfBroGameScRsp = 6523,
+    CmdWolfBroGameUseBulletCsReq = 6528,
+    CmdArchiveWolfBroGameCsReq = 6530,
+    CmdWolfBroGameExplodeMonsterCsReq = 6540,
+    CmdQuitWolfBroGameScRsp = 6543,
+    CmdWolfBroGameDataChangeScNotify = 6545,
+    CmdGetWolfBroGameDataScRsp = 6546,
+    CmdGetWolfBroGameDataCsReq = 6547,
+    CmdWolfBroGamePickupBulletCsReq = 6548,
+    CmdRestoreWolfBroGameArchiveScRsp = 6549,
+    CmdStartWolfBroGameScRsp = 6550,
 }
 impl CmdWolfBroType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -12803,90 +13073,120 @@ impl CmdWolfBroType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             CmdWolfBroType::None => "CmdWolfBroTypeNone",
-            CmdWolfBroType::CmdArchiveWolfBroGameCsReq => "CmdArchiveWolfBroGameCsReq",
-            CmdWolfBroType::CmdGetWolfBroGameDataScRsp => "CmdGetWolfBroGameDataScRsp",
-            CmdWolfBroType::CmdWolfBroGameExplodeMonsterCsReq => {
-                "CmdWolfBroGameExplodeMonsterCsReq"
+            CmdWolfBroType::CmdWolfBroGameActivateBulletScRsp => {
+                "CmdWolfBroGameActivateBulletScRsp"
             }
-            CmdWolfBroType::CmdStartWolfBroGameScRsp => "CmdStartWolfBroGameScRsp",
+            CmdWolfBroType::CmdQuitWolfBroGameCsReq => "CmdQuitWolfBroGameCsReq",
             CmdWolfBroType::CmdWolfBroGameUseBulletScRsp => {
                 "CmdWolfBroGameUseBulletScRsp"
             }
-            CmdWolfBroType::CmdQuitWolfBroGameCsReq => "CmdQuitWolfBroGameCsReq",
-            CmdWolfBroType::CmdQuitWolfBroGameScRsp => "CmdQuitWolfBroGameScRsp",
+            CmdWolfBroType::CmdWolfBroGameExplodeMonsterScRsp => {
+                "CmdWolfBroGameExplodeMonsterScRsp"
+            }
+            CmdWolfBroType::CmdStartWolfBroGameCsReq => "CmdStartWolfBroGameCsReq",
+            CmdWolfBroType::CmdWolfBroGamePickupBulletScRsp => {
+                "CmdWolfBroGamePickupBulletScRsp"
+            }
             CmdWolfBroType::CmdRestoreWolfBroGameArchiveCsReq => {
                 "CmdRestoreWolfBroGameArchiveCsReq"
             }
+            CmdWolfBroType::CmdWolfBroGameActivateBulletCsReq => {
+                "CmdWolfBroGameActivateBulletCsReq"
+            }
             CmdWolfBroType::CmdArchiveWolfBroGameScRsp => "CmdArchiveWolfBroGameScRsp",
+            CmdWolfBroType::CmdWolfBroGameUseBulletCsReq => {
+                "CmdWolfBroGameUseBulletCsReq"
+            }
+            CmdWolfBroType::CmdArchiveWolfBroGameCsReq => "CmdArchiveWolfBroGameCsReq",
+            CmdWolfBroType::CmdWolfBroGameExplodeMonsterCsReq => {
+                "CmdWolfBroGameExplodeMonsterCsReq"
+            }
+            CmdWolfBroType::CmdQuitWolfBroGameScRsp => "CmdQuitWolfBroGameScRsp",
             CmdWolfBroType::CmdWolfBroGameDataChangeScNotify => {
                 "CmdWolfBroGameDataChangeScNotify"
             }
-            CmdWolfBroType::CmdWolfBroGamePickupBulletScRsp => {
-                "CmdWolfBroGamePickupBulletScRsp"
+            CmdWolfBroType::CmdGetWolfBroGameDataScRsp => "CmdGetWolfBroGameDataScRsp",
+            CmdWolfBroType::CmdGetWolfBroGameDataCsReq => "CmdGetWolfBroGameDataCsReq",
+            CmdWolfBroType::CmdWolfBroGamePickupBulletCsReq => {
+                "CmdWolfBroGamePickupBulletCsReq"
             }
             CmdWolfBroType::CmdRestoreWolfBroGameArchiveScRsp => {
                 "CmdRestoreWolfBroGameArchiveScRsp"
             }
-            CmdWolfBroType::CmdStartWolfBroGameCsReq => "CmdStartWolfBroGameCsReq",
-            CmdWolfBroType::CmdWolfBroGameExplodeMonsterScRsp => {
-                "CmdWolfBroGameExplodeMonsterScRsp"
-            }
-            CmdWolfBroType::CmdWolfBroGameUseBulletCsReq => {
-                "CmdWolfBroGameUseBulletCsReq"
-            }
-            CmdWolfBroType::CmdWolfBroGamePickupBulletCsReq => {
-                "CmdWolfBroGamePickupBulletCsReq"
-            }
-            CmdWolfBroType::CmdWolfBroGameActivateBulletScRsp => {
-                "CmdWolfBroGameActivateBulletScRsp"
-            }
-            CmdWolfBroType::CmdGetWolfBroGameDataCsReq => "CmdGetWolfBroGameDataCsReq",
-            CmdWolfBroType::CmdWolfBroGameActivateBulletCsReq => {
-                "CmdWolfBroGameActivateBulletCsReq"
-            }
+            CmdWolfBroType::CmdStartWolfBroGameScRsp => "CmdStartWolfBroGameScRsp",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "CmdWolfBroTypeNone" => Some(Self::None),
-            "CmdArchiveWolfBroGameCsReq" => Some(Self::CmdArchiveWolfBroGameCsReq),
-            "CmdGetWolfBroGameDataScRsp" => Some(Self::CmdGetWolfBroGameDataScRsp),
-            "CmdWolfBroGameExplodeMonsterCsReq" => {
-                Some(Self::CmdWolfBroGameExplodeMonsterCsReq)
+            "CmdWolfBroGameActivateBulletScRsp" => {
+                Some(Self::CmdWolfBroGameActivateBulletScRsp)
             }
-            "CmdStartWolfBroGameScRsp" => Some(Self::CmdStartWolfBroGameScRsp),
-            "CmdWolfBroGameUseBulletScRsp" => Some(Self::CmdWolfBroGameUseBulletScRsp),
             "CmdQuitWolfBroGameCsReq" => Some(Self::CmdQuitWolfBroGameCsReq),
-            "CmdQuitWolfBroGameScRsp" => Some(Self::CmdQuitWolfBroGameScRsp),
+            "CmdWolfBroGameUseBulletScRsp" => Some(Self::CmdWolfBroGameUseBulletScRsp),
+            "CmdWolfBroGameExplodeMonsterScRsp" => {
+                Some(Self::CmdWolfBroGameExplodeMonsterScRsp)
+            }
+            "CmdStartWolfBroGameCsReq" => Some(Self::CmdStartWolfBroGameCsReq),
+            "CmdWolfBroGamePickupBulletScRsp" => {
+                Some(Self::CmdWolfBroGamePickupBulletScRsp)
+            }
             "CmdRestoreWolfBroGameArchiveCsReq" => {
                 Some(Self::CmdRestoreWolfBroGameArchiveCsReq)
             }
+            "CmdWolfBroGameActivateBulletCsReq" => {
+                Some(Self::CmdWolfBroGameActivateBulletCsReq)
+            }
             "CmdArchiveWolfBroGameScRsp" => Some(Self::CmdArchiveWolfBroGameScRsp),
+            "CmdWolfBroGameUseBulletCsReq" => Some(Self::CmdWolfBroGameUseBulletCsReq),
+            "CmdArchiveWolfBroGameCsReq" => Some(Self::CmdArchiveWolfBroGameCsReq),
+            "CmdWolfBroGameExplodeMonsterCsReq" => {
+                Some(Self::CmdWolfBroGameExplodeMonsterCsReq)
+            }
+            "CmdQuitWolfBroGameScRsp" => Some(Self::CmdQuitWolfBroGameScRsp),
             "CmdWolfBroGameDataChangeScNotify" => {
                 Some(Self::CmdWolfBroGameDataChangeScNotify)
             }
-            "CmdWolfBroGamePickupBulletScRsp" => {
-                Some(Self::CmdWolfBroGamePickupBulletScRsp)
+            "CmdGetWolfBroGameDataScRsp" => Some(Self::CmdGetWolfBroGameDataScRsp),
+            "CmdGetWolfBroGameDataCsReq" => Some(Self::CmdGetWolfBroGameDataCsReq),
+            "CmdWolfBroGamePickupBulletCsReq" => {
+                Some(Self::CmdWolfBroGamePickupBulletCsReq)
             }
             "CmdRestoreWolfBroGameArchiveScRsp" => {
                 Some(Self::CmdRestoreWolfBroGameArchiveScRsp)
             }
-            "CmdStartWolfBroGameCsReq" => Some(Self::CmdStartWolfBroGameCsReq),
-            "CmdWolfBroGameExplodeMonsterScRsp" => {
-                Some(Self::CmdWolfBroGameExplodeMonsterScRsp)
-            }
-            "CmdWolfBroGameUseBulletCsReq" => Some(Self::CmdWolfBroGameUseBulletCsReq),
-            "CmdWolfBroGamePickupBulletCsReq" => {
-                Some(Self::CmdWolfBroGamePickupBulletCsReq)
-            }
-            "CmdWolfBroGameActivateBulletScRsp" => {
-                Some(Self::CmdWolfBroGameActivateBulletScRsp)
-            }
-            "CmdGetWolfBroGameDataCsReq" => Some(Self::CmdGetWolfBroGameDataCsReq),
-            "CmdWolfBroGameActivateBulletCsReq" => {
-                Some(Self::CmdWolfBroGameActivateBulletCsReq)
-            }
+            "CmdStartWolfBroGameScRsp" => Some(Self::CmdStartWolfBroGameScRsp),
+            _ => None,
+        }
+    }
+}
+#[derive(proto_derive::CmdID)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CmdWorldUnlockType {
+    None = 0,
+    CmdWorldUnlockCsReq = 7626,
+    CmdWorldUnlockScRsp = 7627,
+}
+impl CmdWorldUnlockType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            CmdWorldUnlockType::None => "CmdWorldUnlockTypeNone",
+            CmdWorldUnlockType::CmdWorldUnlockCsReq => "CmdWorldUnlockCsReq",
+            CmdWorldUnlockType::CmdWorldUnlockScRsp => "CmdWorldUnlockScRsp",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CmdWorldUnlockTypeNone" => Some(Self::None),
+            "CmdWorldUnlockCsReq" => Some(Self::CmdWorldUnlockCsReq),
+            "CmdWorldUnlockScRsp" => Some(Self::CmdWorldUnlockScRsp),
             _ => None,
         }
     }
@@ -13068,6 +13368,42 @@ impl MissionStatus {
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
+pub enum EnterSceneReason {
+    None = 0,
+    ChallengeTimeout = 1,
+    RogueTimeout = 2,
+    ChangeStoryline = 3,
+    DimensionMerge = 4,
+}
+impl EnterSceneReason {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            EnterSceneReason::None => "ENTER_SCENE_REASON_NONE",
+            EnterSceneReason::ChallengeTimeout => "ENTER_SCENE_REASON_CHALLENGE_TIMEOUT",
+            EnterSceneReason::RogueTimeout => "ENTER_SCENE_REASON_ROGUE_TIMEOUT",
+            EnterSceneReason::ChangeStoryline => "ENTER_SCENE_REASON_CHANGE_STORYLINE",
+            EnterSceneReason::DimensionMerge => "ENTER_SCENE_REASON_DIMENSION_MERGE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ENTER_SCENE_REASON_NONE" => Some(Self::None),
+            "ENTER_SCENE_REASON_CHALLENGE_TIMEOUT" => Some(Self::ChallengeTimeout),
+            "ENTER_SCENE_REASON_ROGUE_TIMEOUT" => Some(Self::RogueTimeout),
+            "ENTER_SCENE_REASON_CHANGE_STORYLINE" => Some(Self::ChangeStoryline),
+            "ENTER_SCENE_REASON_DIMENSION_MERGE" => Some(Self::DimensionMerge),
+            _ => None,
+        }
+    }
+}
+#[derive(proto_derive::CmdID)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
 pub enum ExtraLineupType {
     LineupNone = 0,
     LineupChallenge = 1,
@@ -13133,42 +13469,6 @@ impl ExtraLineupType {
             "LINEUP_RELIC_ROGUE" => Some(Self::LineupRelicRogue),
             "LINEUP_ARCADE_ROGUE" => Some(Self::LineupArcadeRogue),
             "LINEUP_MAGIC_ROGUE" => Some(Self::LineupMagicRogue),
-            _ => None,
-        }
-    }
-}
-#[derive(proto_derive::CmdID)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum EnterSceneReason {
-    None = 0,
-    ChallengeTimeout = 1,
-    RogueTimeout = 2,
-    ChangeStoryline = 3,
-    DimensionMerge = 4,
-}
-impl EnterSceneReason {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            EnterSceneReason::None => "ENTER_SCENE_REASON_NONE",
-            EnterSceneReason::ChallengeTimeout => "ENTER_SCENE_REASON_CHALLENGE_TIMEOUT",
-            EnterSceneReason::RogueTimeout => "ENTER_SCENE_REASON_ROGUE_TIMEOUT",
-            EnterSceneReason::ChangeStoryline => "ENTER_SCENE_REASON_CHANGE_STORYLINE",
-            EnterSceneReason::DimensionMerge => "ENTER_SCENE_REASON_DIMENSION_MERGE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ENTER_SCENE_REASON_NONE" => Some(Self::None),
-            "ENTER_SCENE_REASON_CHALLENGE_TIMEOUT" => Some(Self::ChallengeTimeout),
-            "ENTER_SCENE_REASON_ROGUE_TIMEOUT" => Some(Self::RogueTimeout),
-            "ENTER_SCENE_REASON_CHANGE_STORYLINE" => Some(Self::ChangeStoryline),
-            "ENTER_SCENE_REASON_DIMENSION_MERGE" => Some(Self::DimensionMerge),
             _ => None,
         }
     }
@@ -13414,6 +13714,8 @@ pub enum MultiPathAvatarType {
     GirlKnightType = 8004,
     BoyShamanType = 8005,
     GirlShamanType = 8006,
+    BoyMemoryType = 8007,
+    GirlMemoryType = 8008,
 }
 impl MultiPathAvatarType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -13431,6 +13733,8 @@ impl MultiPathAvatarType {
             MultiPathAvatarType::GirlKnightType => "GirlKnightType",
             MultiPathAvatarType::BoyShamanType => "BoyShamanType",
             MultiPathAvatarType::GirlShamanType => "GirlShamanType",
+            MultiPathAvatarType::BoyMemoryType => "BoyMemoryType",
+            MultiPathAvatarType::GirlMemoryType => "GirlMemoryType",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -13445,6 +13749,8 @@ impl MultiPathAvatarType {
             "GirlKnightType" => Some(Self::GirlKnightType),
             "BoyShamanType" => Some(Self::BoyShamanType),
             "GirlShamanType" => Some(Self::GirlShamanType),
+            "BoyMemoryType" => Some(Self::BoyMemoryType),
+            "GirlMemoryType" => Some(Self::GirlMemoryType),
             _ => None,
         }
     }
@@ -13738,6 +14044,7 @@ pub enum Retcode {
     RetAvatarSkinAlreadyDressed = 1223,
     RetAvatarNotDressSkin = 1224,
     RetAvatarSkinNotMatchAvatar = 1225,
+    RetAvatarPathNotMatch = 1226,
     RetItemNotExist = 1300,
     RetItemCostNotEnough = 1301,
     RetItemCostTooMuch = 1302,
@@ -13819,6 +14126,7 @@ pub enum Retcode {
     RetRelicFilterPlanNameUtf8Error = 1382,
     RetRelicFilterPlanNameFormatError = 1383,
     RetRelicFilterPlanNoChange = 1384,
+    RetRelicReforgeNotConfirmed = 1385,
     RetLineupInvalidIndex = 1400,
     RetLineupInvalidMemberPos = 1401,
     RetLineupSwapNotExist = 1402,
@@ -13961,6 +14269,7 @@ pub enum Retcode {
     RetSceneEntityPosNotMatch = 2630,
     RetGroupStateCustomSaveDataOff = 2631,
     RetSceneNotMatch = 2632,
+    RetPropTypeInvalid = 2633,
     RetBuyTimesLimit = 2700,
     RetBuyLimitType = 2701,
     RetShopNotOpen = 2702,
@@ -14208,7 +14517,7 @@ pub enum Retcode {
     RetTrainVisitorBehaviorFinished = 4353,
     RetTrainVisitorAllBehaviorRewardTaken = 4354,
     RetTrainVisitorGetOnMissionNotFinish = 4355,
-    RetTrainVisitorNotGetOff = 4356,
+    RetTrainVisitorNotGetOffOrBeTrainMember = 4356,
     RetTextJoinUnknowIsOverride = 4401,
     RetTextJoinIdNotExist = 4402,
     RetTextJoinCanNotOverride = 4403,
@@ -14576,6 +14885,15 @@ pub enum Retcode {
     RetTrainPartyDiyTagNotMatch = 6502,
     RetTrainPartyUseCardMobilityNotEnough = 6503,
     RetTrainPartyAreaUnlockCoinNotEnough = 6504,
+    RetTarotBookEnergyNotEnough = 6601,
+    RetTarotBookPackNotAvailable = 6602,
+    RetTarotBookStoryAlreadyUnlock = 6603,
+    RetTarotBookCardNotEnough = 6604,
+    RetTarotBookClueNotEnough = 6605,
+    RetTarotBookUnlockStoryCardNotSame = 6606,
+    RetTarotBookStoryNotUnlock = 6607,
+    RetTarotBookStoryAlreadyFinish = 6608,
+    RetTarotBookInteractionAlreadyFinish = 6609,
 }
 impl Retcode {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -14658,6 +14976,7 @@ impl Retcode {
             Retcode::RetAvatarSkinAlreadyDressed => "RET_AVATAR_SKIN_ALREADY_DRESSED",
             Retcode::RetAvatarNotDressSkin => "RET_AVATAR_NOT_DRESS_SKIN",
             Retcode::RetAvatarSkinNotMatchAvatar => "RET_AVATAR_SKIN_NOT_MATCH_AVATAR",
+            Retcode::RetAvatarPathNotMatch => "RET_AVATAR_PATH_NOT_MATCH",
             Retcode::RetItemNotExist => "RET_ITEM_NOT_EXIST",
             Retcode::RetItemCostNotEnough => "RET_ITEM_COST_NOT_ENOUGH",
             Retcode::RetItemCostTooMuch => "RET_ITEM_COST_TOO_MUCH",
@@ -14771,6 +15090,7 @@ impl Retcode {
                 "RET_RELIC_FILTER_PLAN_NAME_FORMAT_ERROR"
             }
             Retcode::RetRelicFilterPlanNoChange => "RET_RELIC_FILTER_PLAN_NO_CHANGE",
+            Retcode::RetRelicReforgeNotConfirmed => "RET_RELIC_REFORGE_NOT_CONFIRMED",
             Retcode::RetLineupInvalidIndex => "RET_LINEUP_INVALID_INDEX",
             Retcode::RetLineupInvalidMemberPos => "RET_LINEUP_INVALID_MEMBER_POS",
             Retcode::RetLineupSwapNotExist => "RET_LINEUP_SWAP_NOT_EXIST",
@@ -14931,6 +15251,7 @@ impl Retcode {
                 "RET_GROUP_STATE_CUSTOM_SAVE_DATA_OFF"
             }
             Retcode::RetSceneNotMatch => "RET_SCENE_NOT_MATCH",
+            Retcode::RetPropTypeInvalid => "RET_PROP_TYPE_INVALID",
             Retcode::RetBuyTimesLimit => "RET_BUY_TIMES_LIMIT",
             Retcode::RetBuyLimitType => "RET_BUY_LIMIT_TYPE",
             Retcode::RetShopNotOpen => "RET_SHOP_NOT_OPEN",
@@ -15328,7 +15649,9 @@ impl Retcode {
             Retcode::RetTrainVisitorGetOnMissionNotFinish => {
                 "RET_TRAIN_VISITOR_GET_ON_MISSION_NOT_FINISH"
             }
-            Retcode::RetTrainVisitorNotGetOff => "RET_TRAIN_VISITOR_NOT_GET_OFF",
+            Retcode::RetTrainVisitorNotGetOffOrBeTrainMember => {
+                "RET_TRAIN_VISITOR_NOT_GET_OFF_OR_BE_TRAIN_MEMBER"
+            }
             Retcode::RetTextJoinUnknowIsOverride => "RET_TEXT_JOIN_UNKNOW_IS_OVERRIDE",
             Retcode::RetTextJoinIdNotExist => "RET_TEXT_JOIN_ID_NOT_EXIST",
             Retcode::RetTextJoinCanNotOverride => "RET_TEXT_JOIN_CAN_NOT_OVERRIDE",
@@ -15982,6 +16305,23 @@ impl Retcode {
             Retcode::RetTrainPartyAreaUnlockCoinNotEnough => {
                 "RET_TRAIN_PARTY_AREA_UNLOCK_COIN_NOT_ENOUGH"
             }
+            Retcode::RetTarotBookEnergyNotEnough => "RET_TAROT_BOOK_ENERGY_NOT_ENOUGH",
+            Retcode::RetTarotBookPackNotAvailable => "RET_TAROT_BOOK_PACK_NOT_AVAILABLE",
+            Retcode::RetTarotBookStoryAlreadyUnlock => {
+                "RET_TAROT_BOOK_STORY_ALREADY_UNLOCK"
+            }
+            Retcode::RetTarotBookCardNotEnough => "RET_TAROT_BOOK_CARD_NOT_ENOUGH",
+            Retcode::RetTarotBookClueNotEnough => "RET_TAROT_BOOK_CLUE_NOT_ENOUGH",
+            Retcode::RetTarotBookUnlockStoryCardNotSame => {
+                "RET_TAROT_BOOK_UNLOCK_STORY_CARD_NOT_SAME"
+            }
+            Retcode::RetTarotBookStoryNotUnlock => "RET_TAROT_BOOK_STORY_NOT_UNLOCK",
+            Retcode::RetTarotBookStoryAlreadyFinish => {
+                "RET_TAROT_BOOK_STORY_ALREADY_FINISH"
+            }
+            Retcode::RetTarotBookInteractionAlreadyFinish => {
+                "RET_TAROT_BOOK_INTERACTION_ALREADY_FINISH"
+            }
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -16061,6 +16401,7 @@ impl Retcode {
             "RET_AVATAR_SKIN_ALREADY_DRESSED" => Some(Self::RetAvatarSkinAlreadyDressed),
             "RET_AVATAR_NOT_DRESS_SKIN" => Some(Self::RetAvatarNotDressSkin),
             "RET_AVATAR_SKIN_NOT_MATCH_AVATAR" => Some(Self::RetAvatarSkinNotMatchAvatar),
+            "RET_AVATAR_PATH_NOT_MATCH" => Some(Self::RetAvatarPathNotMatch),
             "RET_ITEM_NOT_EXIST" => Some(Self::RetItemNotExist),
             "RET_ITEM_COST_NOT_ENOUGH" => Some(Self::RetItemCostNotEnough),
             "RET_ITEM_COST_TOO_MUCH" => Some(Self::RetItemCostTooMuch),
@@ -16182,6 +16523,7 @@ impl Retcode {
                 Some(Self::RetRelicFilterPlanNameFormatError)
             }
             "RET_RELIC_FILTER_PLAN_NO_CHANGE" => Some(Self::RetRelicFilterPlanNoChange),
+            "RET_RELIC_REFORGE_NOT_CONFIRMED" => Some(Self::RetRelicReforgeNotConfirmed),
             "RET_LINEUP_INVALID_INDEX" => Some(Self::RetLineupInvalidIndex),
             "RET_LINEUP_INVALID_MEMBER_POS" => Some(Self::RetLineupInvalidMemberPos),
             "RET_LINEUP_SWAP_NOT_EXIST" => Some(Self::RetLineupSwapNotExist),
@@ -16354,6 +16696,7 @@ impl Retcode {
                 Some(Self::RetGroupStateCustomSaveDataOff)
             }
             "RET_SCENE_NOT_MATCH" => Some(Self::RetSceneNotMatch),
+            "RET_PROP_TYPE_INVALID" => Some(Self::RetPropTypeInvalid),
             "RET_BUY_TIMES_LIMIT" => Some(Self::RetBuyTimesLimit),
             "RET_BUY_LIMIT_TYPE" => Some(Self::RetBuyLimitType),
             "RET_SHOP_NOT_OPEN" => Some(Self::RetShopNotOpen),
@@ -16773,7 +17116,9 @@ impl Retcode {
             "RET_TRAIN_VISITOR_GET_ON_MISSION_NOT_FINISH" => {
                 Some(Self::RetTrainVisitorGetOnMissionNotFinish)
             }
-            "RET_TRAIN_VISITOR_NOT_GET_OFF" => Some(Self::RetTrainVisitorNotGetOff),
+            "RET_TRAIN_VISITOR_NOT_GET_OFF_OR_BE_TRAIN_MEMBER" => {
+                Some(Self::RetTrainVisitorNotGetOffOrBeTrainMember)
+            }
             "RET_TEXT_JOIN_UNKNOW_IS_OVERRIDE" => Some(Self::RetTextJoinUnknowIsOverride),
             "RET_TEXT_JOIN_ID_NOT_EXIST" => Some(Self::RetTextJoinIdNotExist),
             "RET_TEXT_JOIN_CAN_NOT_OVERRIDE" => Some(Self::RetTextJoinCanNotOverride),
@@ -17482,6 +17827,25 @@ impl Retcode {
             }
             "RET_TRAIN_PARTY_AREA_UNLOCK_COIN_NOT_ENOUGH" => {
                 Some(Self::RetTrainPartyAreaUnlockCoinNotEnough)
+            }
+            "RET_TAROT_BOOK_ENERGY_NOT_ENOUGH" => Some(Self::RetTarotBookEnergyNotEnough),
+            "RET_TAROT_BOOK_PACK_NOT_AVAILABLE" => {
+                Some(Self::RetTarotBookPackNotAvailable)
+            }
+            "RET_TAROT_BOOK_STORY_ALREADY_UNLOCK" => {
+                Some(Self::RetTarotBookStoryAlreadyUnlock)
+            }
+            "RET_TAROT_BOOK_CARD_NOT_ENOUGH" => Some(Self::RetTarotBookCardNotEnough),
+            "RET_TAROT_BOOK_CLUE_NOT_ENOUGH" => Some(Self::RetTarotBookClueNotEnough),
+            "RET_TAROT_BOOK_UNLOCK_STORY_CARD_NOT_SAME" => {
+                Some(Self::RetTarotBookUnlockStoryCardNotSame)
+            }
+            "RET_TAROT_BOOK_STORY_NOT_UNLOCK" => Some(Self::RetTarotBookStoryNotUnlock),
+            "RET_TAROT_BOOK_STORY_ALREADY_FINISH" => {
+                Some(Self::RetTarotBookStoryAlreadyFinish)
+            }
+            "RET_TAROT_BOOK_INTERACTION_ALREADY_FINISH" => {
+                Some(Self::RetTarotBookInteractionAlreadyFinish)
             }
             _ => None,
         }

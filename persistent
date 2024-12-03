@@ -1,21 +1,21 @@
 {
   "lineups": {
-    "0": 1220,
-    "1": 1222,
-    "2": 1304,
-    "3": 1309
+    "0": 1402,
+    "1": 1303,
+    "2": 1317,
+    "3": 8001
   },
   "position": {
-    "x": 64574,
-    "y": 1699,
-    "z": 258502,
-    "rot_y": 243401
+    "x": 193720,
+    "y": 2171,
+    "z": 156800,
+    "rot_y": 259188
   },
   "scene": {
-    "plane_id": 20332,
-    "floor_id": 20332001,
-    "entry_id": 2033201
+    "plane_id": 20413,
+    "floor_id": 20413001,
+    "entry_id": 2041301
   },
-  "main_character": "FemaleHarmony",
+  "main_character": "MaleHarmony",
   "march_type": "FemaleHarmony"
 }

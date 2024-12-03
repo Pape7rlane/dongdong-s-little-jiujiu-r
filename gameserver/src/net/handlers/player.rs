@@ -24,12 +24,12 @@ pub async fn on_player_heart_beat_cs_req(
 ) {
     res.client_time_ms = body.client_time_ms;
     res.server_time_ms = cur_timestamp_ms();
-    // res.download_data = Some(ClientDownloadData {
-    //     version: 51,
-    //     time: res.server_time_ms as i64,
-    //     data: rbase64::decode("bG9jYWwgZnVuY3Rpb24gYmV0YV90ZXh0KG9iaikKICAgIGxvY2FsIGdhbWVPYmplY3QgPSBDUy5Vbml0eUVuZ2luZS5HYW1lT2JqZWN0LkZpbmQoIlVJUm9vdC9BYm92ZURpYWxvZy9CZXRhSGludERpYWxvZyhDbG9uZSkiKQoKICAgIGlmIGdhbWVPYmplY3QgdGhlbgogICAgICAgIGxvY2FsIHRleHRDb21wb25lbnQgPSBnYW1lT2JqZWN0OkdldENvbXBvbmVudEluQ2hpbGRyZW4odHlwZW9mKENTLlJQRy5DbGllbnQuTG9jYWxpemVkVGV4dCkpCgogICAgICAgIGlmIHRleHRDb21wb25lbnQgdGhlbgogICAgICAgICAgICB0ZXh0Q29tcG9uZW50LnRleHQgPSAiUm9iaW5TUiBpcyBhIGZyZWUgYW5kIG9wZW4gc291cmNlIHNvZnR3YXJlLiBkaXNjb3JkLmdnL3JldmVyc2Vkcm9vbXMiCiAgICAgICAgZW5kCiAgICBlbHNlCiAgICBlbmQKZW5kCgpiZXRhX3RleHQoKQ==").unwrap(),
-    //     njddjhapnbo: 0
-    // });
+    res.download_data = Some(ClientDownloadData {
+        version: 51,
+        time: res.server_time_ms as i64,
+        data: rbase64::decode("bG9jYWwgZnVuY3Rpb24gYmV0YV90ZXh0KG9iaikKICAgIGxvY2FsIGdhbWVPYmplY3QgPSBDUy5Vbml0eUVuZ2luZS5HYW1lT2JqZWN0LkZpbmQoIlVJUm9vdC9BYm92ZURpYWxvZy9CZXRhSGludERpYWxvZyhDbG9uZSkiKQoKICAgIGlmIGdhbWVPYmplY3QgdGhlbgogICAgICAgIGxvY2FsIHRleHRDb21wb25lbnQgPSBnYW1lT2JqZWN0OkdldENvbXBvbmVudEluQ2hpbGRyZW4odHlwZW9mKENTLlJQRy5DbGllbnQuTG9jYWxpemVkVGV4dCkpCgogICAgICAgIGlmIHRleHRDb21wb25lbnQgdGhlbgogICAgICAgICAgICB0ZXh0Q29tcG9uZW50LnRleHQgPSAiUm9iaW5TUiBpcyBhIGZyZWUgYW5kIG9wZW4gc291cmNlIHNvZnR3YXJlLiBkaXNjb3JkLmdnL3JldmVyc2Vkcm9vbXMiCiAgICAgICAgZW5kCiAgICBlbHNlCiAgICBlbmQKZW5kCgpiZXRhX3RleHQoKQ==").unwrap(),
+        ghkpbpdfijh: 0
+    });
 }
 
 pub async fn on_player_login_finish_cs_req(

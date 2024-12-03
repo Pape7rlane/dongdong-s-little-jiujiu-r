@@ -56,8 +56,8 @@ pub async fn on_enter_scene_cs_req(
         return;
     };
 
-    res.gfkihhopjdg = req.gfkihhopjdg;
-    res.ihoaaecihik = player.scene.entry_id != req.entry_id;
+    res.alggcgibmmh = req.alggcgibmmh;
+    res.abnfeadenmg = player.scene.entry_id != req.entry_id;
 }
 
 pub async fn on_get_scene_map_info_cs_req(
@@ -65,7 +65,7 @@ pub async fn on_get_scene_map_info_cs_req(
     req: &GetSceneMapInfoCsReq,
     res: &mut GetSceneMapInfoScRsp,
 ) {
-    for entry_id in &req.entry_id_list {
+    for floor_id in &req.floor_id_list {
         let mut map_info = MazeMapData {
             retcode: 0,
             unlocked_chest_list: vec![
@@ -82,7 +82,7 @@ pub async fn on_get_scene_map_info_cs_req(
                     ..Default::default()
                 },
             ],
-            entry_id: *entry_id,
+            floor_id: *floor_id,
             ..Default::default()
         };
 
@@ -91,9 +91,14 @@ pub async fn on_get_scene_map_info_cs_req(
         }
 
         let group_config = GAME_RES
-            .level_output_configs
-            .get(entry_id)
-            .and_then(|v| v.iter().next());
+            .map_default_entrance_map
+            .get(floor_id)
+            .and_then(|v| {
+                GAME_RES
+                    .level_output_configs
+                    .get(v)
+                    .and_then(|v| v.iter().next())
+            });
 
         if let Some((_, group_config)) = group_config {
             for (group_id, group) in group_config.scenes.iter() {
@@ -363,7 +368,7 @@ async fn load_scene(
     scene_info.entity_group_list.push(SceneEntityGroupInfo {
         state: 0,
         group_id: 0,
-        fjhodibbaan: HashMap::new(),
+        gbnnlkibhon: HashMap::new(),
         entity_list: json
             .lineups
             .iter()

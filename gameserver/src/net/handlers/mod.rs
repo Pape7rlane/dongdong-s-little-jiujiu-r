@@ -126,7 +126,7 @@ dummy! {
     GetBoxingClubInfo,
     GetNpcStatus,
     TextJoinQuery,
-    GetSpringRecoverData,
+    // GetSpringRecoverData, // Removed 2.7.51
     // GetChatFriendHistory,
     GetSecretKeyInfo,
     GetVideoVersionKey,
