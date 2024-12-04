@@ -14,7 +14,7 @@ const SERVER_CHAT_BUBBLE_ID: u32 = 220005;
 const SERVER_CHAT_HISTORY: [&str; 5] = [
     "'dvd' render a dvd bouncing effect. you need to put the image into your game folder, with name \"image.png\"",
     "'sync'",
-    "'mc {mc_id}' mc_id can be set from 8001 to 8006",
+    "'mc {mc_id}' mc_id can be set from 8001 to 8008",
     "'march {march_id}' march_id can be set 1001 or 1224",
     "available command:",
 ];

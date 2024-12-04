@@ -18,12 +18,13 @@ use proto::{
     CmdMuseumType::*, CmdOfferingType::*, CmdPamMissionType::*, CmdPhoneType::*,
     CmdPlayerBoardType::*, CmdPlayerReturnType::*, CmdPlayerSync::*, CmdPlayerType::*,
     CmdPlotType::*, CmdPunkLordType::*, CmdQuestType::*, CmdRaidCollectionType::*, CmdRaidType::*,
-    CmdRedDotType::*, CmdReplayType::*, CmdRndOptionType::*, CmdRogueCommonType::*,
-    CmdRogueEndless::*, CmdRogueModifierType::*, CmdRogueTournType::*, CmdRogueType::*,
-    CmdRollShopType::*, CmdSceneType::*, CmdServerPrefsType::*, CmdShopType::*, CmdSpaceZooType::*,
-    CmdStarFightType::*, CmdStoryLineType::*, CmdStrongChallengeActivityType::*,
-    CmdTalkRewardType::*, CmdTelevisionActivityType::*, CmdTextJoinType::*, CmdTrainVisitorType::*,
-    CmdTreasureDungeonType::*, CmdTutorialType::*, CmdWaypointType::*, CmdWolfBroType::*,
+    CmdRecommendType::*, CmdRedDotType::*, CmdReplayType::*, CmdRndOptionType::*,
+    CmdRogueCommonType::*, CmdRogueEndless::*, CmdRogueModifierType::*, CmdRogueTournType::*,
+    CmdRogueType::*, CmdRollShopType::*, CmdSceneType::*, CmdServerPrefsType::*, CmdShopType::*,
+    CmdSpaceZooType::*, CmdStarFightType::*, CmdStoryLineType::*,
+    CmdStrongChallengeActivityType::*, CmdTalkRewardType::*, CmdTelevisionActivityType::*,
+    CmdTextJoinType::*, CmdTrainVisitorType::*, CmdTreasureDungeonType::*, CmdTutorialType::*,
+    CmdWaypointType::*, CmdWolfBroType::*,
 };
 
 use super::handlers::*;
@@ -217,4 +218,5 @@ trait_handler! {
     GetGachaInfo;
     DoGacha;
     PlayerLoginFinish;
+    RelicRecommend;
 }

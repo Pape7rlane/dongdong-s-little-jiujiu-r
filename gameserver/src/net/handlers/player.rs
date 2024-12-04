@@ -23,7 +23,7 @@ pub async fn on_player_heart_beat_cs_req(
     res: &mut PlayerHeartBeatScRsp,
 ) {
     res.client_time_ms = body.client_time_ms;
-    res.server_time_ms = cur_timestamp_ms();
+    res.server_time_ms = body.client_time_ms;
     res.download_data = Some(ClientDownloadData {
         version: 51,
         time: res.server_time_ms as i64,

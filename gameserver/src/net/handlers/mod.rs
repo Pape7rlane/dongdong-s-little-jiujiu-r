@@ -135,5 +135,5 @@ dummy! {
     // PlayerLoginFinish,
     InteractProp,
     FinishTalkMission,
-    RelicRecommend
+    // RelicRecommend
 }
