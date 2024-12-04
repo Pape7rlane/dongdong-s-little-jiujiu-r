@@ -2844,6 +2844,52 @@ pub struct GetFriendLoginInfoScRsp {
     #[prost(bool, tag = "15")]
     pub diapipdfind: bool,
 }
+/// OBF: FLCMIIMLNNL
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RelicRecommendInfo {
+    #[prost(uint32, tag = "5")]
+    pub bgpkljfkbbk: u32,
+    #[prost(uint32, tag = "2")]
+    pub kcbmlnoafji: u32,
+}
+#[derive(proto_derive::CmdID)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Hanhapjmlej {
+    #[prost(uint32, tag = "4")]
+    pub pmioddoiepl: u32,
+    #[prost(uint32, tag = "12")]
+    pub kcbmlnoafji: u32,
+    #[prost(uint32, tag = "3")]
+    pub jmjhcanmige: u32,
+}
+/// Obf: HAIEHIALJGB
+#[derive(proto_derive::CmdID)]
+#[cmdid(2450)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RelicRecommendScRsp {
+    #[prost(message, repeated, tag = "13")]
+    pub lfhnbiaiaog: ::prost::alloc::vec::Vec<RelicRecommendInfo>,
+    #[prost(message, repeated, tag = "6")]
+    pub bnaebnbledn: ::prost::alloc::vec::Vec<RelicRecommendInfo>,
+    #[prost(message, repeated, tag = "15")]
+    pub phiekfagmgb: ::prost::alloc::vec::Vec<Hanhapjmlej>,
+    #[prost(uint32, tag = "11")]
+    pub retcode: u32,
+    #[prost(message, repeated, tag = "1")]
+    pub gcbacjgkgmk: ::prost::alloc::vec::Vec<RelicRecommendInfo>,
+    #[prost(bool, tag = "10")]
+    pub gilcobajpon: bool,
+    #[prost(message, repeated, tag = "5")]
+    pub lidiljpejdo: ::prost::alloc::vec::Vec<Hanhapjmlej>,
+    #[prost(message, repeated, tag = "12")]
+    pub amgaennclke: ::prost::alloc::vec::Vec<RelicRecommendInfo>,
+    #[prost(uint32, tag = "8")]
+    pub avatar_id: u32,
+}
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
