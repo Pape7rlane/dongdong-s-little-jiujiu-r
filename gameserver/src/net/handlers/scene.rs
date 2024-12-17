@@ -53,11 +53,7 @@ pub async fn on_enter_scene_cs_req(
     .is_err()
     {
         res.retcode = Retcode::RetSceneEntryIdNotMatch as u32;
-        return;
     };
-
-    res.alggcgibmmh = req.alggcgibmmh;
-    res.abnfeadenmg = player.scene.entry_id != req.entry_id;
 }
 
 pub async fn on_get_scene_map_info_cs_req(
@@ -238,7 +234,11 @@ async fn load_scene(
         entry_id,
         game_mode_type: scene.plane_type,
         leader_entity_id: 1,
-        world_id: scene.world_id,
+        world_id: if scene.world_id == 100 {
+            501
+        } else {
+            scene.world_id
+        },
         ..Default::default()
     };
 
