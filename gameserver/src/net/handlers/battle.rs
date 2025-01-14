@@ -267,7 +267,7 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
                         max_sp: 10_000,
                     }),
                 }),
-                // skill_info: vec![],
+                skill_info: Vec::with_capacity(0)
             })
     }
 
@@ -280,8 +280,8 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
             player_detail_info: Some(RogueMagicBattleUnitInfo {
                 item: Some(Item::BattleRogueMagicData(BattleRogueMagicData {
                     round_cnt: Some(BattleRogueMagicRoundCount {
-                        jnejloobmad: 3,
-                        jfaidmkbmof: 0,
+                        gpojenhaiba: 3,
+                        kljklbmlefo: 0,
                     }),
                     battle_scepter_list: player
                         .battle_config
@@ -321,7 +321,7 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
                         .collect(),
                 })),
             }),
-            scepter: Some(Hnpkkiadpid { mokbhfdehnf: 5 }),
+            scepter: Some(Plgjihifpag { egmebanhhnf: 5 }),
         });
     }
 

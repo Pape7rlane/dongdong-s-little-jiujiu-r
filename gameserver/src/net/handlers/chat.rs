@@ -9,14 +9,14 @@ use crate::{
 use super::*;
 
 const SERVER_UID: u32 = 727;
-const SERVER_HEAD_ICON: u32 = 201008;
+const SERVER_HEAD_ICON: u32 = 201402;
 const SERVER_CHAT_BUBBLE_ID: u32 = 220005;
 const SERVER_CHAT_HISTORY: [&str; 5] = [
-    "'dvd' render a dvd bouncing effect. you need to put the image into your game folder, with name \"image.png\"",
-    "'sync'",
+    "'sync' to synchronize stats between json and in-game view",
     "'mc {mc_id}' mc_id can be set from 8001 to 8008",
     "'march {march_id}' march_id can be set 1001 or 1224",
-    "available command:",
+    "available commands:",
+    "visit srtools.pages.dev to configure the PS! (you configure relics, equipment, monsters from there)"
 ];
 
 pub async fn on_get_friend_login_info_cs_req(
@@ -90,6 +90,7 @@ pub async fn on_send_msg_cs_req(
                         from_uid: SERVER_UID,
                         to_uid: 25,
                         chat_type: body.chat_type,
+                        hnbepabnbng: body.hnbepabnbng.clone(),
                     })
                     .await
                     .unwrap();
@@ -121,17 +122,24 @@ pub async fn on_send_msg_cs_req(
                         from_uid: SERVER_UID,
                         to_uid: 25,
                         chat_type: body.chat_type,
+                        hnbepabnbng: body.hnbepabnbng.clone(),
                     })
                     .await
                     .unwrap();
             }
             "march" => {
-                let march_type = MultiPathAvatar::from(
+                let mut march_type = MultiPathAvatar::from(
                     args.first()
                         .unwrap_or(&"")
                         .parse::<u32>()
                         .unwrap_or(json.march_type as u32),
                 );
+
+                if march_type != MultiPathAvatar::MarchPreservation
+                    && march_type != MultiPathAvatar::MarchHunt
+                {
+                    march_type = MultiPathAvatar::MarchHunt
+                }
 
                 json.march_type = march_type;
                 json.save().await;
@@ -152,6 +160,7 @@ pub async fn on_send_msg_cs_req(
                         from_uid: SERVER_UID,
                         to_uid: 25,
                         chat_type: body.chat_type,
+                        hnbepabnbng: body.hnbepabnbng.clone(),
                     })
                     .await
                     .unwrap();

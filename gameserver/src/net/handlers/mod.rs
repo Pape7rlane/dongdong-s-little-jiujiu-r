@@ -110,7 +110,6 @@ dummy! {
     GetPlayerBoardData,
     GetActivityScheduleConfig,
     GetMissionData,
-    GetMissionEventData,
     GetChallenge,
     GetCurChallenge,
     GetRogueInfo,

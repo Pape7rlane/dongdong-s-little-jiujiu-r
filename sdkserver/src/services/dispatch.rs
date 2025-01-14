@@ -39,24 +39,26 @@ pub async fn query_gateway(parameters: Query<QueryGatewayParameters>) -> String 
             retcode: 0,
             ip: String::from("127.0.0.1"),
             port: 23301,
-            asset_bundle_url: config.asset_bundle_url.clone(),
-            ex_resource_url: config.ex_resource_url.clone(),
-            lua_url: config.lua_url.clone(),
-            ifix_version: String::from("0"),
-            unk1: true,
-            unk2: true,
-            unk3: true,
-            unk4: true,
-            unk5: true,
-            unk6: true,
-            unk7: true,
-
+            video_bundle_version_update_url: config.asset_bundle_url.clone(),
+            design_data_bundle_version_update_url: config.ex_resource_url.clone(),
+            lua_bundle_version_update_url: config.lua_url.clone(),
+            i_fix_patch_revision: String::from("0"),
+            enable_video_bundle_version_update: true,
+            enable_design_data_bundle_version_update: true,
+            enable_upload_battle_log: true,
+            network_diagnostic: true,
+            close_redeem_code: true,
+            android_middle_package_enable: true,
+            ejcmkocjnkg: true,
+            event_tracking_open: true,
+            nehifogigfc: true,
+            cdn_ipv_6_enable: 1,
             ..Default::default()
         }
     } else {
         Gateserver {
             retcode: 9,
-            msg: format!("forbidden version: {} or invalid bind", parameters.version),
+            login_white_msg: format!("forbidden version: {} or invalid bind", parameters.version),
             ..Default::default()
         }
     };

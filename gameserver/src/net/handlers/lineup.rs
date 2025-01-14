@@ -113,7 +113,10 @@ async fn refresh_lineup(session: &mut PlayerSession, player: &FreesrData) {
                         })),
                     })
                     .collect(),
+                bccgjihncdn: Vec::with_capacity(0),
             }],
+            floor_id: 0, // TODO!
+            gfhglffhfbd: 0,
         })
         .await
         .unwrap();

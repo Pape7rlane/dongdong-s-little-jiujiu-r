@@ -219,4 +219,5 @@ trait_handler! {
     DoGacha;
     PlayerLoginFinish;
     RelicRecommend;
+    // SetClientPaused;
 }
