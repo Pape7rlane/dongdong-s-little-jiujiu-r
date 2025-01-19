@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::net::tools::{FreesrData, MultiPathAvatar};
+use crate::net::tools::FreesrData;
 
 use super::*;
 
@@ -67,36 +67,5 @@ pub async fn on_get_multi_path_avatar_info_cs_req(
         (1001, json.march_type.get_type().into()),
     ]);
 
-    res.multi_path_avatar_type_info_list = MultiPathAvatar::to_vec()
-        .iter()
-        .filter_map(|mp_type| {
-            let avatar_info = json.avatars.get(&((*mp_type) as u32))?;
-            Some(MultiPathAvatarTypeInfo {
-                avatar_id: *mp_type as i32,
-                rank: avatar_info.data.rank,
-                equip_relic_list: json
-                    .relics
-                    .iter()
-                    .filter(|relic| relic.equip_avatar == *mp_type as u32)
-                    .map(|relic| relic.to_equipment_relic_proto())
-                    .collect(),
-                skilltree_list: avatar_info
-                    .data
-                    .skills
-                    .iter()
-                    .map(|(point_id, level)| AvatarSkillTree {
-                        point_id: *point_id,
-                        level: *level,
-                    })
-                    .collect(),
-                path_equipment_id: json
-                    .lightcones
-                    .iter()
-                    .find(|v| v.equip_avatar == *mp_type as u32)
-                    .map(|v| v.internal_uid)
-                    .unwrap_or_default(),
-                dressed_skin_id: 0,
-            })
-        })
-        .collect();
+    res.multi_path_avatar_type_info_list = json.get_multi_path_info();
 }

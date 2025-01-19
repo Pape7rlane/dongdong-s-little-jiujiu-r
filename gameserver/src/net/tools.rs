@@ -29,8 +29,17 @@ pub struct AvatarData {
 
 impl AvatarJson {
     pub fn to_avatar_proto(&self, lightcone: Option<&Lightcone>, relics: Vec<&Relic>) -> Avatar {
+        // TODO: HARDCODED
+        let base_avatar_id = if self.avatar_id > 8000 {
+            8001
+        } else if self.avatar_id == 1001 || self.avatar_id == 1224 {
+            1001
+        } else {
+            self.avatar_id
+        };
+
         Avatar {
-            base_avatar_id: self.avatar_id,
+            base_avatar_id,
             level: self.level,
             promotion: self.promotion,
             rank: self.data.rank,
@@ -44,7 +53,7 @@ impl AvatarJson {
                 })
                 .collect::<Vec<_>>(),
             equipment_unique_id: if let Some(lc) = lightcone {
-                // ?
+                // TODO: HARDCODED LIGHTCONE ID
                 2000 + lc.internal_uid
             } else {
                 0
@@ -517,9 +526,10 @@ pub struct FreesrData {
     pub position: Position,
     #[serde(default, skip_serializing)]
     pub scene: Scene,
-    #[serde(default, skip_serializing)]
+
+    #[serde(skip_serializing, skip_deserializing)]
     pub main_character: MultiPathAvatar,
-    #[serde(default, skip_serializing)]
+    #[serde(skip_serializing, skip_deserializing)]
     pub march_type: MultiPathAvatar,
 }
 
@@ -531,9 +541,7 @@ pub struct Persistent {
     pub position: Position,
     #[serde(default)]
     pub scene: Scene,
-    #[serde(default)]
     pub main_character: MultiPathAvatar,
-    #[serde(default)]
     pub march_type: MultiPathAvatar,
 }
 
@@ -548,26 +556,27 @@ impl Default for Persistent {
         Self {
             lineups,
             position: Default::default(),
-            main_character: Default::default(),
+            main_character: MultiPathAvatar::FemaleRememberance,
             scene: Default::default(),
             march_type: MultiPathAvatar::MarchHunt,
         }
     }
 }
 
-#[derive(Serialize, Deserialize, Clone, Debug, Copy, Default, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Clone, Debug, Copy, PartialEq, Eq, Default)]
+#[repr(u32)]
 pub enum MultiPathAvatar {
     MalePyhsical = 8001,
     FemalePhysical = 8002,
     MalePreservation = 8003,
     FemalePreservation = 8004,
     MaleHarmony = 8005,
-    #[default]
     FemaleHarmony = 8006,
     MaleRememberance = 8007,
     FemaleRememberance = 8008,
     MarchHunt = 1224,
     MarchPreservation = 1001,
+    #[default]
     Unk = 0,
 }
 
@@ -585,6 +594,24 @@ impl From<u32> for MultiPathAvatar {
             1224 => Self::MarchHunt,
             1001 => Self::MarchPreservation,
             _ => Self::Unk,
+        }
+    }
+}
+
+impl From<MultiPathAvatar> for u32 {
+    fn from(value: MultiPathAvatar) -> Self {
+        match value {
+            MultiPathAvatar::MalePyhsical => 8001,
+            MultiPathAvatar::FemalePhysical => 8002,
+            MultiPathAvatar::MalePreservation => 8003,
+            MultiPathAvatar::FemalePreservation => 8004,
+            MultiPathAvatar::MaleHarmony => 8005,
+            MultiPathAvatar::FemaleHarmony => 8006,
+            MultiPathAvatar::MaleRememberance => 8007,
+            MultiPathAvatar::FemaleRememberance => 8008,
+            MultiPathAvatar::MarchHunt => 1224,
+            MultiPathAvatar::MarchPreservation => 1001,
+            _ => 8006,
         }
     }
 }
@@ -615,6 +642,10 @@ impl MultiPathAvatar {
             MultiPathAvatar::MaleRememberance => MultiPathAvatarType::BoyMemoryType,
             MultiPathAvatar::FemaleRememberance => MultiPathAvatarType::GirlMemoryType,
         }
+    }
+
+    pub fn is_mc(&self) -> bool {
+        (*self as u32) > 8000
     }
 
     pub fn to_vec() -> Vec<MultiPathAvatar> {
@@ -654,6 +685,7 @@ impl FreesrData {
         json.position = json2.position;
         json.scene = json2.scene;
         json.main_character = json2.main_character;
+        json.march_type = json2.march_type;
 
         json.verify_lineup().await;
 
@@ -695,5 +727,47 @@ impl FreesrData {
             .as_bytes(),
         )
         .await;
+    }
+
+    pub fn get_multi_path_info(&self) -> Vec<MultiPathAvatarTypeInfo> {
+        MultiPathAvatar::to_vec()
+            .iter()
+            .filter_map(|mp_type| {
+                if mp_type.is_mc() && mp_type.get_gender() != self.main_character.get_gender() {
+                    return Option::None;
+                }
+
+                let avatar_info = self.avatars.get(&((*mp_type) as u32))?;
+                Some(MultiPathAvatarTypeInfo {
+                    avatar_id: *mp_type as i32,
+                    rank: avatar_info.data.rank,
+                    equip_relic_list: self
+                        .relics
+                        .iter()
+                        .filter(|relic| relic.equip_avatar == *mp_type as u32)
+                        .map(|relic| relic.to_equipment_relic_proto())
+                        .collect(),
+                    skilltree_list: avatar_info
+                        .data
+                        .skills
+                        .iter()
+                        .map(|(point_id, level)| AvatarSkillTree {
+                            point_id: *point_id,
+                            level: *level,
+                        })
+                        .collect(),
+                    path_equipment_id: self
+                        .lightcones
+                        .iter()
+                        .find(|v| v.equip_avatar == *mp_type as u32)
+                        .map(|v| {
+                            // TODO: HARDCODED LIGHTCONE ID
+                            2000 + v.internal_uid
+                        })
+                        .unwrap_or_default(),
+                    dressed_skin_id: 0,
+                })
+            })
+            .collect()
     }
 }

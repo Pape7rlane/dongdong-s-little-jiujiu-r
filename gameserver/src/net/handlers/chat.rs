@@ -114,6 +114,8 @@ pub async fn on_send_msg_cs_req(
                     .await
                     .unwrap();
 
+                sync_player(session, json).await;
+
                 session
                     .send(RevcMsgScNotify {
                         msg_type: body.msg_type,
@@ -201,6 +203,7 @@ async fn sync_player(session: &mut PlayerSession, json: FreesrData) {
                     .map(|avatar| avatar.to_avatar_proto(Option::None, vec![]))
                     .collect::<Vec<_>>(),
             }),
+            multi_path_avatar_type_info_list: json.get_multi_path_info(),
             ..Default::default()
         })
         .await
