@@ -19,7 +19,7 @@ use tokio::{
 
 use crate::net::packet::NetOperation;
 
-const MAX_PACKET_SIZE: usize = 1200;
+const MAX_PACKET_SIZE: usize = 1400;
 
 pub struct Gateway {
     socket: Arc<UdpSocket>,
