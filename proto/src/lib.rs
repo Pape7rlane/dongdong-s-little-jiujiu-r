@@ -1,3 +1,4 @@
+#![allow(warnings)]
 include!("../out/_.rs");
 
 pub use prost::DecodeError as ProtobufDecodeError;

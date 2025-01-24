@@ -12,24 +12,37 @@ use super::*;
 
 pub async fn on_start_cocoon_stage_cs_req(
     _session: &mut PlayerSession,
-    body: &StartCocoonStageCsReq,
+    req: &StartCocoonStageCsReq,
     res: &mut StartCocoonStageScRsp,
 ) {
     let battle_info = create_battle_info(0, 0).await;
 
-    res.prop_entity_id = body.prop_entity_id;
-    res.cocoon_id = body.cocoon_id;
-    res.wave = body.wave;
+    res.prop_entity_id = req.prop_entity_id;
+    res.cocoon_id = req.cocoon_id;
+    res.wave = req.wave;
+    res.battle_info = Some(battle_info);
+}
+
+pub async fn on_quick_start_cocoon_stage_cs_req(
+    _session: &mut PlayerSession,
+    req: &QuickStartCocoonStageCsReq,
+    res: &mut QuickStartCocoonStageScRsp,
+) {
+    let mut battle_info = create_battle_info(0, 0).await;
+
+    battle_info.world_level = req.world_level;
+    res.cocoon_id = req.cocoon_id;
+    res.wave = req.wave;
     res.battle_info = Some(battle_info);
 }
 
 pub async fn on_pve_battle_result_cs_req(
     _session: &mut PlayerSession,
-    body: &PveBattleResultCsReq,
+    req: &PveBattleResultCsReq,
     res: &mut PveBattleResultScRsp,
 ) {
-    res.end_status = body.end_status;
-    res.battle_id = body.battle_id;
+    res.end_status = req.end_status;
+    res.battle_id = req.battle_id;
 }
 
 pub async fn on_scene_cast_skill_cs_req(
@@ -62,6 +75,7 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
         logic_random_seed: rand::thread_rng().gen::<u32>(),
         battle_id: 1,
         rounds_limit: player.battle_config.cycle_count,
+        world_level: 6,
         ..Default::default()
     };
 
@@ -267,7 +281,7 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
                         max_sp: 10_000,
                     }),
                 }),
-                skill_info: Vec::with_capacity(0)
+                skill_info: Vec::with_capacity(0),
             })
     }
 

@@ -207,6 +207,7 @@ trait_handler! {
     StartCocoonStage;
     PveBattleResult;
     SceneCastSkill;
+    QuickStartCocoonStage;
 
     // Teleport
     GetEnteredScene;

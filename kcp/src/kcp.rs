@@ -492,7 +492,7 @@ impl<Output> Kcp<Output> {
         let count = if buf.len() <= self.mss {
             1
         } else {
-            (buf.len() + self.mss - 1) / self.mss
+            buf.len().div_ceil(self.mss)
         };
 
         if count >= KCP_WND_RCV as usize {
