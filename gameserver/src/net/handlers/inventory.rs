@@ -65,10 +65,10 @@ pub async fn on_take_off_equipment_cs_req(
 ) {
 }
 
-pub async fn on_relic_recommend_cs_req(
-    _: &mut PlayerSession,
-    req: &RelicRecommendCsReq,
-    res: &mut RelicRecommendScRsp,
-) {
-    res.avatar_id = req.avatar_id
-}
+// pub async fn on_relic_recommend_cs_req(
+//     _: &mut PlayerSession,
+//     req: &RelicRecommendCsReq,
+//     res: &mut RelicRecommendScRsp,
+// ) {
+//     res.avatar_id = req.avatar_id
+// }
