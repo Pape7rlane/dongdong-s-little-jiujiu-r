@@ -144,7 +144,7 @@ impl Gateway {
     fn next_conv_pair(&mut self) -> (u32, u32) {
         (
             self.id_counter.fetch_add(1, Ordering::SeqCst) + 1,
-            rand::thread_rng().next_u32(),
+            rand::rng().next_u32(),
         )
     }
 }

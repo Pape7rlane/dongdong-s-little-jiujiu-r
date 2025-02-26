@@ -72,7 +72,7 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
 
     let mut battle_info = SceneBattleInfo {
         stage_id: player.battle_config.stage_id,
-        logic_random_seed: rand::thread_rng().gen::<u32>(),
+        logic_random_seed: rand::rng().random::<u32>(),
         battle_id: 1,
         rounds_limit: player.battle_config.cycle_count,
         world_level: 6,
