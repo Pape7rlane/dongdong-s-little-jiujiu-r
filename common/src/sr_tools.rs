@@ -696,6 +696,10 @@ impl FreesrData {
         json
     }
 
+    pub async fn update(&mut self) {
+        *self = Self::load().await
+    }
+
     async fn verify_lineup(&mut self) {
         if self.lineups.is_empty() {
             self.lineups = BTreeMap::<u32, u32>::from([(0, 8001), (1, 0), (2, 0), (3, 0)])
@@ -704,16 +708,10 @@ impl FreesrData {
                 self.lineups.insert(i as u32, 0);
             }
         }
-        self.save().await;
+        self.save_persistent().await;
     }
 
-    pub async fn save_lineup(&self) {
-        self.save().await;
-    }
-
-    pub async fn save(&self) {
-        let json = serde_json::to_string_pretty(&self).unwrap();
-        let _ = tokio::fs::write("freesr-data.json", json.as_bytes()).await;
+    pub async fn save_persistent(&self) {
         let _ = tokio::fs::write(
             "persistent",
             serde_json::to_string_pretty(&Persistent {
@@ -723,10 +721,10 @@ impl FreesrData {
                 scene: self.scene.clone(),
                 march_type: self.march_type,
             })
-            .unwrap()
-            .as_bytes(),
+            .unwrap(),
         )
         .await;
+        tracing::info!("persistent saved");
     }
 
     pub fn get_multi_path_info(&self) -> Vec<MultiPathAvatarTypeInfo> {

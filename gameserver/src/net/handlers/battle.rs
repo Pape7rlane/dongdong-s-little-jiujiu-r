@@ -3,19 +3,19 @@ use std::collections::HashMap;
 use rand::Rng;
 use rogue_magic_battle_unit_info::Item;
 
-use crate::{
-    net::tools::{self, BattleType, Monster},
-    tools::resources::GAME_RES,
+use common::{
+    resources::GAME_RES,
+    sr_tools::{BattleType, Monster, RogueMagicComponentType},
 };
 
 use super::*;
 
 pub async fn on_start_cocoon_stage_cs_req(
-    _session: &mut PlayerSession,
+    session: &mut PlayerSession,
     req: &StartCocoonStageCsReq,
     res: &mut StartCocoonStageScRsp,
 ) {
-    let battle_info = create_battle_info(0, 0).await;
+    let battle_info = create_battle_info(session, 0, 0).await;
 
     res.prop_entity_id = req.prop_entity_id;
     res.cocoon_id = req.cocoon_id;
@@ -24,11 +24,11 @@ pub async fn on_start_cocoon_stage_cs_req(
 }
 
 pub async fn on_quick_start_cocoon_stage_cs_req(
-    _session: &mut PlayerSession,
+    session: &mut PlayerSession,
     req: &QuickStartCocoonStageCsReq,
     res: &mut QuickStartCocoonStageScRsp,
 ) {
-    let mut battle_info = create_battle_info(0, 0).await;
+    let mut battle_info = create_battle_info(session, 0, 0).await;
 
     battle_info.world_level = req.world_level;
     res.cocoon_id = req.cocoon_id;
@@ -46,7 +46,7 @@ pub async fn on_pve_battle_result_cs_req(
 }
 
 pub async fn on_scene_cast_skill_cs_req(
-    _session: &mut PlayerSession,
+    session: &mut PlayerSession,
     req: &SceneCastSkillCsReq,
     res: &mut SceneCastSkillScRsp,
 ) {
@@ -55,20 +55,30 @@ pub async fn on_scene_cast_skill_cs_req(
     let targets = req
         .hit_target_entity_id_list
         .iter()
+        .chain(&req.assist_monster_entity_id_list)
         .filter(|id| **id > 30_000 || **id < 1_000)
         .collect::<Vec<_>>();
 
     if targets.is_empty() {
+        tracing::warn!("scene cast skill target is empty!");
         return;
     }
 
-    let battle_info = create_battle_info(req.caster_id, req.skill_index).await;
+    let battle_info = create_battle_info(session, req.caster_id, req.skill_index).await;
 
+    res.attacked_group_id = req.attacked_group_id;
     res.battle_info = Some(battle_info);
 }
 
-async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo {
-    let player = tools::FreesrData::load().await;
+async fn create_battle_info(
+    session: &mut PlayerSession,
+    caster_id: u32,
+    skill_index: u32,
+) -> SceneBattleInfo {
+    let Some(player) = session.json_data.get() else {
+        tracing::error!("data is not set!");
+        return SceneBattleInfo::default();
+    };
 
     let mut battle_info = SceneBattleInfo {
         stage_id: player.battle_config.stage_id,
@@ -207,27 +217,21 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
     // pf score object
     if player.battle_config.battle_type == BattleType::PF {
         if battle_info.stage_id >= 30309011 {
-            battle_info.battle_target_info.insert(
-                1,
-                BattleTargetList {
-                    battle_target_list: vec![BattleTarget {
-                        id: 10003,
-                        progress: 0,
-                        ..Default::default()
-                    }],
-                },
-            );
+            battle_info.battle_target_info.insert(1, BattleTargetList {
+                battle_target_list: vec![BattleTarget {
+                    id: 10003,
+                    progress: 0,
+                    ..Default::default()
+                }],
+            });
         } else {
-            battle_info.battle_target_info.insert(
-                1,
-                BattleTargetList {
-                    battle_target_list: vec![BattleTarget {
-                        id: 10002,
-                        progress: 0,
-                        ..Default::default()
-                    }],
-                },
-            );
+            battle_info.battle_target_info.insert(1, BattleTargetList {
+                battle_target_list: vec![BattleTarget {
+                    id: 10002,
+                    progress: 0,
+                    ..Default::default()
+                }],
+            });
         }
 
         for i in 2..=4 {
@@ -236,37 +240,31 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
                 .insert(i, BattleTargetList::default());
         }
 
-        battle_info.battle_target_info.insert(
-            5,
-            BattleTargetList {
-                battle_target_list: vec![
-                    BattleTarget {
-                        id: 2001,
-                        progress: 0,
-                        ..Default::default()
-                    },
-                    BattleTarget {
-                        id: 2002,
-                        progress: 0,
-                        ..Default::default()
-                    },
-                ],
-            },
-        );
+        battle_info.battle_target_info.insert(5, BattleTargetList {
+            battle_target_list: vec![
+                BattleTarget {
+                    id: 2001,
+                    progress: 0,
+                    ..Default::default()
+                },
+                BattleTarget {
+                    id: 2002,
+                    progress: 0,
+                    ..Default::default()
+                },
+            ],
+        });
     }
 
     // Apocalyptic Shadow
     if player.battle_config.battle_type == BattleType::AS {
-        battle_info.battle_target_info.insert(
-            1,
-            BattleTargetList {
-                battle_target_list: vec![BattleTarget {
-                    id: 90005,
-                    progress: 0,
-                    ..Default::default()
-                }],
-            },
-        );
+        battle_info.battle_target_info.insert(1, BattleTargetList {
+            battle_target_list: vec![BattleTarget {
+                id: 90005,
+                progress: 0,
+                ..Default::default()
+            }],
+        });
     }
 
     //  SU
@@ -313,9 +311,9 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
 
                             for component in &scepter.components {
                                 let (slot_type, locked) = match component.component_type {
-                                    tools::RogueMagicComponentType::Passive => (3u32, false),
-                                    tools::RogueMagicComponentType::Active => (4, true),
-                                    tools::RogueMagicComponentType::Attach => (5, false),
+                                    RogueMagicComponentType::Passive => (3u32, false),
+                                    RogueMagicComponentType::Active => (4, true),
+                                    RogueMagicComponentType::Attach => (5, false),
                                 };
 
                                 let slot_index = &mut index[slot_type as usize - 3];
@@ -336,6 +334,18 @@ async fn create_battle_info(caster_id: u32, skill_index: u32) -> SceneBattleInfo
                 })),
             }),
             scepter: Some(Plgjihifpag { egmebanhhnf: 5 }),
+        });
+    }
+
+    // Global Buff
+    if !battle_info.buff_list.iter().any(|b| b.id == 140703) {
+        battle_info.buff_list.push(BattleBuff {
+            id: 140703,
+            level: 1,
+            owner_id: u32::MAX,
+            wave_flag: u32::MAX,
+            target_index_list: Vec::with_capacity(0),
+            dynamic_values: HashMap::with_capacity(0),
         });
     }
 

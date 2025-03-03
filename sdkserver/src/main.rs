@@ -1,8 +1,11 @@
 use anyhow::Result;
-use axum::routing::{get, post};
 use axum::Router;
+use axum::http::Method;
+use axum::http::header::CONTENT_TYPE;
+use axum::routing::{get, post};
 use logging::init_tracing;
-use services::{auth, dispatch, errors};
+use services::{auth, dispatch, errors, sr_tools};
+use tower_http::cors::{Any, CorsLayer};
 use tracing::Level;
 
 mod config;
@@ -39,6 +42,16 @@ async fn main() -> Result<()> {
         .route(
             auth::GRANTER_LOGIN_VERIFICATION_ENDPOINT,
             post(auth::granter_login_verification),
+        )
+        .route(
+            sr_tools::SRTOOLS_UPLOAD_ENDPOINT,
+            post(sr_tools::sr_tool_save),
+        )
+        .layer(
+            CorsLayer::new()
+                .allow_origin(Any)
+                .allow_methods([Method::GET, Method::POST, Method::PATCH, Method::DELETE])
+                .allow_headers([CONTENT_TYPE]),
         )
         .fallback(errors::not_found);
 

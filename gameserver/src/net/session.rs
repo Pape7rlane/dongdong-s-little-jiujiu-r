@@ -2,66 +2,73 @@ use std::{
     io::Error,
     net::SocketAddr,
     pin::Pin,
-    sync::Arc,
+    sync::{Arc, OnceLock},
     task::{Context, Poll},
 };
 
 use anyhow::Result;
+use common::sr_tools::FreesrData;
 use mhy_kcp::Kcp;
 use prost::Message;
-use proto::{CmdID, CmdPlayerType};
-use tokio::{io::AsyncWrite, net::UdpSocket, sync::Mutex};
+use proto::{AvatarSync, CmdID, CmdPlayerType, PlayerSyncScNotify};
+use tokio::{
+    io::AsyncWrite,
+    net::UdpSocket,
+    sync::{Mutex, watch},
+};
 
 use crate::util;
 
-use super::{packet::CommandHandler, NetPacket};
+use super::{NetPacket, packet::CommandHandler};
 
 struct RemoteEndPoint {
     socket: Arc<UdpSocket>,
     addr: SocketAddr,
 }
 
-#[derive(Clone)]
 pub struct PlayerSession {
     pub token: u32,
     kcp: Arc<Mutex<Kcp<RemoteEndPoint>>>,
     start_time: u64,
-    pub is_destroyed: bool,
+    pub shutdown_tx: watch::Sender<()>,
+    pub shutdown_rx: watch::Receiver<()>,
+    pub json_data: OnceLock<FreesrData>,
 }
 
 impl PlayerSession {
     pub fn new(socket: Arc<UdpSocket>, addr: SocketAddr, conv: u32, token: u32) -> Self {
+        let (shutdown_tx, shutdown_rx) = watch::channel(());
         Self {
             token,
-            kcp: Arc::new(Mutex::new(Kcp::new(
-                conv,
-                token,
-                false,
-                RemoteEndPoint { socket, addr },
-            ))),
+            kcp: Arc::new(Mutex::new(Kcp::new(conv, token, false, RemoteEndPoint {
+                socket,
+                addr,
+            }))),
             start_time: util::cur_timestamp_secs(),
-            is_destroyed: false,
+            json_data: OnceLock::new(),
+            shutdown_rx,
+            shutdown_tx,
         }
     }
 
     pub async fn consume(&mut self, buffer: &[u8]) -> Result<()> {
-        {
-            let mut kcp = self.kcp.lock().await;
-            kcp.input(buffer)?;
-            kcp.async_update(self.session_time() as u32).await?;
-            kcp.async_flush().await?;
-        }
+        let mut kcp = self.kcp.lock().await;
+        kcp.input(buffer)?;
+        kcp.async_update(self.session_time() as u32).await?;
+        kcp.async_flush().await?;
 
         let mut packets = Vec::new();
         let mut buf = [0; 24756];
-        while let Ok(length) = self.kcp.lock().await.recv(&mut buf) {
+        while let Ok(length) = kcp.recv(&mut buf) {
             packets.push(NetPacket::from(&buf[..length]));
         }
 
+        drop(kcp);
+
         for packet in packets {
-            // TODO: Temporary fix
             if packet.cmd_type == CmdPlayerType::CmdPlayerLogoutCsReq as u16 {
-                self.is_destroyed = true;
+                tracing::info!("Player logged out");
+                let _ = self.shutdown_tx.send(());
                 return Ok(());
             };
             Self::on_message(self, packet.cmd_type, packet.body).await?;
@@ -78,6 +85,7 @@ impl PlayerSession {
     pub async fn send(&self, body: impl Message + CmdID) -> Result<()> {
         let mut buf = Vec::new();
         body.encode(&mut buf)?;
+        tracing::info!("sent packet with CmdID: {}", body.get_cmd_id());
 
         let payload: Vec<u8> = NetPacket {
             cmd_type: body.get_cmd_id(),
@@ -102,6 +110,74 @@ impl PlayerSession {
         kcp.async_update(self.session_time() as u32).await?;
 
         Ok(())
+    }
+
+    pub async fn sync_player(&self) {
+        let Some(json) = self.json_data.get() else {
+            tracing::error!("data is not init!");
+            return;
+        };
+
+        // clear relics & lightcones
+        self.send(PlayerSyncScNotify {
+            del_equipment_list: (2000..3500).collect(),
+            del_relic_list: (1..2000).collect(),
+            ..Default::default()
+        })
+        .await
+        .unwrap();
+
+        // Sync avatars
+        self.send(PlayerSyncScNotify {
+            avatar_sync: Some(AvatarSync {
+                avatar_list: json
+                    .avatars
+                    .values()
+                    .map(|avatar| avatar.to_avatar_proto(Option::None, vec![]))
+                    .collect::<Vec<_>>(),
+            }),
+            multi_path_avatar_type_info_list: json.get_multi_path_info(),
+            ..Default::default()
+        })
+        .await
+        .unwrap();
+
+        // Sync new relics
+        self.send(PlayerSyncScNotify {
+            relic_list: json.relics.iter().map(|v| v.to_relic_proto()).collect(),
+            equipment_list: json
+                .lightcones
+                .iter()
+                .map(|v| v.to_equipment_proto())
+                .collect(),
+            ..Default::default()
+        })
+        .await
+        .unwrap();
+
+        // Sync new lightcones
+        self.send(PlayerSyncScNotify {
+            avatar_sync: Some(AvatarSync {
+                avatar_list: json
+                    .avatars
+                    .values()
+                    .map(|avatar| {
+                        avatar.to_avatar_proto(
+                            json.lightcones
+                                .iter()
+                                .find(|v| v.equip_avatar == avatar.avatar_id),
+                            json.relics
+                                .iter()
+                                .filter(|v| v.equip_avatar == avatar.avatar_id)
+                                .collect(),
+                        )
+                    })
+                    .collect(),
+            }),
+            ..Default::default()
+        })
+        .await
+        .unwrap()
     }
 
     fn session_time(&self) -> u64 {

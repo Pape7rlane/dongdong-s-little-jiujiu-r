@@ -1,5 +1,5 @@
 [workspace]
-members = ["gameserver", "proto", "sdkserver"]
+members = ["gameserver", "proto", "sdkserver", "common"]
 resolver = "3"
 
 [workspace.package]
@@ -13,6 +13,7 @@ lazy_static = "1.4.0"
 
 axum = "0.8.1"
 axum-server = "0.7.1"
+tower-http = "0.6.2"
 
 env_logger = "0.11.3"
 
@@ -32,6 +33,8 @@ prost-build = "0.13.5"
 
 paste = "1.0.14"
 sysinfo = "0.33.1"
+notify = "8.0.0"
+notify-debouncer-mini = "0.6.0"
 
 hex = "0.4.3"
 
@@ -56,6 +59,7 @@ tracing-bunyan-formatter = "0.3.9"
 proto = { path = "proto/" }
 proto-derive = { path = "proto/proto-derive" }
 mhy-kcp = { path = "kcp/", features = ["tokio"] }
+common = { path = "common/" }
 
 
 [profile.release]

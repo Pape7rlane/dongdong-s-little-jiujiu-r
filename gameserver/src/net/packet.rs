@@ -27,8 +27,8 @@ use proto::{
     CmdWaypointType::*, CmdWolfBroType::*,
 };
 
-use super::handlers::*;
 use super::PlayerSession;
+use super::handlers::*;
 
 const HEAD_MAGIC: u32 = 0x9D74C714;
 const TAIL_MAGIC: u32 = 0xD7A152C8;
@@ -219,6 +219,6 @@ trait_handler! {
     GetGachaInfo;
     DoGacha;
     PlayerLoginFinish;
-    // RelicRecommend;
+    GetBigDataAllRecommend;
     // SetClientPaused;
 }

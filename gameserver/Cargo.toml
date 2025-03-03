@@ -12,7 +12,8 @@ hex.workspace = true
 lazy_static.workspace = true
 paste.workspace = true
 rbase64.workspace = true
-sysinfo.workspace = true
+notify.workspace = true
+notify-debouncer-mini.workspace = true
 
 serde.workspace = true
 serde_json.workspace = true
@@ -32,3 +33,4 @@ proto-derive.workspace = true
 
 rand.workspace = true
 mhy-kcp.workspace = true
+common.workspace = true

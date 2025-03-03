@@ -1,14 +1,14 @@
 use std::collections::HashMap;
 
+use common::{
+    resources::GAME_RES,
+    sr_tools::{AvatarJson, Position},
+};
 use lazy_static::lazy_static;
 use scene_entity_info::Entity;
 use tokio::sync::Mutex;
 
-use crate::{
-    net::tools::{AvatarJson, FreesrData, Position},
-    tools::resources::GAME_RES,
-    util::{self},
-};
+use crate::util::{self};
 
 use super::*;
 
@@ -17,21 +17,25 @@ pub async fn on_get_cur_scene_info_cs_req(
     _body: &GetCurSceneInfoCsReq,
     res: &mut GetCurSceneInfoScRsp,
 ) {
-    let mut player = FreesrData::load().await;
-    let entry = player.scene.entry_id;
+    let Some(player) = session.json_data.get() else {
+        tracing::error!("data is not set!");
+        return;
+    };
 
-    let scene = load_scene(session, &mut player, entry, false, Option::<u32>::None).await;
+    let default_scene = SceneInfo {
+        game_mode_type: 3,
+        entry_id: player.scene.entry_id,
+        plane_id: player.scene.plane_id,
+        floor_id: player.scene.floor_id,
+        ..Default::default()
+    };
+
+    let scene = load_scene(session, default_scene.entry_id, false, Option::<u32>::None).await;
 
     res.scene = if let Ok(scene) = scene {
         Some(scene)
     } else {
-        Some(SceneInfo {
-            game_mode_type: 3,
-            entry_id: player.scene.entry_id,
-            plane_id: player.scene.plane_id,
-            floor_id: player.scene.floor_id,
-            ..Default::default()
-        })
+        Some(default_scene)
     };
 }
 
@@ -40,17 +44,9 @@ pub async fn on_enter_scene_cs_req(
     req: &EnterSceneCsReq,
     res: &mut EnterSceneScRsp,
 ) {
-    let mut player = FreesrData::load().await;
-
-    if load_scene(
-        session,
-        &mut player,
-        req.entry_id,
-        true,
-        Some(req.teleport_id),
-    )
-    .await
-    .is_err()
+    if load_scene(session, req.entry_id, true, Some(req.teleport_id))
+        .await
+        .is_err()
     {
         res.retcode = Retcode::RetSceneEntryIdNotMatch as u32;
     };
@@ -126,11 +122,15 @@ lazy_static! {
 }
 
 pub async fn on_scene_entity_move_cs_req(
-    _session: &mut PlayerSession,
+    session: &mut PlayerSession,
     req: &SceneEntityMoveCsReq,
     _res: &mut SceneEntityMoveScRsp,
 ) {
-    let mut player = FreesrData::load().await;
+    let Some(player) = session.json_data.get_mut() else {
+        tracing::error!("data is not set!");
+        return;
+    };
+
     let mut timestamp = NEXT_SCENE_SAVE.lock().await;
 
     if util::cur_timestamp_ms() <= *timestamp {
@@ -157,7 +157,7 @@ pub async fn on_scene_entity_move_cs_req(
         }
     }
 
-    player.save().await;
+    player.save_persistent().await;
 }
 
 pub async fn on_get_entered_scene_cs_req(
@@ -187,11 +187,15 @@ pub async fn on_get_entered_scene_cs_req(
 
 async fn load_scene(
     session: &mut PlayerSession,
-    json: &mut FreesrData,
     entry_id: u32,
     is_enter_scene: bool,
     teleport_id: Option<u32>,
 ) -> Result<SceneInfo> {
+    let Some(json) = session.json_data.get_mut() else {
+        tracing::error!("data is not set!");
+        return Err(anyhow::format_err!("data is not set!"));
+    };
+
     let (name, scene) = GAME_RES
         .level_output_configs
         .get(&entry_id)
@@ -375,7 +379,7 @@ async fn load_scene(
             .map(|(slot, avatar_id)| SceneEntityInfo {
                 inst_id: 0,
                 entity_id: (*slot) + 1,
-                motion: Some(player_pos.clone()),
+                motion: Some(player_pos),
                 entity: Some(Entity::Actor(SceneActorInfo {
                     avatar_type: AvatarType::AvatarFormalType.into(),
                     base_avatar_id: *avatar_id,
@@ -388,14 +392,6 @@ async fn load_scene(
     });
 
     if is_enter_scene {
-        session
-            .send(EnterSceneByServerScNotify {
-                scene: Some(scene_info.clone()),
-                lineup: Some(lineup_info),
-                ..Default::default()
-            })
-            .await?;
-
         json.scene.entry_id = entry_id;
         json.scene.floor_id = floor_id;
         json.scene.plane_id = plane_id;
@@ -403,7 +399,16 @@ async fn load_scene(
         json.position.y = json_pos.y;
         json.position.z = json_pos.z;
         json.position.rot_y = json_pos.rot_y;
-        json.save().await;
+
+        json.save_persistent().await;
+
+        session
+            .send(EnterSceneByServerScNotify {
+                scene: Some(scene_info.clone()),
+                lineup: Some(lineup_info),
+                ..Default::default()
+            })
+            .await?;
     }
 
     Ok(scene_info)

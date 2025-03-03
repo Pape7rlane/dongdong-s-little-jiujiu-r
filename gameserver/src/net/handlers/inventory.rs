@@ -1,13 +1,18 @@
-use proto::*;
+use proto::{get_big_data_all_recommend_sc_rsp::RecommendType, *};
 
-use crate::net::{tools::FreesrData, PlayerSession};
+use crate::net::PlayerSession;
+
+use super::UNLOCKED_AVATARS;
 
 pub async fn on_get_bag_cs_req(
-    _session: &mut PlayerSession,
+    session: &mut PlayerSession,
     _req: &GetBagCsReq,
     res: &mut GetBagScRsp,
 ) {
-    let player = FreesrData::load().await;
+    let Some(player) = session.json_data.get() else {
+        tracing::error!("data is not set!");
+        return;
+    };
 
     res.equipment_list = player
         .lightcones
@@ -65,10 +70,37 @@ pub async fn on_take_off_equipment_cs_req(
 ) {
 }
 
-// pub async fn on_relic_recommend_cs_req(
-//     _: &mut PlayerSession,
-//     req: &RelicRecommendCsReq,
-//     res: &mut RelicRecommendScRsp,
-// ) {
-//     res.avatar_id = req.avatar_id
-// }
+pub async fn on_get_big_data_all_recommend_cs_req(
+    _: &mut PlayerSession,
+    req: &GetBigDataAllRecommendCsReq,
+    res: &mut GetBigDataAllRecommendScRsp,
+) {
+    res.big_data_recommend_type = req.big_data_recommend_type;
+
+    match req.big_data_recommend_type() {
+        BigDataRecommendType::RelicAvatar => {
+            res.recommend_type = Some(RecommendType::RelicAvatar(BigDataRecommendRelicAvatar {
+                recommended_avatar_info_list: UNLOCKED_AVATARS
+                    .into_iter()
+                    .map(|recommend_avatar_id| RecomendedAvatarInfo {
+                        avatar_id_list: vec![],
+                        recommend_avatar_id,
+                        relic_set_id: 0,
+                    })
+                    .collect(),
+            }))
+        }
+        BigDataRecommendType::AvatarRelic => {
+            res.recommend_type = Some(RecommendType::AvatarRelic(BigDataRecommendAvatarRelic {
+                recomended_relic_info_list: UNLOCKED_AVATARS
+                    .into_iter()
+                    .map(|avatar_id| RecommendedRelicInfo {
+                        avatar_id,
+                        ..Default::default()
+                    })
+                    .collect(),
+            }))
+        }
+        _ => {}
+    }
+}

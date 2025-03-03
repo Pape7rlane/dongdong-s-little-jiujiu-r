@@ -1,7 +1,5 @@
 use std::collections::HashMap;
 
-use crate::net::tools::FreesrData;
-
 use super::*;
 
 pub async fn on_get_basic_info_cs_req(
@@ -56,11 +54,14 @@ pub async fn on_player_login_finish_cs_req(
 }
 
 pub async fn on_get_multi_path_avatar_info_cs_req(
-    _session: &mut PlayerSession,
+    session: &mut PlayerSession,
     _req: &GetMultiPathAvatarInfoCsReq,
     res: &mut GetMultiPathAvatarInfoScRsp,
 ) {
-    let json = FreesrData::load().await;
+    let Some(json) = session.json_data.get() else {
+        tracing::error!("data is not set!");
+        return;
+    };
 
     res.current_multi_path_avatar_id = HashMap::from([
         (8001, json.main_character.get_type().into()),

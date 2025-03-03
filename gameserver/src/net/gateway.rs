@@ -1,20 +1,24 @@
 use std::{
     collections::HashMap,
     net::SocketAddr,
+    path::Path,
     sync::{
-        atomic::{AtomicU32, Ordering},
         Arc,
+        atomic::{AtomicU32, Ordering},
     },
+    time::Duration,
 };
 
 use anyhow::Result;
+
+use common::sr_tools::FreesrData;
 use rand::RngCore;
 
 use crate::net::PlayerSession;
 
 use tokio::{
     net::UdpSocket,
-    sync::{Mutex, RwLock},
+    sync::{Mutex, RwLock, mpsc},
 };
 
 use crate::net::packet::NetOperation;
@@ -74,15 +78,79 @@ impl Gateway {
         let (conv_id, session_token) = self.next_conv_pair();
         tracing::info!("New connection from addr: {addr} with conv_id: {conv_id}");
 
-        self.sessions.lock().await.insert(
+        let session = Arc::new(RwLock::new(PlayerSession::new(
+            self.socket.clone(),
+            addr,
             conv_id,
-            Arc::new(RwLock::new(PlayerSession::new(
-                self.socket.clone(),
-                addr,
-                conv_id,
-                session_token,
-            ))),
-        );
+            session_token,
+        )));
+
+        // Init  the json to session
+        let _ = session
+            .write()
+            .await
+            .json_data
+            .set(FreesrData::load().await);
+
+        let session_ref = session.clone();
+
+        // FS watcher
+        tokio::spawn(async move {
+            let (tx, mut rx) = mpsc::channel(100);
+            let mut debouncer =
+                notify_debouncer_mini::new_debouncer(Duration::from_millis(1000), move |ev| {
+                    let _ = tx.blocking_send(ev);
+                })
+                .unwrap();
+
+            let path = Path::new("freesr-data.json");
+
+            debouncer
+                .watcher()
+                .watch(path, notify::RecursiveMode::NonRecursive)
+                .unwrap();
+
+            tracing::info!("watching freesr-data.json changes");
+
+            let mut shutdown_rx = session.read().await.shutdown_rx.clone();
+            loop {
+                tokio::select! {
+                    res = rx.recv() => {
+                        let Some(res) = res else {
+                            break;
+                        };
+                        match res {
+                            Ok(events) => {
+                                if events
+                                .iter()
+                                .any(|p| p.path.file_name() == path.file_name())
+                            {
+                                let mut session = session.write().await;
+                                if let Some(json) = session.json_data.get_mut() {
+                                    let _ = json.update().await;
+                                    session.sync_player().await;
+                                    tracing::info!("json updated")
+                                }
+                            }
+                            }
+                            Err(e) => eprintln!("json watcher error: {:?}", e),
+                        }
+                    }
+                    _ = shutdown_rx.changed() => {
+                        break;
+                    }
+                }
+            }
+
+            tracing::info!("unwatch freesr-data.json");
+        });
+
+        let mut sessions = self.sessions.lock().await;
+        for session in sessions.values_mut() {
+            let _ = session.write().await.shutdown_tx.send(());
+        }
+        sessions.clear();
+        sessions.insert(conv_id, session_ref);
 
         self.socket
             .send_to(
@@ -102,37 +170,28 @@ impl Gateway {
 
     async fn drop_kcp_session(&mut self, conv_id: u32, token: u32, addr: SocketAddr) {
         tracing::info!("drop_kcp_session {conv_id} {token}");
-        let Some(session) = self.sessions.lock().await.get(&conv_id).cloned() else {
+        let mut sessions = self.sessions.lock().await;
+        let Some(session) = sessions.get(&conv_id) else {
             tracing::warn!("drop_kcp_session failed, no session with conv_id {conv_id} was found");
             return;
         };
-
-        if session.read().await.token == token {
-            self.sessions.lock().await.remove(&conv_id);
+        let session = session.write().await;
+        if session.token == token {
+            let _ = session.shutdown_tx.send(());
+            drop(session);
+            sessions.remove(&conv_id);
             tracing::info!("Client from {addr} disconnected");
         }
     }
 
     async fn process_kcp_payload(&mut self, data: Box<[u8]>, addr: SocketAddr) {
         let conv_id = mhy_kcp::get_conv(&data);
+        let mut sessions = self.sessions.lock().await;
 
-        let Some(session) = self
-            .sessions
-            .lock()
-            .await
-            .get_mut(&conv_id)
-            .map(|s| s.clone())
-        else {
+        let Some(session) = sessions.get_mut(&conv_id).map(|s| s.clone()) else {
             tracing::warn!("Session with conv_id {conv_id} not found!");
             return;
         };
-
-        // TODO: Temporary fix
-        if session.read().await.is_destroyed {
-            drop(session);
-            self.sessions.lock().await.remove(&conv_id);
-            return;
-        }
 
         tokio::spawn(async move {
             if let Err(err) = Box::pin(session.write().await.consume(&data)).await {

@@ -1,10 +1,6 @@
-use crate::{
-    net::{
-        tools::{FreesrData, MultiPathAvatar},
-        PlayerSession,
-    },
-    util::cur_timestamp_ms,
-};
+use common::sr_tools::MultiPathAvatar;
+
+use crate::{net::PlayerSession, util::cur_timestamp_ms};
 
 use super::*;
 
@@ -16,7 +12,7 @@ const SERVER_CHAT_HISTORY: [&str; 5] = [
     "'mc {mc_id}' mc_id can be set from 8001 to 8008",
     "'march {march_id}' march_id can be set 1001 or 1224",
     "available commands:",
-    "visit srtools.pages.dev to configure the PS! (you configure relics, equipment, monsters from there)"
+    "visit srtools.pages.dev to configure the PS! (you configure relics, equipment, monsters from there)",
 ];
 
 pub async fn on_get_friend_login_info_cs_req(
@@ -76,12 +72,15 @@ pub async fn on_send_msg_cs_req(
     body: &SendMsgCsReq,
     _res: &mut SendMsgScRsp,
 ) {
-    let mut json = FreesrData::load().await;
+    let Some(json) = session.json_data.get_mut() else {
+        tracing::error!("data is not set!");
+        return;
+    };
 
     if let Some((cmd, args)) = parse_command(&body.text) {
         match cmd {
             "sync" => {
-                sync_player(session, json).await;
+                session.sync_player().await;
                 session
                     .send(RevcMsgScNotify {
                         msg_type: body.msg_type,
@@ -90,7 +89,7 @@ pub async fn on_send_msg_cs_req(
                         from_uid: SERVER_UID,
                         to_uid: 25,
                         chat_type: body.chat_type,
-                        hnbepabnbng: body.hnbepabnbng.clone(),
+                        hnbepabnbng: body.hnbepabnbng,
                     })
                     .await
                     .unwrap();
@@ -104,7 +103,7 @@ pub async fn on_send_msg_cs_req(
                 );
 
                 json.main_character = mc;
-                json.save().await;
+                json.save_persistent().await;
 
                 session
                     .send(AvatarPathChangedNotify {
@@ -114,7 +113,7 @@ pub async fn on_send_msg_cs_req(
                     .await
                     .unwrap();
 
-                sync_player(session, json).await;
+                session.sync_player().await;
 
                 session
                     .send(RevcMsgScNotify {
@@ -124,7 +123,7 @@ pub async fn on_send_msg_cs_req(
                         from_uid: SERVER_UID,
                         to_uid: 25,
                         chat_type: body.chat_type,
-                        hnbepabnbng: body.hnbepabnbng.clone(),
+                        hnbepabnbng: body.hnbepabnbng,
                     })
                     .await
                     .unwrap();
@@ -144,7 +143,7 @@ pub async fn on_send_msg_cs_req(
                 }
 
                 json.march_type = march_type;
-                json.save().await;
+                json.save_persistent().await;
 
                 session
                     .send(AvatarPathChangedNotify {
@@ -162,7 +161,7 @@ pub async fn on_send_msg_cs_req(
                         from_uid: SERVER_UID,
                         to_uid: 25,
                         chat_type: body.chat_type,
-                        hnbepabnbng: body.hnbepabnbng.clone(),
+                        hnbepabnbng: body.hnbepabnbng,
                     })
                     .await
                     .unwrap();
@@ -180,71 +179,4 @@ fn parse_command(command: &str) -> Option<(&str, Vec<&str>)> {
     }
 
     Some((parts[0], parts[1..].to_vec()))
-}
-
-async fn sync_player(session: &mut PlayerSession, json: FreesrData) {
-    // clear relics & lightcones
-    session
-        .send(PlayerSyncScNotify {
-            del_equipment_list: (2000..3500).collect(),
-            del_relic_list: (1..2000).collect(),
-            ..Default::default()
-        })
-        .await
-        .unwrap();
-
-    // Sync avatars
-    session
-        .send(PlayerSyncScNotify {
-            avatar_sync: Some(AvatarSync {
-                avatar_list: json
-                    .avatars
-                    .values()
-                    .map(|avatar| avatar.to_avatar_proto(Option::None, vec![]))
-                    .collect::<Vec<_>>(),
-            }),
-            multi_path_avatar_type_info_list: json.get_multi_path_info(),
-            ..Default::default()
-        })
-        .await
-        .unwrap();
-
-    // Sync new relics
-    session
-        .send(PlayerSyncScNotify {
-            relic_list: json.relics.iter().map(|v| v.to_relic_proto()).collect(),
-            equipment_list: json
-                .lightcones
-                .iter()
-                .map(|v| v.to_equipment_proto())
-                .collect(),
-            ..Default::default()
-        })
-        .await
-        .unwrap();
-
-    // Sync new lightcones
-    session
-        .send(PlayerSyncScNotify {
-            avatar_sync: Some(AvatarSync {
-                avatar_list: json
-                    .avatars
-                    .values()
-                    .map(|avatar| {
-                        avatar.to_avatar_proto(
-                            json.lightcones
-                                .iter()
-                                .find(|v| v.equip_avatar == avatar.avatar_id),
-                            json.relics
-                                .iter()
-                                .filter(|v| v.equip_avatar == avatar.avatar_id)
-                                .collect(),
-                        )
-                    })
-                    .collect(),
-            }),
-            ..Default::default()
-        })
-        .await
-        .unwrap()
 }
