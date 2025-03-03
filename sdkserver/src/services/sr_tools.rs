@@ -17,7 +17,6 @@ pub struct SrToolDataRsp {
     pub status: u32,
 }
 
-#[tracing::instrument]
 pub async fn sr_tool_save(Json(json): Json<SrToolDataReq>) -> Json<SrToolDataRsp> {
     let Some(json) = json.data else {
         return Json(SrToolDataRsp {
