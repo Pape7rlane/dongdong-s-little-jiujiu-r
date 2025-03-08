@@ -6,7 +6,7 @@ use std::{
         Arc,
         atomic::{AtomicU32, Ordering},
     },
-    time::Duration,
+    time::{Duration, SystemTime},
 };
 
 use anyhow::Result;
@@ -113,6 +113,11 @@ impl Gateway {
             tracing::info!("watching freesr-data.json changes");
 
             let mut shutdown_rx = session.read().await.shutdown_rx.clone();
+
+            let mut last_modified = std::fs::metadata(path)
+                .and_then(|meta| meta.modified())
+                .unwrap_or(SystemTime::UNIX_EPOCH);
+
             loop {
                 tokio::select! {
                     res = rx.recv() => {
@@ -122,16 +127,24 @@ impl Gateway {
                         match res {
                             Ok(events) => {
                                 if events
-                                .iter()
-                                .any(|p| p.path.file_name() == path.file_name())
-                            {
-                                let mut session = session.write().await;
-                                if let Some(json) = session.json_data.get_mut() {
-                                    let _ = json.update().await;
-                                    session.sync_player().await;
-                                    tracing::info!("json updated")
+                                    .iter()
+                                    .any(|p| p.path.file_name() == path.file_name())
+                                {
+                                    if let Ok(metadata) = std::fs::metadata(path) {
+                                        if let Ok(modified) = metadata.modified() {
+                                            if modified > last_modified {
+                                                last_modified = modified;
+
+                                                let mut session = session.write().await;
+                                                if let Some(json) = session.json_data.get_mut() {
+                                                    let _ = json.update().await;
+                                                    session.sync_player().await;
+                                                    tracing::info!("json updated");
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
-                            }
                             }
                             Err(e) => eprintln!("json watcher error: {:?}", e),
                         }
