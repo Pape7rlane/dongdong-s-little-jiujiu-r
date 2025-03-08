@@ -1,3 +1,5 @@
+use std::path::Path;
+
 use axum::Json;
 use common::sr_tools::FreesrData;
 use serde::{Deserialize, Serialize};
@@ -30,15 +32,21 @@ pub async fn sr_tool_save(Json(json): Json<SrToolDataReq>) -> Json<SrToolDataRsp
         Err(err) => {
             return Json(SrToolDataRsp {
                 message: format!("malformed json: {}", err),
-                status: 200,
+                status: 500,
             });
         }
     };
 
-    if let Err(err) = fs::write("freesr-data.json", json).await {
+    let path = Path::new("freesr-data.json");
+    let env = std::env::current_dir();
+
+    if let Err(err) = fs::write(&path, json).await {
         return Json(SrToolDataRsp {
-            message: format!("failed to write freesr-data.json: {}", err),
-            status: 200,
+            message: format!(
+                "failed to write freesr-data.json: {} at path: {:#?} env: {:#?}",
+                err, path, env
+            ),
+            status: 500,
         });
     };
 
