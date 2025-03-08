@@ -48,6 +48,8 @@ proto = { path = "proto/" }
 proto-derive = { path = "proto/proto-derive" }
 mhy-kcp = { path = "kcp/", features = ["tokio"] }
 common = { path = "common/" }
+sdkserver = { path = "sdkserver/"}
+gameserver = { path = "gameserver/"}
 
 [profile.release]
 strip = true      # Automatically strip symbols from the binary.
