@@ -5,8 +5,8 @@ use std::collections::{BTreeMap, HashMap};
 // AVATAR
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct AvatarJson {
-    #[serde(alias = "ownerUid")]
-    pub owner_uid: u32,
+    // #[serde(alias = "ownerUid")]
+    // pub owner_uid: u32,
     #[serde(alias = "avatarId")]
     pub avatar_id: u32,
     pub data: AvatarData,
@@ -232,8 +232,8 @@ pub struct Relic {
     pub level: u32,
     #[serde(alias = "relicId")]
     pub relic_id: u32,
-    #[serde(alias = "relicSetId")]
-    pub relic_set_id: u32,
+    // #[serde(alias = "relicSetId")]
+    // pub relic_set_id: u32,
     #[serde(alias = "mainAffixId")]
     pub main_affix_id: u32,
     #[serde(alias = "subAffixes")]
@@ -473,20 +473,31 @@ pub struct Scene {
 impl Default for Scene {
     fn default() -> Self {
         Self {
-            entry_id: 2032101,
-            plane_id: 20321,
-            floor_id: 20321001,
+            plane_id: 20411,
+            floor_id: 20411001,
+            entry_id: 2041101,
         }
     }
 }
 
 // Position
-#[derive(Debug, Serialize, Deserialize, Clone, Default)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Position {
     pub x: i32,
     pub y: i32,
     pub z: i32,
     pub rot_y: i32,
+}
+
+impl Default for Position {
+    fn default() -> Self {
+        Position {
+            x: -26968,
+            y: 78953,
+            z: 14457,
+            rot_y: 11858,
+        }
+    }
 }
 
 impl Position {
@@ -547,14 +558,8 @@ pub struct Persistent {
 
 impl Default for Persistent {
     fn default() -> Self {
-        let mut lineups = BTreeMap::<u32, u32>::new();
-        lineups.insert(0, 8001);
-        lineups.insert(1, 0);
-        lineups.insert(2, 0);
-        lineups.insert(3, 0);
-
         Self {
-            lineups,
+            lineups: BTreeMap::from([(0, 1313), (1, 1006), (2, 8001), (3, 1405)]),
             position: Default::default(),
             main_character: MultiPathAvatar::FemaleRememberance,
             scene: Default::default(),
