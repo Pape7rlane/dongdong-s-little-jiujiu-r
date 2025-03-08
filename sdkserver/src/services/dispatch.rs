@@ -1,4 +1,4 @@
-use crate::config::versions;
+use crate::config::version_config;
 use axum::extract::Query;
 use prost::Message;
 use proto::{DispatchRegionData, Gateserver, RegionEntry};
@@ -34,7 +34,7 @@ pub struct QueryGatewayParameters {
 
 #[tracing::instrument]
 pub async fn query_gateway(parameters: Query<QueryGatewayParameters>) -> String {
-    let rsp = if let Some(config) = versions.get(&parameters.version) {
+    let rsp = if let Some(config) = version_config::instance().get(&parameters.version) {
         Gateserver {
             retcode: 0,
             ip: String::from("127.0.0.1"),

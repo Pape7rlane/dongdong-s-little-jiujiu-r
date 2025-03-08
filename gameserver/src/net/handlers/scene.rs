@@ -4,9 +4,7 @@ use common::{
     resources::GAME_RES,
     sr_tools::{AvatarJson, Position},
 };
-use lazy_static::lazy_static;
 use scene_entity_info::Entity;
-use tokio::sync::Mutex;
 
 use crate::util::{self};
 
@@ -117,10 +115,6 @@ pub async fn on_get_scene_map_info_cs_req(
     }
 }
 
-lazy_static! {
-    static ref NEXT_SCENE_SAVE: Mutex<u64> = Mutex::new(0);
-}
-
 pub async fn on_scene_entity_move_cs_req(
     session: &mut PlayerSession,
     req: &SceneEntityMoveCsReq,
@@ -131,14 +125,12 @@ pub async fn on_scene_entity_move_cs_req(
         return;
     };
 
-    let mut timestamp = NEXT_SCENE_SAVE.lock().await;
-
-    if util::cur_timestamp_ms() <= *timestamp {
+    if util::cur_timestamp_ms() <= session.next_scene_save {
         return;
     }
 
     // save every 5 sec
-    *timestamp = util::cur_timestamp_ms() + (5 * 1000);
+    session.next_scene_save = util::cur_timestamp_ms() + (5 * 1000);
 
     for entity in &req.entity_motion_list {
         if entity.entity_id != 0 {

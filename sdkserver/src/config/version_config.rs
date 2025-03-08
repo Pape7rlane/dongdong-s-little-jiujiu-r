@@ -1,10 +1,8 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, sync::OnceLock};
 
-use lazy_static::lazy_static;
 use serde::Deserialize;
-use serde_json::from_str;
 
-const DEFAULT_VERSIONS: &str = include_str!("../../versions.json");
+const DEFAULT_VERSIONS: &str = include_str!("../../../versions.json");
 
 #[derive(Deserialize)]
 pub struct VersionConfig {
@@ -14,16 +12,16 @@ pub struct VersionConfig {
     // pub lua_version: String,
 }
 
-lazy_static! {
-    pub static ref INSTANCE: HashMap<String, VersionConfig> = {
-        let local_config = std::path::Path::new("versions.json");
-        let data = if local_config.exists() {
-            std::fs::read_to_string("versions.json").unwrap()
-        } else {
-            std::fs::write("versions.json", DEFAULT_VERSIONS).unwrap();
-            DEFAULT_VERSIONS.to_string()
-        };
+pub fn instance() -> &'static HashMap<String, VersionConfig> {
+    static INSTANCE: OnceLock<HashMap<String, VersionConfig>> = OnceLock::new();
+    INSTANCE.get_or_init(|| {
+        const CONFIG_PATH: &str = "versions.json";
 
-        from_str(&data).unwrap()
-    };
+        let data = std::fs::read_to_string(CONFIG_PATH).unwrap_or_else(|_| {
+            std::fs::write(CONFIG_PATH, DEFAULT_VERSIONS).expect("Failed to create versions file");
+            DEFAULT_VERSIONS.to_string()
+        });
+
+        serde_json::from_str(&data).unwrap_or_else(|e| panic!("Failed to parse versions.json: {e}"))
+    })
 }

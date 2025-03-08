@@ -14,12 +14,12 @@ use proto::{AvatarSync, CmdID, CmdPlayerType, PlayerSyncScNotify};
 use tokio::{
     io::AsyncWrite,
     net::UdpSocket,
-    sync::{Mutex, watch},
+    sync::{watch, Mutex},
 };
 
 use crate::util;
 
-use super::{NetPacket, packet::CommandHandler};
+use super::{packet::CommandHandler, NetPacket};
 
 struct RemoteEndPoint {
     socket: Arc<UdpSocket>,
@@ -33,6 +33,7 @@ pub struct PlayerSession {
     pub shutdown_tx: watch::Sender<()>,
     pub shutdown_rx: watch::Receiver<()>,
     pub json_data: OnceLock<FreesrData>,
+    pub next_scene_save: u64,
 }
 
 impl PlayerSession {
@@ -40,14 +41,17 @@ impl PlayerSession {
         let (shutdown_tx, shutdown_rx) = watch::channel(());
         Self {
             token,
-            kcp: Arc::new(Mutex::new(Kcp::new(conv, token, false, RemoteEndPoint {
-                socket,
-                addr,
-            }))),
+            kcp: Arc::new(Mutex::new(Kcp::new(
+                conv,
+                token,
+                false,
+                RemoteEndPoint { socket, addr },
+            ))),
             start_time: util::cur_timestamp_secs(),
             json_data: OnceLock::new(),
             shutdown_rx,
             shutdown_tx,
+            next_scene_save: 0,
         }
     }
 
