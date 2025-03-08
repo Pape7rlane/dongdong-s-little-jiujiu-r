@@ -1,16 +1,14 @@
-#![feature(let_chains)]
 use anyhow::Result;
 
-mod logging;
-mod net;
-mod util;
+pub fn init_tracing() {
+    #[cfg(target_os = "windows")]
+    ansi_term::enable_ansi_support().unwrap();
 
-use logging::init_tracing;
-use net::gateway::Gateway;
+    env_logger::init_from_env(env_logger::Env::new().default_filter_or("info"));
+}
 
 #[tokio::main]
 async fn main() -> Result<()> {
     init_tracing();
-    let mut gateway = Gateway::new("0.0.0.0", 23301).await?;
-    Box::pin(gateway.listen()).await
+    gameserver::start_gameserver().await
 }
