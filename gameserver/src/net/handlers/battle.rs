@@ -5,7 +5,7 @@ use rogue_magic_battle_unit_info::Item;
 
 use common::{
     resources::GAME_RES,
-    sr_tools::{BattleType, Monster, RogueMagicComponentType},
+    structs::{BattleType, Monster, RogueMagicComponentType},
 };
 
 use super::*;

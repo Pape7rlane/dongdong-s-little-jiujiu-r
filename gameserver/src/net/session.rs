@@ -14,12 +14,12 @@ use proto::{AvatarSync, CmdID, CmdPlayerType, PlayerSyncScNotify};
 use tokio::{
     io::AsyncWrite,
     net::UdpSocket,
-    sync::{watch, Mutex},
+    sync::{Mutex, watch},
 };
 
 use crate::util;
 
-use super::{packet::CommandHandler, NetPacket};
+use super::{NetPacket, packet::CommandHandler};
 
 struct RemoteEndPoint {
     socket: Arc<UdpSocket>,
@@ -41,12 +41,10 @@ impl PlayerSession {
         let (shutdown_tx, shutdown_rx) = watch::channel(());
         Self {
             token,
-            kcp: Arc::new(Mutex::new(Kcp::new(
-                conv,
-                token,
-                false,
-                RemoteEndPoint { socket, addr },
-            ))),
+            kcp: Arc::new(Mutex::new(Kcp::new(conv, token, false, RemoteEndPoint {
+                socket,
+                addr,
+            }))),
             start_time: util::cur_timestamp_secs(),
             json_data: OnceLock::new(),
             shutdown_rx,
@@ -124,8 +122,8 @@ impl PlayerSession {
 
         // clear relics & lightcones
         self.send(PlayerSyncScNotify {
-            del_equipment_list: (2000..3500).collect(),
-            del_relic_list: (1..2000).collect(),
+            del_equipment_list: (2000..=3500).collect(),
+            del_relic_list: (1..=2000).collect(),
             ..Default::default()
         })
         .await
@@ -148,12 +146,8 @@ impl PlayerSession {
 
         // Sync new relics
         self.send(PlayerSyncScNotify {
-            relic_list: json.relics.iter().map(|v| v.to_relic_proto()).collect(),
-            equipment_list: json
-                .lightcones
-                .iter()
-                .map(|v| v.to_equipment_proto())
-                .collect(),
+            relic_list: json.relics.iter().map(|v| v.into()).collect(),
+            equipment_list: json.lightcones.iter().map(|v| v.into()).collect(),
             ..Default::default()
         })
         .await

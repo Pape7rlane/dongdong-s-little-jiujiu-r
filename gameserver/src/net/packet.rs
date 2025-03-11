@@ -190,6 +190,7 @@ trait_handler! {
     TakeOffEquipment;
     DressRelicAvatar;
     TakeOffRelic;
+    RankUpAvatar;
 
     // Chat (dummy!)
     SendMsg;

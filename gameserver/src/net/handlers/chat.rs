@@ -1,4 +1,4 @@
-use common::sr_tools::MultiPathAvatar;
+use common::structs::MultiPathAvatar;
 
 use crate::{net::PlayerSession, util::cur_timestamp_ms};
 

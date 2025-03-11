@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use common::{
     resources::GAME_RES,
-    sr_tools::{AvatarJson, Position},
+    structs::{AvatarJson, Position},
 };
 use scene_entity_info::Entity;
 
@@ -277,7 +277,7 @@ async fn load_scene(
             let entity_info = SceneEntityInfo {
                 inst_id: prop.inst_id,
                 group_id: prop.group_id,
-                motion: Some(prop_position.to_motion()),
+                motion: Some(prop_position.into()),
                 entity: Some(Entity::Prop(ScenePropInfo {
                     prop_state: prop.prop_state,
                     prop_id: prop.prop_id,
@@ -308,7 +308,7 @@ async fn load_scene(
                 inst_id: npc.inst_id,
                 group_id: npc.group_id,
                 entity_id: npc_entity_id,
-                motion: Some(npc_position.to_motion()),
+                motion: Some(npc_position.into()),
                 entity: Some(Entity::Npc(SceneNpcInfo {
                     npc_id: npc.npc_id,
                     ..Default::default()
@@ -339,7 +339,7 @@ async fn load_scene(
                 inst_id: monster.inst_id,
                 group_id: monster.group_id,
                 entity_id: monster_entity_id,
-                motion: Some(monster_position.to_motion()),
+                motion: Some(monster_position.into()),
                 entity: Some(Entity::NpcMonster(npc_monster)),
             };
 

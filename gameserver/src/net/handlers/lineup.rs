@@ -1,4 +1,4 @@
-use common::sr_tools::AvatarJson;
+use common::structs::AvatarJson;
 use scene_entity_info::Entity;
 use scene_entity_refresh_info::RefreshType;
 
