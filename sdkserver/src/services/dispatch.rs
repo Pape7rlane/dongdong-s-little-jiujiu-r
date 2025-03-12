@@ -1,8 +1,12 @@
-use crate::config::version_config;
-use axum::extract::Query;
+use std::sync::Arc;
+
+use crate::AppState;
+use axum::extract::{Query, State};
 use prost::Message;
 use proto::{DispatchRegionData, Gateserver, RegionEntry};
 use serde::Deserialize;
+use tokio::sync::RwLock;
+use tracing::instrument;
 
 pub const QUERY_DISPATCH_ENDPOINT: &str = "/query_dispatch";
 pub const QUERY_GATEWAY_ENDPOINT: &str = "/query_gateway";
@@ -30,37 +34,38 @@ pub async fn query_dispatch() -> String {
 #[derive(Deserialize, Debug)]
 pub struct QueryGatewayParameters {
     pub version: String,
+    pub dispatch_seed: String,
 }
 
-#[tracing::instrument]
-pub async fn query_gateway(parameters: Query<QueryGatewayParameters>) -> String {
-    let rsp = if let Some(config) = version_config::instance().get(&parameters.version) {
-        Gateserver {
-            retcode: 0,
-            ip: String::from("127.0.0.1"),
-            port: 23301,
-            asset_bundle_url: config.asset_bundle_url.clone(),
-            ex_resource_url: config.ex_resource_url.clone(),
-            lua_url: config.lua_url.clone(),
-            ifix_version: String::from("0"),
-            enable_design_data_version_update: true,
-            enable_version_update: true,
-            enable_upload_battle_log: true,
-            network_diagnostic: true,
-            close_redeem_code: true,
-            enable_android_middle_package: true,
-            enable_watermark: true,
-            event_tracking_open: true,
-            enable_cdn_ipv6: 1,
-            enable_save_replay_file: true,
-            ..Default::default()
-        }
-    } else {
-        Gateserver {
-            retcode: 9,
-            login_white_msg: format!("forbidden version: {} or invalid bind", parameters.version),
-            ..Default::default()
-        }
+#[instrument(skip(state))]
+pub async fn query_gateway(
+    State(state): State<Arc<RwLock<AppState>>>,
+    parameters: Query<QueryGatewayParameters>,
+) -> String {
+    let mut lock = state.write().await;
+    let config = lock
+        .get_or_insert_hotfix(&parameters.version, &parameters.dispatch_seed)
+        .await;
+
+    let rsp = Gateserver {
+        retcode: 0,
+        ip: String::from("127.0.0.1"),
+        port: 23301,
+        asset_bundle_url: config.asset_bundle_url.clone(),
+        ex_resource_url: config.ex_resource_url.clone(),
+        lua_url: config.lua_url.clone(),
+        ifix_version: String::from("0"),
+        enable_design_data_version_update: true,
+        enable_version_update: true,
+        enable_upload_battle_log: true,
+        network_diagnostic: true,
+        close_redeem_code: true,
+        enable_android_middle_package: true,
+        enable_watermark: true,
+        event_tracking_open: true,
+        enable_cdn_ipv6: 1,
+        enable_save_replay_file: true,
+        ..Default::default()
     };
 
     let mut buff = Vec::new();
