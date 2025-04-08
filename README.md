@@ -1,7 +1,7 @@
-# Supported Version: 3.1.5x
+# Supported Version: 3.2.5x
 Run the game by clicking run.bat file.
 
-Tool website: [https://srtools.pages.dev](https://srtools.pages.dev)
+Tool website: [https://srtools.neonteam.dev](https://srtools.neonteam.dev)
 
 Start battle by entering any calyx in the map, DON'T ATTACK THE ENEMIES, IT WON'T WORK (maybe)
 

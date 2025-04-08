@@ -7471,11 +7471,11 @@ pub struct Aodidfnpicf {
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Vector {
-    #[prost(int32, tag = "15")]
+    #[prost(sint32, tag = "15")]
     pub y: i32,
-    #[prost(int32, tag = "8")]
+    #[prost(sint32, tag = "8")]
     pub z: i32,
-    #[prost(int32, tag = "11")]
+    #[prost(sint32, tag = "11")]
     pub x: i32,
 }
 #[derive(proto_derive::CmdID)]
