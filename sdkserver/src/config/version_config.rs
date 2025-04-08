@@ -75,9 +75,9 @@ impl VersionConfig {
         let bytes = rbase64::decode(&res)?;
         let decoded = Gateserver::decode(bytes.as_slice())?;
 
-        if decoded.retcode != 0 || res.is_empty() {
+        if decoded.asset_bundle_url.is_empty() && decoded.ex_resource_url.is_empty() {
             return Err(anyhow::format_err!(
-                "gateway result code: {} message: {}",
+                "asset_bundle_url and ex_resource_url are empty! gateway result code: {} message: {}",
                 decoded.retcode,
                 decoded.msg
             ));
