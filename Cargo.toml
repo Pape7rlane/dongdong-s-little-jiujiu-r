@@ -11,7 +11,18 @@ tokio = { version = "1.36.0", features = ["full"] }
 axum = "0.8.1"
 axum-server = "0.7.1"
 tower-http = "0.6.2"
-reqwest = "0.12.12"
+reqwest = { version = "0.12", default-features = false, features = [
+	"json",
+	"multipart",
+	"cookies",
+	"gzip",
+	"brotli",
+	"deflate",
+	"rustls-tls",
+	"charset",
+	"http2",
+	"macos-system-configuration",
+] }
 
 # JSON 
 serde = { version = "1.0.197", features = ["derive"] }
@@ -49,8 +60,8 @@ proto = { path = "proto/" }
 proto-derive = { path = "proto/proto-derive" }
 mhy-kcp = { path = "kcp/", features = ["tokio"] }
 common = { path = "common/" }
-sdkserver = { path = "sdkserver/"}
-gameserver = { path = "gameserver/"}
+sdkserver = { path = "sdkserver/" }
+gameserver = { path = "gameserver/" }
 
 [profile.release]
 strip = true      # Automatically strip symbols from the binary.
