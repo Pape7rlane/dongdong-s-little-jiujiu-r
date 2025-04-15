@@ -76,11 +76,7 @@ pub async fn on_get_scene_map_info_cs_req(
             ..Default::default()
         };
 
-        for i in 0..100 {
-            map_info.lighten_section_list.push(i)
-        }
-
-        let group_config = GAME_RES
+        let floor_configs = GAME_RES
             .map_default_entrance_map
             .get(floor_id)
             .and_then(|v| {
@@ -90,8 +86,8 @@ pub async fn on_get_scene_map_info_cs_req(
                     .and_then(|v| v.iter().next())
             });
 
-        if let Some((_, group_config)) = group_config {
-            for (group_id, group) in group_config.scenes.iter() {
+        if let Some((_, floor_config)) = floor_configs {
+            for (group_id, group) in floor_config.scenes.iter() {
                 map_info.maze_group_list.push(MazeGroup {
                     group_id: *group_id,
                     ..Default::default()
@@ -109,6 +105,15 @@ pub async fn on_get_scene_map_info_cs_req(
                     });
                 }
             }
+
+            map_info.lighten_section_list = floor_config.sections.clone();
+            map_info.floor_saved_data = floor_config.saved_values.clone();
+            // TODO!
+            map_info.jmldmocnmhm = vec![Npaogkfkaae {
+                fljindnjphl: 2,
+                fokcifjmjgl: 2,
+                slot: 2,
+            }]
         }
 
         res.map_list.push(map_info)
@@ -235,6 +240,32 @@ async fn load_scene(
         } else {
             scene.world_id
         },
+        lighten_section_list: scene.sections.clone(),
+        chest_id_list: scene
+            .scenes
+            .values()
+            .flat_map(|v| v.chests.clone())
+            .collect::<Vec<_>>(),
+        scene_mission_info: Some(MissionStatusBySceneInfo {
+            finished_mission_id_list: scene
+                .scenes
+                .values()
+                .flat_map(|s| s.finished_main_missions.clone())
+                .collect::<Vec<_>>(),
+            sub_mission_status_list: scene
+                .scenes
+                .values()
+                .flat_map(|s| {
+                    s.finished_sub_missions.iter().map(|sm| Mission {
+                        id: *sm,
+                        status: MissionStatus::MissionFinish.into(),
+                        progress: 0,
+                    })
+                })
+                .collect::<Vec<_>>(),
+            ..Default::default()
+        }),
+        floor_saved_data: scene.saved_values.clone(),
         ..Default::default()
     };
 

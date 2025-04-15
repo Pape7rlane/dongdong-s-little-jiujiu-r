@@ -114,6 +114,9 @@ pub struct SceneData {
     pub props: Vec<ScenePropInfo>,
     pub monsters: Vec<SceneMonsterInfo>,
     pub teleports: HashMap<u32, TeleportInfo>,
+    pub finished_sub_missions: Vec<u32>,
+    pub finished_main_missions: Vec<u32>,
+    pub chests: Vec<u32>,
 }
 
 #[derive(Deserialize)]
@@ -123,6 +126,8 @@ pub struct LevelOutputConfig {
     pub scenes: HashMap<u32, SceneData>,
     pub plane_type: u32,
     pub world_id: u32,
+    pub sections: Vec<u32>,
+    pub saved_values: HashMap<String, i32>
 }
 
 #[derive(Deserialize)]
@@ -138,7 +143,7 @@ pub struct JsonConfig {
     /// `entryid` -> `P[planeId]_F[floorId]` -> `groupId`
     pub level_output_configs: HashMap<u32, HashMap<String, LevelOutputConfig>>,
     pub avatar_configs: HashMap<u32, AvatarConfig>,
-    pub map_default_entrance_map: HashMap<u32, u32>
+    pub map_default_entrance_map: HashMap<u32, u32>,
 }
 
 pub static GAME_RES: LazyLock<JsonConfig> = LazyLock::new(|| {

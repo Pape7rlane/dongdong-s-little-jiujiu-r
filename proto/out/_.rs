@@ -14420,7 +14420,7 @@ pub mod fhabeikafbo {
 }
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Feahpjpkgoa {
+pub struct MainMissionCustomValue {
     #[prost(uint32, tag = "13")]
     pub main_mission_id: u32,
     #[prost(message, optional, tag = "12")]
@@ -14580,7 +14580,7 @@ pub struct GetMissionStatusScRsp {
     #[prost(uint32, repeated, tag = "5")]
     pub unfinished_main_mission_id_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(message, repeated, tag = "12")]
-    pub main_mission_mcv_list: ::prost::alloc::vec::Vec<Feahpjpkgoa>,
+    pub main_mission_mcv_list: ::prost::alloc::vec::Vec<MainMissionCustomValue>,
     #[prost(uint32, tag = "6")]
     pub retcode: u32,
 }
@@ -28097,15 +28097,15 @@ pub struct SceneGroupState {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MissionStatusBySceneInfo {
     #[prost(uint32, repeated, tag = "8")]
-    pub icbikgmghik: ::prost::alloc::vec::Vec<u32>,
+    pub disabled_main_mission_id_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, repeated, tag = "11")]
-    pub ndnonhfimfi: ::prost::alloc::vec::Vec<u32>,
+    pub unfinished_main_mission_id_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, repeated, tag = "6")]
-    pub finished_mission_id: ::prost::alloc::vec::Vec<u32>,
+    pub finished_mission_id_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(message, repeated, tag = "14")]
-    pub bigehkdpgpn: ::prost::alloc::vec::Vec<Feahpjpkgoa>,
+    pub bigehkdpgpn: ::prost::alloc::vec::Vec<MainMissionCustomValue>,
     #[prost(message, repeated, tag = "13")]
-    pub dgkjillcfla: ::prost::alloc::vec::Vec<Mission>,
+    pub sub_mission_status_list: ::prost::alloc::vec::Vec<Mission>,
 }
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -28116,9 +28116,9 @@ pub struct SceneInfo {
         i32,
     >,
     #[prost(message, repeated, tag = "11")]
-    pub mhknnlmping: ::prost::alloc::vec::Vec<EntityBuffInfo>,
+    pub entity_buff_info_list: ::prost::alloc::vec::Vec<EntityBuffInfo>,
     #[prost(message, repeated, tag = "9")]
-    pub gkpnkmeeibm: ::prost::alloc::vec::Vec<CustomSaveData>,
+    pub custom_data_list: ::prost::alloc::vec::Vec<CustomSaveData>,
     #[prost(uint32, tag = "7")]
     pub world_id: u32,
     #[prost(uint32, tag = "8")]
@@ -28136,7 +28136,7 @@ pub struct SceneInfo {
     #[prost(uint32, tag = "3")]
     pub client_pos_version: u32,
     #[prost(uint32, repeated, tag = "624")]
-    pub djbibijmebh: ::prost::alloc::vec::Vec<u32>,
+    pub chest_id_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(message, repeated, tag = "15")]
     pub entity_list: ::prost::alloc::vec::Vec<SceneEntityInfo>,
     #[prost(message, repeated, tag = "351")]
