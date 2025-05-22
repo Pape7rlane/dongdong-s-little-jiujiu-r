@@ -172,7 +172,7 @@ trait_handler! {
     PlayerLogin;
     GetMissionStatus;
     GetBasicInfo;
-    GetMultiPathAvatarInfo;
+    // GetMultiPathAvatarInfo;
     GetAvatarData;
     GetAllLineupData;
     GetCurLineupData;

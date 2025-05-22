@@ -241,30 +241,30 @@ async fn load_scene(
             scene.world_id
         },
         lighten_section_list: scene.sections.clone(),
-        chest_id_list: scene
-            .scenes
-            .values()
-            .flat_map(|v| v.chests.clone())
-            .collect::<Vec<_>>(),
-        scene_mission_info: Some(MissionStatusBySceneInfo {
-            finished_mission_id_list: scene
-                .scenes
-                .values()
-                .flat_map(|s| s.finished_main_missions.clone())
-                .collect::<Vec<_>>(),
-            sub_mission_status_list: scene
-                .scenes
-                .values()
-                .flat_map(|s| {
-                    s.finished_sub_missions.iter().map(|sm| Mission {
-                        id: *sm,
-                        status: MissionStatus::MissionFinish.into(),
-                        progress: 0,
-                    })
-                })
-                .collect::<Vec<_>>(),
-            ..Default::default()
-        }),
+        // chest_id_list: scene
+        //     .scenes
+        //     .values()
+        //     .flat_map(|v| v.chests.clone())
+        //     .collect::<Vec<_>>(),
+        // scene_mission_info: Some(MissionStatusBySceneInfo {
+        //     finished_mission_id_list: scene
+        //         .scenes
+        //         .values()
+        //         .flat_map(|s| s.finished_main_missions.clone())
+        //         .collect::<Vec<_>>(),
+        //     sub_mission_status_list: scene
+        //         .scenes
+        //         .values()
+        //         .flat_map(|s| {
+        //             s.finished_sub_missions.iter().map(|sm| Mission {
+        //                 id: *sm,
+        //                 status: MissionStatus::MissionFinish.into(),
+        //                 progress: 0,
+        //             })
+        //         })
+        //         .collect::<Vec<_>>(),
+        //     ..Default::default()
+        // }),
         floor_saved_data: scene.saved_values.clone(),
         ..Default::default()
     };

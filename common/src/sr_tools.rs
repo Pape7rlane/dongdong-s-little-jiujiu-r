@@ -106,6 +106,7 @@ impl FreesrData {
                 .map(|v| v.get_unique_id())
                 .unwrap_or_default(),
             dressed_skin_id: 0,
+            ..Default::default()
         })
     }
 
@@ -143,6 +144,7 @@ impl FreesrData {
                         .map(|v| v.get_unique_id())
                         .unwrap_or_default(),
                     dressed_skin_id: 0,
+                    ..Default::default()
                 })
             })
             .collect()
