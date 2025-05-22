@@ -649,7 +649,7 @@ pub struct BattleAvatar {
     #[prost(message, repeated, tag = "18")]
     pub imjjkbjoohj: ::prost::alloc::vec::Vec<AvatarSkillTree>,
     #[prost(uint32, tag = "19")]
-    pub glackhopmio: u32,
+    pub enhanced_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1156,7 +1156,7 @@ pub struct AvatarBattleInfo {
     #[prost(uint32, tag = "54")]
     pub mpfaenekfdc: u32,
     #[prost(uint32, tag = "55")]
-    pub glackhopmio: u32,
+    pub enhanced_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1300,7 +1300,7 @@ pub struct Ibffajohkmo {
     #[prost(uint32, tag = "9")]
     pub wave: u32,
     #[prost(uint32, tag = "10")]
-    pub glackhopmio: u32,
+    pub enhanced_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1310,7 +1310,7 @@ pub struct Kkmpkjpggcl {
     #[prost(int32, tag = "2")]
     pub abapdfgjnme: i32,
     #[prost(uint32, tag = "3")]
-    pub glackhopmio: u32,
+    pub enhanced_id: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -3649,7 +3649,7 @@ pub struct Avatar {
     #[prost(uint32, tag = "1")]
     pub promotion: u32,
     #[prost(uint32, tag = "12")]
-    pub ndefnacpclh: u32,
+    pub unk_enhanced_id: u32,
     #[prost(uint32, tag = "9")]
     pub exp: u32,
     #[prost(uint32, tag = "7")]
@@ -3677,7 +3677,7 @@ pub struct MultiPathAvatarTypeInfo {
     #[prost(message, repeated, tag = "5")]
     pub equip_relic_list: ::prost::alloc::vec::Vec<EquipRelic>,
     #[prost(uint32, tag = "15")]
-    pub ndefnacpclh: u32,
+    pub unk_enhanced_id: u32,
     #[prost(uint32, tag = "2")]
     pub rank: u32,
     #[prost(uint64, tag = "8")]
@@ -4007,7 +4007,7 @@ pub struct SetGrowthTargetAvatarScRsp {
     #[prost(uint32, tag = "6")]
     pub retcode: u32,
     #[prost(uint32, tag = "10")]
-    pub ncbkpdngohj: u32,
+    pub growth_avatar_id: u32,
     #[prost(uint32, tag = "1")]
     pub jpnlpopmkej: u32,
     #[prost(enumeration = "Bcmljcfoefm", repeated, tag = "7")]
@@ -4109,7 +4109,7 @@ pub struct SetAvatarEnhancedIdCsReq {
     #[prost(uint32, tag = "14")]
     pub avatar_id: u32,
     #[prost(uint32, tag = "2")]
-    pub glackhopmio: u32,
+    pub enhanced_id: u32,
 }
 /// Obf: DPEFJJFALKG
 #[derive(proto_derive::CmdID)]
@@ -4119,9 +4119,9 @@ pub struct SetAvatarEnhancedIdScRsp {
     #[prost(uint32, tag = "15")]
     pub retcode: u32,
     #[prost(uint32, tag = "2")]
-    pub ndefnacpclh: u32,
+    pub unk_enhanced_id: u32,
     #[prost(uint32, tag = "5")]
-    pub ncbkpdngohj: u32,
+    pub growth_avatar_id: u32,
 }
 /// Obf: BAOHDDGLEIA
 #[derive(proto_derive::CmdID)]
@@ -7651,11 +7651,11 @@ pub struct Aodidfnpicf {
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Vector {
-    #[prost(int32, tag = "13")]
+    #[prost(sint32, tag = "13")]
     pub y: i32,
-    #[prost(int32, tag = "2")]
+    #[prost(sint32, tag = "2")]
     pub x: i32,
-    #[prost(int32, tag = "5")]
+    #[prost(sint32, tag = "5")]
     pub z: i32,
 }
 #[derive(proto_derive::CmdID)]
