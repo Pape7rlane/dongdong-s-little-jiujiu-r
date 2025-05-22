@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-
 use super::*;
 
 pub async fn on_get_basic_info_cs_req(
@@ -19,12 +17,12 @@ pub async fn on_player_heart_beat_cs_req(
 ) {
     res.client_time_ms = body.client_time_ms;
     res.server_time_ms = body.client_time_ms;
-    res.download_data = Some(ClientDownloadData {
-        version: 51,
-        time: res.server_time_ms as i64,
-        data: rbase64::decode("BAEwB0dldFR5cGUIR2V0RmllbGQIR2V0VmFsdWUCQ1MGU3lzdGVtC0NvbGxlY3Rpb25zB0dlbmVyaWMETGlzdAZTdHJpbmcCY24DQWRkAmVuAmtyAmpwB1RvQXJyYXkDUlBHBkNsaWVudApHbG9iYWxWYXJzFXNfTG9jYWxpemF0aW9uTWFuYWdlchRfYWxsb3dlZExhbmd1YWdlS2V5cxFfYWxsb3dlZEF1ZGlvS2V5cwhHYW1lQ29yZRlBbGxvd2VkTGFuZ3VhZ2VFeGNlbFRhYmxlCGRhdGFEaWN0BXBhaXJzDExhbmd1YWdlTGlzdAtVbml0eUVuZ2luZQtBcHBsaWNhdGlvbgdNQVhfRlBTD3RhcmdldEZyYW1lUmF0ZQ9RdWFsaXR5U2V0dGluZ3MKdlN5bmNDb3VudApHYW1lT2JqZWN0BEZpbmQoVUlSb290L0Fib3ZlRGlhbG9nL0JldGFIaW50RGlhbG9nKENsb25lKQ1Mb2NhbGl6ZWRUZXh0BnR5cGVvZhZHZXRDb21wb25lbnRJbkNoaWxkcmVuB0JFVEFfV00EdGV4dAtWZXJzaW9uVGV4dCI8Y29sb3I9IzAwZTFmZj5Sb2JpblNSISB8IDwvY29sb3I+Dzxjb2xvcj0jMDBlMWZmPg1zX1ZlcnNpb25EYXRhF0dldFNlcnZlclBha1R5cGVWZXJzaW9uCDwvY29sb3I+BnhwY2FsbApJU19QQVRDSEVECQEBAAAAAAEWAAEAAAACAAAABgIAAAAADRQCABsAAAAAFQICAgYEAQAEBT4AFAICkQEAAAAVAgQCBgQAABQCAvMCAAAAFQIDABYCAAADAwEDAgMDAAQAAAAFAAAAAAAfDAIDAAIEAMAPAQL5BAAAAA8AAesFAAAADAEHAAYEAMAVAAICBgEAABUBAQIFBAgAFAIBXwkAAAAVAgMBBQQKABQCAV8JAAAAFQIDAQUECwAUAgFfCQAAABUCAwEFBAwAFAIBXwkAAAAVAgMBFAIBOQ0AAAAVAgIAFgIAAA4DBAMFAwYEAgQAwAMHAwgDCQQGBADAAwoDCwMMAw0DDgMPAAsAAAAGAAAAAAA/DAIDAAIEAMAPAQKsBAAAAA8AAaAFAAAAFAEAGwYAAAAVAQICBQMHAAQEPgAUAQGRCAAAABUBBAIGAwAAFAEB8wkAAAAVAQMCBQQKABQCAV8LAAAAFQIDAQUEDAAUAgFfCwAAABUCAwEFBA0AFAIBXwsAAAAVAgMBBQQOABQCAV8LAAAAFQIDARQCABsGAAAAFQICAgUEDwAEBT4AFAICkQgAAAAVAgQCBgQAABQCAvMJAAAAFQIDAgUFCgAUAwJfCwAAABUDAwEFBQwAFAMCXwsAAAAVAwMBBQUNABQDAl8LAAAAFQMDAQUFDgAUAwJfCwAAABUDAwEWAAEAEAMEAxADEQQCBADAAxIDEwMBAxQDAgMDAwoDCwMMAw0DDgMVABQAAAAHAAEAAAASDAIDAAIEAMAPAQLwBAAAAA8AAbkFAAAACQEAABUBAQIMAgcAAABgQAYDAAAVAgIEQQICABABBjIIAAAAPgL9/wIAAAAWAAEACQMEAxADFgQCBADAAxcDGAMZBAAAYEADGgAiAAAAAgAAAAAADAwAAwACBADABwEAygQAAAAQAQADBQAAAAwABwAGBADABAEAABABANAIAAAAFgABAAkDBAMbAxwEAgQAwAMdAx4DHwQGBADAAyAALAAAAAkAAAAAADcMAQMAAgQAwA8AAXYEAAAABQEFABUAAgIMBAgABxgAwA8DBBQJAAAATSwDAgwCCwAAAKBAFQICAhQAALEMAAAAFQADAgwBDgAAANBAEAEA1Q8AAAAMAQMAAgQAwA8AAXYEAAAABQEQABUAAgIMBAgABxgAwA8DBBQJAAAATSwDAgwCCwAAAKBAFQICAhQAALEMAAAAFQADAgUCEQAFAxIADAgIAAcYAMAPBwisEwAAAA8GByMUAAAAFAYGkRUAAAAVBgICBgQGAAUFFgA1AQIFEAEA1Q8AAAAWAAEAFwMEAxsDIQQCBADAAyIDIwMQAxEEBxgAwAMkAyUEAACgQAMmAycEAADQQAMoAykDKgMrAxIDLAMtAy4AMQAAAAMABQAAACQHAADKAAAAAFEABAAAAACABABoAQgAAMoAAAAADAACAAAAEEAJAQAACQIBABUAAwEMAAIAAAAQQAkBAgAJAgEAFQADAQcAACsDAAAAUgACAAEAAIAWAAEAAwABAAgAACsDAAAADAACAAAAEEAJAQMACQIBABUAAwEMAAIAAAAQQAkBBAAJAgEAFQADARYAAQAEAx0DLwQAABBAAzAAPwAAAAsAAAEAABVFAAAARAAAAEQBAQBEAgIARAMDAEQEBABKAAIARAUFAEQGBgBEBwcASgAFAEoAAABKAAYASgAEAEoAAwAMCAkAAACAQAYJBwAGCgAAFQgDARYAAQAKBgAGAQYCBgMGBAYFBgYGBwMvBAAAgEAIAAECAwQFBgcBAAAACA==").unwrap(),
-        haehhcpoapp: 0
-    });
+    // res.download_data = Some(ClientDownloadData {
+    // version: 51,
+    // time: res.server_time_ms as i64,
+    // data: rbase64::decode("bG9jYWwgTUFYX0ZQUyA9IDM2MApsb2NhbCBCRVRBX1dNID0gIiIKCmxvY2FsIGZ1bmN0aW9uIGxvZyhtc2cpCmVuZAoKbG9jYWwgZnVuY3Rpb24gcGF0Y2hGcHMoKQogICAgQ1MuVW5pdHlFbmdpbmUuQXBwbGljYXRpb24udGFyZ2V0RnJhbWVSYXRlID0gTUFYX0ZQUwogICAgQ1MuVW5pdHlFbmdpbmUuUXVhbGl0eVNldHRpbmdzLnZTeW5jQ291bnQgPSAwCmVuZAoKbG9jYWwgZnVuY3Rpb24gcGF0Y2hCZXRhV20oKQogICAgLS0gQmV0YSBXYXRlcm1hcmsKICAgIENTLlVuaXR5RW5naW5lLkdhbWVPYmplY3QuRmluZCgiVUlSb290L0Fib3ZlRGlhbG9nL0JldGFIaW50RGlhbG9nKENsb25lKSIpOkdldENvbXBvbmVudEluQ2hpbGRyZW4odHlwZW9mKENTLlJQRy5DbGllbnQuTG9jYWxpemVkVGV4dCkpLnRleHQgPSBCRVRBX1dNCgogICAgLS0gVUlEIFdhdGVybWFyawogICAgQ1MuVW5pdHlFbmdpbmUuR2FtZU9iamVjdC5GaW5kKCJWZXJzaW9uVGV4dCIpOkdldENvbXBvbmVudEluQ2hpbGRyZW4odHlwZW9mKENTLlJQRy5DbGllbnQuTG9jYWxpemVkVGV4dCkpLnRleHQgPQogICAgICAgICI8Y29sb3I9IzAwZTFmZj5Sb2JpblNSISB8IDwvY29sb3I+IiAuLgogICAgICAgICI8Y29sb3I9IzAwZTFmZj4iIC4uCiAgICAgICAgQ1MuUlBHLkNsaWVudC5HbG9iYWxWYXJzLnNfVmVyc2lvbkRhdGE6R2V0U2VydmVyUGFrVHlwZVZlcnNpb24oKSAuLgogICAgICAgICI8L2NvbG9yPiIKZW5kCgoKbG9jYWwgZnVuY3Rpb24gbWFpbigpCiAgICBwYXRjaEJldGFXbSgpCmVuZAoKeHBjYWxsKG1haW4sIGxvZyk=").unwrap(),
+    // haehhcpoapp: 0
+    // });
 }
 
 pub async fn on_player_login_finish_cs_req(
@@ -53,20 +51,20 @@ pub async fn on_player_login_finish_cs_req(
     Ok(())
 }
 
-pub async fn on_get_multi_path_avatar_info_cs_req(
-    session: &mut PlayerSession,
-    _req: &GetMultiPathAvatarInfoCsReq,
-    res: &mut GetMultiPathAvatarInfoScRsp,
-) {
-    let Some(json) = session.json_data.get() else {
-        tracing::error!("data is not set!");
-        return;
-    };
+// pub async fn on_get_multi_path_avatar_info_cs_req(
+//     session: &mut PlayerSession,
+//     _req: &GetMultiPathAvatarInfoCsReq,
+//     res: &mut GetMultiPathAvatarInfoScRsp,
+// ) {
+//     let Some(json) = session.json_data.get() else {
+//         tracing::error!("data is not set!");
+//         return;
+//     };
 
-    res.current_multi_path_avatar_id = HashMap::from([
-        (8001, json.main_character.get_type().into()),
-        (1001, json.march_type.get_type().into()),
-    ]);
+//     res.current_multi_path_avatar_id = HashMap::from([
+//         (8001, json.main_character.get_type().into()),
+//         (1001, json.march_type.get_type().into()),
+//     ]);
 
-    res.multi_path_avatar_type_info_list = json.get_multi_path_info();
-}
+//     res.multi_path_avatar_type_info_list = json.get_multi_path_info();
+// }
