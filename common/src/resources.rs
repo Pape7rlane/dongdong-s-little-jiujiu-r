@@ -127,7 +127,7 @@ pub struct LevelOutputConfig {
     pub plane_type: u32,
     pub world_id: u32,
     pub sections: Vec<u32>,
-    pub saved_values: HashMap<String, i32>
+    pub saved_values: HashMap<String, i32>,
 }
 
 #[derive(Deserialize)]
@@ -144,6 +144,7 @@ pub struct JsonConfig {
     pub level_output_configs: HashMap<u32, HashMap<String, LevelOutputConfig>>,
     pub avatar_configs: HashMap<u32, AvatarConfig>,
     pub map_default_entrance_map: HashMap<u32, u32>,
+    pub relic_avatar_recommend: HashMap<u32, Vec<u32>>,
 }
 
 pub static GAME_RES: LazyLock<JsonConfig> = LazyLock::new(|| {

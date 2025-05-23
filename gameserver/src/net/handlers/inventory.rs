@@ -1,4 +1,4 @@
-use common::sr_tools::FreesrData;
+use common::{resources::GAME_RES, sr_tools::FreesrData};
 use proto::{get_big_data_all_recommend_sc_rsp::RecommendType, *};
 
 use crate::net::PlayerSession;
@@ -109,12 +109,13 @@ pub async fn on_get_big_data_all_recommend_cs_req(
     match req.big_data_recommend_type() {
         BigDataRecommendType::RelicAvatar => {
             res.recommend_type = Some(RecommendType::RelicAvatar(BigDataRecommendRelicAvatar {
-                recommended_avatar_info_list: UNLOCKED_AVATARS
-                    .into_iter()
-                    .map(|recommend_avatar_id| RecomendedAvatarInfo {
-                        avatar_id_list: vec![],
-                        recommend_avatar_id,
-                        relic_set_id: 0,
+                recommended_avatar_info_list: GAME_RES
+                    .relic_avatar_recommend
+                    .iter()
+                    .map(|(set_id, avatar_list)| RecomendedAvatarInfo {
+                        avatar_id_list: avatar_list.clone(),
+                        recommend_avatar_id: avatar_list.first().copied().unwrap_or_default(),
+                        relic_set_id: *set_id,
                     })
                     .collect(),
             }))
