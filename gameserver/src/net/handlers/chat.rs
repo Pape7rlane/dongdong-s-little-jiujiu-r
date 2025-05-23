@@ -12,7 +12,7 @@ const SERVER_CHAT_HISTORY: [&str; 5] = [
     "'mc {mc_id}' mc_id can be set from 8001 to 8008",
     "'march {march_id}' march_id can be set 1001 or 1224",
     "available commands:",
-    "visit srtools.pages.dev to configure the PS! (you configure relics, equipment, monsters from there)",
+    "visit srtools.neonteam.dev to configure the PS! (you configure relics, equipment, monsters from there)",
 ];
 
 pub async fn on_get_friend_login_info_cs_req(

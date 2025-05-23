@@ -1,4 +1,5 @@
-# Supported Version: 3.2.5x
+# Supported Version: 3.3.5x
+
 Run the game by clicking run.bat file.
 
 Tool website: [https://srtools.neonteam.dev](https://srtools.neonteam.dev)
@@ -8,7 +9,8 @@ Start battle by entering any calyx in the map, DON'T ATTACK THE ENEMIES, IT WON'
 Some scenes might not loaded properly. If you stuck at loading screen, remove `persistent` file.
 
 # RobinSR
-Original: 
+
+Original:
 
 [https://git.xeondev.com/reversedrooms/RobinSR](https://git.xeondev.com/reversedrooms/RobinSR)
 
@@ -32,4 +34,4 @@ rustup default nightly
 
 To begin using the server, you need to run both the SDK server and the game server. Just run the `run.bat` file.
 
-# Special thanks for keiracoder for updating the repo 🔥
+# Special thanks to keiracoder for updating the repo! 🔥
