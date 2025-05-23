@@ -70,3 +70,23 @@ pub async fn on_get_avatar_data_cs_req(
 
     res.multi_path_avatar_type_info_list = json.get_multi_path_info();
 }
+
+pub async fn on_set_avatar_enhanced_id_cs_req(
+    _session: &mut PlayerSession,
+    _req: &SetAvatarEnhancedIdCsReq,
+    _res: &mut SetAvatarEnhancedIdScRsp,
+) {
+    // let Some(json) = session.json_data.get_mut() else {
+    //     return;
+    // };
+    // let Some(avatar) = json.avatars.get_mut(&req.avatar_id) else {
+    //     return;
+    // };
+    // avatar.enhanced_id = if req.enhanced_id == 0 {
+    //     Option::<u32>::None
+    // } else {
+    //     Some(req.enhanced_id)
+    // };
+    // res.growth_avatar_id = avatar.avatar_id;
+    // res.unk_enhanced_id = req.enhanced_id;
+}

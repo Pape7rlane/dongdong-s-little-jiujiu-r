@@ -217,21 +217,27 @@ async fn create_battle_info(
     // pf score object
     if player.battle_config.battle_type == BattleType::PF {
         if battle_info.stage_id >= 30309011 {
-            battle_info.battle_target_info.insert(1, BattleTargetList {
-                battle_target_list: vec![BattleTarget {
-                    id: 10003,
-                    progress: 0,
-                    ..Default::default()
-                }],
-            });
+            battle_info.battle_target_info.insert(
+                1,
+                BattleTargetList {
+                    battle_target_list: vec![BattleTarget {
+                        id: 10003,
+                        progress: 0,
+                        ..Default::default()
+                    }],
+                },
+            );
         } else {
-            battle_info.battle_target_info.insert(1, BattleTargetList {
-                battle_target_list: vec![BattleTarget {
-                    id: 10002,
-                    progress: 0,
-                    ..Default::default()
-                }],
-            });
+            battle_info.battle_target_info.insert(
+                1,
+                BattleTargetList {
+                    battle_target_list: vec![BattleTarget {
+                        id: 10002,
+                        progress: 0,
+                        ..Default::default()
+                    }],
+                },
+            );
         }
 
         for i in 2..=4 {
@@ -240,31 +246,37 @@ async fn create_battle_info(
                 .insert(i, BattleTargetList::default());
         }
 
-        battle_info.battle_target_info.insert(5, BattleTargetList {
-            battle_target_list: vec![
-                BattleTarget {
-                    id: 2001,
-                    progress: 0,
-                    ..Default::default()
-                },
-                BattleTarget {
-                    id: 2002,
-                    progress: 0,
-                    ..Default::default()
-                },
-            ],
-        });
+        battle_info.battle_target_info.insert(
+            5,
+            BattleTargetList {
+                battle_target_list: vec![
+                    BattleTarget {
+                        id: 2001,
+                        progress: 0,
+                        ..Default::default()
+                    },
+                    BattleTarget {
+                        id: 2002,
+                        progress: 0,
+                        ..Default::default()
+                    },
+                ],
+            },
+        );
     }
 
     // Apocalyptic Shadow
     if player.battle_config.battle_type == BattleType::AS {
-        battle_info.battle_target_info.insert(1, BattleTargetList {
-            battle_target_list: vec![BattleTarget {
-                id: 90005,
-                progress: 0,
-                ..Default::default()
-            }],
-        });
+        battle_info.battle_target_info.insert(
+            1,
+            BattleTargetList {
+                battle_target_list: vec![BattleTarget {
+                    id: 90005,
+                    progress: 0,
+                    ..Default::default()
+                }],
+            },
+        );
     }
 
     //  SU

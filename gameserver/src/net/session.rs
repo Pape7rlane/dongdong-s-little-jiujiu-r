@@ -41,10 +41,12 @@ impl PlayerSession {
         let (shutdown_tx, shutdown_rx) = watch::channel(());
         Self {
             token,
-            kcp: Arc::new(Mutex::new(Kcp::new(conv, token, false, RemoteEndPoint {
-                socket,
-                addr,
-            }))),
+            kcp: Arc::new(Mutex::new(Kcp::new(
+                conv,
+                token,
+                false,
+                RemoteEndPoint { socket, addr },
+            ))),
             start_time: util::cur_timestamp_secs(),
             json_data: OnceLock::new(),
             shutdown_rx,

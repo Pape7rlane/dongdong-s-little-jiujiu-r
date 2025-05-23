@@ -1,21 +1,21 @@
 {
   "lineups": {
-    "0": 1403,
-    "1": 1407,
-    "2": 8001,
-    "3": 1405
+    "0": 1005,
+    "1": 1006,
+    "2": 1301,
+    "3": 1309
   },
   "position": {
-    "x": -26968,
-    "y": 78953,
-    "z": 14457,
-    "rot_y": 11858
+    "x": 162379,
+    "y": 220000,
+    "z": 265445,
+    "rot_y": 122650
   },
   "scene": {
-    "plane_id": 20411,
-    "floor_id": 20411001,
-    "entry_id": 2041101
+    "plane_id": 20421,
+    "floor_id": 20421001,
+    "entry_id": 2042101
   },
-  "main_character": "FemaleRememberance",
+  "main_character": "MaleRememberance",
   "march_type": "MarchHunt"
 }

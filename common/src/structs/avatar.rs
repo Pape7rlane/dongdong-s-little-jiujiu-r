@@ -128,6 +128,7 @@ pub struct AvatarJson {
     pub sp_value: Option<u32>,
     #[serde(alias = "spMax")]
     pub sp_max: Option<u32>,
+    pub enhanced_id: Option<u32>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -164,6 +165,7 @@ impl AvatarJson {
             equipment_unique_id: lightcone.map(|v| v.get_unique_id()).unwrap_or_default(),
             first_met_timestamp: 1712924677,
             equip_relic_list: relics.iter().map(|v| (*v).into()).collect::<Vec<_>>(),
+            unk_enhanced_id: self.enhanced_id.unwrap_or_default(),
             ..Default::default()
         }
     }
@@ -202,6 +204,7 @@ impl AvatarJson {
                 cur_sp: self.sp_value.unwrap_or(10_000),
                 max_sp: self.sp_max.unwrap_or(10_000),
             }),
+            enhanced_id: self.enhanced_id.unwrap_or_default(),
             ..Default::default()
         };
 
@@ -256,11 +259,12 @@ impl AvatarJson {
     }
 
     pub fn to_lineup_info(lineups: &BTreeMap<u32, u32>) -> LineupInfo {
+        let max_mp = if lineups.contains_key(&1408) { 8 } else { 5 };
         let mut lineup_info = LineupInfo {
             extra_lineup_type: ExtraLineupType::LineupNone.into(),
             name: "Squad 1".to_string(),
-            mp: 5,
-            max_mp: 5,
+            mp: max_mp,
+            max_mp,
             ..Default::default()
         };
 

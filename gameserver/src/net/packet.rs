@@ -172,12 +172,12 @@ trait_handler! {
     PlayerLogin;
     GetMissionStatus;
     GetBasicInfo;
-    // GetMultiPathAvatarInfo;
     GetAvatarData;
     GetAllLineupData;
     GetCurLineupData;
     GetCurSceneInfo;
     PlayerHeartBeat;
+    SetAvatarEnhancedId;
 
 
     // Entity move (dummy!)

@@ -16105,7 +16105,7 @@ pub struct UpdateTrackMainMissionIdScRsp {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FinishedMissionScNotify {
     #[prost(uint32, repeated, tag = "3")]
-    pub finished_mission_id: ::prost::alloc::vec::Vec<u32>,
+    pub finished_mission_id_list: ::prost::alloc::vec::Vec<u32>,
 }
 /// Obf: PILPBOGGLKO
 #[derive(proto_derive::CmdID)]
@@ -29513,11 +29513,11 @@ pub struct MissionStatusBySceneInfo {
     #[prost(uint32, repeated, tag = "2")]
     pub icbikgmghik: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, repeated, tag = "4")]
-    pub finished_mission_id: ::prost::alloc::vec::Vec<u32>,
+    pub finished_mission_id_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, repeated, tag = "6")]
     pub ndnonhfimfi: ::prost::alloc::vec::Vec<u32>,
     #[prost(message, repeated, tag = "11")]
-    pub dgkjillcfla: ::prost::alloc::vec::Vec<Mission>,
+    pub sub_mission_status_list: ::prost::alloc::vec::Vec<Mission>,
 }
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -29535,7 +29535,7 @@ pub struct SceneInfo {
     #[prost(uint32, tag = "8")]
     pub plane_id: u32,
     #[prost(uint32, repeated, tag = "1906")]
-    pub djbibijmebh: ::prost::alloc::vec::Vec<u32>,
+    pub chest_id_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, tag = "13")]
     pub floor_id: u32,
     #[prost(message, repeated, tag = "14")]
@@ -32159,7 +32159,7 @@ pub struct MissionSync {
     #[prost(uint32, repeated, tag = "7")]
     pub hnepoedcidk: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, repeated, tag = "6")]
-    pub finished_mission_id: ::prost::alloc::vec::Vec<u32>,
+    pub finished_mission_id_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, repeated, tag = "12")]
     pub mcfonopkokd: ::prost::alloc::vec::Vec<u32>,
 }

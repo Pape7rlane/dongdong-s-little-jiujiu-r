@@ -69,6 +69,7 @@ impl FreesrData {
             equipment_unique_id: lightcone.map(|v| v.get_unique_id()).unwrap_or_default(),
             first_met_timestamp: 1712924677,
             equip_relic_list: relics.map(|v| v.into()).collect::<Vec<_>>(),
+            unk_enhanced_id: avatar.enhanced_id.unwrap_or_default(),
             ..Default::default()
         })
     }
