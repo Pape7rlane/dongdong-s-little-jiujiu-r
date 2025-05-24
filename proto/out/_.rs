@@ -30272,13 +30272,13 @@ pub struct MazeChest {
 }
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Npaogkfkaae {
+pub struct ChestUnlockProgress {
     #[prost(uint32, tag = "7")]
-    pub fljindnjphl: u32,
+    pub unlocked_chest_count: u32,
     #[prost(uint32, tag = "11")]
-    pub fokcifjmjgl: u32,
+    pub total_chest_count: u32,
     #[prost(uint32, tag = "3")]
-    pub slot: u32,
+    pub chest_type: u32,
 }
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -30301,7 +30301,7 @@ pub struct MazeMapData {
     #[prost(uint32, tag = "6")]
     pub floor_id: u32,
     #[prost(message, repeated, tag = "4")]
-    pub jmldmocnmhm: ::prost::alloc::vec::Vec<Npaogkfkaae>,
+    pub chest_unlock_progress_list: ::prost::alloc::vec::Vec<ChestUnlockProgress>,
     #[prost(message, repeated, tag = "5")]
     pub maze_group_list: ::prost::alloc::vec::Vec<MazeGroup>,
     #[prost(uint32, tag = "13")]

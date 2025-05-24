@@ -115,11 +115,13 @@ pub async fn on_get_scene_map_info_cs_req(
             map_info.lighten_section_list = floor_config.sections.clone();
             map_info.floor_saved_data = floor_config.saved_values.clone();
             // TODO!
-            map_info.jmldmocnmhm = vec![Npaogkfkaae {
-                fljindnjphl: 2,
-                fokcifjmjgl: 2,
-                slot: 2,
-            }]
+            map_info
+                .chest_unlock_progress_list
+                .push(ChestUnlockProgress {
+                    chest_type: 0,
+                    total_chest_count: 25,
+                    unlocked_chest_count: 25,
+                });
         }
 
         res.map_list.push(map_info)
