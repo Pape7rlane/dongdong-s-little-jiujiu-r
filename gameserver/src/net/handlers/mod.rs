@@ -134,6 +134,8 @@ dummy! {
     // PlayerLoginFinish,
     InteractProp,
     FinishTalkMission,
-    GetRechargeGiftInfo
+    GetRechargeGiftInfo,
     // RelicRecommend
+    GetPreAvatarGrowthInfo,
+    GetPreAvatarActivityList
 }
