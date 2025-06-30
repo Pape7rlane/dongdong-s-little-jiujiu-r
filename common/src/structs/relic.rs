@@ -67,7 +67,7 @@ impl_from!(Relic, BattleRelic, |value| {
 
 impl_from!(Relic, EquipRelic, |value| {
     EquipRelic {
-        slot: value.get_slot(),
+        r#type: value.get_slot(),
         relic_unique_id: value.get_unique_id(),
     }
 });

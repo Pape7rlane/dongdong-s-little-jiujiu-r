@@ -528,11 +528,7 @@ impl<Output> Kcp<Output> {
             self.rx_srtt = rtt;
             self.rx_rttval = rtt / 2;
         } else {
-            let delta = if rtt > self.rx_srtt {
-                rtt - self.rx_srtt
-            } else {
-                self.rx_srtt - rtt
-            };
+            let delta = rtt.abs_diff(self.rx_srtt);
             self.rx_rttval = (3 * self.rx_rttval + delta) / 4;
             self.rx_srtt = ((7 * u64::from(self.rx_srtt) + u64::from(rtt)) / 8) as u32;
             if self.rx_srtt < 1 {

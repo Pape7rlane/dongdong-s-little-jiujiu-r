@@ -118,7 +118,7 @@ pub async fn on_get_scene_map_info_cs_req(
             map_info
                 .chest_unlock_progress_list
                 .push(ChestUnlockProgress {
-                    chest_type: 0,
+                    r#type: 0,
                     total_chest_count: 25,
                     unlocked_chest_count: 25,
                 });

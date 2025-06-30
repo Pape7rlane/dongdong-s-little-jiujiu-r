@@ -31,7 +31,7 @@ pub async fn sr_tool_save(Json(json): Json<SrToolDataReq>) -> Json<SrToolDataRsp
         Ok(json) => json,
         Err(err) => {
             return Json(SrToolDataRsp {
-                message: format!("malformed json: {}", err),
+                message: format!("malformed json: {err}"),
                 status: 500,
             });
         }
@@ -43,8 +43,7 @@ pub async fn sr_tool_save(Json(json): Json<SrToolDataReq>) -> Json<SrToolDataRsp
     if let Err(err) = fs::write(&path, json).await {
         return Json(SrToolDataRsp {
             message: format!(
-                "failed to write freesr-data.json: {} at path: {:#?} env: {:#?}",
-                err, path, env
+                "failed to write freesr-data.json: {err} at path: {path:#?} env: {env:#?}"
             ),
             status: 500,
         });

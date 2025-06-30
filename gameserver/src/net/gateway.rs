@@ -129,10 +129,9 @@ impl Gateway {
                                 if events
                                     .iter()
                                     .any(|p| p.path.file_name() == path.file_name())
-                                {
-                                    if let Ok(metadata) = std::fs::metadata(path) {
-                                        if let Ok(modified) = metadata.modified() {
-                                            if modified > last_modified {
+                                    && let Ok(metadata) = std::fs::metadata(path)
+                                        && let Ok(modified) = metadata.modified()
+                                            && modified > last_modified {
                                                 last_modified = modified;
 
                                                 let mut session = session.write().await;
@@ -142,11 +141,8 @@ impl Gateway {
                                                     tracing::info!("json updated");
                                                 }
                                             }
-                                        }
-                                    }
-                                }
                             }
-                            Err(e) => eprintln!("json watcher error: {:?}", e),
+                            Err(e) => eprintln!("json watcher error: {e:?}"),
                         }
                     }
                     _ = shutdown_rx.changed() => {
