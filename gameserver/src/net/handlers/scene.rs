@@ -103,7 +103,7 @@ pub async fn on_get_scene_map_info_cs_req(
                         state: prop.prop_state,
                         config_id: prop.inst_id,
                     });
-                    map_info.lmngahfnaon.push(Ofcaigdhpoh {
+                    map_info.maze_prop_extra_list.push(MazePropExtra {
                         group_id: prop.group_id,
                         state: prop.prop_state,
                         config_id: prop.inst_id,
