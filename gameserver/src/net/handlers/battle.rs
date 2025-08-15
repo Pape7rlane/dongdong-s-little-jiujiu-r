@@ -89,8 +89,14 @@ async fn create_battle_info(
         ..Default::default()
     };
 
+    let mut first_avatar_id = 0;
+
     // avatars
     for (avatar_index, avatar_id) in player.lineups.iter() {
+        if first_avatar_id == 0 {
+            first_avatar_id = *avatar_id;
+        }
+
         let is_trailblazer = *avatar_id == 8001;
         let is_march = *avatar_id == 1001;
 
@@ -156,6 +162,15 @@ async fn create_battle_info(
                 battle_info.buff_list.push(buffs);
             }
         };
+    }
+
+    // Hardcoded Cerydra & Danheng PT technique
+    if first_avatar_id != 0 {
+        for buff in battle_info.buff_list.iter_mut() {
+            if buff.id == 141202 || buff.id == 141403 {
+                buff.owner_id = first_avatar_id
+            }
+        }
     }
 
     // custom stats for avatars
