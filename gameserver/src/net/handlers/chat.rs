@@ -30,12 +30,12 @@ pub async fn on_get_friend_list_info_cs_req(
 ) {
     res.friend_list = vec![FriendListInfo {
         friend_name: String::from("RobinSR"),
-        simple_info: Some(SimpleInfo {
+        simple_info: Some(PlayerSimpleInfo {
             uid: SERVER_UID,
-            platform_type: PlatformType::Pc.into(),
+            platform: PlatformType::Pc.into(),
             online_status: FriendOnlineStatus::Online.into(),
             head_icon: SERVER_HEAD_ICON,
-            chat_bubble_id: SERVER_CHAT_BUBBLE_ID,
+            chat_bubble: SERVER_CHAT_BUBBLE_ID,
             level: 70,
             nickname: String::from("Server"),
             signature: String::from("omg"),

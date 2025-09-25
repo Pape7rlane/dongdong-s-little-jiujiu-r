@@ -17,6 +17,7 @@ impl_from!(Monster, SceneMonster, |value| {
         monster_id: value.monster_id,
         max_hp: value.max_hp,
         cur_hp: value.max_hp,
+        extra_info: None,
     }
 });
 

@@ -46,6 +46,7 @@ pub enum BattleType {
     PF = 2,
     SU = 3,
     AS = 4,
+    AA = 5,
 }
 
 impl Default for BattleType {
