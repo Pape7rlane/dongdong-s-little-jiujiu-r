@@ -23,7 +23,7 @@ pub async fn on_get_mail_cs_req(
                 ..Default::default()
             }],
         }),
-        mail_type: MailType::Normal.into(),
+        mail_type: 0,
         template_id: 0,
     }];
 }

@@ -32,14 +32,14 @@ pub async fn on_player_login_finish_cs_req(
 ) -> Result<()> {
     session
         .send(ContentPackageSyncDataScNotify {
-            data: Some(PackageData {
-                info_list: [
+            data: Some(ContentPackageData {
+                content_package_list: [
                     200001, 200002, 200003, 200004, 200005, 200006, 200007, 200008, 150017, 150015,
                     150021, 150018, 130011, 130012, 130013, 150025, 140006, 150026, 130014, 150034,
                     150029, 150035, 150041, 150039, 150045,
                 ]
                 .into_iter()
-                .map(|v| ContentInfo {
+                .map(|v| ContentPackageInfo {
                     status: ContentPackageStatus::Finished.into(),
                     content_id: v,
                 })

@@ -46,7 +46,7 @@ pub async fn on_enter_scene_cs_req(
         .await
         .is_err()
     {
-        res.retcode = Retcode::RetSceneEntryIdNotMatch as u32;
+        res.retcode = 2605;
     };
 }
 
@@ -56,19 +56,19 @@ pub async fn on_get_scene_map_info_cs_req(
     res: &mut GetSceneMapInfoScRsp,
 ) {
     for floor_id in &req.floor_id_list {
-        let mut map_info = MazeMapData {
+        let mut map_info = SceneMapInfo {
             retcode: 0,
-            unlocked_chest_list: vec![
-                MazeChest {
-                    map_info_chest_type: MapInfoChestType::Normal.into(),
+            chest_list: vec![
+                ChestInfo {
+                    chest_type: 101,
                     ..Default::default()
                 },
-                MazeChest {
-                    map_info_chest_type: MapInfoChestType::Puzzle.into(),
+                ChestInfo {
+                    chest_type: 102,
                     ..Default::default()
                 },
-                MazeChest {
-                    map_info_chest_type: MapInfoChestType::Challenge.into(),
+                ChestInfo {
+                    chest_type: 104,
                     ..Default::default()
                 },
             ],
@@ -94,37 +94,39 @@ pub async fn on_get_scene_map_info_cs_req(
                 });
 
                 for teleport in group.teleports.keys() {
-                    map_info.unlocked_teleport_list.push(*teleport)
+                    map_info.unlock_teleport_list.push(*teleport)
                 }
 
                 for prop in &group.props {
-                    map_info.maze_prop_list.push(MazeProp {
+                    map_info.maze_prop_list.push(MazePropState {
                         group_id: prop.group_id,
                         state: prop.prop_state,
                         config_id: prop.inst_id,
                     });
-                    map_info.maze_prop_extra_list.push(MazePropExtra {
-                        group_id: prop.group_id,
-                        state: prop.prop_state,
-                        config_id: prop.inst_id,
-                        extra_info: Option::None,
-                    });
+                    map_info
+                        .maze_prop_extra_state_list
+                        .push(MazePropExtraState {
+                            group_id: prop.group_id,
+                            state: prop.prop_state,
+                            config_id: prop.inst_id,
+                            extra_info: Option::None,
+                        });
                 }
             }
 
             map_info.lighten_section_list = floor_config.sections.clone();
             map_info.floor_saved_data = floor_config.saved_values.clone();
-            // TODO!
-            map_info
-                .chest_unlock_progress_list
-                .push(ChestUnlockProgress {
-                    r#type: 0,
-                    total_chest_count: 25,
-                    unlocked_chest_count: 25,
-                });
+            // #TODO!
+            // map_info
+            //     .chest_unlock_progress_list
+            //     .push(ChestUnlockProgress {
+            //         r#type: 0,
+            //         total_chest_count: 25,
+            //         unlocked_chest_count: 25,
+            //     });
         }
 
-        res.map_list.push(map_info)
+        res.scene_map_info.push(map_info)
     }
 }
 
@@ -170,7 +172,7 @@ pub async fn on_get_entered_scene_cs_req(
     _req: &GetEnteredSceneCsReq,
     res: &mut GetEnteredSceneScRsp,
 ) {
-    res.entered_scene_info = GAME_RES
+    res.entered_scene_info_list = GAME_RES
         .level_output_configs
         .iter()
         .flat_map(|(_, v)| {
@@ -249,13 +251,13 @@ async fn load_scene(
             scene.world_id
         },
         lighten_section_list: scene.sections.clone(),
-        chest_id_list: scene
+        lddigmlcgdb: scene
             .scenes
             .values()
             .flat_map(|v| v.chests.clone())
             .collect::<Vec<_>>(),
         scene_mission_info: Some(MissionStatusBySceneInfo {
-            finished_mission_id_list: scene
+            finished_main_mission_id_list: scene
                 .scenes
                 .values()
                 .flat_map(|s| s.finished_main_missions.clone())
@@ -392,7 +394,7 @@ async fn load_scene(
 
         scene_info.entity_group_list.push(group_info);
 
-        scene_info.group_state_list.push(SceneGroupState {
+        scene_info.clecmgljocl.push(SceneGroupState {
             group_id: *group_id,
             is_default: true,
             state: 0,
@@ -403,7 +405,7 @@ async fn load_scene(
     scene_info.entity_group_list.push(SceneEntityGroupInfo {
         state: 0,
         group_id: 0,
-        hejamoojbcj: HashMap::with_capacity(0),
+        jnajakchjdf: HashMap::with_capacity(0),
         entity_list: json
             .lineups
             .iter()

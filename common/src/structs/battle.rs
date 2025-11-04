@@ -37,9 +37,10 @@ impl Default for BattleConfig {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
+#[derive(Default, Debug, Serialize, Deserialize, Clone, PartialEq)]
 pub enum BattleType {
     #[serde(alias = "DEFAULT")]
+    #[default]
     Default = 0,
     #[serde(alias = "MOC")]
     Moc = 1,
@@ -47,12 +48,6 @@ pub enum BattleType {
     SU = 3,
     AS = 4,
     AA = 5,
-}
-
-impl Default for BattleType {
-    fn default() -> Self {
-        Self::Default
-    }
 }
 
 // BATTLE BUFFS
@@ -78,7 +73,7 @@ impl BattleBuffJson {
             id: self.id,
             level: self.level,
             wave_flag: 0xffffffff,
-            owner_id: 0xffffffff,
+            owner_index: 0xffffffff,
             dynamic_values: if let Some(dyn_key) = &self.dynamic_key {
                 HashMap::from([(dyn_key.key.clone(), dyn_key.value as f32)])
             } else {

@@ -236,7 +236,7 @@ fn equip_relic(player: &mut FreesrData, req: &DressRelicAvatarCsReq) -> Option<P
     let mut avatar_ids_to_sy = vec![];
     let mut relic_index_to_sync = vec![];
 
-    for param in &req.param_list {
+    for param in &req.switch_list {
         let Some(target_relic_idx) = player
             .relics
             .iter()
@@ -245,10 +245,9 @@ fn equip_relic(player: &mut FreesrData, req: &DressRelicAvatarCsReq) -> Option<P
             continue;
         };
 
-        let cur_avatar_relic_idx = player
-            .relics
-            .iter()
-            .position(|r| r.equip_avatar == target_avatar.avatar_id && r.get_slot() == param.slot);
+        let cur_avatar_relic_idx = player.relics.iter().position(|r| {
+            r.equip_avatar == target_avatar.avatar_id && r.get_slot() == param.relic_type
+        });
 
         // jika avatar sekarang sedang pakai LC, kita tukar pemiliknya dengan pemilik dari LC target
         if let Some(cur_avatar_relic_idx) = cur_avatar_relic_idx {
@@ -289,7 +288,7 @@ fn unequip_relic(player: &mut FreesrData, req: &TakeOffRelicCsReq) -> Option<Pla
 
     let mut relic_index_to_sync = vec![];
 
-    for slot in &req.slot_list {
+    for slot in &req.relic_type_list {
         let relics = player
             .relics
             .iter()
@@ -328,7 +327,7 @@ fn build_sync(
         .filter_map(|id| player.get_avatar_proto(*id))
         .collect::<Vec<_>>();
     ret.avatar_sync = Some(AvatarSync { avatar_list });
-    ret.multi_path_avatar_type_info_list = avatar_ids
+    ret.multi_path_avatar_info_list = avatar_ids
         .into_iter()
         .filter_map(|id| player.get_avatar_multipath_proto(id))
         .collect();

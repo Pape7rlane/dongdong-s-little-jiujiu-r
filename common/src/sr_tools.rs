@@ -1,4 +1,4 @@
-use proto::{Avatar, AvatarSkillTree, MultiPathAvatarTypeInfo};
+use proto::{Avatar, AvatarSkillTree, MultiPathAvatarInfo};
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, HashMap};
 
@@ -67,14 +67,14 @@ impl FreesrData {
                 })
                 .collect::<Vec<_>>(),
             equipment_unique_id: lightcone.map(|v| v.get_unique_id()).unwrap_or_default(),
-            first_met_timestamp: 1712924677,
+            first_met_time_stamp: 1712924677,
             equip_relic_list: relics.map(|v| v.into()).collect::<Vec<_>>(),
             unk_enhanced_id: avatar.enhanced_id.unwrap_or_default(),
             ..Default::default()
         })
     }
 
-    pub fn get_avatar_multipath_proto(&self, avatar_id: u32) -> Option<MultiPathAvatarTypeInfo> {
+    pub fn get_avatar_multipath_proto(&self, avatar_id: u32) -> Option<MultiPathAvatarInfo> {
         let avatar = self.avatars.get(&avatar_id)?;
         let mp_type = MultiPathAvatar::from(avatar_id);
 
@@ -82,7 +82,7 @@ impl FreesrData {
             return None;
         }
 
-        Some(MultiPathAvatarTypeInfo {
+        Some(MultiPathAvatarInfo {
             avatar_id: mp_type as i32,
             rank: avatar.data.rank,
             equip_relic_list: self
@@ -91,7 +91,7 @@ impl FreesrData {
                 .filter(|relic| relic.equip_avatar == mp_type as u32)
                 .map(|relic| relic.into())
                 .collect(),
-            skilltree_list: avatar
+            multi_path_skill_tree: avatar
                 .data
                 .skills
                 .iter()
@@ -111,7 +111,7 @@ impl FreesrData {
         })
     }
 
-    pub fn get_multi_path_info(&self) -> Vec<MultiPathAvatarTypeInfo> {
+    pub fn get_multi_path_info(&self) -> Vec<MultiPathAvatarInfo> {
         MultiPathAvatar::to_vec()
             .into_iter()
             .filter_map(|mp_type| {
@@ -120,7 +120,7 @@ impl FreesrData {
                 }
 
                 let avatar_info = self.avatars.get(&((mp_type) as u32))?;
-                Some(MultiPathAvatarTypeInfo {
+                Some(MultiPathAvatarInfo {
                     avatar_id: mp_type as i32,
                     rank: avatar_info.data.rank,
                     equip_relic_list: self
@@ -129,7 +129,7 @@ impl FreesrData {
                         .filter(|relic| relic.equip_avatar == mp_type as u32)
                         .map(|relic| relic.into())
                         .collect(),
-                    skilltree_list: avatar_info
+                    multi_path_skill_tree: avatar_info
                         .data
                         .skills
                         .iter()

@@ -43,7 +43,7 @@ use proto::{
     CmdMissionType::*, CmdMonopolyType::*, CmdMultiplayerType::*, CmdMultipleDropType::*,
     CmdMuseumType::*, CmdOfferingType::*, CmdPamMissionType::*, CmdPhoneType::*,
     CmdPlayerBoardType::*, CmdPlayerReturnType::*, CmdPlayerSync::*, CmdPlayerType::*,
-    CmdPlotType::*, CmdPunkLordType::*, CmdQuestType::*, CmdRaidCollectionType::*, CmdRaidType::*,
+    CmdPunkLordType::*, CmdQuestType::*, CmdRaidCollectionType::*, CmdRaidType::*,
     CmdRechargeGiftType::*, CmdRecommendType::*, CmdRedDotType::*, CmdReplayType::*,
     CmdRndOptionType::*, CmdRogueCommonType::*, CmdRogueEndless::*, CmdRogueModifierType::*,
     CmdRogueTournType::*, CmdRogueType::*, CmdRollShopType::*, CmdSceneType::*,
@@ -90,7 +90,7 @@ macro_rules! dummy {
 dummy! {
     // SceneEntityMove,
     GetLevelRewardTakenList,
-    GetRogueScoreRewardInfo,
+    // GetRogueScoreRewardInfo, // ?3.7.51
     // GetGachaInfo,
     QueryProductInfo,
     GetQuestData,
@@ -98,33 +98,33 @@ dummy! {
     // GetFriendListInfo,
     // GetFriendApplyListInfo,
     GetCurAssist,
-    GetRogueHandbookData,
+    // GetRogueHandbookData, // ?3.7.51
     GetDailyActiveInfo,
     GetFightActivityData,
-    GetMultipleDropInfo,
-    GetPlayerReturnMultiDropInfo,
-    GetShareData,
-    GetTreasureDungeonActivityData,
-    PlayerReturnInfoQuery,
+    // GetMultipleDropInfo, // ?3.7.51
+    // GetPlayerReturnMultiDropInfo, // ?3.7.51
+    // GetShareData, // ?3.7.51
+    // GetTreasureDungeonActivityData, // ?3.7.51
+    // PlayerReturnInfoQuery, // ?3.7.51
     // GetBag,
     GetPlayerBoardData,
     GetActivityScheduleConfig,
     GetMissionData,
     GetChallenge,
     GetCurChallenge,
-    GetRogueInfo,
+    // GetRogueInfo, // ?3.7.51
     GetExpeditionData,
     // GetRogueDialogueEventData,
     GetJukeboxData,
     SyncClientResVersion,
-    DailyFirstMeetPam,
-    GetMuseumInfo,
+    // DailyFirstMeetPam, // ?3.7.51
+    // GetMuseumInfo, // ?3.7.51
     GetLoginActivity,
     GetRaidInfo,
     GetTrialActivityData,
-    GetBoxingClubInfo,
+    // GetBoxingClubInfo, // ?3.7.51
     GetNpcStatus,
-    TextJoinQuery,
+    // TextJoinQuery, // ?3.7.51
     // GetSpringRecoverData, // Removed 2.7.51
     // GetChatFriendHistory,
     GetSecretKeyInfo,

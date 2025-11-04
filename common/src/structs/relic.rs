@@ -74,7 +74,7 @@ impl_from!(Relic, EquipRelic, |value| {
 
 impl_from!(Relic, proto::Relic, |value| {
     proto::Relic {
-        equip_avatar_id: value.equip_avatar,
+        dress_avatar_id: value.equip_avatar,
         exp: 0,
         is_protected: false,
         level: value.level,

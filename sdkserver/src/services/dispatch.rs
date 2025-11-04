@@ -3,7 +3,7 @@ use std::sync::Arc;
 use crate::AppState;
 use axum::extract::{Query, State};
 use prost::Message;
-use proto::{DispatchRegionData, Gateserver, RegionEntry};
+use proto::{Dispatch, Gateserver, RegionInfo};
 use serde::Deserialize;
 use tokio::sync::RwLock;
 use tracing::instrument;
@@ -13,12 +13,12 @@ pub const QUERY_GATEWAY_ENDPOINT: &str = "/query_gateway";
 
 #[tracing::instrument]
 pub async fn query_dispatch() -> String {
-    let rsp = DispatchRegionData {
+    let rsp = Dispatch {
         retcode: 0,
-        region_list: vec![RegionEntry {
+        region_list: vec![RegionInfo {
             name: String::from("RobinSR"),
             title: String::from("RobinSR"),
-            env_type: String::from("21"),
+            env_type: String::from("9"),
             dispatch_url: String::from("http://127.0.0.1:21000/query_gateway"),
             ..Default::default()
         }],
@@ -48,23 +48,23 @@ pub async fn query_gateway(
         .await;
 
     let rsp = Gateserver {
-        retcode: 0,
         ip: String::from("127.0.0.1"),
         port: 23301,
         asset_bundle_url: config.asset_bundle_url.clone(),
+        asset_bundle_url_android: config.asset_bundle_url.clone(),
         ex_resource_url: config.ex_resource_url.clone(),
         lua_url: config.lua_url.clone(),
         ifix_version: String::from("0"),
-        enable_design_data_version_update: true,
-        enable_version_update: true,
-        enable_upload_battle_log: true,
-        network_diagnostic: true,
-        close_redeem_code: true,
-        enable_android_middle_package: true,
-        enable_watermark: true,
-        event_tracking_open: true,
-        enable_cdn_ipv6: 1,
-        enable_save_replay_file: true,
+        unk1: true,
+        unk2: true,
+        unk3: true,
+        unk4: true,
+        unk5: true,
+        unk6: true,
+        unk7: true,
+        unk8: true,
+        unk9: true,
+        unk10: true,
         ..Default::default()
     };
 

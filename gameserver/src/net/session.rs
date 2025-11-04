@@ -10,7 +10,7 @@ use anyhow::Result;
 use common::sr_tools::FreesrData;
 use mhy_kcp::Kcp;
 use prost::Message;
-use proto::{AvatarSync, CmdID, CmdPlayerType, PlayerSyncScNotify};
+use proto::{AvatarSync, CmdID, PlayerSyncScNotify};
 use tokio::{
     io::AsyncWrite,
     net::UdpSocket,
@@ -70,11 +70,12 @@ impl PlayerSession {
         drop(kcp);
 
         for packet in packets {
-            if packet.cmd_type == CmdPlayerType::CmdPlayerLogoutCsReq as u16 {
-                tracing::info!("Player logged out");
-                let _ = self.shutdown_tx.send(());
-                return Ok(());
-            };
+            // #TODO
+            // if packet.cmd_type == CmdPlayerType::CmdPlayerLogoutCsReq as u16 {
+            //     tracing::info!("Player logged out");
+            //     let _ = self.shutdown_tx.send(());
+            //     return Ok(());
+            // };
             Self::on_message(self, packet.cmd_type, packet.body).await?;
         }
 
@@ -140,7 +141,7 @@ impl PlayerSession {
                     .map(|avatar| avatar.to_avatar_proto(Option::None, vec![]))
                     .collect::<Vec<_>>(),
             }),
-            multi_path_avatar_type_info_list: json.get_multi_path_info(),
+            multi_path_avatar_info_list: json.get_multi_path_info(),
             ..Default::default()
         })
         .await

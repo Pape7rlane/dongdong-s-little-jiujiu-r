@@ -17,7 +17,7 @@ use proto::{
     CmdMissionType::*, CmdMonopolyType::*, CmdMultiplayerType::*, CmdMultipleDropType::*,
     CmdMuseumType::*, CmdOfferingType::*, CmdPamMissionType::*, CmdPhoneType::*,
     CmdPlayerBoardType::*, CmdPlayerReturnType::*, CmdPlayerSync::*, CmdPlayerType::*,
-    CmdPlotType::*, CmdPunkLordType::*, CmdQuestType::*, CmdRaidCollectionType::*, CmdRaidType::*,
+    CmdPunkLordType::*, CmdQuestType::*, CmdRaidCollectionType::*, CmdRaidType::*,
     CmdRecommendType::*, CmdRedDotType::*, CmdReplayType::*, CmdRndOptionType::*,
     CmdRogueCommonType::*, CmdRogueEndless::*, CmdRogueModifierType::*, CmdRogueTournType::*,
     CmdRogueType::*, CmdRollShopType::*, CmdSceneType::*, CmdServerPrefsType::*, CmdShopType::*,

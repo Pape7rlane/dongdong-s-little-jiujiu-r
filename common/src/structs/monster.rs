@@ -28,8 +28,8 @@ impl Monster {
         }
 
         SceneMonsterWave {
-            wave_id,
-            wave_param: Some(SceneMonsterWaveParam {
+            battle_wave_id: wave_id,
+            monster_param: Some(SceneMonsterWaveParam {
                 level: monsters.iter().map(|v| v.level).max().unwrap_or(95),
                 ..Default::default()
             }),

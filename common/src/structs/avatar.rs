@@ -163,7 +163,7 @@ impl AvatarJson {
                 })
                 .collect::<Vec<_>>(),
             equipment_unique_id: lightcone.map(|v| v.get_unique_id()).unwrap_or_default(),
-            first_met_timestamp: 1712924677,
+            first_met_time_stamp: 1712924677,
             equip_relic_list: relics.iter().map(|v| (*v).into()).collect::<Vec<_>>(),
             unk_enhanced_id: self.enhanced_id.unwrap_or_default(),
             ..Default::default()
@@ -212,7 +212,7 @@ impl AvatarJson {
         for buff_id in &self.techniques {
             battle_buff.push(BattleBuff {
                 wave_flag: 0xffffffff,
-                owner_id: index,
+                owner_index: index,
                 level: 1,
                 id: *buff_id,
                 dynamic_values: HashMap::from([(String::from("SkillIndex"), 2.0)]),

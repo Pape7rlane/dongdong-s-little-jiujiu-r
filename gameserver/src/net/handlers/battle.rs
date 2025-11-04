@@ -1,11 +1,10 @@
 use std::collections::HashMap;
 
 use rand::Rng;
-use rogue_magic_battle_unit_info::Item;
 
 use common::{
     resources::GAME_RES,
-    structs::{BattleType, Monster, RogueMagicComponentType},
+    structs::{BattleType, Monster},
 };
 
 use super::*;
@@ -50,7 +49,7 @@ pub async fn on_scene_cast_skill_cs_req(
     req: &SceneCastSkillCsReq,
     res: &mut SceneCastSkillScRsp,
 ) {
-    res.attacked_group_id = req.attacked_group_id;
+    res.cast_entity_id = req.cast_entity_id;
 
     let targets = req
         .hit_target_entity_id_list
@@ -64,9 +63,9 @@ pub async fn on_scene_cast_skill_cs_req(
         return;
     }
 
-    let battle_info = create_battle_info(session, req.caster_id, req.skill_index).await;
+    let battle_info = create_battle_info(session, req.attacked_by_entity_id, req.skill_index).await;
 
-    res.attacked_group_id = req.attacked_group_id;
+    res.cast_entity_id = req.cast_entity_id;
     res.battle_info = Some(battle_info);
 }
 
@@ -133,7 +132,7 @@ async fn create_battle_info(
                 battle_info.buff_list.push(BattleBuff {
                     id: avatar_config.weakness_buff_id,
                     level: 1,
-                    owner_id: *avatar_index,
+                    owner_index: *avatar_index,
                     wave_flag: 0xffffffff,
                     dynamic_values: HashMap::from([(
                         String::from("SkillIndex"),
@@ -151,7 +150,7 @@ async fn create_battle_info(
                     id: 122401,
                     level: 3,
                     wave_flag: 0xffffffff,
-                    owner_id: *avatar_index,
+                    owner_index: *avatar_index,
                     dynamic_values: HashMap::from([
                         (String::from("#ADF_1"), 3f32),
                         (String::from("#ADF_2"), 3f32),
@@ -168,7 +167,7 @@ async fn create_battle_info(
     if first_avatar_id != 0 {
         for buff in battle_info.buff_list.iter_mut() {
             if buff.id == 141202 || buff.id == 141403 {
-                buff.owner_id = first_avatar_id
+                buff.owner_index = first_avatar_id
             }
         }
     }
@@ -207,7 +206,7 @@ async fn create_battle_info(
             id: blessing.id,
             level: blessing.level,
             wave_flag: 0xffffffff,
-            owner_id: 0xffffffff,
+            owner_index: 0xffffffff,
             ..Default::default()
         };
 
@@ -296,72 +295,73 @@ async fn create_battle_info(
 
     //  SU
     if player.battle_config.battle_type == BattleType::SU {
-        battle_info
-            .event_battle_info_list
-            .push(BattleEventBattleInfo {
-                battle_event_id: player.battle_config.path_resonance_id,
-                status: Some(BattleEventInitedData {
-                    sp_bar: Some(SpBarInfo {
-                        cur_sp: 10_000,
-                        max_sp: 10_000,
-                    }),
+        battle_info.battle_event.push(BattleEventBattleInfo {
+            battle_event_id: player.battle_config.path_resonance_id,
+            status: Some(BattleEventProperty {
+                sp_bar: Some(SpBarInfo {
+                    cur_sp: 10_000,
+                    max_sp: 10_000,
                 }),
-                skill_info: Vec::with_capacity(0),
-            })
+            }),
+            skill_info: Vec::with_capacity(0),
+        })
     }
 
     // Monsters
     battle_info.monster_wave_list = Monster::to_scene_monster_waves(&player.battle_config.monsters);
 
     // Rogue Magic
+    // TODO: i dont need these shit
     if !player.battle_config.scepters.is_empty() {
-        battle_info.rogue_magic_battle_info = Some(RogueMagicBattleInfo {
-            player_detail_info: Some(RogueMagicBattleUnitInfo {
-                item: Some(Item::BattleRogueMagicData(BattleRogueMagicData {
-                    round_cnt: Some(BattleRogueMagicRoundCount {
-                        gpojenhaiba: 3,
-                        kljklbmlefo: 0,
-                    }),
-                    battle_scepter_list: player
-                        .battle_config
-                        .scepters
-                        .iter()
-                        .map(|scepter| {
-                            let mut battle_scepter = BattleRogueMagicScepter {
-                                level: scepter.level,
-                                scepter_id: scepter.id,
-                                magic_list: Vec::new(),
-                                trench_count: HashMap::from([(3, 0), (4, 0), (5, 0)]),
-                            };
-
-                            let mut index = [0u32; 3];
-
-                            for component in &scepter.components {
-                                let (slot_type, locked) = match component.component_type {
-                                    RogueMagicComponentType::Passive => (3u32, false),
-                                    RogueMagicComponentType::Active => (4, true),
-                                    RogueMagicComponentType::Attach => (5, false),
-                                };
-
-                                let slot_index = &mut index[slot_type as usize - 3];
-                                battle_scepter.magic_list.push(BattleRogueMagicUnit {
-                                    level: component.level,
-                                    unit_id: component.id,
-                                    slot_id: *slot_index,
-                                    locked,
-                                    counter_map: Default::default(),
-                                });
-                                *slot_index += 1;
-                                *battle_scepter.trench_count.get_mut(&slot_type).unwrap() += 1;
-                            }
-
-                            battle_scepter
-                        })
-                        .collect(),
-                })),
-            }),
-            scepter: Some(Plgjihifpag { egmebanhhnf: 5 }),
-        });
+        // battle_info.battle_rogue_magic_info = Some(BattleRogueMagicInfo {
+        //     detail_info: Some(BattleRogueMagicDetailInfo {
+        //         paiigoggofj: Some(Item::BattleRogueMagicData(BattleRogueMagicData {
+        //             round_cnt: Some(BattleRogueMagicRoundCount {
+        //                 gpojenhaiba: 3,
+        //                 kljklbmlefo: 0,
+        //             }),
+        //             battle_scepter_list: player
+        //                 .battle_config
+        //                 .scepters
+        //                 .iter()
+        //                 .map(|scepter| {
+        //                     let mut battle_scepter = BattleRogueMagicScepter {
+        //                         level: scepter.level,
+        //                         scepter_id: scepter.id,
+        //                         magic_list: Vec::new(),
+        //                         trench_count: HashMap::from([(3, 0), (4, 0), (5, 0)]),
+        //                     };
+        //
+        //                     let mut index = [0u32; 3];
+        //
+        //                     for component in &scepter.components {
+        //                         let (slot_type, locked) = match component.component_type {
+        //                             RogueMagicComponentType::Passive => (3u32, false),
+        //                             RogueMagicComponentType::Active => (4, true),
+        //                             RogueMagicComponentType::Attach => (5, false),
+        //                         };
+        //
+        //                         let slot_index = &mut index[slot_type as usize - 3];
+        //                         battle_scepter.magic_list.push(BattleRogueMagicUnit {
+        //                             level: component.level,
+        //                             unit_id: component.id,
+        //                             slot_id: *slot_index,
+        //                             locked,
+        //                             counter_map: Default::default(),
+        //                         });
+        //                         *slot_index += 1;
+        //                         *battle_scepter.trench_count.get_mut(&slot_type).unwrap() += 1;
+        //                     }
+        //
+        //                     battle_scepter
+        //                 })
+        //                 .collect(),
+        //         })),
+        //     }),
+        //     modifier_content: Some(BattleRogueMagicModifierInfo {
+        //         rogue_magic_battle_const: 5,
+        //     }),
+        // });
     }
 
     // Global Buff
@@ -369,7 +369,7 @@ async fn create_battle_info(
         battle_info.buff_list.push(BattleBuff {
             id: 140703,
             level: 1,
-            owner_id: u32::MAX,
+            owner_index: u32::MAX,
             wave_flag: u32::MAX,
             target_index_list: Vec::with_capacity(0),
             dynamic_values: HashMap::with_capacity(0),

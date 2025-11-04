@@ -76,7 +76,7 @@ pub async fn on_replace_lineup_cs_req(
 
     let lineups = &mut player.lineups;
     for (slot, avatar_id) in &mut *lineups {
-        if let Some(lineup) = req.slots.get(*slot as usize) {
+        if let Some(lineup) = req.lineup_slot_list.get(*slot as usize) {
             *avatar_id = lineup.id;
         } else {
             *avatar_id = 0;
@@ -131,15 +131,15 @@ async fn refresh_lineup(session: &mut PlayerSession) {
 
     session
         .send(SceneGroupRefreshScNotify {
-            group_refresh_info: vec![SceneGroupRefreshInfo {
+            group_refresh_list: vec![GroupRefreshInfo {
                 group_id: 0,
                 state: 0,
-                group_refresh_type: SceneGroupRefreshType::Loaded.into(),
+                refresh_type: SceneGroupRefreshType::Loaded.into(),
                 refresh_entity: new_entities,
-                bccgjihncdn: Vec::with_capacity(0),
+                ..Default::default()
             }],
             floor_id,
-            gfhglffhfbd: 0,
+            dimension_id: 0,
         })
         .await
         .unwrap();

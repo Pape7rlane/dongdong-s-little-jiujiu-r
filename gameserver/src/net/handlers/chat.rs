@@ -20,7 +20,8 @@ pub async fn on_get_friend_login_info_cs_req(
     _req: &GetFriendLoginInfoCsReq,
     res: &mut GetFriendLoginInfoScRsp,
 ) {
-    res.friend_uid_list = vec![SERVER_UID];
+    res.cmcilifageb = vec![SERVER_UID];
+    res.gddmgcalkhc = vec![SERVER_UID];
 }
 
 pub async fn on_get_friend_list_info_cs_req(
@@ -28,9 +29,9 @@ pub async fn on_get_friend_list_info_cs_req(
     _req: &GetFriendListInfoCsReq,
     res: &mut GetFriendListInfoScRsp,
 ) {
-    res.friend_list = vec![FriendListInfo {
-        friend_name: String::from("RobinSR"),
-        simple_info: Some(PlayerSimpleInfo {
+    res.friend_list = vec![FriendSimpleInfo {
+        remark_name: String::from("RobinSR"),
+        player_info: Some(PlayerSimpleInfo {
             uid: SERVER_UID,
             platform: PlatformType::Pc.into(),
             online_status: FriendOnlineStatus::Online.into(),
@@ -42,7 +43,7 @@ pub async fn on_get_friend_list_info_cs_req(
             ..Default::default()
         }),
         is_marked: true,
-        sent_time: 0,
+        create_time: 0,
         ..Default::default()
     }];
 }
@@ -53,18 +54,18 @@ pub async fn on_get_private_chat_history_cs_req(
     res: &mut GetPrivateChatHistoryScRsp,
 ) {
     let cur_time = cur_timestamp_ms();
-    res.chat_list = SERVER_CHAT_HISTORY
+    res.chat_message_list = SERVER_CHAT_HISTORY
         .iter()
-        .map(|text| Chat {
-            msg_type: MsgType::CustomText.into(),
-            sent_time: cur_time,
-            text: String::from(*text),
-            sender_uid: SERVER_UID,
+        .map(|text| ChatMessageData {
+            message_type: MsgType::CustomText.into(),
+            create_time: cur_time,
+            content: String::from(*text),
+            sender_id: SERVER_UID,
             ..Default::default()
         })
         .collect();
-    res.to_uid = req.to_uid;
-    res.from_uid = SERVER_UID;
+    res.target_side = req.target_side;
+    res.contact_side = SERVER_UID;
 }
 
 pub async fn on_send_msg_cs_req(
@@ -77,19 +78,19 @@ pub async fn on_send_msg_cs_req(
         return;
     };
 
-    if let Some((cmd, args)) = parse_command(&body.text) {
+    if let Some((cmd, args)) = parse_command(&body.message_text) {
         match cmd {
             "sync" => {
                 session.sync_player().await;
                 session
                     .send(RevcMsgScNotify {
-                        msg_type: body.msg_type,
-                        text: String::from("Inventory Synced"),
-                        emote: body.emote,
-                        from_uid: SERVER_UID,
-                        to_uid: 25,
+                        message_type: body.message_type,
+                        message_text: String::from("Inventory Synced"),
+                        extra_id: body.extra_id,
+                        source_uid: SERVER_UID,
+                        target_uid: 25,
                         chat_type: body.chat_type,
-                        hnbepabnbng: body.hnbepabnbng,
+                        dijgjpgfflg: body.dijgjpgfflg.clone(),
                     })
                     .await
                     .unwrap();
@@ -117,13 +118,13 @@ pub async fn on_send_msg_cs_req(
 
                 session
                     .send(RevcMsgScNotify {
-                        msg_type: body.msg_type,
-                        text: format!("Success change mc to {mc:#?}"),
-                        emote: body.emote,
-                        from_uid: SERVER_UID,
-                        to_uid: 25,
+                        message_type: body.message_type,
+                        message_text: format!("Success change mc to {mc:#?}"),
+                        extra_id: body.extra_id,
+                        source_uid: SERVER_UID,
+                        target_uid: 25,
                         chat_type: body.chat_type,
-                        hnbepabnbng: body.hnbepabnbng,
+                        dijgjpgfflg: body.dijgjpgfflg.clone(),
                     })
                     .await
                     .unwrap();
@@ -155,13 +156,13 @@ pub async fn on_send_msg_cs_req(
 
                 session
                     .send(RevcMsgScNotify {
-                        msg_type: body.msg_type,
-                        text: format!("Success change march to {march_type:#?}"),
-                        emote: body.emote,
-                        from_uid: SERVER_UID,
-                        to_uid: 25,
+                        message_type: body.message_type,
+                        message_text: format!("Success change march to {march_type:#?}"),
+                        extra_id: body.extra_id,
+                        source_uid: SERVER_UID,
+                        target_uid: 25,
                         chat_type: body.chat_type,
-                        hnbepabnbng: body.hnbepabnbng,
+                        dijgjpgfflg: body.dijgjpgfflg.clone(),
                     })
                     .await
                     .unwrap();
