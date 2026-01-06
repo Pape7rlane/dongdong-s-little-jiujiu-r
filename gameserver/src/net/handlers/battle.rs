@@ -22,10 +22,10 @@ pub async fn on_start_cocoon_stage_cs_req(
     res.battle_info = Some(battle_info);
 }
 
-pub async fn on_quick_start_cocoon_stage_cs_req(
+pub async fn on_start_quick_cocoon_stage_cs_req(
     session: &mut PlayerSession,
-    req: &QuickStartCocoonStageCsReq,
-    res: &mut QuickStartCocoonStageScRsp,
+    req: &StartQuickCocoonStageCsReq,
+    res: &mut StartQuickCocoonStageScRsp,
 ) {
     let mut battle_info = create_battle_info(session, 0, 0).await;
 

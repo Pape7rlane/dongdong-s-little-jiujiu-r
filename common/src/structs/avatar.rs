@@ -1,8 +1,8 @@
 use std::collections::{BTreeMap, HashMap};
 
 use proto::{
-    Avatar, AvatarSkillTree, AvatarType, BattleAvatar, BattleBuff, ExtraLineupType, Gender,
-    LineupAvatar, LineupInfo, MultiPathAvatarType, SpBarInfo,
+    Avatar, AvatarPathData, AvatarPathSkillTree, AvatarSkillTree, AvatarType, BattleAvatar,
+    BattleBuff, ExtraLineupType, Gender, LineupAvatar, LineupInfo, MultiPathAvatarType, SpBarInfo,
 };
 use serde::{Deserialize, Serialize};
 
@@ -135,10 +135,12 @@ pub struct AvatarJson {
 pub struct AvatarData {
     pub rank: u32,
     pub skills: HashMap<u32, u32>,
+    #[serde(default)]
+    pub skills_by_anchor_type: HashMap<u32, u32>,
 }
 
 impl AvatarJson {
-    pub fn to_avatar_proto(&self, lightcone: Option<&Lightcone>, relics: Vec<&Relic>) -> Avatar {
+    pub fn to_avatar_proto(&self, lightcone: Option<&Lightcone>) -> Avatar {
         // TODO: HARDCODED
         let base_avatar_id = if self.avatar_id > 8000 {
             8001
@@ -152,20 +154,39 @@ impl AvatarJson {
             base_avatar_id,
             level: self.level,
             promotion: self.promotion,
-            rank: self.data.rank,
-            skilltree_list: self
-                .data
-                .skills
-                .iter()
-                .map(|v| AvatarSkillTree {
-                    point_id: *v.0,
-                    level: *v.1,
-                })
-                .collect::<Vec<_>>(),
             equipment_unique_id: lightcone.map(|v| v.get_unique_id()).unwrap_or_default(),
             first_met_time_stamp: 1712924677,
-            equip_relic_list: relics.iter().map(|v| (*v).into()).collect::<Vec<_>>(),
+            cur_multi_path_avatar_type: self.avatar_id,
+            has_taken_promotion_reward_list: Vec::with_capacity(0),
+            is_marked: false,
+            exp: 0,
+            ..Default::default()
+        }
+    }
+
+    pub fn to_avatar_path_data_proto(
+        &self,
+        lightcone: Option<&Lightcone>,
+        relics: Vec<&Relic>,
+    ) -> AvatarPathData {
+        AvatarPathData {
+            avatar_id: self.avatar_id,
+            rank: self.data.rank,
+            equip_relic_list: relics
+                .iter()
+                .filter(|relic| relic.equip_avatar == self.avatar_id)
+                .map(|&relic| relic.into())
+                .collect(),
+            avatar_path_skill_tree: self
+                .data
+                .skills_by_anchor_type
+                .iter()
+                .map(|(&anchor_type, &level)| AvatarPathSkillTree { anchor_type, level })
+                .collect(),
+            path_equipment_id: lightcone.map(|v| v.get_unique_id()).unwrap_or_default(),
             unk_enhanced_id: self.enhanced_id.unwrap_or_default(),
+            unlock_timestamp: 0,
+            dressed_skin_id: 0,
             ..Default::default()
         }
     }

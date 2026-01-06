@@ -10,19 +10,19 @@ use proto::{
     CmdBattleType::*, CmdBoxingClubType::*, CmdChallengeType::*, CmdChatType::*,
     CmdChessRogueType::*, CmdClockParkType::*, CmdContentPackageType::*, CmdDailyActiveType::*,
     CmdDrinkMakerType::*, CmdExpeditionType::*, CmdFantasticStoryActivityType::*,
-    CmdFeverTimeActivityType::*, CmdFightActivityType::*, CmdFightMathc3Type::*, CmdFightType::*,
+    CmdFeverTimeActivityType::*, CmdFightActivityType::*, CmdFightMatch3Type::*, CmdFightType::*,
     CmdFriendType::*, CmdGachaType::*, CmdHeartdialType::*, CmdHeliobusType::*, CmdItemType::*,
     CmdJukeboxType::*, CmdLineupType::*, CmdLobbyType::*, CmdMailType::*, CmdMapRotationType::*,
     CmdMatchThreeModuleType::*, CmdMatchType::*, CmdMessageType::*, CmdMiscModuleType::*,
     CmdMissionType::*, CmdMonopolyType::*, CmdMultiplayerType::*, CmdMultipleDropType::*,
     CmdMuseumType::*, CmdOfferingType::*, CmdPamMissionType::*, CmdPhoneType::*,
-    CmdPlayerBoardType::*, CmdPlayerReturnType::*, CmdPlayerSync::*, CmdPlayerType::*,
+    CmdPlayerBoardType::*, CmdPlayerReturnType::*, CmdPlayerSyncType::*, CmdPlayerType::*,
     CmdPunkLordType::*, CmdQuestType::*, CmdRaidCollectionType::*, CmdRaidType::*,
     CmdRecommendType::*, CmdRedDotType::*, CmdReplayType::*, CmdRndOptionType::*,
-    CmdRogueCommonType::*, CmdRogueEndless::*, CmdRogueModifierType::*, CmdRogueTournType::*,
+    CmdRogueCommon::*, CmdRogueEndlessType::*, CmdRogueModifierType::*, CmdRogueTournType::*,
     CmdRogueType::*, CmdRollShopType::*, CmdSceneType::*, CmdServerPrefsType::*, CmdShopType::*,
     CmdSpaceZooType::*, CmdStarFightType::*, CmdStoryLineType::*,
-    CmdStrongChallengeActivityType::*, CmdTalkRewardType::*, CmdTelevisionActivityType::*,
+    CmdStrongChallengeActivityType::*, CmdTalkEventType::*, CmdTelevisionActivityType::*,
     CmdTextJoinType::*, CmdTrainVisitorType::*, CmdTreasureDungeonType::*, CmdTutorialType::*,
     CmdWaypointType::*, CmdWolfBroType::*,
 };
@@ -190,7 +190,7 @@ trait_handler! {
     TakeOffEquipment;
     DressRelicAvatar;
     TakeOffRelic;
-    RankUpAvatar;
+    ActiveEidolon;
 
     // Chat (dummy!)
     SendMsg;
@@ -208,7 +208,7 @@ trait_handler! {
     StartCocoonStage;
     PveBattleResult;
     SceneCastSkill;
-    QuickStartCocoonStage;
+    StartQuickCocoonStage;
 
     // Teleport
     GetEnteredScene;

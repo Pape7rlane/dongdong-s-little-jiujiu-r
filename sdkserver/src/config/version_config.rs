@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use anyhow::{Result, anyhow};
 use prost::Message as _;
-use proto::Gateserver;
+use proto::GateServer;
 use serde::{Deserialize, Serialize};
 use tokio::fs;
 
@@ -73,7 +73,7 @@ impl VersionConfig {
         tracing::info!("raw gateway response: {}", res);
 
         let bytes = rbase64::decode(&res)?;
-        let decoded = Gateserver::decode(bytes.as_slice())?;
+        let decoded = GateServer::decode(bytes.as_slice())?;
 
         if decoded.asset_bundle_url.is_empty() && decoded.ex_resource_url.is_empty() {
             return Err(anyhow::format_err!(

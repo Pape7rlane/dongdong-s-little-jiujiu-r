@@ -1,4 +1,4 @@
-use proto::{Avatar, AvatarSkillTree, MultiPathAvatarInfo};
+use proto::{Avatar, AvatarPathData};
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, HashMap};
 
@@ -31,124 +31,30 @@ pub struct FreesrData {
     pub main_character: MultiPathAvatar,
     #[serde(skip_serializing, skip_deserializing)]
     pub march_type: MultiPathAvatar,
-    // #[serde(skip_serializing, skip_deserializing)]
-    // pub game_language: AllowedLanguages,
-    // #[serde(skip_serializing, skip_deserializing)]
-    // pub voice_langauge: AllowedLanguages,
 }
 
 impl FreesrData {
     pub fn get_avatar_proto(&self, avatar_id: u32) -> Option<Avatar> {
         let avatar = self.avatars.get(&avatar_id)?;
         let lightcone = self.lightcones.iter().find(|l| l.equip_avatar == avatar_id);
-        let relics = self.relics.iter().filter(|r| r.equip_avatar == avatar_id);
-
-        // TODO: HARDCODED
-        let base_avatar_id = if avatar.avatar_id > 8000 {
-            8001
-        } else if avatar.avatar_id == 1001 || avatar.avatar_id == 1224 {
-            1001
-        } else {
-            avatar.avatar_id
-        };
-
-        Some(Avatar {
-            base_avatar_id,
-            level: avatar.level,
-            promotion: avatar.promotion,
-            rank: avatar.data.rank,
-            skilltree_list: avatar
-                .data
-                .skills
-                .iter()
-                .map(|v| AvatarSkillTree {
-                    point_id: *v.0,
-                    level: *v.1,
-                })
-                .collect::<Vec<_>>(),
-            equipment_unique_id: lightcone.map(|v| v.get_unique_id()).unwrap_or_default(),
-            first_met_time_stamp: 1712924677,
-            equip_relic_list: relics.map(|v| v.into()).collect::<Vec<_>>(),
-            unk_enhanced_id: avatar.enhanced_id.unwrap_or_default(),
-            ..Default::default()
-        })
+        Some(avatar.to_avatar_proto(lightcone))
     }
 
-    pub fn get_avatar_multipath_proto(&self, avatar_id: u32) -> Option<MultiPathAvatarInfo> {
+    pub fn get_avatar_path_data_proto(&self, avatar_id: u32) -> Option<AvatarPathData> {
         let avatar = self.avatars.get(&avatar_id)?;
-        let mp_type = MultiPathAvatar::from(avatar_id);
 
-        if mp_type == MultiPathAvatar::Unk {
-            return None;
-        }
-
-        Some(MultiPathAvatarInfo {
-            avatar_id: mp_type as i32,
-            rank: avatar.data.rank,
-            equip_relic_list: self
-                .relics
-                .iter()
-                .filter(|relic| relic.equip_avatar == mp_type as u32)
-                .map(|relic| relic.into())
-                .collect(),
-            multi_path_skill_tree: avatar
-                .data
-                .skills
-                .iter()
-                .map(|(point_id, level)| AvatarSkillTree {
-                    point_id: *point_id,
-                    level: *level,
-                })
-                .collect(),
-            path_equipment_id: self
-                .lightcones
-                .iter()
-                .find(|v| v.equip_avatar == mp_type as u32)
-                .map(|v| v.get_unique_id())
-                .unwrap_or_default(),
-            dressed_skin_id: 0,
-            ..Default::default()
-        })
-    }
-
-    pub fn get_multi_path_info(&self) -> Vec<MultiPathAvatarInfo> {
-        MultiPathAvatar::to_vec()
-            .into_iter()
-            .filter_map(|mp_type| {
-                if mp_type.is_mc() && mp_type.get_gender() != self.main_character.get_gender() {
-                    return Option::None;
-                }
-
-                let avatar_info = self.avatars.get(&((mp_type) as u32))?;
-                Some(MultiPathAvatarInfo {
-                    avatar_id: mp_type as i32,
-                    rank: avatar_info.data.rank,
-                    equip_relic_list: self
-                        .relics
-                        .iter()
-                        .filter(|relic| relic.equip_avatar == mp_type as u32)
-                        .map(|relic| relic.into())
-                        .collect(),
-                    multi_path_skill_tree: avatar_info
-                        .data
-                        .skills
-                        .iter()
-                        .map(|(point_id, level)| AvatarSkillTree {
-                            point_id: *point_id,
-                            level: *level,
-                        })
-                        .collect(),
-                    path_equipment_id: self
-                        .lightcones
-                        .iter()
-                        .find(|v| v.equip_avatar == mp_type as u32)
-                        .map(|v| v.get_unique_id())
-                        .unwrap_or_default(),
-                    dressed_skin_id: 0,
-                    ..Default::default()
-                })
-            })
-            .collect()
+        Some(
+            avatar.to_avatar_path_data_proto(
+                self.lightcones
+                    .iter()
+                    .find(|v| v.equip_avatar == avatar_id as u32),
+                self.relics
+                    .iter()
+                    .filter(|relic| relic.equip_avatar == avatar_id as u32)
+                    .map(|relic| relic.into())
+                    .collect(),
+            ),
+        )
     }
 }
 

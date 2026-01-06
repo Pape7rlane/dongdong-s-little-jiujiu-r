@@ -10,7 +10,7 @@ use anyhow::Result;
 use common::sr_tools::FreesrData;
 use mhy_kcp::Kcp;
 use prost::Message;
-use proto::{AvatarSync, CmdID, PlayerSyncScNotify};
+use proto::{AvatarSync, CmdID, CmdPlayerType, PlayerSyncScNotify};
 use tokio::{
     io::AsyncWrite,
     net::UdpSocket,
@@ -70,12 +70,11 @@ impl PlayerSession {
         drop(kcp);
 
         for packet in packets {
-            // #TODO
-            // if packet.cmd_type == CmdPlayerType::CmdPlayerLogoutCsReq as u16 {
-            //     tracing::info!("Player logged out");
-            //     let _ = self.shutdown_tx.send(());
-            //     return Ok(());
-            // };
+            if packet.cmd_type == CmdPlayerType::CmdPlayerLogoutCsReq as u16 {
+                tracing::info!("Player logged out");
+                let _ = self.shutdown_tx.send(());
+                return Ok(());
+            };
             Self::on_message(self, packet.cmd_type, packet.body).await?;
         }
 
@@ -132,22 +131,29 @@ impl PlayerSession {
         .await
         .unwrap();
 
-        // Sync avatars
+        // clear all avatars equip item
         self.send(PlayerSyncScNotify {
             avatar_sync: Some(AvatarSync {
                 avatar_list: json
                     .avatars
                     .values()
-                    .map(|avatar| avatar.to_avatar_proto(Option::None, vec![]))
+                    .map(|avatar| avatar.to_avatar_proto(Option::None))
+                    .collect::<Vec<_>>(),
+                avatar_path_data_info_list: json
+                    .avatars
+                    .values()
+                    .map(|avatar| {
+                        avatar.to_avatar_path_data_proto(Option::None, Vec::with_capacity(0))
+                    })
                     .collect::<Vec<_>>(),
             }),
-            multi_path_avatar_info_list: json.get_multi_path_info(),
+
             ..Default::default()
         })
         .await
         .unwrap();
 
-        // Sync new relics
+        // Sync new relics & lightcones
         self.send(PlayerSyncScNotify {
             relic_list: json.relics.iter().map(|v| v.into()).collect(),
             equipment_list: json.lightcones.iter().map(|v| v.into()).collect(),
@@ -156,7 +162,7 @@ impl PlayerSession {
         .await
         .unwrap();
 
-        // Sync new lightcones
+        // Sync new avatars equip item
         self.send(PlayerSyncScNotify {
             avatar_sync: Some(AvatarSync {
                 avatar_list: json
@@ -167,13 +173,24 @@ impl PlayerSession {
                             json.lightcones
                                 .iter()
                                 .find(|v| v.equip_avatar == avatar.avatar_id),
-                            json.relics
-                                .iter()
-                                .filter(|v| v.equip_avatar == avatar.avatar_id)
-                                .collect(),
                         )
                     })
                     .collect(),
+                avatar_path_data_info_list: json
+                    .avatars
+                    .values()
+                    .map(|avatar| {
+                        avatar.to_avatar_path_data_proto(
+                            json.lightcones
+                                .iter()
+                                .find(|v| v.equip_avatar == avatar.avatar_id),
+                            json.relics
+                                .iter()
+                                .filter(|r| r.equip_avatar == avatar.avatar_id)
+                                .collect(),
+                        )
+                    })
+                    .collect::<Vec<_>>(),
             }),
             ..Default::default()
         })

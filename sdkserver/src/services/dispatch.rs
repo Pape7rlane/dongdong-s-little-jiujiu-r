@@ -3,7 +3,7 @@ use std::sync::Arc;
 use crate::AppState;
 use axum::extract::{Query, State};
 use prost::Message;
-use proto::{Dispatch, Gateserver, RegionInfo};
+use proto::{Dispatch, GateServer, RegionInfo};
 use serde::Deserialize;
 use tokio::sync::RwLock;
 use tracing::instrument;
@@ -47,7 +47,7 @@ pub async fn query_gateway(
         .get_or_insert_hotfix(&parameters.version, &parameters.dispatch_seed)
         .await;
 
-    let rsp = Gateserver {
+    let rsp = GateServer {
         ip: String::from("127.0.0.1"),
         port: 23301,
         asset_bundle_url: config.asset_bundle_url.clone(),
@@ -62,9 +62,6 @@ pub async fn query_gateway(
         unk5: true,
         unk6: true,
         unk7: true,
-        unk8: true,
-        unk9: true,
-        unk10: true,
         ..Default::default()
     };
 

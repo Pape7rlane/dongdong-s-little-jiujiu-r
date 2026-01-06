@@ -102,15 +102,14 @@ pub async fn on_get_scene_map_info_cs_req(
                         group_id: prop.group_id,
                         state: prop.prop_state,
                         config_id: prop.inst_id,
+                        extra_info: None,
                     });
-                    map_info
-                        .maze_prop_extra_state_list
-                        .push(MazePropExtraState {
-                            group_id: prop.group_id,
-                            state: prop.prop_state,
-                            config_id: prop.inst_id,
-                            extra_info: Option::None,
-                        });
+                    // map_info.maze_group_list.push(MazeGroup {
+                    //     group_id: prop.group_id,
+                    //     state: prop.prop_state,
+                    //     config_id: prop.inst_id,
+                    //     extra_info: Option::None,
+                    // });
                 }
             }
 
@@ -251,7 +250,7 @@ async fn load_scene(
             scene.world_id
         },
         lighten_section_list: scene.sections.clone(),
-        lddigmlcgdb: scene
+        opened_chests_list: scene
             .scenes
             .values()
             .flat_map(|v| v.chests.clone())
@@ -394,7 +393,7 @@ async fn load_scene(
 
         scene_info.entity_group_list.push(group_info);
 
-        scene_info.clecmgljocl.push(SceneGroupState {
+        scene_info.group_state_list.push(SceneGroupState {
             group_id: *group_id,
             is_default: true,
             state: 0,
@@ -405,7 +404,7 @@ async fn load_scene(
     scene_info.entity_group_list.push(SceneEntityGroupInfo {
         state: 0,
         group_id: 0,
-        jnajakchjdf: HashMap::with_capacity(0),
+        jjeeocobckc: HashMap::with_capacity(0),
         entity_list: json
             .lineups
             .iter()

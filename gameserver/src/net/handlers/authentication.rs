@@ -7,7 +7,6 @@ pub async fn on_player_get_token_cs_req(
     _body: &PlayerGetTokenCsReq,
     res: &mut PlayerGetTokenScRsp,
 ) {
-    res.msg = String::from("OK");
     res.uid = 25;
 }
 

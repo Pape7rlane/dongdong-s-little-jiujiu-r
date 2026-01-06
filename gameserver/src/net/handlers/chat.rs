@@ -1,4 +1,5 @@
 use common::structs::MultiPathAvatar;
+use proto::chat_message_extend_data::ExtendType;
 
 use crate::{net::PlayerSession, util::cur_timestamp_ms};
 
@@ -20,8 +21,8 @@ pub async fn on_get_friend_login_info_cs_req(
     _req: &GetFriendLoginInfoCsReq,
     res: &mut GetFriendLoginInfoScRsp,
 ) {
-    res.cmcilifageb = vec![SERVER_UID];
-    res.gddmgcalkhc = vec![SERVER_UID];
+    res.ckjhinjopgk = vec![SERVER_UID];
+    res.dfommfkiami = vec![SERVER_UID];
 }
 
 pub async fn on_get_friend_list_info_cs_req(
@@ -36,7 +37,7 @@ pub async fn on_get_friend_list_info_cs_req(
             platform: PlatformType::Pc.into(),
             online_status: FriendOnlineStatus::Online.into(),
             head_icon: SERVER_HEAD_ICON,
-            chat_bubble: SERVER_CHAT_BUBBLE_ID,
+            chat_bubble_id: SERVER_CHAT_BUBBLE_ID,
             level: 70,
             nickname: String::from("Server"),
             signature: String::from("omg"),
@@ -61,6 +62,18 @@ pub async fn on_get_private_chat_history_cs_req(
             create_time: cur_time,
             content: String::from(*text),
             sender_id: SERVER_UID,
+            chat_message_extend_data: Some(ChatMessageExtendData {
+                extend_type: Some(ExtendType::MessageText(String::from(*text))),
+            }),
+            bofjjhikijl: Some(Dabbfcoafjg {
+                ..Default::default()
+            }),
+            dgmnkagbcem: Some(Gpcnkeaofea {
+                chat_message_extend_data: Some(ChatMessageExtendData {
+                    extend_type: Some(ExtendType::MessageText(String::from(*text))),
+                }),
+                message_type: MsgType::CustomText.into(),
+            }),
             ..Default::default()
         })
         .collect();
@@ -86,11 +99,12 @@ pub async fn on_send_msg_cs_req(
                     .send(RevcMsgScNotify {
                         message_type: body.message_type,
                         message_text: String::from("Inventory Synced"),
-                        extra_id: body.extra_id,
                         source_uid: SERVER_UID,
                         target_uid: 25,
                         chat_type: body.chat_type,
-                        dijgjpgfflg: body.dijgjpgfflg.clone(),
+                        chat_message_extend_data: body.chat_message_extend_data.clone(),
+                        mjaocldhphm: 0,
+                        pfjjlomkbfa: None,
                     })
                     .await
                     .unwrap();
@@ -120,11 +134,12 @@ pub async fn on_send_msg_cs_req(
                     .send(RevcMsgScNotify {
                         message_type: body.message_type,
                         message_text: format!("Success change mc to {mc:#?}"),
-                        extra_id: body.extra_id,
                         source_uid: SERVER_UID,
                         target_uid: 25,
                         chat_type: body.chat_type,
-                        dijgjpgfflg: body.dijgjpgfflg.clone(),
+                        chat_message_extend_data: body.chat_message_extend_data.clone(),
+                        mjaocldhphm: 0,
+                        pfjjlomkbfa: None,
                     })
                     .await
                     .unwrap();
@@ -158,11 +173,12 @@ pub async fn on_send_msg_cs_req(
                     .send(RevcMsgScNotify {
                         message_type: body.message_type,
                         message_text: format!("Success change march to {march_type:#?}"),
-                        extra_id: body.extra_id,
                         source_uid: SERVER_UID,
                         target_uid: 25,
                         chat_type: body.chat_type,
-                        dijgjpgfflg: body.dijgjpgfflg.clone(),
+                        chat_message_extend_data: body.chat_message_extend_data.clone(),
+                        mjaocldhphm: 0,
+                        pfjjlomkbfa: None,
                     })
                     .await
                     .unwrap();

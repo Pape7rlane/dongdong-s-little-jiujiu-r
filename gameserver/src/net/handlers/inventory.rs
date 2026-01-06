@@ -135,10 +135,10 @@ pub async fn on_get_big_data_all_recommend_cs_req(
     }
 }
 
-pub async fn on_rank_up_avatar_cs_req(
+pub async fn on_active_eidolon_cs_req(
     session: &mut PlayerSession,
-    req: &RankUpAvatarCsReq,
-    _: &mut RankUpAvatarScRsp,
+    req: &ActiveEidolonCsReq,
+    _: &mut ActiveEidolonScRsp,
 ) -> Option<()> {
     let player = session.json_data.get_mut()?;
     let avatar = player.avatars.get_mut(&req.avatar_id)?;
@@ -326,11 +326,16 @@ fn build_sync(
         .iter()
         .filter_map(|id| player.get_avatar_proto(*id))
         .collect::<Vec<_>>();
-    ret.avatar_sync = Some(AvatarSync { avatar_list });
-    ret.multi_path_avatar_info_list = avatar_ids
+
+    let avatar_path_data_info_list = avatar_ids
         .into_iter()
-        .filter_map(|id| player.get_avatar_multipath_proto(id))
+        .filter_map(|id| player.get_avatar_path_data_proto(id))
         .collect();
+
+    ret.avatar_sync = Some(AvatarSync {
+        avatar_list,
+        avatar_path_data_info_list,
+    });
     ret.relic_list = relic_indexes
         .into_iter()
         .map(|id| (&player.relics[id]).into())
