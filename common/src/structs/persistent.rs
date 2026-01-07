@@ -50,7 +50,7 @@ impl Default for Persistent {
         Self {
             lineups: BTreeMap::from([(0, 1313), (1, 1006), (2, 8001), (3, 1405)]),
             position: Default::default(),
-            main_character: MultiPathAvatar::FemaleRememberance,
+            main_character: MultiPathAvatar::FemaleRemembrance,
             scene: Default::default(),
             march_type: MultiPathAvatar::MarchHunt,
             // game_language: AllowedLanguages::En,

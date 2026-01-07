@@ -3,7 +3,7 @@ use proto::{get_big_data_all_recommend_sc_rsp::RecommendType, *};
 
 use crate::net::PlayerSession;
 
-use super::UNLOCKED_AVATARS;
+use super::BASE_AVATAR_IDS;
 
 pub async fn on_get_bag_cs_req(
     session: &mut PlayerSession,
@@ -122,7 +122,7 @@ pub async fn on_get_big_data_all_recommend_cs_req(
         }
         BigDataRecommendType::AvatarRelic => {
             res.recommend_type = Some(RecommendType::AvatarRelic(BigDataRecommendAvatarRelic {
-                recomended_relic_info_list: UNLOCKED_AVATARS
+                recomended_relic_info_list: BASE_AVATAR_IDS
                     .into_iter()
                     .map(|avatar_id| RecommendedRelicInfo {
                         avatar_id,
@@ -324,7 +324,9 @@ fn build_sync(
 ) {
     let avatar_list = avatar_ids
         .iter()
-        .filter_map(|id| player.get_avatar_proto(*id))
+        .filter_map(|id| {
+            player.get_avatar_proto(*id, player.main_character as u32, player.march_type as u32)
+        })
         .collect::<Vec<_>>();
 
     let avatar_path_data_info_list = avatar_ids

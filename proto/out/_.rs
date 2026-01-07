@@ -10224,7 +10224,7 @@ pub struct RevcMsgScNotify {
     pub chat_type: i32,
     /// offset: 16
     #[prost(message, optional, tag = "15")]
-    pub pfjjlomkbfa: ::core::option::Option<ChatMessageData>,
+    pub revc_message_data: ::core::option::Option<ChatMessageData>,
     /// offset: 40
     #[prost(message, optional, tag = "6")]
     pub chat_message_extend_data: ::core::option::Option<ChatMessageExtendData>,
@@ -31992,7 +31992,7 @@ pub struct GetUnreleasedBlockInfoCsReq {}
 #[derive(proto_derive::CmdID)]
 #[cmdid(4108)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Pmpmimckpfd {
+pub struct GetUnreleasedBlockInfoScRsp {
     /// offset: 32
     #[prost(uint32, repeated, tag = "14")]
     pub eddajppkcak: ::prost::alloc::vec::Vec<u32>,
@@ -50507,7 +50507,7 @@ pub struct EntityMotion {
     #[prost(bool, tag = "15")]
     pub kcdabafaoof: bool,
 }
-/// CmdId: 1459
+/// CmdId: 1457
 #[derive(proto_derive::CmdID)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SceneEntityMoveCsReq {
@@ -67785,7 +67785,7 @@ impl Moghnjidlbb {
 pub enum Bljdhpmkadc {
     Gkjbaodjmjg = 0,
     Ncnneldocll = 1,
-    Pfjjlomkbfa = 2,
+    RevcMessageData = 2,
     Oijnlbaaamn = 3,
     Ocdmojjnfif = 4,
     Kjcfnbcdedc = 5,
@@ -67799,7 +67799,7 @@ impl Bljdhpmkadc {
         match self {
             Self::Gkjbaodjmjg => "BLJDHPMKADC_GKJBAODJMJG",
             Self::Ncnneldocll => "BLJDHPMKADC_NCNNELDOCLL",
-            Self::Pfjjlomkbfa => "BLJDHPMKADC_PFJJLOMKBFA",
+            Self::RevcMessageData => "BLJDHPMKADC_RevcMessageData",
             Self::Oijnlbaaamn => "BLJDHPMKADC_OIJNLBAAAMN",
             Self::Ocdmojjnfif => "BLJDHPMKADC_OCDMOJJNFIF",
             Self::Kjcfnbcdedc => "BLJDHPMKADC_KJCFNBCDEDC",
@@ -67810,7 +67810,7 @@ impl Bljdhpmkadc {
         match value {
             "BLJDHPMKADC_GKJBAODJMJG" => Some(Self::Gkjbaodjmjg),
             "BLJDHPMKADC_NCNNELDOCLL" => Some(Self::Ncnneldocll),
-            "BLJDHPMKADC_PFJJLOMKBFA" => Some(Self::Pfjjlomkbfa),
+            "BLJDHPMKADC_RevcMessageData" => Some(Self::RevcMessageData),
             "BLJDHPMKADC_OIJNLBAAAMN" => Some(Self::Oijnlbaaamn),
             "BLJDHPMKADC_OCDMOJJNFIF" => Some(Self::Ocdmojjnfif),
             "BLJDHPMKADC_KJCFNBCDEDC" => Some(Self::Kjcfnbcdedc),
@@ -82806,7 +82806,7 @@ pub enum CmdMiscModuleType {
     CmdObacgniefdk = 4179,
     CmdGetMovieRacingDataScRsp = 4196,
     CmdAfmhjbfakpl = 4105,
-    CmdPmpmimckpfd = 4108,
+    CmdGetUnreleasedBlockInfoScRsp = 4108,
     CmdCancelDirectDeliveryNoticeScRsp = 4152,
     CmdGetShareDataCsReq = 4155,
     CmdGetUnreleasedBlockInfoCsReq = 4156,
@@ -82853,7 +82853,7 @@ impl CmdMiscModuleType {
             Self::CmdObacgniefdk => "CmdOBACGNIEFDK",
             Self::CmdGetMovieRacingDataScRsp => "CmdGetMovieRacingDataScRsp",
             Self::CmdAfmhjbfakpl => "CmdAFMHJBFAKPL",
-            Self::CmdPmpmimckpfd => "CmdPMPMIMCKPFD",
+            Self::CmdGetUnreleasedBlockInfoScRsp => "CmdGetUnreleasedBlockInfoScRsp",
             Self::CmdCancelDirectDeliveryNoticeScRsp => {
                 "CmdCancelDirectDeliveryNoticeScRsp"
             }
@@ -82911,7 +82911,9 @@ impl CmdMiscModuleType {
             "CmdOBACGNIEFDK" => Some(Self::CmdObacgniefdk),
             "CmdGetMovieRacingDataScRsp" => Some(Self::CmdGetMovieRacingDataScRsp),
             "CmdAFMHJBFAKPL" => Some(Self::CmdAfmhjbfakpl),
-            "CmdPMPMIMCKPFD" => Some(Self::CmdPmpmimckpfd),
+            "CmdGetUnreleasedBlockInfoScRsp" => {
+                Some(Self::CmdGetUnreleasedBlockInfoScRsp)
+            }
             "CmdCancelDirectDeliveryNoticeScRsp" => {
                 Some(Self::CmdCancelDirectDeliveryNoticeScRsp)
             }
@@ -89598,7 +89600,7 @@ pub enum CmdSceneType {
     CmdSceneCastSkillMpUpdateScNotify = 1483,
     CmdGetSceneMapInfoScRsp = 1404,
     CmdRefreshTriggerByClientScNotify = 1436,
-    CmdSceneEntityMoveCsReq = 1459,
+    CmdUnkUnk = 1459,
     CmdSceneEntityMoveScRsp = 1428,
     CmdEjhfmgfcfkm = 1497,
     CmdReEnterLastElementStageScRsp = 1468,
@@ -89622,7 +89624,7 @@ pub enum CmdSceneType {
     CmdBgokidmfkla = 1429,
     CmdActiveFarmElementCsReq = 1441,
     AhnedjbifacEmlpfmejeie = 1476,
-    AhnedjbifacLalbejcannb = 1457,
+    CmdSceneEntityMoveCsReq = 1457,
     CmdDeactivateFarmElementCsReq = 1470,
     CmdGroupStateChangeCsReq = 1463,
     CmdActiveFarmElementScRsp = 1432,
@@ -89696,7 +89698,7 @@ impl CmdSceneType {
             Self::CmdRefreshTriggerByClientScNotify => {
                 "CmdRefreshTriggerByClientScNotify"
             }
-            Self::CmdSceneEntityMoveCsReq => "CmdSceneEntityMoveCsReq",
+            Self::CmdUnkUnk => "CmdUnkUnk",
             Self::CmdSceneEntityMoveScRsp => "CmdSceneEntityMoveScRsp",
             Self::CmdEjhfmgfcfkm => "CmdEJHFMGFCFKM",
             Self::CmdReEnterLastElementStageScRsp => "CmdReEnterLastElementStageScRsp",
@@ -89722,7 +89724,7 @@ impl CmdSceneType {
             Self::CmdBgokidmfkla => "CmdBGOKIDMFKLA",
             Self::CmdActiveFarmElementCsReq => "CmdActiveFarmElementCsReq",
             Self::AhnedjbifacEmlpfmejeie => "AHNEDJBIFAC_EMLPFMEJEIE",
-            Self::AhnedjbifacLalbejcannb => "AHNEDJBIFAC_LALBEJCANNB",
+            Self::CmdSceneEntityMoveCsReq => "CmdSceneEntityMoveCsReq",
             Self::CmdDeactivateFarmElementCsReq => "CmdDeactivateFarmElementCsReq",
             Self::CmdGroupStateChangeCsReq => "CmdGroupStateChangeCsReq",
             Self::CmdActiveFarmElementScRsp => "CmdActiveFarmElementScRsp",
@@ -89803,7 +89805,7 @@ impl CmdSceneType {
             "CmdRefreshTriggerByClientScNotify" => {
                 Some(Self::CmdRefreshTriggerByClientScNotify)
             }
-            "CmdSceneEntityMoveCsReq" => Some(Self::CmdSceneEntityMoveCsReq),
+            "CmdUnkUnk" => Some(Self::CmdUnkUnk),
             "CmdSceneEntityMoveScRsp" => Some(Self::CmdSceneEntityMoveScRsp),
             "CmdEJHFMGFCFKM" => Some(Self::CmdEjhfmgfcfkm),
             "CmdReEnterLastElementStageScRsp" => {
@@ -89831,7 +89833,7 @@ impl CmdSceneType {
             "CmdBGOKIDMFKLA" => Some(Self::CmdBgokidmfkla),
             "CmdActiveFarmElementCsReq" => Some(Self::CmdActiveFarmElementCsReq),
             "AHNEDJBIFAC_EMLPFMEJEIE" => Some(Self::AhnedjbifacEmlpfmejeie),
-            "AHNEDJBIFAC_LALBEJCANNB" => Some(Self::AhnedjbifacLalbejcannb),
+            "CmdSceneEntityMoveCsReq" => Some(Self::CmdSceneEntityMoveCsReq),
             "CmdDeactivateFarmElementCsReq" => Some(Self::CmdDeactivateFarmElementCsReq),
             "CmdGroupStateChangeCsReq" => Some(Self::CmdGroupStateChangeCsReq),
             "CmdActiveFarmElementScRsp" => Some(Self::CmdActiveFarmElementScRsp),

@@ -17,7 +17,7 @@ use tokio::{
     sync::{Mutex, watch},
 };
 
-use crate::util;
+use crate::{net::handlers::BASE_AVATAR_IDS, util};
 
 use super::{NetPacket, packet::CommandHandler};
 
@@ -134,11 +134,18 @@ impl PlayerSession {
         // clear all avatars equip item
         self.send(PlayerSyncScNotify {
             avatar_sync: Some(AvatarSync {
-                avatar_list: json
-                    .avatars
-                    .values()
-                    .map(|avatar| avatar.to_avatar_proto(Option::None))
-                    .collect::<Vec<_>>(),
+                avatar_list: BASE_AVATAR_IDS
+                    .into_iter()
+                    .filter_map(|id| {
+                        json.avatars.get(&id).map(|v| {
+                            v.to_avatar_proto(
+                                Option::None,
+                                json.main_character as u32,
+                                json.march_type as u32,
+                            )
+                        })
+                    })
+                    .collect(),
                 avatar_path_data_info_list: json
                     .avatars
                     .values()
@@ -165,15 +172,16 @@ impl PlayerSession {
         // Sync new avatars equip item
         self.send(PlayerSyncScNotify {
             avatar_sync: Some(AvatarSync {
-                avatar_list: json
-                    .avatars
-                    .values()
-                    .map(|avatar| {
-                        avatar.to_avatar_proto(
-                            json.lightcones
-                                .iter()
-                                .find(|v| v.equip_avatar == avatar.avatar_id),
-                        )
+                avatar_list: BASE_AVATAR_IDS
+                    .into_iter()
+                    .filter_map(|avatar_id| {
+                        json.avatars.get(&avatar_id).map(|v| {
+                            v.to_avatar_proto(
+                                json.lightcones.iter().find(|v| v.equip_avatar == avatar_id),
+                                json.main_character as u32,
+                                json.march_type as u32,
+                            )
+                        })
                     })
                     .collect(),
                 avatar_path_data_info_list: json

@@ -34,10 +34,10 @@ pub struct FreesrData {
 }
 
 impl FreesrData {
-    pub fn get_avatar_proto(&self, avatar_id: u32) -> Option<Avatar> {
+    pub fn get_avatar_proto(&self, avatar_id: u32, mc_id: u32, march_id: u32) -> Option<Avatar> {
         let avatar = self.avatars.get(&avatar_id)?;
         let lightcone = self.lightcones.iter().find(|l| l.equip_avatar == avatar_id);
-        Some(avatar.to_avatar_proto(lightcone))
+        Some(avatar.to_avatar_proto(lightcone, mc_id, march_id))
     }
 
     pub fn get_avatar_path_data_proto(&self, avatar_id: u32) -> Option<AvatarPathData> {
@@ -45,13 +45,10 @@ impl FreesrData {
 
         Some(
             avatar.to_avatar_path_data_proto(
-                self.lightcones
-                    .iter()
-                    .find(|v| v.equip_avatar == avatar_id as u32),
+                self.lightcones.iter().find(|v| v.equip_avatar == avatar_id),
                 self.relics
                     .iter()
-                    .filter(|relic| relic.equip_avatar == avatar_id as u32)
-                    .map(|relic| relic.into())
+                    .filter(|relic| relic.equip_avatar == avatar_id)
                     .collect(),
             ),
         )

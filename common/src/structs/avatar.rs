@@ -19,8 +19,8 @@ pub enum MultiPathAvatar {
     FemalePreservation = 8004,
     MaleHarmony = 8005,
     FemaleHarmony = 8006,
-    MaleRememberance = 8007,
-    FemaleRememberance = 8008,
+    MaleRemembrance = 8007,
+    FemaleRemembrance = 8008,
     MarchHunt = 1224,
     MarchPreservation = 1001,
     #[default]
@@ -36,8 +36,8 @@ impl From<u32> for MultiPathAvatar {
             8004 => Self::FemalePreservation,
             8005 => Self::MaleHarmony,
             8006 => Self::FemaleHarmony,
-            8007 => Self::MaleRememberance,
-            8008 => Self::FemaleRememberance,
+            8007 => Self::MaleRemembrance,
+            8008 => Self::FemaleRemembrance,
             1224 => Self::MarchHunt,
             1001 => Self::MarchPreservation,
             _ => Self::Unk,
@@ -54,8 +54,8 @@ impl From<MultiPathAvatar> for u32 {
             MultiPathAvatar::FemalePreservation => 8004,
             MultiPathAvatar::MaleHarmony => 8005,
             MultiPathAvatar::FemaleHarmony => 8006,
-            MultiPathAvatar::MaleRememberance => 8007,
-            MultiPathAvatar::FemaleRememberance => 8008,
+            MultiPathAvatar::MaleRemembrance => 8007,
+            MultiPathAvatar::FemaleRemembrance => 8008,
             MultiPathAvatar::MarchHunt => 1224,
             MultiPathAvatar::MarchPreservation => 1001,
             _ => 8006,
@@ -86,8 +86,8 @@ impl MultiPathAvatar {
             MultiPathAvatar::MarchHunt => MultiPathAvatarType::Mar7thRogueType,
             MultiPathAvatar::MarchPreservation => MultiPathAvatarType::Mar7thKnightType,
             MultiPathAvatar::Unk => MultiPathAvatarType::None,
-            MultiPathAvatar::MaleRememberance => MultiPathAvatarType::BoyMemoryType,
-            MultiPathAvatar::FemaleRememberance => MultiPathAvatarType::GirlMemoryType,
+            MultiPathAvatar::MaleRemembrance => MultiPathAvatarType::BoyMemoryType,
+            MultiPathAvatar::FemaleRemembrance => MultiPathAvatarType::GirlMemoryType,
         }
     }
 
@@ -103,8 +103,8 @@ impl MultiPathAvatar {
             Self::FemalePreservation,
             Self::MaleHarmony,
             Self::FemaleHarmony,
-            Self::MaleRememberance,
-            Self::FemaleRememberance,
+            Self::MaleRemembrance,
+            Self::FemaleRemembrance,
             Self::MarchHunt,
             Self::MarchPreservation,
         ]
@@ -140,7 +140,13 @@ pub struct AvatarData {
 }
 
 impl AvatarJson {
-    pub fn to_avatar_proto(&self, lightcone: Option<&Lightcone>) -> Avatar {
+    /// This should only be used to serialize "BaseAvatar". For example, only 8001 for MC and 1001 for March
+    pub fn to_avatar_proto(
+        &self,
+        lightcone: Option<&Lightcone>,
+        mc_id: u32,
+        march_id: u32,
+    ) -> Avatar {
         // TODO: HARDCODED
         let base_avatar_id = if self.avatar_id > 8000 {
             8001
@@ -150,17 +156,25 @@ impl AvatarJson {
             self.avatar_id
         };
 
+        // TODO: HARDCODED
+        let cur_multi_path_avatar_type = if base_avatar_id == 8001 {
+            mc_id
+        } else if base_avatar_id == 1001 {
+            march_id
+        } else {
+            base_avatar_id
+        };
+
         Avatar {
             base_avatar_id,
             level: self.level,
             promotion: self.promotion,
             equipment_unique_id: lightcone.map(|v| v.get_unique_id()).unwrap_or_default(),
             first_met_time_stamp: 1712924677,
-            cur_multi_path_avatar_type: self.avatar_id,
+            cur_multi_path_avatar_type,
             has_taken_promotion_reward_list: Vec::with_capacity(0),
             is_marked: false,
             exp: 0,
-            ..Default::default()
         }
     }
 
@@ -187,7 +201,6 @@ impl AvatarJson {
             unk_enhanced_id: self.enhanced_id.unwrap_or_default(),
             unlock_timestamp: 0,
             dressed_skin_id: 0,
-            ..Default::default()
         }
     }
 

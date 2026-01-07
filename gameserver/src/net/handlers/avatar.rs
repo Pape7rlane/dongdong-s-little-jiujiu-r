@@ -1,6 +1,8 @@
 use super::*;
 
-pub static UNLOCKED_AVATARS: [u32; 76] = [
+pub static BASE_AVATAR_IDS: [u32; 78] = [
+    8001, 1001, //
+    //
     1002, 1003, 1004, 1005, 1006, 1008, 1009, 1013, 1101, 1102, 1103, 1104, 1105, 1106, 1107, 1108,
     1109, 1110, 1111, 1112, 1201, 1202, 1203, 1204, 1205, 1206, 1207, 1208, 1209, 1210, 1211, 1212,
     1213, 1214, 1215, 1217, 1301, 1302, 1303, 1304, 1305, 1306, 1307, 1308, 1309, 1312, 1315, 1310,
@@ -18,24 +20,19 @@ pub async fn on_get_avatar_data_cs_req(
         return;
     };
 
-    // TODO: HARDCODED
-    let mc_ids = if json.main_character.get_gender() == Gender::Man {
-        [8001, 8003, 8005, 8007]
-    } else {
-        [8002, 8004, 8006, 8008]
-    };
-
-    let march_ids = [1001, 1224];
-
     res.is_get_all = body.is_get_all;
-    res.avatar_list = UNLOCKED_AVATARS
+    res.avatar_list = BASE_AVATAR_IDS
         .into_iter()
-        .chain(mc_ids.iter().copied())
-        .chain(march_ids.iter().copied())
         .map(|id| {
             json.avatars
                 .get(&id)
-                .map(|v| v.to_avatar_proto(json.lightcones.iter().find(|v| v.equip_avatar == id)))
+                .map(|v| {
+                    v.to_avatar_proto(
+                        json.lightcones.iter().find(|v| v.equip_avatar == id),
+                        json.main_character as u32,
+                        json.march_type as u32,
+                    )
+                })
                 .unwrap_or(Avatar {
                     base_avatar_id: id,
                     level: 80,
@@ -50,20 +47,19 @@ pub async fn on_get_avatar_data_cs_req(
         })
         .collect();
 
-    res.avatar_path_data_info_list = UNLOCKED_AVATARS
-        .into_iter()
-        .chain(mc_ids.iter().copied())
-        .chain(march_ids.iter().copied())
-        .filter_map(|id| {
-            json.avatars.get(&id).map(|v| {
-                v.to_avatar_path_data_proto(
-                    json.lightcones.iter().find(|v| v.equip_avatar == id),
-                    json.relics
-                        .iter()
-                        .filter(|v| v.equip_avatar == id)
-                        .collect(),
-                )
-            })
+    res.avatar_path_data_info_list = json
+        .avatars
+        .values()
+        .map(|avatar| {
+            avatar.to_avatar_path_data_proto(
+                json.lightcones
+                    .iter()
+                    .find(|l| l.equip_avatar == avatar.avatar_id),
+                json.relics
+                    .iter()
+                    .filter(|r| r.equip_avatar == avatar.avatar_id)
+                    .collect(),
+            )
         })
         .collect();
 }
