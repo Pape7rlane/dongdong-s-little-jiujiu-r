@@ -1,5 +1,5 @@
 use common::structs::MultiPathAvatar;
-use proto::chat_message_extend_data::ExtendType;
+use proto::{chat_message_extend_data::ExtendType, dabbfcoafjg::Eedaadmacap};
 
 use crate::{net::PlayerSession, util::cur_timestamp_ms};
 
@@ -66,7 +66,8 @@ pub async fn on_get_private_chat_history_cs_req(
                 extend_type: Some(ExtendType::MessageText(String::from(*text))),
             }),
             bofjjhikijl: Some(Dabbfcoafjg {
-                ..Default::default()
+                eedaadmacap: Some(Eedaadmacap::Uid(SERVER_UID)),
+                kcpbmeabmph: 0,
             }),
             dgmnkagbcem: Some(Gpcnkeaofea {
                 chat_message_extend_data: Some(ChatMessageExtendData {
@@ -91,21 +92,30 @@ pub async fn on_send_msg_cs_req(
         return;
     };
 
-    if let Some((cmd, args)) = parse_command(&body.message_text) {
+    let msg = body
+        .dgmnkagbcem
+        .as_ref()
+        .and_then(|x| x.chat_message_extend_data.as_ref())
+        .and_then(|x| x.extend_type.as_ref())
+        .and_then(|x| match x {
+            ExtendType::MessageText(s) => Some(s.as_str()),
+            _ => None,
+        })
+        .unwrap_or("");
+
+    if let Some((cmd, args)) = parse_command(msg) {
         match cmd {
             "sync" => {
                 session.sync_player().await;
                 session
-                    .send(RevcMsgScNotify {
-                        message_type: body.message_type,
-                        message_text: String::from("Inventory Synced"),
-                        source_uid: SERVER_UID,
-                        target_uid: 25,
-                        chat_type: body.chat_type,
-                        chat_message_extend_data: body.chat_message_extend_data.clone(),
-                        mjaocldhphm: 0,
-                        pfjjlomkbfa: None,
-                    })
+                    .send(create_send_message(
+                        25,
+                        SERVER_UID,
+                        body.message_type,
+                        body.chat_type,
+                        body.chat_message_extend_data.clone(),
+                        String::from("Inventory Synced"),
+                    ))
                     .await
                     .unwrap();
             }
@@ -131,16 +141,14 @@ pub async fn on_send_msg_cs_req(
                 session.sync_player().await;
 
                 session
-                    .send(RevcMsgScNotify {
-                        message_type: body.message_type,
-                        message_text: format!("Success change mc to {mc:#?}"),
-                        source_uid: SERVER_UID,
-                        target_uid: 25,
-                        chat_type: body.chat_type,
-                        chat_message_extend_data: body.chat_message_extend_data.clone(),
-                        mjaocldhphm: 0,
-                        pfjjlomkbfa: None,
-                    })
+                    .send(create_send_message(
+                        25,
+                        SERVER_UID,
+                        body.message_type,
+                        body.chat_type,
+                        body.chat_message_extend_data.clone(),
+                        format!("Success change mc to {mc:#?}"),
+                    ))
                     .await
                     .unwrap();
             }
@@ -170,16 +178,14 @@ pub async fn on_send_msg_cs_req(
                     .unwrap();
 
                 session
-                    .send(RevcMsgScNotify {
-                        message_type: body.message_type,
-                        message_text: format!("Success change march to {march_type:#?}"),
-                        source_uid: SERVER_UID,
-                        target_uid: 25,
-                        chat_type: body.chat_type,
-                        chat_message_extend_data: body.chat_message_extend_data.clone(),
-                        mjaocldhphm: 0,
-                        pfjjlomkbfa: None,
-                    })
+                    .send(create_send_message(
+                        25,
+                        SERVER_UID,
+                        body.message_type,
+                        body.chat_type,
+                        body.chat_message_extend_data.clone(),
+                        format!("Success change march to {march_type:#?}"),
+                    ))
                     .await
                     .unwrap();
             }
@@ -196,4 +202,43 @@ fn parse_command(command: &str) -> Option<(&str, Vec<&str>)> {
     }
 
     Some((parts[0], parts[1..].to_vec()))
+}
+
+fn create_send_message(
+    to: u32,
+    from: u32,
+    message_type: i32,
+    chat_type: i32,
+    extend_data: Option<ChatMessageExtendData>,
+    msg: String,
+) -> RevcMsgScNotify {
+    RevcMsgScNotify {
+        message_type,
+        message_text: msg.clone(),
+        source_uid: from,
+        target_uid: to,
+        chat_type,
+        chat_message_extend_data: extend_data,
+        mjaocldhphm: 0,
+        revc_message_data: Some(ChatMessageData {
+            message_type: MsgType::CustomText.into(),
+            create_time: cur_timestamp_ms(),
+            content: msg.clone(),
+            sender_id: SERVER_UID,
+            chat_message_extend_data: Some(ChatMessageExtendData {
+                extend_type: Some(ExtendType::MessageText(msg.clone())),
+            }),
+            bofjjhikijl: Some(Dabbfcoafjg {
+                eedaadmacap: Some(Eedaadmacap::Uid(SERVER_UID)),
+                kcpbmeabmph: 0,
+            }),
+            dgmnkagbcem: Some(Gpcnkeaofea {
+                chat_message_extend_data: Some(ChatMessageExtendData {
+                    extend_type: Some(ExtendType::MessageText(msg.clone())),
+                }),
+                message_type: MsgType::CustomText.into(),
+            }),
+            ..Default::default()
+        }),
+    }
 }
