@@ -90,6 +90,11 @@ pub async fn start_sdkserver() -> Result<()> {
             sr_tools::SRTOOLS_UPLOAD_ENDPOINT,
             post(sr_tools::sr_tool_save),
         )
+        .route(
+            auth::APN_LOGIN_BY_PASSWORD_ENDPOINT,
+            post(auth::apn_login_with_password),
+        )
+        .route(auth::APN_VERIFY_TOKEN_ENDPOINT, post(auth::apn_veriy_token))
         .layer(
             CorsLayer::new()
                 .allow_origin(Any)
