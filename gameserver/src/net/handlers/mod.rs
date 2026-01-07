@@ -137,5 +137,8 @@ dummy! {
     GetRechargeGiftInfo,
     // RelicRecommend
     GetPreAvatarGrowthInfo,
-    GetPreAvatarActivityList
+    GetPreAvatarActivityList,
+    GetUnreleasedBlockInfo,
+    GetFriendAssistList,
+    GetAssistList
 }
