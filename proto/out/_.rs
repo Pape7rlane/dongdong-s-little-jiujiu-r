@@ -53949,7 +53949,7 @@ pub struct PlayerSyncScNotify {
     pub fdmaafifgok: ::prost::alloc::vec::Vec<Material>,
     /// offset: 152
     #[prost(uint32, repeated, tag = "2")]
-    pub del_equipment_list: ::prost::alloc::vec::Vec<u32>,
+    pub del_relic_list: ::prost::alloc::vec::Vec<u32>,
     /// offset: 16
     #[prost(uint32, repeated, tag = "1901")]
     pub new_item_hint_list: ::prost::alloc::vec::Vec<u32>,
@@ -53961,7 +53961,7 @@ pub struct PlayerSyncScNotify {
     pub aiifdkedgil: ::prost::alloc::vec::Vec<Fbeanghkmfg>,
     /// offset: 104
     #[prost(uint32, repeated, tag = "9")]
-    pub del_relic_list: ::prost::alloc::vec::Vec<u32>,
+    pub del_equipment_list: ::prost::alloc::vec::Vec<u32>,
     /// offset: 48
     #[prost(message, repeated, tag = "1682")]
     pub ndinaemjmjb: ::prost::alloc::vec::Vec<Fcklhhkfejg>,

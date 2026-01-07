@@ -86,7 +86,7 @@ impl FreesrData {
         }
 
         // remove unequipped relics
-        if freesr_data.relics.len() > 2000 {
+        if freesr_data.relics.len() > 3000 {
             freesr_data.relics.retain(|v| v.equip_avatar != 0);
         }
 

@@ -16,10 +16,11 @@ pub use persistent::*;
 pub use scene::*;
 
 pub fn get_item_unique_id(internal_uid: u32, item_type: ItemType) -> u32 {
+    // srtools start internal_uid from 1
     if item_type == ItemType::ItemEquipment {
-        2000 + internal_uid // 2000.3500
+        3000 + internal_uid // 3001..3500
     } else {
-        1 + internal_uid // 1..2000
+        internal_uid // 1..2000 ->
     }
 }
 

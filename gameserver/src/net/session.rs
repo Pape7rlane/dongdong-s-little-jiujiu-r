@@ -124,8 +124,8 @@ impl PlayerSession {
 
         // clear relics & lightcones
         self.send(PlayerSyncScNotify {
-            del_equipment_list: (2000..=3500).collect(),
-            del_relic_list: (1..=2000).collect(),
+            del_relic_list: (1..=3000).collect(),
+            del_equipment_list: (3001..=3500).collect(),
             ..Default::default()
         })
         .await
