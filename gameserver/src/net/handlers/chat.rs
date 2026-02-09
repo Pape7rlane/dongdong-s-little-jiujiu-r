@@ -1,14 +1,21 @@
+use std::path::Path;
+
 use common::structs::MultiPathAvatar;
 use proto::{chat_message_extend_data::ExtendType, dabbfcoafjg::Eedaadmacap};
+use tokio::fs;
 
-use crate::{net::PlayerSession, util::cur_timestamp_ms};
+use crate::{
+    net::PlayerSession,
+    util::{self, cur_timestamp_ms},
+};
 
 use super::*;
 
 const SERVER_UID: u32 = 727;
 const SERVER_HEAD_ICON: u32 = 201402;
 const SERVER_CHAT_BUBBLE_ID: u32 = 220005;
-const SERVER_CHAT_HISTORY: [&str; 5] = [
+const SERVER_CHAT_HISTORY: [&str; 6] = [
+    "'lua {path_to_lua_script}' execute lua script",
     "'sync' to synchronize stats between json and in-game view",
     "'mc {mc_id}' mc_id can be set from 8001 to 8008",
     "'march {march_id}' march_id can be set 1001 or 1224",
@@ -185,6 +192,66 @@ pub async fn on_send_msg_cs_req(
                         body.chat_type,
                         body.chat_message_extend_data.clone(),
                         format!("Success change march to {march_type:#?}"),
+                    ))
+                    .await
+                    .unwrap();
+            }
+            "lua" => {
+                let path = Path::new(args.first().unwrap_or(&""));
+
+                if !path.is_file() {
+                    session
+                        .send(create_send_message(
+                            25,
+                            SERVER_UID,
+                            body.message_type,
+                            body.chat_type,
+                            body.chat_message_extend_data.clone(),
+                            format!("File {path:?} does not exist!"),
+                        ))
+                        .await
+                        .unwrap();
+                }
+
+                let data = match fs::read(&path).await {
+                    Ok(file) => file,
+                    Err(err) => {
+                        session
+                            .send(create_send_message(
+                                25,
+                                SERVER_UID,
+                                body.message_type,
+                                body.chat_type,
+                                body.chat_message_extend_data.clone(),
+                                format!("Failed to read file: {err:?}"),
+                            ))
+                            .await
+                            .unwrap();
+
+                        return;
+                    }
+                };
+
+                session
+                    .send(ClientDownloadDataScNotify {
+                        download_data: Some(ClientDownloadData {
+                            version: 51,
+                            time: util::cur_timestamp_ms() as i64,
+                            data,
+                            ..Default::default()
+                        }),
+                    })
+                    .await
+                    .unwrap();
+
+                session
+                    .send(create_send_message(
+                        25,
+                        SERVER_UID,
+                        body.message_type,
+                        body.chat_type,
+                        body.chat_message_extend_data.clone(),
+                        format!("Executed {path:?}"),
                     ))
                     .await
                     .unwrap();
