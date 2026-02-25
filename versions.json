@@ -46,5 +46,17 @@
     "ex_resource_url": "",
     "lua_url": "",
     "ifix_url": ""
+  },
+  "OSBETAWin4.0.51X": {
+    "asset_bundle_url": "https://autopatchos.starrails.com/asb/BetaLive/output_14026982_55a517a26691_89300298bf2b2e",
+    "ex_resource_url": "https://autopatchos.starrails.com/design_data/BetaLive/output_14036546_28a134460a9a_5805431f75f0ff",
+    "lua_url": "https://autopatchos.starrails.com/lua/BetaLive/output_14028456_7088b08fd431_59194837d90977",
+    "ifix_url": "https://autopatchos.starrails.com/ifix/BetaLive/output_0_40d2ce0253_6d871f8bca6eb4"
+  },
+  "OSBETAWin4.0.51": {
+    "asset_bundle_url": "",
+    "ex_resource_url": "",
+    "lua_url": "",
+    "ifix_url": ""
   }
 }

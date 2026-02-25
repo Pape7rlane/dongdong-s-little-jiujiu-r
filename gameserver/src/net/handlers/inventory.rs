@@ -124,7 +124,7 @@ pub async fn on_get_big_data_all_recommend_cs_req(
             res.recommend_type = Some(RecommendType::AvatarRelic(BigDataRecommendAvatarRelic {
                 recomended_relic_info_list: BASE_AVATAR_IDS
                     .into_iter()
-                    .map(|avatar_id| RecommendedRelicInfo {
+                    .map(|avatar_id| BigDataAvatarRelicRecommend {
                         avatar_id,
                         ..Default::default()
                     })

@@ -1,7 +1,6 @@
-use std::path::Path;
-
 use common::structs::MultiPathAvatar;
-use proto::{chat_message_extend_data::ExtendType, dabbfcoafjg::Eedaadmacap};
+use proto::chat_data::ExtendType;
+use std::path::Path;
 use tokio::fs;
 
 use crate::{
@@ -28,8 +27,8 @@ pub async fn on_get_friend_login_info_cs_req(
     _req: &GetFriendLoginInfoCsReq,
     res: &mut GetFriendLoginInfoScRsp,
 ) {
-    res.ckjhinjopgk = vec![SERVER_UID];
-    res.dfommfkiami = vec![SERVER_UID];
+    res.cobofagagkm = vec![SERVER_UID];
+    res.pkdoflgoaof = vec![SERVER_UID];
 }
 
 pub async fn on_get_friend_list_info_cs_req(
@@ -65,23 +64,17 @@ pub async fn on_get_private_chat_history_cs_req(
     res.chat_message_list = SERVER_CHAT_HISTORY
         .iter()
         .map(|text| ChatMessageData {
-            message_type: MsgType::CustomText.into(),
             create_time: cur_time,
-            content: String::from(*text),
-            sender_id: SERVER_UID,
-            chat_message_extend_data: Some(ChatMessageExtendData {
-                extend_type: Some(ExtendType::MessageText(String::from(*text))),
+            aeelknkiici: Some(Jdpgjoadlle {
+                nihajmhkobc: 1,
+                mhhbnffopoj: Some(jdpgjoadlle::Mhhbnffopoj::Uid(SERVER_UID)),
             }),
-            bofjjhikijl: Some(Dabbfcoafjg {
-                eedaadmacap: Some(Eedaadmacap::Uid(SERVER_UID)),
-                kcpbmeabmph: 0,
-            }),
-            dgmnkagbcem: Some(Gpcnkeaofea {
-                chat_message_extend_data: Some(ChatMessageExtendData {
-                    extend_type: Some(ExtendType::MessageText(String::from(*text))),
+            message_datas: vec![MessageChatData {
+                message_type: 1,
+                chat_data: Some(ChatData {
+                    extend_type: Some(ExtendType::MessageText(text.to_string())),
                 }),
-                message_type: MsgType::CustomText.into(),
-            }),
+            }],
             ..Default::default()
         })
         .collect();
@@ -100,9 +93,9 @@ pub async fn on_send_msg_cs_req(
     };
 
     let msg = body
-        .dgmnkagbcem
+        .message_datas
         .as_ref()
-        .and_then(|x| x.chat_message_extend_data.as_ref())
+        .and_then(|x| x.chat_data.as_ref())
         .and_then(|x| x.extend_type.as_ref())
         .and_then(|x| match x {
             ExtendType::MessageText(s) => Some(s.as_str()),
@@ -118,9 +111,11 @@ pub async fn on_send_msg_cs_req(
                     .send(create_send_message(
                         25,
                         SERVER_UID,
-                        body.message_type,
+                        body.message_datas
+                            .as_ref()
+                            .map(|v| v.message_type)
+                            .unwrap_or_default(),
                         body.chat_type,
-                        body.chat_message_extend_data.clone(),
                         String::from("Inventory Synced"),
                     ))
                     .await
@@ -151,9 +146,11 @@ pub async fn on_send_msg_cs_req(
                     .send(create_send_message(
                         25,
                         SERVER_UID,
-                        body.message_type,
+                        body.message_datas
+                            .as_ref()
+                            .map(|v| v.message_type)
+                            .unwrap_or_default(),
                         body.chat_type,
-                        body.chat_message_extend_data.clone(),
                         format!("Success change mc to {mc:#?}"),
                     ))
                     .await
@@ -188,9 +185,11 @@ pub async fn on_send_msg_cs_req(
                     .send(create_send_message(
                         25,
                         SERVER_UID,
-                        body.message_type,
+                        body.message_datas
+                            .as_ref()
+                            .map(|v| v.message_type)
+                            .unwrap_or_default(),
                         body.chat_type,
-                        body.chat_message_extend_data.clone(),
                         format!("Success change march to {march_type:#?}"),
                     ))
                     .await
@@ -204,9 +203,11 @@ pub async fn on_send_msg_cs_req(
                         .send(create_send_message(
                             25,
                             SERVER_UID,
-                            body.message_type,
+                            body.message_datas
+                                .as_ref()
+                                .map(|v| v.message_type)
+                                .unwrap_or_default(),
                             body.chat_type,
-                            body.chat_message_extend_data.clone(),
                             format!("File {path:?} does not exist!"),
                         ))
                         .await
@@ -220,9 +221,11 @@ pub async fn on_send_msg_cs_req(
                             .send(create_send_message(
                                 25,
                                 SERVER_UID,
-                                body.message_type,
+                                body.message_datas
+                                    .as_ref()
+                                    .map(|v| v.message_type)
+                                    .unwrap_or_default(),
                                 body.chat_type,
-                                body.chat_message_extend_data.clone(),
                                 format!("Failed to read file: {err:?}"),
                             ))
                             .await
@@ -248,9 +251,11 @@ pub async fn on_send_msg_cs_req(
                     .send(create_send_message(
                         25,
                         SERVER_UID,
-                        body.message_type,
+                        body.message_datas
+                            .as_ref()
+                            .map(|v| v.message_type)
+                            .unwrap_or_default(),
                         body.chat_type,
-                        body.chat_message_extend_data.clone(),
                         format!("Executed {path:?}"),
                     ))
                     .await
@@ -276,35 +281,23 @@ fn create_send_message(
     from: u32,
     message_type: i32,
     chat_type: i32,
-    extend_data: Option<ChatMessageExtendData>,
     msg: String,
 ) -> RevcMsgScNotify {
     RevcMsgScNotify {
-        message_type,
-        message_text: msg.clone(),
-        source_uid: from,
-        target_uid: to,
         chat_type,
-        chat_message_extend_data: extend_data,
-        mjaocldhphm: 0,
-        revc_message_data: Some(ChatMessageData {
-            message_type: MsgType::CustomText.into(),
+        dkdlooaaake: to,
+        recv_message_data: Some(ChatMessageData {
             create_time: cur_timestamp_ms(),
-            content: msg.clone(),
-            sender_id: SERVER_UID,
-            chat_message_extend_data: Some(ChatMessageExtendData {
-                extend_type: Some(ExtendType::MessageText(msg.clone())),
+            aeelknkiici: Some(Jdpgjoadlle {
+                nihajmhkobc: 0,
+                mhhbnffopoj: Some(jdpgjoadlle::Mhhbnffopoj::Uid(from)),
             }),
-            bofjjhikijl: Some(Dabbfcoafjg {
-                eedaadmacap: Some(Eedaadmacap::Uid(SERVER_UID)),
-                kcpbmeabmph: 0,
-            }),
-            dgmnkagbcem: Some(Gpcnkeaofea {
-                chat_message_extend_data: Some(ChatMessageExtendData {
-                    extend_type: Some(ExtendType::MessageText(msg.clone())),
+            message_datas: vec![MessageChatData {
+                message_type,
+                chat_data: Some(ChatData {
+                    extend_type: Some(chat_data::ExtendType::MessageText(msg)),
                 }),
-                message_type: MsgType::CustomText.into(),
-            }),
+            }],
             ..Default::default()
         }),
     }
