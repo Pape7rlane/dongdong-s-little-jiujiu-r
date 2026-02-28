@@ -34184,7 +34184,7 @@ enum CmdSceneType {
 	CmdGetSceneMapInfoCsReq = 1432;
 	CmdGetEnteredSceneScRsp = 1495;
 	CmdGetUnlockTeleportScRsp = 1438;
-	CmdSceneStageBattleCsReq = 1431;
+	CmdSceneEnterStageCsReq = 1431;
 	CmdInteractPropScRsp = 1404;
 	CmdReturnLastTownScRsp = 1409;
 	CmdSetCurInteractEntityScRsp = 1468;
@@ -34707,10 +34707,10 @@ message SceneCastSkillMpUpdateScNotify {
 	uint32 cast_entity_id = 8; // offset: 24
 }
 
-// Obf: SceneStageBattleCsReq
+// Obf: SceneEnterStageCsReq
 // Type: Req
 // CmdID: 1431
-message SceneStageBattleCsReq {
+message SceneEnterStageCsReq {
 	uint32 event_id = 6; // offset: 32
 	RebattleType rebattle_type = 7; // offset: 28
 	bool CLGOFDEDIAN = 1; // offset: 24

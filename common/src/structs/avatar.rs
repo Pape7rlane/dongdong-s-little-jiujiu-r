@@ -172,7 +172,7 @@ impl AvatarJson {
             equipment_unique_id: lightcone.map(|v| v.get_unique_id()).unwrap_or_default(),
             first_met_time_stamp: 1712924677,
             cur_multi_path_avatar_type,
-            has_taken_promotion_reward_list: Vec::with_capacity(0),
+            has_taken_promotion_reward_list: vec![1, 3, 5],
             is_marked: false,
             exp: 0,
         }

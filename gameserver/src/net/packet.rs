@@ -178,7 +178,7 @@ trait_handler! {
     GetCurSceneInfo;
     PlayerHeartBeat;
     SetAvatarEnhancedId;
-
+    TakePromotionReward;
 
     // Entity move (dummy!)
     SceneEntityMove;
@@ -209,6 +209,7 @@ trait_handler! {
     PveBattleResult;
     SceneCastSkill;
     QuickStartCocoonStage;
+    SceneEnterStage;
 
     // Teleport
     GetEnteredScene;

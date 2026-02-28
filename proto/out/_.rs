@@ -52863,12 +52863,12 @@ pub struct SceneCastSkillMpUpdateScNotify {
     #[prost(uint32, tag = "8")]
     pub cast_entity_id: u32,
 }
-/// Obf: SceneStageBattleCsReq
+/// Obf: SceneEnterStageCsReq
 /// Type: Req
 #[derive(proto_derive::CmdID)]
 #[cmdid(1431)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct SceneStageBattleCsReq {
+pub struct SceneEnterStageCsReq {
     /// offset: 32
     #[prost(uint32, tag = "6")]
     pub event_id: u32,
@@ -92764,7 +92764,7 @@ pub enum CmdSceneType {
     CmdGetSceneMapInfoCsReq = 1432,
     CmdGetEnteredSceneScRsp = 1495,
     CmdGetUnlockTeleportScRsp = 1438,
-    CmdSceneStageBattleCsReq = 1431,
+    CmdSceneEnterStageCsReq = 1431,
     CmdInteractPropScRsp = 1404,
     CmdReturnLastTownScRsp = 1409,
     CmdSetCurInteractEntityScRsp = 1468,
@@ -92862,7 +92862,7 @@ impl CmdSceneType {
             Self::CmdGetSceneMapInfoCsReq => "CmdGetSceneMapInfoCsReq",
             Self::CmdGetEnteredSceneScRsp => "CmdGetEnteredSceneScRsp",
             Self::CmdGetUnlockTeleportScRsp => "CmdGetUnlockTeleportScRsp",
-            Self::CmdSceneStageBattleCsReq => "CmdSceneStageBattleCsReq",
+            Self::CmdSceneEnterStageCsReq => "CmdSceneEnterStageCsReq",
             Self::CmdInteractPropScRsp => "CmdInteractPropScRsp",
             Self::CmdReturnLastTownScRsp => "CmdReturnLastTownScRsp",
             Self::CmdSetCurInteractEntityScRsp => "CmdSetCurInteractEntityScRsp",
@@ -92971,7 +92971,7 @@ impl CmdSceneType {
             "CmdGetSceneMapInfoCsReq" => Some(Self::CmdGetSceneMapInfoCsReq),
             "CmdGetEnteredSceneScRsp" => Some(Self::CmdGetEnteredSceneScRsp),
             "CmdGetUnlockTeleportScRsp" => Some(Self::CmdGetUnlockTeleportScRsp),
-            "CmdSceneStageBattleCsReq" => Some(Self::CmdSceneStageBattleCsReq),
+            "CmdSceneEnterStageCsReq" => Some(Self::CmdSceneEnterStageCsReq),
             "CmdInteractPropScRsp" => Some(Self::CmdInteractPropScRsp),
             "CmdReturnLastTownScRsp" => Some(Self::CmdReturnLastTownScRsp),
             "CmdSetCurInteractEntityScRsp" => Some(Self::CmdSetCurInteractEntityScRsp),

@@ -35,6 +35,16 @@ pub async fn on_quick_start_cocoon_stage_cs_req(
     res.battle_info = Some(battle_info);
 }
 
+pub async fn on_scene_enter_stage_cs_req(
+    session: &mut PlayerSession,
+    _req: &SceneEnterStageCsReq,
+    res: &mut SceneEnterStageScRsp,
+) {
+    let battle_info = create_battle_info(session, 0, 0).await;
+
+    res.battle_info = Some(battle_info);
+}
+
 pub async fn on_pve_battle_result_cs_req(
     _session: &mut PlayerSession,
     req: &PveBattleResultCsReq,

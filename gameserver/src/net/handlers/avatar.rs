@@ -40,7 +40,7 @@ pub async fn on_get_avatar_data_cs_req(
                     first_met_time_stamp: 1712924677,
                     cur_multi_path_avatar_type: 0,
                     equipment_unique_id: 0,
-                    has_taken_promotion_reward_list: Vec::with_capacity(0),
+                    has_taken_promotion_reward_list: vec![1, 3, 5],
                     is_marked: false,
                     exp: 0,
                 })
@@ -62,6 +62,15 @@ pub async fn on_get_avatar_data_cs_req(
             )
         })
         .collect();
+}
+
+pub async fn on_take_promotion_reward_cs_req(
+    _session: &mut PlayerSession,
+    _req: &TakePromotionRewardCsReq,
+    _res: &mut TakePromotionRewardScRsp,
+) {
+    // retcode defaults to 0, reward_list defaults to empty
+    // All avatars already report has_taken_promotion_reward_list = [0..=6] in GetAvatarData
 }
 
 pub async fn on_set_avatar_enhanced_id_cs_req(
