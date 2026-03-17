@@ -21,6 +21,8 @@ pub enum MultiPathAvatar {
     FemaleHarmony = 8006,
     MaleRemembrance = 8007,
     FemaleRemembrance = 8008,
+    MaleElation = 8009,
+    FemaleElation = 8010,
     MarchHunt = 1224,
     MarchPreservation = 1001,
     #[default]
@@ -38,6 +40,8 @@ impl From<u32> for MultiPathAvatar {
             8006 => Self::FemaleHarmony,
             8007 => Self::MaleRemembrance,
             8008 => Self::FemaleRemembrance,
+            8009 => Self::MaleElation,
+            8010 => Self::FemaleElation,
             1224 => Self::MarchHunt,
             1001 => Self::MarchPreservation,
             _ => Self::Unk,
@@ -56,9 +60,11 @@ impl From<MultiPathAvatar> for u32 {
             MultiPathAvatar::FemaleHarmony => 8006,
             MultiPathAvatar::MaleRemembrance => 8007,
             MultiPathAvatar::FemaleRemembrance => 8008,
+            MultiPathAvatar::MaleElation => 8009,
+            MultiPathAvatar::FemaleElation => 8010,
             MultiPathAvatar::MarchHunt => 1224,
             MultiPathAvatar::MarchPreservation => 1001,
-            _ => 8006,
+            MultiPathAvatar::Unk => 8006,
         }
     }
 }
@@ -88,6 +94,8 @@ impl MultiPathAvatar {
             MultiPathAvatar::Unk => MultiPathAvatarType::None,
             MultiPathAvatar::MaleRemembrance => MultiPathAvatarType::BoyMemoryType,
             MultiPathAvatar::FemaleRemembrance => MultiPathAvatarType::GirlMemoryType,
+            MultiPathAvatar::MaleElation => MultiPathAvatarType::BoyElationType,
+            MultiPathAvatar::FemaleElation => MultiPathAvatarType::GirlElationType,
         }
     }
 
@@ -105,6 +113,8 @@ impl MultiPathAvatar {
             Self::FemaleHarmony,
             Self::MaleRemembrance,
             Self::FemaleRemembrance,
+            Self::MaleElation,
+            Self::FemaleElation,
             Self::MarchHunt,
             Self::MarchPreservation,
         ]

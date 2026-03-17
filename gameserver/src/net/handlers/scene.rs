@@ -42,7 +42,7 @@ pub async fn on_enter_scene_cs_req(
     req: &EnterSceneCsReq,
     res: &mut EnterSceneScRsp,
 ) {
-    if load_scene(session, req.entry_id, true, Some(req.teleport_id))
+    if load_scene(session, req.entry_id, true, Some(req.entry_id2))
         .await
         .is_err()
     {
@@ -55,9 +55,8 @@ pub async fn on_get_scene_map_info_cs_req(
     req: &GetSceneMapInfoCsReq,
     res: &mut GetSceneMapInfoScRsp,
 ) {
-    for floor_id in &req.floor_id_list {
+    for floor_id in req.scene_identifiers.iter().map(|v| v.floor_id) {
         let mut map_info = SceneMapInfo {
-            retcode: 0,
             chest_list: vec![
                 ChestInfo {
                     chest_type: 101,
@@ -72,13 +71,13 @@ pub async fn on_get_scene_map_info_cs_req(
                     ..Default::default()
                 },
             ],
-            floor_id: *floor_id,
+            floor_id: floor_id,
             ..Default::default()
         };
 
         let floor_configs = GAME_RES
             .map_default_entrance_map
-            .get(floor_id)
+            .get(&floor_id)
             .and_then(|v| {
                 GAME_RES
                     .level_output_configs
@@ -88,7 +87,7 @@ pub async fn on_get_scene_map_info_cs_req(
 
         if let Some((_, floor_config)) = floor_configs {
             for (group_id, group) in floor_config.scenes.iter() {
-                map_info.maze_group_list.push(MazeGroup {
+                map_info.group_list.push(MapInfoGroup {
                     group_id: *group_id,
                     ..Default::default()
                 });
@@ -98,7 +97,7 @@ pub async fn on_get_scene_map_info_cs_req(
                 }
 
                 for prop in &group.props {
-                    map_info.maze_prop_list.push(MazePropState {
+                    map_info.map_info_prop_list.push(MapInfoProp {
                         group_id: prop.group_id,
                         state: prop.prop_state,
                         config_id: prop.inst_id,
@@ -114,7 +113,7 @@ pub async fn on_get_scene_map_info_cs_req(
             }
 
             map_info.lighten_section_list = floor_config.sections.clone();
-            map_info.floor_saved_data = floor_config.saved_values.clone();
+            map_info.floor_saved_value_map = floor_config.saved_values.clone();
             // #TODO!
             // map_info
             //     .chest_unlock_progress_list
@@ -275,6 +274,10 @@ async fn load_scene(
             ..Default::default()
         }),
         floor_saved_data: scene.saved_values.clone(),
+        scene_identifier: Some(SceneIdentifier {
+            floor_id,
+            ..Default::default()
+        }),
         ..Default::default()
     };
 
@@ -404,7 +407,7 @@ async fn load_scene(
     scene_info.entity_group_list.push(SceneEntityGroupInfo {
         state: 0,
         group_id: 0,
-        ggnjmghhhmj: HashMap::with_capacity(0),
+        opljdfoomgf: HashMap::with_capacity(0),
         entity_list: json
             .lineups
             .iter()

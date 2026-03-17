@@ -1,9 +1,9 @@
 {
   "lineups": {
-    "0": 1414,
-    "1": 1410,
-    "2": 0,
-    "3": 0
+    "0": 1506,
+    "1": 1505,
+    "2": 8001,
+    "3": 1409
   },
   "position": {
     "x": 422379,
@@ -16,6 +16,6 @@
     "floor_id": 20511001,
     "entry_id": 2051101
   },
-  "main_character": "FemaleRemembrance",
+  "main_character": "FemaleElation",
   "march_type": "MarchHunt"
 }

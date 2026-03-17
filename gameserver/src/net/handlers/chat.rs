@@ -27,8 +27,8 @@ pub async fn on_get_friend_login_info_cs_req(
     _req: &GetFriendLoginInfoCsReq,
     res: &mut GetFriendLoginInfoScRsp,
 ) {
-    res.cobofagagkm = vec![SERVER_UID];
-    res.pkdoflgoaof = vec![SERVER_UID];
+    res.bhjonholeaa = vec![SERVER_UID];
+    res.doahbaphmbo = vec![SERVER_UID];
 }
 
 pub async fn on_get_friend_list_info_cs_req(
@@ -65,9 +65,9 @@ pub async fn on_get_private_chat_history_cs_req(
         .iter()
         .map(|text| ChatMessageData {
             create_time: cur_time,
-            aeelknkiici: Some(Jdpgjoadlle {
-                nihajmhkobc: 1,
-                mhhbnffopoj: Some(jdpgjoadlle::Mhhbnffopoj::Uid(SERVER_UID)),
+            ngiifilphni: Some(Pkjcignoion {
+                ifkjohednbd: 1,
+                fpcdpdphkjj: Some(pkjcignoion::Fpcdpdphkjj::Uid(SERVER_UID)),
             }),
             message_datas: vec![MessageChatData {
                 message_type: 1,
@@ -285,12 +285,12 @@ fn create_send_message(
 ) -> RevcMsgScNotify {
     RevcMsgScNotify {
         chat_type,
-        dkdlooaaake: to,
+        eokimloiohi: to,
         recv_message_data: Some(ChatMessageData {
             create_time: cur_timestamp_ms(),
-            aeelknkiici: Some(Jdpgjoadlle {
-                nihajmhkobc: 0,
-                mhhbnffopoj: Some(jdpgjoadlle::Mhhbnffopoj::Uid(from)),
+            ngiifilphni: Some(Pkjcignoion {
+                ifkjohednbd: 0,
+                fpcdpdphkjj: Some(pkjcignoion::Fpcdpdphkjj::Uid(from)),
             }),
             message_datas: vec![MessageChatData {
                 message_type,
