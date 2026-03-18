@@ -22180,6 +22180,7 @@
     }
   },
   "battle_config": {
+	"custom_battle_lineup": null,
     "battle_type": "Default",
     "monsters": [
       [

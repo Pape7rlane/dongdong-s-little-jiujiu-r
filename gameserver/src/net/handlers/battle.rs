@@ -100,8 +100,14 @@ async fn create_battle_info(
 
     let mut first_avatar_id = 0;
 
+    let lineup_uwu = if let Some(custom) = &player.battle_config.custom_battle_lineup {
+        custom.iter()
+    } else {
+        player.lineups.iter()
+    };
+
     // avatars
-    for (avatar_index, avatar_id) in player.lineups.iter() {
+    for (avatar_index, avatar_id) in lineup_uwu {
         if first_avatar_id == 0 {
             first_avatar_id = *avatar_id;
         }

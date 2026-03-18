@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{BTreeMap, HashMap};
 
 use serde::{Deserialize, Serialize};
 
@@ -16,6 +16,8 @@ pub struct BattleConfig {
     pub custom_stats: Vec<SubAffix>,
     #[serde(default)]
     pub scepters: Vec<RogueMagicScepter>,
+    #[serde(default)]
+    pub custom_battle_lineup: Option<BTreeMap<u32, u32>>,
 }
 
 impl Default for BattleConfig {
@@ -33,6 +35,7 @@ impl Default for BattleConfig {
             path_resonance_id: Default::default(),
             custom_stats: Default::default(),
             scepters: Default::default(),
+            custom_battle_lineup: Default::default(),
         }
     }
 }
