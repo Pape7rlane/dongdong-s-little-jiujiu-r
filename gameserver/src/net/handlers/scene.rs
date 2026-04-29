@@ -87,7 +87,7 @@ pub async fn on_get_scene_map_info_cs_req(
 
         if let Some((_, floor_config)) = floor_configs {
             for (group_id, group) in floor_config.scenes.iter() {
-                map_info.group_list.push(MapInfoGroup {
+                map_info.maze_group_list.push(MazeGroup {
                     group_id: *group_id,
                     ..Default::default()
                 });
@@ -97,7 +97,7 @@ pub async fn on_get_scene_map_info_cs_req(
                 }
 
                 for prop in &group.props {
-                    map_info.map_info_prop_list.push(MapInfoProp {
+                    map_info.maze_prop_list.push(MazePropState {
                         group_id: prop.group_id,
                         state: prop.prop_state,
                         config_id: prop.inst_id,
@@ -113,7 +113,7 @@ pub async fn on_get_scene_map_info_cs_req(
             }
 
             map_info.lighten_section_list = floor_config.sections.clone();
-            map_info.floor_saved_value_map = floor_config.saved_values.clone();
+            map_info.floor_saved_data = floor_config.saved_values.clone();
             // #TODO!
             // map_info
             //     .chest_unlock_progress_list
@@ -407,7 +407,7 @@ async fn load_scene(
     scene_info.entity_group_list.push(SceneEntityGroupInfo {
         state: 0,
         group_id: 0,
-        opljdfoomgf: HashMap::with_capacity(0),
+        banbecdcdhg: HashMap::with_capacity(0),
         entity_list: json
             .lineups
             .iter()
