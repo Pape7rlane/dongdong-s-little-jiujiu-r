@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use rand::Rng;
+use rand::RngExt;
 
 use common::{
     resources::GAME_RES,
@@ -98,7 +98,10 @@ async fn create_battle_info(
         ..Default::default()
     };
 
+    let is_calyx = caster_id == 0 && skill_index == 0;
+    let mut has_dahlia = false;
     let mut first_avatar_id = 0;
+    let mut first_avatar_idx = 9999;
 
     let lineup_uwu = if let Some(custom) = &player.battle_config.custom_battle_lineup {
         custom.iter()
@@ -110,6 +113,10 @@ async fn create_battle_info(
     for (avatar_index, avatar_id) in lineup_uwu {
         if first_avatar_id == 0 {
             first_avatar_id = *avatar_id;
+            first_avatar_idx = *avatar_index;
+        }
+        if !has_dahlia {
+            has_dahlia = *avatar_id == 1321;
         }
 
         let is_trailblazer = *avatar_id == 8001;
@@ -136,9 +143,8 @@ async fn create_battle_info(
                     .filter(|v| v.equip_avatar == avatar.avatar_id)
                     .collect::<Vec<_>>(),
             );
-            for tech in techs {
-                battle_info.buff_list.push(tech);
-            }
+
+            battle_info.buff_list.extend(techs);
 
             if caster_id > 0
                 && *avatar_index == (caster_id - 1)
@@ -162,7 +168,7 @@ async fn create_battle_info(
 
             // hardcoded march
             if avatar.avatar_id == 1224 {
-                let buffs = BattleBuff {
+                battle_info.buff_list.push(BattleBuff {
                     id: 122401,
                     level: 3,
                     wave_flag: 0xffffffff,
@@ -172,20 +178,67 @@ async fn create_battle_info(
                         (String::from("#ADF_2"), 3f32),
                     ]),
                     target_index_list: vec![0],
-                };
-
-                battle_info.buff_list.push(buffs);
+                });
             }
         };
     }
 
     // Hardcoded Cerydra & Danheng PT technique
-    if first_avatar_id != 0 {
-        for buff in battle_info.buff_list.iter_mut() {
-            if buff.id == 141202 || buff.id == 141403 {
-                buff.owner_index = first_avatar_id
-            }
+    // and hardcode dahlia dance partner to 1st in lineup
+    let first_avatar_attack_id = if let Some(c) = GAME_RES.avatar_configs.get(&first_avatar_id) {
+        c.weakness_buff_id
+    } else {
+        0
+    };
+
+    let len = battle_info.buff_list.len();
+    let mut has_replaced = false;
+    let mut dahlia_buffs = Vec::new();
+    for (i, buff) in battle_info.buff_list.iter_mut().enumerate() {
+        let is_last = i == len - 1;
+
+        if buff.id == 141202 || buff.id == 141403 {
+            buff.owner_index = first_avatar_id;
+            continue;
         }
+
+        // this is actually useless because there is 0 attack buff id in calyx but idc
+        if has_dahlia
+            && is_calyx
+            && let 1000111..=1000117 = buff.id
+            && !has_replaced
+            && first_avatar_attack_id != 0
+        {
+            buff.id = first_avatar_attack_id;
+            buff.owner_index = first_avatar_id;
+            has_replaced = true;
+        }
+
+        if has_dahlia && is_calyx && !has_replaced && first_avatar_attack_id != 0 && is_last {
+            dahlia_buffs.push(BattleBuff {
+                id: 1000121,
+                level: 1,
+                wave_flag: u32::MAX,
+                target_index_list: vec![first_avatar_idx],
+                ..Default::default()
+            });
+
+            dahlia_buffs.push(BattleBuff {
+                id: first_avatar_attack_id,
+                level: 1,
+                wave_flag: u32::MAX,
+                target_index_list: vec![first_avatar_idx],
+                dynamic_values: HashMap::from([(
+                    String::from("SkillIndex"),
+                    first_avatar_idx as f32,
+                )]),
+                ..Default::default()
+            });
+        }
+    }
+
+    if !dahlia_buffs.is_empty() {
+        battle_info.buff_list.extend(dahlia_buffs);
     }
 
     // custom stats for avatars
@@ -380,8 +433,18 @@ async fn create_battle_info(
         // });
     }
 
-    // Global Buff
-    if !battle_info.buff_list.iter().any(|b| b.id == 140703) {
+    // Global buffs
+    let (mut has_castorice_global_buff, mut has_silver_wolf_global_buff) = (false, false);
+    for buff in &battle_info.buff_list {
+        if buff.id == 140703 {
+            has_castorice_global_buff = true;
+        }
+        if buff.id == 150602 {
+            has_silver_wolf_global_buff = true;
+        }
+    }
+
+    if !has_castorice_global_buff {
         battle_info.buff_list.push(BattleBuff {
             id: 140703,
             level: 1,
@@ -390,6 +453,25 @@ async fn create_battle_info(
             target_index_list: Vec::with_capacity(0),
             dynamic_values: HashMap::with_capacity(0),
         });
+    }
+
+    if !has_silver_wolf_global_buff {
+        battle_info.buff_list.push(BattleBuff {
+            id: 150602,
+            level: 1,
+            owner_index: u32::MAX,
+            wave_flag: u32::MAX,
+            target_index_list: Vec::with_capacity(0),
+            dynamic_values: HashMap::with_capacity(0),
+        });
+    }
+
+    if has_dahlia {
+        tracing::info!("DAHLIA FOUND!!!");
+        tracing::info!("BUFF LIST----------");
+        for buff in &battle_info.buff_list {
+            tracing::info!("{}", buff.id);
+        }
     }
 
     battle_info

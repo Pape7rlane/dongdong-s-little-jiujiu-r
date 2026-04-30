@@ -12,7 +12,7 @@ use std::{
 use anyhow::Result;
 
 use common::sr_tools::FreesrData;
-use rand::RngCore;
+use rand::Rng;
 
 use crate::net::PlayerSession;
 
@@ -85,12 +85,12 @@ impl Gateway {
             session_token,
         )));
 
-        // Init  the json to session
-        let _ = session
-            .write()
-            .await
-            .json_data
-            .set(FreesrData::load().await);
+        // Init the json to session
+        if let Ok(data) = FreesrData::load().await {
+            let _ = session.write().await.json_data.set(data);
+        } else {
+            tracing::error!("Failed to load initial freesr-data.json");
+        }
 
         let session_ref = session.clone();
 
@@ -98,17 +98,25 @@ impl Gateway {
         tokio::spawn(async move {
             let (tx, mut rx) = mpsc::channel(100);
             let mut debouncer =
-                notify_debouncer_mini::new_debouncer(Duration::from_millis(1000), move |ev| {
+                match notify_debouncer_mini::new_debouncer(Duration::from_millis(1000), move |ev| {
                     let _ = tx.blocking_send(ev);
-                })
-                .unwrap();
+                }) {
+                    Ok(d) => d,
+                    Err(e) => {
+                        tracing::error!("debouncer init err: {e}");
+                        return;
+                    }
+                };
 
             let path = Path::new("freesr-data.json");
 
-            debouncer
+            if let Err(e) = debouncer
                 .watcher()
                 .watch(path, notify::RecursiveMode::NonRecursive)
-                .unwrap();
+            {
+                tracing::error!("failed to watch {path:?}: {e}");
+                return;
+            }
 
             tracing::info!("watching freesr-data.json changes");
 
@@ -136,13 +144,16 @@ impl Gateway {
 
                                                 let mut session = session.write().await;
                                                 if let Some(json) = session.json_data.get_mut() {
-                                                    let _ = json.update().await;
-                                                    session.sync_player().await;
-                                                    tracing::info!("json updated");
+                                                    if let Err(e) = json.update().await {
+                                                        tracing::error!("Failed to update json: {e}");
+                                                    } else {
+                                                        let _ = session.sync_player().await;
+                                                        tracing::info!("json updated");
+                                                    }
                                                 }
                                             }
                             }
-                            Err(e) => eprintln!("json watcher error: {e:?}"),
+                            Err(e) => tracing::error!("json watcher error: {e:?}"),
                         }
                     }
                     _ = shutdown_rx.changed() => {

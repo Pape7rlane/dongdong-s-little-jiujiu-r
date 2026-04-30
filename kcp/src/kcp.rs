@@ -16,7 +16,7 @@ use bytes::{Buf, BufMut, BytesMut};
 #[cfg(feature = "tokio")]
 use tokio::io::{AsyncWrite, AsyncWriteExt};
 
-use crate::{error::Error, KcpResult};
+use crate::{KcpResult, error::Error};
 
 const KCP_RTO_NDL: u32 = 20; // no delay min rto
 const KCP_RTO_MIN: u32 = 100; // normal min rto

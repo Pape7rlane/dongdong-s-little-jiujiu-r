@@ -105,7 +105,7 @@ pub async fn start_sdkserver() -> Result<()> {
         .fallback(errors::not_found);
 
     let addr = format!("0.0.0.0:{PORT}");
-    let server = axum_server::bind(addr.parse()?);
+    let server = axum_server::bind(addr.parse::<std::net::SocketAddr>()?);
 
     tracing::info!("sdkserver is listening at {addr}");
     server.serve(router.into_make_service()).await?;

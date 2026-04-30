@@ -56,14 +56,14 @@ impl FreesrData {
 }
 
 impl FreesrData {
-    pub async fn load() -> Self {
+    pub async fn load() -> anyhow::Result<Self> {
         let mut freesr_data: FreesrData = tokio::fs::read_to_string("freesr-data.json")
             .await
-            .map(|v| {
+            .map_err(|e| anyhow::anyhow!("failed to read freesr-data.json: {e}"))
+            .and_then(|v| {
                 serde_json::from_str::<FreesrData>(&v)
-                    .expect("freesr-data.json is broken, pls redownload")
-            })
-            .expect("failed to read freesr-data.json");
+                    .map_err(|e| anyhow::anyhow!("freesr-data.json is broken: {e}, pls redownload"))
+            })?;
 
         let persistent: Persistent = serde_json::from_str(
             &tokio::fs::read_to_string("persistent")
@@ -96,11 +96,12 @@ impl FreesrData {
             freesr_data.march_type = MultiPathAvatar::MarchHunt;
         }
 
-        freesr_data
+        Ok(freesr_data)
     }
 
-    pub async fn update(&mut self) {
-        *self = Self::load().await
+    pub async fn update(&mut self) -> anyhow::Result<()> {
+        *self = Self::load().await?;
+        Ok(())
     }
 
     async fn verify_lineup(&mut self) {
@@ -115,20 +116,17 @@ impl FreesrData {
     }
 
     pub async fn save_persistent(&self) {
-        let _ = tokio::fs::write(
-            "persistent",
-            serde_json::to_string_pretty(&Persistent {
-                lineups: self.lineups.clone(),
-                main_character: self.main_character,
-                position: self.position.clone(),
-                scene: self.scene.clone(),
-                march_type: self.march_type,
-                // game_language: self.game_language,
-                // voice_language: self.voice_langauge,
-            })
-            .unwrap(),
-        )
-        .await;
-        tracing::info!("persistent saved");
+        if let Ok(data) = serde_json::to_string_pretty(&Persistent {
+            lineups: self.lineups.clone(),
+            main_character: self.main_character,
+            position: self.position.clone(),
+            scene: self.scene.clone(),
+            march_type: self.march_type,
+            // game_language: self.game_language,
+            // voice_language: self.voice_langauge,
+        }) {
+            let _ = tokio::fs::write("persistent", data).await;
+            tracing::info!("persistent saved");
+        }
     }
 }

@@ -110,7 +110,7 @@ pub async fn on_send_msg_cs_req(
     if let Some((cmd, args)) = parse_command(msg) {
         match cmd {
             "sync" => {
-                session.sync_player().await;
+                let _ = session.sync_player().await;
                 session
                     .send(create_send_message(
                         25,
@@ -144,7 +144,7 @@ pub async fn on_send_msg_cs_req(
                     .await
                     .unwrap();
 
-                session.sync_player().await;
+                let _ = session.sync_player().await;
 
                 session
                     .send(create_send_message(

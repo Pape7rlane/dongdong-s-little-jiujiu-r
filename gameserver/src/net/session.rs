@@ -116,10 +116,10 @@ impl PlayerSession {
         Ok(())
     }
 
-    pub async fn sync_player(&self) {
+    pub async fn sync_player(&self) -> Result<()> {
         let Some(json) = self.json_data.get() else {
             tracing::error!("data is not init!");
-            return;
+            return Ok(());
         };
 
         // clear relics & lightcones
@@ -128,8 +128,7 @@ impl PlayerSession {
             del_equipment_list: (3001..=3500).collect(),
             ..Default::default()
         })
-        .await
-        .unwrap();
+        .await?;
 
         // clear all avatars equip item
         self.send(PlayerSyncScNotify {
@@ -157,8 +156,7 @@ impl PlayerSession {
 
             ..Default::default()
         })
-        .await
-        .unwrap();
+        .await?;
 
         // Sync new relics & lightcones
         self.send(PlayerSyncScNotify {
@@ -166,8 +164,7 @@ impl PlayerSession {
             equipment_list: json.lightcones.iter().map(|v| v.into()).collect(),
             ..Default::default()
         })
-        .await
-        .unwrap();
+        .await?;
 
         // Sync new avatars equip item
         self.send(PlayerSyncScNotify {
@@ -203,7 +200,6 @@ impl PlayerSession {
             ..Default::default()
         })
         .await
-        .unwrap()
     }
 
     fn session_time(&self) -> u64 {
