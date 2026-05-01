@@ -3,7 +3,7 @@
     "0": 1003,
     "1": 1310,
     "2": 1321,
-    "3": 1414
+    "3": 1401
   },
   "position": {
     "x": 422379,
@@ -17,5 +17,7 @@
     "entry_id": 2051101
   },
   "main_character": "FemaleElation",
-  "march_type": "MarchHunt"
+  "march_type": "MarchHunt",
+  "enable_sw_global": true,
+  "enable_castorice_global": true
 }

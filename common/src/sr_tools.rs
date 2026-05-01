@@ -31,6 +31,10 @@ pub struct FreesrData {
     pub main_character: MultiPathAvatar,
     #[serde(skip_serializing, skip_deserializing)]
     pub march_type: MultiPathAvatar,
+    #[serde(skip_serializing, skip_deserializing)]
+    pub enable_sw_global: Option<bool>,
+    #[serde(skip_serializing, skip_deserializing)]
+    pub enable_castorice_global: Option<bool>,
 }
 
 impl FreesrData {
@@ -77,6 +81,8 @@ impl FreesrData {
         freesr_data.scene = persistent.scene;
         freesr_data.main_character = persistent.main_character;
         freesr_data.march_type = persistent.march_type;
+        freesr_data.enable_sw_global = persistent.enable_sw_global;
+        freesr_data.enable_castorice_global = persistent.enable_castorice_global;
         // freesr_data.game_language = persistent.game_language;
         // freesr_data.voice_langauge = persistent.voice_language;
 
@@ -104,6 +110,25 @@ impl FreesrData {
         Ok(())
     }
 
+    pub async fn refresh_persistent(&mut self) -> anyhow::Result<()> {
+        let persistent: Persistent = serde_json::from_str(
+            &tokio::fs::read_to_string("persistent")
+                .await
+                .unwrap_or_default(),
+        )
+        .unwrap_or_default();
+
+        self.lineups = persistent.lineups;
+        self.position = persistent.position;
+        self.scene = persistent.scene;
+        self.main_character = persistent.main_character;
+        self.march_type = persistent.march_type;
+        self.enable_sw_global = persistent.enable_sw_global;
+        self.enable_castorice_global = persistent.enable_castorice_global;
+
+        Ok(())
+    }
+
     async fn verify_lineup(&mut self) {
         if self.lineups.is_empty() {
             self.lineups = BTreeMap::<u32, u32>::from([(0, 8001), (1, 0), (2, 0), (3, 0)])
@@ -122,6 +147,8 @@ impl FreesrData {
             position: self.position.clone(),
             scene: self.scene.clone(),
             march_type: self.march_type,
+            enable_sw_global: self.enable_sw_global,
+            enable_castorice_global: self.enable_castorice_global,
             // game_language: self.game_language,
             // voice_language: self.voice_langauge,
         }) {

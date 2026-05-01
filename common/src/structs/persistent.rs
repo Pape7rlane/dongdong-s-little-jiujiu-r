@@ -43,6 +43,14 @@ pub struct Persistent {
     pub march_type: MultiPathAvatar,
     // pub game_language: AllowedLanguages,
     // pub voice_language: AllowedLanguages,
+    #[serde(default = "default_true")]
+    pub enable_sw_global: Option<bool>,
+    #[serde(default = "default_true")]
+    pub enable_castorice_global: Option<bool>,
+}
+
+fn default_true() -> Option<bool> {
+    Some(true)
 }
 
 impl Default for Persistent {
@@ -55,6 +63,8 @@ impl Default for Persistent {
             march_type: MultiPathAvatar::MarchHunt,
             // game_language: AllowedLanguages::En,
             // voice_language: AllowedLanguages::Jp,
+            enable_sw_global: Some(true),
+            enable_castorice_global: Some(true),
         }
     }
 }

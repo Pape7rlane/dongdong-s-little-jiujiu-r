@@ -84,6 +84,10 @@ async fn create_battle_info(
     caster_id: u32,
     skill_index: u32,
 ) -> SceneBattleInfo {
+    if let Some(player) = session.json_data.get_mut() {
+        let _ = player.refresh_persistent().await;
+    }
+
     let Some(player) = session.json_data.get() else {
         tracing::error!("data is not set!");
         return SceneBattleInfo::default();
@@ -444,7 +448,7 @@ async fn create_battle_info(
         }
     }
 
-    if !has_castorice_global_buff {
+    if !has_castorice_global_buff && player.enable_castorice_global.unwrap_or(true) {
         battle_info.buff_list.push(BattleBuff {
             id: 140703,
             level: 1,
@@ -455,7 +459,7 @@ async fn create_battle_info(
         });
     }
 
-    if !has_silver_wolf_global_buff {
+    if !has_silver_wolf_global_buff && player.enable_sw_global.unwrap_or(true) {
         battle_info.buff_list.push(BattleBuff {
             id: 150602,
             level: 1,
