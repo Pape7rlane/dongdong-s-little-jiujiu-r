@@ -191,12 +191,6 @@ async fn create_battle_info(
         0
     };
 
-    // NOTE: this still doesnt work sometimes.
-    // example case of it not working: sparxie in 1st slot and there's fugue with a higher break effect
-    // however, it does work if you have like Arlan and then there's no other lightning character
-    // tldr:
-    //    - same element with diff slot and that diff slot has higher BE -> hardcode no work
-    //    - 1st slot's element count = 1 even with lower break effect dance partner will go there
     let len = battle_info.buff_list.len();
     let mut has_replaced = false;
     let mut dahlia_buffs = Vec::new();
@@ -204,7 +198,7 @@ async fn create_battle_info(
         let is_last = i == len - 1;
 
         if buff.id == 141202 || buff.id == 141403 {
-            buff.owner_index = first_avatar_id;
+            buff.owner_index = first_avatar_idx;
             continue;
         }
 
@@ -216,7 +210,7 @@ async fn create_battle_info(
             && first_avatar_attack_id != 0
         {
             buff.id = first_avatar_attack_id;
-            buff.owner_index = first_avatar_id;
+            buff.owner_index = first_avatar_idx;
             has_replaced = true;
         }
 
