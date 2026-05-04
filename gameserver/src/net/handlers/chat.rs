@@ -13,8 +13,10 @@ use super::*;
 const SERVER_UID: u32 = 727;
 const SERVER_HEAD_ICON: u32 = 201402;
 const SERVER_CHAT_BUBBLE_ID: u32 = 220005;
-const SERVER_CHAT_HISTORY: [&str; 6] = [
+const SERVER_CHAT_HISTORY: &[&str] = &[
     "'lua {path_to_lua_script}' execute lua script",
+    "'sw {on/off}' enable/disable silver wolf global buff",
+    "'castorice {on/off}' enable/disable castorice global buff",
     "'sync' to synchronize stats between json and in-game view",
     "'mc {mc_id}' mc_id can be set from 8001 to 8008",
     "'march {march_id}' march_id can be set 1001 or 1224",
@@ -121,6 +123,40 @@ pub async fn on_send_msg_cs_req(
                             .unwrap_or_default(),
                         body.chat_type,
                         String::from("Inventory Synced"),
+                    ))
+                    .await
+                    .unwrap();
+            }
+            "sw" | "castorice" => {
+                let status = args.first().unwrap_or(&"on").to_lowercase();
+                let enabled = match status.as_str() {
+                    "on" | "1" | "true" => true,
+                    "off" | "0" | "false" => false,
+                    _ => true,
+                };
+
+                if cmd == "sw" {
+                    json.enable_sw_global = Some(enabled);
+                } else {
+                    json.enable_castorice_global = Some(enabled);
+                }
+
+                json.save_persistent().await;
+
+                session
+                    .send(create_send_message(
+                        25,
+                        SERVER_UID,
+                        body.message_datas
+                            .as_ref()
+                            .map(|v| v.message_type)
+                            .unwrap_or_default(),
+                        body.chat_type,
+                        format!(
+                            "{} Global Buff: {}",
+                            if cmd == "sw" { "SW" } else { "Castorice" },
+                            if enabled { "Enabled" } else { "Disabled" }
+                        ),
                     ))
                     .await
                     .unwrap();

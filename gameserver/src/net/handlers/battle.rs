@@ -84,9 +84,9 @@ async fn create_battle_info(
     caster_id: u32,
     skill_index: u32,
 ) -> SceneBattleInfo {
-    if let Some(player) = session.json_data.get_mut() {
-        let _ = player.refresh_persistent().await;
-    }
+    // if let Some(player) = session.json_data.get_mut() {
+    //     let _ = player.refresh_persistent().await;
+    // }
 
     let Some(player) = session.json_data.get() else {
         tracing::error!("data is not set!");

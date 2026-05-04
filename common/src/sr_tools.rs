@@ -110,24 +110,24 @@ impl FreesrData {
         Ok(())
     }
 
-    pub async fn refresh_persistent(&mut self) -> anyhow::Result<()> {
-        let persistent: Persistent = serde_json::from_str(
-            &tokio::fs::read_to_string("persistent")
-                .await
-                .unwrap_or_default(),
-        )
-        .unwrap_or_default();
+    // pub async fn refresh_persistent(&mut self) -> anyhow::Result<()> {
+    //     let persistent: Persistent = serde_json::from_str(
+    //         &tokio::fs::read_to_string("persistent")
+    //             .await
+    //             .unwrap_or_default(),
+    //     )
+    //     .unwrap_or_default();
 
-        self.lineups = persistent.lineups;
-        self.position = persistent.position;
-        self.scene = persistent.scene;
-        self.main_character = persistent.main_character;
-        self.march_type = persistent.march_type;
-        self.enable_sw_global = persistent.enable_sw_global;
-        self.enable_castorice_global = persistent.enable_castorice_global;
+    //     self.lineups = persistent.lineups;
+    //     self.position = persistent.position;
+    //     self.scene = persistent.scene;
+    //     self.main_character = persistent.main_character;
+    //     self.march_type = persistent.march_type;
+    //     self.enable_sw_global = persistent.enable_sw_global;
+    //     self.enable_castorice_global = persistent.enable_castorice_global;
 
-        Ok(())
-    }
+    //     Ok(())
+    // }
 
     async fn verify_lineup(&mut self) {
         if self.lineups.is_empty() {
