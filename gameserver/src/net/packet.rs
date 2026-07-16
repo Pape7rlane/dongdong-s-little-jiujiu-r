@@ -3,29 +3,6 @@ use paste::paste;
 use tracing::Instrument;
 
 use proto::*;
-#[allow(unused_imports)]
-use proto::{
-    CmdActivityType::*, CmdAdventureType::*, CmdAetherDivideType::*, CmdAlleyType::*,
-    CmdArchiveType::*, CmdAvatarType::*, CmdBattleCollegeType::*, CmdBattlePassType::*,
-    CmdBattleType::*, CmdBoxingClubType::*, CmdChallengeType::*, CmdChatType::*,
-    CmdChessRogueType::*, CmdClockParkType::*, CmdContentPackageType::*, CmdDailyActiveType::*,
-    CmdDrinkMakerType::*, CmdExpeditionType::*, CmdFantasticStoryActivityType::*,
-    CmdFeverTimeActivityType::*, CmdFightActivityType::*, CmdFightMatch3Type::*, CmdFightType::*,
-    CmdFriendType::*, CmdGachaType::*, CmdHeartdialType::*, CmdHeliobusType::*, CmdItemType::*,
-    CmdJukeboxType::*, CmdLineupType::*, CmdLobbyType::*, CmdMailType::*, CmdMapRotationType::*,
-    CmdMatchThreeModuleType::*, CmdMatchType::*, CmdMessageType::*, CmdMiscModuleType::*,
-    CmdMissionType::*, CmdMonopolyType::*, CmdMultiplayerType::*, CmdMultipleDropType::*,
-    CmdMuseumType::*, CmdOfferingType::*, CmdPamMissionType::*, CmdPhoneType::*,
-    CmdPlayerBoardType::*, CmdPlayerReturnType::*, CmdPlayerSyncType::*, CmdPlayerType::*,
-    CmdPunkLordType::*, CmdQuestType::*, CmdRaidCollectionType::*, CmdRaidType::*,
-    CmdRecommendType::*, CmdRedDotType::*, CmdReplayType::*, CmdRndOptionType::*,
-    CmdRogueCommonType::*, CmdRogueEndlessType::*, CmdRogueModifierType::*, CmdRogueTournType::*,
-    CmdRogueType::*, CmdRollShopType::*, CmdSceneType::*, CmdServerPrefsType::*, CmdShopType::*,
-    CmdSpaceZooType::*, CmdStarFightType::*, CmdStoryLineType::*,
-    CmdStrongChallengeActivityType::*, CmdTalkEventType::*, CmdTelevisionActivityType::*,
-    CmdTextJoinType::*, CmdTrainVisitorType::*, CmdTreasureDungeonType::*, CmdTutorialType::*,
-    CmdWaypointType::*, CmdWolfBroType::*,
-};
 
 use super::PlayerSession;
 use super::handlers::*;
@@ -138,27 +115,27 @@ macro_rules! trait_handler {
                 }
             )*
 
-            async fn on_message(session: &mut PlayerSession, cmd_type: u16, payload: Vec<u8>) -> Result<()> {
+            async fn on_message(session: &mut PlayerSession, cmd_id: u16, payload: Vec<u8>) -> Result<()> {
                 use ::prost::Message;
-                if PlayerSession::should_send_dummy_rsp(cmd_type) {
-                    session.send_dummy_response(cmd_type).await?;
+                if PlayerSession::should_send_dummy_rsp(cmd_id) {
+                    session.send_dummy_response(cmd_id).await?;
                     return Ok(());
                 }
 
 
-                match cmd_type {
+                match cmd_id {
                     $(
-                        cmd_type if cmd_type == paste! { [<Cmd$name CsReq>] as u16 }  => {
+                        cmd_id if cmd_id == paste! { <proto::[<$name CsReq>] as proto::CmdID>::CMD_ID } => {
                             let body = paste! { proto::[<$name CsReq>]::decode(&mut &payload[..])? };
                             paste! {
                                 Self::[<on_$name:snake _cs_req>](session, &body)
-                                    .instrument(tracing::info_span!(stringify!([<on_$name:snake>]), cmd_type = cmd_type))
+                                    .instrument(tracing::info_span!(stringify!([<on_$name:snake>]), cmd_id = cmd_id))
                                     .await
                             }
                         }
                     )*
                     _ => {
-                        tracing::warn!("Unknown command type: {cmd_type}");
+                        tracing::warn!("Unknown command ID: {cmd_id}");
                         Ok(())
                     },
                 }
@@ -190,7 +167,7 @@ trait_handler! {
     TakeOffEquipment;
     DressRelicAvatar;
     TakeOffRelic;
-    ActiveEidolon;
+    RankUpAvatar;
 
     // Chat (dummy!)
     SendMsg;

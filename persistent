@@ -1,20 +1,20 @@
 {
   "lineups": {
-    "0": 1507,
+    "0": 1513,
     "1": 1308,
     "2": 1403,
     "3": 1409
   },
   "position": {
-    "x": -26968,
-    "y": 78953,
-    "z": 14457,
-    "rot_y": 11858
+    "x": 674182,
+    "y": 75562,
+    "z": -16482,
+    "rot_y": 204639
   },
   "scene": {
-    "plane_id": 20411,
-    "floor_id": 20411001,
-    "entry_id": 2041101
+    "plane_id": 20511,
+    "floor_id": 20511001,
+    "entry_id": 2051101
   },
   "main_character": "FemaleElation",
   "march_type": "MarchHunt",

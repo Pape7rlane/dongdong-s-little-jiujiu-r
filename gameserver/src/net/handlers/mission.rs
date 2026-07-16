@@ -5,9 +5,9 @@ pub async fn on_get_mission_status_cs_req(
     body: &GetMissionStatusCsReq,
     res: &mut GetMissionStatusScRsp,
 ) {
-    res.finished_main_mission_id_list = body.main_mission_id_list.clone();
+    res.finished_main_mission_id_list = body.sub_mission_id_list.clone();
     res.sub_mission_status_list = body
-        .sub_mission_id_list
+        .main_mission_id_list
         .iter()
         .map(|id| Mission {
             id: *id,

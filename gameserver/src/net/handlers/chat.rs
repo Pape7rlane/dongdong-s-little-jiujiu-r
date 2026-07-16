@@ -105,7 +105,7 @@ pub async fn on_send_msg_cs_req(
         .and_then(|x| x.extend_type.as_ref())
         .and_then(|x| match x {
             ExtendType::MessageText(s) => Some(s.as_str()),
-            _ => None,
+            _ => Option::<&str>::None,
         })
         .unwrap_or("");
 
@@ -325,7 +325,7 @@ fn create_send_message(
 ) -> RevcMsgScNotify {
     RevcMsgScNotify {
         chat_type,
-        dkdlooaaake: to,
+        pffpfkoglpo: to,
         recv_message_data: Some(ChatMessageData {
             create_time: cur_timestamp_ms(),
             ckhpffenobe: Some(Eknabklpeel {

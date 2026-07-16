@@ -135,10 +135,10 @@ pub async fn on_get_big_data_all_recommend_cs_req(
     }
 }
 
-pub async fn on_active_eidolon_cs_req(
+pub async fn on_rank_up_avatar_cs_req(
     session: &mut PlayerSession,
-    req: &ActiveEidolonCsReq,
-    _: &mut ActiveEidolonScRsp,
+    req: &RankUpAvatarCsReq,
+    _: &mut RankUpAvatarScRsp,
 ) -> Option<()> {
     let player = session.json_data.get_mut()?;
     let avatar = player.avatars.get_mut(&req.avatar_id)?;

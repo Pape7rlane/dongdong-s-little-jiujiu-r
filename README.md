@@ -1,4 +1,4 @@
-# Supported Version: 3.3.5x
+# Supported Version: 4.4.5x
 
 Run the game by clicking run.bat file.
 

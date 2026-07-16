@@ -29,30 +29,6 @@ pub use mission::*;
 pub use player::*;
 pub use scene::*;
 
-#[allow(unused_imports)]
-use proto::{
-    CmdActivityType::*, CmdAdventureType::*, CmdAetherDivideType::*, CmdAlleyType::*,
-    CmdArchiveType::*, CmdAvatarType::*, CmdBattleCollegeType::*, CmdBattlePassType::*,
-    CmdBattleType::*, CmdBoxingClubType::*, CmdChallengeType::*, CmdChatType::*,
-    CmdChessRogueType::*, CmdClockParkType::*, CmdContentPackageType::*, CmdDailyActiveType::*,
-    CmdDrinkMakerType::*, CmdExpeditionType::*, CmdFantasticStoryActivityType::*,
-    CmdFeverTimeActivityType::*, CmdFightActivityType::*, CmdFightMatch3Type::*, CmdFightType::*,
-    CmdFriendType::*, CmdGachaType::*, CmdHeartdialType::*, CmdHeliobusType::*, CmdItemType::*,
-    CmdJukeboxType::*, CmdLineupType::*, CmdLobbyType::*, CmdMailType::*, CmdMapRotationType::*,
-    CmdMatchThreeModuleType::*, CmdMatchType::*, CmdMessageType::*, CmdMiscModuleType::*,
-    CmdMissionType::*, CmdMonopolyType::*, CmdMultiplayerType::*, CmdMultipleDropType::*,
-    CmdMuseumType::*, CmdOfferingType::*, CmdPamMissionType::*, CmdPhoneType::*,
-    CmdPlayerBoardType::*, CmdPlayerReturnType::*, CmdPlayerSyncType::*, CmdPlayerType::*,
-    CmdPunkLordType::*, CmdQuestType::*, CmdRaidCollectionType::*, CmdRaidType::*,
-    CmdRechargeGiftType::*, CmdRecommendType::*, CmdRedDotType::*, CmdReplayType::*,
-    CmdRndOptionType::*, CmdRogueCommonType::*, CmdRogueEndlessType::*, CmdRogueModifierType::*,
-    CmdRogueTournType::*, CmdRogueType::*, CmdRollShopType::*, CmdSceneType::*,
-    CmdServerPrefsType::*, CmdShopType::*, CmdSpaceZooType::*, CmdStarFightType::*,
-    CmdStoryLineType::*, CmdStrongChallengeActivityType::*, CmdTalkEventType::*,
-    CmdTelevisionActivityType::*, CmdTextJoinType::*, CmdTrainVisitorType::*,
-    CmdTreasureDungeonType::*, CmdTutorialType::*, CmdWaypointType::*, CmdWolfBroType::*,
-};
-
 macro_rules! dummy {
     ($($cmd:ident),* $(,)*) => {
         paste! {
@@ -60,7 +36,7 @@ macro_rules! dummy {
                 pub const fn should_send_dummy_rsp(cmd_id: u16) -> bool {
                     match cmd_id {
                         $(
-                            x if x == [<Cmd $cmd CsReq>] as u16 => true,
+                            x if x == <proto::[<$cmd CsReq>] as proto::CmdID>::CMD_ID => true,
                         )*
                         _ => false,
                     }
@@ -69,7 +45,9 @@ macro_rules! dummy {
                 pub async fn send_dummy_response(&mut self, req_id: u16) -> Result<()> {
                     let cmd_type = match req_id {
                         $(
-                            x if x == [<Cmd $cmd CsReq>] as u16 => [<Cmd $cmd ScRsp>] as u16,
+                            x if x == <proto::[<$cmd CsReq>] as proto::CmdID>::CMD_ID => {
+                                <proto::[<$cmd ScRsp>] as proto::CmdID>::CMD_ID
+                            },
                         )*
                         _ => return Err(anyhow::anyhow!("Invalid request id {req_id:?}")),
                     };
@@ -140,5 +118,6 @@ dummy! {
     GetPreAvatarActivityList,
     // GetUnreleasedBlockInfo,
     GetFriendAssistList,
-    GetAssistList
+    GetAssistList,
+    B51RacingGetData
 }
