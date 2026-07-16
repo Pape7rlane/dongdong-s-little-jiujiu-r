@@ -45,7 +45,7 @@ use proto::{
     CmdPlayerBoardType::*, CmdPlayerReturnType::*, CmdPlayerSyncType::*, CmdPlayerType::*,
     CmdPunkLordType::*, CmdQuestType::*, CmdRaidCollectionType::*, CmdRaidType::*,
     CmdRechargeGiftType::*, CmdRecommendType::*, CmdRedDotType::*, CmdReplayType::*,
-    CmdRndOptionType::*, CmdRogueCommon::*, CmdRogueEndlessType::*, CmdRogueModifierType::*,
+    CmdRndOptionType::*, CmdRogueCommonType::*, CmdRogueEndlessType::*, CmdRogueModifierType::*,
     CmdRogueTournType::*, CmdRogueType::*, CmdRollShopType::*, CmdSceneType::*,
     CmdServerPrefsType::*, CmdShopType::*, CmdSpaceZooType::*, CmdStarFightType::*,
     CmdStoryLineType::*, CmdStrongChallengeActivityType::*, CmdTalkEventType::*,
@@ -138,7 +138,7 @@ dummy! {
     // RelicRecommend
     GetPreAvatarGrowthInfo,
     GetPreAvatarActivityList,
-    GetUnreleasedBlockInfo,
+    // GetUnreleasedBlockInfo,
     GetFriendAssistList,
     GetAssistList
 }

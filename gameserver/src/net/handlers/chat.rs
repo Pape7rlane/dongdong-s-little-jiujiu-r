@@ -29,8 +29,8 @@ pub async fn on_get_friend_login_info_cs_req(
     _req: &GetFriendLoginInfoCsReq,
     res: &mut GetFriendLoginInfoScRsp,
 ) {
-    res.kcgceppmokm = vec![SERVER_UID];
-    res.omfombgfhpa = vec![SERVER_UID];
+    res.black_uid_list = vec![SERVER_UID];
+    res.friend_uid_list = vec![SERVER_UID];
 }
 
 pub async fn on_get_friend_list_info_cs_req(

@@ -396,11 +396,12 @@ async fn load_scene(
 
         scene_info.entity_group_list.push(group_info);
 
-        scene_info.group_state_list.push(SceneGroupState {
-            group_id: *group_id,
-            is_default: true,
-            state: 0,
-        });
+        // TODO: ?
+        // scene_info.group_state_list.push(SceneGroupState {
+        //     group_id: *group_id,
+        //     is_default: true,
+        //     state: 0,
+        // });
     }
 
     // load player entity
