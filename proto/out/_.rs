@@ -6285,10 +6285,10 @@ pub struct FinishTalkMissionScRsp {
 pub struct GetMissionStatusCsReq {
     /// offset: 16
     #[prost(uint32, repeated, tag = "8")]
-    pub sub_mission_id_list: ::prost::alloc::vec::Vec<u32>,
+    pub main_mission_id_list: ::prost::alloc::vec::Vec<u32>,
     /// offset: 32
     #[prost(uint32, repeated, tag = "14")]
-    pub main_mission_id_list: ::prost::alloc::vec::Vec<u32>,
+    pub sub_mission_id_list: ::prost::alloc::vec::Vec<u32>,
 }
 /// Obf: GetMissionStatusScRsp
 /// Type: Rsp

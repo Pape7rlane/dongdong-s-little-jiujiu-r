@@ -4609,8 +4609,8 @@ message FinishTalkMissionScRsp {
 // Type: Notify
 // CmdID: 1221
 message GetMissionStatusCsReq {
-	repeated uint32 sub_mission_id_list = 8; // offset: 16
-	repeated uint32 main_mission_id_list = 14; // offset: 32
+	repeated uint32 main_mission_id_list = 8; // offset: 16
+	repeated uint32 sub_mission_id_list = 14; // offset: 32
 }
 
 // Obf: GetMissionStatusScRsp
