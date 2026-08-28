@@ -17,10 +17,7 @@ const res_config = &ConfigManager.global_game_config_cache.res_config;
 
 pub fn onGetCurSceneInfo(session: *Session, _: *const Packet, allocator: Allocator) !void {
     var scene_manager = SceneManager.SceneManager.init(allocator);
-    //ENTER SCENE ENTRY ID: 1000001, PLANE ID: 10000, FLOOR ID: 10000000, TELEPORT ID: 2215
     const scene_info = try scene_manager.createScene(20503, 20503001, 2050301, 1029);
-
-    //const scene_info = try scene_manager.createScene(10000, 10000000, 1000001, 2215);
 
     try session.send(CmdID.CmdGetCurSceneInfoScRsp, protocol.GetCurSceneInfoScRsp{
         .scene = scene_info,

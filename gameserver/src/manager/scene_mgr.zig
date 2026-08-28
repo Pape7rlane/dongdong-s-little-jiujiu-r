@@ -127,16 +127,16 @@ pub const SceneManager = struct {
         scene_info.entry_id = entry_id;
         scene_info.scene_identifier = .{ .floor_id = floor_id };
 
-        //for (saved_values_config.floor_saved_values.items) |saved| {
-        //    if (saved.floor_id == floor_id) {
-        //        for (saved.saved_values.items) |values| {
-        //            try scene_info.floor_saved_data.append(.{
-        //                .key = .{ .Const = values.name orelse "" },
-        //               .value = values.max_value orelse 0,
-        //            });
-        //        }
-        //    }
-        //}
+        for (saved_values_config.floor_saved_values.items) |saved| {
+            if (saved.floor_id == floor_id and plane_id != 10000) {
+                for (saved.saved_values.items) |values| {
+                    try scene_info.floor_saved_data.append(.{
+                        .key = .{ .Const = values.name orelse "" },
+                        .value = values.max_value orelse 0,
+                    });
+                }
+            }
+        }
 
         scene_info.leader_entity_id = config.avatar_config.items[0].id + 100000;
         scene_info.world_id = 501;
@@ -152,7 +152,7 @@ pub const SceneManager = struct {
                 try scene_info.entity_group_list.append(scene_group);
                 break;
             }
-            if (sceneConf.planeID == plane_id and sceneConf.entryID == entry_id) {
+            if (sceneConf.planeID == plane_id and sceneConf.entryID == entry_id and plane_id != 10000) {
                 try addPropEntities(self.allocator, &group_map, sceneConf.props.items, &generator);
                 try addMonsterEntities(self.allocator, &group_map, sceneConf.monsters.items, &generator);
             }
