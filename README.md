@@ -33,13 +33,14 @@ Get 4.5.5X client: [Gofile](https://gofile.io/d/vtV5JfkO)
 ## Functionality (work in progress)
 - Login and player spawn
 - Test battle via calyx
-- PF/AS simulator with custom stage sellection
+- MoC/PF/AS simulator with custom stage sellection
+- Anomaly Arbitration (Challenge Peak)
+- Starward Mode (Challenge Tierce)
 - Gacha simulator 
 - Support command for Sillyism
 
 ## Current issues and WIP
-- Currently all train realated contents (Starward Mode/Challenge Tierce and Anomaly Arbitration/Challenge Peak) are unavailable, you can use calyx for those stages, this issue will be fix in a few updates.
-- All new end game stages haven't got added, will add more in next update.
+- Currently all train realated contents (Starward Mode/Challenge Tierce and Anomaly Arbitration/Challenge Peak) are partly solved, you can only choose one mode at once and can not teleport within two scene of the train. You can enter the other mode on train after restarting pc :Đ
 - Chat history missing, you can check gameserver log for chat/command respond 
 
 ## Contributing
