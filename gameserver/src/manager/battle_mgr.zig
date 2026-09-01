@@ -13,6 +13,7 @@ const CmdID = protocol.CmdID;
 
 const skill_config = &ConfigManager.global_game_config_cache.avatar_skill_config;
 const config = &ConfigManager.global_game_config_cache.game_config;
+const stage_invasion_config = &ConfigManager.global_game_config_cache.stage_invasion_config;
 
 pub var selectedAvatarID = [_]u32{ 1304, 1313, 1406, 1004 };
 
@@ -348,6 +349,28 @@ fn addTriggerAttack(allocator: Allocator, battle: *protocol.SceneBattleInfo) !vo
     targetIndexList.deinit();
 }
 
+fn addStageInvasion(allocator: Allocator, battle: *protocol.SceneBattleInfo) !void {
+    var targetIndexList = ArrayList(u32).init(allocator);
+    errdefer targetIndexList.deinit();
+    try targetIndexList.append(0);
+    var id: u32 = 0;
+    for (stage_invasion_config.stage_invasion_config.items) |stage| {
+        if (Logic.Challenge().GetChallengeStageID() == stage.stage_id) id = stage.invasion_id;
+    }
+    if (id == 0) return;
+    var attack = protocol.BattleBuff{
+        .id = 3034000 + id,
+        .level = 1,
+        .owner_index = Lineup.leader_slot,
+        .wave_flag = 0xFFFFFFFF,
+        .target_index_list = try targetIndexList.clone(),
+        .dynamic_values = ArrayList(protocol.BattleBuff.DynamicValuesEntry).init(allocator),
+    };
+    try attack.dynamic_values.append(.{ .key = .{ .Const = "SkillIndex" }, .value = 1 });
+    try battle.buff_list.append(attack);
+    targetIndexList.deinit();
+}
+
 fn createBattleInfo(allocator: Allocator, game_config: *const Config.GameConfig, stage_monster_wave_len: u32, stage_id: u32, rounds_limit: u32) protocol.SceneBattleInfo {
     var battle = protocol.SceneBattleInfo.init(allocator);
     battle.battle_id = game_config.battle_config.battle_id;
@@ -449,6 +472,7 @@ fn commonBattleSetup(
     try addTriggerAttack(allocator, battle);
     try addStageBlessings(allocator, battle, stage_blessings);
     try addGlobalPassive(allocator, battle);
+    try addStageInvasion(allocator, battle);
     try addBattleTargets(allocator, battle);
 }
 pub const BattleManager = struct {

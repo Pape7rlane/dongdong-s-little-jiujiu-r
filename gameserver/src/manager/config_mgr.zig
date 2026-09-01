@@ -27,6 +27,7 @@ pub const GameConfigCache = struct {
     map_entrance_config: MiscConfig.MapEntranceConfig,
     maze_config: MiscConfig.MazePlaneConfig,
     stage_config: StageConfig.StageConfig,
+    stage_invasion_config: StageConfig.StageInvasionConfig,
     anchor_config: ResConfig.SceneAnchorConfig,
     quest_config: MiscConfig.QuestConfig,
     challenge_maze_config: ChallengeConfig.ChallengeMazeConfig,
@@ -65,6 +66,9 @@ pub const GameConfigCache = struct {
 
         var stage_cfg = try loadConfig(StageConfig.StageConfig, StageConfig.parseStageConfig, allocator, "resources/StageConfig.json");
         errdefer stage_cfg.deinit();
+
+        var stage_invasion_cfg = try loadConfig(StageConfig.StageInvasionConfig, StageConfig.parseStageInvasionConfig, allocator, "resources/StageInvasionConfig.json");
+        errdefer stage_invasion_cfg.deinit();
 
         var anchor_cfg = try loadConfig(ResConfig.SceneAnchorConfig, ResConfig.parseAnchorConfig, allocator, "resources/Anchor.json");
         errdefer anchor_cfg.deinit();
@@ -114,6 +118,7 @@ pub const GameConfigCache = struct {
             .map_entrance_config = map_entr_cfg,
             .maze_config = maze_cfg,
             .stage_config = stage_cfg,
+            .stage_invasion_config = stage_invasion_cfg,
             .anchor_config = anchor_cfg,
             .quest_config = quest_cfg,
             .challenge_maze_config = challenge_maze_cfg,
@@ -138,6 +143,7 @@ pub const GameConfigCache = struct {
         self.map_entrance_config.deinit();
         self.maze_config.deinit();
         self.stage_config.deinit();
+        self.stage_invasion_config.deinit();
         self.anchor_config.deinit();
         self.quest_config.deinit();
         self.challenge_maze_config.deinit();

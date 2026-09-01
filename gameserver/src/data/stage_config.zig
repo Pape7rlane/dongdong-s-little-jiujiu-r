@@ -8,6 +8,11 @@ pub const Stage = struct {
     monster_list: ArrayList(ArrayList(u32)),
 };
 
+pub const StageInvasion = struct {
+    stage_id: u32,
+    invasion_id: u32,
+};
+
 pub const StageConfig = struct {
     stage_config: ArrayList(Stage),
 
@@ -19,6 +24,13 @@ pub const StageConfig = struct {
             stage.monster_list.deinit();
         }
         self.stage_config.deinit();
+    }
+};
+
+pub const StageInvasionConfig = struct {
+    stage_invasion_config: ArrayList(StageInvasion),
+    pub fn deinit(self: *StageInvasionConfig) void {
+        self.stage_invasion_config.deinit();
     }
 };
 
@@ -44,5 +56,20 @@ pub fn parseStageConfig(root: std.json.Value, allocator: Allocator) anyerror!Sta
 
     return StageConfig{
         .stage_config = stage_config,
+    };
+}
+
+pub fn parseStageInvasionConfig(root: std.json.Value, allocator: Allocator) anyerror!StageInvasionConfig {
+    var stage_invasion_config = ArrayList(StageInvasion).init(allocator);
+    for (root.object.get("stage_invasion_config").?.array.items) |invasion_json| {
+        const invasion = StageInvasion{
+            .invasion_id = @intCast(invasion_json.object.get("InvasionID").?.integer),
+            .stage_id = @intCast(invasion_json.object.get("StageID").?.integer),
+        };
+        try stage_invasion_config.append(invasion);
+    }
+
+    return StageInvasionConfig{
+        .stage_invasion_config = stage_invasion_config,
     };
 }

@@ -75948,17 +75948,17 @@ pub const GetVoracityInvasionDataCsReq = struct {
 
 pub const GetVoracityInvasionDataScRsp = struct {
     retcode: u32 = 0,
-    LLBNGIGLEMN: ArrayList(EBGAMBKHDBO),
+    farm_invasion_data_list: ArrayList(VoracityInvasionFarmData),
 
     pub const _desc_table = .{
         .retcode = fd(4, .{ .Varint = .Simple }),
-        .LLBNGIGLEMN = fd(14, .{ .List = .{ .SubMessage = {} } }),
+        .farm_invasion_data_list = fd(14, .{ .List = .{ .SubMessage = {} } }),
     };
 
     pub usingnamespace protobuf.MessageMixins(@This());
 };
 
-pub const EBGAMBKHDBO = struct {
+pub const VoracityInvasionFarmData = struct {
     type: u32 = 0,
     AELHFLGJMJN: ?AELHFLGJMJN_union,
 
@@ -75967,7 +75967,7 @@ pub const EBGAMBKHDBO = struct {
         is_get_all,
     };
     pub const AELHFLGJMJN_union = union(_AELHFLGJMJN_case) {
-        id_list: EBGAMBKHDBO.BEGIDCPIPBG.MDNMHBPMJFD,
+        id_list: VoracityInvasionFarmData.BEGIDCPIPBG.MDNMHBPMJFD,
         is_get_all: bool,
         pub const _union_desc = .{
             .id_list = fd(155, .{ .SubMessage = {} }),
@@ -76002,12 +76002,12 @@ pub const EBGAMBKHDBO = struct {
 pub const VoracityInvasionChangeScNotify = struct {
     type: u32 = 0,
     id: u32 = 0,
-    GHAMIKJEAFO: bool = false,
+    is_add: bool = false,
 
     pub const _desc_table = .{
         .type = fd(3, .{ .Varint = .Simple }),
         .id = fd(5, .{ .Varint = .Simple }),
-        .GHAMIKJEAFO = fd(9, .{ .Varint = .Simple }),
+        .is_add = fd(9, .{ .Varint = .Simple }),
     };
 
     pub usingnamespace protobuf.MessageMixins(@This());
