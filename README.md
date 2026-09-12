@@ -6,6 +6,12 @@
 ## Requirements
 - [Zig 0.14.1 x64](https://ziglang.org/download/0.14.1/zig-x86_64-windows-0.14.1.zip)
 
+## Configuration and SRTools
+
+`freesr-data.json` is the only game and battle configuration source. The legacy `config.json` file is not used.
+
+To sync with [SRTools](https://srtools.neonteam.dev/): start both dispatch and gameserver, choose the `RobinSR` provider, and set the server URL to `http://localhost:21000`. SRTools uploads to `POST /srtools`; the dispatch server saves `freesr-data.json` and reloads the gameserver. Use `GET /srtools-export` to download the active configuration.
+
 ## Running
 
 ### From source

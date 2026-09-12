@@ -1,4 +1,6 @@
 const std = @import("std");
+
+pub var config_lock: std.Thread.Mutex = .{};
 const protocol = @import("protocol");
 const Session = @import("../session.zig");
 const Packet = @import("../Packet.zig");
@@ -11,6 +13,7 @@ pub const ChallengeConfig = @import("../data/challenge_config.zig");
 pub const MiscConfig = @import("../data/misc_config.zig");
 pub const ResConfig = @import("../data/res_config.zig");
 pub const AvatarConfig = @import("../data/avatar_config.zig");
+const FreesrConfig = @import("../data/freesr_config.zig");
 
 const ArrayList = std.ArrayList;
 const Allocator = std.mem.Allocator;
@@ -43,7 +46,7 @@ pub const GameConfigCache = struct {
     buff_info_config: MiscConfig.TextMapConfig,
 
     pub fn init(allocator: Allocator) !GameConfigCache {
-        var game_cfg = try loadConfig(GameConfig.GameConfig, GameConfig.parseConfig, allocator, "config.json");
+        var game_cfg = try loadGameConfig(allocator);
         errdefer game_cfg.deinit();
 
         var res_cfg = try loadConfig(ResConfig.SceneConfig, ResConfig.parseAnchor, allocator, "resources/res.json");
@@ -191,8 +194,12 @@ pub fn deinitGameGlobals() void {
 
 pub fn UpdateGameConfig() !void {
     global_game_config_cache.game_config.deinit();
-    global_game_config_cache.game_config = try loadConfig(GameConfig.GameConfig, GameConfig.parseConfig, global_main_allocator, "config.json");
+    global_game_config_cache.game_config = try loadGameConfig(global_main_allocator);
 }
+pub fn loadGameConfig(allocator: Allocator) !GameConfig.GameConfig {
+    return loadConfig(GameConfig.GameConfig, FreesrConfig.parseConfig, allocator, FreesrConfig.FILENAME);
+}
+
 pub fn loadConfig(
     comptime ConfigType: type,
     comptime parseFn: fn (std.json.Value, Allocator) anyerror!ConfigType,

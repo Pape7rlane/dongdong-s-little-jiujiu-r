@@ -14,6 +14,13 @@ pub fn build(b: *std.Build) void {
     });
 
     exe.root_module.addImport("protocol", protocol.module("protocol"));
+
+    const httpz_dep = b.dependency("httpz", .{
+        .target = target,
+        .optimize = optimize,
+    });
+    exe.root_module.addImport("httpz", httpz_dep.module("httpz"));
+    exe.linkLibC();
     b.installArtifact(exe);
 
     const run_cmd = b.addRunArtifact(exe);
