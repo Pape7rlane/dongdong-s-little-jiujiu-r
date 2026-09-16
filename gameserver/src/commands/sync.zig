@@ -1,64 +1,56 @@
-const commandhandler = @import("../command.zig");
 const std = @import("std");
-const Session = @import("../Session.zig");
 const protocol = @import("protocol");
-const Packet = @import("../Packet.zig");
-const Data = @import("../data.zig");
-const Uid = @import("../utils/uid.zig");
+const Session = @import("../Session.zig");
 const AvatarManager = @import("../manager/avatar_mgr.zig");
 const ConfigManager = @import("../manager/config_mgr.zig");
+const commandhandler = @import("../command.zig");
 
-const ArrayList = std.ArrayList;
-const Allocator = std.mem.Allocator;
-const CmdID = protocol.CmdID;
-
-pub fn syncItems(session: *Session, allocator: Allocator, equip_avatar: bool) !void {
-    Uid.resetGlobalUidGens();
-    var sync = protocol.PlayerSyncScNotify.init(allocator);
+/// Called on the session thread with config_lock held. Use the same inventory
+/// IDs as login; remove deleted items instead of generating a second inventory.
+pub fn syncCurrent(session: *Session, allocator: std.mem.Allocator) !void {
     const config = &ConfigManager.global_game_config_cache.game_config;
-    for (config.avatar_config.items) |avatarConf| {
-        const dress_avatar_id: u32 = if (equip_avatar) avatarConf.id else 0;
-        const lc = try AvatarManager.createEquipment(avatarConf.lightcone, dress_avatar_id);
-        try sync.equipment_list.append(lc);
-        for (avatarConf.relics.items) |input| {
-            const r = try AvatarManager.createRelic(allocator, input, dress_avatar_id);
-            try sync.relic_list.append(r);
+    var sync = protocol.PlayerSyncScNotify.init(allocator);
+    defer sync.deinit();
+
+    for (session.known_equipment.items) |id| {
+        var found = false;
+        for (config.lightcones.items) |item| {
+            if (item.unique_id == id) {
+                found = true;
+                break;
+            }
         }
+        if (!found) try sync.del_equipment_list.append(id);
     }
-    if (!equip_avatar) {
-        try ConfigManager.UpdateGameConfig();
-        Uid.updateInitialUid();
+    for (session.known_relics.items) |id| {
+        var found = false;
+        for (config.relics.items) |item| {
+            if (item.unique_id == id) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) try sync.del_relic_list.append(id);
     }
-    try session.send(CmdID.CmdPlayerSyncScNotify, sync);
-}
-pub fn onSyncAvatar(session: *Session, _: []const u8, allocator: Allocator) !void {
-    Uid.resetGlobalUidGens();
-    var sync = protocol.PlayerSyncScNotify.init(allocator);
-    const config = &ConfigManager.global_game_config_cache.game_config;
-    var char = protocol.AvatarSync.init(allocator);
-    for (Data.AllAvatars) |id| {
-        const avatar = try AvatarManager.createAllAvatar(allocator, id);
-        try char.avatar_list.append(avatar);
+    for (config.lightcones.items) |lc| {
+        try sync.equipment_list.append(try AvatarManager.createEquipment(lc, lc.equip_avatar));
     }
-    for (Data.AllAvatars) |id| {
-        const avatar = try AvatarManager.createAllAvatarPathData(allocator, id);
-        try char.avatar_path_data_info_list.append(avatar);
+    for (config.relics.items) |relic| {
+        try sync.relic_list.append(try AvatarManager.createRelic(allocator, relic, relic.equip_avatar));
     }
-    for (config.avatar_config.items) |avatarConf| {
-        const avatar = try AvatarManager.createAvatar(allocator, avatarConf);
-        try char.avatar_list.append(avatar);
-    }
-    for (config.avatar_config.items) |avatarConf| {
-        const avatar = try AvatarManager.createAvatarPathData(allocator, avatarConf);
-        try char.avatar_path_data_info_list.append(avatar);
-    }
-    sync.avatar_sync = char;
-    try session.send(CmdID.CmdPlayerSyncScNotify, sync);
+    sync.avatar_sync = protocol.AvatarSync.init(allocator);
+    try AvatarManager.appendAvatarData(allocator, &sync.avatar_sync.?.avatar_list, &sync.avatar_sync.?.avatar_path_data_info_list);
+    try session.send(protocol.CmdID.CmdPlayerSyncScNotify, sync);
+    try session.rememberInventory();
+    session.config_generation = ConfigManager.config_generation;
 }
 
-pub fn onGenerateAndSync(session: *Session, placeholder: []const u8, allocator: Allocator) !void {
-    try commandhandler.sendMessage(session, "Sync items with config\n", allocator);
-    try syncItems(session, allocator, false);
-    try syncItems(session, allocator, true);
-    try onSyncAvatar(session, placeholder, allocator);
+pub fn onGenerateAndSync(session: *Session, _: []const u8, allocator: std.mem.Allocator) !void {
+    ConfigManager.UpdateGameConfig() catch |err| {
+        std.log.err("config reload failed: {}", .{err});
+        try commandhandler.sendMessage(session, "Sync failed; the previous configuration is still active.", allocator);
+        return;
+    };
+    try syncCurrent(session, allocator);
+    try commandhandler.sendMessage(session, "Configuration synced.", allocator);
 }

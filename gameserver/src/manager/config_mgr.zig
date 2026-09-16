@@ -1,8 +1,9 @@
 const std = @import("std");
 
 pub var config_lock: std.Thread.Mutex = .{};
+pub var config_generation: u64 = 1;
 const protocol = @import("protocol");
-const Session = @import("../session.zig");
+const Session = @import("../Session.zig");
 const Packet = @import("../Packet.zig");
 
 const AvatarManager = @import("../manager/avatar_mgr.zig");
@@ -23,6 +24,7 @@ const Data = @import("../data.zig");
 pub const GameConfigCache = struct {
     allocator: Allocator,
     game_config: GameConfig.GameConfig,
+    game_config_json: []u8,
     res_config: ResConfig.SceneConfig,
     saved_values_config: ResConfig.FloorSavedValuesConfig,
     avatar_skill_config: AvatarConfig.AvatarSkillTreeConfig,
@@ -46,7 +48,9 @@ pub const GameConfigCache = struct {
     buff_info_config: MiscConfig.TextMapConfig,
 
     pub fn init(allocator: Allocator) !GameConfigCache {
-        var game_cfg = try loadGameConfig(allocator);
+        const game_json = try readGameConfig(allocator);
+        errdefer allocator.free(game_json);
+        var game_cfg = try parseGameConfig(game_json, allocator);
         errdefer game_cfg.deinit();
 
         var res_cfg = try loadConfig(ResConfig.SceneConfig, ResConfig.parseAnchor, allocator, "resources/res.json");
@@ -114,6 +118,7 @@ pub const GameConfigCache = struct {
         return .{
             .allocator = allocator,
             .game_config = game_cfg,
+            .game_config_json = game_json,
             .res_config = res_cfg,
             .saved_values_config = saved_values_cfg,
             .avatar_skill_config = avatar_skill_cfg,
@@ -139,6 +144,7 @@ pub const GameConfigCache = struct {
     }
     pub fn deinit(self: *GameConfigCache) void {
         self.game_config.deinit();
+        self.allocator.free(self.game_config_json);
         self.res_config.deinit();
         self.saved_values_config.deinit();
         self.avatar_skill_config.deinit();
@@ -192,12 +198,45 @@ pub fn deinitGameGlobals() void {
     global_game_config_cache.deinit();
 }
 
+/// Caller holds config_lock. Parse before replacing the active configuration.
 pub fn UpdateGameConfig() !void {
-    global_game_config_cache.game_config.deinit();
-    global_game_config_cache.game_config = try loadGameConfig(global_main_allocator);
+    const json = try readGameConfig(global_main_allocator);
+    errdefer global_main_allocator.free(json);
+    const config = try parseGameConfig(json, global_main_allocator);
+    replaceGameConfig(config, json);
 }
-pub fn loadGameConfig(allocator: Allocator) !GameConfig.GameConfig {
-    return loadConfig(GameConfig.GameConfig, FreesrConfig.parseConfig, allocator, FreesrConfig.FILENAME);
+
+/// The game server validates and saves the uploaded body in its own working
+/// directory. Dispatch and gameserver no longer have to share a working directory.
+pub fn applyGameConfig(body: []const u8) !void {
+    const json = try global_main_allocator.dupe(u8, body);
+    errdefer global_main_allocator.free(json);
+    var config = try parseGameConfig(json, global_main_allocator);
+    errdefer config.deinit();
+
+    var file = try std.fs.cwd().atomicFile(FreesrConfig.FILENAME, .{});
+    defer file.deinit();
+    try file.file.writeAll(json);
+    try file.finish();
+    replaceGameConfig(config, json);
+}
+
+fn replaceGameConfig(config: GameConfig.GameConfig, json: []u8) void {
+    global_game_config_cache.game_config.deinit();
+    global_main_allocator.free(global_game_config_cache.game_config_json);
+    global_game_config_cache.game_config = config;
+    global_game_config_cache.game_config_json = json;
+    config_generation +%= 1;
+}
+
+fn readGameConfig(allocator: Allocator) ![]u8 {
+    return std.fs.cwd().readFileAlloc(allocator, FreesrConfig.FILENAME, 16 * 1024 * 1024);
+}
+
+fn parseGameConfig(json: []const u8, allocator: Allocator) !GameConfig.GameConfig {
+    const tree = try std.json.parseFromSlice(std.json.Value, allocator, json, .{});
+    defer tree.deinit();
+    return FreesrConfig.parseConfig(tree.value, allocator);
 }
 
 pub fn loadConfig(

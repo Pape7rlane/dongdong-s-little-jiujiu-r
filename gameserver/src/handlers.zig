@@ -1,6 +1,8 @@
 const std = @import("std");
 const protocol = @import("protocol");
 const Session = @import("Session.zig");
+const ConfigManager = @import("manager/config_mgr.zig");
+const Sync = @import("commands/sync.zig");
 const Packet = @import("Packet.zig");
 const avatar = @import("services/avatar.zig");
 const chat = @import("services/chat.zig");
@@ -253,14 +255,23 @@ const DummyCmdList = [_]struct { CmdID, CmdID }{
 const SuppressLogList = [_]CmdID{CmdID.CmdSceneEntityMoveCsReq};
 
 pub fn handle(session: *Session, packet: *const Packet) !void {
+    // HTTP reload and all game handlers share one lock. A reload cannot free
+    // config lists while a handler is reading them.
+    ConfigManager.config_lock.lock();
+    defer ConfigManager.config_lock.unlock();
+
     var arena = ArenaAllocator.init(session.allocator);
     defer arena.deinit();
 
     const cmd_id: CmdID = @enumFromInt(packet.cmd_id);
+    if (session.ready_for_sync and session.config_generation != ConfigManager.config_generation) {
+        try Sync.syncCurrent(session, arena.allocator());
+    }
 
     inline for (HandlerList) |handler| {
         if (handler[0] == cmd_id) {
             try handler[1](session, packet, arena.allocator());
+            if (cmd_id == CmdID.CmdPlayerLoginFinishCsReq) session.ready_for_sync = true;
             if (!std.mem.containsAtLeast(CmdID, &SuppressLogList, 1, &[_]CmdID{cmd_id})) {
                 log.debug("packet {} was handled", .{cmd_id});
             }

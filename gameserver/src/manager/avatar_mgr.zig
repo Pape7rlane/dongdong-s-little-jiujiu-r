@@ -5,7 +5,6 @@ const Session = @import("../Session.zig");
 const Data = @import("../data.zig");
 const Logic = @import("../utils/logic.zig");
 const ConfigManager = @import("../manager/config_mgr.zig");
-const Uid = @import("../utils/uid.zig");
 
 const ArrayList = std.ArrayList;
 const Allocator = std.mem.Allocator;
@@ -67,12 +66,12 @@ pub fn createAvatarPathData(
     if (Logic.inlist(avatar.avatar_id, &Data.EnhanceAvatarID)) {
         avatar.unk_enhanced_id = 1;
     }
-    avatar.path_equipment_id = Uid.nextGlobalId();
+    avatar.path_equipment_id = avatarConf.lightcone.unique_id;
     avatar.equip_relic_list = ArrayList(protocol.EquipRelic).init(allocator);
-    for (0..6) |i| {
+    for (avatarConf.relics.items) |relic| {
         try avatar.equip_relic_list.append(.{
-            .relic_unique_id = Uid.nextGlobalId(),
-            .type = @intCast(i),
+            .relic_unique_id = relic.unique_id,
+            .type = relic.id % 10,
         });
     }
     try createSkillTree(avatar.avatar_id, &avatar.avatar_path_skill_tree);
@@ -97,14 +96,19 @@ fn createSkillTree(
     skilltree_list: *std.ArrayList(protocol.AvatarPathSkillTree),
 ) !void {
     for (skill_config.avatar_skill_tree_config.items) |skill| {
-        if (skill.avatar_id == base_avatar_id) {
-            if (skill.level == skill.max_level) {
-                try skilltree_list.append(.{
-                    .point_id = skill.anchor_type,
-                    .level = skill.max_level,
-                });
+        if (skill.avatar_id != base_avatar_id or skill.level != skill.max_level) continue;
+        var level = skill.max_level;
+        for (config.avatar_config.items) |avatar| {
+            if (avatar.id == base_avatar_id) {
+                level = avatar.skillLevel(skill.point_id, skill.anchor_type, skill.max_level);
+                break;
             }
         }
+        // Include level zero so a previously unlocked node can be cleared.
+        try skilltree_list.append(.{
+            .point_id = skill.anchor_type,
+            .level = level,
+        });
     }
 }
 
@@ -113,7 +117,7 @@ pub fn createEquipment(
     dress_avatar_id: u32,
 ) !protocol.Equipment {
     return protocol.Equipment{
-        .unique_id = Uid.nextGlobalId(),
+        .unique_id = lightconeConf.unique_id,
         .tid = lightconeConf.id,
         .is_protected = true,
         .level = lightconeConf.level,
@@ -131,7 +135,7 @@ pub fn createRelic(
     var r = protocol.Relic{
         .tid = relicConf.id,
         .main_affix_id = relicConf.main_affix_id,
-        .unique_id = Uid.nextGlobalId(),
+        .unique_id = relicConf.unique_id,
         .exp = 0,
         .dress_avatar_id = dress_avatar_id,
         .is_protected = true,
@@ -140,10 +144,10 @@ pub fn createRelic(
         .reforge_sub_affix_list = ArrayList(protocol.RelicAffix).init(allocator),
         .preview_sub_affix_list = ArrayList(protocol.RelicAffix).init(allocator),
     };
-    try r.sub_affix_list.append(protocol.RelicAffix{ .affix_id = relicConf.stat1, .cnt = relicConf.cnt1, .step = relicConf.step1 });
-    try r.sub_affix_list.append(protocol.RelicAffix{ .affix_id = relicConf.stat2, .cnt = relicConf.cnt2, .step = relicConf.step2 });
-    try r.sub_affix_list.append(protocol.RelicAffix{ .affix_id = relicConf.stat3, .cnt = relicConf.cnt3, .step = relicConf.step3 });
-    try r.sub_affix_list.append(protocol.RelicAffix{ .affix_id = relicConf.stat4, .cnt = relicConf.cnt4, .step = relicConf.step4 });
+    if (relicConf.stat1 != 0) try r.sub_affix_list.append(protocol.RelicAffix{ .affix_id = relicConf.stat1, .cnt = relicConf.cnt1, .step = relicConf.step1 });
+    if (relicConf.stat2 != 0) try r.sub_affix_list.append(protocol.RelicAffix{ .affix_id = relicConf.stat2, .cnt = relicConf.cnt2, .step = relicConf.step2 });
+    if (relicConf.stat3 != 0) try r.sub_affix_list.append(protocol.RelicAffix{ .affix_id = relicConf.stat3, .cnt = relicConf.cnt3, .step = relicConf.step3 });
+    if (relicConf.stat4 != 0) try r.sub_affix_list.append(protocol.RelicAffix{ .affix_id = relicConf.stat4, .cnt = relicConf.cnt4, .step = relicConf.step4 });
     return r;
 }
 pub fn getSkinId(avatar_id: u32) u32 {
@@ -160,27 +164,55 @@ pub fn updateSkinId(avatar_id: u32, new_skin_id: u32) void {
         }
     }
 }
+/// Build each base avatar and path once, so default E6/level-80 entries cannot
+/// compete with the uploaded values in the same response.
+pub fn appendAvatarData(
+    allocator: Allocator,
+    avatars: *ArrayList(protocol.Avatar),
+    paths: *ArrayList(protocol.AvatarPathData),
+) !void {
+    for (config.avatar_config.items) |avatarConf| {
+        const avatar = try createAvatar(allocator, avatarConf);
+        var exists = false;
+        for (avatars.items) |*previous| {
+            if (previous.base_avatar_id == avatar.base_avatar_id) {
+                exists = true;
+                if (avatarConf.id == avatar.cur_multi_path_avatar_type) {
+                    previous.deinit();
+                    previous.* = avatar;
+                } else {
+                    avatar.deinit();
+                }
+                break;
+            }
+        }
+        if (!exists) try avatars.append(avatar);
+        try paths.append(try createAvatarPathData(allocator, avatarConf));
+    }
+    for (Data.AllAvatars) |id| {
+        var base_exists = false;
+        for (avatars.items) |avatar| {
+            if (avatar.base_avatar_id == id) {
+                base_exists = true;
+                break;
+            }
+        }
+        if (!base_exists) try avatars.append(try createAllAvatar(allocator, id));
+        var path_exists = false;
+        for (paths.items) |path| {
+            if (path.avatar_id == id) {
+                path_exists = true;
+                break;
+            }
+        }
+        if (!path_exists) try paths.append(try createAllAvatarPathData(allocator, id));
+    }
+}
+
 pub fn syncAvatarData(session: *Session, allocator: Allocator) !void {
     var sync = protocol.PlayerSyncScNotify.init(allocator);
     defer sync.deinit();
-    Uid.resetGlobalUidGens();
-    var char = protocol.AvatarSync.init(allocator);
-    for (Data.AllAvatars) |id| {
-        const avatar = try createAllAvatar(allocator, id);
-        try char.avatar_list.append(avatar);
-    }
-    for (Data.AllAvatars) |id| {
-        const avatar = try createAllAvatarPathData(allocator, id);
-        try char.avatar_path_data_info_list.append(avatar);
-    }
-    for (config.avatar_config.items) |avatarConf| {
-        const avatar = try createAvatar(allocator, avatarConf);
-        try char.avatar_list.append(avatar);
-    }
-    for (config.avatar_config.items) |avatarConf| {
-        const avatar = try createAvatarPathData(allocator, avatarConf);
-        try char.avatar_path_data_info_list.append(avatar);
-    }
-    sync.avatar_sync = char;
+    sync.avatar_sync = protocol.AvatarSync.init(allocator);
+    try appendAvatarData(allocator, &sync.avatar_sync.?.avatar_list, &sync.avatar_sync.?.avatar_path_data_info_list);
     try session.send(CmdID.CmdPlayerSyncScNotify, sync);
 }

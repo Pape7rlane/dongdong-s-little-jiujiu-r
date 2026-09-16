@@ -10,7 +10,11 @@
 
 `freesr-data.json` is the only game and battle configuration source. The legacy `config.json` file is not used.
 
-To sync with [SRTools](https://srtools.neonteam.dev/): start both dispatch and gameserver, choose the `RobinSR` provider, and set the server URL to `http://localhost:21000`. SRTools uploads to `POST /srtools`; the dispatch server saves `freesr-data.json` and reloads the gameserver. Use `GET /srtools-export` to download the active configuration.
+To sync with [SRTools](https://srtools.neonteam.dev/): start both dispatch and gameserver, choose the `RobinSR` provider, and set the server URL to `http://localhost:21000`. SRTools uploads to `POST /srtools`; dispatch forwards the payload to gameserver, which validates it and atomically saves `freesr-data.json` in its own working directory. A failed sync returns an HTTP error and keeps the previous active configuration.
+
+Online players receive updated avatars, skill levels and inventory on their next game request (including the automatic heartbeat). No manual `/sync` or relog is required. Removed inventory items are also removed on the client. Start a new battle after syncing to apply battle-stat changes consistently.
+
+Use `GET /srtools-export` to download the active configuration while gameserver is running. After editing the file manually, use `/sync` in game to reload it. Both services must be running for website uploads.
 
 ## Running
 

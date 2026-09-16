@@ -24,15 +24,14 @@ pub fn onGetBag(session: *Session, _: *const Packet, allocator: Allocator) !void
     for (Data.PlayerOutfitList) |tid| {
         try rsp.material_list.append(.{ .tid = tid, .num = 1 });
     }
-    for (config.avatar_config.items) |avatarConf| {
-        const lc = try AvatarManager.createEquipment(avatarConf.lightcone, avatarConf.id);
-        try rsp.equipment_list.append(lc);
-        for (avatarConf.relics.items) |input| {
-            const r = try AvatarManager.createRelic(allocator, input, avatarConf.id);
-            try rsp.relic_list.append(r);
-        }
+    for (config.lightcones.items) |lc| {
+        try rsp.equipment_list.append(try AvatarManager.createEquipment(lc, lc.equip_avatar));
+    }
+    for (config.relics.items) |relic| {
+        try rsp.relic_list.append(try AvatarManager.createRelic(allocator, relic, relic.equip_avatar));
     }
     try session.send(CmdID.CmdGetBagScRsp, rsp);
+    try session.rememberInventory();
 }
 pub fn onUseItem(session: *Session, packet: *const Packet, allocator: Allocator) !void {
     const req = try packet.getProto(protocol.UseItemCsReq, allocator);

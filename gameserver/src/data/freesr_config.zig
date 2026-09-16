@@ -16,8 +16,8 @@ fn getInt(obj: std.json.Value, key: []const u8, fallback: u32) u32 {
     if (obj != .object) return fallback;
     const value = obj.object.get(key) orelse return fallback;
     return switch (value) {
-        .integer => |i| if (i < 0) fallback else @intCast(i),
-        .float => |f| if (f < 0) fallback else @intFromFloat(f),
+        .integer => |i| std.math.cast(u32, i) orelse fallback,
+        .float => |f| if (!std.math.isFinite(f) or f < 0 or f > std.math.maxInt(u32)) fallback else @intFromFloat(f),
         else => fallback,
     };
 }
@@ -88,30 +88,133 @@ fn parseBattle(root: std.json.Value, allocator: Allocator) !BattleConfig {
     return battle;
 }
 
-pub fn parseConfig(root: std.json.Value, allocator: Allocator) !GameConfig {
-    var battle = try parseBattle(root, allocator);
-    errdefer { for (battle.monster_wave.items) |*wave| wave.deinit(); battle.monster_wave.deinit(); battle.blessings.deinit(); }
-    var avatars = ArrayList(Avatar).init(allocator);
-    errdefer { for (avatars.items) |*avatar| avatar.relics.deinit(); avatars.deinit(); }
-    var indexes = std.AutoHashMap(u32, usize).init(allocator);
-    defer indexes.deinit();
-    if (getObject(root, "avatars")) |entries| {
-        var it = entries.object.iterator();
-        while (it.next()) |entry| {
-            const id = resolveAvatarId(entry.key_ptr.*, entry.value_ptr.*) orelse continue;
-            const data = getObject(entry.value_ptr.*, "data");
-            const techniques = getArray(entry.value_ptr.*, "techniques");
-            try indexes.put(id, avatars.items.len);
-            try avatars.append(.{ .id = id, .hp = 100, .sp = getInt(entry.value_ptr.*, "sp_value", 5000) / SP_SCALE, .level = getInt(entry.value_ptr.*, "level", 80), .promotion = getInt(entry.value_ptr.*, "promotion", 6), .rank = if (data) |d| getInt(d, "rank", 0) else 0, .lightcone = .{ .id = 0, .rank = 1, .level = 80, .promotion = 6 }, .relics = ArrayList(Relic).init(allocator), .use_technique = techniques != null and techniques.?.len != 0 });
+fn parseSkills(data: std.json.Value, key: []const u8, allocator: Allocator) !?[]GameConfigMod.Skill {
+    const value = data.object.get(key) orelse return null;
+    if (value != .object) return error.InvalidSkills;
+    var skills = ArrayList(GameConfigMod.Skill).init(allocator);
+    errdefer skills.deinit();
+    var it = value.object.iterator();
+    while (it.next()) |entry| {
+        const id = try std.fmt.parseInt(u32, entry.key_ptr.*, 10);
+        if (entry.value_ptr.* != .integer) return error.InvalidSkillLevel;
+        const level = std.math.cast(u32, entry.value_ptr.integer) orelse return error.InvalidSkillLevel;
+        try skills.append(.{ .id = id, .level = level });
+    }
+    return try skills.toOwnedSlice();
+}
+
+fn requiredInt(obj: std.json.Value, key: []const u8) !u32 {
+    if (obj != .object) return error.InvalidEntry;
+    const value = obj.object.get(key) orelse return error.MissingField;
+    if (value != .integer) return error.InvalidNumber;
+    return std.math.cast(u32, value.integer) orelse error.InvalidNumber;
+}
+
+/// Preserve SRTools IDs, allocating missing IDs above every explicit ID.
+/// Equipment and relics have separate protocol ID namespaces.
+fn nextItemId(entry: std.json.Value, used: *std.AutoHashMap(u32, void), next: *u32) !u32 {
+    const id = if (entry.object.get("internal_uid") != null) try requiredInt(entry, "internal_uid") else 0;
+    if (id != 0) {
+        const result = try used.getOrPut(id);
+        if (result.found_existing) return error.DuplicateItemId;
+        return id;
+    }
+    next.* = std.math.add(u32, next.*, 1) catch return error.TooManyItems;
+    try used.put(next.*, {});
+    return next.*;
+}
+
+fn maxItemId(items: []std.json.Value) !u32 {
+    var max_id: u32 = 0;
+    for (items) |item| {
+        if (item != .object) return error.InvalidItem;
+        if (item.object.get("internal_uid") != null) {
+            max_id = @max(max_id, try requiredInt(item, "internal_uid"));
         }
     }
-    if (getArray(root, "lightcones")) |items| for (items) |entry| {
-        const idx = indexes.get(getInt(entry, "equip_avatar", 0)) orelse continue;
-        avatars.items[idx].lightcone = .{ .id = getInt(entry, "item_id", 0), .rank = @max(getInt(entry, "rank", 1), 1), .level = getInt(entry, "level", 80), .promotion = getInt(entry, "promotion", 6) };
+    return max_id;
+}
+
+pub fn parseConfig(root: std.json.Value, allocator: Allocator) !GameConfig {
+    const entries = getObject(root, "avatars") orelse return error.InvalidAvatars;
+    const equipment_entries = getArray(root, "lightcones") orelse return error.InvalidLightcones;
+    const relic_entries = getArray(root, "relics") orelse return error.InvalidRelics;
+    var config = GameConfig{
+        .battle_config = try parseBattle(root, allocator),
+        .avatar_config = ArrayList(Avatar).init(allocator),
+        .lightcones = ArrayList(Lightcone).init(allocator),
+        .relics = ArrayList(Relic).init(allocator),
     };
-    if (getArray(root, "relics")) |items| for (items) |entry| {
-        const idx = indexes.get(getInt(entry, "equip_avatar", 0)) orelse continue;
-        const relic = parseRelic(entry); if (relic.id != 0) try avatars.items[idx].relics.append(relic);
-    };
-    return .{ .battle_config = battle, .avatar_config = avatars };
+    errdefer config.deinit();
+
+    var indexes = std.AutoHashMap(u32, usize).init(allocator);
+    defer indexes.deinit();
+    var it = entries.object.iterator();
+    while (it.next()) |entry| {
+        const value = entry.value_ptr.*;
+        const id = resolveAvatarId(entry.key_ptr.*, value) orelse return error.InvalidAvatarId;
+        if (id == 0 or indexes.contains(id)) return error.InvalidAvatarId;
+        const data = getObject(value, "data") orelse return error.InvalidAvatarData;
+        const techniques = getArray(value, "techniques");
+        var avatar = Avatar{
+            .id = id,
+            .hp = 100,
+            .sp = getInt(value, "sp_value", 5000) / SP_SCALE,
+            .level = try requiredInt(value, "level"),
+            .promotion = try requiredInt(value, "promotion"),
+            .rank = try requiredInt(data, "rank"),
+            .lightcone = .{ .id = 0, .rank = 1, .level = 1, .promotion = 0 },
+            .relics = ArrayList(Relic).init(allocator),
+            .use_technique = techniques != null and techniques.?.len != 0,
+        };
+        errdefer avatar.deinit(allocator);
+        avatar.skills = try parseSkills(data, "skills", allocator);
+        avatar.skills_by_anchor_type = try parseSkills(data, "skills_by_anchor_type", allocator);
+        try indexes.put(id, config.avatar_config.items.len);
+        try config.avatar_config.append(avatar);
+    }
+
+    var used = std.AutoHashMap(u32, void).init(allocator);
+    defer used.deinit();
+    var next = try maxItemId(equipment_entries);
+    for (equipment_entries) |entry| {
+        const lc = Lightcone{
+            .unique_id = try nextItemId(entry, &used, &next),
+            .equip_avatar = try requiredInt(entry, "equip_avatar"),
+            .id = try requiredInt(entry, "item_id"),
+            .rank = try requiredInt(entry, "rank"),
+            .level = try requiredInt(entry, "level"),
+            .promotion = try requiredInt(entry, "promotion"),
+        };
+        if (lc.id == 0) return error.InvalidLightcone;
+        if (lc.equip_avatar != 0) {
+            const idx = indexes.get(lc.equip_avatar) orelse return error.UnknownEquipAvatar;
+            if (config.avatar_config.items[idx].lightcone.id != 0) return error.DuplicateEquippedLightcone;
+            config.avatar_config.items[idx].lightcone = lc;
+        }
+        try config.lightcones.append(lc);
+    }
+
+    used.clearRetainingCapacity();
+    next = try maxItemId(relic_entries);
+    for (relic_entries) |entry| {
+        var relic = parseRelic(entry);
+        relic.id = try requiredInt(entry, "relic_id");
+        relic.level = try requiredInt(entry, "level");
+        relic.main_affix_id = try requiredInt(entry, "main_affix_id");
+        relic.unique_id = try nextItemId(entry, &used, &next);
+        relic.equip_avatar = try requiredInt(entry, "equip_avatar");
+        const slot = relic.id % 10;
+        if (slot < 1 or slot > 6) return error.InvalidRelicSlot;
+        if (relic.equip_avatar != 0) {
+            const idx = indexes.get(relic.equip_avatar) orelse return error.UnknownEquipAvatar;
+            const equipped = &config.avatar_config.items[idx].relics;
+            for (equipped.items) |other| {
+                if (other.id % 10 == slot) return error.DuplicateEquippedRelic;
+            }
+            try equipped.append(relic);
+        }
+        try config.relics.append(relic);
+    }
+    return config;
 }

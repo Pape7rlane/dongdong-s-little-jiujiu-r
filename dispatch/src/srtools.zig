@@ -3,7 +3,7 @@
 //! entry expects on port 21000:
 //!
 //!   POST /srtools   { "data": { ...freesr-data.json... } }
-//!   -> { "message": "OK", "status": 200 }   (always HTTP 200)
+//!   -> { "message": "OK", "status": 200 } on success; HTTP errors on failure.
 //!
 //! A body without `data` is SRTools' liveness probe (the Connect button) and
 //! must answer OK, otherwise the UI reports "Server Not Found / Not Active".
@@ -16,15 +16,16 @@ const log = std.log.scoped(.srtools);
 
 pub const FILENAME = "freesr-data.json";
 
-/// The gameserver's own endpoint, used to nudge it after a sync and to export
-/// the live config. Best-effort: a stopped gameserver is not an error here.
+/// The gameserver validates and saves uploads, and exports its active config.
+/// A stopped gameserver must be reported as a failed sync.
 pub const GAMESERVER_HOST = "127.0.0.1";
 pub const GAMESERVER_PORT: u16 = 21001;
 
 /// Mirrors RobinSR's SrToolDataRsp.
 fn envelope(res: *httpz.Response, status: u32, message: []const u8) !void {
     cors(res);
-    res.status = 200;
+    // SRTools checks response.ok and ignores the JSON status on success.
+    res.status = @intCast(status);
     try res.json(.{ .message = message, .status = status }, .{});
 }
 
@@ -57,7 +58,8 @@ pub fn onSave(req: *httpz.Request, res: *httpz.Response) !void {
 
     // `data` absent or null => liveness probe, same as RobinSR's Option<FreesrData>.
     const data = tree.value.object.get("data") orelse return probeOk(res);
-    if (data != .object) return probeOk(res);
+    if (data == .null) return probeOk(res);
+    if (data != .object) return envelope(res, 400, "data must be an object");
 
     var out = std.ArrayList(u8).init(res.arena);
     std.json.stringify(data, .{ .whitespace = .indent_2 }, out.writer()) catch |err| {
@@ -65,21 +67,17 @@ pub fn onSave(req: *httpz.Request, res: *httpz.Response) !void {
         return envelope(res, 500, "malformed json");
     };
 
-    std.fs.cwd().writeFile(.{ .sub_path = FILENAME, .data = out.items }) catch |err| {
-        log.err("could not write {s}: {}", .{ FILENAME, err });
-        return envelope(res, 500, "failed to write freesr-data.json");
+    // Let gameserver validate and atomically save the actual payload. This also
+    // works when the two processes were launched from different directories.
+    const upstream = poke(res.arena, "POST", "/reload", out.items) catch |err| {
+        log.err("gameserver unavailable for sync: {}", .{err});
+        return envelope(res, 503, "Game server unavailable; start gameserver and retry sync.");
     };
-
-    log.info("saved {s} from srtools ({d} bytes)", .{ FILENAME, out.items.len });
-
-    // Ask the gameserver to pick the file up so an export right after a sync
-    // does not report stale data. It may legitimately be offline.
-    if (poke(res.arena, "POST", "/reload", "")) |_| {
-        log.info("gameserver reloaded the new config", .{});
-    } else |err| {
-        log.info("gameserver not reloaded ({}); use /sync in-game", .{err});
+    if (upstream.status < 200 or upstream.status >= 300) {
+        log.err("gameserver rejected sync: {d} {s}", .{ upstream.status, upstream.body });
+        return envelope(res, upstream.status, upstream.body);
     }
-
+    log.info("gameserver accepted SRTools config ({d} bytes)", .{out.items.len});
     return envelope(res, 200, "OK");
 }
 

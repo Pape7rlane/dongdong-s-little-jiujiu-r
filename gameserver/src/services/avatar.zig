@@ -3,7 +3,6 @@ const protocol = @import("protocol");
 const Session = @import("../Session.zig");
 const Packet = @import("../Packet.zig");
 const Data = @import("../data.zig");
-const Uid = @import("../utils/uid.zig");
 
 const AvatarManager = @import("../manager/avatar_mgr.zig");
 const LineupManager = @import("../manager/lineup_mgr.zig");
@@ -16,30 +15,13 @@ const CmdID = protocol.CmdID;
 const config = &ConfigManager.global_game_config_cache.game_config;
 
 pub fn onGetAvatarData(session: *Session, packet: *const Packet, allocator: Allocator) !void {
-    Uid.resetGlobalUidGen(0);
-
     const req = try packet.getProto(protocol.GetAvatarDataCsReq, allocator);
     defer req.deinit();
 
     var rsp = protocol.GetAvatarDataScRsp.init(allocator);
     try rsp.skin_list.appendSlice(&Data.SkinList);
     rsp.is_get_all = req.is_get_all;
-    for (Data.AllAvatars) |id| {
-        const avatar = try AvatarManager.createAllAvatar(allocator, id);
-        try rsp.avatar_list.append(avatar);
-    }
-    for (Data.AllAvatars) |id| {
-        const avatar = try AvatarManager.createAllAvatarPathData(allocator, id);
-        try rsp.avatar_path_data_info_list.append(avatar);
-    }
-    for (config.avatar_config.items) |avatarConf| {
-        const avatar = try AvatarManager.createAvatar(allocator, avatarConf);
-        try rsp.avatar_list.append(avatar);
-    }
-    for (config.avatar_config.items) |avatarConf| {
-        const avatar = try AvatarManager.createAvatarPathData(allocator, avatarConf);
-        try rsp.avatar_path_data_info_list.append(avatar);
-    }
+    try AvatarManager.appendAvatarData(allocator, &rsp.avatar_list, &rsp.avatar_path_data_info_list);
     try session.send(CmdID.CmdGetAvatarDataScRsp, rsp);
 }
 

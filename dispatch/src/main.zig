@@ -19,7 +19,10 @@ pub fn main() !void {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     const allocator = gpa.allocator();
 
-    var server = try httpz.Server(void).init(allocator, .{ .port = PORT }, {});
+    var server = try httpz.Server(void).init(allocator, .{
+        .port = PORT,
+        .request = .{ .max_body_size = 16 * 1024 * 1024 },
+    }, {});
     defer server.stop();
     defer server.deinit();
     var router = try server.router(.{});

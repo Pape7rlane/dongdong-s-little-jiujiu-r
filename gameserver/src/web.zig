@@ -1,8 +1,7 @@
 //! Local HTTP endpoint the dispatch server talks to.
 //!
-//! SRTools itself uploads to dispatch on port 21000 (see
-//! `dispatch/src/srtools.zig`), which writes `freesr-data.json` and then calls
-//! `/reload` here so the live config matches the file.
+//! Dispatch forwards SRTools uploads to /reload here. The game server validates
+//! and saves them before publishing a new config generation to game sessions.
 
 const std = @import("std");
 const httpz = @import("httpz");
@@ -18,10 +17,16 @@ pub fn start(allocator: Allocator) !std.Thread {
 }
 
 fn run(allocator: Allocator) void {
-    var srv = httpz.Server(void).init(allocator, .{ .port = PORT }, {}) catch |err| {
+    var srv = httpz.Server(void).init(allocator, .{
+        .address = "127.0.0.1",
+        .port = PORT,
+        .request = .{ .max_body_size = 16 * 1024 * 1024 },
+    }, {}) catch |err| {
         log.err("could not start the local endpoint on port {d}: {}", .{ PORT, err });
         return;
     };
+
+    defer srv.deinit();
 
     var router = srv.router(.{}) catch |err| {
         log.err("could not build the router: {}", .{err});
@@ -36,15 +41,20 @@ fn run(allocator: Allocator) void {
     };
 }
 
-/// Re-reads the game config from freesr-data.json.
-fn onReload(_: *httpz.Request, res: *httpz.Response) !void {
+/// An uploaded body replaces the config; an empty POST reloads the local file.
+fn onReload(req: *httpz.Request, res: *httpz.Response) !void {
     ConfigManager.config_lock.lock();
     defer ConfigManager.config_lock.unlock();
 
-    ConfigManager.UpdateGameConfig() catch |err| {
-        log.err("reload failed: {}", .{err});
+    const body = req.body() orelse "";
+    const result = if (body.len == 0)
+        ConfigManager.UpdateGameConfig()
+    else
+        ConfigManager.applyGameConfig(body);
+    result catch |err| {
+        log.err("reload failed; previous config retained: {}", .{err});
         res.status = 500;
-        res.body = "reload failed";
+        res.body = try std.fmt.allocPrint(res.arena, "reload failed: {s}", .{@errorName(err)});
         return;
     };
 
@@ -55,14 +65,10 @@ fn onReload(_: *httpz.Request, res: *httpz.Response) !void {
 
 /// Exports the current freesr-data.json used by the game server.
 fn onExport(_: *httpz.Request, res: *httpz.Response) !void {
+    ConfigManager.config_lock.lock();
+    defer ConfigManager.config_lock.unlock();
     res.status = 200;
     res.content_type = .JSON;
     res.header("Content-Disposition", "attachment; filename=freesr-data.json");
-    res.body = std.fs.cwd().readFileAlloc(res.arena, "freesr-data.json", std.math.maxInt(usize)) catch {
-        res.status = 404;
-        res.content_type = .TEXT;
-        res.body = "freesr-data.json not found";
-        return;
-    };
+    res.body = try res.arena.dupe(u8, ConfigManager.global_game_config_cache.game_config_json);
 }
-

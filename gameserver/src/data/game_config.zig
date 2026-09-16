@@ -12,6 +12,8 @@ pub const BattleConfig = struct {
 };
 
 pub const Lightcone = struct {
+    unique_id: u32 = 0,
+    equip_avatar: u32 = 0,
     id: u32,
     rank: u32,
     level: u32,
@@ -19,6 +21,8 @@ pub const Lightcone = struct {
 };
 
 pub const Relic = struct {
+    unique_id: u32 = 0,
+    equip_avatar: u32 = 0,
     id: u32,
     level: u32,
     main_affix_id: u32,
@@ -37,6 +41,8 @@ pub const Relic = struct {
     step4: u32,
 };
 
+pub const Skill = struct { id: u32, level: u32 };
+
 pub const Avatar = struct {
     id: u32,
     hp: u32,
@@ -47,6 +53,30 @@ pub const Avatar = struct {
     lightcone: Lightcone,
     relics: ArrayList(Relic),
     use_technique: bool,
+    skills: ?[]Skill = null,
+    skills_by_anchor_type: ?[]Skill = null,
+
+    pub fn deinit(self: *Avatar, allocator: Allocator) void {
+        self.relics.deinit();
+        if (self.skills) |skills| allocator.free(skills);
+        if (self.skills_by_anchor_type) |skills| allocator.free(skills);
+    }
+
+    /// Explicit empty maps mean no unlocked nodes; absent maps preserve the
+    /// max-level fallback for old configs.
+    pub fn skillLevel(self: Avatar, point_id: u32, anchor_type: u32, fallback: u32) u32 {
+        if (self.skills_by_anchor_type) |skills| {
+            for (skills) |skill| {
+                if (skill.id == anchor_type) return skill.level;
+            }
+        }
+        if (self.skills) |skills| {
+            for (skills) |skill| {
+                if (skill.id == point_id) return skill.level;
+            }
+        }
+        return if (self.skills != null or self.skills_by_anchor_type != null) 0 else fallback;
+    }
 };
 
 const StatCount = struct {
@@ -58,6 +88,8 @@ const StatCount = struct {
 pub const GameConfig = struct {
     battle_config: BattleConfig,
     avatar_config: ArrayList(Avatar),
+    lightcones: ArrayList(Lightcone),
+    relics: ArrayList(Relic),
 
     pub fn deinit(self: *GameConfig) void {
         for (self.battle_config.monster_wave.items) |*wave| {
@@ -67,9 +99,11 @@ pub const GameConfig = struct {
         self.battle_config.blessings.deinit();
 
         for (self.avatar_config.items) |*avatar| {
-            avatar.relics.deinit();
+            avatar.deinit(self.avatar_config.allocator);
         }
         self.avatar_config.deinit();
+        self.lightcones.deinit();
+        self.relics.deinit();
     }
 };
 
@@ -128,6 +162,8 @@ pub fn parseConfig(root: std.json.Value, allocator: Allocator) anyerror!GameConf
     return GameConfig{
         .battle_config = battle_config,
         .avatar_config = avatar_config,
+        .lightcones = ArrayList(Lightcone).init(allocator),
+        .relics = ArrayList(Relic).init(allocator),
     };
 }
 

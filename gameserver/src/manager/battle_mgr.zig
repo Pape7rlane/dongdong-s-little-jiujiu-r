@@ -70,20 +70,20 @@ fn createBattleAvatar(allocator: Allocator, avatarConf: Config.Avatar) !protocol
         try avatar.relic_list.append(r);
     }
 
-    const lc = protocol.BattleEquipment{
+    if (avatarConf.lightcone.id != 0) try avatar.equipment_list.append(.{
         .id = avatarConf.lightcone.id,
         .rank = avatarConf.lightcone.rank,
         .level = avatarConf.lightcone.level,
         .promotion = avatarConf.lightcone.promotion,
-    };
-    try avatar.equipment_list.append(lc);
+    });
 
     for (skill_config.avatar_skill_tree_config.items) |skill| {
         if (skill.avatar_id == avatar.id) {
             if (skill.level == skill.max_level) {
-                try avatar.skilltree_list.append(.{
+                const level = avatarConf.skillLevel(skill.point_id, skill.anchor_type, skill.max_level);
+                if (level != 0) try avatar.skilltree_list.append(.{
                     .point_id = skill.point_id,
-                    .level = skill.max_level,
+                    .level = level,
                 });
             }
         }
