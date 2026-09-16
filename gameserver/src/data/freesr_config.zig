@@ -10,7 +10,7 @@ const Lightcone = GameConfigMod.Lightcone;
 const Relic = GameConfigMod.Relic;
 
 pub const FILENAME = "freesr-data.json";
-const SP_SCALE = 100;
+const SP_PERCENT = 100;
 
 fn getInt(obj: std.json.Value, key: []const u8, fallback: u32) u32 {
     if (obj != .object) return fallback;
@@ -159,7 +159,13 @@ pub fn parseConfig(root: std.json.Value, allocator: Allocator) !GameConfig {
         var avatar = Avatar{
             .id = id,
             .hp = 100,
-            .sp = getInt(value, "sp_value", 5000) / SP_SCALE,
+            // Convert SRTools current/max energy to the protocol percentage.
+            .sp = blk: {
+                const max_sp = getInt(value, "sp_max", 100);
+                const current_sp = getInt(value, "sp_value", 0);
+                if (max_sp == 0) break :blk 0;
+                break :blk @intCast(@min(@as(u64, current_sp) * SP_PERCENT / max_sp, SP_PERCENT));
+            },
             .level = try requiredInt(value, "level"),
             .promotion = try requiredInt(value, "promotion"),
             .rank = try requiredInt(data, "rank"),
