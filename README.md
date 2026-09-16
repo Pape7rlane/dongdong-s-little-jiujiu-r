@@ -14,6 +14,8 @@ To sync with [SRTools](https://srtools.neonteam.dev/): start both dispatch and g
 
 Online players receive updated avatars, skill levels and inventory on their next game request (including the automatic heartbeat). No manual `/sync` or relog is required. Removed inventory items are also removed on the client. Start a new battle after syncing to apply battle-stat changes consistently.
 
+Inventory updates are sent before a separate avatar equipment update, so re-equipping a relic or lightcone resolves against the refreshed inventory. Item IDs remain stable when equipping, unequipping, or transferring an item between avatars.
+
 Use `GET /srtools-export` to download the active configuration while gameserver is running. After editing the file manually, use `/sync` in game to reload it. Both services must be running for website uploads.
 
 ## Running

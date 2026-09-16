@@ -38,9 +38,18 @@ pub fn syncCurrent(session: *Session, allocator: std.mem.Allocator) !void {
     for (config.relics.items) |relic| {
         try sync.relic_list.append(try AvatarManager.createRelic(allocator, relic, relic.equip_avatar));
     }
-    sync.avatar_sync = protocol.AvatarSync.init(allocator);
-    try AvatarManager.appendAvatarData(allocator, &sync.avatar_sync.?.avatar_list, &sync.avatar_sync.?.avatar_path_data_info_list);
+    // Inventory and avatar paths must be delivered in separate notifications.
+    // A combined notify does not guarantee that the client updates its item
+    // cache before resolving the avatar's equipment references. In particular,
+    // re-equipping a relic can resolve against its previous unequipped state.
+    // Build both messages before sending, then publish inventory before paths.
+    var avatar_sync = protocol.PlayerSyncScNotify.init(allocator);
+    defer avatar_sync.deinit();
+    avatar_sync.avatar_sync = protocol.AvatarSync.init(allocator);
+    try AvatarManager.appendAvatarData(allocator, &avatar_sync.avatar_sync.?.avatar_list, &avatar_sync.avatar_sync.?.avatar_path_data_info_list);
     try session.send(protocol.CmdID.CmdPlayerSyncScNotify, sync);
+    try session.send(protocol.CmdID.CmdPlayerSyncScNotify, avatar_sync);
+    // A failed send must leave the generation pending so the next request retries.
     try session.rememberInventory();
     session.config_generation = ConfigManager.config_generation;
 }
