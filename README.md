@@ -1,5 +1,5 @@
 # PearlSR 
-#### Honkai: Star Rail server emulator (4.6 beta) written in Zig.
+#### Honkai: Star Rail server emulator (4.7 beta) written in Zig.
 
 ![Screenshot](Screenshot.png)
 
@@ -29,6 +29,7 @@ page and download the latest release for your platform.
 
 ## Connecting
 Get 4.5.5X client: [Gofile](https://gofile.io/d/vtV5JfkO)
+Get 4.6.5X client: (Stat tune) 
 
 ## Functionality (work in progress)
 - Login and player spawn

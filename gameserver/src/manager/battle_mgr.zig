@@ -330,6 +330,22 @@ fn addGlobalPassive(allocator: Allocator, battle: *protocol.SceneBattleInfo) !vo
         try battle.buff_list.append(mazebuff_data);
         targetIndexList.deinit();
     }
+    if (Logic.inlist(1511, Data.AllAvatars)) {
+        var targetIndexList = ArrayList(u32).init(allocator);
+        errdefer targetIndexList.deinit();
+        try targetIndexList.append(0);
+        var mazebuff_data = protocol.BattleBuff{
+            .id = 151104,
+            .level = 1,
+            .owner_index = 1,
+            .wave_flag = 0xFFFFFFFF,
+            .target_index_list = try targetIndexList.clone(),
+            .dynamic_values = ArrayList(protocol.BattleBuff.DynamicValuesEntry).init(allocator),
+        };
+        try mazebuff_data.dynamic_values.append(.{ .key = .{ .Const = "SkillIndex" }, .value = 0 });
+        try battle.buff_list.append(mazebuff_data);
+        targetIndexList.deinit();
+    }
 }
 
 fn addTriggerAttack(allocator: Allocator, battle: *protocol.SceneBattleInfo) !void {
@@ -368,6 +384,17 @@ fn addStageInvasion(allocator: Allocator, battle: *protocol.SceneBattleInfo) !vo
     };
     try attack.dynamic_values.append(.{ .key = .{ .Const = "SkillIndex" }, .value = 1 });
     try battle.buff_list.append(attack);
+    targetIndexList.deinit();
+    var support = protocol.BattleBuff{
+        .id = 3034010 + id,
+        .level = 1,
+        .owner_index = Lineup.leader_slot,
+        .wave_flag = 0xFFFFFFFF,
+        .target_index_list = try targetIndexList.clone(),
+        .dynamic_values = ArrayList(protocol.BattleBuff.DynamicValuesEntry).init(allocator),
+    };
+    try support.dynamic_values.append(.{ .key = .{ .Const = "SkillIndex" }, .value = 1 });
+    try battle.buff_list.append(support);
     targetIndexList.deinit();
 }
 
