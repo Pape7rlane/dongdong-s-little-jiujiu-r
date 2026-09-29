@@ -29,7 +29,8 @@ page and download the latest release for your platform.
 
 ## Connecting
 Get 4.5.5X client: [Gofile](https://gofile.io/d/vtV5JfkO)
-Get 4.6.5X client: (Stat tune) 
+
+Get 4.6.5X client: [Gofile](https://gofile.io/d/cZx9oACJ)
 
 ## Functionality (work in progress)
 - Login and player spawn
