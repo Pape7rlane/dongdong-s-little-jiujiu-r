@@ -386,7 +386,7 @@ fn addStageInvasion(allocator: Allocator, battle: *protocol.SceneBattleInfo) !vo
     try battle.buff_list.append(attack);
     targetIndexList.deinit();
     var support = protocol.BattleBuff{
-        .id = 3034010 + id,
+        .id = 3034013,
         .level = 1,
         .owner_index = Lineup.leader_slot,
         .wave_flag = 0xFFFFFFFF,
