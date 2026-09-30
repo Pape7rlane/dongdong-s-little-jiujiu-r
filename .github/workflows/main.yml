@@ -127,8 +127,10 @@ jobs:
           cp -r protocol release/ || true
 
           # 配置文件
-          cp frecsr-data.json release/ || true
-          cp hotfix.json release/ || true
+          cp frecsr-data.json release/
+          cp hotfix.json release/
+          test -s release/freesr-data.json
+          test -s release/hotfix.json
 
           # launcher
           cp launcher/launcher.exe release/ || true
@@ -136,6 +138,7 @@ jobs:
 
           echo "=== Release files ==="
           find release -maxdepth 3 -type f -print
+          test -f release/freesr-data.json
 
       - name: Package
         shell: bash
