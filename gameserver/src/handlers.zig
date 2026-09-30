@@ -116,6 +116,7 @@ pub const HandlerList = [_]struct { CmdID, Action }{
     .{ CmdID.CmdInteractPropCsReq, scene.onInteractProp },
     .{ CmdID.CmdChangeEraFlipperDataCsReq, scene.onChangeEraFlipperData },
     .{ CmdID.CmdSetTrainWorldIdCsReq, scene.onSetTrainWorldId },
+    .{ CmdID.CmdGetPamSkinDataCsReq, scene.onGetPamSkinDataCsReq },
     //events
     //.{ CmdID.CmdGetActivityScheduleConfigCsReq, events.onGetActivity },
     //.{ CmdID.CmdUpdateServerPrefsDataCsReq, events.onUpdateServerPrefsData },

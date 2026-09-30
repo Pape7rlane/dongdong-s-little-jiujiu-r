@@ -5,6 +5,7 @@ const Packet = @import("../Packet.zig");
 const LineupManager = @import("../manager/lineup_mgr.zig");
 const SceneManager = @import("../manager/scene_mgr.zig");
 const ConfigManager = @import("../manager/config_mgr.zig");
+const Data = @import("../data.zig");
 
 const ArrayList = std.ArrayList;
 const Allocator = std.mem.Allocator;
@@ -284,4 +285,11 @@ pub fn onSetTrainWorldId(session: *Session, packet: *const Packet, allocator: Al
         .retcode = 0,
         .train_world_id = req.train_world_id,
     });
+}
+pub fn onGetPamSkinDataCsReq(session: *Session, _: *const Packet, allocator: Allocator) !void {
+    var rsp = protocol.GetPamSkinDataScRsp.init(allocator);
+    rsp.retcode = 0;
+    rsp.cur_skin = 252000;
+    try rsp.unlock_skin_list.appendSlice(&Data.OwnedPamSkin);
+    try session.send(CmdID.CmdGetPamSkinDataScRsp, rsp);
 }

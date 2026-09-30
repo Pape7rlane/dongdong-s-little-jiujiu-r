@@ -152,7 +152,7 @@ pub const SceneManager = struct {
                 try scene_info.entity_group_list.append(scene_group);
                 break;
             }
-            if (sceneConf.planeID == plane_id and sceneConf.entryID == entry_id and plane_id != 10000) {
+            if (sceneConf.planeID == plane_id and sceneConf.entryID == entry_id) {
                 try addPropEntities(self.allocator, &group_map, sceneConf.props.items, &generator);
                 try addMonsterEntities(self.allocator, &group_map, sceneConf.monsters.items, &generator);
             }
