@@ -31,6 +31,6 @@ The mirror branch is `robinsr`; the upstream branch is `main`.
    ```
 
 The GitHub workflow is `.github/workflows/prebuilt.yml`. It builds the Windows
-prebuilt ZIP on pushes to `main` or by manual dispatch, uploads it as an Actions
+prebuilt ZIP on pushes to `main` or `robinsr`, or by manual dispatch, uploads it as an Actions
 artifact, and publishes it as a GitHub Release asset only for version-tag pushes.
 Do not copy the old `.gitea` workflow back: it uses Gitea-only variables and APIs.

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - robinsr
   workflow_dispatch:
 
 permissions:
