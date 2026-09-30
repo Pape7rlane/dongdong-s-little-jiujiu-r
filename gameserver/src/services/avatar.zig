@@ -157,3 +157,37 @@ pub fn onGetPreAvatarGrowthInfo(session: *Session, _: *const Packet, allocator: 
     rsp.retcode = 0;
     try session.send(CmdID.CmdGetPreAvatarGrowthInfoScRsp, rsp);
 }
+pub fn onToggleGlobalPassive(session: *Session, packet: *const Packet, allocator: Allocator) !void {
+    const req = try packet.getProto(protocol.ToggleAvatarGlobalBuffCsReq, allocator);
+    defer req.deinit();
+
+    if (req.toggle_on) {
+        const exists = for (&Data.AvatarGlobalBuff) |id| {
+            if (id == req.avatar_id) break true;
+        } else false;
+
+        if (!exists) {
+            for (&Data.AvatarGlobalBuff) |*id| {
+                if (id.* == 0) {
+                    id.* = req.avatar_id;
+                    break;
+                }
+            }
+        }
+    } else {
+        for (&Data.AvatarGlobalBuff) |*id| {
+            if (id.* == req.avatar_id) {
+                id.* = 0;
+                break;
+            }
+        }
+    }
+    try session.send(CmdID.CmdToggleAvatarGlobalBuffScRsp, protocol.ToggleAvatarGlobalBuffScRsp{
+        .retcode = 0,
+        .CIKPBGDIABO = .{
+            .avatar_id = req.avatar_id,
+            .toggle_on = req.toggle_on,
+            .skill_id = req.skill_id,
+        },
+    });
+}

@@ -87,7 +87,7 @@ pub fn onLeaveChallengePeak(session: *Session, _: *const Packet, allocator: Allo
     var lineup = try lineup_mgr.createLineup();
     _ = &lineup;
     var scene_manager = SceneManager.SceneManager.init(allocator);
-    var scene_info = try scene_manager.createScene(20503, 20503001, 2050301, 1029);
+    var scene_info = try scene_manager.createScene(10000, 10000003, 100000352, 0);
     _ = &scene_info;
     try session.send(CmdID.CmdQuitBattleScNotify, protocol.QuitBattleScNotify{});
     try session.send(CmdID.CmdEnterSceneByServerScNotify, protocol.EnterSceneByServerScNotify{

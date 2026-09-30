@@ -5,6 +5,7 @@ const ConfigManager = @import("./manager/config_mgr.zig");
 pub var EnhanceAvatarID = [_]u32{ 1005, 1006, 1205, 1212, 1306, 1307, 1306, 1102, 1217, 1310, 1004 };
 
 pub var AllAvatars: []const u32 = &.{};
+pub var AvatarGlobalBuff = [_]u32{ 1407, 1506, 1511 };
 
 pub var AvatarSkinMap = [_]struct {
     avatar_id: u32,
@@ -45,3 +46,5 @@ pub const LightconeList_4 = [_]u32{
     21046, 21047, 21048, 21050, 21051, 21052, 22000, 22001, 22002, 22003, 22004,
 };
 pub var AvatarList: []const u32 = &.{};
+
+pub var WorldId: u32 = 601;

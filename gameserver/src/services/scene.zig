@@ -278,6 +278,7 @@ pub fn onChangeEraFlipperData(session: *Session, packet: *const Packet, allocato
 pub fn onSetTrainWorldId(session: *Session, packet: *const Packet, allocator: Allocator) !void {
     const req = try packet.getProto(protocol.SetTrainWorldIdCsReq, allocator);
     defer req.deinit();
+    Data.WorldId = req.train_world_id;
     try session.send(CmdID.CmdTrainWorldIdChangeScNotify, protocol.TrainWorldIdChangeScNotify{
         .train_world_id = req.train_world_id,
     });

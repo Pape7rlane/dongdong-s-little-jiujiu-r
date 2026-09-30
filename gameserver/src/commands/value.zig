@@ -16,6 +16,28 @@ pub fn handle(session: *Session, _: []const u8, allocator: Allocator) !void {
 pub fn challengeNode(session: *Session, _: []const u8, allocator: Allocator) !void {
     try commandhandler.sendMessage(session, Logic.CustomMode().ChangeNode(), allocator);
 }
+pub fn AhaBuff(session: *Session, input: []const u8, allocator: Allocator) !void {
+    var tokens = std.ArrayList([]const u8).init(allocator);
+    defer tokens.deinit();
+    var iter = std.mem.tokenizeScalar(u8, input, ' ');
+    while (iter.next()) |tok| {
+        try tokens.append(tok);
+    }
+    if (tokens.items.len == 0) {
+        return sendErrorMessage(session, "Missing on or of argument", allocator);
+    }
+    if (std.ascii.eqlIgnoreCase(tokens.items[0], "off")) {
+        Logic.CustomMode().ToggleAhaBuff(false);
+        _ = try commandhandler.sendMessage(session, "Aha buff set OFF.", allocator);
+        return;
+    }
+    if (std.ascii.eqlIgnoreCase(tokens.items[0], "on")) {
+        Logic.CustomMode().ToggleAhaBuff(true);
+        _ = try commandhandler.sendMessage(session, "Aha buff set ON.", allocator);
+        return;
+    }
+    try commandhandler.sendMessage(session, Logic.CustomMode().ChangeNode(), allocator);
+}
 pub fn FunMode(session: *Session, input: []const u8, allocator: Allocator) !void {
     var args = std.mem.tokenizeAny(u8, input, " ");
     if (args.next()) |subcmd| {

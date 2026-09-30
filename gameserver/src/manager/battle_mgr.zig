@@ -298,7 +298,7 @@ fn addTechniqueBuffs(allocator: Allocator, battle: *protocol.SceneBattleInfo, av
 }
 
 fn addGlobalPassive(allocator: Allocator, battle: *protocol.SceneBattleInfo) !void {
-    if (Logic.inlist(1407, Data.AllAvatars)) {
+    if (Logic.inlist(1407, &Data.AvatarGlobalBuff)) {
         var targetIndexList = ArrayList(u32).init(allocator);
         errdefer targetIndexList.deinit();
         try targetIndexList.append(0);
@@ -314,7 +314,7 @@ fn addGlobalPassive(allocator: Allocator, battle: *protocol.SceneBattleInfo) !vo
         try battle.buff_list.append(mazebuff_data);
         targetIndexList.deinit();
     }
-    if (Logic.inlist(1506, Data.AllAvatars)) {
+    if (Logic.inlist(1506, &Data.AvatarGlobalBuff)) {
         var targetIndexList = ArrayList(u32).init(allocator);
         errdefer targetIndexList.deinit();
         try targetIndexList.append(0);
@@ -330,7 +330,7 @@ fn addGlobalPassive(allocator: Allocator, battle: *protocol.SceneBattleInfo) !vo
         try battle.buff_list.append(mazebuff_data);
         targetIndexList.deinit();
     }
-    if (Logic.inlist(1511, Data.AllAvatars)) {
+    if (Logic.inlist(1511, &Data.AvatarGlobalBuff)) {
         var targetIndexList = ArrayList(u32).init(allocator);
         errdefer targetIndexList.deinit();
         try targetIndexList.append(0);
@@ -385,17 +385,19 @@ fn addStageInvasion(allocator: Allocator, battle: *protocol.SceneBattleInfo) !vo
     try attack.dynamic_values.append(.{ .key = .{ .Const = "SkillIndex" }, .value = 1 });
     try battle.buff_list.append(attack);
     targetIndexList.deinit();
-    var support = protocol.BattleBuff{
-        .id = 3034013,
-        .level = 1,
-        .owner_index = Lineup.leader_slot,
-        .wave_flag = 0xFFFFFFFF,
-        .target_index_list = try targetIndexList.clone(),
-        .dynamic_values = ArrayList(protocol.BattleBuff.DynamicValuesEntry).init(allocator),
-    };
-    try support.dynamic_values.append(.{ .key = .{ .Const = "SkillIndex" }, .value = 1 });
-    try battle.buff_list.append(support);
-    targetIndexList.deinit();
+    if (Logic.CustomMode().AhaBuff()) {
+        var support = protocol.BattleBuff{
+            .id = 3034013,
+            .level = 1,
+            .owner_index = Lineup.leader_slot,
+            .wave_flag = 0xFFFFFFFF,
+            .target_index_list = try targetIndexList.clone(),
+            .dynamic_values = ArrayList(protocol.BattleBuff.DynamicValuesEntry).init(allocator),
+        };
+        try support.dynamic_values.append(.{ .key = .{ .Const = "SkillIndex" }, .value = 1 });
+        try battle.buff_list.append(support);
+        targetIndexList.deinit();
+    }
 }
 
 fn createBattleInfo(allocator: Allocator, game_config: *const Config.GameConfig, stage_monster_wave_len: u32, stage_id: u32, rounds_limit: u32) protocol.SceneBattleInfo {
