@@ -68,14 +68,12 @@ jobs:
         run: |
           # Linux musl 静态链接
           if [[ "${{ matrix.target }}" == *"-linux-musl" ]]; then
-            echo ">>> Linux musl target: patching build.zig in-memory"
-
-            cp build.zig build.zig.orig
-
-            sed -i.bak 's/b\.installArtifact(exe);/exe.linkage = .static;\n    exe.libc_static = true;\n    b.installArtifact(exe);/' build.zig
-
-            echo ">>> Patched build.zig:"
-            grep -n -B1 -A4 "installArtifact" build.zig || true
+            echo ">>> Linux musl target: enabling static linkage in child builds"
+            for build_file in dispatch/build.zig gameserver/build.zig; do
+              cp "$build_file" "$build_file.orig"
+              sed -i.bak 's/b\.installArtifact(exe);/exe.linkage = .static;\n    b.installArtifact(exe);/' "$build_file"
+              grep -n -B1 -A3 "installArtifact" "$build_file" || true
+            done
           fi
 
           echo ">>> Building PearlSR"
@@ -85,11 +83,13 @@ jobs:
             -Dtarget=${{ matrix.target }} \
             -Doptimize=ReleaseFast
 
-          # 恢复 build.zig
-          if [ -f build.zig.orig ]; then
-            mv build.zig.orig build.zig
-            rm -f build.zig.bak
-          fi
+          # 恢复构建脚本
+          for build_file in dispatch/build.zig gameserver/build.zig; do
+            if [ -f "$build_file.orig" ]; then
+              mv "$build_file.orig" "$build_file"
+              rm -f "$build_file.bak"
+            fi
+          done
 
       - name: Verify binary (Linux)
         if: runner.os == 'Linux'
