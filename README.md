@@ -1,4 +1,4 @@
-# Supported Version: 4.4.5x
+# Supported Version: 4.6.51
 
 Run the game by clicking run.bat file.
 
@@ -15,6 +15,10 @@ Original:
 [https://git.xeondev.com/reversedrooms/RobinSR](https://git.xeondev.com/reversedrooms/RobinSR)
 
 [https://git.xeondev.com/reversedrooms/JadeSR](https://git.xeondev.com/reversedrooms/JadeSR)
+
+This GitHub mirror is maintained from the upstream repository:
+`https://git.neonteam.dev/amizing/robinsr.git`.
+See [UPSTREAM-SYNC.md](UPSTREAM-SYNC.md) before importing a newer upstream commit.
 
 ## Installation
 
