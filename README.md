@@ -30,6 +30,15 @@ zig build run-dispatch
 zig build run-gameserver
 ```
 
+Linux with tmux (上下分屏同时查看两个服务)：
+```bash
+chmod +x start.sh
+./start.sh
+```
+
+`start.sh` 会在缺少 `tmux` 时尝试通过系统包管理器安装，并在同一个会话中启动
+dispatch 和 gameserver。再次执行脚本会重新连接已有的 `pearlsr` 会话。
+
 ### Setup launcher.exe
 
 Copy `launcher.exe` and `hkprg.dll` from launcher folder inside pearl-sr and paste them inside your client folder.
