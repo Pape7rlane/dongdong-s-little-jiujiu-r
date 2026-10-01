@@ -29,6 +29,9 @@ install_tmux() {
         "${ROOT_CMD[@]}" apk add --no-cache tmux
     elif command -v pacman >/dev/null 2>&1; then
         "${ROOT_CMD[@]}" pacman -Sy --noconfirm tmux
+    elif command -v pkg >/dev/null 2>&1; then
+        pkg update -y
+        pkg install -y tmux
     else
         echo "No supported package manager found; install tmux manually." >&2
         exit 1
