@@ -30,15 +30,16 @@ zig build run-dispatch
 zig build run-gameserver
 ```
 
-Linux with tmux (上下分屏同时查看两个服务)：
+Linux with tmux (下载发布包后上下分屏同时查看两个服务)：
 ```bash
 chmod +x start.sh
 ./start.sh
 ```
 
-`start.sh` 会在缺少 `tmux` 时尝试通过系统包管理器（包括 Termux 的 `pkg`）安装，
-并在同一个会话中启动 dispatch 和 gameserver。再次执行脚本会重新连接已有的
-`pearlsr` 会话。
+`start.sh` 默认下载 `build-7` 发布包，并按 CPU 架构选择 Linux x64 或 ARM64 版本，
+缓存到 `.runtime/` 后启动其中的 dispatch 和 gameserver。可用环境变量切换发布版本，
+例如 `PEARLSR_RELEASE=build-8 ./start.sh`。脚本会在缺少 `tmux` 时尝试通过系统包管理器
+（包括 Termux 的 `pkg`）安装。再次执行脚本会重新连接已有的 `pearlsr` 会话。
 
 ### Setup launcher.exe
 
