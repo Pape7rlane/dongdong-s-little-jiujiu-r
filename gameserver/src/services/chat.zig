@@ -102,7 +102,7 @@ fn makeTextChat(
 
     return .{
         .message_datas = datas,
-        .BKOALKHDLOB = .{
+        .CKHPFFENOBE = .{
             .role_id = uid,
             .KPOBMNLKLOK = .HCMEILLLKBD_JDOAIPKBIPE,
         },

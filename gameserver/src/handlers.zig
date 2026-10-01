@@ -46,6 +46,7 @@ pub const HandlerList = [_]struct { CmdID, Action }{
     .{ CmdID.CmdGetPreAvatarGrowthInfoCsReq, avatar.onGetPreAvatarGrowthInfo },
     .{ CmdID.CmdSetPlayerOutfitCsReq, avatar.onSetPlayerOutfit },
     .{ CmdID.CmdSetAvatarEnhancedIdCsReq, avatar.onSetAvatarEnhancedId },
+    .{ CmdID.CmdToggleAvatarGlobalBuffCsReq, avatar.onToggleGlobalPassive },
     //bag
     .{ CmdID.CmdGetBagCsReq, item.onGetBag },
     .{ CmdID.CmdUseItemCsReq, item.onUseItem },
@@ -118,6 +119,7 @@ pub const HandlerList = [_]struct { CmdID, Action }{
     .{ CmdID.CmdInteractPropCsReq, scene.onInteractProp },
     .{ CmdID.CmdChangeEraFlipperDataCsReq, scene.onChangeEraFlipperData },
     .{ CmdID.CmdSetTrainWorldIdCsReq, scene.onSetTrainWorldId },
+    .{ CmdID.CmdGetPamSkinDataCsReq, scene.onGetPamSkinDataCsReq },
     //events
     //.{ CmdID.CmdGetActivityScheduleConfigCsReq, events.onGetActivity },
     //.{ CmdID.CmdUpdateServerPrefsDataCsReq, events.onUpdateServerPrefsData },

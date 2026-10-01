@@ -53,10 +53,6 @@ Get 4.6.5X client: [Gofile](https://gofile.io/d/cZx9oACJ)
 - Gacha simulator 
 - Support command for Sillyism
 
-## Current issues and WIP
-- Currently all train realated contents (Starward Mode/Challenge Tierce and Anomaly Arbitration/Challenge Peak) are partly solved, you can only choose one mode at once and can not teleport within two scene of the train. You can enter the other mode on train after restarting pc :Đ
-- Chat history missing, you can check gameserver log for chat/command respond 
-
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss

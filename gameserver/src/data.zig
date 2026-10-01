@@ -5,6 +5,7 @@ const ConfigManager = @import("./manager/config_mgr.zig");
 pub var EnhanceAvatarID = [_]u32{ 1005, 1006, 1205, 1212, 1306, 1307, 1306, 1102, 1217, 1310, 1004 };
 
 pub var AllAvatars: []const u32 = &.{};
+pub var AvatarGlobalBuff = [_]u32{ 1407, 1506, 1511 };
 
 pub var AvatarSkinMap = [_]struct {
     avatar_id: u32,
@@ -30,6 +31,7 @@ pub const OwnedChatBubbles = [_]u32{ 220000, 220001, 220002, 220003, 220004, 220
 pub const OwnedPhoneThemes = [_]u32{ 221000, 221001, 221002, 221003, 221004, 221005, 221006, 221007, 221008, 221009, 221010, 221011, 221012, 221013 };
 pub const OwnedPhoneCases = [_]u32{ 254000, 254001 };
 pub const OwnedPersonalCardSkin = [_]u32{ 253000, 253001, 253002, 253003, 253004, 253005 };
+pub const OwnedPamSkin = [_]u32{ 252000, 252001, 252002, 252003 };
 
 pub const ItemList = [_]u32{ 251001, 251002, 251003, 251004, 101, 238, 239 };
 pub const SkinList = [_]u32{ 1130301, 1100101, 1131001, 1141501, 1140701, 1150101 };
@@ -44,3 +46,5 @@ pub const LightconeList_4 = [_]u32{
     21046, 21047, 21048, 21050, 21051, 21052, 22000, 22001, 22002, 22003, 22004,
 };
 pub var AvatarList: []const u32 = &.{};
+
+pub var WorldId: u32 = 601;

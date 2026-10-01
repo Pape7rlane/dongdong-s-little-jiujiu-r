@@ -7,6 +7,7 @@ const Res_config = @import("../data/res_config.zig");
 const AvatarManager = @import("../manager/avatar_mgr.zig");
 const ConfigManager = @import("../manager/config_mgr.zig");
 const Uid = @import("../utils/uid.zig");
+const Data = @import("../data.zig");
 
 const ArrayList = std.ArrayList;
 const Allocator = std.mem.Allocator;
@@ -139,7 +140,7 @@ pub const SceneManager = struct {
         }
 
         scene_info.leader_entity_id = config.avatar_config.items[0].id + 100000;
-        scene_info.world_id = 501;
+        scene_info.world_id = Data.WorldId;
         scene_info.client_pos_version = 1;
         var group_map = std.AutoHashMap(u32, protocol.SceneEntityGroupInfo).init(self.allocator);
         defer group_map.deinit();
@@ -152,7 +153,7 @@ pub const SceneManager = struct {
                 try scene_info.entity_group_list.append(scene_group);
                 break;
             }
-            if (sceneConf.planeID == plane_id and sceneConf.entryID == entry_id and plane_id != 10000) {
+            if (sceneConf.planeID == plane_id and sceneConf.entryID == entry_id) {
                 try addPropEntities(self.allocator, &group_map, sceneConf.props.items, &generator);
                 try addMonsterEntities(self.allocator, &group_map, sceneConf.monsters.items, &generator);
             }

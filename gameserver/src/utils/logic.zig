@@ -292,6 +292,7 @@ pub fn Challenge() type {
 
 pub fn CustomMode() type {
     return struct {
+        var aha_buff: bool = true;
         var challenge_node: u32 = 0;
         var selected_challenge_id: u32 = 0;
         var selected_buff_id: u32 = 0;
@@ -323,6 +324,13 @@ pub fn CustomMode() type {
             custom_mode = check;
         }
 
+        pub fn AhaBuff() bool {
+            return aha_buff;
+        }
+
+        pub fn ToggleAhaBuff(check: bool) void {
+            aha_buff = check;
+        }
         pub fn GetCustomChallengeID() u32 {
             return selected_challenge_id;
         }
