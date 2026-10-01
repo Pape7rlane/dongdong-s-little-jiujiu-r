@@ -13404,7 +13404,7 @@
 					"step": 4
 				}
 			],
-			"equip_avatar": 1503,
+			"equip_avatar": 0,
 			"internal_uid": 299
 		},
 		{
@@ -13824,7 +13824,7 @@
 					"step": 2
 				}
 			],
-			"equip_avatar": 1503,
+			"equip_avatar": 0,
 			"internal_uid": 314
 		},
 		{
@@ -16404,7 +16404,7 @@
 					"step": 2
 				}
 			],
-			"equip_avatar": 1503,
+			"equip_avatar": 0,
 			"internal_uid": 410
 		},
 		{
