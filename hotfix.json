@@ -38,5 +38,13 @@
         "ifix_version": "0",
         "lua_url": "https://autopatchcn.bhsr.com/lua/BetaLive/output_16679499_5abbd35a74c5_a28e83e88b78d5",
         "lua_version": ""
+    },
+    "CNBETAWin4.6.52": {
+        "asset_bundle_url": "https://autopatchcn.bhsr.com/asb/BetaLive/output_16745161_ab68020d7aa9_43440a8f18e051",
+        "ex_resource_url": "https://autopatchcn.bhsr.com/design_data/BetaLive/output_16755051_300cb1cd6a4f_c87db7a5d4f2bf",
+        "ifix_url": "https://autopatchcn.bhsr.com/ifix/BetaLive/output_0_40d2ce0253_c61ba99f70b885",
+        "ifix_version": "0",
+        "lua_url": "https://autopatchcn.bhsr.com/lua/BetaLive/output_16745283_0b6f44e69f46_3bf68a1c7368cd",
+        "lua_version": ""
     }
 }
