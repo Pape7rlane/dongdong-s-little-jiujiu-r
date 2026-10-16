@@ -20,7 +20,7 @@ zig build run-gameserver
 
 ### Setup launcher.exe
 
-Copy `launcher.exe` and `hkprg.dll` from launcher folder inside pearl-sr and paste them inside your client folder.
+Copy `launcher.exe` and `hkrpg.dll` from launcher folder inside pearl-sr and paste them inside your client folder.
 Then open your `launcher.exe` with administrator.
 
 ### Using Pre-built Binaries
