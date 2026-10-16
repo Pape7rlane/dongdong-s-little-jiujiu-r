@@ -3,6 +3,7 @@ const ConfigManager = @import("./manager/config_mgr.zig");
 
 // Avatar group
 pub var EnhanceAvatarID = [_]u32{ 1005, 1006, 1205, 1212, 1306, 1307, 1306, 1102, 1217, 1310, 1004 };
+pub const ExRankAvatarID = [_]u32{ 120401, 121301, 130801 };
 
 pub var AllAvatars: []const u32 = &.{};
 pub var AvatarGlobalBuff = [_]u32{ 1407, 1506, 1511 };
@@ -17,6 +18,8 @@ pub var AvatarSkinMap = [_]struct {
     .{ .avatar_id = 1415, .skin_id = 1141501 },
     .{ .avatar_id = 1407, .skin_id = 1140701 },
     .{ .avatar_id = 1501, .skin_id = 1150101 },
+    .{ .avatar_id = 1505, .skin_id = 1150501 },
+    .{ .avatar_id = 1409, .skin_id = 1140901 },
 };
 
 // Battle group
@@ -34,7 +37,7 @@ pub const OwnedPersonalCardSkin = [_]u32{ 253000, 253001, 253002, 253003, 253004
 pub const OwnedPamSkin = [_]u32{ 252000, 252001, 252002, 252003 };
 
 pub const ItemList = [_]u32{ 251001, 251002, 251003, 251004, 101, 238, 239 };
-pub const SkinList = [_]u32{ 1130301, 1100101, 1131001, 1141501, 1140701, 1150101 };
+pub const SkinList = [_]u32{ 1130301, 1100101, 1131001, 1141501, 1140701, 1150101, 1150501, 1140901 };
 pub const PlayerOutfitList = [_]u32{ 227016, 227015, 229001, 227004, 227013, 227012, 227010, 227009, 227008, 227007, 227006, 227005, 227003, 227002, 227001 };
 
 pub const LightconeList_3 = [_]u32{

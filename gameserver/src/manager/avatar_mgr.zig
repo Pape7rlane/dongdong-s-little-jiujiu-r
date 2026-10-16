@@ -67,6 +67,7 @@ pub fn createAvatarPathData(
     if (Logic.inlist(avatar.avatar_id, &Data.EnhanceAvatarID)) {
         avatar.unk_enhanced_id = 1;
     }
+    try avatar.IGDEHGIKFJA.appendSlice(&Data.ExRankAvatarID);
     avatar.path_equipment_id = Uid.nextGlobalId();
     avatar.equip_relic_list = ArrayList(protocol.EquipRelic).init(allocator);
     for (0..6) |i| {
@@ -89,6 +90,7 @@ pub fn createAllAvatarPathData(
     if (Logic.inlist(avatar.avatar_id, &Data.EnhanceAvatarID)) {
         avatar.unk_enhanced_id = 1;
     }
+    try avatar.IGDEHGIKFJA.appendSlice(&Data.ExRankAvatarID);
     try createSkillTree(avatar.avatar_id, &avatar.avatar_path_skill_tree);
     return avatar;
 }

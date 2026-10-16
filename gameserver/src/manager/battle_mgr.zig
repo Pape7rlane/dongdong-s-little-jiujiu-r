@@ -63,6 +63,7 @@ fn createBattleAvatar(allocator: Allocator, avatarConf: Config.Avatar) !protocol
     avatar.rank = avatarConf.rank;
     avatar.promotion = avatarConf.promotion;
     avatar.avatar_type = .AVATAR_FORMAL_TYPE;
+    try avatar.IGDEHGIKFJA.appendSlice(&Data.ExRankAvatarID);
     if (Logic.inlist(avatar.id, &Data.EnhanceAvatarID)) avatar.enhanced_id = 1;
 
     for (avatarConf.relics.items) |relic| {
