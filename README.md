@@ -1,6 +1,6 @@
 # PearlSR 
 #### Honkai: Star Rail server emulator (4.6.53) written in Zig.
-
+https://git.xeondev.com/HonkaiSlopRail/pearl-sr
 ![Screenshot](Screenshot.png)
 
 ## Requirements
