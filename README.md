@@ -1,5 +1,5 @@
 # PearlSR 
-#### Honkai: Star Rail server emulator (4.6.51) written in Zig.
+#### Honkai: Star Rail server emulator (4.6.53) written in Zig.
 
 ![Screenshot](Screenshot.png)
 
@@ -43,7 +43,7 @@ chmod +x start.sh
 
 ### Setup launcher.exe
 
-Copy `launcher.exe` and `hkprg.dll` from launcher folder inside pearl-sr and paste them inside your client folder.
+Copy `launcher.exe` and `hkrpg.dll` from launcher folder inside pearl-sr and paste them inside your client folder.
 Then open your `launcher.exe` with administrator.
 
 ### Using Pre-built Binaries

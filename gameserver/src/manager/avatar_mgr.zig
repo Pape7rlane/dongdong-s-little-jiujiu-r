@@ -66,6 +66,7 @@ pub fn createAvatarPathData(
     if (Logic.inlist(avatar.avatar_id, &Data.EnhanceAvatarID)) {
         avatar.unk_enhanced_id = 1;
     }
+    try avatar.IGDEHGIKFJA.appendSlice(&Data.ExRankAvatarID);
     avatar.path_equipment_id = avatarConf.lightcone.unique_id;
     avatar.equip_relic_list = ArrayList(protocol.EquipRelic).init(allocator);
     for (avatarConf.relics.items) |relic| {
