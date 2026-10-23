@@ -127,12 +127,12 @@ jobs:
           cp -r protocol release/ || true
 
           # 配置文件
-          cp frecsr-data.json release/ || true
+          cp freesr-data.json release/ || true
           cp hotfix.json release/ || true
 
           # launcher
           cp launcher/launcher.exe release/ || true
-          cp launcher/hkprg.dll release/ || true
+          cp launcher/hkrpg.dll release/ || true
 
           echo "=== Release files ==="
           find release -maxdepth 3 -type f -print
@@ -169,7 +169,7 @@ jobs:
           body: |
             ## PearlSR
 
-            Honkai: Star Rail server emulator 4.6 Beta.
+            Honkai: Star Rail server emulator 4.6.53 Beta.
 
             ### Builds
 
